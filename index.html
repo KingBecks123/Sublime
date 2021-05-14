@@ -16,6 +16,7 @@
      display: table;
      clear: both;
      }
+
     </style>
 	<style>
 	#myProgress {
@@ -59,24 +60,28 @@
 				<p id="textForCoins", style="color:yellow;">0 Coins</p>
 			</div>		
 				<p id="textForJuice", style="color:green; visibility: hidden;">0 Juice</p>
+		<p id="textForSticks", style="color:#6e4417;visibility: hidden">0 Sticks</p>
+		<p id="textForPies", style="color:#9c744b;visibility: hidden">0 Pies</p>
 		</div>	
 
 	 </div>
-	 <p id="newInfo", style="background-color:#bfbfbf;">You are in a lime forest.</p>
+	 <p id="newInfo", style="background-color:#bfbfbf;">You Are In A Lime Forest.</p>
 	 <button style="background:lightgreen", onclick="getLimes()">Pick Up Limes</button>
+	 <button id="stickButton", style="background:#6e4417;visibility: hidden", onclick="getSticks()">Pick Up Sticks</button>
+	 <button id="exploreButton", style="background:#6e4417;visibility: hidden", onclick="explore()">Explore</button>
 
 
 	<br>
 	 
-	<div class="column", id="navigateButtons">
+	<div class="column", id="navigateButtons", style="visibility: hidden">
 	  <button style="background:lightgray", onclick="tab('market')">Market</button>
 	  <button style="background:lightgray", onclick="tab('options')">Options</button>
 	  <button style="background:lightgray", onclick="tab('achievements')">Achievements</button>
-	  
+	  <button style="background:lightgray", onclick="tab('theGround')">The Ground</button>	  
 	  <div id="inventoryButton", style="visibility: hidden">	
 		<button style="background:lightgray", onclick="tab('inventory')">Inventory</button>	  
 	  </div>	 
-	  
+	  <button id="newtownButton", style="background:lightgray;visibility: hidden", onclick="tab('newtown')">Newtown</button>  
 	</div>
 	
 
@@ -94,6 +99,11 @@
 	 <button onclick="sellYourLimes()">Sell Your Limes</button>
 	 <p id="sellYourLimesAmount", style="background-color:#bfbfbf;">You Need 100 Limes</p>
 	 <p id="sellYourLimesReward", style="background-color:#bfbfbf;">You Will Be Rewarded 1 Coin</p>
+
+	 <button id="glovesButton",  style="background:#e6ae73", onclick="buyGloves()">Buy Gloves</button>
+	 <p id="glovesInfo", style="background-color:#bfbfbf;">Price: 10 Coins</p>	
+	 <button id="shoesButton", style="background:#e6ae73", onclick="buyShoes()">Buy Shoes</button>
+	 <p id="shoesInfo", style="background-color:#bfbfbf;">Price: 10 Coins</p>	
 	 
 	 <button onclick="buyAJuicer()">Buy A Juicer</button>
 	 <p id="buyAJuicerPrice", style="background-color:#bfbfbf;">You Need 1 Coin</p>
@@ -110,24 +120,56 @@
 
 		 <div class="column" id="deliveryProgress">
 		 <div id="deliveryBar">0%</div>
-		 </div>
+		 </div>	 
+		 </div>	 
+		 <br>	
+	
+		 <div id="foodMarket", style="visibility: hidden;">			 
+			 <button style="background:#e6ae73", onclick="buyBread()">Buy Bread</button>
+				<p id="breadInfo", style="background-color:#bfbfbf;">Price: 3 Coins</p>
+			 <button style="background:#e6ae73", onclick="buySugar()">Buy Sugar</button>	
+				<p id="sugarInfo", style="background-color:#bfbfbf;">Price: 2 Coins</p>			 
+		 </div>	 
 		 
-		 
-		</div>	 
 	</div>	 
 	
 	<div id="inventory">	
-	 <p id="juicersAmount", style="background-color:#bfbfbf;">1 Juicers</p>
-	 <button onclick="makeJuice()">Use Juicer</button>
-	 <p id="juicerInfo", style="background-color:#bfbfbf;">Juicers Use 10 Limes To Create 1 Lime Juice.</p>
-		 <div class="column" id="myProgress">
-		 <div id="juicerBar">0%</div>
-		 </div>
-	 </div>		
+		 <p id="juicersAmount", style="background-color:#bfbfbf;">1 Juicers</p>
+		 <button onclick="makeJuice()">Use Juicer</button>
+		 <button id="makeMaxJuice", onclick="makeMaxJuice()", style="visibility: hidden;">Use Max Juicers</button>
+		 <p id="juicerInfo", style="background-color:#bfbfbf;">Juicers Use 10 Limes To Create 1 Lime Juice.</p>
+			 <div class="column" id="myProgress">
+			 <div id="juicerBar">0%</div>
+			 </div>	 
+		<br>
+		<br>
+		 <p id="inventoryBread", style="background-color:#bfbfbf;visibility: hidden;">1 Bread</p>
+		 <p id="inventorySugar", style="background-color:#bfbfbf;visibility: hidden;">1 Sugar</p>
+	</div>		
 	 
 	 <div id="achievements">	
 	 <p id="coinsAchievement", style="background-color:#bfbfbf;">Collect 10 Coins.</p>
+	 <p id="coinsAchievement2", style="background-color:#bfbfbf;">Collect 100 Coins.</p>
+
 	 </div>		
+	 
+	 <div id="theGround">	
+	 <p id="theGround", style="background-color:#6e4417;">There's Leaves And Mud Here</p>
+	 <button id="stickRub", onclick="rubSticks()", style="visibility: hidden;background-color:#9c744b;">Rub Two Sticks Together</button>
+	 <p id="fire", style="background-color:red;visibility: hidden;">A Campfire Is Burning.</p>
+	 <button id="pieBake", onclick="pieBake()", style="visibility: hidden;background-color:#9c744b;">Bake A Lime Pie</button>
+	 <p id="pieBakeText", style="background-color:#9c744b;visibility: hidden;">Needs 1 Sugar, 1 Bread And 2 Lime Juice</p>
+	 </div>		 
+	 
+	 <div id="newtown">	
+		<button id="stickRub", onclick="sellPie()", style="background-color:#9c744b;">Sell Pie</button>
+		<p id="sellYourPiesPrice", style="background-color:#9c744b;">Sell A Pie For 10 Coins</p>
+		<button onclick="increasePiePrice()">Increase Pie Price</button>
+		<button onclick="decreasePiePrice()">Decrease Pie Price</button>
+		<p id="pieSelling", style="visibility: hidden;background-color:#9c744b;">Pies For Sale!</p>
+		<button id="pieCostumer", onclick="sellOnePie()", style="background-color:#9c744b;visibility: hidden;">Costumer</button>
+
+	 </div>	
 	 
 	<script src="myfunctions.js" charset="utf-8" type="text/javascript"></script>
 	<script src="main.js" charset="utf-8" type="text/javascript"></script>
