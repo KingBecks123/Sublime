@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta charset="utf-8">
+    <title>Lime Clicker</title>
+    <style>
+
+     .column {
+     float: left;
+     padding: 10px;
+     height: 300px;
+	 width: 100px;
+     .row:after {
+     content: "";
+     display: table;
+     clear: both;
+     }
+    </style>
+	<style>
+	#myProgress {
+	  width: 50%;
+	  height: 30px;
+	  background-color: #ddd;
+	}
+
+	#juicerBar {
+	  width: 0%;
+	  height: 30px;
+	  background-color: #04AA6D;
+	  text-align: center;
+	  line-height: 30px;
+	  color: black;
+	}
+	</style>
+	<style>
+	#deliveryProgress {
+	  width: 500px;
+	  height: 30px;
+	  background-color: #ddd;
+	}
+
+	#deliveryBar {
+	  width: 0%;
+	  height: 30px;
+	  background-color: #04AA6D;
+	  text-align: center;
+	  line-height: 30px;
+	  color: black;
+	}
+	</style>
+  </head>
+   <body style="background-color:darkgray;", onload="gameStart()">
+  
+	 <div class="row">
+		<div class="column" style="background-color:#000000;">
+			<p id="textForLimes", style="color:lime;">0 Limes</p>
+			<div id="textForCoinsDiv", style="visibility: hidden;">	
+				<p id="textForCoins", style="color:yellow;">0 Coins</p>
+			</div>		
+				<p id="textForJuice", style="color:green; visibility: hidden;">0 Juice</p>
+		</div>	
+
+	 </div>
+	 <p id="newInfo", style="background-color:#bfbfbf;">You are in a lime forest.</p>
+	 <button style="background:lightgreen", onclick="getLimes()">Pick Up Limes</button>
+
+
+	<br>
+	 
+	<div class="column", id="navigateButtons">
+	  <button style="background:lightgray", onclick="tab('market')">Market</button>
+	  <button style="background:lightgray", onclick="tab('options')">Options</button>
+	  
+	  <div id="inventoryButton", style="visibility: hidden">	
+		<button style="background:lightgray", onclick="tab('inventory')">Inventory</button>	  
+	  </div>	 
+	  
+	</div>
+	
+
+	<br>
+	
+	<div id="options">	
+		<button style="background:#5266a3", onclick="saveGame()">Save Game</button>
+		<button style="background:#5266a3", onclick="loadGame()">Load Game</button>
+		<button style="background:#5266a3", onclick="exportGame()">Export Game</button>
+		<button style="background:#5266a3", onclick="importGame()">Import Game</button>
+		<p id="exportCode", style="background-color:#bfbfbf;">Export Code</p>
+	</div>	 
+	 
+	<div id="market">	
+	 <button onclick="sellYourLimes()">Sell Your Limes</button>
+	 <p id="sellYourLimesAmount", style="background-color:#bfbfbf;">You Need 100 Limes</p>
+	 <p id="sellYourLimesReward", style="background-color:#bfbfbf;">You Will Be Rewarded 1 Coin</p>
+	 
+	 <button onclick="buyAJuicer()">Buy A Juicer</button>
+	 <p id="buyAJuicerPrice", style="background-color:#bfbfbf;">You Need 1 Coin</p>
+	 	<div id="juiceMarket", style="visibility: hidden;">	
+			 <button onclick="sellYourJuice()">Sell Your Juice</button>
+			 <p id="sellYourJuicePrice", style="background-color:#bfbfbf;">You Need 1 Coin For Delivery</p>
+			 <p id="sellYourJuiceAmount", style="background-color:#bfbfbf;">You Need 1 Juice</p>
+			 <p id="sellYourJuiceReward", style="background-color:#bfbfbf;">You Will Be Rewarded 1 Coin</p>
+			 
+			 <button onclick="increaseJuiceSold()">Increase Juice Sold</button>
+			 <button onclick="decreaseJuiceSold()">Decrease Juice Sold</button>
+			 
+			 <br>
+
+		 <div class="column" id="deliveryProgress">
+		 <div id="deliveryBar">0%</div>
+		 </div>
+		 
+		 
+		</div>	 
+	</div>	 
+	
+	<div id="inventory">	
+	 <p id="juicersAmount", style="background-color:#bfbfbf;">1 Juicers</p>
+	 <button onclick="makeJuice()">Use Juicer</button>
+	 <p id="juicerInfo", style="background-color:#bfbfbf;">Juicers Use 10 Limes To Create 1 Lime Juice.</p>
+		 <div class="column" id="myProgress">
+		 <div id="juicerBar">0%</div>
+		 </div>
+	 </div>		
+	 
+	 
+	<script src="myfunctions.js" charset="utf-8" type="text/javascript"></script>
+	<script src="main.js" charset="utf-8" type="text/javascript"></script>
+	<script src="technical.js" charset="utf-8" type="text/javascript"></script>
+	
+	<script>
+	function moveJuicer() {
+		var elem = document.getElementById("juicerBar");
+		elem.style.width = gameData.juiceBar + "%";
+		elem.innerHTML = Math.ceil(gameData.juiceBar)  + "%";
+	}
+	</script>
+	
+	<script>
+	function moveDelivery() {
+		var elem = document.getElementById("deliveryBar");
+		elem.style.width = gameData.deliveryBar + "%";
+		elem.innerHTML = Math.ceil(gameData.deliveryBar)  + "%";
+	}
+	</script>
+	
+  </body>
+</html>
