@@ -32,6 +32,7 @@ function tab(tab) {
   tabs("options", "none")
   tabs("market", "none")
   tabs("inventory", "none")
+  tabs("achievements", "none")
   document.getElementById(tab).style.display = "inline-block"
 }
 
@@ -70,5 +71,9 @@ function updateValues() {
 	{divVisibility ("textForJuice", "visible")
 	 divVisibility ("juiceMarket", "visible")
 	}
-
+	if(gameData.coins >= 10)
+	{ 
+    document.getElementById('coinsAchievement').style.backgroundColor = 'lime';
+	}
+	
 }

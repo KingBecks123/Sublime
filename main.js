@@ -1,5 +1,5 @@
 function gameStart(){
-	var cheatNum = 0;
+	var cheatNum = 1;
 	gameData.limes += cheatNum * 100000
 	gameData.juice += cheatNum * 100000
 	gameData.juicers += cheatNum * 100000
