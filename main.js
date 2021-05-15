@@ -56,7 +56,20 @@ updateValues()
 }
 
 function getLimes() {
-    gameData.limes += gameData.limesPerClick
+	
+		if(Math.floor((Math.random() * 100) / gameData.rottenWisdom) == 0)
+		{
+			if(Math.floor((Math.random() * 100) / gameData.limebidextrous) == 0)
+			{
+			gameData.limes += gameData.limesPerClick
+			}
+			gameData.limes += gameData.limesPerClick
+		}
+		else
+		{
+			gameData.rottenLimes += gameData.limesPerClick
+		}
+		
 updateValues()
 }
 
@@ -75,9 +88,9 @@ updateValues()
 }
 
 function buyGloves() {
-	if(gameData.coins >= 10)
+	if(gameData.coins >= 100)
 	{
-		gameData.coins -= 10
+		gameData.coins -= 100
 		divVisibility ("textForSticks", "visible")
 		divVisibility ("stickButton", "visible")
 		tabs ("glovesButton", "none")
@@ -86,10 +99,55 @@ function buyGloves() {
 updateValues()
 }
 
-function buyShoes() {
-	if(gameData.coins >= 10)
+function lookAround() {
+	if(gameData.lookAround == 0)
 	{
-		gameData.coins -= 10
+		gameData.lookAroundNumber += 1
+		
+		if(gameData.lookAroundNumber == 10 || difficulty >= 1)
+		{
+			divVisibility ("navigateButtons", "visible")
+			update("newInfo", "You see a nearby market.")
+			gameData.lookAround = 1
+			//document.getElementById('lookAroundButton').style.backgroundColor = 'darkGray';
+		}
+	}
+	else if(gameData.lookAround == 1)
+	{
+		if(Math.floor(Math.random() * 10) == 0 || difficulty >= 1)
+		{
+			tabs ("sellYourLimesButton", "block")
+			tabs ("sellYourLimesAmount", "block")
+			tabs ("sellYourLimesReward", "block")
+			update("newInfo", "You find a merchant willing to buy limes.")
+			gameData.lookAround = 2
+			//document.getElementById('lookAroundButton').style.backgroundColor = 'darkGray';
+		}
+	}
+	else if(gameData.lookAround == 2)
+	{
+		if(Math.floor(Math.random() * 10) == 0 || difficulty >= 1)
+		{
+			tabs ("knifeButton", "block")
+			tabs ("knifeInfo", "block")
+			tabs ("glovesInfo", "block")
+			tabs ("glovesButton", "block")
+			tabs ("shoesButton", "block")
+			tabs ("shoesInfo", "block")
+			tabs ("buyAJuicerButton", "block")
+			tabs ("buyAJuicerPrice", "block")
+			update("newInfo", "You find a merchant selling various items.")
+			gameData.lookAround = 3
+			document.getElementById('lookAroundButton').style.backgroundColor = 'darkGray';
+		}
+	}
+updateValues()
+}
+
+function buyShoes() {
+	if(gameData.coins >= 100)
+	{
+		gameData.coins -= 100
 		divVisibility ("exploreButton", "visible")
 		tabs ("shoesButton", "none")
 		tabs ("shoesInfo", "none")
@@ -101,6 +159,42 @@ updateValues()
 
 function getSticks() {
     gameData.sticks += 1
+updateValues()
+}
+
+function juiceLimesToggle() {
+    document.getElementById('juiceLimesToggleButton').style.backgroundColor = 'lime';
+    document.getElementById('juicePeeledLimesToggleButton').style.backgroundColor = 'gray';
+	gameData.limeTypeToJuice = 0
+updateValues()
+}
+
+function juicePeeledLimesToggle() {
+    document.getElementById('juicePeeledLimesToggleButton').style.backgroundColor = 'lime';
+    document.getElementById('juiceLimesToggleButton').style.backgroundColor = 'gray';
+	gameData.limeTypeToJuice = 1
+updateValues()
+}
+
+function peelLime() {
+	if(gameData.limes >= 1)
+	{
+		gameData.limes -= 1
+		gameData.peeledLimes += 1
+		tabs ("textForPeeledLimes", "inline-block")
+	}
+updateValues()
+}
+
+
+function buyKnife() {
+	if(gameData.coins >= 2)
+	{
+		gameData.coins -= 2
+		gameData.knife += 1
+		tabs ("knifeButton", "none")
+		tabs ("knifeInfo", "none")
+	}
 updateValues()
 }
 
@@ -141,82 +235,6 @@ function buyAJuicer() {
 		divVisibility ("inventoryButton", "visible")
 	}
 	
-updateValues()
-}
-
-function sellYourJuice() {
-	if((gameData.deliveryBar >= 99.9 || gameData.deliveryBar == 0) && gameData.coins > 0 && gameData.juice >= gameData.juiceBulkAmount)
-	{
-		gameData.coins -= 1
-		gameData.juice -= gameData.juiceBulkAmount
-		gameData.deliveryBar = 0;
-		sellYourJuiceBar()
-	}
-	
-updateValues()
-}
-
-function sellYourJuiceBar() {
-	if(gameData.deliveryBar <= 99.9)
-	{
-		if(gameData.deliveryBar <= 99.9)
-		{
-		gameData.deliveryBar += 0.1;
-		setTimeout(sellYourJuiceBar, 1000 / gameData.tickspeed)
-		moveDelivery()
-		}
-	}
-	else
-	{
-	gameData.coins += gameData.juiceBulkAmount
-	}
-updateValues()
-}
-
-function makeJuice() {
-	if((gameData.juiceBar >= 99 || gameData.juiceBar == 0) && gameData.limes >= 10)
-	{
-		gameData.limes -= 10
-		gameData.juiceBar = 0
-		gameData.howMuchJuice = 1
-		makeJuiceBar()
-	}
-	
-updateValues()
-}
-
-function makeMaxJuice() {
-	if((gameData.juiceBar >= 99 || gameData.juiceBar == 0) && gameData.limes >= 10)
-	{
-		gameData.howMuchJuice = Math.floor(gameData.limes / 10)
-		if(gameData.howMuchJuice > gameData.juicers)
-		{
-			gameData.howMuchJuice = gameData.juicers
-		}
-		
-		
-		gameData.limes -= gameData.howMuchJuice * 10
-		gameData.juiceBar = 0;
-		makeJuiceBar()
-	}
-	
-updateValues()
-}
-
-function makeJuiceBar(juiceAmount) {
-	if(gameData.juiceBar <= 99)
-	{
-		if(gameData.juiceBar <= 99)
-		{
-		gameData.juiceBar += 1;
-		setTimeout(makeJuiceBar, 1000 / gameData.tickspeed)
-		moveJuicer()
-		}
-	}
-	else
-	{
-	gameData.juice += gameData.howMuchJuice;
-	}
 updateValues()
 }
 

@@ -35,8 +35,24 @@
 	}
 	</style>
 	<style>
+	.skillProgress {
+	  width: 300px;
+	  height: 30px;
+	  background-color: #ddd;
+	}
+
+	.skillBar {
+	  width: 0%;
+	  height: 30px;
+	  background-color: #04AA6D;
+	  text-align: center;
+	  line-height: 30px;
+	  color: black;
+	}
+	</style>
+	<style>
 	#deliveryProgress {
-	  width: 500px;
+	  width: 300px;
 	  height: 30px;
 	  background-color: #ddd;
 	}
@@ -56,17 +72,19 @@
 	 <div class="row">
 		<div class="column" style="background-color:#000000;">
 			<p id="textForLimes", style="color:lime;">0 Limes</p>
-			<div id="textForCoinsDiv", style="visibility: hidden;">	
+			<p id="textForRottenLimes", style="color:#96b811;display:none;">0 Rotten Limes</p>
+			<div id="textForCoinsDiv", style="display:none;">	
 				<p id="textForCoins", style="color:yellow;">0 Coins</p>
 			</div>		
-				<p id="textForJuice", style="color:green; visibility: hidden;">0 Juice</p>
-		<p id="textForSticks", style="color:#6e4417;visibility: hidden">0 Sticks</p>
-		<p id="textForPies", style="color:#9c744b;visibility: hidden">0 Pies</p>
+				<p id="textForJuice", style="color:green; display:none;">0 Juice</p>
+		<p id="textForSticks", style="color:#6e4417;display:none;">0 Sticks</p>
+		<p id="textForPies", style="color:#9c744b;display:none;">0 Pies</p>
 		</div>	
 
 	 </div>
-	 <p id="newInfo", style="background-color:#bfbfbf;">You Are In A Lime Forest.</p>
+	 <p id="newInfo", style="background-color:#bfbfbf;">You are in a lime forest.</p>
 	 <button style="background:lightgreen", onclick="getLimes()">Pick Up Limes</button>
+	 <button id="lookAroundButton", style="background:lightgray", onclick="lookAround()">Look Around</button>
 	 <button id="stickButton", style="background:#6e4417;visibility: hidden", onclick="getSticks()">Pick Up Sticks</button>
 	 <button id="exploreButton", style="background:#6e4417;visibility: hidden", onclick="explore()">Explore</button>
 
@@ -76,7 +94,8 @@
 	<div class="column", id="navigateButtons", style="visibility: hidden">
 	  <button style="background:lightgray", onclick="tab('market')">Market</button>
 	  <button style="background:lightgray", onclick="tab('options')">Options</button>
-	  <button style="background:lightgray", onclick="tab('achievements')">Achievements</button>
+	  <button style="background:lightgray", onclick="tab('skills')">Skills</button>
+	  <button id="achievementsButton", style="background:lightgray;display:none;", onclick="tab('achievements')">Achievements</button>
 	  <button style="background:lightgray", onclick="tab('theGround')">The Ground</button>	  
 	  <div id="inventoryButton", style="visibility: hidden">	
 		<button style="background:lightgray", onclick="tab('inventory')">Inventory</button>	  
@@ -92,22 +111,34 @@
 		<button style="background:#5266a3", onclick="loadGame()">Load Game</button>
 		<button style="background:#5266a3", onclick="exportGame()">Export Game</button>
 		<button style="background:#5266a3", onclick="importGame()">Import Game</button>
-		<p id="exportCode", style="background-color:#bfbfbf;">Export Code</p>
+		<p id="exportCode", style="background-color:#bfbfbf;width:300px;word-wrap: break-word;">Export Code</p>
 	</div>	 
 	 
 	<div id="market">	
-	 <button onclick="sellYourLimes()">Sell Your Limes</button>
-	 <p id="sellYourLimesAmount", style="background-color:#bfbfbf;">You Need 100 Limes</p>
-	 <p id="sellYourLimesReward", style="background-color:#bfbfbf;">You Will Be Rewarded 1 Coin</p>
-
-	 <button id="glovesButton",  style="background:#e6ae73", onclick="buyGloves()">Buy Gloves</button>
-	 <p id="glovesInfo", style="background-color:#bfbfbf;">Price: 10 Coins</p>	
-	 <button id="shoesButton", style="background:#e6ae73", onclick="buyShoes()">Buy Shoes</button>
-	 <p id="shoesInfo", style="background-color:#bfbfbf;">Price: 10 Coins</p>	
+	 <button id="marketAreaMain", style="background-color:#bfbfbf;display:none;", onclick="tabMarket(Main)">Main Square</button>
+	 <button id="marketAreaStore", style="background-color:#bfbfbf;display:none;", onclick="tabMarket(Store)">General Store</button>
 	 
-	 <button onclick="buyAJuicer()">Buy A Juicer</button>
-	 <p id="buyAJuicerPrice", style="background-color:#bfbfbf;">You Need 1 Coin</p>
-	 	<div id="juiceMarket", style="visibility: hidden;">	
+		 <div id="marketMain">	
+		 <button id="sellYourLimesButton", style="background-color:#d93629;display:none;", onclick="sellYourLimes()">Sell Your Limes</button>
+		 <p id="sellYourLimesAmount", style="background-color:#bfbfbf;display:none;">You Need 100 Limes</p>
+		 <p id="sellYourLimesReward", style="background-color:#bfbfbf;display:none;">You Will Be Rewarded 1 Coin</p>
+		 <button id="buyAJuicerButton", style="background:#e6ae73;display:none;", onclick="buyAJuicer()">Buy A Juicer</button>
+		 <p id="buyAJuicerPrice", style="background-color:#bfbfbf;display:none;">Price: 1 Coin</p>
+		 </div>
+		 
+		 
+	 	<div id="marketStore", style="display:none;">	
+			 <button id="glovesButton",  style="background:#e6ae73;display:none;", onclick="buyGloves()">Buy Gloves</button>
+			 <p id="glovesInfo", style="background-color:#bfbfbf;display:none;">Price: 100 Coins</p>	
+			 <button id="shoesButton", style="background:#e6ae73;display:none;", onclick="buyShoes()">Buy Shoes</button>
+			 <p id="shoesInfo", style="background-color:#bfbfbf;display:none;">Price: 100 Coins</p>	
+			 <button id="knifeButton", style="background:#e6ae73;display:none;", onclick="buyKnife()">Buy A Knife</button>
+			 <p id="knifeInfo", style="background-color:#bfbfbf;display:none;">Price: 2 Coins</p>		 
+		 </div>	 	 
+	 
+	 
+	 
+	 	<div id="juiceMarket", style="display:none;">	
 			 <button onclick="sellYourJuice()">Sell Your Juice</button>
 			 <p id="sellYourJuicePrice", style="background-color:#bfbfbf;">You Need 1 Coin For Delivery</p>
 			 <p id="sellYourJuiceAmount", style="background-color:#bfbfbf;">You Need 1 Juice</p>
@@ -135,8 +166,10 @@
 	
 	<div id="inventory">	
 		 <p id="juicersAmount", style="background-color:#bfbfbf;">1 Juicers</p>
-		 <button onclick="makeJuice()">Use Juicer</button>
-		 <button id="makeMaxJuice", onclick="makeMaxJuice()", style="visibility: hidden;">Use Max Juicers</button>
+		 <button style="background-color:lime;", onclick="makeJuice()">Use Juicer</button>
+		 <button id="makeMaxJuice", onclick="makeMaxJuice()", style="visibility: hidden;background-color:lime;">Use Max Juicers</button>
+		 <button id="juiceLimesToggleButton", style="background-color:lime;display:none;", onclick="juiceLimesToggle()">On Limes</button>
+		 <button id="juicePeeledLimesToggleButton", style="background-color:gray;display:none;", onclick="juicePeeledLimesToggle()">On Peeled Limes</button>
 		 <p id="juicerInfo", style="background-color:#bfbfbf;">Juicers Use 10 Limes To Create 1 Lime Juice.</p>
 			 <div class="column" id="myProgress">
 			 <div id="juicerBar">0%</div>
@@ -145,6 +178,9 @@
 		<br>
 		 <p id="inventoryBread", style="background-color:#bfbfbf;visibility: hidden;">1 Bread</p>
 		 <p id="inventorySugar", style="background-color:#bfbfbf;visibility: hidden;">1 Sugar</p>
+		 <p id="inventoryKnife", style="background-color:#bfbfbf;display:none">Use Knife On:</p>
+		 <button id="inventoryKnifeLime", onclick="peelLime()" style="background-color:#bfbfbf;display:none">Lime</button>
+	   	<p id="textForPeeledLimes", style="color:#9c744b;display: none">1 Peeled Lime</p>
 	</div>		
 	 
 	 <div id="achievements">	
@@ -162,6 +198,7 @@
 	 </div>		 
 	 
 	 <div id="newtown">	
+	 
 		<button id="stickRub", onclick="sellPie()", style="background-color:#9c744b;">Sell Pie</button>
 		<p id="sellYourPiesPrice", style="background-color:#9c744b;">Sell A Pie For 10 Coins</p>
 		<button onclick="increasePiePrice()">Increase Pie Price</button>
@@ -171,9 +208,47 @@
 
 	 </div>	
 	 
+	 <div id="skills">	
+	 
+		 <button id="learnANewSkillButton", onclick="learnANewSkill()", style="background-color:lime;">Learn A New Skill</button>	 
+		 <div class="skillProgress" id="learnANewSkillProgress">
+		 <div class="skillBar", id="learnANewSkillBar">0%</div>
+		 </div>
+	 
+	 	 <div id="rottenWisdomDiv", style="display:none;">	
+			<p id="rottenWisdomInfo", style="background-color:#9c744b;">Increase the chance to pick up limes rather than rotten limes by 1%.</p>
+			<p id="rottenWisdom", style="background-color:#9c744b;">0 / 100</p>
+			<button id="rottenWisdomButton", onclick="rottenWisdom()", style="background-color:#0fa7b8">Rotten Wisdom</button>	 
+			<div class="skillProgress" id="rottenWisdomProgress">
+				<div class="skillBar", id="rottenWisdomBar">0%</div>
+			</div>
+		 </div>
+		 
+	 	 <div id="limebidextrousDiv", style="display:none;">	
+			<p id="limebidextrousInfo", style="background-color:#9c744b;">Increase the chance to pick up 2 limes rather than 1 by 1%.</p>
+			<p id="limebidextrous", style="background-color:#9c744b;">0 / 100</p>
+			<button id="limebidextrousButton", onclick="limebidextrous()", style="background-color:#0fa7b8">Limebidextrous</button>	 
+			<div class="skillProgress" id="limebidextrousProgress">
+				<div class="skillBar", id="limebidextrousBar">0%</div>
+			</div>	
+		 </div>
+		 
+	 	 <div id="intelligenceDiv", style="display:none;">	 
+			<p id="intelligenceInfo", style="background-color:#9c744b;">Decrease the time needed to skill by 1%.</p>
+			<p id="intelligence", style="background-color:#9c744b;">0 / 100</p>
+			<button id="intelligenceButton", onclick="intelligence()", style="background-color:#0fa7b8">Intelligence</button>	 
+			<div class="skillProgress" id="intelligenceProgress">
+				<div class="skillBar", id="intelligenceBar">0%</div>
+			</div>	
+		 </div>
+
+	 </div>	
+	 
 	<script src="myfunctions.js" charset="utf-8" type="text/javascript"></script>
 	<script src="main.js" charset="utf-8" type="text/javascript"></script>
 	<script src="technical.js" charset="utf-8" type="text/javascript"></script>
+	<script src="bars.js" charset="utf-8" type="text/javascript"></script>	
+	<script src="update.js" charset="utf-8" type="text/javascript"></script>	
 	
 	<script>
 	function moveJuicer() {
@@ -182,12 +257,44 @@
 		elem.innerHTML = Math.ceil(gameData.juiceBar)  + "%";
 	}
 	</script>
-	
+
+	<script>
+	function moveRottenWisdom() {
+		var elem = document.getElementById("rottenWisdomBar");
+		elem.style.width = gameData.rottenWisdomBar + "%";
+		elem.innerHTML = Math.ceil(gameData.rottenWisdomBar)  + "%";
+	}
+	</script>
+
 	<script>
 	function moveDelivery() {
 		var elem = document.getElementById("deliveryBar");
 		elem.style.width = gameData.deliveryBar + "%";
 		elem.innerHTML = Math.ceil(gameData.deliveryBar)  + "%";
+	}
+	</script>
+	
+	<script>
+	function moveLimebidextrous() {
+		var elem = document.getElementById("limebidextrousBar");
+		elem.style.width = gameData.limebidextrousBar + "%";
+		elem.innerHTML = Math.ceil(gameData.limebidextrousBar)  + "%";
+	}
+	</script>
+	
+	<script>
+	function moveLearnANewSkill() {
+		var elem = document.getElementById("learnANewSkillBar");
+		elem.style.width = gameData.learnANewSkillBar + "%";
+		elem.innerHTML = Math.ceil(gameData.learnANewSkillBar)  + "%";
+	}
+	</script>
+	
+	<script>
+	function moveIntelligence() {
+		var elem = document.getElementById("intelligenceBar");
+		elem.style.width = gameData.intelligenceBar + "%";
+		elem.innerHTML = Math.ceil(gameData.intelligenceBar)  + "%";
 	}
 	</script>
 	
