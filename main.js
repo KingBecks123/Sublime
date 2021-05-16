@@ -1,3 +1,47 @@
+function deliveryToggleStandard() {
+    document.getElementById('deliveryToggleStandardButton').style.backgroundColor = 'lime';
+    document.getElementById('deliveryToggleExpressButton').style.backgroundColor = 'gray';
+	gameData.deliveryTypeToggle = 0
+	gameData.deliveryPrice = 1
+updateValues()
+}
+
+function deliveryToggleExpress() {
+    document.getElementById('deliveryToggleExpressButton').style.backgroundColor = 'lime';
+    document.getElementById('deliveryToggleStandardButton').style.backgroundColor = 'gray';
+	
+	gameData.deliveryTypeToggle = 1
+	gameData.deliveryPrice = 3
+updateValues()
+}
+
+function payEmployee() {
+	if(gameData.coins >= gameData.employeeWageOne)
+	{
+		gameData.employeeWorkingOne += 1
+		gameData.coins -= gameData.employeeWageOne
+		working()
+	}
+	
+updateValues()
+}
+
+function hireApplicant() {
+	if(gameData.coins >= gameData.applicantPrice && gameData.employees < gameData.maxEmployees && gameData.applicationReady == 1)
+	{
+		gameData.applicationReady = 0
+		gameData.coins -= gameData.applicantPrice
+		gameData.employees += 1
+		
+		    gameData.employeeSpeedOne = gameData.applicantSpeed
+			gameData.employeePriceOne = gameData.applicantPrice
+			gameData.employeeWageOne = gameData.applicantWage
+
+	}
+	
+updateValues()
+}
+
 function pieBake() {
 	if(gameData.bread >= 1 && gameData.sugar >= 1 && gameData.juice >= 2)
 	{
@@ -57,19 +101,40 @@ updateValues()
 
 function getLimes() {
 	
-		if(Math.floor((Math.random() * 100) / gameData.rottenWisdom) == 0)
+		if(Math.floor((Math.random() * 20) / gameData.rottenWisdom) == 0 || difficulty == 1)
 		{
-			if(Math.floor((Math.random() * 100) / gameData.limebidextrous) == 0)
+			if(Math.floor((Math.random() * 20) / gameData.limebidextrous) == 0)
+				{
+					gameData.limes += gameData.limesPerClick
+					if(gameData.teachBar > 0 && gameData.teachBar < 100)
+					{
+						gameData.employeeCurrentSpeedOne += gameData.limesPerClick
+					}
+				}
+			gameData.limes += gameData.limesPerClick
+			if(gameData.teachBar > 0 && gameData.teachBar < 100)
 			{
-			gameData.limes += gameData.limesPerClick
+				gameData.employeeCurrentSpeedOne += gameData.limesPerClick
 			}
-			gameData.limes += gameData.limesPerClick
 		}
 		else
 		{
-			gameData.rottenLimes += gameData.limesPerClick
-		}
-		
+			gameData.rottenLimes += 1
+		}		
+updateValues()
+}
+
+function peelLime() {
+	if(gameData.limes >= 1)
+	{
+		gameData.limes -= 1
+			if(Math.floor((Math.random() * 20) / gameData.knifebidextrous) == 0)
+				{
+					gameData.peeledLimes += 1
+					gameData.limes -= 1
+				}
+			gameData.peeledLimes += 1
+	}
 updateValues()
 }
 
@@ -99,6 +164,18 @@ function buyGloves() {
 updateValues()
 }
 
+function buyTome() {
+	if(gameData.coins >= 10)
+	{
+		gameData.coins -= 10
+		gameData.tomes = 1
+		tabs ("tomeButton", "none")
+		tabs ("tomeInfo", "none")
+		tabs ("tomePrice", "none")
+	}
+updateValues()
+}
+
 function lookAround() {
 	if(gameData.lookAround == 0)
 	{
@@ -106,7 +183,6 @@ function lookAround() {
 		
 		if(gameData.lookAroundNumber == 10 || difficulty >= 1)
 		{
-			divVisibility ("navigateButtons", "visible")
 			update("newInfo", "You see a nearby market.")
 			gameData.lookAround = 1
 			//document.getElementById('lookAroundButton').style.backgroundColor = 'darkGray';
@@ -116,9 +192,6 @@ function lookAround() {
 	{
 		if(Math.floor(Math.random() * 10) == 0 || difficulty >= 1)
 		{
-			tabs ("sellYourLimesButton", "block")
-			tabs ("sellYourLimesAmount", "block")
-			tabs ("sellYourLimesReward", "block")
 			update("newInfo", "You find a merchant willing to buy limes.")
 			gameData.lookAround = 2
 			//document.getElementById('lookAroundButton').style.backgroundColor = 'darkGray';
@@ -128,17 +201,26 @@ function lookAround() {
 	{
 		if(Math.floor(Math.random() * 10) == 0 || difficulty >= 1)
 		{
-			tabs ("knifeButton", "block")
-			tabs ("knifeInfo", "block")
-			tabs ("glovesInfo", "block")
-			tabs ("glovesButton", "block")
-			tabs ("shoesButton", "block")
-			tabs ("shoesInfo", "block")
-			tabs ("buyAJuicerButton", "block")
-			tabs ("buyAJuicerPrice", "block")
 			update("newInfo", "You find a merchant selling various items.")
 			gameData.lookAround = 3
 			document.getElementById('lookAroundButton').style.backgroundColor = 'darkGray';
+		}
+	}
+updateValues()
+}
+
+function buyAMap() {
+	if(gameData.coins >= 20)
+	{
+		if(gameData.maps == 0)
+		{
+			gameData.coins -= 20
+			gameData.maps = 1
+		}
+		else if(gameData.maps == 1)
+		{
+			gameData.coins -= 20
+			gameData.maps = 2
 		}
 	}
 updateValues()
@@ -176,16 +258,6 @@ function juicePeeledLimesToggle() {
 updateValues()
 }
 
-function peelLime() {
-	if(gameData.limes >= 1)
-	{
-		gameData.limes -= 1
-		gameData.peeledLimes += 1
-		tabs ("textForPeeledLimes", "inline-block")
-	}
-updateValues()
-}
-
 
 function buyKnife() {
 	if(gameData.coins >= 2)
@@ -220,8 +292,7 @@ function sellYourLimes() {
 	if(gameData.limes >= 100)
 	{
 		gameData.limes -= 100
-		gameData.coins += 1
-		divVisibility ("textForCoinsDiv", "visible")
+		gameData.coins += 1 + (difficulty * 100)
 	}
 	
 updateValues()
@@ -232,16 +303,15 @@ function buyAJuicer() {
 	{
 		gameData.coins -= 1
 		gameData.juicers += 1
-		divVisibility ("inventoryButton", "visible")
 	}
 	
 updateValues()
 }
 
 function decreaseJuiceSold() {
-	if(gameData.juiceBulkAmount >= 1)
+	if(gameData.juiceBulkAmountToggle >= 1)
 	{
-		gameData.juiceBulkAmount -= 1
+		gameData.juiceBulkAmountToggle -= 1
 	}
 	
 updateValues()
@@ -249,7 +319,7 @@ updateValues()
 
 function increaseJuiceSold() {
 	
-		gameData.juiceBulkAmount += 1
+		gameData.juiceBulkAmountToggle += 1
 	
 updateValues()
 }

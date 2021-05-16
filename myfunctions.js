@@ -21,7 +21,7 @@ updateValues()
 //Starts a granular loading bar.
 function barStartGranular(i, functionToCall, variable)
 {
-	if(i >= 99 || i == 0)
+	if(i == 100 || i == 0)
 	{
 		eval(variable)
 		eval(functionToCall)

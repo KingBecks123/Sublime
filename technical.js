@@ -5,6 +5,9 @@ var cheatNum = 0;
 //Should be 0 for normal game, 1 if you want to go faster :)
 var difficulty = 0;
 
+//default 1
+var tickspeed = 1
+
 var gameData = {
   limes: 1,
   coins: 0,
@@ -14,7 +17,6 @@ var gameData = {
   deliveryBar: 0,
   juiceBar: 0,
   howMuchJuice: 0,
-  tickspeed: 1,
   bread: 0,
   sugar: 0,
   sticks: 0,
@@ -40,11 +42,35 @@ var gameData = {
   limebidextrous: 0,
   intelligence: 0,
   intelligenceBar: 0,
+  teachBar: 0,
+  workingBar: 0,
   lookAroundNumber: 0,
+  advertiseBar: 0,
+  advertise: 0,
+  maps: 0,
+  applicantSpeed: 20,
+  applicantPrice: 10,
+  applicantWage: 10,
+  employeeSpeedOne: 20,
+  employeePriceOne: 10,
+  employeeWageOne: 10,
+  employeeCurrentSpeedOne: 0,
+  employees: 0,
+  maxEmployees: 1,
+  employeeWorkingOne: 0,
+  deliveryType: 0,
+  deliveryTypeToggle: 0,
+  deliveryPrice: 1,
+  deliveryOngoing: 0,
+  juiceBulkAmountToggle: 1,
+  tomes: 0,
+  knifebidextrous: 0,
+  knifebidextrousBar: 0,
+  applicationReady: 0,
 }
 
 function gameStart(){
-	
+
 	gameData.limesPerClick = 1 + difficulty * 1000
 	
 	
@@ -85,7 +111,6 @@ function gameStart(){
 	
 	update("newtownButton", gameData.newtownStart + gameData.newtownEnd)
 	
-	gameData.tickspeed = 1
 	gameData.limes += cheatNum * 100000
 	gameData.juice += cheatNum * 100000
 	gameData.bread += cheatNum * 100000
@@ -93,6 +118,8 @@ function gameStart(){
 	gameData.sticks += cheatNum * 100000
 	gameData.juicers += cheatNum * 200
 	gameData.coins += cheatNum * 100000
+	gameData.lookAroundNumber += cheatNum * 2
+	gameData.maps += cheatNum * 2
 	gameData.pies += cheatNum * 100000
 	gameData.peeledLimes += cheatNum * 100000
 	gameData.fireLevel += cheatNum * 1
@@ -115,6 +142,7 @@ function importGame() {
     gameData = savegame
 		update("newInfo", "Game Loaded.")
 		updateValues()
+		updateAfterLoad()
   }
 }
 
@@ -126,13 +154,30 @@ function tab(tab) {
   tabs("theGround", "none")
   tabs("newtown", "none")
   tabs("skills", "none")
+  tabs("company", "none")
   document.getElementById(tab).style.display = "inline-block"
+	switch (tab) {
+		case "theGround":
+			document.getElementById('mainBody').style.backgroundColor = '#cc9b6d';
+			break;
+		default:
+			document.getElementById('mainBody').style.backgroundColor = '#d1d9d9';
+
+	}
+
 }
 
 function tabMarket(tab) {
   tabs("marketStore", "none")
   tabs("marketMain", "none")
-  document.getElementById(tab).style.display = "inline-block"
+  tabs("hiringArea", "none")
+  document.getElementById(tab).style.display = "block"
+}
+
+function tabEmployees(tab) {
+  tabs("employeeOne", "none")
+  tabs("employeeTwo", "none")
+  document.getElementById(tab).style.display = "block"
 }
 
 function saveGame() {
@@ -146,6 +191,7 @@ function loadGame() {
     gameData = savegame
 		update("newInfo", "Game Loaded.")
 		updateValues()
+		updateAfterLoad()
   }
   else
   {

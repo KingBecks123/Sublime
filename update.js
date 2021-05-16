@@ -1,3 +1,14 @@
+function updateAfterLoad(){
+			if(gameData.juiceBar <= 99 || gameData.juiceBar != 0)
+		{
+			makeJuiceBar()
+		}
+			if(gameData.deliveryBar <= 99 || gameData.deliveryBar != 0)
+		{
+			sellYourJuiceBar()
+		}
+}
+
 function updateValues() {
     update("textForLimes", gameData.limes + " Limes")
     update("textForRottenLimes", gameData.rottenLimes + " Rotten Limes")
@@ -8,14 +19,43 @@ function updateValues() {
     update("inventorySugar", gameData.sugar + " Sugar")
     update("textForPies", gameData.pies + " Pies")
     update("juicersAmount", gameData.juicers + " Juicers")
-    update("textForPeeledLimes", gameData.peeledLimes + " Peeled Limes")
-    update("sellYourJuiceAmount", "You Will Deliver " + gameData.juiceBulkAmount + " Juice")
-	update("sellYourJuiceReward", "You Will Get " + gameData.juiceBulkAmount + " Coins")
-    update("sellYourPiesPrice", "Sell A Pie For " + gameData.piePrice + " Coins")
-    update("limebidextrous", gameData.limebidextrous + " / 100")
-    update("rottenWisdom", gameData.rottenWisdom + " / 100")
-    update("intelligence", gameData.intelligence + " / 100")	
+	
+    update("currentSpeedEmployeeOne", "Current speed: " + gameData.employeeCurrentSpeedOne + " limes per minute.")
+	
+	if(gameData.employeeWorkingOne >= 0)
+	{
+		update("workingEmployeeOne", "Working time left: " + gameData.employeeWorkingOne + " minutes.")
+	}
+	else
+	{
+		update("workingEmployeeOne", "Employee is idle.")		
+	}
+		if (gameData.applicationReady == 1)
+		{
+			update("application", 
+			
+			"Skills: Can Collect Limes." + "<br>" +
+			"Speed: " + gameData.applicantSpeed + "% Of What I'm Taught." + "<br>" +
+			"Price: " + gameData.applicantPrice + " Coins." + "<br>" +
+			"Wages: " + gameData.applicantWage + " Coins Per Minute." + "<br>" 
+				)
+		}
+		else
+		{
+			    update("application", "Pin applications here")
+		}
+	
+	
+    update("textForCurrentEmployees","Current Employees: " + gameData.employees + " / " + gameData.maxEmployees)
+    update("textForCurrentEmployees2", "Current Employees: " + gameData.employees + " / " + gameData.maxEmployees)
 
+    update("textForPeeledLimes", gameData.peeledLimes + " Peeled Limes")
+    update("sellYourJuiceAmount", "You Will Deliver " + gameData.juiceBulkAmountToggle + " Juice")
+	update("sellYourJuiceReward", "You Will Get " + gameData.juiceBulkAmountToggle + " Coins")
+	update("sellYourJuicePrice", "You Need " + gameData.deliveryPrice + " Coins For Delivery")
+    update("sellYourPiesPrice", "Sell A Pie For " + gameData.piePrice + " Coins")
+	
+	checkShow(gameData.peeledLimes, "textForPeeledLimes")
 	checkShow(gameData.coins, "textForCoinsDiv")
 	checkShow(gameData.rottenLimes, "textForRottenLimes")
 	checkShow(gameData.pies, "textForPies")
@@ -24,7 +64,104 @@ function updateValues() {
 	checkShow(gameData.sugar, "inventorySugar")
 	checkShow(gameData.juicers, "inventoryButton")
 	checkShow(gameData.coins, "achievementsButton")
+	checkShow(gameData.employees, "companyButton")
 
+	moveJuicer()
+	moveDelivery()
+	moveLearnANewSkill()
+	
+	moveRottenWisdom()
+		update("rottenWisdom", gameData.rottenWisdom + " / 20")
+	moveLimebidextrous()
+		update("limebidextrous", gameData.limebidextrous + " / 20")
+	moveIntelligence()
+		update("intelligence", gameData.intelligence + " / 20")	
+	moveKnifebidextrous()
+		update("knifebidextrous", gameData.knifebidextrous + " / 20")	
+		
+	moveAdvertise()
+	moveTeach()
+
+
+	if(gameData.rottenWisdom >= 20)
+	{ tabs ("textForRottenLimes", "none")
+	}
+
+	if(gameData.lookAround >= 1)
+	{
+			divVisibility ("navigateButtons", "visible")
+	}
+	
+	if(gameData.lookAround >= 2)
+	{
+			tabs ("sellYourLimesButton", "block")
+			tabs ("sellYourLimesAmount", "block")
+			tabs ("sellYourLimesReward", "block")
+	}
+	
+	if(gameData.lookAround >= 3)
+	{
+			tabs ("buyAJuicerButton", "block")
+			tabs ("buyAJuicerPrice", "block")
+			tabs ("buyAMapButton", "block")
+			tabs ("buyAMapPrice", "block")
+			document.getElementById('lookAroundButton').style.backgroundColor = 'darkGray';
+	}
+	
+	if(gameData.learnANewSkill >= 1)
+	{
+			tabs("rottenWisdomDiv", "block")
+	}
+	
+	if(gameData.learnANewSkill >= 2)
+	{
+			tabs("limebidextrousDiv", "block")
+	}
+	
+	if(gameData.learnANewSkill >= 3)
+	{
+		tabs("intelligenceDiv", "block")
+		
+				if(gameData.tomes == 0)
+				{
+					document.getElementById('learnANewSkillButton').style.backgroundColor = 'darkgray';
+					gameData.learnANewSkillBar = 100;
+					moveLearnANewSkill()
+				}
+				else if (gameData.tomes == 1)
+				{
+					document.getElementById('learnANewSkillButton').style.backgroundColor = '#f29191';					
+				}
+	}
+	
+	if(gameData.learnANewSkill >= 4)
+	{
+			tabs("knifebidextrousDiv", "block")
+			gameData.learnANewSkillBar = 100;
+			moveLearnANewSkill()
+			document.getElementById('learnANewSkillButton').style.backgroundColor = 'darkgray';
+	}
+
+
+	if(gameData.maps >= 1)
+	{		tabs ("marketMainButton", "inline-block")
+			tabs ("marketStoreButton", "inline-block")
+			tabs ("buyAMapButton", "none")
+			tabs ("buyAMapPrice", "none")
+	}
+	
+	if(gameData.maps >= 2)
+	{			tabs ("hiringAreaButton", "inline-block")
+			tabs ("marketStoreButton", "inline-block")
+			tabs ("buyAnotherMapButton", "none")
+			tabs ("buyAnotherMapPrice", "none")
+			tabs ("buyAnotherMapInfo", "none")
+	}
+	
+	
+	
+	
+	
 	if(gameData.peeledLimes >= 1)
 	{divVisibility ("textForPeeledLimes", "inline-block")
 	tabs ("juiceLimesToggleButton", "inline-block")
@@ -39,7 +176,7 @@ function updateValues() {
 	divVisibility ("pieBakeText", "visible")
 	}
 	if(gameData.exploreLevel >= 1)
-	{update("newInfo", "You have discovered a nearby town.")
+	{
 	divVisibility ("newtownButton", "visible")
 	}
 
@@ -49,11 +186,17 @@ function updateValues() {
 	tabs ("stickButton", "block")
 	}
 	if(gameData.juice >= 1)
-	{divVisibility ("textForJuice", "visible")
+	{tabs ("textForJuice", "block")
 	 tabs ("juiceMarket", "inline-block")
+	}
+	if(gameData.juicers >= 1)
+	{divVisibility ("inventoryButton", "visible")
 	}
 	if(gameData.juicers >= 2)
 	{divVisibility ("makeMaxJuice", "visible")
+	}
+	if(gameData.coins >= 1)
+	{ divVisibility ("textForCoinsDiv", "visible")
 	}
 	if(gameData.coins >= 10)
 	{ 
