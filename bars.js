@@ -2,12 +2,12 @@ function advertise() {
 	if(gameData.coins >= 10)
 		gameData.coins -= 10
 		{
-			barStartGranular(gameData.advertiseBar, "advertiseBar()", "gameData.advertiseBar = 0")
+			barStartGranular("advertise")
 		}
 }
 
 function working() {
-	barStartGranular(gameData.workingBar, "workingBar()", "gameData.workingBar = 0")
+	barStartGranular("working")
 }
 
 function workingBar() {
@@ -31,7 +31,7 @@ updateValues()
 
 function teach() {
 	gameData.employeeCurrentSpeedOne = 0
-	barStartGranular(gameData.teachBar, "teachBar()", "gameData.teachBar = 0")
+	barStartGranular("teach")
 }
 
 function teachBar() {
@@ -44,37 +44,25 @@ updateValues()
 }
 
 function limebidextrous() {
-	if(gameData.limebidextrous < 20)
-		{
-	barStartGranular(gameData.limebidextrousBar, "limebidextrousBar()", "gameData.limebidextrousBar = 0")
-		}
+	barStartGranularSkillBasic("limebidextrous")
 }
 
 function knifebidextrous() {
-	if(gameData.knifebidextrous < 20)
-		{
-	barStartGranular(gameData.knifebidextrousBar, "knifebidextrousBar()", "gameData.knifebidextrousBar = 0")
-		}
+	barStartGranularSkillBasic("knifebidextrous")
 }
 
 function rottenWisdom() {
-	if(gameData.rottenWisdom < 20)
-		{
-	barStartGranular(gameData.rottenWisdomBar, "rottenWisdomBar()", "gameData.rottenWisdomBar = 0")
-		}
+	barStartGranularSkillBasic("rottenWisdom")
 }
 
 function intelligence() {
-	if(gameData.intelligence < 20)
-		{
-	barStartGranular(gameData.intelligenceBar, "intelligenceBar()", "gameData.intelligenceBar = 0")
-		}
+	barStartGranularSkillBasic("intelligence")
 }
 
 function learnANewSkill() {
 	if(gameData.learnANewSkill <= 2 || (gameData.tomes == 1 && gameData.learnANewSkill <= 3))
 		{
-			barStartGranular(gameData.learnANewSkillBar, "learnANewSkillBar()", "gameData.learnANewSkillBar = 0")
+			barStartGranular("learnANewSkill")
 		}
 }
 
@@ -82,65 +70,30 @@ function advertiseBar() {
 	if(gameData.advertiseBar <= 99)
 	{
 		gameData.advertiseBar += 1;
-		setTimeout(advertiseBar, (200) / tickspeed)
+		setTimeout(advertiseBar, (200 / gameData.advertisingSpeed) / tickspeed)
 	}
 	else
 	{
-	gameData.applicationReady = 1
+		gameData.applicationReady = 1
+		randomizeApplication()
 	}
 updateValues()
 }
 
 function intelligenceBar() {
-	if(gameData.intelligenceBar <= 99)
-	{
-		gameData.intelligenceBar += 1;
-		setTimeout(intelligenceBar, (2 * (21 - gameData.intelligence)) / tickspeed)
-	}
-	else
-	{
-	gameData.intelligence += 1
-	}
-updateValues()
+	basicBarSkill("intelligence")
 }
 
 function limebidextrousBar() {
-	if(gameData.limebidextrousBar <= 99)
-	{
-		gameData.limebidextrousBar += 1;
-		setTimeout(limebidextrousBar, (2 * (21 - gameData.intelligence)) / tickspeed)
-	}
-	else
-	{
-	gameData.limebidextrous += 1
-	}
-updateValues()
+	basicBarSkill("limebidextrous")
 }
 
 function knifebidextrousBar() {
-	if(gameData.knifebidextrousBar <= 99)
-	{
-		gameData.knifebidextrousBar += 1;
-		setTimeout(knifebidextrousBar, (20 * (21 - gameData.intelligence)) / tickspeed)
-	}
-	else
-	{
-	gameData.knifebidextrous += 1
-	}
-updateValues()
+	basicBarSkill("knifebidextrous")
 }
 
 function rottenWisdomBar() {
-	if(gameData.rottenWisdomBar <= 99)
-	{
-		gameData.rottenWisdomBar += 1;
-		setTimeout(rottenWisdomBar, (2 * (21 - gameData.intelligence)) / tickspeed)
-	}
-	else
-	{
-	gameData.rottenWisdom += 1
-	}
-updateValues()
+	basicBarSkill("rottenWisdom")
 }
 
 function learnANewSkillBar() {

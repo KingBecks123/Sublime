@@ -1,4 +1,6 @@
 function updateAfterLoad(){
+
+
 			if(gameData.juiceBar <= 99 || gameData.juiceBar != 0)
 		{
 			makeJuiceBar()
@@ -10,6 +12,9 @@ function updateAfterLoad(){
 }
 
 function updateValues() {
+	
+	addAesthetic()
+	
     update("textForLimes", gameData.limes + " Limes")
     update("textForRottenLimes", gameData.rottenLimes + " Rotten Limes")
     update("textForSticks", gameData.sticks + " Sticks")
@@ -153,9 +158,7 @@ function updateValues() {
 	if(gameData.maps >= 2)
 	{			tabs ("hiringAreaButton", "inline-block")
 			tabs ("marketStoreButton", "inline-block")
-			tabs ("buyAnotherMapButton", "none")
-			tabs ("buyAnotherMapPrice", "none")
-			tabs ("buyAnotherMapInfo", "none")
+			tabs ("buyAnotherMapDiv", "none")
 	}
 	
 	
@@ -168,8 +171,8 @@ function updateValues() {
 	tabs ("juicePeeledLimesToggleButton", "inline-block")
 	}
 	if(gameData.knife >= 1)
-	{  tabs("inventoryKnife", "inline-block")
-		tabs("inventoryKnifeLime", "inline-block")
+	{  tabs("inventoryKnife", "block")
+		tabs("inventoryKnifeLime", "block")
 	}
 	if(gameData.sugar >= 1 && gameData.limes >= 1 && gameData.bread >= 1 && gameData.fireLevel >= 1)
 	{divVisibility ("pieBake", "visible")
@@ -193,7 +196,7 @@ function updateValues() {
 	{divVisibility ("inventoryButton", "visible")
 	}
 	if(gameData.juicers >= 2)
-	{divVisibility ("makeMaxJuice", "visible")
+	{divVisibility ("makeMaxJuiceButton", "visible")
 	}
 	if(gameData.coins >= 1)
 	{ divVisibility ("textForCoinsDiv", "visible")

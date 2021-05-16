@@ -51,9 +51,9 @@ var gameData = {
   applicantSpeed: 20,
   applicantPrice: 10,
   applicantWage: 10,
-  employeeSpeedOne: 20,
-  employeePriceOne: 10,
-  employeeWageOne: 10,
+  employeeSpeed: 20,
+  employeePrice: 10,
+  employeeWage: 10,
   employeeCurrentSpeedOne: 0,
   employees: 0,
   maxEmployees: 1,
@@ -67,6 +67,7 @@ var gameData = {
   knifebidextrous: 0,
   knifebidextrousBar: 0,
   applicationReady: 0,
+  advertisingSpeed: 1,
 }
 
 function gameStart(){
@@ -129,7 +130,6 @@ function gameStart(){
 
 tab("shop")
 
-updateValues()
 
 function exportGame() {
 	update("exportCode", JSON.stringify(gameData))
@@ -146,7 +146,7 @@ function importGame() {
   }
 }
 
-function tab(tab) {
+function tab(tabby) {
   tabs("options", "none")
   tabs("market", "none")
   tabs("inventory", "none")
@@ -155,17 +155,18 @@ function tab(tab) {
   tabs("newtown", "none")
   tabs("skills", "none")
   tabs("company", "none")
-  document.getElementById(tab).style.display = "inline-block"
-	switch (tab) {
+  document.getElementById(tabby).style.display = "inline-block"
+	switch (tabby) {
 		case "theGround":
-			document.getElementById('mainBody').style.backgroundColor = '#cc9b6d';
+			document.getElementById('mainBody').style.backgroundColor = 'darkgray';
 			break;
 		default:
-			document.getElementById('mainBody').style.backgroundColor = '#d1d9d9';
+			document.getElementById('mainBody').style.backgroundColor = 'darkgray';
 
 	}
 
 }
+
 
 function tabMarket(tab) {
   tabs("marketStore", "none")

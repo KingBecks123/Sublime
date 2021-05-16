@@ -1,15 +1,18 @@
+function randomizeApplication() {
+		gameData.applicantSpeed = (Math.floor(Math.random() * 10) * 10)
+		gameData.applicantPrice = Math.floor(Math.random() * 100)
+		gameData.applicantWage = Math.floor(Math.random() * 9) + 1
+
+updateValues()
+}
+
 function deliveryToggleStandard() {
-    document.getElementById('deliveryToggleStandardButton').style.backgroundColor = 'lime';
-    document.getElementById('deliveryToggleExpressButton').style.backgroundColor = 'gray';
 	gameData.deliveryTypeToggle = 0
 	gameData.deliveryPrice = 1
 updateValues()
 }
 
 function deliveryToggleExpress() {
-    document.getElementById('deliveryToggleExpressButton').style.backgroundColor = 'lime';
-    document.getElementById('deliveryToggleStandardButton').style.backgroundColor = 'gray';
-	
 	gameData.deliveryTypeToggle = 1
 	gameData.deliveryPrice = 3
 updateValues()
@@ -27,15 +30,15 @@ updateValues()
 }
 
 function hireApplicant() {
-	if(gameData.coins >= gameData.applicantPrice && gameData.employees < gameData.maxEmployees && gameData.applicationReady == 1)
+	if(gameData.coins >= gameData.applicantPrice && gameData.applicationReady == 1)
 	{
 		gameData.applicationReady = 0
 		gameData.coins -= gameData.applicantPrice
 		gameData.employees += 1
 		
-		    gameData.employeeSpeedOne = gameData.applicantSpeed
-			gameData.employeePriceOne = gameData.applicantPrice
-			gameData.employeeWageOne = gameData.applicantWage
+		    gameData.employeeSpeed = gameData.applicantSpeed
+			gameData.employeePrice = gameData.applicantPrice
+			gameData.employeeWage = gameData.applicantWage
 
 	}
 	
@@ -53,6 +56,37 @@ function pieBake() {
 	
 updateValues()
 }
+
+function researchBetterAdvertising() {
+	if(gameData.coins >= 10)
+	{
+		gameData.coins -= 10
+		tabs ("advertisingMethods", "block")
+		tabs ("researchBetterAdvertising", "none")
+	}
+updateValues()
+}
+
+function advertisingBillboard() {
+	if(gameData.coins >= 100)
+	{
+		gameData.coins -= 100
+		gameData.advertisingSpeed *= 3
+		tabs ("advertisingBillboard", "none")
+	}
+updateValues()
+}
+
+function advertisingLeaflets() {
+	if(gameData.coins >= 10)
+	{
+		gameData.coins -= 10
+		gameData.advertisingSpeed *= 2
+		tabs ("advertisingLeaflets", "none")
+	}
+updateValues()
+}
+
 
 function sellOnePie() {
 	if(gameData.pies >= 1)
@@ -108,13 +142,13 @@ function getLimes() {
 					gameData.limes += gameData.limesPerClick
 					if(gameData.teachBar > 0 && gameData.teachBar < 100)
 					{
-						gameData.employeeCurrentSpeedOne += gameData.limesPerClick
+						gameData.employeeCurrentSpeedOne += (gameData.limesPerClick * gameData.workerSpeed) / 10
 					}
 				}
 			gameData.limes += gameData.limesPerClick
 			if(gameData.teachBar > 0 && gameData.teachBar < 100)
 			{
-				gameData.employeeCurrentSpeedOne += gameData.limesPerClick
+				gameData.employeeCurrentSpeedOne += (gameData.limesPerClick * gameData.workerSpeed) / 10
 			}
 		}
 		else
@@ -158,8 +192,7 @@ function buyGloves() {
 		gameData.coins -= 100
 		divVisibility ("textForSticks", "visible")
 		divVisibility ("stickButton", "visible")
-		tabs ("glovesButton", "none")
-		tabs ("glovesInfo", "none")
+		tabs ("glovesDiv", "none")
 	}
 updateValues()
 }
@@ -245,15 +278,11 @@ updateValues()
 }
 
 function juiceLimesToggle() {
-    document.getElementById('juiceLimesToggleButton').style.backgroundColor = 'lime';
-    document.getElementById('juicePeeledLimesToggleButton').style.backgroundColor = 'gray';
 	gameData.limeTypeToJuice = 0
 updateValues()
 }
 
 function juicePeeledLimesToggle() {
-    document.getElementById('juicePeeledLimesToggleButton').style.backgroundColor = 'lime';
-    document.getElementById('juiceLimesToggleButton').style.backgroundColor = 'gray';
 	gameData.limeTypeToJuice = 1
 updateValues()
 }

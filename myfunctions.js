@@ -1,3 +1,21 @@
+
+//Recurring function for continuing a loading bar.
+function basicBarSkill(variable) {
+	i = eval("gameData." + variable + "Bar")
+	
+	if(i <= 99)
+	{
+		eval("gameData." + variable + "Bar += 1");
+		x = variable + "Bar()"
+		setTimeout(x, (2 * (21 - gameData.intelligence)) / tickspeed)
+	}
+	else
+	{
+		eval("gameData." + variable + " += 1");
+	}
+updateValues()
+}
+
 //sleep.
 function sleep(milliseconds) {
   const date = Date.now();
@@ -19,12 +37,42 @@ updateValues()
 }
 
 //Starts a granular loading bar.
-function barStartGranular(i, functionToCall, variable)
+function barStartGranular(variable)
 {
+	variableBar = variable + "Bar"
+	i = eval("gameData." + variableBar)
 	if(i == 100 || i == 0)
 	{
-		eval(variable)
-		eval(functionToCall)
+		eval("gameData." + variableBar + " = 0")
+		eval(variableBar+"()")
+	}
+updateValues()
+}
+
+//Starts a granular loading bar for basic skills.
+function barStartGranularSkillBasic(variable)
+{
+	variableBar = variable + "Bar"
+	
+	i = eval("gameData." + variableBar)
+	if( ( i == 100 || i == 0 ) && ( eval("gameData." + variable) < 20 ) )
+	{
+		eval("gameData." + variableBar + " = 0")
+		eval(variableBar+"()")
+	}
+updateValues()
+}
+
+//Starts a granular loading bar for skills.
+function barStartGranularSkill(variable, n)
+{
+	variableBar = variable + "Bar"
+	
+	i = eval("gameData." + variableBar)
+	if( ( i == 100 || i == 0 ) && ( eval("gameData." + variable) < n ) )
+	{
+		eval("gameData." + variableBar + " = 0")
+		eval(variableBar+"()")
 	}
 updateValues()
 }
