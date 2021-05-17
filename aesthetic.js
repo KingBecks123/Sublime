@@ -1,11 +1,14 @@
-accent0 = "#222831"; //Main Color
-accent1 = "#393e46"; //Accent Color
-accent2 = "#eeeeee"; //When buttons are toggled off
-accent3 = "#00adb5"; //When buttons are toggled on
-grayAccent = "#768091";
-grayAccentLight = "#eeeeee";
+background = "#222328"; //Background Color
+accent0 = "#454851"; //Main Color
+accent1 = "lightgreen"; //Accent Color
+accent2 = "gray"; //When buttons are toggled off
+accent3 = "lightgreen"; //When buttons are toggled on
+grayAccent = "#454851";
+grayAccentLight = "lightgray";
 
 function addAesthetic(){
+	
+	document.getElementById('mainBody').style.backgroundColor = background;	
 	
 	document.getElementById('inventoryKnifeLime').style.backgroundColor = accent3;	
 	
@@ -29,6 +32,37 @@ function addAesthetic(){
 	{
 		document.getElementById('deliveryToggleStandardButton').style.backgroundColor = accent3;
 		document.getElementById('deliveryToggleExpressButton').style.backgroundColor = accent2;
+	}	
+
+	if(	gameData.foodTypeToggle == 1)
+	{
+		document.getElementById('foodToggleRottenLimesButton').style.backgroundColor = accent3;
+		document.getElementById('foodToggleLimesButton').style.backgroundColor = accent2;	
+	}
+	else
+	{
+		document.getElementById('foodToggleLimesButton').style.backgroundColor = accent3;
+		document.getElementById('foodToggleRottenLimesButton').style.backgroundColor = accent2;
+	}		
+	
+	if(	gameData.skillInfoToggle == 1)
+	{
+		document.getElementById('skillInfoButton').style.backgroundColor = accent3;
+		  var x = document.getElementsByClassName("skillInfo");
+		  var i;
+		  for (i = 0; i < x.length; i++) {
+			x[i].style.display = "block";
+			}
+	}
+	else
+	{
+		document.getElementById('skillInfoButton').style.backgroundColor = accent2;
+		
+		  var x = document.getElementsByClassName("skillInfo");
+		  var i;
+		  for (i = 0; i < x.length; i++) {
+			x[i].style.display = "none";
+			}
 	}		
 	
 	document.getElementById('deliveryProgress').style.backgroundColor = accent0;	
@@ -57,6 +91,7 @@ function addAesthetic(){
 	  var i;
 	  for (i = 0; i < x.length; i++) {
 		x[i].style.backgroundColor = grayAccentLight;
+		x[i].style.padding = "2px";
 	  }
 	  
 
@@ -77,6 +112,7 @@ function addAesthetic(){
 	  var i;
 	  for (i = 0; i < x.length; i++) {
 		x[i].style.backgroundColor = accent3;
+		x[i].style.color = accent0;
 	  }
 	  
 		//Skill Progress

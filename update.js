@@ -1,14 +1,15 @@
 function updateAfterLoad(){
 
 
-			if(gameData.juiceBar <= 99 || gameData.juiceBar != 0)
+			if(gameData.juiceBar <= 99 && gameData.juiceBar != 0)
 		{
 			makeJuiceBar()
 		}
-			if(gameData.deliveryBar <= 99 || gameData.deliveryBar != 0)
+			if(gameData.deliveryBar <= 99 && gameData.deliveryBar != 0)
 		{
 			sellYourJuiceBar()
 		}
+updateValues()
 }
 
 function updateValues() {
@@ -25,15 +26,41 @@ function updateValues() {
     update("textForPies", gameData.pies + " Pies")
     update("juicersAmount", gameData.juicers + " Juicers")
 	
-    update("currentSpeedEmployeeOne", "Current speed: " + gameData.employeeCurrentSpeedOne + " limes per minute.")
+	switch (gameData.aesthetic) {
+	  case 0:
+		update("aestheticButton", "Aesthetic: Classic")
+		
+		background = "#222328"; //Background Color
+		accent0 = "#454851"; //Main Color
+		accent1 = "lightgreen"; //Accent Color
+		accent2 = "gray"; //When buttons are toggled off
+		accent3 = "lightgreen"; //When buttons are toggled on
+		grayAccent = "#454851";
+		grayAccentLight = "lightgray";
+		
+		break;
+	  case 1:
+		update("aestheticButton", "Aesthetic: Modern")
+
+		background = "lightgray"; //Background Color	
+		accent0 = "#222831"; //Main Color
+		accent1 = "#393e46"; //Accent Color
+		accent2 = "#eeeeee"; //When buttons are toggled off
+		accent3 = "#00adb5"; //When buttons are toggled on
+		grayAccent = "#768091";
+		grayAccentLight = "#eeeeee";
+		
+	}
 	
-	if(gameData.employeeWorkingOne >= 0)
+    update("currentSpeedEmployee", "Current speed: " + gameData.employeeCurrentSpeed + " limes per minute.")
+	
+	if(gameData.employeeWorking >= 0)
 	{
-		update("workingEmployeeOne", "Working time left: " + gameData.employeeWorkingOne + " minutes.")
+		update("workingEmployee", "Working time left: " + gameData.employeeWorking + " minutes.")
 	}
 	else
 	{
-		update("workingEmployeeOne", "Employee is idle.")		
+		update("workingEmployee", "Employee is idle.")		
 	}
 		if (gameData.applicationReady == 1)
 		{
@@ -49,7 +76,9 @@ function updateValues() {
 		{
 			    update("application", "Pin applications here")
 		}
-	
+		
+	    update("speedEmployee", "Speed: " + gameData.employeeSpeed + "% Of What I'm Taught.")
+	    update("wageEmployee", "Wages: " + gameData.employeeWage + " Coins Per Minute.")
 	
     update("textForCurrentEmployees","Current Employees: " + gameData.employees + " / " + gameData.maxEmployees)
     update("textForCurrentEmployees2", "Current Employees: " + gameData.employees + " / " + gameData.maxEmployees)
@@ -83,14 +112,12 @@ function updateValues() {
 		update("intelligence", gameData.intelligence + " / 20")	
 	moveKnifebidextrous()
 		update("knifebidextrous", gameData.knifebidextrous + " / 20")	
+	moveEat()
+		update("eat", gameData.eat + " / 20")		
+		
 		
 	moveAdvertise()
 	moveTeach()
-
-
-	if(gameData.rottenWisdom >= 20)
-	{ tabs ("textForRottenLimes", "none")
-	}
 
 	if(gameData.lookAround >= 1)
 	{
@@ -99,17 +126,15 @@ function updateValues() {
 	
 	if(gameData.lookAround >= 2)
 	{
-			tabs ("sellYourLimesButton", "block")
-			tabs ("sellYourLimesAmount", "block")
-			tabs ("sellYourLimesReward", "block")
+			tabs ("sellYourLimesDiv", "block")
 	}
 	
 	if(gameData.lookAround >= 3)
 	{
-			tabs ("buyAJuicerButton", "block")
-			tabs ("buyAJuicerPrice", "block")
-			tabs ("buyAMapButton", "block")
-			tabs ("buyAMapPrice", "block")
+			tabs ("buyAJuicerDiv", "block")
+
+			tabs ("buyAMapDiv", "block")
+
 			document.getElementById('lookAroundButton').style.backgroundColor = 'darkGray';
 	}
 	
@@ -160,10 +185,6 @@ function updateValues() {
 			tabs ("marketStoreButton", "inline-block")
 			tabs ("buyAnotherMapDiv", "none")
 	}
-	
-	
-	
-	
 	
 	if(gameData.peeledLimes >= 1)
 	{divVisibility ("textForPeeledLimes", "inline-block")

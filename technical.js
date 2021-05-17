@@ -54,10 +54,10 @@ var gameData = {
   employeeSpeed: 20,
   employeePrice: 10,
   employeeWage: 10,
-  employeeCurrentSpeedOne: 0,
+  employeeCurrentSpeed: 0,
   employees: 0,
   maxEmployees: 1,
-  employeeWorkingOne: 0,
+  employeeWorking: 0,
   deliveryType: 0,
   deliveryTypeToggle: 0,
   deliveryPrice: 1,
@@ -68,6 +68,11 @@ var gameData = {
   knifebidextrousBar: 0,
   applicationReady: 0,
   advertisingSpeed: 1,
+  aesthetic: 0,
+  foodTypeToggle: 0,
+  eat: 0,
+  eatBar: 0,
+  skillInfoToggle: 0,
 }
 
 function gameStart(){
@@ -156,15 +161,6 @@ function tab(tabby) {
   tabs("skills", "none")
   tabs("company", "none")
   document.getElementById(tabby).style.display = "inline-block"
-	switch (tabby) {
-		case "theGround":
-			document.getElementById('mainBody').style.backgroundColor = 'darkgray';
-			break;
-		default:
-			document.getElementById('mainBody').style.backgroundColor = 'darkgray';
-
-	}
-
 }
 
 

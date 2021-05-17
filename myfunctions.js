@@ -1,4 +1,3 @@
-
 //Recurring function for continuing a loading bar.
 function basicBarSkill(variable) {
 	i = eval("gameData." + variable + "Bar")
@@ -8,6 +7,23 @@ function basicBarSkill(variable) {
 		eval("gameData." + variable + "Bar += 1");
 		x = variable + "Bar()"
 		setTimeout(x, (2 * (21 - gameData.intelligence)) / tickspeed)
+	}
+	else
+	{
+		eval("gameData." + variable + " += 1");
+	}
+updateValues()
+}
+
+//Recurring function for continuing a loading bar.
+function basicBarSkillSpeed(variable, time) {
+	i = eval("gameData." + variable + "Bar")
+	
+	if(i <= 99)
+	{
+		eval("gameData." + variable + "Bar += 1");
+		x = variable + "Bar()"
+		setTimeout(x, time / tickspeed)
 	}
 	else
 	{
@@ -55,8 +71,11 @@ function barStartGranularSkillBasic(variable)
 	variableBar = variable + "Bar"
 	
 	i = eval("gameData." + variableBar)
-	if( ( i == 100 || i == 0 ) && ( eval("gameData." + variable) < 20 ) )
+	if( ( ( i == 100 || i == 0 ) && ( eval("gameData." + variable) < 20 ) ) && (gameData.eat >= eval("gameData." + variable)))
 	{
+		if(variable != "eat"){
+			eval("gameData.eat -= gameData." + variable)		
+		}
 		eval("gameData." + variableBar + " = 0")
 		eval(variableBar+"()")
 	}

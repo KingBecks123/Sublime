@@ -1,8 +1,24 @@
+
+
 function randomizeApplication() {
 		gameData.applicantSpeed = (Math.floor(Math.random() * 10) * 10)
 		gameData.applicantPrice = Math.floor(Math.random() * 100)
 		gameData.applicantWage = Math.floor(Math.random() * 9) + 1
 
+updateValues()
+}
+
+function switchAesthetic() {
+	if(gameData.aesthetic == 0)
+	{
+		gameData.aesthetic = 1
+	}
+	else if (gameData.aesthetic == 1)
+	{
+		gameData.aesthetic = 0
+	}
+
+updateValues()
 updateValues()
 }
 
@@ -18,11 +34,37 @@ function deliveryToggleExpress() {
 updateValues()
 }
 
-function payEmployee() {
-	if(gameData.coins >= gameData.employeeWageOne)
+function foodToggleLimes() {
+	gameData.foodTypeToggle = 0
+updateValues()
+}
+
+function foodToggleRottenLimes() {
+	gameData.foodTypeToggle = 1
+updateValues()
+}
+
+
+function skillInfoToggle() {
+	if (gameData.skillInfoToggle == 0)
 	{
-		gameData.employeeWorkingOne += 1
-		gameData.coins -= gameData.employeeWageOne
+		gameData.skillInfoToggle = 1
+	}
+	else if (gameData.skillInfoToggle == 1)
+	{
+		gameData.skillInfoToggle = 0
+	}
+updateValues()
+}
+
+
+
+
+function payEmployee() {
+	if(gameData.coins >= gameData.employeeWage)
+	{
+		gameData.employeeWorking += 1
+		gameData.coins -= gameData.employeeWage
 		working()
 	}
 	
@@ -33,8 +75,10 @@ function hireApplicant() {
 	if(gameData.coins >= gameData.applicantPrice && gameData.applicationReady == 1)
 	{
 		gameData.applicationReady = 0
+		gameData.employeeWorking = 0
+		gameData.workingBar = 0		
+		
 		gameData.coins -= gameData.applicantPrice
-		gameData.employees += 1
 		
 		    gameData.employeeSpeed = gameData.applicantSpeed
 			gameData.employeePrice = gameData.applicantPrice
@@ -142,13 +186,13 @@ function getLimes() {
 					gameData.limes += gameData.limesPerClick
 					if(gameData.teachBar > 0 && gameData.teachBar < 100)
 					{
-						gameData.employeeCurrentSpeedOne += (gameData.limesPerClick * gameData.workerSpeed) / 10
+						gameData.employeeCurrentSpeed += (gameData.limesPerClick * gameData.employeeSpeed) / 10
 					}
 				}
 			gameData.limes += gameData.limesPerClick
 			if(gameData.teachBar > 0 && gameData.teachBar < 100)
 			{
-				gameData.employeeCurrentSpeedOne += (gameData.limesPerClick * gameData.workerSpeed) / 10
+				gameData.employeeCurrentSpeed += (gameData.limesPerClick * gameData.employeeSpeed) / 10
 			}
 		}
 		else
@@ -202,37 +246,36 @@ function buyTome() {
 	{
 		gameData.coins -= 10
 		gameData.tomes = 1
-		tabs ("tomeButton", "none")
-		tabs ("tomeInfo", "none")
-		tabs ("tomePrice", "none")
+		tabs ("tomeDiv", "none")
 	}
 updateValues()
 }
 
 function lookAround() {
+	
+	gameData.lookAroundNumber += 1	
+	
 	if(gameData.lookAround == 0)
 	{
-		gameData.lookAroundNumber += 1
-		
 		if(gameData.lookAroundNumber == 10 || difficulty >= 1)
 		{
 			update("newInfo", "You see a nearby market.")
 			gameData.lookAround = 1
-			//document.getElementById('lookAroundButton').style.backgroundColor = 'darkGray';
+
 		}
 	}
 	else if(gameData.lookAround == 1)
 	{
-		if(Math.floor(Math.random() * 10) == 0 || difficulty >= 1)
+		if(gameData.lookAroundNumber == 20 || difficulty >= 1)
 		{
 			update("newInfo", "You find a merchant willing to buy limes.")
 			gameData.lookAround = 2
-			//document.getElementById('lookAroundButton').style.backgroundColor = 'darkGray';
+
 		}
 	}
 	else if(gameData.lookAround == 2)
 	{
-		if(Math.floor(Math.random() * 10) == 0 || difficulty >= 1)
+		if(gameData.lookAroundNumber == 30 || difficulty >= 1)
 		{
 			update("newInfo", "You find a merchant selling various items.")
 			gameData.lookAround = 3
@@ -293,8 +336,7 @@ function buyKnife() {
 	{
 		gameData.coins -= 2
 		gameData.knife += 1
-		tabs ("knifeButton", "none")
-		tabs ("knifeInfo", "none")
+		tabs ("buyKnifeDiv", "none")
 	}
 updateValues()
 }
@@ -318,9 +360,9 @@ updateValues()
 }
 
 function sellYourLimes() {
-	if(gameData.limes >= 100)
+	if(gameData.limes >= 50)
 	{
-		gameData.limes -= 100
+		gameData.limes -= 50
 		gameData.coins += 1 + (difficulty * 100)
 	}
 	
@@ -336,6 +378,7 @@ function buyAJuicer() {
 	
 updateValues()
 }
+
 
 function decreaseJuiceSold() {
 	if(gameData.juiceBulkAmountToggle >= 1)
