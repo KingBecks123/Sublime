@@ -83,7 +83,8 @@ function addAesthetic(){
 	  var i;
 	  for (i = 0; i < x.length; i++) {
 		x[i].style.backgroundColor = accent0;
-		x[i].style.padding = "5px";
+		x[i].style.padding = "5px 5px 5px 5px";
+		x[i].style['margin'] = "10px 5px 10px 5px";
 	  }
 
 	//Basic Text
@@ -92,6 +93,7 @@ function addAesthetic(){
 	  for (i = 0; i < x.length; i++) {
 		x[i].style.backgroundColor = grayAccentLight;
 		x[i].style.padding = "2px";
+		x[i].style['margin'] = "5px 5px 5px 5px";
 	  }
 	  
 
@@ -100,6 +102,14 @@ function addAesthetic(){
 	  var i;
 	  for (i = 0; i < x.length; i++) {
 		x[i].style.backgroundColor = accent3;
+		x[i].style['margin'] = "5px 5px 5px 5px";
+	  }
+	  
+	//Basic Button Size
+	  var x = document.getElementsByClassName("basicButtonSize");
+	  var i;
+	  for (i = 0; i < x.length; i++) {
+		x[i].style['margin'] = "5px 5px 5px 5px";
 	  }
 
 
@@ -112,6 +122,7 @@ function addAesthetic(){
 	  var i;
 	  for (i = 0; i < x.length; i++) {
 		x[i].style.backgroundColor = accent3;
+		x[i].style.padding = "0px 0px 0px 0px";
 		x[i].style.color = accent0;
 	  }
 	  
@@ -120,5 +131,6 @@ function addAesthetic(){
 	  var i;
 	  for (i = 0; i < x.length; i++) {
 		x[i].style.backgroundColor = accent0;
+		x[i].style['margin'] = "5px 5px 5px 5px";
 	  }
 }

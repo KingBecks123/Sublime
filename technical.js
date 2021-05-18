@@ -73,6 +73,7 @@ var gameData = {
   eat: 0,
   eatBar: 0,
   skillInfoToggle: 0,
+  hasGottenJuice: 0,
 }
 
 function gameStart(){

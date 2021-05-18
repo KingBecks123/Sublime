@@ -257,6 +257,7 @@ function makeJuiceBar() {
 	else
 	{
 	gameData.juice += gameData.howMuchJuice;
+	gameData.hasGottenJuice = 1	
 	}
 updateValues()
 }

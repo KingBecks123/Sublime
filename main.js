@@ -373,7 +373,7 @@ function buyAJuicer() {
 	if(gameData.coins >= 1)
 	{
 		gameData.coins -= 1
-		gameData.juicers += 1
+		gameData.juicers += 1	
 	}
 	
 updateValues()

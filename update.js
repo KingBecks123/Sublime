@@ -176,8 +176,7 @@ function updateValues() {
 	if(gameData.maps >= 1)
 	{		tabs ("marketMainButton", "inline-block")
 			tabs ("marketStoreButton", "inline-block")
-			tabs ("buyAMapButton", "none")
-			tabs ("buyAMapPrice", "none")
+			tabs ("buyAMapDiv", "none")
 	}
 	
 	if(gameData.maps >= 2)
@@ -209,9 +208,9 @@ function updateValues() {
 	tabs ("textForSticks", "block")
 	tabs ("stickButton", "block")
 	}
-	if(gameData.juice >= 1)
+	if(gameData.hasGottenJuice >= 1)
 	{tabs ("textForJuice", "block")
-	 tabs ("juiceMarket", "inline-block")
+	 tabs ("juiceMarket", "block")
 	}
 	if(gameData.juicers >= 1)
 	{divVisibility ("inventoryButton", "visible")

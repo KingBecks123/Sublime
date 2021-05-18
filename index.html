@@ -40,7 +40,6 @@
 	.skillBar {
 	  width: 0%;
 	  height: 30px;
-	  text-align: center;
 	  line-height: 30px;
 	}
 	</style>
@@ -108,28 +107,25 @@
 				 <p class="basicText",  id="sellYourLimesAmount">You Need 50 Limes</p>
 				 <p class="basicText",  id="sellYourLimesReward">You Will Be Rewarded 1 Coin</p>
 			</div>	 
-			 <br>
 			<div class="basicDiv", id="buyAJuicerDiv" style="display:none;">	
 				 <button class="basicButton", id="buyAJuicerButton" onclick="buyAJuicer()">Buy A Juicer</button>
 				 <p class="basicText" id="buyAJuicerPrice">Price: 1 Coin</p>
+			</div>		
+			<div class="basicDiv", id="buyAMapDiv" style="display:none;">		
+				<button class="basicButton" onclick="buyAMap()">Buy A Map Of The Town</button>
+				<p class="basicText">Price: 20 Coins</p>
 			</div>	
-			<br>		
-			<div class="basicDiv", id="buyAMapDiv" style="display:none;">				
-				<button class="basicButton" id="buyAMapButton" onclick="buyAMap()">Buy A Map Of The Town</button>
-				<p id="buyAMapPrice" class="basicText">Price: 20 Coins</p>
-			</div>	
-			<br>
 			<div class="basicDiv", id="juiceMarket", style="display:none;">	
 				 <button class="basicButton", id="sellYourJuiceButton", onclick="sellYourJuice()">Sell Your Juice</button>
 				 <p class="basicText",  id="sellYourJuicePrice">You Need 1 Coins For Delivery</p>
 				 <p class="basicText", id="sellYourJuiceAmount">You Need 1 Juice</p>
 				 <p class="basicText", id="sellYourJuiceReward">You Will Be Rewarded 1 Coin</p>
 				 
-				 <button id="decreaseJuiceSoldButton", onclick="decreaseJuiceSold()", style="width:150px;">Decrease Juice Sold</button>
-				 <button id="increaseJuiceSoldButton", onclick="increaseJuiceSold()", style="width:150px;">Increase Juice Sold</button>
+				 <button class="basicButtonSize" id="decreaseJuiceSoldButton", onclick="decreaseJuiceSold()", style="width:150px;">Decrease Juice Sold</button>
+				 <button class="basicButtonSize" id="increaseJuiceSoldButton", onclick="increaseJuiceSold()", style="width:150px;">Increase Juice Sold</button>
 				 <br>
-				 <button id="deliveryToggleStandardButton", style="width:150px;", onclick="deliveryToggleStandard()">Standard Delivery</button>
-				 <button id="deliveryToggleExpressButton", style="width:150px;", onclick="deliveryToggleExpress()">Express Delivery</button>
+				 <button class="basicButtonSize" id="deliveryToggleStandardButton", style="width:150px;", onclick="deliveryToggleStandard()">Standard Delivery</button>
+				 <button class="basicButtonSize" id="deliveryToggleExpressButton", style="width:150px;", onclick="deliveryToggleExpress()">Express Delivery</button>
 				 
 				 <br><br>
 
@@ -147,13 +143,13 @@
 			 <div id="buyKnifeDiv" class="basicDiv">			
 				 <button class="basicButton", id="knifeButton", onclick="buyKnife()">Buy A Knife</button>
 				 <p class="basicText",  id="knifeInfo">Price: 2 Coins</p>		
-			 </div>	<br>		 
+			 </div>		 
 				 
 			 <div id="tomeDiv" class="basicDiv">			
 				 <button class="basicButton", id="tomeButton", onclick="buyTome()">Buy A Tome</button>
 				 <p class="basicText",  id="tomeInfo">Tomes can teach you new skills!</p>		
 				 <p class="basicText",  id="tomePrice">Price: 10 Coins</p>			
-			 </div>	<br>		 	
+			 </div>			 	
 				 
 			 <div class="basicDiv", id="buyAnotherMapDiv">			
 				 <button onclick="buyAMap()">Buy Another Map</button>
@@ -242,12 +238,12 @@
 	
 	<div id="inventory">	
 	  <div class="basicDiv">
-				 <p id="juicersAmount", style="background-color:#bfbfbf;padding: 5px;">1 Juicers</p>
-				 <button id="makeJuiceButton", style="background-color:#87a7b3;", onclick="makeJuice()">Use Juicer</button>
-				 <button id="makeMaxJuiceButton", onclick="makeMaxJuice()", style="visibility: hidden;">Use Max Juicers</button>
-				 <button id="juiceLimesToggleButton", style="display:none;", onclick="juiceLimesToggle()">On Limes</button>
-				 <button id="juicePeeledLimesToggleButton", style="display:none;", onclick="juicePeeledLimesToggle()">On Peeled Limes</button>
-				 <p id="juicerInfo", style="background-color:#bfbfbf;padding: 5px;">Juicers Use 10 Limes To Create 1 Lime Juice.</p>
+				 <p class="basicText" id="juicersAmount", style="background-color:#bfbfbf;padding: 5px;">1 Juicers</p>
+				 <button class="basicButton" id="makeJuiceButton", style="background-color:#87a7b3;", onclick="makeJuice()">Use Juicer</button>
+				 <button class="basicButton" id="makeMaxJuiceButton", onclick="makeMaxJuice()", style="visibility: hidden;">Use Max Juicers</button>
+				 <button class="basicButtonSize" id="juiceLimesToggleButton", style="display:none;", onclick="juiceLimesToggle()">On Limes</button>
+				 <button class="basicButtonSize" id="juicePeeledLimesToggleButton", style="display:none;", onclick="juicePeeledLimesToggle()">On Peeled Limes</button>
+				 <p class="basicText" id="juicerInfo", style="background-color:#bfbfbf;padding: 5px;">Juicers Use 10 Limes To Create 1 Lime Juice.</p>
 					 <div class="skillProgress" id="myProgress">
 						<div class="skillBar" id="juicerBar">0%</div>
 					 </div>	 
@@ -298,11 +294,11 @@
 				 <div class="skillInfo">	
 						<p class="basicText">You use 1 food point per skill level.</p>
 				 </div>	
-			 <p class="basicText", id="eat">0 / 20</p>
 			 <div class="skillProgress" id="eatProgress">
 				<div class="skillBar", id="eatBar">0%</div>
 			 </div>		
-		 </div>		 <br>
+		 <p class="basicText", id="eat">0 / 20</p>
+		 </div>		
 		 
 	 	 <div class="basicDiv">		 
 			 <button class="basicButton", id="learnANewSkillButton", onclick="learnANewSkill()">Learn A New Skill</button>	 
@@ -310,7 +306,7 @@
 			 <div class="skillProgress" id="learnANewSkillProgress">
 				<div class="skillBar", id="learnANewSkillBar">0%</div>
 			 </div>		
-		 </div>		 <br>
+		 </div>		
 		 
 
 		 
@@ -327,7 +323,7 @@
 			 
 			
 			
-		 </div>		 <br>
+		 </div>		
 		 
 	 	 <div class="basicDiv", id="limebidextrousDiv", style="display:none;">	
 		 
@@ -340,7 +336,7 @@
 				<div class="skillBar", id="limebidextrousBar">0%</div>
 			</div>	
 			<p class="basicText", id="limebidextrous">0 / 20</p>
-		 </div>		 <br>
+		 </div>		
 		 
 	 	 <div class="basicDiv", id="intelligenceDiv", style="display:none;">	
 		 
@@ -353,7 +349,7 @@
 				<div class="skillBar", id="intelligenceBar">0%</div>
 			</div>	
 			<p class="basicText", id="intelligence">0 / 20</p>
-		 </div>		 <br>
+		 </div>		
 
 	 	 <div class="basicDiv", id="knifebidextrousDiv", style="display:none;">	
 		 
