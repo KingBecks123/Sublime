@@ -22,6 +22,19 @@ updateValues()
 updateValues()
 }
 
+function switchBarPercent() {
+	if(gameData.showBarPercent == 1)
+	{
+		gameData.showBarPercent = 0
+	}
+	else
+	{
+		gameData.showBarPercent = 1
+	}
+
+updateValues()
+}
+
 function deliveryToggleStandard() {
 	gameData.deliveryTypeToggle = 0
 	gameData.deliveryPrice = 1
@@ -179,9 +192,9 @@ updateValues()
 
 function getLimes() {
 	
-		if(Math.floor((Math.random() * 20) / gameData.rottenWisdom) == 0 || difficulty == 1)
+		if(Math.random() <= (gameData.rottenWisdom / 100) || difficulty == 1)
 		{
-			if(Math.floor((Math.random() * 20) / gameData.limebidextrous) == 0)
+			if(Math.random() <= (gameData.limebidextrous / 100) || difficulty == 1)
 				{
 					gameData.limes += gameData.limesPerClick
 					if(gameData.teachBar > 0 && gameData.teachBar < 100)

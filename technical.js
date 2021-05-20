@@ -69,11 +69,21 @@ var gameData = {
   applicationReady: 0,
   advertisingSpeed: 1,
   aesthetic: 0,
-  foodTypeToggle: 0,
+  foodTypeToggle: 1,
   eat: 0,
   eatBar: 0,
-  skillInfoToggle: 0,
+  skillInfoToggle: 1,
   hasGottenJuice: 0,
+  foodType: 0,
+  showBarPercent: 0,
+  intelligenceSkillLevel: 0,
+  limebidextrousSkillLevel: 0,
+  knifebidextrousSkillLevel: 0,
+  rottenWisdomSkillLevel: 0,
+  intelligenceSkillLevelMax: 50,
+  limebidextrousSkillLevelMax: 50,
+  knifebidextrousSkillLevelMax: 50,
+  rottenWisdomSkillLevelMax: 50,
 }
 
 function gameStart(){
@@ -136,22 +146,6 @@ function gameStart(){
 
 tab("shop")
 
-
-function exportGame() {
-	update("exportCode", JSON.stringify(gameData))
-}
-
-
-function importGame() {
-	var savegame = JSON.parse(window.prompt("Import Code: "));
-  if (savegame !== null) {
-    gameData = savegame
-		update("newInfo", "Game Loaded.")
-		updateValues()
-		updateAfterLoad()
-  }
-}
-
 function tab(tabby) {
   tabs("options", "none")
   tabs("market", "none")
@@ -176,23 +170,4 @@ function tabEmployees(tab) {
   tabs("employeeOne", "none")
   tabs("employeeTwo", "none")
   document.getElementById(tab).style.display = "block"
-}
-
-function saveGame() {
-  localStorage.setItem('mathAdventureSave', JSON.stringify(gameData))
-	update("newInfo", "Game Saved.")
-}
-
-function loadGame() {
-  var savegame = JSON.parse(localStorage.getItem("mathAdventureSave"))
-  if (savegame !== null) {
-    gameData = savegame
-		update("newInfo", "Game Loaded.")
-		updateValues()
-		updateAfterLoad()
-  }
-  else
-  {
-	  	update("newInfo", "Save File Empty.")
-  }
 }

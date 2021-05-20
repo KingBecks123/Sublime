@@ -16,8 +16,39 @@ function updateValues() {
 	
 	addAesthetic()
 	
-    update("textForLimes", gameData.limes + " Limes")
-    update("textForRottenLimes", gameData.rottenLimes + " Rotten Limes")
+    updateNumber("lime")
+    updateNumberSpecial("rottenLime", "Rotten Lime")
+	
+	//updateNumber("textForLimes", gameData.limes + " Limes")
+    //update("textForRottenLimes", gameData.rottenLimes + " Rotten Limes")
+	
+	switch (gameData.showBarPercent) {
+	  case 0:
+	  update("barPercentButton", "Bar Percent Hidden")
+
+	  var x = document.getElementsByClassName("skillBar");
+	  var i;
+	  for (i = 0; i < x.length; i++) {
+		x[i].style.backgroundColor = accent3;
+		x[i].style.padding = "0px 0px 0px 0px";
+		x[i].style.color =  "rgba(0, 0, 0, 0)";
+	  }
+	  
+
+		break;
+	  case 1:
+	  update("barPercentButton", "Bar Percent Shown")
+	  var x = document.getElementsByClassName("skillBar");
+	  var i;
+	  for (i = 0; i < x.length; i++) {
+		x[i].style.backgroundColor = accent3;
+		x[i].style.padding = "0px 0px 0px 0px";
+		x[i].style.color = accent0;
+	  }
+	  
+
+	}	
+	
     update("textForSticks", gameData.sticks + " Sticks")
     update("textForCoins", gameData.coins + " Coins")
     update("textForJuice", gameData.juice + " Juice")
@@ -105,15 +136,23 @@ function updateValues() {
 	moveLearnANewSkill()
 	
 	moveRottenWisdom()
-		update("rottenWisdom", gameData.rottenWisdom + " / 20")
+		update("rottenWisdom", gameData.rottenWisdom + "% Chance")
+		update("rottenWisdomSkillLevel", gameData.rottenWisdomSkillLevel + " / " + gameData.rottenWisdomSkillLevelMax)
+		
 	moveLimebidextrous()
-		update("limebidextrous", gameData.limebidextrous + " / 20")
+		update("limebidextrous", gameData.limebidextrous + "% Chance")
+		update("limebidextrousSkillLevel", gameData.limebidextrousSkillLevel + " / " + gameData.limebidextrousSkillLevelMax)
+		
 	moveIntelligence()
-		update("intelligence", gameData.intelligence + " / 20")	
+		update("intelligence", gameData.intelligence + "% Faster")	
+		update("intelligenceSkillLevel", gameData.intelligenceSkillLevel + " / " + gameData.intelligenceSkillLevelMax)
+
 	moveKnifebidextrous()
-		update("knifebidextrous", gameData.knifebidextrous + " / 20")	
+		update("knifebidextrous", gameData.knifebidextrous + "% Chance")	
+		update("knifebidextrousSkillLevel", gameData.knifebidextrousSkillLevel + " / " + gameData.knifebidextrousSkillLevelMax)
+
 	moveEat()
-		update("eat", gameData.eat + " / 20")		
+		update("eat", gameData.eat + " / 100")		
 		
 		
 	moveAdvertise()

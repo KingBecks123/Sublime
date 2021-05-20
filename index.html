@@ -88,12 +88,13 @@
 	<br>
 	
 	<div id="options">	
-		<button class="basicButton" style="background:#5266a3", onclick="saveGame()">Save Game</button>
-		<button class="basicButton" style="background:#5266a3", onclick="loadGame()">Load Game</button>
-		<button class="basicButton" style="background:#5266a3", onclick="exportGame()">Export Game</button>
-		<button class="basicButton" style="background:#5266a3", onclick="importGame()">Import Game</button><br>
+		<button class="specialButton" style="background:#5266a3", onclick="saveGame()">Save Game</button>
+		<button class="specialButton" style="background:#5266a3", onclick="loadGame()">Load Game</button>
+		<button class="specialButton" style="background:#5266a3", onclick="exportGame()">Export Game</button>
+		<button class="specialButton" style="background:#5266a3", onclick="importGame()">Import Game</button><br>
 		<button class="basicButton" id="aestheticButton" onclick="switchAesthetic()">Aesthetic: Modern</button>
-		<p id="exportCode", style="background-color:#bfbfbf;width:300px;word-wrap: break-word;-webkit-user-select: all;-ms-user-select: all;user-select: all;">Export Code</p>
+		<button class="specialButton" id="barPercentButton" onclick="switchBarPercent()">Bar Percent Shown</button>
+		<p class="basicText" id="exportCode", style="background-color:#bfbfbf;width:300px;word-wrap: break-word;-webkit-user-select: all;-ms-user-select: all;user-select: all;">Export Code</p>
 	</div>	 
 	 
 	<div id="market">	
@@ -103,20 +104,20 @@
 	 <br>	 <br>
 		 <div id="marketMain">	
 			<div class="basicDiv" id="sellYourLimesDiv" style="display:none;">	
-				 <button class="basicButton", id="sellYourLimesButton" onclick="sellYourLimes()">Sell Your Limes</button>
+				 <button class="specialButton", id="sellYourLimesButton" onclick="sellYourLimes()">Sell Your Limes</button>
 				 <p class="basicText",  id="sellYourLimesAmount">You Need 50 Limes</p>
 				 <p class="basicText",  id="sellYourLimesReward">You Will Be Rewarded 1 Coin</p>
 			</div>	 
 			<div class="basicDiv", id="buyAJuicerDiv" style="display:none;">	
-				 <button class="basicButton", id="buyAJuicerButton" onclick="buyAJuicer()">Buy A Juicer</button>
+				 <button class="specialButton", id="buyAJuicerButton" onclick="buyAJuicer()">Buy A Juicer</button>
 				 <p class="basicText" id="buyAJuicerPrice">Price: 1 Coin</p>
 			</div>		
 			<div class="basicDiv", id="buyAMapDiv" style="display:none;">		
-				<button class="basicButton" onclick="buyAMap()">Buy A Map Of The Town</button>
+				<button class="specialButton" onclick="buyAMap()">Buy A Map Of The Town</button>
 				<p class="basicText">Price: 20 Coins</p>
 			</div>	
 			<div class="basicDiv", id="juiceMarket", style="display:none;">	
-				 <button class="basicButton", id="sellYourJuiceButton", onclick="sellYourJuice()">Sell Your Juice</button>
+				 <button class="specialButton", id="sellYourJuiceButton", onclick="sellYourJuice()">Sell Your Juice</button>
 				 <p class="basicText",  id="sellYourJuicePrice">You Need 1 Coins For Delivery</p>
 				 <p class="basicText", id="sellYourJuiceAmount">You Need 1 Juice</p>
 				 <p class="basicText", id="sellYourJuiceReward">You Will Be Rewarded 1 Coin</p>
@@ -288,7 +289,7 @@
 	 <div id="skills">	
 	 
 	 	 <div class="basicDiv">		 
-			 <button class="basicButton" style="width:100px;" onclick="eat()">Eat Food</button>	 
+			 <button class="specialButton" style="width:100px;" onclick="eat()">Eat Food</button>	 
 			 <button id="foodToggleLimesButton" style="width:100px;" onclick="foodToggleLimes()">Limes</button>
 			 <button id="foodToggleRottenLimesButton" style="width:100px;" onclick="foodToggleRottenLimes()">Rotten Limes</button>
 				 <div class="skillInfo">	
@@ -297,7 +298,7 @@
 			 <div class="skillProgress" id="eatProgress">
 				<div class="skillBar", id="eatBar">0%</div>
 			 </div>		
-		 <p class="basicText", id="eat">0 / 20</p>
+		 <p class="basicText", id="eat"></p>
 		 </div>		
 		 
 	 	 <div class="basicDiv">		 
@@ -313,13 +314,14 @@
 	 	 <div class="basicDiv", id="rottenWisdomDiv", style="display:none;">	
 		 
 				 <div class="skillInfo">	
-						<p class="basicText", id="rottenWisdomInfo">Chance to pick up limes rather than rotten limes +5%.</p>
+						<p class="basicText">Chance to pick up limes rather than rotten limes: +2%.</p>
 				 </div>	
-			<button class="basicButton", id="rottenWisdomButton", onclick="rottenWisdom()">Rotten Wisdom</button>	 
+			<button class="specialButton", id="rottenWisdomButton", onclick="rottenWisdom()">Rotten Wisdom</button>			
 			<div class="skillProgress" id="rottenWisdomProgress">
 				<div class="skillBar", id="rottenWisdomBar">0%</div>
 			</div>
-			<p class="basicText", id="rottenWisdom">0 / 20</p>
+			<p class="basicText", id="rottenWisdom"></p> 
+			<p class="basicText", id="rottenWisdomSkillLevel"></p>
 			 
 			
 			
@@ -328,40 +330,45 @@
 	 	 <div class="basicDiv", id="limebidextrousDiv", style="display:none;">	
 		 
 				 <div class="skillInfo">	
-						<p class="basicText", id="limebidextrousInfo">Chance to pick up 2 limes rather than 1 +5%.</p>
+						<p class="basicText", id="limebidextrousInfo">Chance to pick up 2 limes rather than 1: +2%.</p>
 				 </div>				
 			
-			<button class="basicButton", id="limebidextrousButton", onclick="limebidextrous()">Limebidextrous</button>	 
+			<button class="specialButton", id="limebidextrousButton", onclick="limebidextrous()">Limebidextrous</button>	 
 			<div class="skillProgress" id="limebidextrousProgress">
 				<div class="skillBar", id="limebidextrousBar">0%</div>
 			</div>	
-			<p class="basicText", id="limebidextrous">0 / 20</p>
+			<p class="basicText", id="limebidextrous"></p>
+			<p class="basicText", id="limebidextrousSkillLevel"></p>
 		 </div>		
 		 
 	 	 <div class="basicDiv", id="intelligenceDiv", style="display:none;">	
 		 
 				 <div class="skillInfo">
-						<p class="basicText", id="intelligenceInfo">Decrease the time needed to skill by 5%.</p>
+						<p class="basicText", id="intelligenceInfo">Skilling speed: +2%.</p>
 				 </div>		
 				 
-			<button class="basicButton", id="intelligenceButton", onclick="intelligence()">Intelligence</button>	 
+			<button class="specialButton", id="intelligenceButton", onclick="intelligence()">Intelligence</button>	 
 			<div class="skillProgress" id="intelligenceProgress">
 				<div class="skillBar", id="intelligenceBar">0%</div>
 			</div>	
-			<p class="basicText", id="intelligence">0 / 20</p>
+			<p class="basicText", id="intelligence"></p>
+			<p class="basicText", id="intelligenceSkillLevel"></p>
+
 		 </div>		
 
 	 	 <div class="basicDiv", id="knifebidextrousDiv", style="display:none;">	
 		 
 				 <div class="skillInfo">
-						<p class="basicText", id="knifebidextrousInfo">Chance to peel 2 limes rather than 1 +5%.</p>
+						<p class="basicText", id="knifebidextrousInfo">Chance to peel 2 limes rather than 1: +2%.</p>
 				 </div>	
 				 
-			<button class="basicButton", id="knifebidextrousButton", onclick="knifebidextrous()">Knifebidextrous</button>	 
+			<button class="specialButton", id="knifebidextrousButton", onclick="knifebidextrous()">Knifebidextrous</button>	 
 			<div class="skillProgress" id="knifebidextrousProgress">
 				<div class="skillBar", id="knifebidextrousBar">0%</div>
 			</div>	
-			<p class="basicText", id="knifebidextrous">0 / 20</p>
+			<p class="basicText", id="knifebidextrous"></p>
+			<p class="basicText", id="knifebidextrousSkillLevel"></p>
+
 		 </div>
 
 	 </div>	

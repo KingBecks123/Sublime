@@ -1,9 +1,13 @@
 background = "#222328"; //Background Color
-accent0 = "#454851"; //Main Color
+//accent0 = "#454851"; //Main Color
+
+
+accent0 = "#50514F"; //Main Color
 accent1 = "lightgreen"; //Accent Color
 accent2 = "gray"; //When buttons are toggled off
 accent3 = "lightgreen"; //When buttons are toggled on
-grayAccent = "#454851";
+accent4 = "#F5A65B"; //Special Buttons
+grayAccent = "#50514F";
 grayAccentLight = "lightgray";
 
 function addAesthetic(){
@@ -111,20 +115,20 @@ function addAesthetic(){
 	  for (i = 0; i < x.length; i++) {
 		x[i].style['margin'] = "5px 5px 5px 5px";
 	  }
+	  
+	//Special Button
+	  var x = document.getElementsByClassName("specialButton");
+	  var i;
+	  for (i = 0; i < x.length; i++) {
+		x[i].style.backgroundColor = accent4;
+		x[i].style['margin'] = "5px 5px 5px 5px";
+	  }
+	  
 
 
 		
 		
 	//Skills
-	
-		//Skill Bars
-	  var x = document.getElementsByClassName("skillBar");
-	  var i;
-	  for (i = 0; i < x.length; i++) {
-		x[i].style.backgroundColor = accent3;
-		x[i].style.padding = "0px 0px 0px 0px";
-		x[i].style.color = accent0;
-	  }
 	  
 		//Skill Progress
 	  var x = document.getElementsByClassName("skillProgress");

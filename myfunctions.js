@@ -1,3 +1,9 @@
+
+// returns a random integer from 1 to X	
+function beckyRandom(max){
+	return Math.floor(Math.random() * max) + 1;
+}
+
 //Recurring function for continuing a loading bar.
 function basicBarSkill(variable) {
 	i = eval("gameData." + variable + "Bar")
@@ -6,28 +12,21 @@ function basicBarSkill(variable) {
 	{
 		eval("gameData." + variable + "Bar += 1");
 		x = variable + "Bar()"
-		setTimeout(x, (2 * (21 - gameData.intelligence)) / tickspeed)
+		setTimeout(x, (2 * (101 - gameData.intelligence)) / tickspeed)
 	}
 	else
 	{
-		eval("gameData." + variable + " += 1");
-	}
-updateValues()
-}
-
-//Recurring function for continuing a loading bar.
-function basicBarSkillSpeed(variable, time) {
-	i = eval("gameData." + variable + "Bar")
-	
-	if(i <= 99)
-	{
-		eval("gameData." + variable + "Bar += 1");
-		x = variable + "Bar()"
-		setTimeout(x, time / tickspeed)
-	}
-	else
-	{
-		eval("gameData." + variable + " += 1");
+		if(variable != "eat")
+		{
+			eval("gameData." + variable + "SkillLevel += 1");
+			eval("gameData." + variable + " += 2");
+		}
+		else{
+			gameData.eat += gameData.foodType
+			if(gameData.eat > 100)
+			{gameData.eat = 100}
+		
+		}
 	}
 updateValues()
 }
@@ -71,10 +70,10 @@ function barStartGranularSkillBasic(variable)
 	variableBar = variable + "Bar"
 	
 	i = eval("gameData." + variableBar)
-	if( ( ( i == 100 || i == 0 ) && ( eval("gameData." + variable) < 20 ) ) && (gameData.eat >= eval("gameData." + variable)))
+	if( ( i == 100 || i == 0 ) && ( eval("gameData." + variable + "SkillLevel") < eval("gameData." + variable + "SkillLevelMax") || variable == "eat") && (gameData.eat >= eval("gameData." + variable)))
 	{
 		if(variable != "eat"){
-			eval("gameData.eat -= gameData." + variable)		
+			eval("gameData.eat -= gameData." + variable + "SkillLevel")		
 		}
 		eval("gameData." + variableBar + " = 0")
 		eval(variableBar+"()")
@@ -101,6 +100,42 @@ function update(id, content) {
   document.getElementById(id).innerHTML = content;
 }
 
+//Replaces a number with new text.
+function updateNumber(id) {
+  Id = jsUcfirst(id) 
+  x = "textFor" + Id + "s"
+  if(eval("gameData." + id + "s") == 1)
+  {
+	y = eval("gameData." + id + "s") + " " + Id
+  }
+  else
+  {
+	y = eval("gameData." + id + "s") + " " + Id + "s"
+  }
+  update(x, y)
+}
+
+//Replaces a number with new text.
+function updateNumberSpecial(id, textToShow) {
+  Id = jsUcfirst(id) 
+  x = "textFor" + Id + "s"
+  if(eval("gameData." + id + "s") == 1)
+  {
+	y = eval("gameData." + id + "s") + " " + textToShow
+  }
+  else
+  {
+	y = eval("gameData." + id + "s") + " " + textToShow + "s"
+  }
+  update(x, y)
+}
+
+//Capitalises the first letter in a string.
+function jsUcfirst(string) 
+{
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 //Hides or shows an element of the html.
 function divVisibility (elementid, display){
   var x = document.getElementById(elementid);
@@ -120,10 +155,48 @@ function checkShow(i, n, txt)
 	}
 }
 
-//Checks if a value is higher than 1, and shows an element if so.
+//Checks if a value is higher than 0, and shows an element if so.
 function checkShow(i, txt)
 {
 	if(i >= 1)
 	{tabs (txt, "block")
 	}
+}
+
+function saveGame() {
+  localStorage.setItem('mathAdventureSave', JSON.stringify(gameData))
+	update("newInfo", "Game Saved.")
+}
+
+function exportGame() {
+	update("exportCode", JSON.stringify(gameData))
+}
+
+
+function importGame() {
+  var savegame = JSON.parse(window.prompt("Import Code: "));
+  if (savegame !== null) {
+		Object.assign(gameData, savegame);
+		update("newInfo", "Game Loaded.")
+		updateValues()
+		updateAfterLoad()
+  }
+  else
+  {
+	  	update("newInfo", "Save File Empty.")
+  }
+}
+
+function loadGame() {
+  var savegame = JSON.parse(localStorage.getItem("mathAdventureSave"))
+  if (savegame !== null) {
+		Object.assign(gameData, savegame);
+		update("newInfo", "Game Loaded.")
+		updateValues()
+		updateAfterLoad()
+  }
+  else
+  {
+	  	update("newInfo", "Save File Empty.")
+  }
 }
