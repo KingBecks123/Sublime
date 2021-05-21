@@ -73,7 +73,6 @@ function barStartGranular(variable)
 	i = eval("gameData." + variableBar)
 	if(i == 100 || i == 0)
 	{
-		alert('pogchamp')
 		eval("gameData." + variableBar + " = 0")
 		eval(variableBar+"()")
 	}
