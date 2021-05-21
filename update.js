@@ -1,10 +1,14 @@
 function updateAfterLoad(){
 
 
-			if(gameData.juiceBar <= 99 && gameData.juiceBar != 0)
-		{
-			makeJuiceBar()
-		}
+
+
+		restartBar("learnANewSkill")
+		restartBar("rottenWisdom")
+		restartBar("limebidextrous")
+		restartBar("knifebidextrous")
+		restartBar("intelligence")
+
 			if(gameData.deliveryBar <= 99 && gameData.deliveryBar != 0)
 		{
 			sellYourJuiceBar()

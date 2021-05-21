@@ -122,31 +122,27 @@ function learnANewSkillBar() {
 	if(gameData.learnANewSkillBar <= 99)
 	{
 		gameData.learnANewSkillBar += 1;
-		setTimeout(learnANewSkillBar, (5 * (21 - gameData.intelligence)) / tickspeed)
+		setTimeout(learnANewSkillBar, (5 * (101 - gameData.intelligence)) / tickspeed)
 	}
 	else
 	{
-		if(gameData.learnANewSkill == 0)
-		{
+		switch (gameData.learnANewSkill){
+		case 0:
 			gameData.learnANewSkill = 1
 			update("newInfo", "You Learned Rotten Wisdom!")
-		}
-		else if(gameData.learnANewSkill == 1)
-		{
+		break;
+		case 1:
 			gameData.learnANewSkill = 2
 			update("newInfo", "You Learned Limebidextrous!")
-		}
-		else if(gameData.learnANewSkill == 2)
-		{
+		break;
+		case 2:
 			gameData.learnANewSkill = 3
 			update("newInfo", "You Learned Intelligence!")
-		}
-		else if(gameData.learnANewSkill == 3)
-		{
+		break;
+		case 3:
 			gameData.learnANewSkill = 4
 			update("newInfo", "You Learned Knifebidextrous!")
 		}
-			
 	}
 updateValues()
 }

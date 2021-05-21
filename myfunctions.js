@@ -12,7 +12,14 @@ function basicBarSkill(variable) {
 	{
 		eval("gameData." + variable + "Bar += 1");
 		x = variable + "Bar()"
-		setTimeout(x, (2 * (101 - gameData.intelligence)) / tickspeed)
+		if(variable != "eat")
+		{
+			setTimeout(x, (101 - gameData.intelligence) / tickspeed)
+		}
+		else
+		{
+			setTimeout(x, 10 / tickspeed)
+		}
 	}
 	else
 	{
@@ -40,6 +47,14 @@ function sleep(milliseconds) {
   } while (currentDate - date < milliseconds);
 }
 
+function restartBar (x){
+	y = eval("gameData." + x + "Bar")
+	if(y <= 99 && y != 0)
+		{
+			eval(x + "Bar()")
+		}
+}
+
 //Starts a loading bar.
 function barStart(i, functionToCall, variable)
 {
@@ -58,6 +73,7 @@ function barStartGranular(variable)
 	i = eval("gameData." + variableBar)
 	if(i == 100 || i == 0)
 	{
+		alert('pogchamp')
 		eval("gameData." + variableBar + " = 0")
 		eval(variableBar+"()")
 	}
@@ -70,7 +86,7 @@ function barStartGranularSkillBasic(variable)
 	variableBar = variable + "Bar"
 	
 	i = eval("gameData." + variableBar)
-	if( ( i == 100 || i == 0 ) && ( eval("gameData." + variable + "SkillLevel") < eval("gameData." + variable + "SkillLevelMax") || variable == "eat") && (gameData.eat >= eval("gameData." + variable)))
+	if( ( i == 100 || i == 0 ) && ( eval("gameData." + variable + "SkillLevel") < eval("gameData." + variable + "SkillLevelMax") && gameData.eat >= eval("gameData." + variable + "SkillLevel"))|| variable == "eat")
 	{
 		if(variable != "eat"){
 			eval("gameData.eat -= gameData." + variable + "SkillLevel")		
