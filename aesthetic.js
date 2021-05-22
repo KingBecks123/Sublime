@@ -137,4 +137,12 @@ function addAesthetic(){
 		x[i].style.backgroundColor = accent0;
 		x[i].style['margin'] = "5px 5px 5px 5px";
 	  }
+	  
+		//Vertical Progress
+	  var x = document.getElementsByClassName("verticalProgress");
+	  var i;
+	  for (i = 0; i < x.length; i++) {
+		x[i].style.backgroundColor = accent0;
+		x[i].style['margin'] = "5px 5px 5px 5px";
+	  }
 }

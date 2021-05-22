@@ -8,6 +8,8 @@ function updateAfterLoad(){
 		restartBar("limebidextrous")
 		restartBar("knifebidextrous")
 		restartBar("intelligence")
+		restartBar("juicer")
+		basketBar()
 
 			if(gameData.deliveryBar <= 99 && gameData.deliveryBar != 0)
 		{
@@ -37,6 +39,13 @@ function updateValues() {
 		x[i].style.padding = "0px 0px 0px 0px";
 		x[i].style.color =  "rgba(0, 0, 0, 0)";
 	  }
+	  var x = document.getElementsByClassName("verticalBar");
+	  var i;
+	  for (i = 0; i < x.length; i++) {
+		x[i].style.backgroundColor = accent3;
+		x[i].style.padding = "0px 0px 0px 0px";
+		x[i].style.color =  "rgba(0, 0, 0, 0)";
+	  }
 	  
 
 		break;
@@ -49,9 +58,18 @@ function updateValues() {
 		x[i].style.padding = "0px 0px 0px 0px";
 		x[i].style.color = accent0;
 	  }
+	  var x = document.getElementsByClassName("verticalBar");
+	  var i;
+	  for (i = 0; i < x.length; i++) {
+		x[i].style.backgroundColor = accent3;
+		x[i].style.padding = "0px 0px 0px 0px";
+		x[i].style.color = accent0;
+	  }
 	  
 
 	}	
+	
+	gameData.limesInBaskets = gameData.baskets * Math.floor(gameData.basketBar / 20)
 	
     update("textForSticks", gameData.sticks + " Sticks")
     update("textForCoins", gameData.coins + " Coins")
@@ -60,6 +78,9 @@ function updateValues() {
     update("inventorySugar", gameData.sugar + " Sugar")
     update("textForPies", gameData.pies + " Pies")
     update("juicersAmount", gameData.juicers + " Juicers")
+    update("basketsAmount", gameData.baskets + " Baskets")
+    update("limesInBaskets", gameData.limesInBaskets + " Limes")
+
 	
 	switch (gameData.aesthetic) {
 	  case 0:
@@ -134,6 +155,7 @@ function updateValues() {
 	checkShow(gameData.juicers, "inventoryButton")
 	checkShow(gameData.coins, "achievementsButton")
 	checkShow(gameData.employees, "companyButton")
+	checkShow(gameData.baskets, "forestButton")
 
 	moveJuicer()
 	moveDelivery()
@@ -177,6 +199,8 @@ function updateValues() {
 			tabs ("buyAJuicerDiv", "block")
 
 			tabs ("buyAMapDiv", "block")
+
+			tabs ("buyABasketDiv", "block")
 
 			document.getElementById('lookAroundButton').style.backgroundColor = 'darkGray';
 	}
@@ -234,8 +258,7 @@ function updateValues() {
 	tabs ("juicePeeledLimesToggleButton", "inline-block")
 	}
 	if(gameData.knife >= 1)
-	{  tabs("inventoryKnife", "block")
-		tabs("inventoryKnifeLime", "block")
+	{  tabs("knifeDiv", "block")
 	}
 	if(gameData.sugar >= 1 && gameData.limes >= 1 && gameData.bread >= 1 && gameData.fireLevel >= 1)
 	{divVisibility ("pieBake", "visible")

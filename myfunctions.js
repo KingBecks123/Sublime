@@ -1,3 +1,20 @@
+function switchValue(x) {
+	
+	i = "gameData." + x
+	
+	if(eval(i) == 0)
+	{
+		eval(i + " = 1")
+	}
+	else
+	{
+		eval(i + " = 0")
+	}
+
+updateValues()
+updateValues()
+}
+
 
 // returns a random integer from 1 to X	
 function beckyRandom(max){

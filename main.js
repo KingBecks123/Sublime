@@ -1,36 +1,7 @@
-
-
 function randomizeApplication() {
 		gameData.applicantSpeed = (Math.floor(Math.random() * 10) * 10)
 		gameData.applicantPrice = Math.floor(Math.random() * 100)
 		gameData.applicantWage = Math.floor(Math.random() * 9) + 1
-
-updateValues()
-}
-
-function switchAesthetic() {
-	if(gameData.aesthetic == 0)
-	{
-		gameData.aesthetic = 1
-	}
-	else if (gameData.aesthetic == 1)
-	{
-		gameData.aesthetic = 0
-	}
-
-updateValues()
-updateValues()
-}
-
-function switchBarPercent() {
-	if(gameData.showBarPercent == 1)
-	{
-		gameData.showBarPercent = 0
-	}
-	else
-	{
-		gameData.showBarPercent = 1
-	}
 
 updateValues()
 }
@@ -349,7 +320,6 @@ function buyKnife() {
 	{
 		gameData.coins -= 2
 		gameData.knife += 1
-		tabs ("buyKnifeDiv", "none")
 	}
 updateValues()
 }
@@ -387,6 +357,21 @@ function buyAJuicer() {
 	{
 		gameData.coins -= 1
 		gameData.juicers += 1	
+	}
+	
+updateValues()
+}
+
+function buyABasket() {
+	if(gameData.coins >= 2)
+	{
+		gameData.coins -= 2
+		gameData.baskets += 1	
+		
+		if(gameData.baskets == 1)
+		{
+			basketBar()
+		}
 	}
 	
 updateValues()

@@ -21,7 +21,6 @@
      .column {
      float: left;
      padding: 10px;
-     height: 300px;
 	 width: 100px;
      .row:after {
      content: "";
@@ -43,6 +42,22 @@
 	  line-height: 30px;
 	}
 	</style>
+	<style>
+	.verticalProgress {
+	  width: 400px;
+	  height: 300px;
+	  margin:auto;
+	  position: relative;
+	}
+
+	.verticalBar {
+	  height: 0%;
+	  width: 400px;
+	  bottom: 0px;
+	  right: 0px;
+	  position: absolute;
+	}
+	</style>
   </head>
    <body id="mainBody", onload="gameStart()">
 			<button id="achievementsButton", style="background-color:#d1d9d9;display:none;width: 100px;height:20px;float:right;", onclick="tab('achievements')">Achievements</button>
@@ -62,7 +77,7 @@
 
 	 </div>
 	 	<div class="row">
-	 <p id="newInfo", style="background-color:#bfbfbf;height:20px;">You are in a lime forest.</p>
+			<p id="newInfo", style="background-color:#bfbfbf;padding: 10px 0;">You are in a lime forest.</p>
 		</div>	
 	 <button style="background:lightgreen", onclick="getLimes()">Pick Up Limes</button>
 	 <button id="lookAroundButton", style="background:lightgray", onclick="lookAround()">Look Around</button>
@@ -79,6 +94,7 @@
 	  <div id="inventoryButton", style="visibility: hidden;width: 100px;">	
 		<button style="background:lightgray;width: 100px;", onclick="tab('inventory')">Inventory</button>	  
 	  </div>	 
+	  <button id="forestButton" style="background:lightgray;display:none;width: 100px;", onclick="tab('forest')">Forest</button>	  
 	  <button id="newtownButton", style="background:lightgray;display:none;width: 100px;", onclick="tab('newtown')">Newtown</button>  
 	  <button id="companyButton", style="background:lightgray;display:none;width: 100px;", onclick="tab('company')">Lime Inc.</button>  
 
@@ -92,8 +108,8 @@
 		<button class="specialButton" style="background:#5266a3", onclick="loadGame()">Load Game</button>
 		<button class="specialButton" style="background:#5266a3", onclick="exportGame()">Export Game</button>
 		<button class="specialButton" style="background:#5266a3", onclick="importGame()">Import Game</button><br>
-		<button class="basicButton" id="aestheticButton" onclick="switchAesthetic()">Aesthetic: Modern</button>
-		<button class="specialButton" id="barPercentButton" onclick="switchBarPercent()">Bar Percent Shown</button>
+		<button class="basicButton" id="aestheticButton" onclick="switchValue('aesthetic')">Aesthetic: Modern</button>
+		<button class="specialButton" id="barPercentButton" onclick="switchValue('showBarPercent')">Bar Percent Shown</button>
 		<p class="basicText" id="exportCode", style="background-color:#bfbfbf;width:300px;word-wrap: break-word;-webkit-user-select: all;-ms-user-select: all;user-select: all;">Export Code</p>
 	</div>	 
 	 
@@ -115,6 +131,10 @@
 			<div class="basicDiv", id="buyAMapDiv" style="display:none;">		
 				<button class="specialButton" onclick="buyAMap()">Buy A Map Of The Town</button>
 				<p class="basicText">Price: 20 Coins</p>
+			</div>	
+			<div class="basicDiv", id="buyABasketDiv" style="display:none;">		
+				<button class="specialButton" onclick="buyABasket()">Buy A Basket</button>
+				<p class="basicText">Price: 2 Coins</p>
 			</div>	
 			<div class="basicDiv", id="juiceMarket", style="display:none;">	
 				 <button class="specialButton", id="sellYourJuiceButton", onclick="sellYourJuice()">Sell Your Juice</button>
@@ -142,18 +162,18 @@
 	 	<div id="marketStore", style="display:none;width:300px;">	 
 				 
 			 <div id="buyKnifeDiv" class="basicDiv">			
-				 <button class="basicButton", id="knifeButton", onclick="buyKnife()">Buy A Knife</button>
+				 <button class="specialButton", id="knifeButton", onclick="buyKnife()">Buy A Knife</button>
 				 <p class="basicText",  id="knifeInfo">Price: 2 Coins</p>		
 			 </div>		 
 				 
 			 <div id="tomeDiv" class="basicDiv">			
-				 <button class="basicButton", id="tomeButton", onclick="buyTome()">Buy A Tome</button>
+				 <button class="specialButton", id="tomeButton", onclick="buyTome()">Buy A Tome</button>
 				 <p class="basicText",  id="tomeInfo">Tomes can teach you new skills!</p>		
 				 <p class="basicText",  id="tomePrice">Price: 10 Coins</p>			
 			 </div>			 	
 				 
 			 <div class="basicDiv", id="buyAnotherMapDiv">			
-				 <button onclick="buyAMap()">Buy Another Map</button>
+				 <button class="specialButton" onclick="buyAMap()">Buy Another Map</button>
 				 <p class="basicText">There must be more to this town...</p>	
 				 <p class="basicText">Price: 20 Coins</p>	
 			 </div>			 
@@ -240,23 +260,22 @@
 	<div id="inventory">	
 	  <div class="basicDiv">
 				 <p class="basicText" id="juicersAmount", style="background-color:#bfbfbf;padding: 5px;">1 Juicers</p>
-				 <button class="basicButton" id="makeJuiceButton", style="background-color:#87a7b3;", onclick="makeJuice()">Use Juicer</button>
-				 <button class="basicButton" id="makeMaxJuiceButton", onclick="makeMaxJuice()", style="visibility: hidden;">Use Max Juicers</button>
-				 <button class="basicButtonSize" id="juiceLimesToggleButton", style="display:none;", onclick="juiceLimesToggle()">On Limes</button>
-				 <button class="basicButtonSize" id="juicePeeledLimesToggleButton", style="display:none;", onclick="juicePeeledLimesToggle()">On Peeled Limes</button>
-				 <p class="basicText" id="juicerInfo", style="background-color:#bfbfbf;padding: 5px;">Juicers Use 10 Limes To Create 1 Lime Juice.</p>
+				 <button class="specialButton" id="makeJuiceButton", style="background-color:#87a7b3;width:150px;", onclick="makeJuice()">Use Juicer</button>
+				 <button class="specialButton" id="makeMaxJuiceButton", onclick="makeMaxJuice()", style="visibility: hidden;width:150px;">Use Max Juicers</button>
+				 <br>
+				 <button class="basicButtonSize" id="juiceLimesToggleButton", style="display:none;width:150px;", onclick="juiceLimesToggle()">On Limes</button>
+				 <button class="basicButtonSize" id="juicePeeledLimesToggleButton", style="display:none;width:150px;", onclick="juicePeeledLimesToggle()">On Peeled Limes</button>
+				 <p class="basicText" id="juicerInfo", style="background-color:#bfbfbf;padding: 5px;">Juicers use 10 limes to create 1 lime juice.</p>
 					 <div class="skillProgress" id="myProgress">
 						<div class="skillBar" id="juicerBar">0%</div>
 					 </div>	 
 		 </div>	 
-		<br>
-		<br>
 		 <p id="inventoryBread", style="background-color:#bfbfbf;display: none;">1 Bread</p>
 		 <p id="inventorySugar", style="background-color:#bfbfbf;display: none;">1 Sugar</p>
-	  <div class="basicDiv", id="knifeDiv", style="background-color:#766161;display:none;padding: 10px;height: 200px;">
-			<p id="inventoryKnife", style="background-color:#bfbfbf;padding: 5px;width:100px;">Use Knife:</p>
-			<button id="inventoryKnifeLime", onclick="peelLime()">On Limes</button>
-			<p id="textForPeeledLimes", style="background-color:#bfbfbf;padding: 5px;width:200px;">1 Peeled Lime</p>
+	  <div class="basicDiv", id="knifeDiv", style="display:none;">
+			<p class="basicText" id="inventoryKnife" >Use Knife:</p>
+			<button  class="specialButton" id="inventoryKnifeLime", onclick="peelLime()">On Limes</button>
+			<p id="textForPeeledLimes"  class="basicText" >1 Peeled Lime</p>
 	   </div>	 
 	</div>		
 	 
@@ -274,6 +293,22 @@
 	 <button id="pieBake", onclick="pieBake()", style="visibility: hidden;background-color:#9c744b;">Bake A Lime Pie</button>
 	 <p id="pieBakeText", style="background-color:#9c744b;visibility: hidden;">Needs 1 Sugar, 1 Bread And 2 Lime Juice</p>
 	 </div>		 
+	 
+	 <div id="forest">	
+	  <div class="basicDiv">
+				 <p class="basicText" id="basketsAmount", style="background-color:#bfbfbf;padding: 5px;">1 Basket</p>
+				 <button class="specialButton" id="makeJuiceButton", style="background-color:#87a7b3;", onclick="basket()">Empty Baskets</button>
+				 
+				 <p class="basicText" >Baskets collect 1 Lime per minute each.</p>
+				 <p class="basicText" >Baskets collect up to 5 Limes each.</p>
+				 
+				 <p class="basicText" id="limesInBaskets">0 Limes.</p>
+
+					 <div class="verticalProgress" id="basketProgress">
+						<div class="verticalBar" id="basketBar">0%</div>
+					 </div>	 
+		 </div>	 
+	 </div>	
 	 
 	 <div id="newtown">	
 	 
@@ -316,7 +351,7 @@
 				 <div class="skillInfo">	
 						<p class="basicText">Chance to pick up limes rather than rotten limes: +2%.</p>
 				 </div>	
-			<button class="specialButton", id="rottenWisdomButton", onclick="rottenWisdom()">Rotten Wisdom</button>			
+			<button class="specialButton", id="rottenWisdomButton", onclick="barStartGranularSkillBasic('rottenWisdom')">Rotten Wisdom</button>			
 			<div class="skillProgress" id="rottenWisdomProgress">
 				<div class="skillBar", id="rottenWisdomBar">0%</div>
 			</div>
@@ -333,7 +368,7 @@
 						<p class="basicText", id="limebidextrousInfo">Chance to pick up 2 limes rather than 1: +2%.</p>
 				 </div>				
 			
-			<button class="specialButton", id="limebidextrousButton", onclick="limebidextrous()">Limebidextrous</button>	 
+			<button class="specialButton", id="limebidextrousButton", onclick="barStartGranularSkillBasic('limebidextrous')">Limebidextrous</button>	 
 			<div class="skillProgress" id="limebidextrousProgress">
 				<div class="skillBar", id="limebidextrousBar">0%</div>
 			</div>	
@@ -347,7 +382,7 @@
 						<p class="basicText", id="intelligenceInfo">Skilling speed: +2%.</p>
 				 </div>		
 				 
-			<button class="specialButton", id="intelligenceButton", onclick="intelligence()">Intelligence</button>	 
+			<button class="specialButton", id="intelligenceButton", onclick="barStartGranularSkillBasic('intelligence')">Intelligence</button>	 
 			<div class="skillProgress" id="intelligenceProgress">
 				<div class="skillBar", id="intelligenceBar">0%</div>
 			</div>	
@@ -362,7 +397,7 @@
 						<p class="basicText", id="knifebidextrousInfo">Chance to peel 2 limes rather than 1: +2%.</p>
 				 </div>	
 				 
-			<button class="specialButton", id="knifebidextrousButton", onclick="knifebidextrous()">Knifebidextrous</button>	 
+			<button class="specialButton", id="knifebidextrousButton", onclick="barStartGranularSkillBasic('knifebidextrous')">Knifebidextrous</button>	 
 			<div class="skillProgress" id="knifebidextrousProgress">
 				<div class="skillBar", id="knifebidextrousBar">0%</div>
 			</div>	
@@ -383,8 +418,8 @@
 	<script>
 	function moveJuicer() {
 		var elem = document.getElementById("juicerBar");
-		elem.style.width = gameData.juiceBar + "%";
-		elem.innerHTML = Math.ceil(gameData.juiceBar)  + "%";
+		elem.style.width = gameData.juicerBar + "%";
+		elem.innerHTML = Math.ceil(gameData.juicerBar)  + "%";
 	}
 	</script>
 
@@ -465,6 +500,15 @@
 		var elem = document.getElementById("eatBar");
 		elem.style.width = gameData.eatBar + "%";
 		elem.innerHTML = Math.ceil(gameData.eatBar)  + "%";
+	}
+	</script>
+	
+	<script>
+	function moveBasket() {
+		var elem = document.getElementById("basketBar");
+		var elem2 = document.getElementById("basketProgress");
+		elem.style.height = gameData.basketBar + "%";
+		elem.innerHTML = Math.ceil(gameData.basketBar)  + "%";
 	}
 	</script>
 	

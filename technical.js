@@ -3,10 +3,10 @@
 var cheatNum = 0; 
 
 //Should be 0 for normal game, 1 if you want to go faster :)
-var difficulty = 0;
+var difficulty = 1;
 
 //default 1
-var tickspeed = 1
+var tickspeed = 1000
 
 var gameData = {
   limes: 1,
@@ -15,7 +15,7 @@ var gameData = {
   juice: 0,
   juiceBulkAmount: 1,
   deliveryBar: 0,
-  juiceBar: 0,
+  juicerBar: 0,
   howMuchJuice: 0,
   bread: 0,
   sugar: 0,
@@ -84,6 +84,10 @@ var gameData = {
   limebidextrousSkillLevelMax: 50,
   knifebidextrousSkillLevelMax: 50,
   rottenWisdomSkillLevelMax: 50,
+  basket: 0,
+  basketBar: 0,
+  baskets: 0,
+  limesInBaskets: 0,
 }
 
 function gameStart(){
@@ -155,6 +159,7 @@ function tab(tabby) {
   tabs("newtown", "none")
   tabs("skills", "none")
   tabs("company", "none")
+  tabs("forest", "none")
   document.getElementById(tabby).style.display = "inline-block"
 }
 
