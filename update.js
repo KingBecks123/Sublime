@@ -157,32 +157,33 @@ function updateValues() {
 	checkShow(gameData.employees, "companyButton")
 	checkShow(gameData.baskets, "forestButton")
 
-	moveJuicer()
-	moveDelivery()
-	moveLearnANewSkill()
+	moveBar("juicer")
+	moveBar("delivery")
+	moveBar("learnANewSkill")
+	moveBar("advertise")
+	moveBar("teach")
 	
-	moveRottenWisdom()
+
+	
+	moveBar("rottenWisdom")
 		update("rottenWisdom", gameData.rottenWisdom + "% Chance")
 		update("rottenWisdomSkillLevel", gameData.rottenWisdomSkillLevel + " / " + gameData.rottenWisdomSkillLevelMax)
 		
-	moveLimebidextrous()
+	moveBar("limebidextrous")
 		update("limebidextrous", gameData.limebidextrous + "% Chance")
 		update("limebidextrousSkillLevel", gameData.limebidextrousSkillLevel + " / " + gameData.limebidextrousSkillLevelMax)
 		
-	moveIntelligence()
+	moveBar("intelligence")
 		update("intelligence", gameData.intelligence + "% Faster")	
 		update("intelligenceSkillLevel", gameData.intelligenceSkillLevel + " / " + gameData.intelligenceSkillLevelMax)
 
-	moveKnifebidextrous()
+	moveBar("knifebidextrous")
 		update("knifebidextrous", gameData.knifebidextrous + "% Chance")	
 		update("knifebidextrousSkillLevel", gameData.knifebidextrousSkillLevel + " / " + gameData.knifebidextrousSkillLevelMax)
 
 	moveEat()
 		update("eat", gameData.eat + " / 100")		
-		
-		
-	moveAdvertise()
-	moveTeach()
+
 
 	if(gameData.lookAround >= 1)
 	{

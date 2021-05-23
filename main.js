@@ -393,3 +393,74 @@ function increaseJuiceSold() {
 	
 updateValues()
 }
+
+
+
+
+	function moveJuicer() {
+		var elem = document.getElementById("juicerBar");
+		elem.style.width = gameData.juicerBar + "%";
+		elem.innerHTML = Math.ceil(gameData.juicerBar)  + "%";
+	}
+
+	function moveRottenWisdom() {
+		var elem = document.getElementById("rottenWisdomBar");
+		elem.style.width = gameData.rottenWisdomBar + "%";
+		elem.innerHTML = Math.ceil(gameData.rottenWisdomBar)  + "%";
+	}
+
+	function moveDelivery() {
+		var elem = document.getElementById("deliveryBar");
+		elem.style.width = gameData.deliveryBar + "%";
+		elem.innerHTML = Math.ceil(gameData.deliveryBar)  + "%";
+	}
+
+	function moveLimebidextrous() {
+		var elem = document.getElementById("limebidextrousBar");
+		elem.style.width = gameData.limebidextrousBar + "%";
+		elem.innerHTML = Math.ceil(gameData.limebidextrousBar)  + "%";
+	}
+
+	function moveAdvertise() {
+		var elem = document.getElementById("advertiseBar");
+		elem.style.width = gameData.advertiseBar + "%";
+		elem.innerHTML = Math.ceil(gameData.advertiseBar)  + "%";
+	}
+
+	function moveIntelligence() {
+		var elem = document.getElementById("intelligenceBar");
+		elem.style.width = gameData.intelligenceBar + "%";
+		elem.innerHTML = Math.ceil(gameData.intelligenceBar)  + "%";
+	}
+
+	function moveTeach() {
+		var elem = document.getElementById("teachBar");
+		elem.style.width = gameData.teachBar + "%";
+		elem.innerHTML = Math.ceil(gameData.teachBar)  + "%";
+	}
+
+	function moveWorking() {
+		var elem = document.getElementById("workingBar");
+		elem.style.width = gameData.workingBar + "%";
+		elem.innerHTML = Math.ceil(gameData.workingBar)  + "%";
+	}
+
+	function moveKnifebidextrous() {
+		var elem = document.getElementById("knifebidextrousBar");
+		elem.style.width = gameData.knifebidextrousBar + "%";
+		elem.innerHTML = Math.ceil(gameData.knifebidextrousBar)  + "%";
+	}
+	
+	function moveEat() {
+		var elem = document.getElementById("eatBar");
+		elem.style.width = gameData.eatBar + "%";
+		elem.innerHTML = Math.ceil(gameData.eatBar)  + "%";
+	}
+	
+	function moveBasket() {
+		var elem = document.getElementById("basketBar");
+		var elem2 = document.getElementById("basketProgress");
+		elem.style.height = gameData.basketBar + "%";
+		elem.innerHTML = Math.ceil(gameData.basketBar)  + "%";
+	}
+
