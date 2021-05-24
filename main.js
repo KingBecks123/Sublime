@@ -273,11 +273,11 @@ function buyAMap() {
 	{
 		gameData.coins -= 20
 		gameData.maps = 1
+	}
 	else if(gameData.coins >= 200 && gameData.maps == 1)
 	{
 		gameData.coins -= 200
 		gameData.maps = 2
-	}
 	}
 updateValues()
 }
