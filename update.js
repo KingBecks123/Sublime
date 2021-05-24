@@ -47,10 +47,6 @@ function updateValues() {
 		x[i].style.color =  "rgba(0, 0, 0, 0)";
 	  }
 	  
-	if(gameData.basketBar == 0)
-	{
-		basketBar()
-	}
 	
 		break;
 	  case 1:
@@ -73,7 +69,7 @@ function updateValues() {
 
 	}	
 	
-	gameData.limesInBaskets = gameData.baskets * Math.floor(gameData.basketBar / 20)
+	gameData.limesInBaskets = Math.floor(gameData.baskets * (gameData.basketBar / 20))
 	
     update("textForSticks", gameData.sticks + " Sticks")
     update("textForCoins", gameData.coins + " Coins")
@@ -194,6 +190,13 @@ function updateValues() {
 	if(gameData.lookAround >= 1)
 	{
 			divVisibility ("navigateButtons", "visible")
+	}
+
+	if(gameData.rottenWisdomSkillLevel == gameData.rottenWisdomSkillLevelMax)
+	{
+		tabs("textForRottenLimes", "none")
+		tabs("foodToggleRottenLimesButton", "none")
+		gameData.foodTypeToggle = 0
 	}
 	
 	if(gameData.lookAround >= 2)

@@ -8,13 +8,13 @@ updateValues()
 
 function deliveryToggleStandard() {
 	gameData.deliveryTypeToggle = 0
-	gameData.deliveryPrice = 1
+	gameData.deliveryPrice = 2
 updateValues()
 }
 
 function deliveryToggleExpress() {
 	gameData.deliveryTypeToggle = 1
-	gameData.deliveryPrice = 3
+	gameData.deliveryPrice = 5
 updateValues()
 }
 

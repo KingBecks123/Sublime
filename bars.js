@@ -37,9 +37,9 @@ updateValues()
 }
 
 function basketBar() {
-	if(gameData.basketBar <= 99)
+	if(gameData.basketBar <= 99.8)
 	{
-		gameData.basketBar += 1;
+		gameData.basketBar += 0.2;
 	}
 	
 setTimeout(basketBar, 600)
@@ -186,16 +186,16 @@ function makeJuice() {
 	
 	if((gameData.juicerBar >= 99 || gameData.juicerBar == 0))
 	{	
-		if(gameData.limeTypeToJuice == 0 && gameData.limes >= 10)
+		if(gameData.limeTypeToJuice == 0 && gameData.limes >= 20)
 		{
-			gameData.limes -= 10
+			gameData.limes -= 20
 			gameData.juicerBar = 0
 			gameData.howMuchJuice = 1
 			juicerBar()
 		}
-		else if(gameData.limeTypeToJuice == 1 && gameData.peeledLimes >= 10)
+		else if(gameData.limeTypeToJuice == 1 && gameData.peeledLimes >= 20)
 		{
-			gameData.peeledLimes -= 10
+			gameData.peeledLimes -= 20
 			gameData.juicerBar = 0
 			gameData.howMuchJuice = 1
 			juicerBar()
@@ -211,27 +211,27 @@ function makeMaxJuice() {
 	{	
 		if(gameData.limeTypeToJuice == 0)
 		{
-			if(gameData.limes >= 10)
+			if(gameData.limes >= 20)
 			{
-				gameData.howMuchJuice = Math.floor(gameData.limes / 10)
+				gameData.howMuchJuice = Math.floor(gameData.limes / 20)
 				if(gameData.howMuchJuice > gameData.juicers)
 				{
 					gameData.howMuchJuice = gameData.juicers
 				}
-				gameData.limes -= gameData.howMuchJuice * 10
+				gameData.limes -= gameData.howMuchJuice * 20
 			}
 		}
 		
 		else
 		{
-			if(gameData.peeledLimes >= 10)
+			if(gameData.peeledLimes >= 20)
 			{
-				gameData.howMuchJuice = Math.floor(gameData.peeledLimes / 10)
+				gameData.howMuchJuice = Math.floor(gameData.peeledLimes / 20)
 				if(gameData.howMuchJuice > gameData.juicers)
 				{
 					gameData.howMuchJuice = gameData.juicers
 				}
-				gameData.peeledLimes -= gameData.howMuchJuice * 10
+				gameData.peeledLimes -= gameData.howMuchJuice * 20
 			}
 		}
 		

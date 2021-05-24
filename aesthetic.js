@@ -76,11 +76,6 @@ function addAesthetic(){
 	
 	document.getElementById('makeJuiceButton').style.backgroundColor = accent1;	
     document.getElementById('makeMaxJuiceButton').style.backgroundColor = accent1;	
-	
-	
-	//Gray Accents
-		document.getElementById('decreaseJuiceSoldButton').style.backgroundColor = grayAccent;	
-		document.getElementById('increaseJuiceSoldButton').style.backgroundColor = grayAccent;
 
 	//Basic Div
 	  var x = document.getElementsByClassName("basicDiv");
