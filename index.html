@@ -90,7 +90,13 @@
 	<br>
 	<br>
 	 
-	<div class="column", id="navigateButtons", style="visibility: hidden;">
+	<div id="navigateButtons", style="visibility: hidden;     float: left;
+     padding: 10px;
+	 width: 100px;
+     .row:after {
+     content: "";
+     display: table;
+     clear: both;">
 	  <button style="background:lightgray;width: 100px;", onclick="tab('market')">Market</button>
 	  <button style="background:lightgray;width: 100px;", onclick="tab('skills')">Skills</button>
 	  <button style="background:lightgray;width: 100px;display:none", onclick="tab('theGround')">The Ground</button>	  
@@ -162,19 +168,19 @@
 				 
 			 <div id="buyKnifeDiv" class="basicDiv">			
 				 <button class="specialButton", id="knifeButton", onclick="buyKnife()">Buy A Knife</button>
-				 <p class="basicText",  id="knifeInfo">Price: 2 Coins</p>		
+				 <p class="basicText",  id="knifeInfo">Price: 20 Coins</p>		
 			 </div>		 
 				 
 			 <div id="tomeDiv" class="basicDiv">			
 				 <button class="specialButton", id="tomeButton", onclick="buyTome()">Buy A Tome</button>
 				 <p class="basicText",  id="tomeInfo">Tomes can teach you new skills!</p>		
-				 <p class="basicText",  id="tomePrice">Price: 10 Coins</p>			
+				 <p class="basicText",  id="tomePrice">Price: 100 Coins</p>			
 			 </div>			 	
 				 
 			 <div class="basicDiv", id="buyAnotherMapDiv">			
 				 <button class="specialButton" onclick="buyAMap()">Buy Another Map</button>
 				 <p class="basicText">There must be more to this town...</p>	
-				 <p class="basicText">Price: 20 Coins</p>	
+				 <p class="basicText">Price: 200 Coins</p>	
 			 </div>			 
 
 

@@ -47,7 +47,11 @@ function updateValues() {
 		x[i].style.color =  "rgba(0, 0, 0, 0)";
 	  }
 	  
-
+	if(gameData.basketBar == 0)
+	{
+		basketBar()
+	}
+	
 		break;
 	  case 1:
 	  update("barPercentButton", "Bar Percent Shown")
@@ -218,6 +222,10 @@ function updateValues() {
 			tabs("limebidextrousDiv", "block")
 	}
 	
+	if(gameData.tomes >= 1){
+		tabs ("tomeDiv", "none")
+	}
+	
 	if(gameData.learnANewSkill >= 3)
 	{
 		tabs("intelligenceDiv", "block")
@@ -285,13 +293,13 @@ function updateValues() {
 	}
 	if(gameData.coins >= 10)
 	{ 
-    document.getElementById('coinsAchievement').style.backgroundColor = 'lime';
-	gameData.achievement1 = 1
+		document.getElementById('coinsAchievement').style.backgroundColor = 'lime';
+		gameData.achievement1 = 1
 	}
 	if(gameData.coins >= 100)
 	{ 
-    document.getElementById('coinsAchievement2').style.backgroundColor = 'lime';
-	gameData.achievement2 = 1
+		document.getElementById('coinsAchievement2').style.backgroundColor = 'lime';
+		gameData.achievement2 = 1
 	}
 
 	moveBar("learnANewSkill")

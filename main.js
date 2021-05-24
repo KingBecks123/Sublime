@@ -226,11 +226,10 @@ updateValues()
 }
 
 function buyTome() {
-	if(gameData.coins >= 10)
+	if(gameData.coins >= 100)
 	{
-		gameData.coins -= 10
+		gameData.coins -= 100
 		gameData.tomes = 1
-		tabs ("tomeDiv", "none")
 	}
 updateValues()
 }
@@ -270,18 +269,15 @@ updateValues()
 }
 
 function buyAMap() {
-	if(gameData.coins >= 20)
+	if(gameData.coins >= 20 && gameData.maps == 0)
 	{
-		if(gameData.maps == 0)
-		{
-			gameData.coins -= 20
-			gameData.maps = 1
-		}
-		else if(gameData.maps == 1)
-		{
-			gameData.coins -= 20
-			gameData.maps = 2
-		}
+		gameData.coins -= 20
+		gameData.maps = 1
+	else if(gameData.coins >= 200 && gameData.maps == 1)
+	{
+		gameData.coins -= 200
+		gameData.maps = 2
+	}
 	}
 updateValues()
 }
@@ -316,9 +312,9 @@ updateValues()
 
 
 function buyKnife() {
-	if(gameData.coins >= 2)
+	if(gameData.coins >= 20)
 	{
-		gameData.coins -= 2
+		gameData.coins -= 20
 		gameData.knife += 1
 	}
 updateValues()

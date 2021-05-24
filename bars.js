@@ -214,6 +214,10 @@ function makeMaxJuice() {
 			if(gameData.limes >= 10)
 			{
 				gameData.howMuchJuice = Math.floor(gameData.limes / 10)
+				if(gameData.howMuchJuice > gameData.juicers)
+				{
+					gameData.howMuchJuice = gameData.juicers
+				}
 				gameData.limes -= gameData.howMuchJuice * 10
 			}
 		}
@@ -223,14 +227,14 @@ function makeMaxJuice() {
 			if(gameData.peeledLimes >= 10)
 			{
 				gameData.howMuchJuice = Math.floor(gameData.peeledLimes / 10)
+				if(gameData.howMuchJuice > gameData.juicers)
+				{
+					gameData.howMuchJuice = gameData.juicers
+				}
 				gameData.peeledLimes -= gameData.howMuchJuice * 10
 			}
 		}
 		
-		if(gameData.howMuchJuice > gameData.juicers)
-		{
-			gameData.howMuchJuice = gameData.juicers
-		}
 		gameData.juicerBar = 0;
 		juicerBar()
 	}
