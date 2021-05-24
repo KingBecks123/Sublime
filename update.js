@@ -156,10 +156,12 @@ function updateValues() {
 	checkShow(gameData.coins, "achievementsButton")
 	checkShow(gameData.employees, "companyButton")
 	checkShow(gameData.baskets, "forestButton")
+	checkShow(gameData.hasGottenJuice, "textForJuice")
+	checkShow(gameData.hasGottenJuice, "juiceMarket")
+
 
 	moveBar("juicer")
 	moveBar("delivery")
-	moveBar("learnANewSkill")
 	moveBar("advertise")
 	moveBar("teach")
 	
@@ -224,7 +226,6 @@ function updateValues() {
 				{
 					document.getElementById('learnANewSkillButton').style.backgroundColor = 'darkgray';
 					gameData.learnANewSkillBar = 100;
-					moveLearnANewSkill()
 				}
 				else if (gameData.tomes == 1)
 				{
@@ -236,15 +237,15 @@ function updateValues() {
 	{
 			tabs("knifebidextrousDiv", "block")
 			gameData.learnANewSkillBar = 100;
-			moveLearnANewSkill()
 			document.getElementById('learnANewSkillButton').style.backgroundColor = 'darkgray';
 	}
 
 
 	if(gameData.maps >= 1)
-	{		tabs ("marketMainButton", "inline-block")
-			tabs ("marketStoreButton", "inline-block")
-			tabs ("buyAMapDiv", "none")
+	{		
+		tabs ("marketMainButton", "inline-block")
+		tabs ("marketStoreButton", "inline-block")
+		tabs ("buyAMapDiv", "none")
 	}
 	
 	if(gameData.maps >= 2)
@@ -275,13 +276,7 @@ function updateValues() {
 	tabs ("textForSticks", "block")
 	tabs ("stickButton", "block")
 	}
-	if(gameData.hasGottenJuice >= 1)
-	{tabs ("textForJuice", "block")
-	 tabs ("juiceMarket", "block")
-	}
-	if(gameData.juicers >= 1)
-	{divVisibility ("inventoryButton", "visible")
-	}
+
 	if(gameData.juicers >= 2)
 	{divVisibility ("makeMaxJuiceButton", "visible")
 	}
@@ -298,5 +293,7 @@ function updateValues() {
     document.getElementById('coinsAchievement2').style.backgroundColor = 'lime';
 	gameData.achievement2 = 1
 	}
-	
+
+	moveBar("learnANewSkill")
+
 }

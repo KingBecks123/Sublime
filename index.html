@@ -3,9 +3,6 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <meta charset="utf-8">
-	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-	<meta http-equiv="Pragma" content="no-cache" />
-	<meta http-equiv="Expires" content="0" />
     <title>Lime Clicker</title>
 	
     <style>
@@ -83,31 +80,29 @@
 	 	<div class="row">
 			<p id="newInfo", style="background-color:#bfbfbf;padding: 10px 0;">You are in a lime forest.</p>
 		</div>	
-	 <button style="background:lightgreen", onclick="getLimes()">Pick Up Limes</button>
-	 <button id="lookAroundButton", style="background:lightgray", onclick="lookAround()">Look Around</button>
-	 <button id="stickButton", style="background:#6e4417;visibility: hidden", onclick="getSticks()">Pick Up Sticks</button>
-	 <button id="exploreButton", style="background:#6e4417;visibility: hidden", onclick="explore()">Explore</button>
-
-
+	<div style="float: left;padding-left: 10px;padding-right: 10px;">
+		 <button style="background:lightgreen", onclick="getLimes()">Pick Up Limes</button>
+		 <button id="lookAroundButton", style="background:lightgray", onclick="lookAround()">Look Around</button>
+		 <button id="stickButton", style="background:#6e4417;visibility: hidden", onclick="getSticks()">Pick Up Sticks</button>
+		 <button id="exploreButton", style="background:#6e4417;visibility: hidden", onclick="explore()">Explore</button>
+	</div>
+	<br>
+	<br>
 	<br>
 	 
-	<div class="column", id="navigateButtons", style="visibility: hidden">
+	<div class="column", id="navigateButtons", style="visibility: hidden;">
 	  <button style="background:lightgray;width: 100px;", onclick="tab('market')">Market</button>
 	  <button style="background:lightgray;width: 100px;", onclick="tab('skills')">Skills</button>
 	  <button style="background:lightgray;width: 100px;display:none", onclick="tab('theGround')">The Ground</button>	  
-	  <div id="inventoryButton", style="visibility: hidden;width: 100px;">	
-		<button style="background:lightgray;width: 100px;", onclick="tab('inventory')">Inventory</button>	  
-	  </div>	 
+	  <button id="inventoryButton" style="background:lightgray;width: 100px;", onclick="tab('inventory')">Inventory</button>	   
 	  <button id="forestButton" style="background:lightgray;display:none;width: 100px;", onclick="tab('forest')">Forest</button>	  
 	  <button id="newtownButton", style="background:lightgray;display:none;width: 100px;", onclick="tab('newtown')">Newtown</button>  
 	  <button id="companyButton", style="background:lightgray;display:none;width: 100px;", onclick="tab('company')">Lime Inc.</button>  
 
 	</div>
-	
 
-	<br>
 	
-	<div id="options">	
+	<div id="options" class="basicDiv">	
 		<button class="specialButton" style="background:#5266a3", onclick="saveGame()">Save Game</button>
 		<button class="specialButton" style="background:#5266a3", onclick="loadGame()">Load Game</button>
 		<button class="specialButton" style="background:#5266a3", onclick="exportGame()">Export Game</button>
@@ -117,11 +112,11 @@
 		<p class="basicText" id="exportCode", style="background-color:#bfbfbf;width:300px;word-wrap: break-word;-webkit-user-select: all;-ms-user-select: all;user-select: all;">Export Code</p>
 	</div>	 
 	 
-	<div id="market">	
+	<div id="market" style="padding:0px;margin:0px;">	
 	 <button id="marketMainButton", style="background-color:#bfbfbf;display:none;", onclick="tabMarket('marketMain')">Main Square</button>
 	 <button id="marketStoreButton", style="background-color:#bfbfbf;display:none;", onclick="tabMarket('marketStore')">General Store</button>
 	 <button id="hiringAreaButton", style="background-color:#bfbfbf;display:none;", onclick="tabMarket('hiringArea')">Hiring Area</button>
-	 <br>	 <br>
+
 		 <div id="marketMain">	
 			<div class="basicDiv" id="sellYourLimesDiv" style="display:none;">	
 				 <button class="specialButton", id="sellYourLimesButton" onclick="sellYourLimes()">Sell Your Limes</button>
