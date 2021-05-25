@@ -100,7 +100,7 @@
 	  <button style="background:lightgray;width: 100px;", onclick="tab('market')">Market</button>
 	  <button style="background:lightgray;width: 100px;", onclick="tab('skills')">Skills</button>
 	  <button style="background:lightgray;width: 100px;display:none", onclick="tab('theGround')">The Ground</button>	  
-	  <button id="inventoryButton" style="background:lightgray;width: 100px;", onclick="tab('inventory')">Inventory</button>	   
+	  <button id="inventoryButton" style="background:lightgray;width: 100px;display:none;", onclick="tab('inventory')">Inventory</button>	   
 	  <button id="forestButton" style="background:lightgray;display:none;width: 100px;", onclick="tab('forest')">Forest</button>	  
 	  <button id="newtownButton", style="background:lightgray;display:none;width: 100px;", onclick="tab('newtown')">Newtown</button>  
 	  <button id="companyButton", style="background:lightgray;display:none;width: 100px;", onclick="tab('company')">Lime Inc.</button>  
@@ -120,9 +120,9 @@
 	 
 	<div id="market" style="padding:0px;margin:0px;">	
 	
-	<div class="basicDiv">	
-		<button class="basicButtonSize" id="marketMainButton", style="background-color:lightgray;display:none;", onclick="tabMarket('marketMain')">Main Square</button>
-		<button class="basicButtonSize" id="marketStoreButton", style="background-color:lightgray;display:none;", onclick="tabMarket('marketStore')">General Store</button>
+	<div class="basicDiv" id="marketMainButtonsDiv" style="display:none;">	
+		<button class="basicButtonSize" id="marketMainButton", style="background-color:lightgray;", onclick="tabMarket('marketMain')">Main Square</button>
+		<button class="basicButtonSize" id="marketStoreButton", style="background-color:lightgray;", onclick="tabMarket('marketStore')">General Store</button>
 		<button class="basicButtonSize" id="hiringAreaButton", style="background-color:lightgray;display:none;", onclick="tabMarket('hiringArea')">Hiring Area</button>
 	</div>	 
 	
@@ -416,12 +416,12 @@
 		 </div>
 
 	 </div>	
-	<script src="myfunctions.js?v=4" charset="utf-8" type="text/javascript"></script>
-	<script src="main.js?v=4" charset="utf-8" type="text/javascript"></script>
-	<script src="technical.js?v=4" charset="utf-8" type="text/javascript"></script>
-	<script src="bars.js?v=4" charset="utf-8" type="text/javascript"></script>	
-	<script src="update.js?v=4" charset="utf-8" type="text/javascript"></script>	
-	<script src="aesthetic.js?v=4" charset="utf-8" type="text/javascript"></script>
+	<script src="myfunctions.js?v=5" charset="utf-8" type="text/javascript"></script>
+	<script src="main.js?v=5" charset="utf-8" type="text/javascript"></script>
+	<script src="technical.js?v=5" charset="utf-8" type="text/javascript"></script>
+	<script src="bars.js?v=5" charset="utf-8" type="text/javascript"></script>	
+	<script src="update.js?v=5" charset="utf-8" type="text/javascript"></script>	
+	<script src="aesthetic.js?v=5" charset="utf-8" type="text/javascript"></script>
 	
   </body>
 </html>

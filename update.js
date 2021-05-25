@@ -254,8 +254,7 @@ function updateValues() {
 
 	if(gameData.maps >= 1)
 	{		
-		tabs ("marketMainButton", "inline-block")
-		tabs ("marketStoreButton", "inline-block")
+		tabs ("marketMainButtonsDiv", "inline-block")
 		tabs ("buyAMapDiv", "none")
 	}
 	
