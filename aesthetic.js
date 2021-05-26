@@ -1,19 +1,22 @@
-background = "#222328"; //Background Color
-//accent0 = "#454851"; //Main Color
-
-
-accent0 = "#50514F"; //Main Color
-accent1 = "lightgreen"; //Accent Color
-accent2 = "gray"; //When buttons are toggled off
-accent3 = "lightgreen"; //When buttons are toggled on
-accent4 = "#F5A65B"; //Special Buttons
-grayAccent = "#50514F";
-grayAccentLight = "lightgray";
-
 function addAesthetic(){
+		
+		
+	background = "#010066"; //Background Color
+
+
+	accent0 = "#00001A"; //Main Color
+	accent1 = "#4DFE89"; //Accent Color
+	accent2 = "gray"; //When buttons are toggled off
+	accent3 = "#4DFE89"; //When buttons are toggled on
+	accent4 = "#FFBB9A"; //Special Buttons
+	grayAccent = "#50514F";
+	grayAccentLight = "#BBBBBB";
+	limesRelatedAccent = "#4DFE89";		
 	
+	document.getElementById('pickUpLimes').style.backgroundColor = limesRelatedAccent;	
+
 	document.getElementById('mainBody').style.backgroundColor = background;	
-	
+		
 	document.getElementById('inventoryKnifeLime').style.backgroundColor = accent3;	
 	
 	if(	gameData.limeTypeToJuice == 1)
@@ -96,6 +99,14 @@ function addAesthetic(){
 	  }
 	  
 
+	//Gray Button
+	  var x = document.getElementsByClassName("grayButton");
+	  var i;
+	  for (i = 0; i < x.length; i++) {
+		x[i].style.backgroundColor = grayAccentLight;
+		x[i].style['margin'] = "5px 5px 5px 5px";
+	  }
+	 
 	//Basic Button
 	  var x = document.getElementsByClassName("basicButton");
 	  var i;

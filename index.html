@@ -12,9 +12,21 @@
 		  -ms-user-select: none; 
 		  user-select: none; 
 		}
+		
 
     </style>	
 	
+    <style>
+      @font-face { font-family: pixelated; src: url('redalertinet.ttf'); } 
+	        p {
+         font-family: pixelated;  font-size: 20px;
+      }
+	  
+	  	        button {
+         font-family: pixelated;   font-size: 20px;
+      }
+	  
+    </style>
 	
     <style>
 
@@ -61,13 +73,11 @@
 	</style>
   </head>
    <body id="mainBody", onload="gameStart()">
-			<button id="achievementsButton", style="background-color:#d1d9d9;display:none;width: 100px;height:20px;float:right;", onclick="tab('achievements')">Achievements</button>
-			<button style="background:lightgray;width: 100px;height:20px;background-color:#d1d9d9;float:right;", onclick="tab('options')">Options</button>  
 
 	<div class="row"style="background-color:#000000;">
 		<div class="column" style="background-color:#000000;">
-			<p id="textForLimes", style="color:lime;">0 Limes</p>
-			<p id="textForRottenLimes", style="color:#96b811;display:none;">0 Rotten Limes</p>
+			<p id="textForLimes" style="color:#00FF01;">0 Limes</p>
+			<p id="textForRottenLimes", style="color:#406600;display:none;">0 Rotten Limes</p>
 			<div id="textForCoinsDiv", style="display:none;">	
 				<p id="textForCoins", style="color:yellow;">0 Coins</p>
 			</div>		
@@ -77,12 +87,17 @@
 		</div>	
 
 	 </div>
-	 	<div class="row">
-			<p id="newInfo", style="background-color:#bfbfbf;padding: 10px 0;">You are in a lime forest.</p>
+	 	<div class="row" style="background-color:#bfbfbf;padding-left: 130px;">
+			<p id="newInfo" style="padding: 15px 0;display:inline-block;">You are in a lime forest.</p>
+				 	<div style="width: 150px;height:50px;float:right;">
+						<button style="background:lightgray;width: 150px;height:25px;background-color:#d1d9d9;", onclick="tab('options')">Options</button>  
+						<button id="achievementsButton", style="background-color:#d1d9d9;display:none;width: 150px;height:25px;float:right;", onclick="tab('achievements')">Achievements</button>
+					</div>	
+			
 		</div>	
 	<div style="float: left;padding-left: 10px;padding-right: 10px;">
-		 <button style="background:lightgreen", onclick="getLimes()">Pick Up Limes</button>
-		 <button id="lookAroundButton", style="background:lightgray", onclick="lookAround()">Look Around</button>
+		 <button id="pickUpLimes" onclick="getLimes()">Pick Up Limes</button>
+		 <button class="grayButton" id="lookAroundButton" onclick="lookAround()">Look Around</button>
 		 <button id="stickButton", style="background:#6e4417;display: none", onclick="getSticks()">Pick Up Sticks</button>
 		 <button id="exploreButton", style="background:#6e4417;display: none", onclick="explore()">Explore</button>
 	</div>
@@ -113,7 +128,7 @@
 		<button class="specialButton" style="background:#5266a3", onclick="loadGame()">Load Game</button>
 		<button class="specialButton" style="background:#5266a3", onclick="exportGame()">Export Game</button>
 		<button class="specialButton" style="background:#5266a3", onclick="importGame()">Import Game</button><br>
-		<button class="basicButton" id="aestheticButton" onclick="switchValue('aesthetic')">Aesthetic: Modern</button>
+		<button class="basicButton" id="aestheticButton" onclick="switchValue('aesthetic')" style="display:none">Aesthetic: Modern</button>
 		<button class="specialButton" id="barPercentButton" onclick="switchValue('showBarPercent')">Bar Percent Shown</button>
 		<p class="basicText" id="exportCode", style="background-color:#bfbfbf;width:300px;word-wrap: break-word;-webkit-user-select: all;-ms-user-select: all;user-select: all;">Export Code</p>
 	</div>	 
@@ -416,12 +431,13 @@
 		 </div>
 
 	 </div>	
+	 
+	<script src="aesthetic.js?v=5" charset="utf-8" type="text/javascript"></script>
 	<script src="myfunctions.js?v=5" charset="utf-8" type="text/javascript"></script>
 	<script src="main.js?v=5" charset="utf-8" type="text/javascript"></script>
 	<script src="technical.js?v=5" charset="utf-8" type="text/javascript"></script>
 	<script src="bars.js?v=5" charset="utf-8" type="text/javascript"></script>	
 	<script src="update.js?v=5" charset="utf-8" type="text/javascript"></script>	
-	<script src="aesthetic.js?v=5" charset="utf-8" type="text/javascript"></script>
 	
   </body>
 </html>

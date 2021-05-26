@@ -1,8 +1,6 @@
 function updateAfterLoad(){
 
 
-
-
 		restartBar("learnANewSkill")
 		restartBar("rottenWisdom")
 		restartBar("limebidextrous")
@@ -15,6 +13,7 @@ function updateAfterLoad(){
 		{
 			sellYourJuiceBar()
 		}
+
 updateValues()
 }
 
