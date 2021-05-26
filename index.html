@@ -57,7 +57,7 @@
 	</style>
 	<style>
 	.verticalProgress {
-	  width: 400px;
+	  width: 350px;
 	  height: 300px;
 	  margin:auto;
 	  position: relative;
@@ -65,7 +65,7 @@
 
 	.verticalBar {
 	  height: 0%;
-	  width: 400px;
+	  width: 350px;
 	  bottom: 0px;
 	  right: 0px;
 	  position: absolute;
@@ -77,11 +77,11 @@
 	<div class="row"style="background-color:#000000;">
 		<div class="column" style="background-color:#000000;">
 			<p id="textForLimes" style="color:#00FF01;">0 Limes</p>
-			<p id="textForRottenLimes", style="color:#406600;display:none;">0 Rotten Limes</p>
+			<p id="textForRottenLimes", style="color:#006600;display:none;">0 Rotten Limes</p>
 			<div id="textForCoinsDiv", style="display:none;">	
 				<p id="textForCoins", style="color:yellow;">0 Coins</p>
 			</div>		
-				<p id="textForJuice", style="color:green; display:none;">0 Juice</p>
+				<p id="textForJuice", style="color:#99FF99; display:none;">0 Juice</p>
 		<p id="textForSticks", style="color:#6e4417;display:none;">0 Sticks</p>
 		<p id="textForPies", style="color:#9c744b;display:none;">0 Pies</p>
 		</div>	
@@ -96,7 +96,7 @@
 			
 		</div>	
 	<div style="float: left;padding-left: 10px;padding-right: 10px;">
-		 <button id="pickUpLimes" onclick="getLimes()">Pick Up Limes</button>
+		 <button id="pickUpLimes" onclick="getLimes()">Collect Limes</button>
 		 <button class="grayButton" id="lookAroundButton" onclick="lookAround()">Look Around</button>
 		 <button id="stickButton", style="background:#6e4417;display: none", onclick="getSticks()">Pick Up Sticks</button>
 		 <button id="exploreButton", style="background:#6e4417;display: none", onclick="explore()">Explore</button>
@@ -143,7 +143,7 @@
 	
 		 <div id="marketMain">	
 			<div class="basicDiv" id="sellYourLimesDiv" style="display:none;">	
-				 <button class="specialButton", id="sellYourLimesButton" onclick="sellYourLimes()">Sell Your Limes</button>
+				 <button class="basicButtonSize", id="sellYourLimesButton" onclick="sellYourLimes()">Sell Your Limes</button>
 				 <p class="basicText",  id="sellYourLimesAmount">You Need 50 Limes</p>
 				 <p class="basicText",  id="sellYourLimesReward">You Will Be Rewarded 1 Coin</p>
 			</div>	 
@@ -160,16 +160,16 @@
 				<p class="basicText">Price: 2 Coins</p>
 			</div>	
 			<div class="basicDiv", id="juiceMarket", style="display:none;">	
-				 <button class="specialButton", id="sellYourJuiceButton", onclick="sellYourJuice()">Sell Your Juice</button>
+				 <button class="basicButtonSize", id="sellYourJuiceButton", onclick="sellYourJuice()">Sell Your Juice</button>
 				 <p class="basicText",  id="sellYourJuicePrice">You Need 2 Coins For Delivery</p>
 				 <p class="basicText", id="sellYourJuiceAmount">You Need 1 Juice</p>
 				 <p class="basicText", id="sellYourJuiceReward">You Will Be Rewarded 1 Coin</p>
 				 
-				 <button class="basicButtonSize" id="decreaseJuiceSoldButton", onclick="decreaseJuiceSold()", style="width:150px;background:lightgray;">Decrease Juice Sold</button>
-				 <button class="basicButtonSize" id="increaseJuiceSoldButton", onclick="increaseJuiceSold()", style="width:150px;background:lightgray;">Increase Juice Sold</button>
+				 <button class="basicButtonSize" id="decreaseJuiceSoldButton", onclick="decreaseJuiceSold()", style="width:120px;background:lightgray;">Decrease Juice Sold</button>
+				 <button class="basicButtonSize" id="increaseJuiceSoldButton", onclick="increaseJuiceSold()", style="width:120px;background:lightgray;">Increase Juice Sold</button>
 				 <br>
-				 <button class="basicButtonSize" id="deliveryToggleStandardButton", style="width:150px;", onclick="deliveryToggleStandard()">Standard Delivery</button>
-				 <button class="basicButtonSize" id="deliveryToggleExpressButton", style="width:150px;", onclick="deliveryToggleExpress()">Express Delivery</button>
+				 <button class="basicButtonSize" id="deliveryToggleStandardButton", style="width:120px;", onclick="deliveryToggleStandard()">Standard Delivery</button>
+				 <button class="basicButtonSize" id="deliveryToggleExpressButton", style="width:120px;", onclick="deliveryToggleExpress()">Express Delivery</button>
 				 
 				 <br><br>
 
@@ -348,8 +348,8 @@
 	 
 	 	 <div class="basicDiv">		 
 			 <button class="specialButton" onclick="eat()">Eat Food</button>	 
-			 <button id="foodToggleLimesButton" onclick="foodToggleLimes()">Limes</button>
-			 <button id="foodToggleRottenLimesButton" onclick="foodToggleRottenLimes()">Rotten Limes</button>
+			 <button class="basicButtonSize" id="foodToggleLimesButton" onclick="foodToggleLimes()">Limes</button>
+			 <button class="basicButtonSize" id="foodToggleRottenLimesButton" onclick="foodToggleRottenLimes()">Rotten Limes</button>
 				 <div class="skillInfo">	
 						<p class="basicText">You use 1 food point per skill level.</p>
 				 </div>	
@@ -361,7 +361,7 @@
 		 
 	 	 <div class="basicDiv">		 
 			 <button class="specialButton", id="learnANewSkillButton", onclick="learnANewSkill()">Learn A New Skill</button>	 
-			 <button id="skillInfoButton", onclick="skillInfoToggle()">Info</button>
+			 <button class="basicButtonSize" id="skillInfoButton", onclick="skillInfoToggle()">Info</button>
 			 <div class="skillProgress" id="learnANewSkillProgress">
 				<div class="skillBar", id="learnANewSkillBar">0%</div>
 			 </div>		
@@ -432,12 +432,12 @@
 
 	 </div>	
 	 
-	<script src="aesthetic.js?v=7" charset="utf-8" type="text/javascript"></script>
-	<script src="myfunctions.js?v=7" charset="utf-8" type="text/javascript"></script>
-	<script src="main.js?v=7" charset="utf-8" type="text/javascript"></script>
-	<script src="technical.js?v=7" charset="utf-8" type="text/javascript"></script>
-	<script src="bars.js?v=7" charset="utf-8" type="text/javascript"></script>	
-	<script src="update.js?v=7" charset="utf-8" type="text/javascript"></script>	
+	<script src="aesthetic.js?v=8" charset="utf-8" type="text/javascript"></script>
+	<script src="myfunctions.js?v=8" charset="utf-8" type="text/javascript"></script>
+	<script src="main.js?v=8" charset="utf-8" type="text/javascript"></script>
+	<script src="technical.js?v=8" charset="utf-8" type="text/javascript"></script>
+	<script src="bars.js?v=8" charset="utf-8" type="text/javascript"></script>	
+	<script src="update.js?v=8" charset="utf-8" type="text/javascript"></script>	
 	
   </body>
 </html>

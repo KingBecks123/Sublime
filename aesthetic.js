@@ -12,6 +12,11 @@ function addAesthetic(){
 	grayAccent = "#50514F";
 	grayAccentLight = "#BBBBBB";
 	limesRelatedAccent = "#4DFE89";		
+	yellowAccent = "#FCFF4E";
+	
+	document.getElementById('sellYourLimesButton').style.backgroundColor = yellowAccent;	
+	document.getElementById('sellYourJuiceButton').style.backgroundColor = yellowAccent;	
+
 	
 	document.getElementById('pickUpLimes').style.backgroundColor = limesRelatedAccent;	
 
@@ -89,12 +94,20 @@ function addAesthetic(){
 		x[i].style['margin'] = "10px 5px 10px 5px";
 	  }
 
+	//Basic Div Size
+	  var x = document.getElementsByClassName("basicDivSize");
+	  var i;
+	  for (i = 0; i < x.length; i++) {
+		x[i].style.padding = "5px 5px 5px 5px";
+		x[i].style['margin'] = "10px 5px 10px 5px";
+	  }
+
 	//Basic Text
 	  var x = document.getElementsByClassName("basicText");
 	  var i;
 	  for (i = 0; i < x.length; i++) {
 		x[i].style.backgroundColor = grayAccentLight;
-		x[i].style.padding = "2px";
+		x[i].style.padding = "5px";
 		x[i].style['margin'] = "5px 5px 5px 5px";
 	  }
 	  
