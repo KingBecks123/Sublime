@@ -1,10 +1,10 @@
 function addAesthetic(){
 		
 		
-	background = "#010066"; //Background Color
+	background = "#3C3C3C"; //Background Color
 
 
-	accent0 = "#00001A"; //Main Color
+	accent0 = "#222222"; //Main Color
 	accent1 = "#4DFE89"; //Accent Color
 	accent2 = "gray"; //When buttons are toggled off
 	accent3 = "#4DFE89"; //When buttons are toggled on
