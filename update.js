@@ -6,7 +6,9 @@ function updateAfterLoad(){
 		restartBar("limebidextrous")
 		restartBar("knifebidextrous")
 		restartBar("intelligence")
-		restartBar("juicer")
+		restartBar("juicer")		
+		restartBar("peeler")
+
 		basketBar()
 
 			if(gameData.deliveryBar <= 99 && gameData.deliveryBar != 0)
@@ -73,39 +75,13 @@ function updateValues() {
     update("textForSticks", gameData.sticks + " Sticks")
     update("textForCoins", gameData.coins + " Coins")
     update("textForJuice", gameData.juice + " Juice")
-    update("inventoryBread", gameData.bread + " Bread")
-    update("inventorySugar", gameData.sugar + " Sugar")
     update("textForPies", gameData.pies + " Pies")
+	
     update("juicersAmount", gameData.juicers + " Juicers")
+    update("peelersAmount", gameData.peelers + " Peelers")
+
     update("basketsAmount", gameData.baskets + " Baskets")
     update("limesInBaskets", gameData.limesInBaskets + " Limes")
-
-	
-	switch (gameData.aesthetic) {
-	  case 0:
-		update("aestheticButton", "Aesthetic: Classic")
-		
-		background = "#222328"; //Background Color
-		accent0 = "#454851"; //Main Color
-		accent1 = "lightgreen"; //Accent Color
-		accent2 = "gray"; //When buttons are toggled off
-		accent3 = "lightgreen"; //When buttons are toggled on
-		grayAccent = "#454851";
-		grayAccentLight = "lightgray";
-		
-		break;
-	  case 1:
-		update("aestheticButton", "Aesthetic: Modern")
-
-		background = "lightgray"; //Background Color	
-		accent0 = "#222831"; //Main Color
-		accent1 = "#393e46"; //Accent Color
-		accent2 = "#eeeeee"; //When buttons are toggled off
-		accent3 = "#00adb5"; //When buttons are toggled on
-		grayAccent = "#768091";
-		grayAccentLight = "#eeeeee";
-		
-	}
 	
     update("currentSpeedEmployee", "Current speed: " + gameData.employeeCurrentSpeed + " limes per minute.")
 	
@@ -160,6 +136,7 @@ function updateValues() {
 
 
 	moveBar("juicer")
+	moveBar("peeler")
 	moveBar("delivery")
 	moveBar("advertise")
 	moveBar("teach")
@@ -179,7 +156,7 @@ function updateValues() {
 		update("intelligenceSkillLevel", gameData.intelligenceSkillLevel + " / " + gameData.intelligenceSkillLevelMax)
 
 	moveBar("knifebidextrous")
-		update("knifebidextrous", gameData.knifebidextrous + "% Chance")	
+		update("knifebidextrous", gameData.knifebidextrous * 2.5 + "% Chance")	
 		update("knifebidextrousSkillLevel", gameData.knifebidextrousSkillLevel + " / " + gameData.knifebidextrousSkillLevelMax)
 
 	moveEat()
@@ -197,6 +174,19 @@ function updateValues() {
 		tabs("foodToggleRottenLimesButton", "none")
 		gameData.foodTypeToggle = 0
 	}
+	
+	if(gameData.limeTypeToJuice == 0)
+	{
+		update("juicerInfo", gameData.limesPerJuice + " Limes -> 1 Juice")	
+	}
+	else if(gameData.limeTypeToJuice == 1)
+	{
+		update("juicerInfo", gameData.peeledLimesPerJuice + " Peeled Limes -> 1 Juice")	
+	}
+
+	
+	
+	
 	
 	if(gameData.lookAround >= 2)
 	{
@@ -270,6 +260,8 @@ function updateValues() {
 	}
 	if(gameData.knife >= 1)
 	{  tabs("knifeDiv", "block")
+		tabs("buyAPeelerDiv", "block")
+		tabs("buyKnifeDiv", "none")
 	}
 	if(gameData.sugar >= 1 && gameData.limes >= 1 && gameData.bread >= 1 && gameData.fireLevel >= 1)
 	{divVisibility ("pieBake", "visible")
@@ -289,6 +281,13 @@ function updateValues() {
 	if(gameData.juicers >= 2)
 	{divVisibility ("makeMaxJuiceButton", "visible")
 	}
+	if(gameData.peelers >= 2)
+	{tabs ("useMaxPeelersButton", "inline-block")
+	}
+	if(gameData.peelers >= 1)
+	{
+		tabs ("peelerDiv", "block")
+	}
 	if(gameData.coins >= 1)
 	{ divVisibility ("textForCoinsDiv", "visible")
 	}
@@ -301,6 +300,11 @@ function updateValues() {
 	{ 
 		document.getElementById('coinsAchievement2').style.backgroundColor = 'lime';
 		gameData.achievement2 = 1
+	}
+	if(gameData.coins >= 100)
+	{ 
+		document.getElementById('coinsAchievement3').style.backgroundColor = 'lime';
+		gameData.achievement3 = 1
 	}
 
 	moveBar("learnANewSkill")

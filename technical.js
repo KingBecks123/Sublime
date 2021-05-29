@@ -82,12 +82,20 @@ var gameData = {
   rottenWisdomSkillLevel: 0,
   intelligenceSkillLevelMax: 50,
   limebidextrousSkillLevelMax: 50,
-  knifebidextrousSkillLevelMax: 50,
+  knifebidextrousSkillLevelMax: 20,
   rottenWisdomSkillLevelMax: 50,
   basket: 0,
   basketBar: 0,
   baskets: 0,
   limesInBaskets: 0,
+  limesPerJuice: 10,
+  peeledLimesPerJuice: 5,
+  peelers: 0,
+  peelerBar: 0,
+  howManyPeeledLimes: 0,
+  achievement3: 0,
+
+  
 }
 
 function gameStart(){

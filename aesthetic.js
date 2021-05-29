@@ -19,6 +19,9 @@ function addAesthetic(){
 
 	
 	document.getElementById('pickUpLimes').style.backgroundColor = limesRelatedAccent;	
+	
+	document.getElementById('application').style.backgroundColor = accent4;	
+
 
 	document.getElementById('mainBody').style.backgroundColor = background;	
 		
@@ -80,10 +83,6 @@ function addAesthetic(){
 	document.getElementById('deliveryProgress').style.backgroundColor = accent0;	
     document.getElementById('deliveryBar').style.backgroundColor = accent3;		
 	
-	
-	
-	document.getElementById('makeJuiceButton').style.backgroundColor = accent1;	
-    document.getElementById('makeMaxJuiceButton').style.backgroundColor = accent1;	
 
 	//Basic Div
 	  var x = document.getElementsByClassName("basicDiv");

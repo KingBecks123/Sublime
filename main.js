@@ -67,6 +67,7 @@ function hireApplicant() {
 		    gameData.employeeSpeed = gameData.applicantSpeed
 			gameData.employeePrice = gameData.applicantPrice
 			gameData.employeeWage = gameData.applicantWage
+		    gameData.employees = 1
 
 	}
 	
@@ -312,9 +313,9 @@ updateValues()
 
 
 function buyKnife() {
-	if(gameData.coins >= 20)
+	if(gameData.coins >= 10)
 	{
-		gameData.coins -= 20
+		gameData.coins -= 10
 		gameData.knife += 1
 	}
 updateValues()
@@ -353,6 +354,16 @@ function buyAJuicer() {
 	{
 		gameData.coins -= 1
 		gameData.juicers += 1	
+	}
+	
+updateValues()
+}
+
+function buyAPeeler() {
+	if(gameData.coins >= 2)
+	{
+		gameData.coins -= 2
+		gameData.peelers += 1	
 	}
 	
 updateValues()

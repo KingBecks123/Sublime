@@ -77,11 +77,12 @@
 	<div class="row"style="background-color:#000000;">
 		<div class="column" style="background-color:#000000;">
 			<p id="textForLimes" style="color:#00FF01;">0 Limes</p>
+			<p id="textForPeeledLimes", style="color:#4EFF4D; display:none;"></p>
 			<p id="textForRottenLimes", style="color:#006600;display:none;">0 Rotten Limes</p>
 			<div id="textForCoinsDiv", style="display:none;">	
 				<p id="textForCoins", style="color:yellow;">0 Coins</p>
 			</div>		
-				<p id="textForJuice", style="color:#99FF99; display:none;">0 Juice</p>
+		<p id="textForJuice", style="color:#99FF99; display:none;">0 Juice</p>
 		<p id="textForSticks", style="color:#6e4417;display:none;">0 Sticks</p>
 		<p id="textForPies", style="color:#9c744b;display:none;">0 Pies</p>
 		</div>	
@@ -186,14 +187,20 @@
 				 
 			 <div id="buyKnifeDiv" class="basicDiv">			
 				 <button class="specialButton", id="knifeButton", onclick="buyKnife()">Buy A Knife</button>
-				 <p class="basicText",  id="knifeInfo">Price: 20 Coins</p>		
+				 <p class="basicText",  id="knifeInfo">Price: 10 Coins</p>		
 			 </div>		 
 				 
 			 <div id="tomeDiv" class="basicDiv">			
-				 <button class="specialButton", id="tomeButton", onclick="buyTome()">Buy A Tome</button>
-				 <p class="basicText",  id="tomeInfo">Tomes can teach you new skills!</p>		
-				 <p class="basicText",  id="tomePrice">Price: 100 Coins</p>			
+				 <button class="specialButton" onclick="buyTome()">Buy A Tome</button>
+				 <p class="basicText">Tomes can teach you new skills!</p>		
+				 <p class="basicText">Price: 100 Coins</p>			
 			 </div>			 	
+
+			 <div id="buyAPeelerDiv" class="basicDiv" style="display:none;">			
+				 <button class="specialButton", onclick="buyAPeeler()">Buy A Peeler</button>
+				 <p class="basicText">The knife isnt gonna 'cut' it</p>		
+				 <p class="basicText">Price: 2 Coins</p>			
+			 </div>		
 				 
 			 <div class="basicDiv", id="buyAnotherMapDiv">			
 				 <button class="specialButton" onclick="buyAMap()">Buy Another Map</button>
@@ -206,30 +213,30 @@
 		 
 	 	<div id="hiringArea", style="display:none;">	
 			<div class="basicDiv">
-				 <button class="basicButton", id="advertiseButton", onclick="advertise()">Advertise your lime business</button>
+				 <button class="specialButton", id="advertiseButton", onclick="advertise()">Advertise your lime business</button>
 				<div class="skillProgress" id="advertiseProgress">
 					<div class="skillBar", id="advertiseBar">0%</div>
 				</div>				 
 				 
 				 <p class="basicText" id="advertisePrice", style="display:block;">Price: 10 Coins</p>	
-				 <button class="basicButton", id="application",  style="display:block;width:300px;height:300px;margin:auto;", onclick="hireApplicant()">Pin applications here</button>			 
+				 <button id="application",  style="display:block;width:300px;height:300px;margin:auto;", onclick="hireApplicant()">Pin applications here</button>			 
 				 <p class="basicText" id="applicationInfo", style="display:block;">Click the application to accept.</p>
 				 <p class="basicText" id="textForCurrentEmployees", style="display:block;">Current Employees: 0/1</p>	
 			</div><br>
 			
 			<div class="basicDiv" id="researchBetterAdvertising" >
-				 <button class="basicButton" onclick="researchBetterAdvertising()">Research Better Advertising Methods</button> 
+				 <button class="specialButton" onclick="researchBetterAdvertising()">Research Better Advertising Methods</button> 
 				 <p class="basicText" >Price: 10 Coins</p>	
 			</div>		
 
 			<div id="advertisingMethods" style="display:none" >
 				<div class="basicDiv" id="advertisingLeaflets" >
-					 <button class="basicButton" onclick="advertisingLeaflets()">Hand Out Leaflets</button> 
+					 <button class="specialButton" onclick="advertisingLeaflets()">Hand Out Leaflets</button> 
 					 <p class="basicText" >Doubles advertising speed</p>	
 					 <p class="basicText" >Price: 10 Coins</p>	
 				</div>	
 				<div class="basicDiv" id="advertisingBillboard" >
-					 <button class="basicButton" onclick="advertisingBillboard()">Buy A Billboard</button> 
+					 <button class="specialButton" onclick="advertisingBillboard()">Buy A Billboard</button> 
 					 <p class="basicText" >Triples advertising speed</p>	
 					 <p class="basicText" >Price: 100 Coins</p>	
 				</div>	
@@ -281,30 +288,40 @@
 	
 	
 	<div id="inventory">	
-	  <div class="basicDiv">
-				 <p class="basicText" id="juicersAmount", style="background-color:#bfbfbf;padding: 5px;">1 Juicers</p>
-				 <button class="specialButton" id="makeJuiceButton", style="background-color:#87a7b3;width:150px;", onclick="makeJuice()">Use Juicer</button>
-				 <button class="specialButton" id="makeMaxJuiceButton", onclick="makeMaxJuice()", style="visibility: hidden;width:150px;">Use Max Juicers</button>
-				 <br>
-				 <button class="basicButtonSize" id="juiceLimesToggleButton", style="display:none;width:150px;", onclick="juiceLimesToggle()">On Limes</button>
-				 <button class="basicButtonSize" id="juicePeeledLimesToggleButton", style="display:none;width:150px;", onclick="juicePeeledLimesToggle()">On Peeled Limes</button>
-				 <p class="basicText" id="juicerInfo", style="background-color:#bfbfbf;padding: 5px;">Juicers use 20 limes to create 1 lime juice.</p>
-					 <div class="skillProgress" id="myProgress">
-						<div class="skillBar" id="juicerBar">0%</div>
-					 </div>	 
-		 </div>	 
-		 <p id="inventoryBread", style="background-color:#bfbfbf;display: none;">1 Bread</p>
-		 <p id="inventorySugar", style="background-color:#bfbfbf;display: none;">1 Sugar</p>
+	    <div class="basicDiv">
+			 <p class="basicText" id="juicersAmount">1 Juicers</p>
+			 <button class="specialButton" style="background-color:#87a7b3;width:150px;", onclick="makeJuice()">Use Juicer</button>
+			 <button class="specialButton" id="makeMaxJuiceButton", onclick="makeMaxJuice()", style="visibility: hidden;width:150px;">Use Max Juicers</button>
+			 <br>
+			 <button class="basicButtonSize" id="juiceLimesToggleButton", style="display:none;width:150px;", onclick="juiceLimesToggle()">On Limes</button>
+			 <button class="basicButtonSize" id="juicePeeledLimesToggleButton", style="display:none;width:150px;", onclick="juicePeeledLimesToggle()">On Peeled Limes</button>
+			 <p class="basicText" id="juicerInfo", style="background-color:#bfbfbf;padding: 5px;"></p>
+			 <div class="skillProgress" id="myProgress">
+				<div class="skillBar" id="juicerBar">0%</div>
+			 </div>	 
+		</div>	 
+
+	    <div class="basicDiv" id="peelerDiv" style="display:none">
+			 <p class="basicText" id="peelersAmount" >1 Peeler</p>
+			 <button class="specialButton" style="background-color:#87a7b3;width:150px;", onclick="peelerPeel()">Use Peeler</button>
+			 <button class="specialButton" id="useMaxPeelersButton" onclick="peelerPeelMax()", style="display:none;width:150px;">Use Max Peelers</button>
+			 <br>
+			 <div class="skillProgress" id="peelerProgress">
+				<div class="skillBar" id="peelerBar">0%</div>
+			 </div>	 
+		</div>	 		 
+		 
 	  <div class="basicDiv", id="knifeDiv", style="display:none;">
 			<p class="basicText" id="inventoryKnife" >Use Knife:</p>
 			<button  class="specialButton" id="inventoryKnifeLime", onclick="peelLime()">On Limes</button>
-			<p id="textForPeeledLimes"  class="basicText" >1 Peeled Lime</p>
 	   </div>	 
 	</div>		
 	 
 	 <div id="achievements">	
 	 <p id="coinsAchievement", style="background-color:#bfbfbf;">Collect 10 Coins.</p>
 	 <p id="coinsAchievement2", style="background-color:#bfbfbf;">Collect 100 Coins.</p>
+	 <p id="coinsAchievement3", style="background-color:#bfbfbf;">Collect 1000 Coins.</p>
+
 
 	 </div>		
 	 
@@ -320,7 +337,7 @@
 	 <div id="forest">	
 	  <div class="basicDiv">
 				 <p class="basicText" id="basketsAmount", style="background-color:#bfbfbf;padding: 5px;">1 Basket</p>
-				 <button class="specialButton" id="makeJuiceButton", style="background-color:#87a7b3;", onclick="basket()">Empty Baskets</button>
+				 <button class="specialButton" style="background-color:#87a7b3;", onclick="basket()">Empty Baskets</button>
 				 
 				 <p class="basicText" >Baskets collect 1 Lime per minute each.</p>
 				 <p class="basicText" >Baskets collect up to 5 Limes each.</p>
@@ -420,7 +437,7 @@
 				 
 			<button class="specialButton", id="knifebidextrousButton", onclick="barStartGranularSkillBasic('knifebidextrous')">Knifebidextrous</button>	 
 				 <div class="skillInfo">
-						<p class="basicText", id="knifebidextrousInfo">Chance to peel 2 limes rather than 1: +2%.</p>
+						<p class="basicText", id="knifebidextrousInfo">Chance to peel 2 limes rather than 1: +5%.</p>
 				 </div>	
 			<div class="skillProgress" id="knifebidextrousProgress">
 				<div class="skillBar", id="knifebidextrousBar">0%</div>
@@ -432,12 +449,12 @@
 
 	 </div>	
 	 
-	<script src="aesthetic.js?v=8" charset="utf-8" type="text/javascript"></script>
-	<script src="myfunctions.js?v=8" charset="utf-8" type="text/javascript"></script>
-	<script src="main.js?v=8" charset="utf-8" type="text/javascript"></script>
-	<script src="technical.js?v=8" charset="utf-8" type="text/javascript"></script>
-	<script src="bars.js?v=8" charset="utf-8" type="text/javascript"></script>	
-	<script src="update.js?v=8" charset="utf-8" type="text/javascript"></script>	
+	<script src="aesthetic.js?v=9" charset="utf-8" type="text/javascript"></script>
+	<script src="myfunctions.js?v=9" charset="utf-8" type="text/javascript"></script>
+	<script src="main.js?v=9" charset="utf-8" type="text/javascript"></script>
+	<script src="technical.js?v=9" charset="utf-8" type="text/javascript"></script>
+	<script src="bars.js?v=9" charset="utf-8" type="text/javascript"></script>	
+	<script src="update.js?v=9" charset="utf-8" type="text/javascript"></script>	
 	
   </body>
 </html>

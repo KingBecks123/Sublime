@@ -37,7 +37,7 @@ updateValues()
 }
 
 function basketBar() {
-	if(gameData.basketBar <= 99.8)
+	if(gameData.basketBar < 100)
 	{
 		gameData.basketBar += 0.2;
 	}
@@ -186,16 +186,16 @@ function makeJuice() {
 	
 	if((gameData.juicerBar >= 99 || gameData.juicerBar == 0))
 	{	
-		if(gameData.limeTypeToJuice == 0 && gameData.limes >= 20)
+		if(gameData.limeTypeToJuice == 0 && gameData.limes >= gameData.limesPerJuice)
 		{
-			gameData.limes -= 20
+			gameData.limes -= gameData.limesPerJuice
 			gameData.juicerBar = 0
 			gameData.howMuchJuice = 1
 			juicerBar()
 		}
-		else if(gameData.limeTypeToJuice == 1 && gameData.peeledLimes >= 20)
+		else if(gameData.limeTypeToJuice == 1 && gameData.peeledLimes >= gameData.peeledLimesPerJuice)
 		{
-			gameData.peeledLimes -= 20
+			gameData.peeledLimes -= gameData.peeledLimesPerJuice
 			gameData.juicerBar = 0
 			gameData.howMuchJuice = 1
 			juicerBar()
@@ -205,34 +205,66 @@ function makeJuice() {
 updateValues()
 }
 
+
+function peelerPeel() {
+
+	if(gameData.peelerBar >= 99 || gameData.peelerBar == 0)
+	{		
+
+		if(gameData.limes >= 1)
+		{
+			gameData.howManyPeeledLimes = 1
+			gameData.limes -= 1
+			gameData.peelerBar = 0
+			peelerBar()
+		}
+	}
+	
+updateValues()
+}
+
+
+function peelerPeelMax() {
+
+	if(gameData.peelerBar >= 99 || gameData.peelerBar == 0)
+	{	
+		gameData.howManyPeeledLimes = gameData.limes
+		
+		if(gameData.howManyPeeledLimes > gameData.peelers)
+		{
+			gameData.howManyPeeledLimes = gameData.peelers
+		}
+		
+		gameData.limes -= gameData.howManyPeeledLimes
+		gameData.peelerBar = 0;
+		peelerBar()
+	}
+updateValues()
+}
+
+
 function makeMaxJuice() {
 
 	if(gameData.juicerBar >= 99 || gameData.juicerBar == 0)
 	{	
 		if(gameData.limeTypeToJuice == 0)
 		{
-			if(gameData.limes >= 20)
+			gameData.howMuchJuice = Math.floor(gameData.limes / gameData.limesPerJuice)
+			if(gameData.howMuchJuice > gameData.juicers)
 			{
-				gameData.howMuchJuice = Math.floor(gameData.limes / 20)
-				if(gameData.howMuchJuice > gameData.juicers)
-				{
-					gameData.howMuchJuice = gameData.juicers
-				}
-				gameData.limes -= gameData.howMuchJuice * 20
+				gameData.howMuchJuice = gameData.juicers
 			}
+			gameData.limes -= gameData.howMuchJuice * gameData.limesPerJuice
 		}
 		
 		else
 		{
-			if(gameData.peeledLimes >= 20)
+			gameData.howMuchJuice = Math.floor(gameData.peeledLimes / gameData.peeledLimesPerJuice)
+			if(gameData.howMuchJuice > gameData.juicers)
 			{
-				gameData.howMuchJuice = Math.floor(gameData.peeledLimes / 20)
-				if(gameData.howMuchJuice > gameData.juicers)
-				{
-					gameData.howMuchJuice = gameData.juicers
-				}
-				gameData.peeledLimes -= gameData.howMuchJuice * 20
+				gameData.howMuchJuice = gameData.juicers
 			}
+			gameData.peeledLimes -= gameData.howMuchJuice * gameData.peeledLimesPerJuice
 		}
 		
 		gameData.juicerBar = 0;
@@ -252,6 +284,20 @@ function juicerBar() {
 	{
 		gameData.juice += gameData.howMuchJuice;
 		gameData.hasGottenJuice = 1	
+	}
+updateValues()
+}
+
+function peelerBar() {
+	if(gameData.peelerBar <= 99)
+	{	
+
+		gameData.peelerBar += 1;
+		setTimeout(peelerBar, 100 / tickspeed)
+	}
+	else
+	{
+		gameData.peeledLimes += gameData.howManyPeeledLimes;
 	}
 updateValues()
 }
