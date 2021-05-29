@@ -1,1 +1,0 @@
-{"limes":11,"coins":0,"juicers":1,"juice":0,"juiceBulkAmount":1,"deliveryBar":0,"juiceBar":0,"tickspeed":1}
