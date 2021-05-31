@@ -77,12 +77,10 @@
 				<p id="textForCoins", style="color:yellow;">0 Coins</p>
 			</div>		
 		<p id="textForJuice", style="color:#99FF99; display:none;">0 Juice</p>
-		<p id="textForSticks", style="color:#6e4417;display:none;">0 Sticks</p>
-		<p id="textForPies", style="color:#9c744b;display:none;">0 Pies</p>
 		</div>	
 		
 			 	<div class="row" style="background-color:#bfbfbf;padding-left: 130px;display:block;height:60px;">
-			<p id="newInfo" style="display:inline-block;">You are in a lime forest.</p>
+			<p id="newInfo" style="display:inline-block;margin-bottom:none;">You are in a lime forest.</p>
 				 	<div style="width: 150px;height:50px;float:right;">
 						<button style="background:lightgray;width: 150px;height:30px;background-color:#d1d9d9;", onclick="tab('options')">Options</button>  
 						<button id="achievementsButton", style="background-color:#d1d9d9;display:none;width: 150px;height:30px;float:right;", onclick="tab('achievements')">Achievements</button>
@@ -92,7 +90,6 @@
 	<div style="float: left;padding-left: 10px;padding-right: 10px;">
 		 <button id="pickUpLimes" onclick="getLimes()">Collect Limes</button>
 		 <button class="basicButtonSize" id="lookAroundButton" onclick="lookAround()">Look Around</button>
-		 <button id="stickButton", style="background:#6e4417;display: none", onclick="getSticks()">Pick Up Sticks</button>
 		 <button id="exploreButton", style="background:#6e4417;display: none", onclick="explore()">Explore</button>
 	</div>
 	<br>
@@ -108,10 +105,8 @@
      clear: both;">
 	  <button style="background:lightgray;width: 100px;", onclick="tab('market')">Market</button>
 	  <button style="background:lightgray;width: 100px;", onclick="tab('skills')">Skills</button>
-	  <button style="background:lightgray;width: 100px;display:none", onclick="tab('theGround')">The Ground</button>	  
 	  <button id="inventoryButton" style="background:lightgray;width: 100px;display:none;", onclick="tab('inventory')">Inventory</button>	   
 	  <button id="forestButton" style="background:lightgray;display:none;width: 100px;", onclick="tab('forest')">Forest</button>	  
-	  <button id="newtownButton", style="background:lightgray;display:none;width: 100px;", onclick="tab('newtown')">Newtown</button>  
 	  <button id="companyButton", style="background:lightgray;display:none;width: 100px;", onclick="tab('company')">Lime Inc.</button>  
 
 	</div>
@@ -327,16 +322,7 @@
 	 <p class="basicTextSize" id="coinsAchievement3">Collect 1000 Coins.</p>
 
 
-	 </div>		
-	 
-	 
-	 <div id="theGround">	
-	 <p id="theGround", style="background-color:#6e4417;">There's Leaves And Mud Here</p>
-	 <button id="stickRub", onclick="rubSticks()", style="visibility: hidden;background-color:#9c744b;">Rub Two Sticks Together</button>
-	 <p id="fire", style="background-color:red;visibility: hidden;">A Campfire Is Burning.</p>
-	 <button id="pieBake", onclick="pieBake()", style="visibility: hidden;background-color:#9c744b;">Bake A Lime Pie</button>
-	 <p id="pieBakeText", style="background-color:#9c744b;visibility: hidden;">Needs 1 Sugar, 1 Bread And 2 Lime Juice</p>
-	 </div>		 
+	 </div>			 
 	 
 	 <div id="forest">	
 	  <div class="basicDiv">
@@ -353,17 +339,6 @@
 						<div class="verticalBar" id="basketBar">0%</div>
 					 </div>	 
 		 </div>	 
-	 </div>	
-	 
-	 <div id="newtown">	
-	 
-		<button id="stickRub", onclick="sellPie()", style="background-color:#9c744b;">Sell Pie</button>
-		<p id="sellYourPiesPrice", style="background-color:#9c744b;">Sell A Pie For 10 Coins</p>
-		<button onclick="increasePiePrice()">Increase Pie Price</button>
-		<button onclick="decreasePiePrice()">Decrease Pie Price</button>
-		<p id="pieSelling", style="visibility: hidden;background-color:#9c744b;">Pies For Sale!</p>
-		<button id="pieCostumer", onclick="sellOnePie()", style="background-color:#9c744b;visibility: hidden;">Costumer</button>
-
 	 </div>	
 	 
 	 <div id="skills">	

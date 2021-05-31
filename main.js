@@ -77,17 +77,6 @@ function hireApplicant() {
 updateValues()
 }
 
-function pieBake() {
-	if(gameData.bread >= 1 && gameData.sugar >= 1 && gameData.juice >= 2)
-	{
-		gameData.bread -= 1
-		gameData.sugar -= 1
-		gameData.juice -= 2
-		gameData.pies += 1
-	}
-	
-updateValues()
-}
 
 function researchBetterAdvertising() {
 	if(gameData.coins >= 10)
@@ -119,51 +108,6 @@ function advertisingLeaflets() {
 updateValues()
 }
 
-
-function sellOnePie() {
-	if(gameData.pies >= 1)
-	{
-		gameData.pies -= 1
-		gameData.coins += gameData.piePrice
-		divVisibility ("pieCostumer", "hidden")
-	}
-updateValues()
-}
-
-
-function decreasePiePrice() {
-	if(gameData.piePrice >= 1)
-	{
-		gameData.piePrice -= 1
-	}
-	divVisibility ("pieCostumer", "hidden")	
-updateValues()
-}
-
-function increasePiePrice() {
-		gameData.piePrice += 1
-	divVisibility ("pieCostumer", "hidden")		
-updateValues()
-}
-
-function sellPie() {
-	divVisibility ("pieSelling", "visible")
-	divVisibility ("pieCostumer", "hidden")
-	setTimeout(pieSelling, 100 * Math.pow(gameData.piePrice, 2) + Math.floor(Math.random() * 1000))
-}
-
-function pieSelling() {
-
-	divVisibility ("pieCostumer", "visible")
-	setTimeout(sellPie, 1000)
-}
-
-function explore() {
-    update("newInfo", "You Have Discovered A Nearby Town.")
-	divVisibility ("newtownButton", "visible")
-	gameData.exploreLevel = 1
-updateValues()
-}
 
 function getLimes() {
 	

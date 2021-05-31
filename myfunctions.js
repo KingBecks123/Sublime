@@ -1,3 +1,28 @@
+function basicInfoToggle(input){
+
+	info = input + "Info"		
+	toggleVar = "gameData." + info + "Toggle"
+	button = info + "Button"
+	x = document.getElementsByClassName(info);
+	
+	if(	eval(toggleVar + " == 1"))
+	{
+		document.getElementById(button).style.backgroundColor = accent3;
+		  for (i = 0; i < x.length; i++) {
+			x[i].style.display = "block";
+			}
+	}
+	else
+	{
+		document.getElementById(button).style.backgroundColor = accent2;
+		
+		  for (i = 0; i < x.length; i++) {
+			x[i].style.display = "none";
+			}
+	}
+
+}
+
 function moveBar(x) {
 	i = x + "Bar"
 	

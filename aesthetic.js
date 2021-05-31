@@ -17,7 +17,7 @@ function addAesthetic(){
 	document.getElementById('sellYourLimesButton').style.backgroundColor = yellowAccent;	
 	document.getElementById('sellYourJuiceButton').style.backgroundColor = yellowAccent;	
 	
-	document.getElementById('backgroundForValues').style.backgroundColor = accent0;	
+	document.getElementById('backgroundForValues').style.backgroundColor = "#000000";	
 
 	
 	document.getElementById('pickUpLimes').style.backgroundColor = limesRelatedAccent;	
@@ -61,86 +61,15 @@ function addAesthetic(){
 		document.getElementById('foodToggleLimesButton').style.backgroundColor = accent3;
 		document.getElementById('foodToggleRottenLimesButton').style.backgroundColor = accent2;
 	}		
-	
-	if(	gameData.skillInfoToggle == 1)
-	{
-		document.getElementById('skillInfoButton').style.backgroundColor = accent3;
-		  var x = document.getElementsByClassName("skillInfo");
-		  var i;
-		  for (i = 0; i < x.length; i++) {
-			x[i].style.display = "block";
-			}
-	}
-	else
-	{
-		document.getElementById('skillInfoButton').style.backgroundColor = accent2;
 		
-		  var x = document.getElementsByClassName("skillInfo");
-		  var i;
-		  for (i = 0; i < x.length; i++) {
-			x[i].style.display = "none";
-			}
-	}		
+	basicInfoToggle("skill")
+	basicInfoToggle("teach")	
+	basicInfoToggle("employeeStats")
+	basicInfoToggle("basket")
 
-	if(	gameData.teachInfoToggle == 1)
-	{
-		document.getElementById('teachInfoButton').style.backgroundColor = accent3;
-		  var x = document.getElementsByClassName("teachInfo");
-		  var i;
-		  for (i = 0; i < x.length; i++) {
-			x[i].style.display = "block";
-			}
-	}
-	else
-	{
-		document.getElementById('teachInfoButton').style.backgroundColor = accent2;
-		
-		  var x = document.getElementsByClassName("teachInfo");
-		  var i;
-		  for (i = 0; i < x.length; i++) {
-			x[i].style.display = "none";
-			}
-	}	
-	
-	if(	gameData.employeeStatsInfoToggle == 1)
-	{
-		document.getElementById('employeeStatsInfoButton').style.backgroundColor = accent3;
-		  var x = document.getElementsByClassName("employeeStatsInfo");
-		  var i;
-		  for (i = 0; i < x.length; i++) {
-			x[i].style.display = "block";
-			}
-	}
-	else
-	{
-		document.getElementById('employeeStatsInfoButton').style.backgroundColor = accent2;
-		
-		  var x = document.getElementsByClassName("employeeStatsInfo");
-		  var i;
-		  for (i = 0; i < x.length; i++) {
-			x[i].style.display = "none";
-			}
-	}	
 
-	if(	gameData.basketInfoToggle == 1)
-	{
-		document.getElementById('basketInfoButton').style.backgroundColor = accent3;
-		  var x = document.getElementsByClassName("basketInfo");
-		  var i;
-		  for (i = 0; i < x.length; i++) {
-			x[i].style.display = "block";
-			}
-	}
-	else
-	{
-		document.getElementById('basketInfoButton').style.backgroundColor = accent2;
-		
-		  var x = document.getElementsByClassName("basketInfo");
-		  var i;
-		  for (i = 0; i < x.length; i++) {
-			x[i].style.display = "none";
-			}
-	}	
+
+	
 
 
 	if(gameData.baskets == gameData.maxBaskets)

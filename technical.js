@@ -17,15 +17,7 @@ var gameData = {
   deliveryBar: 0,
   juicerBar: 0,
   howMuchJuice: 0,
-  bread: 0,
-  sugar: 0,
-  sticks: 0,
-  fireLevel: 0,
-  pies: 0,
-  newtownStart: "New",
-  newtownEnd: "town",
   exploreLevel: 0,
-  piePrice: 0,
   achievement1: 0,
   achievement2: 0,
   limesPerClick: 1,
@@ -108,8 +100,6 @@ function gameStart(){
 
 	gameData.limesPerClick = 1 + difficulty * 1000
 	
-	update("newtownButton", gameData.newtownStart + gameData.newtownEnd)
-	
 	gameData.limes += cheatNum * 100000
 	gameData.juice += cheatNum * 100000
 	gameData.bread += cheatNum * 100000
@@ -119,7 +109,6 @@ function gameStart(){
 	gameData.coins += cheatNum * 100000
 	gameData.lookAroundNumber += cheatNum * 2
 	gameData.maps += cheatNum * 2
-	gameData.pies += cheatNum * 100000
 	gameData.peeledLimes += cheatNum * 100000
 	gameData.fireLevel += cheatNum * 1
 	gameData.exploreLevel += cheatNum * 1
@@ -134,8 +123,6 @@ function tab(tabby) {
   tabs("market", "none")
   tabs("inventory", "none")
   tabs("achievements", "none")
-  tabs("theGround", "none")
-  tabs("newtown", "none")
   tabs("skills", "none")
   tabs("company", "none")
   tabs("forest", "none")
@@ -147,11 +134,5 @@ function tabMarket(tab) {
   tabs("marketStore", "none")
   tabs("marketMain", "none")
   tabs("hiringArea", "none")
-  document.getElementById(tab).style.display = "block"
-}
-
-function tabEmployees(tab) {
-  tabs("employeeOne", "none")
-  tabs("employeeTwo", "none")
   document.getElementById(tab).style.display = "block"
 }

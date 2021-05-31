@@ -72,10 +72,8 @@ function updateValues() {
 	
 	gameData.limesInBaskets = Math.floor(gameData.baskets * (gameData.basketBar / 20))
 	
-    update("textForSticks", gameData.sticks + " Sticks")
     update("textForCoins", gameData.coins + " Coins")
     update("textForJuice", gameData.juice + " Juice")
-    update("textForPies", gameData.pies + " Pies")
 	
     update("juicersAmount", gameData.juicers + " Juicers")
     update("peelersAmount", gameData.peelers + " Peelers")
@@ -125,15 +123,10 @@ function updateValues() {
     update("sellYourJuiceAmount", "You Will Deliver " + gameData.juiceBulkAmountToggle + " Juice")
 	update("sellYourJuiceReward", "You Will Get " + gameData.juiceBulkAmountToggle + " Coins")
 	update("sellYourJuicePrice", "You Need " + gameData.deliveryPrice + " Coins For Delivery")
-    update("sellYourPiesPrice", "Sell A Pie For " + gameData.piePrice + " Coins")
 	
 	checkShow(gameData.peeledLimes, "textForPeeledLimes")
 	checkShow(gameData.coins, "textForCoinsDiv")
 	checkShow(gameData.rottenLimes, "textForRottenLimes")
-	checkShow(gameData.pies, "textForPies")
-	checkShow(gameData.fireLevel, "fire")
-	checkShow(gameData.bread, "inventoryBread")
-	checkShow(gameData.sugar, "inventorySugar")
 	checkShow(gameData.juicers, "inventoryButton")
 	checkShow(gameData.coins, "achievementsButton")
 	checkShow(gameData.employees, "companyButton")
@@ -265,10 +258,6 @@ function updateValues() {
 	{  tabs("knifeDiv", "block")
 		tabs("buyAPeelerDiv", "block")
 		tabs("buyKnifeDiv", "none")
-	}
-	if(gameData.sugar >= 1 && gameData.limes >= 1 && gameData.bread >= 1 && gameData.fireLevel >= 1)
-	{divVisibility ("pieBake", "visible")
-	divVisibility ("pieBakeText", "visible")
 	}
 	if(gameData.exploreLevel >= 1)
 	{
