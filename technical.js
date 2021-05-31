@@ -3,10 +3,10 @@
 var cheatNum = 0; 
 
 //Should be 0 for normal game, 1 if you want to go faster :)
-var difficulty = 0;
+var difficulty = 1;
 
 //default 1
-var tickspeed = 1
+var tickspeed = 1000
 
 var gameData = {
   limes: 1,
@@ -51,7 +51,9 @@ var gameData = {
   applicantSpeed: 20,
   applicantPrice: 10,
   applicantWage: 10,
+  applicantHunger: 5,
   employeeSpeed: 20,
+  employeeHunger: 5,
   employeePrice: 10,
   employeeWage: 10,
   employeeCurrentSpeed: 0,
@@ -84,7 +86,6 @@ var gameData = {
   limebidextrousSkillLevelMax: 50,
   knifebidextrousSkillLevelMax: 20,
   rottenWisdomSkillLevelMax: 50,
-  basket: 0,
   basketBar: 0,
   baskets: 0,
   limesInBaskets: 0,
@@ -94,49 +95,18 @@ var gameData = {
   peelerBar: 0,
   howManyPeeledLimes: 0,
   achievement3: 0,
+  basketInfoToggle: 1,
+  maxBaskets: 100,
+  firstApplicant: 1,
+  teachInfoToggle: 0,
+  employeeStatsInfoToggle: 0,
 
-  
+ 
 }
 
 function gameStart(){
 
 	gameData.limesPerClick = 1 + difficulty * 1000
-	
-	
-	var start = Math.floor(Math.random() * 7)
-	switch (start) {
-  case 0:
-    gameData.newtownStart = "Old";
-    break;
-  case 1:
-    gameData.newtownStart = "New";
-    break;
-  case 2:
-    gameData.newtownStart = "North";
-    break;
-  case 3:
-    gameData.newtownStart = "South";
-    break;
-  case 4:
-    gameData.newtownStart = "West";
-    break;
-  case 5:
-    gameData.newtownStart = "East";
-    break;
-  case 6:
-    gameData.newtownStart = "Castle";
-}
-	var start = Math.floor(Math.random() * 3)
-	switch (start) {
-  case 0:
-    gameData.newtownEnd = "town";
-    break;
-  case 1:
-    gameData.newtownEnd = "ville";
-    break;
-  case 2:
-    gameData.newtownEnd = "port";
-}
 	
 	update("newtownButton", gameData.newtownStart + gameData.newtownEnd)
 	
@@ -154,6 +124,7 @@ function gameStart(){
 	gameData.fireLevel += cheatNum * 1
 	gameData.exploreLevel += cheatNum * 1
 	updateValues()
+	updateAfterLoad()
 }
 
 tab("shop")

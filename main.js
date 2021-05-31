@@ -1,7 +1,21 @@
 function randomizeApplication() {
-		gameData.applicantSpeed = (Math.floor(Math.random() * 10) * 10)
+	if(gameData.firstApplicant == 1)
+	{
+		gameData.applicantSpeed = 100
+		gameData.applicantPrice = 0
+		gameData.applicantWage = 5
+		gameData.applicantHunger = 1
+		
+		gameData.firstApplicant = 0
+	}
+	else
+	{
+		gameData.applicantSpeed = (Math.floor(Math.random() * 9 + 1) * 100)
 		gameData.applicantPrice = Math.floor(Math.random() * 100)
 		gameData.applicantWage = Math.floor(Math.random() * 9) + 1
+		gameData.applicantHunger = Math.floor(Math.random() * 9) + 1
+	}
+
 
 updateValues()
 }
@@ -29,21 +43,6 @@ updateValues()
 }
 
 
-function skillInfoToggle() {
-	if (gameData.skillInfoToggle == 0)
-	{
-		gameData.skillInfoToggle = 1
-	}
-	else if (gameData.skillInfoToggle == 1)
-	{
-		gameData.skillInfoToggle = 0
-	}
-updateValues()
-}
-
-
-
-
 function payEmployee() {
 	if(gameData.coins >= gameData.employeeWage)
 	{
@@ -63,11 +62,15 @@ function hireApplicant() {
 		gameData.workingBar = 0		
 		
 		gameData.coins -= gameData.applicantPrice
+
+		gameData.employeeHunger = gameData.applicantHunger
+		gameData.employeeSpeed = gameData.applicantSpeed
+		gameData.employeePrice = gameData.applicantPrice
+		gameData.employeeWage = gameData.applicantWage
 		
-		    gameData.employeeSpeed = gameData.applicantSpeed
-			gameData.employeePrice = gameData.applicantPrice
-			gameData.employeeWage = gameData.applicantWage
-		    gameData.employees = 1
+		gameData.employeeCurrentSpeed = - (gameData.employeeHunger * 60)		
+		
+		gameData.employees = 1
 
 	}
 	
@@ -191,7 +194,7 @@ function peelLime() {
 	if(gameData.limes >= 1)
 	{
 		gameData.limes -= 1
-			if(Math.floor((Math.random() * 20) / gameData.knifebidextrous) == 0)
+			if(Math.floor((Math.random() * 40) / gameData.knifebidextrous) == 0)
 				{
 					gameData.peeledLimes += 1
 					gameData.limes -= 1
@@ -227,9 +230,9 @@ updateValues()
 }
 
 function buyTome() {
-	if(gameData.coins >= 100)
+	if(gameData.coins >= 10)
 	{
-		gameData.coins -= 100
+		gameData.coins -= 10
 		gameData.tomes = 1
 	}
 updateValues()
@@ -263,7 +266,6 @@ function lookAround() {
 		{
 			update("newInfo", "You find a merchant selling various items.")
 			gameData.lookAround = 3
-			document.getElementById('lookAroundButton').style.backgroundColor = 'darkGray';
 		}
 	}
 updateValues()
@@ -295,12 +297,6 @@ function buyShoes() {
 updateValues()
 }
 
-
-function getSticks() {
-    gameData.sticks += 1
-updateValues()
-}
-
 function juiceLimesToggle() {
 	gameData.limeTypeToJuice = 0
 updateValues()
@@ -308,34 +304,6 @@ updateValues()
 
 function juicePeeledLimesToggle() {
 	gameData.limeTypeToJuice = 1
-updateValues()
-}
-
-
-function buyKnife() {
-	if(gameData.coins >= 10)
-	{
-		gameData.coins -= 10
-		gameData.knife += 1
-	}
-updateValues()
-}
-
-function buyBread() {
-	if(gameData.coins >= 3)
-	{
-		gameData.coins -= 3
-		gameData.bread += 1
-	}
-updateValues()
-}
-
-function buySugar() {
-	if(gameData.coins >= 2)
-	{
-		gameData.coins -= 3
-		gameData.sugar += 1
-	}
 updateValues()
 }
 
@@ -349,39 +317,11 @@ function sellYourLimes() {
 updateValues()
 }
 
-function buyAJuicer() {
-	if(gameData.coins >= 1)
-	{
-		gameData.coins -= 1
-		gameData.juicers += 1	
-	}
-	
-updateValues()
-}
-
-function buyAPeeler() {
-	if(gameData.coins >= 2)
-	{
-		gameData.coins -= 2
-		gameData.peelers += 1	
-	}
-	
-updateValues()
-}
-
 function buyABasket() {
-	if(gameData.coins >= 2)
+	if(gameData.baskets < 100)
 	{
-		gameData.coins -= 2
-		gameData.baskets += 1	
-		
-		if(gameData.baskets == 1)
-		{
-			basketBar()
-		}
+		basicBuy("baskets", 2)
 	}
-	
-updateValues()
 }
 
 
@@ -400,74 +340,10 @@ function increaseJuiceSold() {
 	
 updateValues()
 }
-
-
-
-
-	function moveJuicer() {
-		var elem = document.getElementById("juicerBar");
-		elem.style.width = gameData.juicerBar + "%";
-		elem.innerHTML = Math.ceil(gameData.juicerBar)  + "%";
-	}
-
-	function moveRottenWisdom() {
-		var elem = document.getElementById("rottenWisdomBar");
-		elem.style.width = gameData.rottenWisdomBar + "%";
-		elem.innerHTML = Math.ceil(gameData.rottenWisdomBar)  + "%";
-	}
-
-	function moveDelivery() {
-		var elem = document.getElementById("deliveryBar");
-		elem.style.width = gameData.deliveryBar + "%";
-		elem.innerHTML = Math.ceil(gameData.deliveryBar)  + "%";
-	}
-
-	function moveLimebidextrous() {
-		var elem = document.getElementById("limebidextrousBar");
-		elem.style.width = gameData.limebidextrousBar + "%";
-		elem.innerHTML = Math.ceil(gameData.limebidextrousBar)  + "%";
-	}
-
-	function moveAdvertise() {
-		var elem = document.getElementById("advertiseBar");
-		elem.style.width = gameData.advertiseBar + "%";
-		elem.innerHTML = Math.ceil(gameData.advertiseBar)  + "%";
-	}
-
-	function moveIntelligence() {
-		var elem = document.getElementById("intelligenceBar");
-		elem.style.width = gameData.intelligenceBar + "%";
-		elem.innerHTML = Math.ceil(gameData.intelligenceBar)  + "%";
-	}
-
-	function moveTeach() {
-		var elem = document.getElementById("teachBar");
-		elem.style.width = gameData.teachBar + "%";
-		elem.innerHTML = Math.ceil(gameData.teachBar)  + "%";
-	}
-
-	function moveWorking() {
-		var elem = document.getElementById("workingBar");
-		elem.style.width = gameData.workingBar + "%";
-		elem.innerHTML = Math.ceil(gameData.workingBar)  + "%";
-	}
-
-	function moveKnifebidextrous() {
-		var elem = document.getElementById("knifebidextrousBar");
-		elem.style.width = gameData.knifebidextrousBar + "%";
-		elem.innerHTML = Math.ceil(gameData.knifebidextrousBar)  + "%";
-	}
 	
-	function moveEat() {
-		var elem = document.getElementById("eatBar");
-		elem.style.width = gameData.eatBar + "%";
-		elem.innerHTML = Math.ceil(gameData.eatBar)  + "%";
-	}
-	
-	function moveBasket() {
-		var elem = document.getElementById("basketBar");
-		var elem2 = document.getElementById("basketProgress");
-		elem.style.height = gameData.basketBar + "%";
-		elem.innerHTML = Math.ceil(gameData.basketBar)  + "%";
-	}
+function moveBasket() {
+	var elem = document.getElementById("basketBar");
+	elem.style.height = gameData.basketBar + "%";
+	elem.innerHTML = Math.ceil(gameData.basketBar)  + "%";
+}
 

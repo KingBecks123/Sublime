@@ -46,7 +46,6 @@
 	.skillProgress {
 	  width: 350px;
 	  height: 30px;
-	  margin:auto;
 	}
 
 	.skillBar {
@@ -98,7 +97,7 @@
 		</div>	
 	<div style="float: left;padding-left: 10px;padding-right: 10px;">
 		 <button id="pickUpLimes" onclick="getLimes()">Collect Limes</button>
-		 <button class="grayButton" id="lookAroundButton" onclick="lookAround()">Look Around</button>
+		 <button class="basicButtonSize" id="lookAroundButton" onclick="lookAround()">Look Around</button>
 		 <button id="stickButton", style="background:#6e4417;display: none", onclick="getSticks()">Pick Up Sticks</button>
 		 <button id="exploreButton", style="background:#6e4417;display: none", onclick="explore()">Explore</button>
 	</div>
@@ -149,7 +148,7 @@
 				 <p class="basicText",  id="sellYourLimesReward">You Will Be Rewarded 1 Coin</p>
 			</div>	 
 			<div class="basicDiv", id="buyAJuicerDiv" style="display:none;">	
-				 <button class="specialButton", id="buyAJuicerButton" onclick="buyAJuicer()">Buy A Juicer</button>
+				 <button class="specialButton", id="buyAJuicerButton" onclick="basicBuy('juicers', 1)">Buy A Juicer</button>
 				 <p class="basicText" id="buyAJuicerPrice">Price: 1 Coin</p>
 			</div>		
 			<div class="basicDiv", id="buyAMapDiv" style="display:none;">		
@@ -157,7 +156,7 @@
 				<p class="basicText">Price: 20 Coins</p>
 			</div>	
 			<div class="basicDiv", id="buyABasketDiv" style="display:none;">		
-				<button class="specialButton" onclick="buyABasket()">Buy A Basket</button>
+				<button class="basicButtonSize" id="buyABasketButton" onclick="buyABasket()">Buy A Basket</button>
 				<p class="basicText">Price: 2 Coins</p>
 			</div>	
 			<div class="basicDiv", id="juiceMarket", style="display:none;">	
@@ -166,8 +165,8 @@
 				 <p class="basicText", id="sellYourJuiceAmount">You Need 1 Juice</p>
 				 <p class="basicText", id="sellYourJuiceReward">You Will Be Rewarded 1 Coin</p>
 				 
-				 <button class="basicButtonSize" id="decreaseJuiceSoldButton", onclick="decreaseJuiceSold()", style="width:120px;background:lightgray;">Decrease Juice Sold</button>
-				 <button class="basicButtonSize" id="increaseJuiceSoldButton", onclick="increaseJuiceSold()", style="width:120px;background:lightgray;">Increase Juice Sold</button>
+				 <button class="basicButtonSize" onclick="decreaseJuiceSold()", style="width:120px;background:lightgray;">Decrease Juice Sold</button>
+				 <button class="basicButtonSize" onclick="increaseJuiceSold()", style="width:120px;background:lightgray;">Increase Juice Sold</button>
 				 <br>
 				 <button class="basicButtonSize" id="deliveryToggleStandardButton", style="width:120px;", onclick="deliveryToggleStandard()">Standard Delivery</button>
 				 <button class="basicButtonSize" id="deliveryToggleExpressButton", style="width:120px;", onclick="deliveryToggleExpress()">Express Delivery</button>
@@ -186,18 +185,18 @@
 	 	<div id="marketStore", style="display:none;width:300px;">	 
 				 
 			 <div id="buyKnifeDiv" class="basicDiv">			
-				 <button class="specialButton", id="knifeButton", onclick="buyKnife()">Buy A Knife</button>
+				 <button class="specialButton", id="knifeButton", onclick="basicBuy('knife', 10)">Buy A Knife</button>
 				 <p class="basicText",  id="knifeInfo">Price: 10 Coins</p>		
 			 </div>		 
 				 
 			 <div id="tomeDiv" class="basicDiv">			
 				 <button class="specialButton" onclick="buyTome()">Buy A Tome</button>
 				 <p class="basicText">Tomes can teach you new skills!</p>		
-				 <p class="basicText">Price: 100 Coins</p>			
+				 <p class="basicText">Price: 10 Coins</p>			
 			 </div>			 	
 
 			 <div id="buyAPeelerDiv" class="basicDiv" style="display:none;">			
-				 <button class="specialButton", onclick="buyAPeeler()">Buy A Peeler</button>
+				 <button class="specialButton", onclick="basicBuy('peelers', 2)">Buy A Peeler</button>
 				 <p class="basicText">The knife isnt gonna 'cut' it</p>		
 				 <p class="basicText">Price: 2 Coins</p>			
 			 </div>		
@@ -219,7 +218,7 @@
 				</div>				 
 				 
 				 <p class="basicText" id="advertisePrice", style="display:block;">Price: 10 Coins</p>	
-				 <button id="application",  style="display:block;width:300px;height:300px;margin:auto;", onclick="hireApplicant()">Pin applications here</button>			 
+				 <button id="application",  style="display:block;width:300px;margin:auto;", onclick="hireApplicant()">Pin applications here</button>			 
 				 <p class="basicText" id="applicationInfo", style="display:block;">Click the application to accept.</p>
 				 <p class="basicText" id="textForCurrentEmployees", style="display:block;">Current Employees: 0/1</p>	
 			</div><br>
@@ -258,26 +257,37 @@
 	 	<div class="basicDiv", id="company">	
 	 
 			<p class="basicText" id="textForCurrentEmployees2", style="background-color:#bfbfbf;display:none;">Current Employees: 0/1</p>	
-			<button class="basicButton" id="employeeButton",  style="width:300px;display:block;", onclick="tabEmployees('employeeOne')">John McLime</button>
+			<button class="specialButton" id="employeeButton",  style="width:250px;display:inline-block;", onclick="tabEmployees('employeeOne')">John McLime</button>
+			<button class="basicButtonSize" id="employeeStatsInfoButton", style="width:80px;" onclick="toggle('employeeStatsInfoToggle')">Stats</button>
+			
 				 <div id="employeeOne">	
 				 
-					<p class="basicText" id="skillsEmployee", style="display:block;">Skills: Can Collect Limes.</p>	
-					<p class="basicText" id="speedEmployee", style="display:block;">Speed: 20% Of What I'm Taught.</p>	
+					<p class="basicText employeeStatsInfo" id="skillsEmployee", style="display:block;">Skills: Can collect limes.</p>	
+					<p class="basicText employeeStatsInfo" id="speedEmployee", style="display:block;">Speed: 20% Of What I'm Taught.</p>	
 					<p class="basicText" id="currentSpeedEmployee", style="display:block;">Current Speed: 0 limes per minute.</p>	
-					<p class="basicText" id="wageEmployee", style="display:block;">Wage: 10 Coins Per Minute.</p>	
+					<p class="basicText employeeStatsInfo" id="wageEmployee", style="display:block;">Wage: 10 Coins Per Minute.</p>	
+					<p class="basicText employeeStatsInfo" id="hungerEmployee", style="display:block;">Hunger: 10 Limes Per Second.</p>	
 					
-					<button class="basicButton" id="payEmployee",  style="width:300px;display:block;", onclick="payEmployee()">Pay Employee Their Wages</button>
-					<button class="basicButton" id="teachEmployee",  style="width:300px;display:block;", onclick="teach()">Teach Employee (Start Timer)</button>
+					<button class="specialButton" id="teachEmployee",  style="width:250px;display:inline-block;", onclick="teach()">Teach Employee</button>
+					
+					
+					<button class="basicButtonSize" id="teachInfoButton", style="width:80px;" onclick="toggle('teachInfoToggle')">Info</button>
+
+					 <p class="basicText teachInfo" >Click the 'Teach' button to start a timer.</p>
+					 <p class="basicText teachInfo" >Collect as many limes as possible before time runs out!</p>
+					 <p class="basicText teachInfo" >Your employee learns from your abilities.</p>
+					
 					<div class="skillProgress" id="teachProgress">
 						<div class="skillBar", id="teachBar">0%</div>
 					</div>	 
-
-					<p class="basicText" id="workingEmployee", style="background-color:#bfbfbf;display:block;">Employee is idle.</p>	
 					
+					<p class="basicText" id="workingEmployee", style="background-color:#bfbfbf;display:block;">Employee is idle.</p>			
+						
 					<div class="skillProgress" id="workingProgress">
 						<div class="skillBar", id="workingBar">0%</div>
 					</div>	 
-	 
+					<button class="specialButton" id="payEmployee",  style="width:250px;display:block;", onclick="payEmployee()">Pay Employee Their Wages</button>
+ 
 				 </div>	
 			 <div id="employeeTwo",  style="display:none;">	
 				<p style="background-color:#bfbfbf;display:block;">No Second Employee.</p>	
@@ -317,10 +327,10 @@
 	   </div>	 
 	</div>		
 	 
-	 <div id="achievements">	
-	 <p id="coinsAchievement", style="background-color:#bfbfbf;">Collect 10 Coins.</p>
-	 <p id="coinsAchievement2", style="background-color:#bfbfbf;">Collect 100 Coins.</p>
-	 <p id="coinsAchievement3", style="background-color:#bfbfbf;">Collect 1000 Coins.</p>
+	 <div id="achievements" class="basicDiv">	
+	 <p class="basicTextSize" id="coinsAchievement">Collect 10 Coins.</p>
+	 <p class="basicTextSize" id="coinsAchievement2">Collect 100 Coins.</p>
+	 <p class="basicTextSize" id="coinsAchievement3">Collect 1000 Coins.</p>
 
 
 	 </div>		
@@ -338,9 +348,10 @@
 	  <div class="basicDiv">
 				 <p class="basicText" id="basketsAmount", style="background-color:#bfbfbf;padding: 5px;">1 Basket</p>
 				 <button class="specialButton" style="background-color:#87a7b3;", onclick="basket()">Empty Baskets</button>
-				 
-				 <p class="basicText" >Baskets collect 1 Lime per minute each.</p>
-				 <p class="basicText" >Baskets collect up to 5 Limes each.</p>
+			     <button class="basicButtonSize" id="basketInfoButton", onclick="toggle('basketInfoToggle')">Info</button>				 
+				 <p class="basicText basketInfo" >Baskets collect 1 Lime per minute each.</p>
+				 <p class="basicText basketInfo" >Baskets collect up to 5 Limes each.</p>
+				 <p class="basicText basketInfo" id="maxBaskets" >100 baskets fit under the current tree.</p>
 				 
 				 <p class="basicText" id="limesInBaskets">0 Limes.</p>
 
@@ -378,7 +389,7 @@
 		 
 	 	 <div class="basicDiv">		 
 			 <button class="specialButton", id="learnANewSkillButton", onclick="learnANewSkill()">Learn A New Skill</button>	 
-			 <button class="basicButtonSize" id="skillInfoButton", onclick="skillInfoToggle()">Info</button>
+			 <button class="basicButtonSize" id="skillInfoButton", onclick="toggle('skillInfoToggle')">Info</button>
 			 <div class="skillProgress" id="learnANewSkillProgress">
 				<div class="skillBar", id="learnANewSkillBar">0%</div>
 			 </div>		

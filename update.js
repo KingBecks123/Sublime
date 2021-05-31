@@ -1,6 +1,5 @@
 function updateAfterLoad(){
 
-
 		restartBar("learnANewSkill")
 		restartBar("rottenWisdom")
 		restartBar("limebidextrous")
@@ -8,6 +7,7 @@ function updateAfterLoad(){
 		restartBar("intelligence")
 		restartBar("juicer")		
 		restartBar("peeler")
+		restartBar("advertise")
 
 		basketBar()
 
@@ -80,15 +80,18 @@ function updateValues() {
     update("juicersAmount", gameData.juicers + " Juicers")
     update("peelersAmount", gameData.peelers + " Peelers")
 
-    update("basketsAmount", gameData.baskets + " Baskets")
+    update("basketsAmount", gameData.baskets + " / " + gameData.maxBaskets + " Baskets")
+    update("maxBaskets", gameData.maxBaskets + " baskets fit under the current tree.")
+	
     update("limesInBaskets", gameData.limesInBaskets + " Limes")
 	
     update("currentSpeedEmployee", "Current speed: " + gameData.employeeCurrentSpeed + " limes per minute.")
 	
-	if(gameData.employeeWorking >= 0)
+	if(gameData.employeeWorking > 0)
 	{
 		update("workingEmployee", "Working time left: " + gameData.employeeWorking + " minutes.")
 	}
+
 	else
 	{
 		update("workingEmployee", "Employee is idle.")		
@@ -96,11 +99,13 @@ function updateValues() {
 		if (gameData.applicationReady == 1)
 		{
 			update("application", 
-			
+			"<br>" +
 			"Skills: Can Collect Limes." + "<br>" +
 			"Speed: " + gameData.applicantSpeed + "% Of What I'm Taught." + "<br>" +
 			"Price: " + gameData.applicantPrice + " Coins." + "<br>" +
-			"Wages: " + gameData.applicantWage + " Coins Per Minute." + "<br>" 
+			"Wages: " + gameData.applicantWage + " Coins Per Minute." + "<br>" +
+			"Hunger: " + gameData.applicantHunger + " Limes Per Second." + "<br>" 
+			+ "<br>"
 				)
 		}
 		else
@@ -108,8 +113,10 @@ function updateValues() {
 			    update("application", "Pin applications here")
 		}
 		
-	    update("speedEmployee", "Speed: " + gameData.employeeSpeed + "% Of What I'm Taught.")
-	    update("wageEmployee", "Wages: " + gameData.employeeWage + " Coins Per Minute.")
+	update("speedEmployee", "Speed: " + gameData.employeeSpeed + "% of what I'm taught.")
+	update("wageEmployee", "Wages: " + gameData.employeeWage + " Coins per minute.")
+	update("hungerEmployee", "Hunger: " + gameData.employeeHunger + " Limes per second.")
+
 	
     update("textForCurrentEmployees","Current Employees: " + gameData.employees + " / " + gameData.maxEmployees)
     update("textForCurrentEmployees2", "Current Employees: " + gameData.employees + " / " + gameData.maxEmployees)
@@ -140,8 +147,9 @@ function updateValues() {
 	moveBar("delivery")
 	moveBar("advertise")
 	moveBar("teach")
-	
-
+	moveBar("working")
+	moveBar("eat")	
+	moveBasket()	
 	
 	moveBar("rottenWisdom")
 		update("rottenWisdom", gameData.rottenWisdom + "% Chance")
@@ -159,7 +167,6 @@ function updateValues() {
 		update("knifebidextrous", gameData.knifebidextrous * 2.5 + "% Chance")	
 		update("knifebidextrousSkillLevel", gameData.knifebidextrousSkillLevel + " / " + gameData.knifebidextrousSkillLevelMax)
 
-	moveEat()
 		update("eat", gameData.eat + " / 100")		
 
 
@@ -183,8 +190,6 @@ function updateValues() {
 	{
 		update("juicerInfo", gameData.peeledLimesPerJuice + " Peeled Limes -> 1 Juice")	
 	}
-
-	
 	
 	
 	
@@ -200,8 +205,6 @@ function updateValues() {
 			tabs ("buyAMapDiv", "block")
 
 			tabs ("buyABasketDiv", "block")
-
-			document.getElementById('lookAroundButton').style.backgroundColor = 'darkGray';
 	}
 	
 	if(gameData.learnANewSkill >= 1)
@@ -229,7 +232,7 @@ function updateValues() {
 				}
 				else if (gameData.tomes == 1)
 				{
-					document.getElementById('learnANewSkillButton').style.backgroundColor = '#f29191';					
+					document.getElementById('learnANewSkillButton').style.backgroundColor = '#FFBB9A';					
 				}
 	}
 	

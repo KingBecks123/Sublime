@@ -79,6 +79,83 @@ function addAesthetic(){
 			x[i].style.display = "none";
 			}
 	}		
+
+	if(	gameData.teachInfoToggle == 1)
+	{
+		document.getElementById('teachInfoButton').style.backgroundColor = accent3;
+		  var x = document.getElementsByClassName("teachInfo");
+		  var i;
+		  for (i = 0; i < x.length; i++) {
+			x[i].style.display = "block";
+			}
+	}
+	else
+	{
+		document.getElementById('teachInfoButton').style.backgroundColor = accent2;
+		
+		  var x = document.getElementsByClassName("teachInfo");
+		  var i;
+		  for (i = 0; i < x.length; i++) {
+			x[i].style.display = "none";
+			}
+	}	
+	
+	if(	gameData.employeeStatsInfoToggle == 1)
+	{
+		document.getElementById('employeeStatsInfoButton').style.backgroundColor = accent3;
+		  var x = document.getElementsByClassName("employeeStatsInfo");
+		  var i;
+		  for (i = 0; i < x.length; i++) {
+			x[i].style.display = "block";
+			}
+	}
+	else
+	{
+		document.getElementById('employeeStatsInfoButton').style.backgroundColor = accent2;
+		
+		  var x = document.getElementsByClassName("employeeStatsInfo");
+		  var i;
+		  for (i = 0; i < x.length; i++) {
+			x[i].style.display = "none";
+			}
+	}	
+
+	if(	gameData.basketInfoToggle == 1)
+	{
+		document.getElementById('basketInfoButton').style.backgroundColor = accent3;
+		  var x = document.getElementsByClassName("basketInfo");
+		  var i;
+		  for (i = 0; i < x.length; i++) {
+			x[i].style.display = "block";
+			}
+	}
+	else
+	{
+		document.getElementById('basketInfoButton').style.backgroundColor = accent2;
+		
+		  var x = document.getElementsByClassName("basketInfo");
+		  var i;
+		  for (i = 0; i < x.length; i++) {
+			x[i].style.display = "none";
+			}
+	}	
+
+
+	if(gameData.baskets == gameData.maxBaskets)
+	{
+		document.getElementById('buyABasketButton').style.backgroundColor = grayAccent;
+	}
+	else{
+		document.getElementById('buyABasketButton').style.backgroundColor = accent4;		
+	}
+
+	if(gameData.lookAround == 3)
+	{
+		document.getElementById('lookAroundButton').style.backgroundColor = grayAccent;
+	}
+	else{
+		document.getElementById('lookAroundButton').style.backgroundColor = grayAccentLight;		
+	}	
 	
 	document.getElementById('deliveryProgress').style.backgroundColor = accent0;	
     document.getElementById('deliveryBar').style.backgroundColor = accent3;		
@@ -110,6 +187,13 @@ function addAesthetic(){
 		x[i].style['margin'] = "5px 5px 5px 5px";
 	  }
 	  
+	//Basic Text Size
+	  var x = document.getElementsByClassName("basicTextSize");
+	  var i;
+	  for (i = 0; i < x.length; i++) {
+		x[i].style.padding = "5px";
+		x[i].style['margin'] = "5px 5px 5px 5px";
+	  }
 
 	//Gray Button
 	  var x = document.getElementsByClassName("grayButton");

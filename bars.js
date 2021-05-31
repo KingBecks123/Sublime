@@ -22,7 +22,6 @@ function workingBar() {
 	{
 		gameData.workingBar += 1;
 		setTimeout(workingBar, 600 / tickspeed)
-		moveWorking()
 	}
 	else
 	{
@@ -43,12 +42,11 @@ function basketBar() {
 	}
 	
 setTimeout(basketBar, 600)
-moveBasket()
 updateValues()
 }
 
 function teach() {
-	gameData.employeeCurrentSpeedOne = 0
+	gameData.employeeCurrentSpeed = - (gameData.employeeHunger * 60)
 	barStartGranular("teach")
 }
 
@@ -234,10 +232,17 @@ function peelerPeelMax() {
 		{
 			gameData.howManyPeeledLimes = gameData.peelers
 		}
+
 		
 		gameData.limes -= gameData.howManyPeeledLimes
+		
+		if (gameData.howManyPeeledLimes > 0)
+		{
+		
 		gameData.peelerBar = 0;
 		peelerBar()
+		
+		}
 	}
 updateValues()
 }
@@ -266,9 +271,12 @@ function makeMaxJuice() {
 			}
 			gameData.peeledLimes -= gameData.howMuchJuice * gameData.peeledLimesPerJuice
 		}
+		if (gameData.howMuchJuice > 0)
+		{
 		
 		gameData.juicerBar = 0;
 		juicerBar()
+		}
 	}
 updateValues()
 }

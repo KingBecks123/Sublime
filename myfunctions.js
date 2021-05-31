@@ -23,6 +23,16 @@ updateValues()
 updateValues()
 }
 
+function basicBuy(x, price) {
+	
+	if(gameData.coins >= price)
+	{
+		gameData.coins -= price
+		eval("gameData." + x + "+= 1")
+	}
+	
+updateValues()
+}
 
 // returns a random integer from 1 to X	
 function beckyRandom(max){
@@ -62,6 +72,20 @@ function basicBarSkill(variable) {
 	}
 updateValues()
 }
+
+function toggle(i) {
+	x = "gameData." + i
+	
+	if (eval(x) == 0)
+	{
+		eval(x + "= 1")
+	}
+	else if (eval(x) == 1)
+	{
+		eval(x + "= 0")	}
+updateValues()
+}
+
 
 //sleep.
 function sleep(milliseconds) {
