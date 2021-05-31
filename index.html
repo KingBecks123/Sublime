@@ -35,11 +35,7 @@
      padding: 10px;
      height: 300px;
 	 width: 100px;
-     .row:after {
-     content: "";
-     display: table;
-     clear: both;
-     }
+	 }
 
     </style>
 	<style>
@@ -73,8 +69,7 @@
   </head>
    <body id="mainBody", onload="gameStart()">
 
-	<div class="row"style="background-color:#000000;">
-		<div class="column" style="background-color:#000000;">
+		<div class="column" id="backgroundForValues">
 			<p id="textForLimes" style="color:#00FF01;">0 Limes</p>
 			<p id="textForPeeledLimes", style="color:#4EFF4D; display:none;"></p>
 			<p id="textForRottenLimes", style="color:#006600;display:none;">0 Rotten Limes</p>
@@ -85,9 +80,8 @@
 		<p id="textForSticks", style="color:#6e4417;display:none;">0 Sticks</p>
 		<p id="textForPies", style="color:#9c744b;display:none;">0 Pies</p>
 		</div>	
-
-	 </div>
-	 	<div class="row" style="background-color:#bfbfbf;padding-left: 130px;height:60px;">
+		
+			 	<div class="row" style="background-color:#bfbfbf;padding-left: 130px;display:block;height:60px;">
 			<p id="newInfo" style="display:inline-block;">You are in a lime forest.</p>
 				 	<div style="width: 150px;height:50px;float:right;">
 						<button style="background:lightgray;width: 150px;height:30px;background-color:#d1d9d9;", onclick="tab('options')">Options</button>  
@@ -221,7 +215,7 @@
 				 <button id="application",  style="display:block;width:300px;margin:auto;", onclick="hireApplicant()">Pin applications here</button>			 
 				 <p class="basicText" id="applicationInfo", style="display:block;">Click the application to accept.</p>
 				 <p class="basicText" id="textForCurrentEmployees", style="display:block;">Current Employees: 0/1</p>	
-			</div><br>
+			</div>
 			
 			<div class="basicDiv" id="researchBetterAdvertising" >
 				 <button class="specialButton" onclick="researchBetterAdvertising()">Research Better Advertising Methods</button> 
@@ -460,12 +454,12 @@
 
 	 </div>	
 	 
-	<script src="aesthetic.js?v=10" charset="utf-8" type="text/javascript"></script>
-	<script src="myfunctions.js?v=10" charset="utf-8" type="text/javascript"></script>
-	<script src="main.js?v=10" charset="utf-8" type="text/javascript"></script>
-	<script src="technical.js?v=10" charset="utf-8" type="text/javascript"></script>
-	<script src="bars.js?v=10" charset="utf-8" type="text/javascript"></script>	
-	<script src="update.js?v=10" charset="utf-8" type="text/javascript"></script>	
+	<script src="aesthetic.js?v=11" charset="utf-8" type="text/javascript"></script>
+	<script src="myfunctions.js?v=11" charset="utf-8" type="text/javascript"></script>
+	<script src="main.js?v=11" charset="utf-8" type="text/javascript"></script>
+	<script src="technical.js?v=11" charset="utf-8" type="text/javascript"></script>
+	<script src="bars.js?v=11" charset="utf-8" type="text/javascript"></script>	
+	<script src="update.js?v=11" charset="utf-8" type="text/javascript"></script>	
 	
   </body>
 </html>

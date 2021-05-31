@@ -16,6 +16,8 @@ function addAesthetic(){
 	
 	document.getElementById('sellYourLimesButton').style.backgroundColor = yellowAccent;	
 	document.getElementById('sellYourJuiceButton').style.backgroundColor = yellowAccent;	
+	
+	document.getElementById('backgroundForValues').style.backgroundColor = accent0;	
 
 	
 	document.getElementById('pickUpLimes').style.backgroundColor = limesRelatedAccent;	

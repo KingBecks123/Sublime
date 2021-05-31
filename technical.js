@@ -3,10 +3,10 @@
 var cheatNum = 0; 
 
 //Should be 0 for normal game, 1 if you want to go faster :)
-var difficulty = 1;
+var difficulty = 0;
 
 //default 1
-var tickspeed = 1000
+var tickspeed = 1
 
 var gameData = {
   limes: 1,
