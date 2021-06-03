@@ -80,6 +80,22 @@ function addAesthetic(){
 		document.getElementById('buyABasketButton').style.backgroundColor = accent4;		
 	}
 
+	if(gameData.juicers == 1000)
+	{
+		document.getElementById('buyAJuicerButton').style.backgroundColor = grayAccent;
+	}
+	else{
+		document.getElementById('buyAJuicerButton').style.backgroundColor = accent4;		
+	}
+
+	if(gameData.peelers == 5000)
+	{
+		document.getElementById('buyAPeelerButton').style.backgroundColor = grayAccent;
+	}
+	else{
+		document.getElementById('buyAPeelerButton').style.backgroundColor = accent4;		
+	}
+
 	if(gameData.lookAround == 3)
 	{
 		document.getElementById('lookAroundButton').style.backgroundColor = grayAccent;
