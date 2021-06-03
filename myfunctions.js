@@ -59,6 +59,17 @@ function basicBuy(x, price) {
 updateValues()
 }
 
+function basicBuyMax(x, price, max) {
+	
+	if(gameData.coins >= price && eval("gameData." + x) < max)
+	{
+		gameData.coins -= price
+		eval("gameData." + x + "+= 1")
+	}
+	
+updateValues()
+}
+
 // returns a random integer from 1 to X	
 function beckyRandom(max){
 	return Math.floor(Math.random() * max) + 1;
