@@ -114,7 +114,6 @@ function gameStart(){
 	gameData.fireLevel += cheatNum * 1
 	gameData.exploreLevel += cheatNum * 1
 	updateValues()
-	updateAfterLoad()
 }
 
 tab("shop")
