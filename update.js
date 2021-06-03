@@ -8,7 +8,6 @@ function updateAfterLoad(){
 		restartBar("juicer")		
 		restartBar("peeler")
 		restartBar("advertise")
-		restartBar("working")
 
 		basketBar()
 
