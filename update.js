@@ -1,5 +1,4 @@
 function updateAfterLoad(){
-alert('uwu')
 		restartBar("learnANewSkill")
 		restartBar("rottenWisdom")
 		restartBar("limebidextrous")
