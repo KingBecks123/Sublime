@@ -288,6 +288,6 @@ updateValues()
 function moveBasket() {
 	var elem = document.getElementById("basketBar");
 	elem.style.height = gameData.basketBar + "%";
-	elem.innerHTML = Math.ceil(gameData.basketBar)  + "%";
+	elem.innerHTML = Math.floor(gameData.basketBar)  + "%";
 }
 
