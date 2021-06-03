@@ -299,6 +299,12 @@ function updateValues() {
 		document.getElementById('coinsAchievement3').style.backgroundColor = 'lime';
 		gameData.achievement3 = 1
 	}
+	if(gameData.advertisingSpeed >= 6)
+	{ 
+		tabs ("researchBetterAdvertising", "none")
+                tabs ("advertisingBillboard", "none")
+                tabs ("advertisingLeaflets", "none")
+	}
 	if(gameData.coins >= 10000)
 	{ 
 		document.getElementById('coinsAchievement4').style.backgroundColor = 'lime';
