@@ -20,6 +20,7 @@ var gameData = {
   exploreLevel: 0,
   achievement1: 0,
   achievement2: 0,
+  achievement4: 0,
   limesPerClick: 1,
   knife: 0,
   peeledLimes: 0,
