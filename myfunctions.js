@@ -28,7 +28,7 @@ function moveBar(x) {
 	
 	var elem = document.getElementById(i);
 	elem.style.width = eval("gameData." + i) + "%";
-	elem.innerHTML = Math.ceil(eval("gameData." + i))  + "%";
+	elem.innerHTML = "  " + Math.ceil(eval("gameData." + i))  + "%";
 }
 
 function switchValue(x) {
