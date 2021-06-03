@@ -279,10 +279,12 @@ updateValues()
 }
 
 function increaseJuiceSold() {
-	
+	if (gameData.juiceBulkAmountToggle < 1000)
+{
 		gameData.juiceBulkAmountToggle += 1
-	
+
 updateValues()
+}
 }
 	
 function moveBasket() {
