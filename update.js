@@ -1,5 +1,5 @@
 function updateAfterLoad(){
-
+alert('uwu')
 		restartBar("learnANewSkill")
 		restartBar("rottenWisdom")
 		restartBar("limebidextrous")
@@ -8,6 +8,7 @@ function updateAfterLoad(){
 		restartBar("juicer")		
 		restartBar("peeler")
 		restartBar("advertise")
+                restartBar("working")
 
 		basketBar()
 
