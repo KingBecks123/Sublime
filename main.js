@@ -10,8 +10,8 @@ function randomizeApplication() {
 	}
 	else
 	{
-		gameData.applicantSpeed = (Math.floor(Math.random() * 9 + 1) * 100)
-		gameData.applicantPrice = Math.floor(Math.random() * 100)
+		gameData.applicantSpeed = (Math.floor(Math.random() * 10 + 1) * 100)
+		gameData.applicantPrice = Math.floor(Math.random() * 200)
 		gameData.applicantWage = Math.floor(Math.random() * 9) + 1
 		gameData.applicantHunger = Math.floor(Math.random() * 9) + 1
 	}
