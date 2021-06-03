@@ -264,8 +264,13 @@ function checkShow(i, txt)
 }
 
 function saveGame() {
+
+if (gameData.rottenLimes > 10 || gameData.coins > 0 || gameData.limes > 1){
+
   localStorage.setItem('mathAdventureSave', JSON.stringify(gameData))
 	update("newInfo", "Game Saved.")
+
+}
 }
 
 function exportGame() {
