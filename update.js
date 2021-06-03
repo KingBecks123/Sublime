@@ -298,6 +298,11 @@ function updateValues() {
 		document.getElementById('coinsAchievement3').style.backgroundColor = 'lime';
 		gameData.achievement3 = 1
 	}
+	if(gameData.coins >= 10000)
+	{ 
+		document.getElementById('coinsAchievement4').style.backgroundColor = 'lime';
+		gameData.achievement4 = 1
+	}
 
 	moveBar("learnANewSkill")
 
