@@ -9,6 +9,7 @@ function updateAfterLoad(){
 		restartBar("peeler")
 		restartBar("advertise")
 		restartBar("working")
+                alert('UAL')
 
 		basketBar()
 
