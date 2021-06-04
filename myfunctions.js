@@ -85,11 +85,11 @@ function basicBarSkill(variable) {
 		x = variable + "Bar()"
 		if(variable != "eat")
 		{
-			setTimeout(x, (101 - gameData.intelligence) / tickspeed)
+			setTimeout(x, (101 - gameData.intelligence) / gameData.tickspeed)
 		}
 		else
 		{
-			setTimeout(x, 10 / tickspeed)
+			setTimeout(x, 10 / gameData.tickspeed)
 		}
 	}
 	else
@@ -285,20 +285,15 @@ function exportGame() {
 
 function importGame() {
   var savegame = JSON.parse(window.prompt("Import Code: "));
-  if (savegame !== null) {
-		Object.assign(gameData, savegame);
-		update("newInfo", "Game Loaded.")
-		updateValues()
-		updateAfterLoad()
-  }
-  else
-  {
-	  	update("newInfo", "Save File Empty.")
-  }
+	loadStuff(savegame)
 }
 
 function loadGame() {
   var savegame = JSON.parse(localStorage.getItem("mathAdventureSave"))
+	loadStuff(savegame)
+}
+
+function loadStuff(savegame){
   if (savegame !== null) {
 		Object.assign(gameData, savegame);
 		update("newInfo", "Game Loaded.")
@@ -308,5 +303,5 @@ function loadGame() {
   else
   {
 	  	update("newInfo", "Save File Empty.")
-  }
+  }	
 }

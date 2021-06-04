@@ -2,12 +2,6 @@
 //Should be 0 if ur not cheating, 1 if you want to :)
 var cheatNum = 0; 
 
-//Should be 0 for normal game, 1 if you want to go faster :)
-var difficulty = 0;
-
-//default 1
-var tickspeed = 1
-
 var gameData = {
   limes: 1,
   coins: 0,
@@ -94,13 +88,15 @@ var gameData = {
   firstApplicant: 1,
   teachInfoToggle: 0,
   employeeStatsInfoToggle: 0,
-
- 
+  
+  //Should be 0 for normal game, 1 if you want to go faster :)
+  difficulty: 0,
+  
+  //default is 1 :D
+  tickspeed: 1,
 }
 
 function gameStart(){
-
-	gameData.limesPerClick = 1 + difficulty * 1000
 	
 	gameData.limes += cheatNum * 100000
 	gameData.juice += cheatNum * 100000
@@ -109,7 +105,6 @@ function gameStart(){
 	gameData.lookAroundNumber += cheatNum * 2
 	gameData.maps += cheatNum * 2
 	gameData.peeledLimes += cheatNum * 100000
-	gameData.fireLevel += cheatNum * 1
 	gameData.exploreLevel += cheatNum * 1
 	basketBar()
 	updateValues()

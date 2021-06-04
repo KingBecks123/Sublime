@@ -111,9 +111,9 @@ updateValues()
 
 function getLimes() {
 	
-		if(Math.random() <= (gameData.rottenWisdom / 100) || difficulty == 1)
+		if(Math.random() <= (gameData.rottenWisdom / 100))
 		{
-			if(Math.random() <= (gameData.limebidextrous / 100) || difficulty == 1)
+			if(Math.random() <= (gameData.limebidextrous / 100))
 				{
 					gameData.limes += gameData.limesPerClick
 					if(gameData.teachBar > 0 && gameData.teachBar < 100)
@@ -129,7 +129,7 @@ function getLimes() {
 		}
 		else
 		{
-			gameData.rottenLimes += 1
+			gameData.rottenLimes += gameData.limesPerClick
 		}		
 updateValues()
 }
@@ -188,7 +188,7 @@ function lookAround() {
 	
 	if(gameData.lookAround == 0)
 	{
-		if(gameData.lookAroundNumber == 10 || difficulty >= 1)
+		if(gameData.lookAroundNumber == 10 || gameData.difficulty >= 1)
 		{
 			update("newInfo", "You see a nearby market.")
 			gameData.lookAround = 1
@@ -197,7 +197,7 @@ function lookAround() {
 	}
 	else if(gameData.lookAround == 1)
 	{
-		if(gameData.lookAroundNumber == 20 || difficulty >= 1)
+		if(gameData.lookAroundNumber == 20 || gameData.difficulty >= 1)
 		{
 			update("newInfo", "You find a merchant willing to buy limes.")
 			gameData.lookAround = 2
@@ -206,7 +206,7 @@ function lookAround() {
 	}
 	else if(gameData.lookAround == 2)
 	{
-		if(gameData.lookAroundNumber == 30 || difficulty >= 1)
+		if(gameData.lookAroundNumber == 30 || gameData.difficulty >= 1)
 		{
 			update("newInfo", "You find a merchant selling various items.")
 			gameData.lookAround = 3
@@ -255,7 +255,7 @@ function sellYourLimes() {
 	if(gameData.limes >= 50)
 	{
 		gameData.limes -= 50
-		gameData.coins += 1 + (difficulty * 100)
+		gameData.coins += 1
 	}
 	
 updateValues()

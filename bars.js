@@ -21,7 +21,7 @@ function workingBar() {
 	if(gameData.workingBar <= 99)
 	{
 		gameData.workingBar += 1;
-		setTimeout(workingBar, 600 / tickspeed)
+		setTimeout(workingBar, 600 / gameData.tickspeed)
 	}
 	else
 	{
@@ -92,7 +92,7 @@ function advertiseBar() {
 	if(gameData.advertiseBar <= 99)
 	{
 		gameData.advertiseBar += 1;
-		setTimeout(advertiseBar, (200 / gameData.advertisingSpeed) / tickspeed)
+		setTimeout(advertiseBar, (200 / gameData.advertisingSpeed) / gameData.tickspeed)
 	}
 	else
 	{
@@ -122,7 +122,7 @@ function learnANewSkillBar() {
 	if(gameData.learnANewSkillBar <= 99)
 	{
 		gameData.learnANewSkillBar += 1;
-		setTimeout(learnANewSkillBar, (2 * (101 - gameData.intelligence)) / tickspeed)
+		setTimeout(learnANewSkillBar, (2 * (101 - gameData.intelligence)) / gameData.tickspeed)
 	}
 	else
 	{
@@ -168,7 +168,7 @@ function sellYourJuiceBar() {
 		{
 		gameData.deliveryOngoing = 1
 		gameData.deliveryBar += 0.1;
-		setTimeout(sellYourJuiceBar, (100 / (gameData.deliveryType * 100 + 1)) / tickspeed)
+		setTimeout(sellYourJuiceBar, (100 / (gameData.deliveryType * 100 + 1)) / gameData.tickspeed)
 		}
 	}
 	else
@@ -291,7 +291,7 @@ function juicerBar() {
 	if(gameData.juicerBar <= 99)
 	{
 		gameData.juicerBar += 1;
-		var x = (gameData.limeTypeToJuiceToggle * 99 + 1) * (tickspeed)
+		var x = (gameData.limeTypeToJuiceToggle * 99 + 1) * (gameData.tickspeed)
 		setTimeout(juicerBar, 100 / x)
 	}
 	else
@@ -307,7 +307,7 @@ function peelerBar() {
 	{	
 
 		gameData.peelerBar += 1;
-		setTimeout(peelerBar, 100 / tickspeed)
+		setTimeout(peelerBar, 100 / gameData.tickspeed)
 	}
 	else
 	{

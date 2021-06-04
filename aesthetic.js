@@ -29,7 +29,7 @@ function addAesthetic(){
 	twoToggleButtons('foodToggleRottenLimesButton', 'foodToggleLimesButton', gameData.foodTypeToggle)	
 	twoToggleButtons('juicePeeledLimesToggleButton', 'juiceLimesToggleButton', gameData.limeTypeToJuice)		
 	
-		
+	
 	basicInfoToggle("skill")
 	basicInfoToggle("teach")	
 	basicInfoToggle("employeeStats")

@@ -231,7 +231,8 @@ function updateValues() {
 			document.getElementById('learnANewSkillButton').style.backgroundColor = 'darkgray';
 	}
 
-
+	gameData.limesPerClick = 1 + gameData.difficulty * 5
+	
 	if(gameData.maps >= 1)
 	{		
 		tabs ("marketMainButtonsDiv", "inline-block")
