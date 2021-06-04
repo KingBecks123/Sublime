@@ -7,9 +7,8 @@ function updateAfterLoad(){
 		restartBar("juicer")		
 		restartBar("peeler")
 		restartBar("advertise")
-                restartBar("working")
+        restartBar("working")
 
-		basketBar()
 
 			if(gameData.deliveryBar <= 99 && gameData.deliveryBar != 0)
 		{

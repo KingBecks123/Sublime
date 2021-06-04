@@ -189,6 +189,8 @@ function makeJuice() {
 			gameData.limes -= gameData.limesPerJuice
 			gameData.juicerBar = 0
 			gameData.howMuchJuice = 1
+			gameData.limeTypeToJuiceToggle = 0
+			
 			juicerBar()
 		}
 		else if(gameData.limeTypeToJuice == 1 && gameData.peeledLimes >= gameData.peeledLimesPerJuice)
@@ -196,6 +198,8 @@ function makeJuice() {
 			gameData.peeledLimes -= gameData.peeledLimesPerJuice
 			gameData.juicerBar = 0
 			gameData.howMuchJuice = 1
+			gameData.limeTypeToJuiceToggle = 1
+			
 			juicerBar()
 		}
 	}
@@ -259,6 +263,7 @@ function makeMaxJuice() {
 			{
 				gameData.howMuchJuice = gameData.juicers
 			}
+			gameData.limeTypeToJuiceToggle = 0
 			gameData.limes -= gameData.howMuchJuice * gameData.limesPerJuice
 		}
 		
@@ -270,6 +275,7 @@ function makeMaxJuice() {
 				gameData.howMuchJuice = gameData.juicers
 			}
 			gameData.peeledLimes -= gameData.howMuchJuice * gameData.peeledLimesPerJuice
+			gameData.limeTypeToJuiceToggle = 1
 		}
 		if (gameData.howMuchJuice > 0)
 		{
@@ -285,7 +291,7 @@ function juicerBar() {
 	if(gameData.juicerBar <= 99)
 	{
 		gameData.juicerBar += 1;
-		var x = (gameData.limeTypeToJuice * 99 + 1) * (tickspeed)
+		var x = (gameData.limeTypeToJuiceToggle * 99 + 1) * (tickspeed)
 		setTimeout(juicerBar, 100 / x)
 	}
 	else

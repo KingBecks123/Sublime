@@ -25,6 +25,7 @@ var gameData = {
   knife: 0,
   peeledLimes: 0,
   limeTypeToJuice: 0,
+  limeTypeToJuiceToggle: 0,
   lookAround: 0,
   rottenLimes: 0,
   rottenWisdomBar: 0,
@@ -103,9 +104,6 @@ function gameStart(){
 	
 	gameData.limes += cheatNum * 100000
 	gameData.juice += cheatNum * 100000
-	gameData.bread += cheatNum * 100000
-	gameData.sugar += cheatNum * 100000
-	gameData.sticks += cheatNum * 100000
 	gameData.juicers += cheatNum * 200
 	gameData.coins += cheatNum * 100000
 	gameData.lookAroundNumber += cheatNum * 2
@@ -113,6 +111,7 @@ function gameStart(){
 	gameData.peeledLimes += cheatNum * 100000
 	gameData.fireLevel += cheatNum * 1
 	gameData.exploreLevel += cheatNum * 1
+	basketBar()
 	updateValues()
 }
 
