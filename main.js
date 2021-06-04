@@ -10,10 +10,10 @@ function randomizeApplication() {
 	}
 	else
 	{
-		gameData.applicantSpeed = (Math.floor(Math.random() * 10 + 1) * 100)
-		gameData.applicantPrice = Math.floor(Math.random() * 200)
-		gameData.applicantWage = Math.floor(Math.random() * 20) + 5
-		gameData.applicantHunger = Math.floor(Math.random() * 20) + 1
+		gameData.applicantSpeed = (Math.floor(Math.random() * 9 + 1) * 100)
+		gameData.applicantPrice = Math.floor(Math.random() * 100)
+		gameData.applicantWage = Math.floor(Math.random() * 9) + 1
+		gameData.applicantHunger = Math.floor(Math.random() * 9) + 1
 	}
 
 
@@ -279,17 +279,15 @@ updateValues()
 }
 
 function increaseJuiceSold() {
-	if (gameData.juiceBulkAmountToggle < 1000)
-{
+	
 		gameData.juiceBulkAmountToggle += 1
-
+	
 updateValues()
-}
 }
 	
 function moveBasket() {
 	var elem = document.getElementById("basketBar");
 	elem.style.height = gameData.basketBar + "%";
-	elem.innerHTML = Math.floor(gameData.basketBar)  + "%";
+	elem.innerHTML = Math.ceil(gameData.basketBar)  + "%";
 }
 
