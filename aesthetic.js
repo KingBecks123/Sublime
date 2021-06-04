@@ -14,53 +14,21 @@ function addAesthetic(){
 	limesRelatedAccent = "#4DFE89";		
 	yellowAccent = "#FCFF4E";
 	
-	document.getElementById('sellYourLimesButton').style.backgroundColor = yellowAccent;	
-	document.getElementById('sellYourJuiceButton').style.backgroundColor = yellowAccent;	
-	
-	document.getElementById('backgroundForValues').style.backgroundColor = "#000000";	
+	colorChanger('sellYourLimesButton', yellowAccent)
+	colorChanger('sellYourJuiceButton', yellowAccent)
 
+	colorChanger('backgroundForValues', "#000000")
 	
-	document.getElementById('pickUpLimes').style.backgroundColor = limesRelatedAccent;	
+	colorChanger('pickUpLimes', limesRelatedAccent)
+	colorChanger('application', accent4)
 	
-	document.getElementById('application').style.backgroundColor = accent4;	
+	colorChanger('mainBody', background)
+	colorChanger('inventoryKnifeLime', accent3)	
 
-
-	document.getElementById('mainBody').style.backgroundColor = background;	
-		
-	document.getElementById('inventoryKnifeLime').style.backgroundColor = accent3;	
+	twoToggleButtons('deliveryToggleExpressButton', 'deliveryToggleStandardButton', gameData.deliveryTypeToggle)	
+	twoToggleButtons('foodToggleRottenLimesButton', 'foodToggleLimesButton', gameData.foodTypeToggle)	
+	twoToggleButtons('juicePeeledLimesToggleButton', 'juiceLimesToggleButton', gameData.limeTypeToJuice)		
 	
-	if(	gameData.limeTypeToJuice == 1)
-	{
-		document.getElementById('juicePeeledLimesToggleButton').style.backgroundColor = accent3;
-		document.getElementById('juiceLimesToggleButton').style.backgroundColor = accent2;
-	}
-	else
-	{
-		document.getElementById('juiceLimesToggleButton').style.backgroundColor = accent3;
-		document.getElementById('juicePeeledLimesToggleButton').style.backgroundColor = accent2;	
-	}
-	
-	if(	gameData.deliveryTypeToggle == 1)
-	{
-		document.getElementById('deliveryToggleExpressButton').style.backgroundColor = accent3;
-		document.getElementById('deliveryToggleStandardButton').style.backgroundColor = accent2;	
-	}
-	else
-	{
-		document.getElementById('deliveryToggleStandardButton').style.backgroundColor = accent3;
-		document.getElementById('deliveryToggleExpressButton').style.backgroundColor = accent2;
-	}	
-
-	if(	gameData.foodTypeToggle == 1)
-	{
-		document.getElementById('foodToggleRottenLimesButton').style.backgroundColor = accent3;
-		document.getElementById('foodToggleLimesButton').style.backgroundColor = accent2;	
-	}
-	else
-	{
-		document.getElementById('foodToggleLimesButton').style.backgroundColor = accent3;
-		document.getElementById('foodToggleRottenLimesButton').style.backgroundColor = accent2;
-	}		
 		
 	basicInfoToggle("skill")
 	basicInfoToggle("teach")	
@@ -74,43 +42,42 @@ function addAesthetic(){
 
 	if(gameData.baskets == gameData.maxBaskets)
 	{
-		document.getElementById('buyABasketButton').style.backgroundColor = grayAccent;
+		colorChanger('buyABasketButton', grayAccent)	
 	}
 	else{
-		document.getElementById('buyABasketButton').style.backgroundColor = accent4;		
+		colorChanger('buyABasketButton', accent4)	
 	}
 
 	if(gameData.juicers == 1000)
 	{
-		document.getElementById('buyAJuicerButton').style.backgroundColor = grayAccent;
+		colorChanger('buyAJuicerButton', grayAccent)	
 	}
 	else{
-		document.getElementById('buyAJuicerButton').style.backgroundColor = accent4;		
+		colorChanger('buyAJuicerButton', accent4)		
 	}
 
 	if(gameData.peelers == 5000)
 	{
-		document.getElementById('buyAPeelerButton').style.backgroundColor = grayAccent;
+		colorChanger('buyAPeelerButton', grayAccent)
 	}
 	else{
-		document.getElementById('buyAPeelerButton').style.backgroundColor = accent4;		
+		colorChanger('buyAPeelerButton', accent4)
 	}
 
 	if(gameData.lookAround == 3)
 	{
-		document.getElementById('lookAroundButton').style.backgroundColor = grayAccent;
+		colorChanger('lookAroundButton', grayAccent)
 	}
 	else{
-		document.getElementById('lookAroundButton').style.backgroundColor = grayAccentLight;		
+		colorChanger('lookAroundButton', grayAccentLight)	
 	}	
-	
-	document.getElementById('deliveryProgress').style.backgroundColor = accent0;	
-    document.getElementById('deliveryBar').style.backgroundColor = accent3;		
+
+	colorChanger('deliveryProgress', accent0)
+	colorChanger('deliveryBar', accent3)		
 	
 
 	//Basic Div
 	  var x = document.getElementsByClassName("basicDiv");
-	  var i;
 	  for (i = 0; i < x.length; i++) {
 		x[i].style.backgroundColor = accent0;
 		x[i].style.padding = "5px 5px 5px 5px";
@@ -119,7 +86,6 @@ function addAesthetic(){
 
 	//Basic Div Size
 	  var x = document.getElementsByClassName("basicDivSize");
-	  var i;
 	  for (i = 0; i < x.length; i++) {
 		x[i].style.padding = "5px 5px 5px 5px";
 		x[i].style['margin'] = "10px 5px 10px 5px";
@@ -127,7 +93,6 @@ function addAesthetic(){
 
 	//Basic Text
 	  var x = document.getElementsByClassName("basicText");
-	  var i;
 	  for (i = 0; i < x.length; i++) {
 		x[i].style.backgroundColor = grayAccentLight;
 		x[i].style.padding = "5px";
@@ -136,7 +101,6 @@ function addAesthetic(){
 	  
 	//Basic Text Size
 	  var x = document.getElementsByClassName("basicTextSize");
-	  var i;
 	  for (i = 0; i < x.length; i++) {
 		x[i].style.padding = "5px";
 		x[i].style['margin'] = "5px 5px 5px 5px";
@@ -144,7 +108,6 @@ function addAesthetic(){
 
 	//Gray Button
 	  var x = document.getElementsByClassName("grayButton");
-	  var i;
 	  for (i = 0; i < x.length; i++) {
 		x[i].style.backgroundColor = grayAccentLight;
 		x[i].style['margin'] = "5px 5px 5px 5px";
@@ -152,7 +115,6 @@ function addAesthetic(){
 	 
 	//Basic Button
 	  var x = document.getElementsByClassName("basicButton");
-	  var i;
 	  for (i = 0; i < x.length; i++) {
 		x[i].style.backgroundColor = accent3;
 		x[i].style['margin'] = "5px 5px 5px 5px";
@@ -160,14 +122,12 @@ function addAesthetic(){
 	  
 	//Basic Button Size
 	  var x = document.getElementsByClassName("basicButtonSize");
-	  var i;
 	  for (i = 0; i < x.length; i++) {
 		x[i].style['margin'] = "5px 5px 5px 5px";
 	  }
 	  
 	//Special Button
 	  var x = document.getElementsByClassName("specialButton");
-	  var i;
 	  for (i = 0; i < x.length; i++) {
 		x[i].style.backgroundColor = accent4;
 		x[i].style['margin'] = "5px 5px 5px 5px";
@@ -181,7 +141,6 @@ function addAesthetic(){
 	  
 		//Skill Progress
 	  var x = document.getElementsByClassName("skillProgress");
-	  var i;
 	  for (i = 0; i < x.length; i++) {
 		x[i].style.backgroundColor = accent0;
 		x[i].style['margin'] = "5px 5px 5px 5px";
@@ -189,9 +148,26 @@ function addAesthetic(){
 	  
 		//Vertical Progress
 	  var x = document.getElementsByClassName("verticalProgress");
-	  var i;
 	  for (i = 0; i < x.length; i++) {
 		x[i].style.backgroundColor = accent0;
 		x[i].style['margin'] = "5px 5px 5px 5px";
 	  }
+	  
+	  
+	  
+	  
+	function twoToggleButtons(button1, button2, value){
+		if(	value == 1)
+		{
+			colorChanger(button1, accent3)
+			colorChanger(button2, accent2)
+		}
+		else
+		{
+			colorChanger(button1, accent2)
+			colorChanger(button2, accent3)
+		}
+	}
+	
+	
 }

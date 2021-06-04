@@ -247,6 +247,11 @@ function tabs(id, content) {
   document.getElementById(id).style.display = content;
 }
 
+//Background Color Changer
+function colorChanger(id, content) {
+  document.getElementById(id).style.backgroundColor = content;
+}
+
 //Checks if a value is high enough, and shows an element if so.
 function checkShow(i, n, txt)
 {

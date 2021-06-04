@@ -33,14 +33,12 @@ function updateValues() {
 	  update("barPercentButton", "Bar Percent Hidden")
 
 	  var x = document.getElementsByClassName("skillBar");
-	  var i;
 	  for (i = 0; i < x.length; i++) {
 		x[i].style.backgroundColor = accent3;
 		x[i].style.padding = "0px 0px 0px 0px";
 		x[i].style.color =  "rgba(0, 0, 0, 0)";
 	  }
 	  var x = document.getElementsByClassName("verticalBar");
-	  var i;
 	  for (i = 0; i < x.length; i++) {
 		x[i].style.backgroundColor = accent3;
 		x[i].style.padding = "0px 0px 0px 0px";
@@ -52,14 +50,12 @@ function updateValues() {
 	  case 1:
 	  update("barPercentButton", "Bar Percent Shown")
 	  var x = document.getElementsByClassName("skillBar");
-	  var i;
 	  for (i = 0; i < x.length; i++) {
 		x[i].style.backgroundColor = accent3;
 		x[i].style.padding = "0px 0px 0px 0px";
 		x[i].style.color = accent0;
 	  }
 	  var x = document.getElementsByClassName("verticalBar");
-	  var i;
 	  for (i = 0; i < x.length; i++) {
 		x[i].style.backgroundColor = accent3;
 		x[i].style.padding = "0px 0px 0px 0px";
