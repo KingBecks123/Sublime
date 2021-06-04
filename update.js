@@ -1,5 +1,4 @@
 function updateAfterLoad(){
-
 		restartBar("learnANewSkill")
 		restartBar("rottenWisdom")
 		restartBar("limebidextrous")
@@ -8,6 +7,7 @@ function updateAfterLoad(){
 		restartBar("juicer")		
 		restartBar("peeler")
 		restartBar("advertise")
+                restartBar("working")
 
 		basketBar()
 
@@ -293,10 +293,21 @@ function updateValues() {
 		document.getElementById('coinsAchievement2').style.backgroundColor = 'lime';
 		gameData.achievement2 = 1
 	}
-	if(gameData.coins >= 100)
+	if(gameData.coins >= 1000)
 	{ 
 		document.getElementById('coinsAchievement3').style.backgroundColor = 'lime';
 		gameData.achievement3 = 1
+	}
+	if(gameData.advertisingSpeed >= 6)
+	{ 
+		tabs ("researchBetterAdvertising", "none")
+                tabs ("advertisingBillboard", "none")
+                tabs ("advertisingLeaflets", "none")
+	}
+	if(gameData.coins >= 10000)
+	{ 
+		document.getElementById('coinsAchievement4').style.backgroundColor = 'lime';
+		gameData.achievement4 = 1
 	}
 
 	moveBar("learnANewSkill")

@@ -28,7 +28,7 @@ function moveBar(x) {
 	
 	var elem = document.getElementById(i);
 	elem.style.width = eval("gameData." + i) + "%";
-	elem.innerHTML = Math.ceil(eval("gameData." + i))  + "%";
+	elem.innerHTML = "  " + Math.ceil(eval("gameData." + i))  + "%";
 }
 
 function switchValue(x) {
@@ -51,6 +51,17 @@ updateValues()
 function basicBuy(x, price) {
 	
 	if(gameData.coins >= price)
+	{
+		gameData.coins -= price
+		eval("gameData." + x + "+= 1")
+	}
+	
+updateValues()
+}
+
+function basicBuyMax(x, price, max) {
+	
+	if(gameData.coins >= price && eval("gameData." + x) < max)
 	{
 		gameData.coins -= price
 		eval("gameData." + x + "+= 1")
@@ -253,8 +264,13 @@ function checkShow(i, txt)
 }
 
 function saveGame() {
+
+if (gameData.rottenLimes > 10 || gameData.coins > 0 || gameData.limes > 1){
+
   localStorage.setItem('mathAdventureSave', JSON.stringify(gameData))
 	update("newInfo", "Game Saved.")
+
+}
 }
 
 function exportGame() {

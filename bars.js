@@ -1,8 +1,8 @@
 function advertise() {
 	if(gameData.coins >= 10)
+                {
 		gameData.coins -= 10
-		{
-			barStartGranular("advertise")
+		barStartGranular("advertise")
 		}
 }
 
