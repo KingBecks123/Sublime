@@ -9,6 +9,7 @@ function updateAfterLoad(){
 		restartBar("advertise")
         restartBar("working")
 
+		autosave()
 
 			if(gameData.deliveryBar <= 99 && gameData.deliveryBar != 0)
 		{
@@ -65,7 +66,7 @@ function updateValues() {
 
 	}	
 	
-	gameData.limesInBaskets = Math.floor(gameData.baskets * (gameData.basketBar / 20))
+	gameData.limesInBaskets = Math.floor(gameData.baskets * (gameData.basketBar / 4))
 	
     update("textForCoins", gameData.coins + " Coins")
     update("textForJuice", gameData.juice + " Juice")
@@ -187,6 +188,24 @@ function updateValues() {
 	{
 		tabs("peelersBulkButton", "inline-block")
 		tabs("bulkBuyPeelersDiv", "none")
+	}
+	
+	if(gameData.autosave == 0)
+	{
+		update("autosaveButton", "Autosave Off")
+	}
+	else
+	{
+		update("autosaveButton", "Autosave On")
+	}
+
+	if(gameData.maps >= 2 && gameData.bulkBuyUnlock == 0)
+	{
+		tabs("bulkBuyUnlockDiv", "inline-block")
+	}
+	else
+	{
+		tabs("bulkBuyUnlockDiv", "none")
 	}
 
 	if(gameData.bulkBuyJuicersUnlock == 0)

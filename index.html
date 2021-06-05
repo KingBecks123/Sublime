@@ -123,6 +123,7 @@
 		<button class="specialButton" onclick="importGame()">Import Game</button><br>
 		<button class="basicButton" id="aestheticButton" onclick="switchValue('aesthetic')" style="display:none">Aesthetic: Modern</button>
 		<button class="specialButton" id="barPercentButton" onclick="switchValue('showBarPercent')">Bar Percent Shown</button>
+		<button class="specialButton" id="autosaveButton" onclick="switchValue('autosave')">Autosave Off</button>
 		
 		<p class="basicText" id="exportCode", style="background-color:#bfbfbf;width:300px;word-wrap: break-word;-webkit-user-select: all;-ms-user-select: all;user-select: all;">Export Code</p>
 	</div>	 
@@ -357,8 +358,8 @@
 				 <p class="basicText" id="basketsAmount", style="background-color:#bfbfbf;padding: 5px;">1 Basket</p>
 				 <button class="specialButton" style="background-color:#87a7b3;", onclick="basket()">Empty Baskets</button>
 			     <button class="basicButtonSize" id="basketInfoButton", onclick="toggle('basketInfoToggle')">Info</button>				 
-				 <p class="basicText basketInfo" >Baskets collect 1 Lime per minute each.</p>
-				 <p class="basicText basketInfo" >Baskets collect up to 5 Limes each.</p>
+				 <p class="basicText basketInfo" >Baskets collect 5 Limes per minute each.</p>
+				 <p class="basicText basketInfo" >Baskets collect up to 50 Limes each.</p>
 				 <p class="basicText basketInfo" id="maxBaskets" >100 baskets fit under the current tree.</p>
 				 
 				 <p class="basicText" id="limesInBaskets">0 Limes.</p>

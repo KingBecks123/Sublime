@@ -319,6 +319,16 @@ function loadGame() {
 	loadStuff(savegame)
 }
 
+function autosave(){
+	if(gameData.autosave == 1){
+		
+	saveGame()
+	
+	}
+	setTimeout(autosave, 30000)
+}
+
+
 function loadStuff(savegame){
   if (savegame !== null) {
 		Object.assign(gameData, savegame);

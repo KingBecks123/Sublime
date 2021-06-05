@@ -41,7 +41,7 @@ function basketBar() {
 		gameData.basketBar += 0.2;
 	}
 	
-setTimeout(basketBar, 600)
+setTimeout(basketBar, 1200)
 updateValues()
 }
 
