@@ -21,6 +21,7 @@ updateValues()
 
 function updateValues() {
 	
+	oldUpdateFixes()
 	addAesthetic()
 	
     updateNumber("lime")

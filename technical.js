@@ -84,7 +84,7 @@ var gameData = {
   howManyPeeledLimes: 0,
   achievement3: 0,
   basketInfoToggle: 1,
-  maxBaskets: 100,
+  maxBaskets: 20,
   firstApplicant: 1,
   teachInfoToggle: 0,
   employeeStatsInfoToggle: 0,
@@ -101,7 +101,9 @@ var gameData = {
   advertisingLevel1: 0,
   advertisingLevel2: 0,
   advertisingLevel3: 0,
-  
+ 
+  isUsingStarterTree: 0,
+ 
   autosave: 0,
   
   //Should be 0 for normal game, 1 if you want to go faster :)
