@@ -105,7 +105,7 @@ var gameData = {
   advertisingLevel2: 0,
   advertisingLevel3: 0,
  
-  versionNumber: 30,
+  versionNumber: 0,
   
   hideCompletedSkills: 0,
  

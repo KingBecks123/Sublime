@@ -59,7 +59,7 @@ function hireApplicant() {
 	{
 		gameData.applicationReady = 0
 		gameData.employeeWorking = 0
-		gameData.workingBar = 0		
+		gameData.workingBar = 0			
 		
 		gameData.coins -= gameData.applicantPrice
 
@@ -76,7 +76,6 @@ function hireApplicant() {
 	
 updateValues()
 }
-
 
 function researchBetterAdvertising() {
 	if(gameData.coins >= 10)

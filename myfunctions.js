@@ -1,3 +1,20 @@
+function showOrHideSkill(x){
+
+	level = "gameData." + x + "SkillLevel"
+	levelMax = level + "Max"
+	div = x + "Div"
+
+	if (gameData.hideCompletedSkills == 1 && eval(level + " == " + levelMax))
+	{
+		tabs(div, "none")
+	}
+	else
+	{
+		tabs(div, "block")
+	}
+
+}
+
 
 function overMaximum(variable){
 	
@@ -350,6 +367,7 @@ function loadStuff(savegame){
   if (savegame !== null) {
 		Object.assign(gameData, savegame);
 		backwardsCompatibility(savegame.versionNumber)
+		gameData.versionNumber = 31
 		update("newInfo", "Game Loaded.")
 		updateValues()
 		updateAfterLoad()
