@@ -201,13 +201,69 @@ function updateValues() {
 	if(gameData.maps >= 2 && gameData.bulkBuyUnlock == 0)
 	{
 		tabs("bulkBuyUnlockDiv", "inline-block")
-		tabs("bulkBuyDiv", "block")
-	}
-	else
-	{
-		tabs("bulkBuyUnlockDiv", "none")
 		tabs("bulkBuyDiv", "none")
 	}
+	else if(gameData.maps < 2 && gameData.bulkBuyUnlock == 1)
+	{
+		tabs("bulkBuyUnlockDiv", "none")
+	}
+	else if(gameData.maps >= 2 && gameData.bulkBuyUnlock == 1)
+	{
+		tabs("bulkBuyUnlockDiv", "inline-block")
+	}
+
+
+
+	if(gameData.bulkBuyUnlock == 0)
+	{
+		if(gameData.maps >= 2)
+			{
+				tabs("bulkBuyUnlockDiv", "inline-block")
+			}
+		else
+			{
+				tabs("bulkBuyUnlockDiv", "none")			
+			}
+		tabs("bulkBuyDiv", "none")
+	}
+	else
+	{		
+		tabs("bulkBuyUnlockDiv", "none")		
+		tabs("bulkBuyDiv", "inline-block")
+	}
+
+
+
+	if(gameData.advertisingLevel1 == 0)
+	{
+		tabs ("advertisingMethods", "none")
+		tabs ("researchBetterAdvertising", "block")
+	}
+	else
+	{		
+		tabs ("advertisingMethods", "block")
+		tabs ("researchBetterAdvertising", "none")
+	}
+
+	if(gameData.advertisingLevel2 == 0)
+	{
+		tabs ("advertisingLeaflets", "block")
+	}
+	else
+	{		
+		tabs ("advertisingLeaflets", "none")
+	}
+
+	if(gameData.advertisingLevel3 == 0)
+	{
+		tabs ("advertisingBillboard", "block")
+	}
+	else
+	{		
+		tabs ("advertisingBillboard", "none")
+	}
+
+
 
 	if(gameData.bulkBuyJuicersUnlock == 0)
 	{

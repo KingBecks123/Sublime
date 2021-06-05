@@ -12,7 +12,7 @@ function randomizeApplication() {
 	{
 		gameData.applicantSpeed = (Math.floor(Math.random() * 10 + 1) * 100)
 		gameData.applicantPrice = Math.floor(Math.random() * 200)
-		gameData.applicantWage = Math.floor(Math.random() * 20) + 5
+		gameData.applicantWage = Math.floor(Math.random() * 16) + 5
 		gameData.applicantHunger = Math.floor(Math.random() * 20) + 1
 	}
 
@@ -82,18 +82,7 @@ function researchBetterAdvertising() {
 	if(gameData.coins >= 10)
 	{
 		gameData.coins -= 10
-		tabs ("advertisingMethods", "block")
-		tabs ("researchBetterAdvertising", "none")
-	}
-updateValues()
-}
-
-function advertisingBillboard() {
-	if(gameData.coins >= 100)
-	{
-		gameData.coins -= 100
-		gameData.advertisingSpeed *= 3
-		tabs ("advertisingBillboard", "none")
+		gameData.advertisingLevel1 = 1
 	}
 updateValues()
 }
@@ -102,11 +91,24 @@ function advertisingLeaflets() {
 	if(gameData.coins >= 10)
 	{
 		gameData.coins -= 10
+		gameData.advertisingLevel2 = 1		
+		
 		gameData.advertisingSpeed *= 2
-		tabs ("advertisingLeaflets", "none")
 	}
 updateValues()
 }
+
+function advertisingBillboard() {
+	if(gameData.coins >= 100)
+	{
+		gameData.coins -= 100
+		gameData.advertisingLevel3 = 1
+		
+		gameData.advertisingSpeed *= 3
+	}
+updateValues()
+}
+
 
 
 function getLimes() {
