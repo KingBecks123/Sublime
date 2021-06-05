@@ -266,6 +266,35 @@ function bulkBuyBasketsUnlock() {
 updateValues()
 }
 
+function storageUnlock() {
+	if(gameData.coins >= 200)
+	{
+		gameData.coins -= 200
+		gameData.storageUnlock = 1
+	}
+updateValues()
+}
+
+function storageJuicersUnlock() {
+	if(gameData.coins >= 100)
+	{
+		gameData.coins -= 100
+		gameData.storageJuicersUnlock = 1
+		gameData.juicersMax *= 5
+	}
+updateValues()
+}
+
+function storagePeelersUnlock() {
+	if(gameData.coins >= 100)
+	{
+		gameData.coins -= 100
+		gameData.storagePeelersUnlock = 1
+		gameData.peelersMax *= 5
+	}
+updateValues()
+}
+
 function buyShoes() {
 	if(gameData.coins >= 100)
 	{

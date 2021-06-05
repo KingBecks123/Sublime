@@ -307,7 +307,7 @@ function peelerBar() {
 	{	
 
 		gameData.peelerBar += 1;
-		setTimeout(peelerBar, 100 / gameData.tickspeed)
+		setTimeout(peelerBar, (100 / ((gameData.sharperPeelers + 1) * 2)) / gameData.tickspeed)
 	}
 	else
 	{

@@ -84,8 +84,8 @@ function updateValues() {
     update("textForCoins", gameData.coins + " Coins")
     update("textForJuice", gameData.juice + " Juice")
 	
-    update("juicersAmount", gameData.juicers + " Juicers")
-    update("peelersAmount", gameData.peelers + " Peelers")
+    update("juicersAmount", gameData.juicers + " / " + gameData.juicersMax + " Juicers")
+    update("peelersAmount", gameData.peelers + " / " + gameData.peelersMax + " Peelers")
 
     update("basketsAmount", gameData.baskets + " / " + gameData.basketsMax + " Baskets")
     update("maxBaskets", gameData.basketsMax + " baskets fit under the current tree.")
@@ -193,15 +193,6 @@ function updateValues() {
 		update("juicerInfo", gameData.peeledLimesPerJuice + " Peeled Limes -> 1 Juice")	
 	}
 	
-	if(gameData.bulkBuyPeelersUnlock == 0)
-	{
-		tabs("peelersBulkButton", "none")
-	}
-	else
-	{
-		tabs("peelersBulkButton", "inline-block")
-		tabs("bulkBuyPeelersDiv", "none")
-	}
 	
 	if(gameData.autosave == 0)
 	{
@@ -224,16 +215,34 @@ function updateValues() {
 	if(gameData.maps >= 2 && gameData.bulkBuyUnlock == 0)
 	{
 		tabs("bulkBuyUnlockDiv", "inline-block")
-		tabs("bulkBuyDiv", "none")
 	}
 	else if(gameData.maps < 2 && gameData.bulkBuyUnlock == 1)
 	{
 		tabs("bulkBuyUnlockDiv", "none")
+		tabs("bulkBuyDiv", "none")
 	}
 	else if(gameData.maps >= 2 && gameData.bulkBuyUnlock == 1)
 	{
-		tabs("bulkBuyUnlockDiv", "inline-block")
+		tabs("bulkBuyDiv", "inline-block")
 	}
+
+
+
+	if(gameData.maps >= 2 && gameData.storageUnlock == 0)
+	{
+		tabs("storageUnlockDiv", "inline-block")
+		tabs("storageDiv", "none")
+	}
+	else if(gameData.maps < 2)
+	{
+		tabs("storageUnlockDiv", "none")
+		tabs("storageDiv", "none")
+	}
+	else if(gameData.maps >= 2 && gameData.storageUnlock == 1)
+	{
+		tabs("storageDiv", "inline-block")
+	}
+
 
 
 
@@ -254,6 +263,10 @@ function updateValues() {
 		tabs("bulkBuyUnlockDiv", "none")		
 		tabs("bulkBuyDiv", "inline-block")
 	}
+
+
+
+
 
 
 
@@ -286,7 +299,15 @@ function updateValues() {
 		tabs ("advertisingBillboard", "none")
 	}
 
-
+	if(gameData.bulkBuyPeelersUnlock == 0)
+	{
+		tabs("peelersBulkButton", "none")
+	}
+	else
+	{
+		tabs("peelersBulkButton", "inline-block")
+		tabs("bulkBuyPeelersDiv", "none")
+	}
 
 	if(gameData.bulkBuyJuicersUnlock == 0)
 	{
@@ -307,6 +328,22 @@ function updateValues() {
 		tabs("basketsBulkButton", "inline-block")
 		tabs("bulkBuyBasketsDiv", "none")
 	}	
+	
+	
+	
+	
+	if(gameData.storagePeelersUnlock == 1)
+	{
+		tabs("storagePeelersDiv", "none")
+	}
+
+	if(gameData.storageJuicersUnlock == 1)
+	{
+		tabs("storageJuicersDiv", "none")
+	}
+
+	
+	
 	
 	
 	if(gameData.lookAround >= 2)
@@ -379,11 +416,22 @@ function updateValues() {
 	tabs ("juiceLimesToggleButton", "inline-block")
 	tabs ("juicePeeledLimesToggleButton", "inline-block")
 	}
+	
+	
+	
 	if(gameData.knife >= 1)
 	{  tabs("knifeDiv", "block")
 		tabs("buyAPeelerDiv", "block")
+		tabs("sharperPeelerDiv", "block")
 		tabs("buyKnifeDiv", "none")
 	}
+	
+	if(gameData.sharperPeelers >= 1)
+	{ 
+		tabs("sharperPeelerDiv", "none")
+	}	
+	
+	
 	if(gameData.exploreLevel >= 1)
 	{
 	divVisibility ("newtownButton", "visible")

@@ -96,6 +96,10 @@ var gameData = {
   bulkBuyJuicersUnlock: 0,
   bulkBuyPeelersUnlock: 0,
   bulkBuyBasketsUnlock: 0,
+
+  storageUnlock: 0,  
+  storageJuicersUnlock: 0,
+  storagePeelersUnlock: 0,
   
   peelersBulkToggle: 0,
   juicersBulkToggle: 0,
@@ -108,6 +112,8 @@ var gameData = {
   versionNumber: 0,
   
   hideCompletedSkills: 0,
+  
+  sharperPeelers: 0,
  
   autosave: 0,
   
