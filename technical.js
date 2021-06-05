@@ -85,7 +85,7 @@ var gameData = {
   achievement3: 0,
   basketInfoToggle: 1,
   
-  basketsMax: 20,
+  basketsMax: 50,
   juicersMax: 1000,
   peelersMax: 5000,
   
