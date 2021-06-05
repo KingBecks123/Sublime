@@ -48,7 +48,7 @@ function addAesthetic(){
 		colorChanger('buyABasketButton', accent4)	
 	}
 
-	if(gameData.juicers == 1000)
+	if(gameData.juicers == gameData.juicersMax)
 	{
 		colorChanger('buyAJuicerButton', grayAccent)	
 	}
@@ -56,7 +56,7 @@ function addAesthetic(){
 		colorChanger('buyAJuicerButton', accent4)		
 	}
 
-	if(gameData.peelers == 5000)
+	if(gameData.peelers == gameData.peelersMax)
 	{
 		colorChanger('buyAPeelerButton', grayAccent)
 	}

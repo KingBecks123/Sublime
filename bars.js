@@ -122,7 +122,7 @@ function learnANewSkillBar() {
 	if(gameData.learnANewSkillBar <= 99)
 	{
 		gameData.learnANewSkillBar += 1;
-		setTimeout(learnANewSkillBar, (2 * (101 - gameData.intelligence)) / gameData.tickspeed)
+		setTimeout(learnANewSkillBar, (2 * (gameData.intelligenceSkillLevelMax - gameData.intelligenceSkillLevel + 1)) / gameData.tickspeed)
 	}
 	else
 	{

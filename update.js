@@ -19,8 +19,22 @@ updateValues()
 
 function updateValues() {
 	
-	oldUpdateFixes()
 	addAesthetic()
+
+	if (gameData.coins > 1e6)
+	{
+		gameData.coins = 1e6
+	}
+
+	if (gameData.limes < 0)
+	{
+		gameData.limes = 0
+	}	
+	
+	overMaximum("baskets")
+	overMaximum("juicers")
+	overMaximum("peelers")
+	overMaximum("intelligenceSkillLevel")
 	
     updateNumber("lime")
     updateNumberSpecial("rottenLime", "Rotten Lime")
@@ -148,7 +162,7 @@ function updateValues() {
 		update("limebidextrousSkillLevel", gameData.limebidextrousSkillLevel + " / " + gameData.limebidextrousSkillLevelMax)
 		
 	moveBar("intelligence")
-		update("intelligence", gameData.intelligence + "% Faster")	
+		update("intelligence", (gameData.intelligenceSkillLevel / gameData.intelligenceSkillLevelMax) * 100 + "% Faster")	
 		update("intelligenceSkillLevel", gameData.intelligenceSkillLevel + " / " + gameData.intelligenceSkillLevelMax)
 
 	moveBar("knifebidextrous")
@@ -191,11 +205,20 @@ function updateValues() {
 	
 	if(gameData.autosave == 0)
 	{
-		update("autosaveButton", "Autosave Off")
+		update("autosaveButton", "Autosave Is Off")
 	}
 	else
 	{
-		update("autosaveButton", "Autosave On")
+		update("autosaveButton", "Autosave Is On")
+	}
+	
+	if(gameData.hideCompletedSkills == 0)
+	{
+		update("hideCompletedSkillsButton", "Completed Skills Shown")
+	}
+	else
+	{
+		update("hideCompletedSkillsButton", "Completed Skills Hidden")
 	}
 
 	if(gameData.maps >= 2 && gameData.bulkBuyUnlock == 0)
@@ -302,12 +325,26 @@ function updateValues() {
 	
 	if(gameData.learnANewSkill >= 1)
 	{
+		if (gameData.hideCompletedSkills == 1 && gameData.rottenWisdomSkillLevel == gameData.rottenWisdomSkillLevelMax)
+		{
+			tabs("rottenWisdomDiv", "none")
+		}
+		else
+		{
 			tabs("rottenWisdomDiv", "block")
+		}
 	}
 	
 	if(gameData.learnANewSkill >= 2)
 	{
+		if (gameData.hideCompletedSkills == 1 && gameData.limebidextrousSkillLevel == gameData.limebidextrousSkillLevelMax)
+		{
+			tabs("limebidextrousDiv", "none")
+		}
+		else
+		{
 			tabs("limebidextrousDiv", "block")
+		}
 	}
 	
 	if(gameData.tomes >= 1){
@@ -316,22 +353,40 @@ function updateValues() {
 	
 	if(gameData.learnANewSkill >= 3)
 	{
-		tabs("intelligenceDiv", "block")
+		if (gameData.hideCompletedSkills == 1 && gameData.intelligenceSkillLevel == gameData.intelligenceSkillLevelMax)
+		{
+			tabs("intelligenceDiv", "none")
+		}
+		else
+		{
+			tabs("intelligenceDiv", "block")
+		}
 		
-				if(gameData.tomes == 0)
-				{
-					document.getElementById('learnANewSkillButton').style.backgroundColor = 'darkgray';
-					gameData.learnANewSkillBar = 100;
-				}
-				else if (gameData.tomes == 1)
-				{
-					document.getElementById('learnANewSkillButton').style.backgroundColor = '#FFBB9A';					
-				}
+		if(gameData.tomes == 0)
+		{
+			document.getElementById('learnANewSkillButton').style.backgroundColor = 'darkgray';
+			gameData.learnANewSkillBar = 100;
+		}
+		else if (gameData.tomes == 1)
+		{
+			document.getElementById('learnANewSkillButton').style.backgroundColor = '#FFBB9A';					
+		}
 	}
 	
 	if(gameData.learnANewSkill >= 4)
 	{
+		if (gameData.hideCompletedSkills == 1 && gameData.knifebidextrousSkillLevel == gameData.knifebidextrousSkillLevelMax)
+		{
+			tabs("knifebidextrousDiv", "none")
+		}
+		else
+		{
 			tabs("knifebidextrousDiv", "block")
+		}
+		
+		
+		
+		
 			gameData.learnANewSkillBar = 100;
 			document.getElementById('learnANewSkillButton').style.backgroundColor = 'darkgray';
 	}

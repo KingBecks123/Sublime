@@ -28,7 +28,6 @@ var gameData = {
   learnANewSkill: 0,
   limebidextrousBar: 0,
   limebidextrous: 0,
-  intelligence: 0,
   intelligenceBar: 0,
   teachBar: 0,
   workingBar: 0,
@@ -70,7 +69,7 @@ var gameData = {
   limebidextrousSkillLevel: 0,
   knifebidextrousSkillLevel: 0,
   rottenWisdomSkillLevel: 0,
-  intelligenceSkillLevelMax: 50,
+  intelligenceSkillLevelMax: 20,
   limebidextrousSkillLevelMax: 50,
   knifebidextrousSkillLevelMax: 20,
   rottenWisdomSkillLevelMax: 50,
@@ -86,8 +85,8 @@ var gameData = {
   basketInfoToggle: 1,
   
   basketsMax: 50,
-  juicersMax: 1000,
-  peelersMax: 5000,
+  juicersMax: 100,
+  peelersMax: 500,
   
   firstApplicant: 1,
   teachInfoToggle: 0,
@@ -106,7 +105,9 @@ var gameData = {
   advertisingLevel2: 0,
   advertisingLevel3: 0,
  
-  isUsingStarterTree: 0,
+  versionNumber: 30,
+  
+  hideCompletedSkills: 0,
  
   autosave: 0,
   

@@ -1,3 +1,17 @@
+
+function overMaximum(variable){
+	
+	
+	x = "gameData." + variable
+	y = x + "Max"
+	
+	if(eval(x) > eval(y))
+	{
+		eval(x + " = "  + y)
+	}
+	
+}
+
 function basicToggle(input, type){
 
 	info = input + type		
@@ -114,7 +128,7 @@ function basicBarSkill(variable) {
 		x = variable + "Bar()"
 		if(variable != "eat")
 		{
-			setTimeout(x, (101 - gameData.intelligence) / gameData.tickspeed)
+			setTimeout(x, (gameData.intelligenceSkillLevelMax - gameData.intelligenceSkillLevel + 1) / gameData.tickspeed)
 		}
 		else
 		{
@@ -331,8 +345,11 @@ function autosave(){
 
 
 function loadStuff(savegame){
+
+	
   if (savegame !== null) {
 		Object.assign(gameData, savegame);
+		backwardsCompatibility(savegame.versionNumber)
 		update("newInfo", "Game Loaded.")
 		updateValues()
 		updateAfterLoad()
