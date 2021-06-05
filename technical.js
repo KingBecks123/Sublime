@@ -84,7 +84,9 @@ var gameData = {
   howManyPeeledLimes: 0,
   achievement3: 0,
   basketInfoToggle: 1,
-  maxBaskets: 20,
+  basketsMax: 20,
+  juicersMax: 1000,
+  peelersMax: 5000,
   firstApplicant: 1,
   teachInfoToggle: 0,
   employeeStatsInfoToggle: 0,
@@ -125,6 +127,7 @@ function gameStart(){
 	gameData.exploreLevel += cheatNum * 1
 	basketBar()
 	updateValues()
+	autosave()
 }
 
 tab("shop")

@@ -70,7 +70,10 @@ function basicBuyMax(x, price, max) {
 updateValues()
 }
 
-function bulkableBuyMax(x, price, max) {
+function bulkableBuyMax(x, price) {
+	
+	max = eval(x + "Max")
+	
 	if(eval("gameData." + x + "BulkToggle") == 0)
 	{	
 		if(gameData.coins >= price && eval("gameData." + x) < max)
@@ -321,9 +324,7 @@ function loadGame() {
 
 function autosave(){
 	if(gameData.autosave == 1){
-		
-	saveGame()
-	
+		saveGame()
 	}
 	setTimeout(autosave, 30000)
 }

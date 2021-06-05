@@ -9,8 +9,6 @@ function updateAfterLoad(){
 		restartBar("advertise")
         restartBar("working")
 
-		autosave()
-
 			if(gameData.deliveryBar <= 99 && gameData.deliveryBar != 0)
 		{
 			sellYourJuiceBar()
@@ -75,8 +73,8 @@ function updateValues() {
     update("juicersAmount", gameData.juicers + " Juicers")
     update("peelersAmount", gameData.peelers + " Peelers")
 
-    update("basketsAmount", gameData.baskets + " / " + gameData.maxBaskets + " Baskets")
-    update("maxBaskets", gameData.maxBaskets + " baskets fit under the current tree.")
+    update("basketsAmount", gameData.baskets + " / " + gameData.basketsMax + " Baskets")
+    update("maxBaskets", gameData.basketsMax + " baskets fit under the current tree.")
 	
     update("limesInBaskets", gameData.limesInBaskets + " Limes")
 	
@@ -203,10 +201,12 @@ function updateValues() {
 	if(gameData.maps >= 2 && gameData.bulkBuyUnlock == 0)
 	{
 		tabs("bulkBuyUnlockDiv", "inline-block")
+		tabs("bulkBuyDiv", "block")
 	}
 	else
 	{
 		tabs("bulkBuyUnlockDiv", "none")
+		tabs("bulkBuyDiv", "none")
 	}
 
 	if(gameData.bulkBuyJuicersUnlock == 0)
@@ -228,19 +228,6 @@ function updateValues() {
 		tabs("basketsBulkButton", "inline-block")
 		tabs("bulkBuyBasketsDiv", "none")
 	}	
-	
-	if(gameData.bulkBuyUnlock == 0)
-	{
-		tabs("bulkBuyUnlockDiv", "block")
-		tabs("bulkBuyDiv", "none")
-
-	}
-	else
-	{
-		tabs("bulkBuyUnlockDiv", "none")
-		tabs("bulkBuyDiv", "block")
-
-	}
 	
 	
 	if(gameData.lookAround >= 2)

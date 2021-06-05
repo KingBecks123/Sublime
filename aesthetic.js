@@ -40,7 +40,7 @@ function addAesthetic(){
 	basicToggle("baskets", "Bulk")	
 
 
-	if(gameData.baskets == gameData.maxBaskets)
+	if(gameData.baskets == gameData.basketsMax)
 	{
 		colorChanger('buyABasketButton', grayAccent)	
 	}
