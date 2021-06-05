@@ -72,7 +72,7 @@ updateValues()
 
 function bulkableBuyMax(x, price) {
 	
-	max = eval(x + "Max")
+	max = eval("gameData." + x + "Max")
 	
 	if(eval("gameData." + x + "BulkToggle") == 0)
 	{	
