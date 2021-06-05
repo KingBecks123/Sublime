@@ -30,14 +30,14 @@ function addAesthetic(){
 	twoToggleButtons('juicePeeledLimesToggleButton', 'juiceLimesToggleButton', gameData.limeTypeToJuice)		
 	
 	
-	basicInfoToggle("skill")
-	basicInfoToggle("teach")	
-	basicInfoToggle("employeeStats")
-	basicInfoToggle("basket")
-
-
-
+	basicToggle("skill", "Info")
+	basicToggle("teach", "Info")	
+	basicToggle("employeeStats", "Info")
+	basicToggle("basket", "Info")
 	
+	basicToggle("juicers", "Bulk")	
+	basicToggle("peelers", "Bulk")
+	basicToggle("baskets", "Bulk")	
 
 
 	if(gameData.baskets == gameData.maxBaskets)

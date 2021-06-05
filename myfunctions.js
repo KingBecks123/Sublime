@@ -1,6 +1,6 @@
-function basicInfoToggle(input){
+function basicToggle(input, type){
 
-	info = input + "Info"		
+	info = input + type		
 	toggleVar = "gameData." + info + "Toggle"
 	button = info + "Button"
 	x = document.getElementsByClassName(info);
@@ -69,6 +69,32 @@ function basicBuyMax(x, price, max) {
 	
 updateValues()
 }
+
+function bulkableBuyMax(x, price, max) {
+	if(eval("gameData." + x + "BulkToggle") == 0)
+	{	
+		if(gameData.coins >= price && eval("gameData." + x) < max)
+		{
+
+			gameData.coins -= price
+			eval("gameData." + x + "+= 1")
+
+		}
+	}
+	else if(eval("gameData." + x + "BulkToggle") == 1)
+	{
+		if(gameData.coins >= (price * 10) && eval("gameData." + x) < max - 10)
+		{
+
+			gameData.coins -= price * 10
+			eval("gameData." + x + "+= 10")
+
+		}
+	}
+	
+updateValues()
+}
+
 
 // returns a random integer from 1 to X	
 function beckyRandom(max){

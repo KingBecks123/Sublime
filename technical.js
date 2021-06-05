@@ -50,7 +50,7 @@ var gameData = {
   employeeWorking: 0,
   deliveryType: 0,
   deliveryTypeToggle: 0,
-  deliveryPrice: 1,
+  deliveryPrice: 2,
   deliveryOngoing: 0,
   juiceBulkAmountToggle: 1,
   tomes: 0,
@@ -88,6 +88,17 @@ var gameData = {
   firstApplicant: 1,
   teachInfoToggle: 0,
   employeeStatsInfoToggle: 0,
+  bulkBuyUnlock: 0,
+  bulkBuyJuicersUnlock: 0,
+  bulkBuyPeelersUnlock: 0,
+  bulkBuyBasketsUnlock: 0,
+  peelersBulkToggle: 0,
+  juicersBulkToggle: 0,
+  basketsBulkToggle: 0,
+  
+  advertisingLevel1: 0,
+  advertisingLevel2: 0,
+  advertisingLevel3: 0,
   
   //Should be 0 for normal game, 1 if you want to go faster :)
   difficulty: 0,

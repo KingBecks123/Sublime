@@ -229,6 +229,42 @@ function buyAMap() {
 updateValues()
 }
 
+function bulkBuyUnlock() {
+	if(gameData.coins >= 1000)
+	{
+		gameData.coins -= 1000
+		gameData.bulkBuyUnlock = 1
+	}
+updateValues()
+}
+
+function bulkBuyJuicersUnlock() {
+	if(gameData.coins >= 200)
+	{
+		gameData.coins -= 200
+		gameData.bulkBuyJuicersUnlock = 1
+	}
+updateValues()
+}
+
+function bulkBuyPeelersUnlock() {
+	if(gameData.coins >= 200)
+	{
+		gameData.coins -= 200
+		gameData.bulkBuyPeelersUnlock = 1
+	}
+updateValues()
+}
+
+function bulkBuyBasketsUnlock() {
+	if(gameData.coins >= 200)
+	{
+		gameData.coins -= 200
+		gameData.bulkBuyBasketsUnlock = 1
+	}
+updateValues()
+}
+
 function buyShoes() {
 	if(gameData.coins >= 100)
 	{
@@ -259,13 +295,6 @@ function sellYourLimes() {
 	}
 	
 updateValues()
-}
-
-function buyABasket() {
-	if(gameData.baskets < 100)
-	{
-		basicBuy("baskets", 2)
-	}
 }
 
 

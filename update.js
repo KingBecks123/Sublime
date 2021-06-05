@@ -179,6 +179,48 @@ function updateValues() {
 		update("juicerInfo", gameData.peeledLimesPerJuice + " Peeled Limes -> 1 Juice")	
 	}
 	
+	if(gameData.bulkBuyPeelersUnlock == 0)
+	{
+		tabs("peelersBulkButton", "none")
+	}
+	else
+	{
+		tabs("peelersBulkButton", "inline-block")
+		tabs("bulkBuyPeelersDiv", "none")
+	}
+
+	if(gameData.bulkBuyJuicersUnlock == 0)
+	{
+		tabs("juicersBulkButton", "none")
+	}
+	else
+	{
+		tabs("juicersBulkButton", "inline-block")
+		tabs("bulkBuyJuicersDiv", "none")
+	}
+
+	if(gameData.bulkBuyBasketsUnlock == 0)
+	{
+		tabs("basketsBulkButton", "none")
+	}
+	else
+	{
+		tabs("basketsBulkButton", "inline-block")
+		tabs("bulkBuyBasketsDiv", "none")
+	}	
+	
+	if(gameData.bulkBuyUnlock == 0)
+	{
+		tabs("bulkBuyUnlockDiv", "block")
+		tabs("bulkBuyDiv", "none")
+
+	}
+	else
+	{
+		tabs("bulkBuyUnlockDiv", "none")
+		tabs("bulkBuyDiv", "block")
+
+	}
 	
 	
 	if(gameData.lookAround >= 2)

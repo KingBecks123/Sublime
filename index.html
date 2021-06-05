@@ -142,15 +142,17 @@
 				 <p class="basicText",  id="sellYourLimesReward">You Will Be Rewarded 1 Coin</p>
 			</div>	 
 			<div class="basicDiv", id="buyAJuicerDiv" style="display:none;">	
-				 <button class="basicButtonSize", id="buyAJuicerButton" onclick="basicBuyMax('juicers', 1, 1000)">Buy A Juicer</button>
-				 <p class="basicText" id="buyAJuicerPrice">Price: 1 Coin</p>
+				<button class="basicButtonSize", id="buyAJuicerButton" onclick="bulkableBuyMax('juicers', 1, 1000)">Buy A Juicer</button>
+				<button class="basicButtonSize" id="juicersBulkButton", style="width:80px;" onclick="toggle('juicersBulkToggle')">x10</button>
+				<p class="basicText" id="buyAJuicerPrice">Price: 1 Coin</p>
 			</div>		
 			<div class="basicDiv", id="buyAMapDiv" style="display:none;">		
 				<button class="specialButton" onclick="buyAMap()">Buy A Map Of The Town</button>
 				<p class="basicText">Price: 20 Coins</p>
 			</div>	
 			<div class="basicDiv", id="buyABasketDiv" style="display:none;">		
-				<button class="basicButtonSize" id="buyABasketButton" onclick="buyABasket()">Buy A Basket</button>
+				<button class="basicButtonSize" id="buyABasketButton" onclick="bulkableBuyMax('baskets', 2, 100)">Buy A Basket</button>
+				<button class="basicButtonSize" id="basketsBulkButton", style="width:80px;" onclick="toggle('basketsBulkToggle')">x10</button>
 				<p class="basicText">Price: 2 Coins</p>
 			</div>	
 			<div class="basicDiv", id="juiceMarket", style="display:none;">	
@@ -190,7 +192,8 @@
 			 </div>			 	
 
 			 <div id="buyAPeelerDiv" class="basicDiv" style="display:none;">			
-				 <button class="basicButtonSize", id="buyAPeelerButton" onclick="basicBuyMax('peelers', 2, 5000)">Buy A Peeler</button>
+				 <button class="basicButtonSize", id="buyAPeelerButton" onclick="bulkableBuyMax('peelers', 2, 5000)">Buy A Peeler</button>
+				<button class="basicButtonSize" id="peelersBulkButton", style="width:80px;" onclick="toggle('peelersBulkToggle')">x10</button>
 				 <p class="basicText">The knife isnt gonna 'cut' it</p>		
 				 <p class="basicText">Price: 2 Coins</p>			
 			 </div>		
@@ -199,9 +202,34 @@
 				 <button class="specialButton" onclick="buyAMap()">Buy Another Map</button>
 				 <p class="basicText">There must be more to this town...</p>	
 				 <p class="basicText">Price: 200 Coins</p>	
-			 </div>			 
+			 </div>		
 
+			 <div class="basicDiv", id="bulkBuyUnlockDiv">			
+				 <button class="specialButton" onclick="bulkBuyUnlock()">Bulk Buying</button>
+				 <p class="basicText">Pay the entry fee to become a bulk buyer</p>	
+				 <p class="basicText">Price: 1000 Coins</p>	
+			 </div>				 
+			 <div id="bulkBuyDiv">	
+				 <div class="basicDiv", id="bulkBuyJuicersDiv">			
+					 <button class="specialButton" onclick="bulkBuyJuicersUnlock()">Bulk Juicers</button>
+					 <p class="basicText">Purchase 10 juicers at once</p>	
+					 <p class="basicText">Price: 200 Coins</p>	
+				 </div>		
 
+				 <div class="basicDiv", id="bulkBuyPeelersDiv">			
+					 <button class="specialButton" onclick="bulkBuyPeelersUnlock()">Bulk Peelers</button>
+					 <p class="basicText">Purchase 10 peelers at once</p>	
+					 <p class="basicText">Price: 200 Coins</p>	
+				 </div>		
+				 
+				 <div class="basicDiv", id="bulkBuyBasketsDiv">			
+					 <button class="specialButton" onclick="bulkBuyBasketsUnlock()">Bulk Baskets</button>
+					 <p class="basicText">Purchase 10 baskets at once</p>	
+					 <p class="basicText">Price: 200 Coins</p>	
+				 </div>		
+			 </div>		
+			 
+			 
 		 </div>	 	
 		 
 	 	<div id="hiringArea", style="display:none;">	
@@ -429,12 +457,12 @@
 
 	 </div>	
 	 
-	<script src="aesthetic.js?v=23" charset="utf-8" type="text/javascript"></script>
-	<script src="myfunctions.js?v=23" charset="utf-8" type="text/javascript"></script>
-	<script src="main.js?v=23" charset="utf-8" type="text/javascript"></script>
-	<script src="technical.js?v=23" charset="utf-8" type="text/javascript"></script>
-	<script src="bars.js?v=23" charset="utf-8" type="text/javascript"></script>	
-	<script src="update.js?v=23" charset="utf-8" type="text/javascript"></script>	
+	<script src="aesthetic.js?v=24" charset="utf-8" type="text/javascript"></script>
+	<script src="myfunctions.js?v=24" charset="utf-8" type="text/javascript"></script>
+	<script src="main.js?v=24" charset="utf-8" type="text/javascript"></script>
+	<script src="technical.js?v=24" charset="utf-8" type="text/javascript"></script>
+	<script src="bars.js?v=24" charset="utf-8" type="text/javascript"></script>	
+	<script src="update.js?v=24" charset="utf-8" type="text/javascript"></script>	
 	
   </body>
 </html>
