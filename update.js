@@ -19,6 +19,11 @@ updateValues()
 
 function updateValues() {
 	
+	
+	
+	
+	
+	
 	addAesthetic()
 
 	if (gameData.coins > 1e6)
@@ -83,6 +88,8 @@ function updateValues() {
 	
     update("textForCoins", gameData.coins + " Coins")
     update("textForJuice", gameData.juice + " Juice")
+    update("textForMegaCoinsInBank", gameData.megaCoinsInBank + " / " + gameData.megaCoinsInBankMax + " Mega Coins")
+    update("textForMegaCoins", gameData.megaCoins + " Mega Coins")
 	
     update("juicersAmount", gameData.juicers + " / " + gameData.juicersMax + " Juicers")
     update("peelersAmount", gameData.peelers + " / " + gameData.peelersMax + " Peelers")
@@ -91,6 +98,8 @@ function updateValues() {
     update("maxBaskets", gameData.basketsMax + " baskets fit under the current tree.")
 	
     update("limesInBaskets", gameData.limesInBaskets + " Limes")
+	
+    update("textForRespect", gameData.respect + " Respect")
 	
     update("currentSpeedEmployee", "Current speed: " + gameData.employeeCurrentSpeed + " limes per minute.")
 	
@@ -128,27 +137,33 @@ function updateValues() {
     update("textForCurrentEmployees","Current Employees: " + gameData.employees + " / " + gameData.maxEmployees)
     update("textForCurrentEmployees2", "Current Employees: " + gameData.employees + " / " + gameData.maxEmployees)
 
+
+    update("numberOfCivilians", "Number Of Civilians: " + gameData.civiliansTotal)
+
+
     update("textForPeeledLimes", gameData.peeledLimes + " Peeled Limes")
     update("sellYourJuiceAmount", "You Will Deliver " + gameData.juiceBulkAmountToggle + " Juice")
 	update("sellYourJuiceReward", "You Will Get " + gameData.juiceBulkAmountToggle + " Coins")
 	update("sellYourJuicePrice", "You Need " + gameData.deliveryPrice + " Coins For Delivery")
-	
+
+	checkShow(gameData.megaCoins, "textForMegaCoins")	
 	checkShow(gameData.peeledLimes, "textForPeeledLimes")
 	checkShow(gameData.coins, "textForCoinsDiv")
 	checkShow(gameData.rottenLimes, "textForRottenLimes")
-	checkShow(gameData.juicers, "inventoryButton")
 	checkShow(gameData.coins, "achievementsButton")
-	checkShow(gameData.employees, "companyButton")
-	checkShow(gameData.baskets, "forestButton")
 	checkShow(gameData.hasGottenJuice, "textForJuice")
-	checkShow(gameData.hasGottenJuice, "juiceMarket")
+	
+	checkShowNonVariable(gameData.juicers, "inventoryButton")	
+	checkShowNonVariable(gameData.employees, "companyButton")
+	checkShowNonVariable(gameData.baskets, "forestButton")
+	checkShowNonVariable(gameData.hasGottenJuice, "juiceMarket")
 
 
 	moveBar("juicer")
-	moveBar("peeler")
 	moveBar("delivery")
 	moveBar("advertise")
 	moveBar("teach")
+	moveBar("peeler")
 	moveBar("working")
 	moveBar("eat")	
 	moveBasket()	
@@ -192,6 +207,78 @@ function updateValues() {
 	{
 		update("juicerInfo", gameData.peeledLimesPerJuice + " Peeled Limes -> 1 Juice")	
 	}
+
+
+
+	if(gameData.entrepreneurialCertificates == 0)
+	{
+		tabs("entrepreneurialCertificates1", "none")
+	}
+	else if(gameData.entrepreneurialCertificates == 1)
+	{
+		tabs("entrepreneurialCertificates1", "block")	
+	}
+	
+	
+	if(gameData.bigGloves == 0)
+	{
+		tabs("buyBigGloves", "block")
+		tabs("upgradeBigGloves", "none")
+		gameData.limesPerClick = 1 + gameData.difficulty * 5
+	}
+	else
+	{
+		tabs("buyBigGloves", "none")
+		tabs("upgradeBigGloves", "block")
+		gameData.limesPerClick = 2 + gameData.difficulty * 5
+	}
+
+
+	if(gameData.diseaseControlFinished == 1)
+	{
+		tabs("diseaseControlStart", "none")
+		tabs("startDiseaseTask", "block")
+	}
+	else
+	{
+		tabs("diseaseControlStart", "block")
+		tabs("startDiseaseTask", "none")
+
+	}
+
+	if(gameData.megaCoinsInBankMax > 20)
+	{
+		tabs("increaseCreditScore", "none")
+		tabs("upgradeCreditScore", "block")
+	}
+	else
+	{
+		tabs("increaseCreditScore", "block")
+		tabs("upgradeCreditScore", "none")
+	}
+	
+	if(gameData.nutritionists > 0)
+	{
+		tabs("hireANutritionist", "none")
+		tabs("upgradeNutritionist", "block")
+	}
+	else
+	{
+		tabs("hireANutritionist", "block")
+		tabs("upgradeNutritionist", "none")
+	}
+	
+	
+
+	if(gameData.villageNumber > 1)
+	{
+		tabs("peopleButton", "block")
+	}
+	else
+	{
+		tabs("peopleButton", "none")
+	}
+
 	
 	
 	if(gameData.autosave == 0)
@@ -202,6 +289,50 @@ function updateValues() {
 	{
 		update("autosaveButton", "Autosave Is On")
 	}
+
+	if(gameData.fasterTransport == 0)
+	{
+		update("deliveryToggleStandardButton", "Standard Delivery")
+	}
+	else
+	{
+		update("deliveryToggleStandardButton", "Hyper Delivery")
+	}	
+	
+
+	if(gameData.maps >= 3)
+	{
+		tabs("travellingArea", "block")		
+		
+		
+		if(gameData.fasterTransport == 0)
+		{
+			tabs ("fasterTransportDiv", "block")
+		}
+		else
+		{		
+			tabs ("fasterTransportDiv", "none")
+		}
+		if(gameData.maps < 4)
+		{
+			tabs ("buyFourthMapDiv", "block")
+		}
+		else
+		{		
+			tabs ("buyFourthMapDiv", "none")
+			tabs ("tasksButton", "block")
+		}
+
+
+	}
+	else
+	{
+		tabs("travellingArea", "none")
+		tabs("fasterDeliveryDiv", "none")
+	}
+	
+	
+	
 	
 	if(gameData.hideCompletedSkills == 0)
 	{
@@ -224,7 +355,18 @@ function updateValues() {
 	else if(gameData.maps >= 2 && gameData.bulkBuyUnlock == 1)
 	{
 		tabs("bulkBuyDiv", "inline-block")
+		tabs("bulkBuyUnlockDiv", "none")
+		
+		if (gameData.bulkBuyBasketsUnlock == 1 && gameData.bulkBuyJuicersUnlock == 1 && gameData.bulkBuyPeelersUnlock == 1)
+		{
+			tabs("bulkBuyDiv", "none")
+		}
 	}
+	else if(gameData.bulkBuyUnlock == 0 && gameData.maps < 2)
+	{
+		tabs("bulkBuyUnlockDiv", "none")			
+	}
+
 
 
 
@@ -241,29 +383,14 @@ function updateValues() {
 	else if(gameData.maps >= 2 && gameData.storageUnlock == 1)
 	{
 		tabs("storageDiv", "inline-block")
+		tabs("storageUnlockDiv", "none")
+		
+		if(gameData.storageJuicersUnlock == 1 && gameData.storagePeelersUnlock == 1)
+		{
+			tabs("storageDiv", "none")
+
+		}
 	}
-
-
-
-
-	if(gameData.bulkBuyUnlock == 0)
-	{
-		if(gameData.maps >= 2)
-			{
-				tabs("bulkBuyUnlockDiv", "inline-block")
-			}
-		else
-			{
-				tabs("bulkBuyUnlockDiv", "none")			
-			}
-		tabs("bulkBuyDiv", "none")
-	}
-	else
-	{		
-		tabs("bulkBuyUnlockDiv", "none")		
-		tabs("bulkBuyDiv", "inline-block")
-	}
-
 
 
 
@@ -396,28 +523,44 @@ function updateValues() {
 		gameData.learnANewSkillBar = 100;
 		document.getElementById('learnANewSkillButton').style.backgroundColor = 'darkgray';
 	}
-
-	gameData.limesPerClick = 1 + gameData.difficulty * 5
+	
+	if(gameData.villageNumber > 0)
+	{		
+		tabs ("marketMainButtonsDiv", "inline-block")
+	}
 	
 	if(gameData.maps >= 1)
 	{		
 		tabs ("marketMainButtonsDiv", "inline-block")
+		tabs ("marketStoreButton", "inline-block")
 		tabs ("buyAMapDiv", "none")
 	}
 	
 	if(gameData.maps >= 2)
-	{			tabs ("hiringAreaButton", "inline-block")
+	{		tabs ("hiringAreaButton", "inline-block")
 			tabs ("marketStoreButton", "inline-block")
 			tabs ("buyAnotherMapDiv", "none")
 	}
-	
+
+	if(gameData.maps >= 3 || gameData.villageNumber > 0)
+	{		
+		tabs ("travelButton", "inline-block")
+	}
+
 	if(gameData.peeledLimes >= 1)
 	{divVisibility ("textForPeeledLimes", "inline-block")
 	tabs ("juiceLimesToggleButton", "inline-block")
 	tabs ("juicePeeledLimesToggleButton", "inline-block")
 	}
 	
-	
+	if(gameData.maps == 2)
+	{  
+		tabs("buyThirdMapDiv", "inline-block")
+	}
+	else
+	{  
+		tabs("buyThirdMapDiv", "none")
+	}
 	
 	if(gameData.knife >= 1)
 	{  tabs("knifeDiv", "block")
@@ -437,10 +580,9 @@ function updateValues() {
 	divVisibility ("newtownButton", "visible")
 	}
 
-	if(gameData.sticks >= 2)
-	{tabs ("stickRub", "block")
-	tabs ("textForSticks", "block")
-	tabs ("stickButton", "block")
+	if(gameData.silkRobe >= 1)
+	{
+		tabs("buyARobe", "none")		
 	}
 
 	if(gameData.juicers >= 2)
@@ -453,35 +595,24 @@ function updateValues() {
 	{
 		tabs ("peelerDiv", "block")
 	}
-	if(gameData.coins >= 1)
-	{ divVisibility ("textForCoinsDiv", "visible")
+
+	if(gameData.respect >= 50)
+	{
+		tabs ("storeTypesButtonsDiv", "block")
 	}
-	if(gameData.coins >= 10)
-	{ 
-		document.getElementById('coinsAchievement').style.backgroundColor = 'lime';
-		gameData.achievement1 = 1
+	else
+	{
+		tabs ("storeTypesButtonsDiv", "none")
 	}
-	if(gameData.coins >= 100)
-	{ 
-		document.getElementById('coinsAchievement2').style.backgroundColor = 'lime';
-		gameData.achievement2 = 1
-	}
-	if(gameData.coins >= 1000)
-	{ 
-		document.getElementById('coinsAchievement3').style.backgroundColor = 'lime';
-		gameData.achievement3 = 1
-	}
+
+
 	if(gameData.advertisingSpeed >= 6)
 	{ 
 		tabs ("researchBetterAdvertising", "none")
                 tabs ("advertisingBillboard", "none")
                 tabs ("advertisingLeaflets", "none")
 	}
-	if(gameData.coins >= 10000)
-	{ 
-		document.getElementById('coinsAchievement4').style.backgroundColor = 'lime';
-		gameData.achievement4 = 1
-	}
+
 
 	moveBar("learnANewSkill")
 

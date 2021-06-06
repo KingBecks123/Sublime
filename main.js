@@ -1,3 +1,147 @@
+function startSimulation() {
+	
+	if (gameData.civiliansPlaced == gameData.civiliansTotal)
+	{
+	
+		for (x = 0; x < 4; x++) {
+			
+			for (y = 0; y < 4; y++) {
+				
+				isACivilianThere = (gameData.diseaseArray[x][y])
+				
+				
+				if ( isACivilianThere == 1 || isACivilianThere == 3)
+				{
+					for (xSpread = x - 1; xSpread < x + 2; xSpread++) {
+						
+						for (ySpread = y - 1; ySpread < y + 2; ySpread++) {
+							
+							
+							if ((xSpread < 4 && xSpread >= 0 && ySpread < 4 && ySpread >= 0) && !(x == xSpread && y == ySpread))
+							{
+								if (gameData.diseaseArray[xSpread][ySpread] == 0)
+								{
+									gameData.diseaseArray[xSpread][ySpread] = 2
+									
+								}
+								else if (gameData.diseaseArray[xSpread][ySpread] == 1)
+								{
+									gameData.diseaseArray[xSpread][ySpread] = 3
+									
+								}
+							}
+							
+						}	
+						
+					}	
+					
+				}
+				
+			}	
+			
+		}	
+
+	}	
+	
+	gameData.simulationTime = 1
+	
+updateValues()
+
+}
+
+
+function checkResults() {
+	
+	diseaseControlFailed = 0
+	for (x = 0; x < 4; x++) {
+		
+		for (y = 0; y < 4; y++) {
+			
+			isACivilianThere = (gameData.diseaseArray[x][y])
+			
+			
+			if ( isACivilianThere == 3)
+			{
+
+				diseaseControlFailed = 1
+				
+			}
+			
+		}	
+		
+	}		
+	
+
+	if ( gameData.civiliansPlaced == gameData.civiliansTotal && gameData.simulationTime == 1)
+	{
+		
+		gameData.diseaseControlFinished = 1
+		diseaseControlReset()		
+		
+		
+		if ( diseaseControlFailed == 0)
+		{
+			gameData.respect += 1
+		}
+		else
+		{
+			gameData.respect -= 1
+		}
+	}
+
+	
+	
+updateValues()
+
+}
+
+
+
+function mapTile(x, y) {
+	
+	whichButton = "mapTile-" + x + "-" + y
+	isACivilianThere = (gameData.diseaseArray[x][y])
+	
+	
+		if (isACivilianThere == 0 && gameData.civiliansPlaced < gameData.civiliansTotal)
+		{
+			gameData.diseaseArray[x][y] = 1
+			gameData.civiliansPlaced += 1
+		}
+		
+		else if (isACivilianThere == 1)
+		{
+			gameData.diseaseArray[x][y] = 0
+			gameData.civiliansPlaced -= 1
+		}
+
+updateValues()
+}
+
+function diseaseControlTask() {
+	
+	diseaseControlReset()
+	gameData.diseaseControlFinished = 0
+	gameData.civiliansTotal = beckyRandom(5)
+	
+	
+	
+	
+updateValues()
+}
+
+function diseaseControlReset() {
+	
+	  for (x = 0; x < 4; x++) {
+		 	  for (y = 0; y < 4; y++) {
+					gameData.diseaseArray[x][y] = 0
+				}		
+	  }		
+gameData.civiliansPlaced = 0
+gameData.simulationTime = 0
+updateValues()
+}
+
 function randomizeApplication() {
 	if(gameData.firstApplicant == 1)
 	{
@@ -21,8 +165,16 @@ updateValues()
 }
 
 function deliveryToggleStandard() {
-	gameData.deliveryTypeToggle = 0
-	gameData.deliveryPrice = 2
+	if(gameData.fasterTransport == 0)
+	{
+		gameData.deliveryTypeToggle = 0
+		gameData.deliveryPrice = 2
+	}
+	else
+	{
+		gameData.deliveryTypeToggle = 2
+		gameData.deliveryPrice = 50
+	}
 updateValues()
 }
 
@@ -71,11 +223,19 @@ function hireApplicant() {
 		gameData.employeeCurrentSpeed = - (gameData.employeeHunger * 60)		
 		
 		gameData.employees = 1
+		
+		setTimeout(resetWorkingBar, 1000)
 
 	}
 	
 updateValues()
 }
+
+function resetWorkingBar() {
+		gameData.workingBar = 0		
+updateValues()
+}
+
 
 function researchBetterAdvertising() {
 	if(gameData.coins >= 10)
@@ -149,30 +309,6 @@ function peelLime() {
 updateValues()
 }
 
-function rubSticks() {
-	if(gameData.sticks >= 2)
-	{
-		gameData.sticks -= 2
-		if(	Math.floor(Math.random() * 20) == 0)
-		{
-			divVisibility ("fire", "visible")
-			gameData.fireLevel = 1
-		}
-
-	}
-updateValues()
-}
-
-function buyGloves() {
-	if(gameData.coins >= 100)
-	{
-		gameData.coins -= 100
-		divVisibility ("textForSticks", "visible")
-		divVisibility ("stickButton", "visible")
-		tabs ("glovesDiv", "none")
-	}
-updateValues()
-}
 
 function buyTome() {
 	if(gameData.coins >= 10)
@@ -181,6 +317,74 @@ function buyTome() {
 		gameData.tomes = 1
 	}
 updateValues()
+}
+
+function buyARobe() {
+	if(gameData.coins >= 1000)
+	{
+		gameData.coins -= 1000
+		gameData.silkRobe = 1
+		gameData.respect += 50
+	}
+updateValues()
+}
+
+
+function buyEntrepreneurialCertificate() {
+	if(gameData.megaCoins >= 10)
+	{
+		gameData.megaCoins -= 10
+		gameData.entrepreneurialCertificates = 1
+	}
+updateValues()
+}
+
+function increaseCreditScore() {
+	if(gameData.megaCoins >= 2)
+	{
+		gameData.megaCoins -= 2
+		gameData.megaCoinsInBankMax = 50
+	}
+updateValues()
+}
+
+function buyMegaCoins() {
+	if(gameData.coins >= 1000 && gameData.megaCoinsInBank < gameData.megaCoinsInBankMax)
+	{
+		gameData.coins -= 1000
+		gameData.megaCoinsInBank += 1
+	}
+updateValues()
+}
+
+function buyBigGloves() {
+	if(gameData.megaCoins >= 5)
+	{
+		gameData.megaCoins -= 5
+		gameData.bigGloves = 1
+	}
+updateValues()
+}
+
+function hireANutritionist() {
+	if(gameData.megaCoins >= 5)
+	{
+		gameData.megaCoins -= 5
+		gameData.nutritionists = 1
+	}
+updateValues()
+}
+
+function travelToNextVillage() {
+	if(window.prompt("Are you sure? Type 'yes' if you are") == "yes")
+	{
+		megaCoinsNow = gameData.megaCoinsInBank
+		Object.assign(gameData, gameDataBase)
+		gameData.megaCoins = megaCoinsNow
+		gameData.villageNumber = 2
+		saveGame()		
+		location.reload();
+	}	
 }
 
 function lookAround() {
@@ -226,6 +430,25 @@ function buyAMap() {
 	{
 		gameData.coins -= 200
 		gameData.maps = 2
+	}
+	else if(gameData.coins >= 2000 && gameData.maps == 2)
+	{
+		gameData.coins -= 2000
+		gameData.maps = 3
+	}
+	else if(gameData.coins >= 20000 && gameData.maps == 3)
+	{
+		gameData.coins -= 20000
+		gameData.maps = 4
+	}
+updateValues()
+}
+
+function fasterTransport() {
+	if(gameData.coins >= 2000)
+	{
+		gameData.coins -= 2000
+		gameData.fasterTransport = 1
 	}
 updateValues()
 }
@@ -338,7 +561,7 @@ updateValues()
 }
 
 function increaseJuiceSold() {
-	if (gameData.juiceBulkAmountToggle < 1000)
+	if (gameData.juiceBulkAmountToggle < 500)
 		{
 			gameData.juiceBulkAmountToggle += 1
 			updateValues()

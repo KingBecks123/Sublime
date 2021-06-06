@@ -40,6 +40,81 @@ function addAesthetic(){
 	basicToggle("baskets", "Bulk")	
 
 
+	//Map Tile
+	  var x = document.getElementsByClassName("mapTile");
+	  for (i = 0; i < x.length; i++) {
+		x[i].style['width'] = "20px";
+		x[i].style['height'] = "20px";
+		x[i].style['margin'] = "5px 0px 0px 0px";
+	  }
+
+	  for (x = 0; x < 4; x++) {
+		 	  for (y = 0; y < 4; y++) {
+		 
+					whichButton = "mapTile-" + x + "-" + y
+					isACivilianThere = (gameData.diseaseArray[x][y])
+
+					
+					if (isACivilianThere == 0)
+					{
+						colorChanger(whichButton, accent4)	
+					}
+					
+					else if (isACivilianThere == 1)
+					{
+						colorChanger(whichButton, limesRelatedAccent)	
+					}
+					
+					else if (isACivilianThere == 2)
+					{
+						colorChanger(whichButton, "#FF999A")	
+					}
+					
+					else if (isACivilianThere == 3)
+					{
+						colorChanger(whichButton, "#565656")	
+					}
+		}		
+	  }		 
+		  
+		  
+		  
+		  
+		  
+	if(gameData.coins >= 10)
+	{ 
+		document.getElementById('coinsAchievement').style.backgroundColor = limesRelatedAccent;
+		gameData.achievement1 = 1
+	}
+	if(gameData.coins >= 100)
+	{ 
+		document.getElementById('coinsAchievement2').style.backgroundColor = limesRelatedAccent;
+		gameData.achievement2 = 1
+	}
+	if(gameData.coins >= 1000)
+	{ 
+		document.getElementById('coinsAchievement3').style.backgroundColor = limesRelatedAccent;
+		gameData.achievement3 = 1
+	}
+	if(gameData.coins >= 10000)
+	{ 
+		document.getElementById('coinsAchievement4').style.backgroundColor = limesRelatedAccent;
+		gameData.achievement4 = 1
+	}
+
+
+
+
+	if(gameData.respect >= 50)
+	{
+		colorChanger('50RespectMilestone', limesRelatedAccent)	
+	}
+	else{
+		colorChanger('50RespectMilestone', grayAccentLight)	
+	}
+	
+	
+
 	if(gameData.baskets == gameData.basketsMax)
 	{
 		colorChanger('buyABasketButton', grayAccent)	

@@ -117,7 +117,7 @@ function bulkableBuyMax(x, price) {
 	}
 	else if(eval("gameData." + x + "BulkToggle") == 1)
 	{
-		if(gameData.coins >= (price * 10) && eval("gameData." + x) < max - 10)
+		if(gameData.coins >= (price * 10) && eval("gameData." + x) <= max - 10)
 		{
 
 			gameData.coins -= price * 10
@@ -145,7 +145,7 @@ function basicBarSkill(variable) {
 		x = variable + "Bar()"
 		if(variable != "eat")
 		{
-			setTimeout(x, (gameData.intelligenceSkillLevelMax - gameData.intelligenceSkillLevel + 1) / gameData.tickspeed)
+			setTimeout(x,  (100 / (gameData.intelligenceSkillLevel / gameData.intelligenceSkillLevelMax + 1)) / gameData.tickspeed)
 		}
 		else
 		{
@@ -160,7 +160,7 @@ function basicBarSkill(variable) {
 			eval("gameData." + variable + " += 2");
 		}
 		else{
-			gameData.eat += gameData.foodType
+			gameData.eat += gameData.foodType * (gameData.nutritionists + 1)
 			if(gameData.eat > 100)
 			{gameData.eat = 100}
 		
@@ -326,11 +326,24 @@ function checkShow(i, txt)
 	if(i >= 1)
 	{tabs (txt, "block")
 	}
+		
+}
+
+//Checks if a value is higher than 0, and shows an element if so. If not, hides the element.
+function checkShowNonVariable(i, txt)
+{
+	if(i >= 1)
+	{tabs (txt, "block")
+	}
+	else{
+		tabs (txt, "none")
+	}
+		
 }
 
 function saveGame() {
 
-if (gameData.rottenLimes > 10 || gameData.coins > 0 || gameData.limes > 1){
+if (gameData.rottenLimes > 10 || gameData.coins > 0 || gameData.limes > 1 || gameData.villageNumber > 1){
 
   localStorage.setItem('mathAdventureSave', JSON.stringify(gameData))
 	update("newInfo", "Game Saved.")
@@ -345,7 +358,11 @@ function exportGame() {
 
 function importGame() {
   var savegame = JSON.parse(window.prompt("Import Code: "));
+  	Object.assign(gameData, gameDataBase)
 	loadStuff(savegame)
+	saveGame()
+	location.reload();
+	
 }
 
 function loadGame() {
@@ -357,7 +374,16 @@ function autosave(){
 	if(gameData.autosave == 1){
 		saveGame()
 	}
-	setTimeout(autosave, 30000)
+	setTimeout(autosave, 3000)
+}
+
+function resetGame() {
+	if(window.prompt("Are you sure? Type 'yes' if you are") == "yes")
+	{
+		Object.assign(gameData, gameDataBase)
+		localStorage.setItem('mathAdventureSave', JSON.stringify(gameData))	
+		location.reload();
+	}	
 }
 
 

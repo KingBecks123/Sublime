@@ -122,7 +122,7 @@ function learnANewSkillBar() {
 	if(gameData.learnANewSkillBar <= 99)
 	{
 		gameData.learnANewSkillBar += 1;
-		setTimeout(learnANewSkillBar, (2 * (gameData.intelligenceSkillLevelMax - gameData.intelligenceSkillLevel + 1)) / gameData.tickspeed)
+		setTimeout(learnANewSkillBar, 100 / gameData.tickspeed)
 	}
 	else
 	{
@@ -162,13 +162,27 @@ updateValues()
 }
 
 function sellYourJuiceBar() {
+	
+	
 	if(gameData.deliveryBar <= 99.9)
 	{
-		if(gameData.deliveryBar <= 99.9)
+		if(gameData.deliveryType <= 1)
 		{
-		gameData.deliveryOngoing = 1
-		gameData.deliveryBar += 0.1;
-		setTimeout(sellYourJuiceBar, (100 / (gameData.deliveryType * 100 + 1)) / gameData.tickspeed)
+			if(gameData.deliveryBar <= 99.9)
+			{
+				gameData.deliveryOngoing = 1
+				gameData.deliveryBar += 0.1;
+				setTimeout(sellYourJuiceBar, (100 / (gameData.deliveryType * 100 + 1)) / gameData.tickspeed)
+			}
+		}
+		else if(gameData.deliveryType == 2)
+		{
+			if(gameData.deliveryBar <= 99.5)
+			{
+				gameData.deliveryOngoing = 1
+				gameData.deliveryBar += 0.5;
+				setTimeout(sellYourJuiceBar, (100 / (gameData.deliveryType * 100 + 1)) / gameData.tickspeed)
+			}
 		}
 	}
 	else

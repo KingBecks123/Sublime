@@ -2,7 +2,7 @@
 //Should be 0 if ur not cheating, 1 if you want to :)
 var cheatNum = 0; 
 
-var gameData = {
+var gameDataBase = {
   limes: 1,
   coins: 0,
   juicers: 0,
@@ -112,8 +112,35 @@ var gameData = {
   versionNumber: 0,
   
   hideCompletedSkills: 0,
+  fasterTransport: 0,
   
   sharperPeelers: 0,
+  bigGloves: 0, 
+  villageNumber: 1,
+  nutritionists: 0,
+ 
+  megaCoins: 0,
+  megaCoinsInBank: 0,
+  megaCoinsInBankMax: 20,
+ 
+  diseaseControlFinished: 1,
+  respect: 0,
+  simulationTime: 0,
+  
+  civiliansPlaced: 0,
+  civiliansTotal: 2, 
+  
+  silkRobe: 0, 
+  
+  diseaseArray: [
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0]
+],
+  
+  
+  entrepreneurialCertificates: 0,
  
   autosave: 0,
   
@@ -124,19 +151,21 @@ var gameData = {
   tickspeed: 1,
 }
 
+var gameData = {}
+
+
 function gameStart(){
 	
-	gameData.limes += cheatNum * 100000
-	gameData.juice += cheatNum * 100000
-	gameData.juicers += cheatNum * 200
-	gameData.coins += cheatNum * 100000
-	gameData.lookAroundNumber += cheatNum * 2
-	gameData.maps += cheatNum * 2
-	gameData.peeledLimes += cheatNum * 100000
-	gameData.exploreLevel += cheatNum * 1
+	Object.assign(gameData, gameDataBase)
+	
+	loadGame()
+	
 	basketBar()
 	updateValues()
 	autosave()
+	
+	tabStore("plebian")
+	tabTasks("earn")
 }
 
 tab("shop")
@@ -147,8 +176,11 @@ function tab(tabby) {
   tabs("inventory", "none")
   tabs("achievements", "none")
   tabs("skills", "none")
+  tabs("megaCoinUpgrades", "none")
+  tabs("tasks", "none")
   tabs("company", "none")
   tabs("forest", "none")
+
   document.getElementById(tabby).style.display = "inline-block"
 }
 
@@ -157,5 +189,20 @@ function tabMarket(tab) {
   tabs("marketStore", "none")
   tabs("marketMain", "none")
   tabs("hiringArea", "none")
+  tabs("travel", "none")
   document.getElementById(tab).style.display = "block"
 }
+
+function tabTasks(tab) {
+  tabs("earn", "none")
+  tabs("milestones", "none")
+  document.getElementById(tab).style.display = "block"
+}
+
+function tabStore(tab) {
+  tabs("plebian", "none")
+  tabs("patrician", "none")
+  document.getElementById(tab).style.display = "block"
+}
+
+
