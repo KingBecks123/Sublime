@@ -94,14 +94,6 @@ function updateValues() {
 
 	}	
 
-	if(gameData.limeDiseaseLakes == 0)
-	{
-		gameData.skepticismCurrent = 0
-	}
-	else
-	{
-		gameData.skepticismCurrent = gameData.skepticismTotalSwamp
-	}
 	
 	gameData.limesInBaskets = Math.floor(gameData.baskets * (gameData.basketBar / 4))
 	
@@ -120,7 +112,6 @@ function updateValues() {
 	
     update("textForRespect", gameData.respect + " Respect")
     update("textForLakes", gameData.limeDiseaseLakes + " Lakes")
-    update("textForSkepticism", gameData.skepticismCurrent + " Skepticism")
 	
     update("currentSpeedEmployee", "Current speed: " + gameData.employeeCurrentSpeed + " limes per minute.")
 	

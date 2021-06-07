@@ -134,9 +134,6 @@ var gameDataBase = {
   limeDiseaseLakes: 0,
   limeDiseaseLakesCurrent: 0,
   
-  skepticismTotalSwamp: 5,
-  skepticismCurrent: 0,
-  
   civiliansPlaced: 0,
   civiliansTotal: 2, 
   
