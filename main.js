@@ -226,7 +226,7 @@ updateValues()
 
 
 function payEmployee() {
-	if(gameData.coins >= gameData.employeeWage && gameData.employeeWorking < 10)
+	if(gameData.coins >= gameData.employeeWage && gameData.employeeWorking < gameData.employeeWorkingMax)
 	{
 		gameData.employeeWorking += 1
 		gameData.coins -= gameData.employeeWage

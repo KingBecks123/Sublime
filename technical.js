@@ -47,6 +47,7 @@ var gameDataBase = {
   employees: 0,
   maxEmployees: 1,
   employeeWorking: 0,
+  employeeWorkingMax: 10,
   deliveryType: 0,
   deliveryTypeToggle: 0,
   deliveryPrice: 2,

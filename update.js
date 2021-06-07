@@ -41,6 +41,11 @@ function updateValues() {
 		gameData.respect = 0
 	}
 	
+	if (gameData.employeeWorking > gameData.employeeWorkingMax)
+	{
+		gameData.employeeWorking = gameData.employeeWorkingMax
+	}
+	
 	overMaximum("baskets")
 	overMaximum("juicers")
 	overMaximum("peelers")
@@ -121,7 +126,7 @@ function updateValues() {
 	
 	if(gameData.employeeWorking > 0)
 	{
-		update("workingEmployee", "Working time left: " + gameData.employeeWorking + " minutes.")
+		update("workingEmployee", "Working time left: " + gameData.employeeWorking + " / 10 minutes.")
 	}
 
 	else
