@@ -303,11 +303,19 @@
 				 <div id="buyARobe" class="basicDiv">			
 				 
 					 <button class="specialButton", id="robeButton", onclick="buyARobe()">Buy A Robe</button>
-					 <p class="basicText",  id="knifeInfo">Guaranteed to make you look rich!</p>	
-					 <p class="basicText",  id="knifeInfo">Respect +50</p>	
-					 <p class="basicText",  id="knifeInfo">Price: 1000 Coins</p>	
+					 <p class="basicText">Guaranteed to make you look rich!</p>	
+					 <p class="basicText">Respect +50</p>	
+					 <p class="basicText">Price: 1000 Coins</p>	
 					 
-				 </div>		 
+				 </div>	
+
+				 <div id="unlockDiseaseAreaSwamp" class="basicDiv">			
+				 
+					 <button class="specialButton", id="unlockDiseaseAreaSwampButton", onclick="unlockDiseaseAreaSwamp()">Unlock Swamp Area</button>
+					 <p class="basicText">The civilians in the swamp have lime disease too!</p>	
+					 <p class="basicText">Price: 10000 Coins</p>	
+					 
+				 </div>					 
  
 			</div>	
 
@@ -573,7 +581,12 @@
 		</div>	 
 		
 		<div class="basicDiv">	
-			<p class="basicTextSize" id="textForRespect" style="color:#FF00AA;background-color:#000000">0 Respect</p>	
+			<p class="basicTextSize" id="textForRespect" style="color:#FF00AA;background-color:#000000">0 Respect</p>
+			
+			<div class="unlockDiseaseAreaSwamp">				
+				<p class="basicTextSize" id="textForSkepticism" style="color:#BBBBBB;background-color:#000000">0 Skepticism</p>	
+			</div>	
+			
 		</div>
 
 			
@@ -582,22 +595,55 @@
 			
 			<div class="basicDiv" id="diseaseControl">
 					<p class="basicText">Disease Control</p>
-					<p class="basicText">Help the citizens quarantine from Lime Disease</p>
-					 <button class="specialButton" id="startDiseaseTask" onclick="diseaseControlTask()">Start Task</button>	
+					
+					<div class="unlockDiseaseAreaSwamp">	
+						<p class="basicText" id="textForLakes">0 Lakes</p>
+					</div>	
+					
+					<div class="limeDiseaseControlInfo">		
+						<p class="basicText">Help the citizens quarantine from Lime Disease</p>
+						
+					<div class="unlockDiseaseAreaSwamp">							
+						<p class="basicText">For every lake used, gain / lose 1 respect</p>		
+						<p class="basicText">The swamp people are skeptical of your methods!</p>							
+						<p class="basicText">Automatically lose respect for starting any task for them.</p>							
+
+					</div>					
+						
+						
+						
+						
+					</div>
+					
+					<div class="unlockDiseaseAreaSwamp">				
+						<button class="basicButtonSize" onclick="decreaseLakes()", style="width:120px;background:lightgray;">Decrease Lakes</button>
+						<button class="basicButtonSize" onclick="increaseLakes()", style="width:120px;background:lightgray;">Increase Lakes</button>
+					</div>	
+
+
+					 
+					<button class="specialButton" id="startDiseaseTask" style="display:inline-block" onclick="diseaseControlTask()">Start Task</button>	
+					<button class="basicButtonSize" id="limeDiseaseControlInfoButton", onclick="toggle('limeDiseaseControlInfoToggle')">Info</button>
+
+					 
+					 
+					 
+					 
 			</div>	 
 		
 			<div class="basicDiv" id="diseaseControlStart">
 			
+				<div class="limeDiseaseInfo">	
 					<p class="basicText">Disease type: Lime Disease</p>
 					<p class="basicText">Goal: Dont let it spread from any civilian to any other</p>
-
-					
-					
-					<p class="basicText" id="numberOfCivilians">Number of civilians: 2</p>
-					 <button class="specialButton" onclick="startSimulation()">Start Simulation</button>	
-					 <button class="specialButton" onclick="diseaseControlReset()">Reset</button>	
-					 <button class="specialButton" onclick="checkResults()">Check Results</button>	
-
+				</div>	 
+				
+				
+				<p class="basicText" id="numberOfCivilians">Number of civilians: 2</p>
+				<button class="specialButton" onclick="startSimulation()">Start Simulation</button>	
+				<button class="specialButton" onclick="diseaseControlReset()">Reset</button>	
+				<button class="specialButton" onclick="checkResults()">Check Results</button>	
+				<button class="basicButtonSize" id="limeDiseaseInfoButton", onclick="toggle('limeDiseaseInfoToggle')">Info</button>
 
 			</div>	 
 
@@ -635,6 +681,8 @@
 			<div class="basicDiv">
 			
 				<p class="basicTextSize" id="50RespectMilestone">50 Respect: Allow entrance to the Special Shopping District</p>	
+				<p class="basicTextSize" id="1000RespectMilestone">1000 Respect: Unlock Scientific Research</p>	
+
 			
 			</div>	 
 			
@@ -734,13 +782,13 @@
 
 	 </div>	
 	 
-	<script src="aesthetic.js?v=32" charset="utf-8" type="text/javascript"></script>
-	<script src="myfunctions.js?v=32" charset="utf-8" type="text/javascript"></script>
-	<script src="main.js?v=32" charset="utf-8" type="text/javascript"></script>
-	<script src="technical.js?v=32" charset="utf-8" type="text/javascript"></script>
-	<script src="bars.js?v=32" charset="utf-8" type="text/javascript"></script>	
-	<script src="update.js?v=32" charset="utf-8" type="text/javascript"></script>	
-	<script src="oldupdatefixes.js?v=32" charset="utf-8" type="text/javascript"></script>	
+	<script src="aesthetic.js?v=33" charset="utf-8" type="text/javascript"></script>
+	<script src="myfunctions.js?v=33" charset="utf-8" type="text/javascript"></script>
+	<script src="main.js?v=33" charset="utf-8" type="text/javascript"></script>
+	<script src="technical.js?v=33" charset="utf-8" type="text/javascript"></script>
+	<script src="bars.js?v=33" charset="utf-8" type="text/javascript"></script>	
+	<script src="update.js?v=33" charset="utf-8" type="text/javascript"></script>	
+	<script src="oldupdatefixes.js?v=33" charset="utf-8" type="text/javascript"></script>	
 	
   </body>
 </html>

@@ -126,6 +126,14 @@ var gameDataBase = {
   diseaseControlFinished: 1,
   respect: 0,
   simulationTime: 0,
+  unlockDiseaseAreaSwamp: 0,
+  limeDiseaseInfoToggle: 1,
+  limeDiseaseControlInfoToggle: 1,
+  limeDiseaseLakes: 0,
+  limeDiseaseLakesCurrent: 0,
+  
+  skepticismTotalSwamp: 5,
+  skepticismCurrent: 0,
   
   civiliansPlaced: 0,
   civiliansTotal: 2, 

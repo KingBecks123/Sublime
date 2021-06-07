@@ -57,10 +57,10 @@ function checkResults() {
 		
 		for (y = 0; y < 4; y++) {
 			
-			isACivilianThere = (gameData.diseaseArray[x][y])
+			tileType = (gameData.diseaseArray[x][y])
 			
 			
-			if ( isACivilianThere == 3)
+			if ( tileType == 3)
 			{
 
 				diseaseControlFailed = 1
@@ -76,17 +76,23 @@ function checkResults() {
 	{
 		
 		gameData.diseaseControlFinished = 1
-		diseaseControlReset()		
+		diseaseControlReset("hard")		
 		
 		
 		if ( diseaseControlFailed == 0)
 		{
-			gameData.respect += 1
+			gameData.respect += (gameData.limeDiseaseLakes + 1)
 		}
 		else
 		{
-			gameData.respect -= 1
+			gameData.respect -= (gameData.limeDiseaseLakes + 1)
 		}
+	}
+	else
+	{
+		gameData.diseaseControlFinished = 1
+		diseaseControlReset("hard")	
+		gameData.respect -= (gameData.limeDiseaseLakes + 1)
 	}
 
 	
@@ -99,10 +105,12 @@ updateValues()
 
 function mapTile(x, y) {
 	
+	
 	whichButton = "mapTile-" + x + "-" + y
 	isACivilianThere = (gameData.diseaseArray[x][y])
 	
-	
+	if ( gameData.diseaseControlFinished == 0)
+	{
 		if (isACivilianThere == 0 && gameData.civiliansPlaced < gameData.civiliansTotal)
 		{
 			gameData.diseaseArray[x][y] = 1
@@ -114,29 +122,51 @@ function mapTile(x, y) {
 			gameData.diseaseArray[x][y] = 0
 			gameData.civiliansPlaced -= 1
 		}
+	}
 
 updateValues()
 }
 
 function diseaseControlTask() {
 	
-	diseaseControlReset()
+	diseaseControlReset("soft")
 	gameData.diseaseControlFinished = 0
 	gameData.civiliansTotal = beckyRandom(5)
+	gameData.respect -= gameData.skepticism
 	
 	
+	for (gameData.limeDiseaseLakesCurrent = 0; gameData.limeDiseaseLakesCurrent < gameData.limeDiseaseLakes; gameData.limeDiseaseLakesCurrent) {
+	
+		x = beckyRandom(4) - 1
+		y = beckyRandom(4) - 1
+		
+		if ( gameData.diseaseArray[x][y] !== 4)
+		{
+		
+			gameData.diseaseArray[x][y] = 4
+			gameData.limeDiseaseLakesCurrent += 1
+		
+		}
+		
+	}
+
 	
 	
-updateValues()
+	updateValues()
 }
 
-function diseaseControlReset() {
+function diseaseControlReset(type) {
 	
-	  for (x = 0; x < 4; x++) {
-		 	  for (y = 0; y < 4; y++) {
-					gameData.diseaseArray[x][y] = 0
-				}		
-	  }		
+	for (x = 0; x < 4; x++) {
+		
+		for (y = 0; y < 4; y++) {
+			
+			if (gameData.diseaseArray[x][y] !== 4 || type == "hard")
+			{
+				gameData.diseaseArray[x][y] = 0
+			}
+		}		
+	}		
 gameData.civiliansPlaced = 0
 gameData.simulationTime = 0
 updateValues()
@@ -196,7 +226,7 @@ updateValues()
 
 
 function payEmployee() {
-	if(gameData.coins >= gameData.employeeWage)
+	if(gameData.coins >= gameData.employeeWage && gameData.employeeWorking < 10)
 	{
 		gameData.employeeWorking += 1
 		gameData.coins -= gameData.employeeWage
@@ -325,6 +355,15 @@ function buyARobe() {
 		gameData.coins -= 1000
 		gameData.silkRobe = 1
 		gameData.respect += 50
+	}
+updateValues()
+}
+
+function unlockDiseaseAreaSwamp() {
+	if(gameData.coins >= 10000)
+	{
+		gameData.coins -= 10000
+		gameData.unlockDiseaseAreaSwamp = 1
 	}
 updateValues()
 }
@@ -518,18 +557,6 @@ function storagePeelersUnlock() {
 updateValues()
 }
 
-function buyShoes() {
-	if(gameData.coins >= 100)
-	{
-		gameData.coins -= 100
-		divVisibility ("exploreButton", "visible")
-		tabs ("shoesButton", "none")
-		tabs ("shoesInfo", "none")
-		
-	}
-updateValues()
-}
-
 function juiceLimesToggle() {
 	gameData.limeTypeToJuice = 0
 updateValues()
@@ -564,8 +591,25 @@ function increaseJuiceSold() {
 	if (gameData.juiceBulkAmountToggle < 500)
 		{
 			gameData.juiceBulkAmountToggle += 1
-			updateValues()
 		}
+			updateValues()
+}
+	
+function decreaseLakes() {
+	if(gameData.limeDiseaseLakes > 0 && gameData.diseaseControlFinished == 1)
+	{
+		gameData.limeDiseaseLakes -= 1
+	}
+	
+updateValues()
+}
+
+function increaseLakes() {
+	if (gameData.limeDiseaseLakes < 16 && gameData.diseaseControlFinished == 1)
+		{
+			gameData.limeDiseaseLakes += 1
+		}
+					updateValues()
 }
 	
 function moveBasket() {

@@ -29,6 +29,32 @@ function overMaximum(variable){
 	
 }
 
+
+function showOrHideClass(input){
+	
+	
+	variable = "gameData." + input
+	classToChange = document.getElementsByClassName(input)
+	
+	
+	
+	
+	if(	eval(variable + " == 1 ") )
+	{
+		  for (i = 0; i < classToChange.length; i++) {
+			classToChange[i].style.display = "block";
+			}
+	}
+	else
+	{
+		  for (i = 0; i < classToChange.length; i++) {
+			classToChange[i].style.display = "none";
+			}
+	}
+}
+
+
+
 function basicToggle(input, type){
 
 	info = input + type		
@@ -393,7 +419,7 @@ function loadStuff(savegame){
   if (savegame !== null) {
 		Object.assign(gameData, savegame);
 		backwardsCompatibility(savegame.versionNumber)
-		gameData.versionNumber = 32
+		gameData.versionNumber = 33
 		update("newInfo", "Game Loaded.")
 		updateValues()
 		updateAfterLoad()

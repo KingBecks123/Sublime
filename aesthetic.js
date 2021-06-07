@@ -28,9 +28,12 @@ function addAesthetic(){
 	twoToggleButtons('deliveryToggleExpressButton', 'deliveryToggleStandardButton', gameData.deliveryTypeToggle)	
 	twoToggleButtons('foodToggleRottenLimesButton', 'foodToggleLimesButton', gameData.foodTypeToggle)	
 	twoToggleButtons('juicePeeledLimesToggleButton', 'juiceLimesToggleButton', gameData.limeTypeToJuice)		
-	
+
+	showOrHideClass("unlockDiseaseAreaSwamp")	
 	
 	basicToggle("skill", "Info")
+	basicToggle("limeDisease", "Info")
+	basicToggle("limeDiseaseControl", "Info")
 	basicToggle("teach", "Info")	
 	basicToggle("employeeStats", "Info")
 	basicToggle("basket", "Info")
@@ -52,27 +55,31 @@ function addAesthetic(){
 		 	  for (y = 0; y < 4; y++) {
 		 
 					whichButton = "mapTile-" + x + "-" + y
-					isACivilianThere = (gameData.diseaseArray[x][y])
+					tileType = (gameData.diseaseArray[x][y])
 
 					
-					if (isACivilianThere == 0)
+					if (tileType == 0)
 					{
 						colorChanger(whichButton, accent4)	
 					}
 					
-					else if (isACivilianThere == 1)
+					else if (tileType == 1)
 					{
 						colorChanger(whichButton, limesRelatedAccent)	
 					}
 					
-					else if (isACivilianThere == 2)
+					else if (tileType == 2)
 					{
 						colorChanger(whichButton, "#FF999A")	
 					}
 					
-					else if (isACivilianThere == 3)
+					else if (tileType == 3)
 					{
 						colorChanger(whichButton, "#565656")	
+					}
+					else if (tileType == 4)
+					{
+						colorChanger(whichButton, "#4DFFFF")	
 					}
 		}		
 	  }		 
@@ -105,12 +112,21 @@ function addAesthetic(){
 
 
 
+
 	if(gameData.respect >= 50)
 	{
 		colorChanger('50RespectMilestone', limesRelatedAccent)	
 	}
 	else{
 		colorChanger('50RespectMilestone', grayAccentLight)	
+	}
+	
+	if(gameData.respect >= 1000)
+	{
+		colorChanger('1000RespectMilestone', limesRelatedAccent)	
+	}
+	else{
+		colorChanger('1000RespectMilestone', grayAccentLight)	
 	}
 	
 	

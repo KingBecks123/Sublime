@@ -36,6 +36,11 @@ function updateValues() {
 		gameData.limes = 0
 	}	
 	
+	if (gameData.respect < 0)
+	{
+		gameData.respect = 0
+	}
+	
 	overMaximum("baskets")
 	overMaximum("juicers")
 	overMaximum("peelers")
@@ -83,6 +88,15 @@ function updateValues() {
 	  
 
 	}	
+
+	if(gameData.limeDiseaseLakes == 0)
+	{
+		gameData.skepticismCurrent = 0
+	}
+	else
+	{
+		gameData.skepticismCurrent = gameData.skepticismTotalSwamp
+	}
 	
 	gameData.limesInBaskets = Math.floor(gameData.baskets * (gameData.basketBar / 4))
 	
@@ -100,6 +114,8 @@ function updateValues() {
     update("limesInBaskets", gameData.limesInBaskets + " Limes")
 	
     update("textForRespect", gameData.respect + " Respect")
+    update("textForLakes", gameData.limeDiseaseLakes + " Lakes")
+    update("textForSkepticism", gameData.skepticismCurrent + " Skepticism")
 	
     update("currentSpeedEmployee", "Current speed: " + gameData.employeeCurrentSpeed + " limes per minute.")
 	
@@ -232,6 +248,7 @@ function updateValues() {
 		tabs("upgradeBigGloves", "block")
 		gameData.limesPerClick = 2 + gameData.difficulty * 5
 	}
+	
 
 
 	if(gameData.diseaseControlFinished == 1)
@@ -583,6 +600,11 @@ function updateValues() {
 	if(gameData.silkRobe >= 1)
 	{
 		tabs("buyARobe", "none")		
+	}
+
+	if(gameData.unlockDiseaseAreaSwamp >= 1)
+	{
+		tabs("unlockDiseaseAreaSwamp", "none")		
 	}
 
 	if(gameData.juicers >= 2)
