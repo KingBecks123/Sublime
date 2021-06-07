@@ -339,13 +339,11 @@ function updateValues() {
 			tabs ("buyFourthMapDiv", "none")
 			tabs ("tasksButton", "block")
 		}
-
-
 	}
 	else
 	{
 		tabs("travellingArea", "none")
-		tabs("fasterDeliveryDiv", "none")
+		tabs("fasterTransportDiv", "none")
 	}
 	
 	
