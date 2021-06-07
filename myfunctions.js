@@ -1,3 +1,33 @@
+
+function ifMaxDarkGray(x){
+	
+	addS = "gameData." + x + "s"
+	max = "gameData." + x + "sMax"
+	capitalised = jsUcfirst(x)
+	button = "buyA" + capitalised + "Button"
+	
+	
+	if( eval (addS + "==" + max) )
+	{
+		colorChanger(button, grayAccent)	
+	}
+	else{
+		colorChanger(button, accent4)	
+	}
+
+}
+	
+	
+
+function hide(x){
+	tabs(x, "none")
+}
+
+function showBasicDiv(x){
+	tabs(x, "block")
+}
+
+
 function showOrHideSkill(x){
 
 	level = "gameData." + x + "SkillLevel"

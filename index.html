@@ -132,7 +132,10 @@
 		<button class="basicButton" id="aestheticButton" onclick="switchValue('aesthetic')" style="display:none">Aesthetic: Modern</button>
 		<button class="specialButton" id="barPercentButton" onclick="switchValue('showBarPercent')">Bar Percent Shown</button>
 		<button class="specialButton" id="autosaveButton" onclick="switchValue('autosave')">Autosave Is Off</button>
-		<button class="specialButton" id="hideCompletedSkillsButton" onclick="switchValue('hideCompletedSkills')">Completed Skills Shown</button>
+		<button class="specialButton" id="hideCompletedSkillsButton" onclick="switchValue('hideCompletedSkills')">Completed Skills Shown</button><br>
+		<button class="specialButton" id="hideMaxedPurchasesButton" onclick="switchValue('hideMaxedPurchases')">Maxed Purchases Shown</button>
+
+
 		
 		<p class="basicText" id="exportCode", style="background-color:#bfbfbf;width:300px;word-wrap: break-word;-webkit-user-select: all;-ms-user-select: all;user-select: all;">Export Code</p>
 	</div>	 
@@ -239,19 +242,19 @@
 				 
 				 <div id="bulkBuyDiv">	
 						 <div class="basicDiv", id="bulkBuyJuicersDiv">			
-							 <button class="specialButton" onclick="bulkBuyJuicersUnlock()">Bulk Juicers</button>
+							 <button class="specialButton" onclick="basicBuy('bulkBuyJuicersUnlock', 200)">Bulk Juicers</button>
 							 <p class="basicText">Purchase 10 juicers at once</p>	
 							 <p class="basicText">Price: 200 Coins</p>	
 						 </div>		
 
 						 <div class="basicDiv", id="bulkBuyPeelersDiv">			
-							 <button class="specialButton" onclick="bulkBuyPeelersUnlock()">Bulk Peelers</button>
+							 <button class="specialButton" onclick="basicBuy('bulkBuyPeelersUnlock', 200)">Bulk Peelers</button>
 							 <p class="basicText">Purchase 10 peelers at once</p>	
 							 <p class="basicText">Price: 200 Coins</p>	
 						 </div>		
 						 
-						 <div class="basicDiv", id="bulkBuyBasketsDiv">			
-							 <button class="specialButton" onclick="bulkBuyBasketsUnlock()">Bulk Baskets</button>
+						 <div class="basicDiv", id="bulkBuyBasketsDiv" style="display:block;">			
+							 <button class="specialButton" onclick="basicBuy('bulkBuyBasketsUnlock', 200)">Bulk Baskets</button>
 							 <p class="basicText">Purchase 10 baskets at once</p>	
 							 <p class="basicText">Price: 200 Coins</p>	
 						 </div>		

@@ -29,8 +29,8 @@ function addAesthetic(){
 	twoToggleButtons('foodToggleRottenLimesButton', 'foodToggleLimesButton', gameData.foodTypeToggle)	
 	twoToggleButtons('juicePeeledLimesToggleButton', 'juiceLimesToggleButton', gameData.limeTypeToJuice)		
 
-	showOrHideClass("unlockDiseaseAreaSwamp")	
-	
+	showOrHideClass("unlockDiseaseAreaSwamp")		
+
 	basicToggle("skill", "Info")
 	basicToggle("limeDisease", "Info")
 	basicToggle("limeDiseaseControl", "Info")
@@ -41,6 +41,8 @@ function addAesthetic(){
 	basicToggle("juicers", "Bulk")	
 	basicToggle("peelers", "Bulk")
 	basicToggle("baskets", "Bulk")	
+
+
 
 
 	//Map Tile
@@ -131,29 +133,9 @@ function addAesthetic(){
 	
 	
 
-	if(gameData.baskets == gameData.basketsMax)
-	{
-		colorChanger('buyABasketButton', grayAccent)	
-	}
-	else{
-		colorChanger('buyABasketButton', accent4)	
-	}
-
-	if(gameData.juicers == gameData.juicersMax)
-	{
-		colorChanger('buyAJuicerButton', grayAccent)	
-	}
-	else{
-		colorChanger('buyAJuicerButton', accent4)		
-	}
-
-	if(gameData.peelers == gameData.peelersMax)
-	{
-		colorChanger('buyAPeelerButton', grayAccent)
-	}
-	else{
-		colorChanger('buyAPeelerButton', accent4)
-	}
+	ifMaxDarkGray("basket")
+	ifMaxDarkGray("juicer")
+	ifMaxDarkGray("peeler")
 
 	if(gameData.lookAround == 3)
 	{
@@ -172,7 +154,8 @@ function addAesthetic(){
 	  for (i = 0; i < x.length; i++) {
 		x[i].style.backgroundColor = accent0;
 		x[i].style.padding = "5px 5px 5px 5px";
-		x[i].style['margin'] = "10px 5px 10px 5px";
+		x[i].style['margin'] = "10px 5px 10px 5px";	
+		
 	  }
 
 	//Basic Div Size

@@ -501,33 +501,6 @@ function bulkBuyUnlock() {
 updateValues()
 }
 
-function bulkBuyJuicersUnlock() {
-	if(gameData.coins >= 200)
-	{
-		gameData.coins -= 200
-		gameData.bulkBuyJuicersUnlock = 1
-	}
-updateValues()
-}
-
-function bulkBuyPeelersUnlock() {
-	if(gameData.coins >= 200)
-	{
-		gameData.coins -= 200
-		gameData.bulkBuyPeelersUnlock = 1
-	}
-updateValues()
-}
-
-function bulkBuyBasketsUnlock() {
-	if(gameData.coins >= 200)
-	{
-		gameData.coins -= 200
-		gameData.bulkBuyBasketsUnlock = 1
-	}
-updateValues()
-}
-
 function storageUnlock() {
 	if(gameData.coins >= 200)
 	{

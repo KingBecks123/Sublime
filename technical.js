@@ -113,6 +113,7 @@ var gameDataBase = {
   versionNumber: 0,
   
   hideCompletedSkills: 0,
+  hideMaxedPurchases: 0,
   fasterTransport: 0,
   
   sharperPeelers: 0,
