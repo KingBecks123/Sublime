@@ -132,7 +132,7 @@ function diseaseControlTask() {
 	diseaseControlReset("soft")
 	gameData.diseaseControlFinished = 0
 	gameData.civiliansTotal = beckyRandom(5)
-	gameData.respect -= gameData.skepticism
+	gameData.respect -= gameData.skepticismCurrent
 	
 	
 	for (gameData.limeDiseaseLakesCurrent = 0; gameData.limeDiseaseLakesCurrent < gameData.limeDiseaseLakes; gameData.limeDiseaseLakesCurrent) {
