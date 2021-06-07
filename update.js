@@ -675,6 +675,22 @@ function updateValues() {
         hide("advertisingLeaflets")
 	}
 
+	if(gameData.coins >= 10)
+	{ 
+		gameData.achievement1 = 1
+	}
+	if(gameData.coins >= 100)
+	{ 
+		gameData.achievement2 = 1
+	}
+	if(gameData.coins >= 1000)
+	{ 
+		gameData.achievement3 = 1
+	}
+	if(gameData.coins >= 10000)
+	{ 
+		gameData.achievement4 = 1
+	}
 
 	moveBar("learnANewSkill")
 

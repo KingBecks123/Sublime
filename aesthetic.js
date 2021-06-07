@@ -90,28 +90,24 @@ function addAesthetic(){
 		  
 		  
 		  
-	if(gameData.coins >= 10)
+
+
+	if(gameData.achievement1 == 1)
 	{ 
 		document.getElementById('coinsAchievement').style.backgroundColor = limesRelatedAccent;
-		gameData.achievement1 = 1
 	}
-	if(gameData.coins >= 100)
+	if(gameData.achievement2 == 1)
 	{ 
 		document.getElementById('coinsAchievement2').style.backgroundColor = limesRelatedAccent;
-		gameData.achievement2 = 1
 	}
-	if(gameData.coins >= 1000)
+	if(gameData.achievement3 == 1)
 	{ 
 		document.getElementById('coinsAchievement3').style.backgroundColor = limesRelatedAccent;
-		gameData.achievement3 = 1
 	}
-	if(gameData.coins >= 10000)
+	if(gameData.achievement4 == 1)
 	{ 
 		document.getElementById('coinsAchievement4').style.backgroundColor = limesRelatedAccent;
-		gameData.achievement4 = 1
 	}
-
-
 
 
 
