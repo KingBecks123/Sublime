@@ -342,6 +342,7 @@ function updateValues() {
 	}
 	else
 	{
+		tabs ("buyFourthMapDiv", "none")
 		tabs("travellingArea", "none")
 		tabs("fasterTransportDiv", "none")
 	}
@@ -361,6 +362,7 @@ function updateValues() {
 	if(gameData.maps >= 2 && gameData.bulkBuyUnlock == 0)
 	{
 		tabs("bulkBuyUnlockDiv", "inline-block")
+		tabs("bulkBuyDiv", "none")
 	}
 	else if(gameData.maps < 2 && gameData.bulkBuyUnlock == 1)
 	{
@@ -379,6 +381,7 @@ function updateValues() {
 	}
 	else if(gameData.bulkBuyUnlock == 0 && gameData.maps < 2)
 	{
+		tabs("bulkBuyDiv", "none")
 		tabs("bulkBuyUnlockDiv", "none")			
 	}
 
@@ -557,7 +560,7 @@ function updateValues() {
 			tabs ("buyAnotherMapDiv", "none")
 	}
 
-	if(gameData.maps >= 3 || gameData.villageNumber > 0)
+	if(gameData.maps >= 3 || gameData.villageNumber > 1)
 	{		
 		tabs ("travelButton", "inline-block")
 	}
