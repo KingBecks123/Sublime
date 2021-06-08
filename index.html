@@ -369,6 +369,7 @@
 					 <p class="basicText" style="display:block;">Travelling</p>	
 					 <p class="basicText" style="display:block;">Leave your items behind in search of a better town</p>	
 					 <p class="basicText" style="display:block;">New towns have new opportunities!</p>	
+					 <p class="basicText" style="display:block;">All purchases with red buttons stay with you after travels</p>	
 
 				</div>	
 				<div class="basicDiv">
@@ -404,27 +405,35 @@
 			</div>			
 
 			<div class="basicDiv" id="buyBigGloves">
-				<button class="specialButton" onclick="buyBigGloves()">Buy Big Gloves</button>	
+				<button class="specialButtonTravel" onclick="buyBigGloves()">Buy Big Gloves</button>	
 				 <p class="basicText" style="display:block;">Helps you pick up double limes!</p>	
 				 <p class="basicText" style="display:block;">Price: 5 Mega Coins</p>	
 			</div>
 
 			<div class="basicDiv" id="hireANutritionist">
-				<button class="specialButton" onclick="hireANutritionist()">Hire a nutritionist</button>	
+				<button class="specialButtonTravel" onclick="hireANutritionist()">Hire a nutritionist</button>	
 				 <p class="basicText" style="display:block;">Rank: Novice</p>	
 				 <p class="basicText" style="display:block;">Price: 5 Mega Coins</p>	
 			</div>	
 			
 			<div class="basicDiv" id="increaseCreditScore">
-				<button class="specialButton" onclick="increaseCreditScore()">Increase credit score</button>	
+				<button class="specialButtonTravel" onclick="increaseCreditScore()">Increase credit score</button>	
 				 <p class="basicText" style="display:block;">Store up to 50 Mega Coins in your bank</p>	
 				 <p class="basicText" style="display:block;">Price: 2 Mega Coins</p>	
 			</div>
 
-
+			<div class="basicDiv" id="betterTraining">
+				<button class="specialButtonTravel" onclick="buyBetterTraining()">Better Training</button>	
+				 <p class="basicText" style="display:block;">Increases maximum applicant speed by 100%</p>	
+				 <p class="basicText" style="display:block;">Price: 2 Mega Coins</p>	
+			</div>
+			
+			
+			
+			
 
 			<div class="basicDiv" style="display:none;">
-				<button class="specialButton" onclick="buyEntrepreneurialCertificate()">Entrepreneurial Certificate</button>	
+				<button class="specialButtonTravel" onclick="buyEntrepreneurialCertificate()">Entrepreneurial Certificate</button>	
 				 <p class="basicText" style="display:block;">Access more Mega Coin upgrades</p>	
 				 <p class="basicText" style="display:block;">Price: 500 Mega Coins</p>	
 			</div>
@@ -572,6 +581,13 @@
 				<p class="basicText">Big Gloves</p>
 				<p class="basicText">Helps you pick up double limes!</p>
 		</div>	
+		
+		<div class="basicDiv" id="upgradeBetterTraining">
+				<p class="basicText">Better Training</p>
+				<p class="basicText">Increases maximum applicant speed by 100%</p>
+				<p class="basicText" id="textForBetterTraining">Current increase: 100%</p>
+
+		</div>			
 		
 	</div>	
 	
@@ -780,13 +796,13 @@
 
 	 </div>	
 	 
-	<script src="aesthetic.js?v=38" charset="utf-8" type="text/javascript"></script>
-	<script src="myfunctions.js?v=38" charset="utf-8" type="text/javascript"></script>
-	<script src="main.js?v=38" charset="utf-8" type="text/javascript"></script>
-	<script src="technical.js?v=38" charset="utf-8" type="text/javascript"></script>
-	<script src="bars.js?v=38" charset="utf-8" type="text/javascript"></script>	
-	<script src="update.js?v=38" charset="utf-8" type="text/javascript"></script>	
-	<script src="oldupdatefixes.js?v=38" charset="utf-8" type="text/javascript"></script>	
+	<script src="aesthetic.js?v=39" charset="utf-8" type="text/javascript"></script>
+	<script src="myfunctions.js?v=39" charset="utf-8" type="text/javascript"></script>
+	<script src="main.js?v=39" charset="utf-8" type="text/javascript"></script>
+	<script src="technical.js?v=39" charset="utf-8" type="text/javascript"></script>
+	<script src="bars.js?v=39" charset="utf-8" type="text/javascript"></script>	
+	<script src="update.js?v=39" charset="utf-8" type="text/javascript"></script>	
+	<script src="oldupdatefixes.js?v=39" charset="utf-8" type="text/javascript"></script>	
 	
   </body>
 </html>

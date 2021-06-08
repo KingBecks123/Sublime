@@ -202,6 +202,13 @@ function addAesthetic(){
 		x[i].style.backgroundColor = accent4;
 		x[i].style['margin'] = "5px 5px 5px 5px";
 	  }
+
+	//Special Button Travel
+	  var x = document.getElementsByClassName("specialButtonTravel");
+	  for (i = 0; i < x.length; i++) {
+		x[i].style.backgroundColor = "#FF999A";
+		x[i].style['margin'] = "5px 5px 5px 5px";
+	  }
 	  
 
 

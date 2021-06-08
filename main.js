@@ -183,7 +183,7 @@ function randomizeApplication() {
 	}
 	else
 	{
-		gameData.applicantSpeed = (Math.floor(Math.random() * 10 + 1) * 100)
+		gameData.applicantSpeed = (Math.floor(Math.random() * (10 + gameData.betterTraining) + 1) * 100)
 		gameData.applicantPrice = Math.floor(Math.random() * 200)
 		gameData.applicantWage = Math.floor(Math.random() * 16) + 5
 		gameData.applicantHunger = Math.floor(Math.random() * 20) + 1
@@ -404,6 +404,15 @@ function buyBigGloves() {
 updateValues()
 }
 
+function buyBetterTraining() {
+	if(gameData.megaCoins >= 2)
+	{
+		gameData.megaCoins -= 2
+		gameData.betterTraining += 1
+	}
+updateValues()
+}
+
 function hireANutritionist() {
 	if(gameData.megaCoins >= 5)
 	{
@@ -417,8 +426,27 @@ function travelToNextVillage() {
 	if(window.prompt("Are you sure? Type 'yes' if you are") == "yes")
 	{
 		megaCoinsNow = gameData.megaCoinsInBank
+		bigGlovesNow = gameData.bigGloves
+		nutritionistsNow = gameData.nutritionists
+		megaCoinsInBankMaxNow = gameData.megaCoinsInBankMax
+		betterTrainingNow = gameData.betterTraining
+		
+		
+		
+		
 		Object.assign(gameData, gameDataBase)
+		
+		
+		
 		gameData.megaCoins = megaCoinsNow
+		
+		gameData.megaCoinsInBank = megaCoinsNow
+		gameData.bigGloves = bigGlovesNow
+		gameData.nutritionists = nutritionistsNow
+		gameData.megaCoinsInBankMax = megaCoinsInBankMaxNow
+		gameData.betterTraining = betterTrainingNow
+
+
 		gameData.villageNumber = 2
 		saveGame()		
 		location.reload();

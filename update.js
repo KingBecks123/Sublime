@@ -140,6 +140,9 @@ function updateValues() {
 		{
 			    update("application", "Pin applications here")
 		}
+
+	update("textForBetterTraining", "Current increase: " + gameData.betterTraining + "00%")
+
 		
 	update("speedEmployee", "Speed: " + gameData.employeeSpeed + "% of what I'm taught.")
 	update("wageEmployee", "Wages: " + gameData.employeeWage + " Coins per minute.")
@@ -243,6 +246,15 @@ function updateValues() {
 		hide("buyBigGloves")
 		tabs("upgradeBigGloves", "block")
 		gameData.limesPerClick = 2 + gameData.difficulty * 5
+	}
+	
+	if(gameData.betterTraining > 0)
+	{
+		showBasicDiv("upgradeBetterTraining")
+	}
+	else
+	{
+		hide("upgradeBetterTraining")
 	}
 	
 
