@@ -297,6 +297,15 @@ function advertisingBillboard() {
 updateValues()
 }
 
+function getLimesButton() {
+	
+	if(gameData.autoCollectingBar == 0 || gameData.autoCollectingBar == 100)
+	{
+		getLimes()
+	}
+	
+}
+
 
 
 function getLimes() {

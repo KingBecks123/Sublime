@@ -111,6 +111,18 @@ function addAesthetic(){
 
 
 
+	if(gameData.autoCollectingBar == 0 || gameData.autoCollectingBar == 100)
+	{
+		colorChanger("pickUpLimes", limesRelatedAccent)
+	}
+	else
+	{
+		colorChanger("pickUpLimes", grayAccent)
+	}	
+	
+	
+	
+
 	if(gameData.respect >= 50)
 	{
 		colorChanger('50RespectMilestone', limesRelatedAccent)	

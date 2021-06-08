@@ -173,7 +173,7 @@ function updateValues() {
 	checkShowNonVariable(gameData.baskets, "forestButton")
 	checkShowNonVariable(gameData.hasGottenJuice, "juiceMarket")
 
-
+	moveBar("autoCollecting")
 	moveBar("juicer")
 	moveBar("delivery")
 	moveBar("advertise")
@@ -233,6 +233,10 @@ function updateValues() {
 	{
 		tabs("entrepreneurialCertificates1", "block")	
 	}
+
+
+
+	
 	
 	
 	if(gameData.bigGloves == 0)

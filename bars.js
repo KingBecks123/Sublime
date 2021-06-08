@@ -81,6 +81,33 @@ function eatBar() {
 	basicBarSkill("eat")
 }
 
+
+
+function autoCollecting() {
+	if( gameData.autoCollectingBar == 100 || gameData.autoCollectingBar == 0 )
+	{
+		barStartGranular("autoCollecting")
+	}
+}
+
+function autoCollectingBar() {
+	if(gameData.autoCollectingBar <= 99)
+	{
+		gameData.autoCollectingBar += 1;
+		setTimeout(autoCollectingBar, 100)
+	}
+	
+	if(gameData.autoCollectingBar % 5 == 0)
+	{
+		getLimes()
+	}
+	
+updateValues()
+}
+
+
+
+
 function learnANewSkill() {
 	if(gameData.learnANewSkill <= 2 || (gameData.tomes == 1 && gameData.learnANewSkill <= 3))
 		{

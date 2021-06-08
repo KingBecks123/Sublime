@@ -60,8 +60,12 @@ var gameDataBase = {
   advertisingSpeed: 1,
   aesthetic: 0,
   foodTypeToggle: 1,
+  
   eat: 0,
   eatBar: 0,
+  
+  autoCollectingBar: 0,
+
   skillInfoToggle: 1,
   hasGottenJuice: 0,
   foodType: 0,
