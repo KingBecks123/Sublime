@@ -146,10 +146,10 @@ function rottenWisdomBar() {
 }
 
 function learnANewSkillBar() {
-	if(gameData.learnANewSkillBar <= 99)
+	if(gameData.learnANewSkillBar < 100)
 	{
-		gameData.learnANewSkillBar += 1;
-		setTimeout(learnANewSkillBar, 100 / gameData.tickspeed)
+		gameData.learnANewSkillBar += 0.1;
+		setTimeout(learnANewSkillBar, 10 / gameData.tickspeed)
 	}
 	else
 	{

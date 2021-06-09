@@ -1,5 +1,6 @@
 function updateAfterLoad(){
 		restartBar("learnANewSkill")
+		restartBar("autoCollecting")
 		restartBar("rottenWisdom")
 		restartBar("limebidextrous")
 		restartBar("knifebidextrous")
