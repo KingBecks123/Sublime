@@ -440,6 +440,10 @@ function travelToNextVillage() {
 		megaCoinsInBankMaxNow = gameData.megaCoinsInBankMax
 		betterTrainingNow = gameData.betterTraining
 		
+		autosaveNow = gameData.autosave
+		showBarPercentNow = gameData.showBarPercent
+		hideCompletedSkillsNow = gameData.hideCompletedSkills
+		hideMaxedPurchasesNow = gameData.hideMaxedPurchases
 		
 		
 		
@@ -455,6 +459,10 @@ function travelToNextVillage() {
 		gameData.megaCoinsInBankMax = megaCoinsInBankMaxNow
 		gameData.betterTraining = betterTrainingNow
 
+		gameData.autosave = autosaveNow
+		gameData.showBarPercent = showBarPercentNow
+		gameData.hideCompletedSkills = hideCompletedSkillsNow
+		gameData.hideMaxedPurchases = hideMaxedPurchasesNow
 
 		gameData.villageNumber = 2
 		saveGame()		
@@ -465,6 +473,12 @@ function travelToNextVillage() {
 function lookAround() {
 	
 	gameData.lookAroundNumber += 1	
+	
+	if(gameData.lookAround < 1)
+	{
+		update("newInfo", "Maybe you should keep searching...")
+
+	}
 	
 	if(gameData.lookAround == 0)
 	{

@@ -91,13 +91,13 @@ function autoCollecting() {
 }
 
 function autoCollectingBar() {
-	if(gameData.autoCollectingBar <= 99)
+	if(gameData.autoCollectingBar <= 99.5)
 	{
-		gameData.autoCollectingBar += 1;
-		setTimeout(autoCollectingBar, 100)
+		gameData.autoCollectingBar += 0.5;
+		setTimeout(autoCollectingBar, 50)
 	}
 	
-	if(gameData.autoCollectingBar % 5 == 0)
+	if(gameData.autoCollectingBar % 10 == 0)
 	{
 		getLimes()
 	}

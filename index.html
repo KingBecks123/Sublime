@@ -92,8 +92,8 @@
 					</div>	
 			
 		</div>	
-	<div style="float: left;padding-left: 10px;padding-right: 10px;">
-		 <button id="pickUpLimes" onclick="getLimesButton()">Collect Limes</button>
+	<div style="float: left;">
+		 <button class="basicButtonSize" id="pickUpLimes" onclick="getLimesButton()">Collect Limes</button>
 		 <button class="basicButtonSize" id="lookAroundButton" onclick="lookAround()">Look Around</button>
 		 <button id="exploreButton", style="background:#6e4417;display: none", onclick="explore()">Explore</button>
 	</div>
@@ -122,7 +122,6 @@
 
 	
 	<div id="options" class="basicDiv">	
-		<button class="specialButton" onclick="saveGame()">Save Game</button>
 
 		<button class="specialButton" onclick="exportGame()">Export Game</button>
 		<button class="specialButton" onclick="importGame()">Import Game</button><br>
@@ -131,7 +130,6 @@
 		
 		<button class="basicButton" id="aestheticButton" onclick="switchValue('aesthetic')" style="display:none">Aesthetic: Modern</button>
 		<button class="specialButton" id="barPercentButton" onclick="switchValue('showBarPercent')">Bar Percent Shown</button>
-		<button class="specialButton" id="autosaveButton" onclick="switchValue('autosave')">Autosave Is Off</button>
 		<button class="specialButton" id="hideCompletedSkillsButton" onclick="switchValue('hideCompletedSkills')">Completed Skills Shown</button><br>
 		<button class="specialButton" id="hideMaxedPurchasesButton" onclick="switchValue('hideMaxedPurchases')">Maxed Purchases Shown</button>
 
@@ -730,7 +728,7 @@
 				 <div class="skillInfo">	
 				 
 						<p class="basicText">Collect limes without the pesky clicking</p>
-						<p class="basicText">Automatically collects limes at 2/s</p>
+						<p class="basicText">Automatically collects limes at 1/s</p>
 						<p class="basicText">Disables the Collect Limes button</p>
 
 

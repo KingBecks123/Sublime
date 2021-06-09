@@ -155,7 +155,7 @@ var gameDataBase = {
   
   entrepreneurialCertificates: 0,
  
-  autosave: 0,
+  autosave: 1,
   
   //Should be 0 for normal game, 1 if you want to go faster :)
   difficulty: 0,

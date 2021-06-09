@@ -192,7 +192,7 @@ function updateValues() {
 		update("limebidextrousSkillLevel", gameData.limebidextrousSkillLevel + " / " + gameData.limebidextrousSkillLevelMax)
 		
 	moveBar("intelligence")
-		update("intelligence", (gameData.intelligenceSkillLevel / gameData.intelligenceSkillLevelMax) * 100 + "% Faster")	
+		update("intelligence", Math.floor((gameData.intelligenceSkillLevel / gameData.intelligenceSkillLevelMax) * 100) + "% Faster")	
 		update("intelligenceSkillLevel", gameData.intelligenceSkillLevel + " / " + gameData.intelligenceSkillLevelMax)
 
 	moveBar("knifebidextrous")
@@ -309,15 +309,6 @@ function updateValues() {
 	}
 
 	
-	
-	if(gameData.autosave == 0)
-	{
-		update("autosaveButton", "Autosave Is Off")
-	}
-	else
-	{
-		update("autosaveButton", "Autosave Is On")
-	}
 
 	if(gameData.fasterTransport == 0)
 	{

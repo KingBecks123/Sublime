@@ -145,14 +145,17 @@ function addAesthetic(){
 	ifMaxDarkGray("juicer")
 	ifMaxDarkGray("peeler")
 
+
 	if(gameData.lookAround == 3)
 	{
-		colorChanger('lookAroundButton', grayAccent)
+		hide('lookAroundButton')
 	}
 	else{
-		colorChanger('lookAroundButton', grayAccentLight)	
+		tabs('lookAroundButton', "inline-block")	
 	}	
+	
 
+	colorChanger('lookAroundButton', grayAccentLight)	
 	colorChanger('deliveryProgress', accent0)
 	colorChanger('deliveryBar', accent3)		
 	
