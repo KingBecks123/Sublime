@@ -113,6 +113,7 @@ function basicToggle(input, type){
 function moveBar(x) {
 	i = x + "Bar"
 	
+	
 	var elem = document.getElementById(i);
 	elem.style.width = eval("gameData." + i) + "%";
 	elem.innerHTML = "  " + Math.ceil(eval("gameData." + i))  + "%";
@@ -445,7 +446,7 @@ function loadStuff(savegame){
   if (savegame !== null) {
 		Object.assign(gameData, savegame);
 		backwardsCompatibility(savegame.versionNumber)
-		gameData.versionNumber = 41
+		gameData.versionNumber = 42
 		updateValues()
 		updateAfterLoad()
   }

@@ -41,7 +41,12 @@ function updateValues() {
 	{
 		gameData.respect = 0
 	}
-	
+
+	if (gameData.learnANewSkillBar > 100)
+	{
+		gameData.learnANewSkillBar = 100
+	}
+
 	if (gameData.employeeWorking > gameData.employeeWorkingMax)
 	{
 		gameData.employeeWorking = gameData.employeeWorkingMax
