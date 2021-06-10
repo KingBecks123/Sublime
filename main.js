@@ -471,7 +471,7 @@ function lookAround() {
 	
 	if(gameData.lookAround < 1)
 	{
-		update("newInfo", "Maybe you should keep searching...")
+		update("newInfo", "Maybe I should keep looking around...")
 
 	}
 	
