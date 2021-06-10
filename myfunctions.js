@@ -174,11 +174,20 @@ function bulkableBuyMax(x, price) {
 	}
 	else if(eval("gameData." + x + "BulkToggle") == 1)
 	{
-		if(gameData.coins >= (price * 10) && eval("gameData." + x) <= max - 10)
+		if(gameData.coins >= (price * 10))
 		{
-
-			gameData.coins -= price * 10
-			eval("gameData." + x + "+= 10")
+			if ( eval("gameData." + x) <= max - 10) 
+			{
+				gameData.coins -= price * 10
+				eval("gameData." + x + "+= 10")
+			}
+				
+			else
+				
+			{
+				gameData.coins -= price * (max - eval("gameData." + x))
+				eval("gameData." + x + " = " + max)
+			}
 
 		}
 	}
@@ -446,7 +455,7 @@ function loadStuff(savegame){
   if (savegame !== null) {
 		Object.assign(gameData, savegame);
 		backwardsCompatibility(savegame.versionNumber)
-		gameData.versionNumber = 48
+		gameData.versionNumber = 49
 		updateValues()
 		updateAfterLoad()
   }
