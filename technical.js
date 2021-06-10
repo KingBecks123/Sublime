@@ -203,14 +203,30 @@ function tab(tabby) {
   tabs("company", "none")
   tabs("forest", "none")
 
-  if (tabby == "options" && gameData.isOptionsOpen == 1){
-	  gameData.isOptionsOpen = 0
-  }
+	if (tabby == "options")
+	{
+		if(gameData.isOptionsOpen == 0)
+		{
+			gameData.isOptionsOpen = 1
+		document.getElementById(tabby).style.display = "inline-block"
+
+		}
+		else if(gameData.isOptionsOpen == 1)
+		{
+			gameData.isOptionsOpen = 0
+		}
+		
+		
+	}
+	
+	else if (tabby !== "options")
+	{
+	
+		gameData.isOptionsOpen = 0
+		document.getElementById(tabby).style.display = "inline-block"
   
-  else{ 
- 	 gameData.isOptionsOpen = 1
-	document.getElementById(tabby).style.display = "inline-block"
-  }
+	}
+
 }
 
 
