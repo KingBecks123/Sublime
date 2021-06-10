@@ -154,6 +154,17 @@ function addAesthetic(){
 		tabs('lookAroundButton', "inline-block")	
 	}	
 	
+	if(gameData.juiceBulkAmountToggle == 100 && gameData.deliveryTypeToggle < 2)
+	{
+		colorChanger('decreaseJuiceSoldButton', grayAccent)	
+		colorChanger('increaseJuiceSoldButton', grayAccent)	
+
+	}
+	else{
+		colorChanger('decreaseJuiceSoldButton', grayAccentLight)	
+		colorChanger('increaseJuiceSoldButton', grayAccentLight)	
+	}	
+	
 
 	colorChanger('lookAroundButton', grayAccentLight)	
 	colorChanger('deliveryProgress', accent0)

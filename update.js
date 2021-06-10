@@ -31,6 +31,11 @@ function updateValues() {
 	{
 		gameData.coins = 1e6
 	}
+	
+	if (gameData.deliveryBar > 99.9999)
+	{
+		gameData.deliveryBar = 100
+	}
 
 	if (gameData.limes < 0)
 	{
@@ -141,10 +146,14 @@ function updateValues() {
 			"Hunger: " + gameData.applicantHunger + " Limes Per Second." + "<br>" 
 			+ "<br>"
 				)
+				
+				
+			showBasicDiv("applicationInfo")
 		}
 		else
 		{
-			    update("application", "Pin applications here")
+			update("application", "Pin applications here")
+			hide("applicationInfo")
 		}
 
 	update("textForBetterTraining", "Current increase: " + gameData.betterTraining + "00%")
@@ -160,6 +169,9 @@ function updateValues() {
 
 
     update("numberOfCivilians", "Number Of Civilians: " + gameData.civiliansTotal)
+	
+    update("betterTrainingPrice", "Price: " + gameData.betterTraining + " Mega Coins")
+
 
 
     update("textForPeeledLimes", gameData.peeledLimes + " Peeled Limes")
@@ -440,7 +452,17 @@ function updateValues() {
 	if(gameData.advertisingLevel1 == 0)
 	{
 		hide("advertisingMethods")
-		tabs ("researchBetterAdvertising", "block")
+		
+		if ( gameData.hasAdvertised == 1)
+		{
+			tabs("researchBetterAdvertising", "block")
+		}
+		else
+		{
+			hide("researchBetterAdvertising")
+		}
+		
+		
 	}
 	else
 	{		
@@ -626,12 +648,21 @@ function updateValues() {
 		{
 			hide("buyAPeelerDiv")
 		}
-		else
+		else if (gameData.knifebidextrousSkillLevel == gameData.knifebidextrousSkillLevelMax)
 		{
 			showBasicDiv("buyAPeelerDiv")
 		}
 		
-		showBasicDiv("sharperPeelerDiv")
+		if (gameData.knifebidextrousSkillLevel == gameData.knifebidextrousSkillLevelMax && gameData.maps > 1)
+		{
+			showBasicDiv("sharperPeelerDiv")
+		}
+		else
+		{
+			hide("sharperPeelerDiv")
+		}
+		
+		
 		hide("buyKnifeDiv")
 	}
 	

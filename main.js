@@ -414,9 +414,9 @@ updateValues()
 }
 
 function buyBetterTraining() {
-	if(gameData.megaCoins >= 2)
+	if(gameData.megaCoins >= gameData.betterTraining)
 	{
-		gameData.megaCoins -= 2
+		gameData.megaCoins -= gameData.betterTraining
 		gameData.betterTraining += 1
 	}
 updateValues()
@@ -611,10 +611,19 @@ updateValues()
 }
 
 function increaseJuiceSold() {
-	if (gameData.juiceBulkAmountToggle < 500)
+	if (gameData.juiceBulkAmountToggle < 100)
 		{
 			gameData.juiceBulkAmountToggle += 1
 		}
+	else if (gameData.juiceBulkAmountToggle < 500 && gameData.fasterTransport > 0)
+		{
+			gameData.juiceBulkAmountToggle += 1
+		}
+		
+		
+		
+		
+		
 			updateValues()
 }
 	
@@ -641,3 +650,11 @@ function moveBasket() {
 	elem.innerHTML = Math.floor(gameData.basketBar)  + "%";
 }
 
+function buyABasket() {
+
+	gameData.basketBar -= gameData.basketBar / (gameData.baskets + 1)	
+	bulkableBuyMax('baskets', 2)
+
+	
+	
+}

@@ -138,6 +138,8 @@ var gameDataBase = {
   limeDiseaseLakes: 0,
   limeDiseaseLakesCurrent: 0,
   
+  hasAdvertised: 0,
+  
   betterTraining: 0,
   
   civiliansPlaced: 0,

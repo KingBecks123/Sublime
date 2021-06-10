@@ -165,7 +165,7 @@
 					<p class="basicText">Price: 20 Coins</p>
 				</div>	
 				<div class="basicDiv", id="buyABasketDiv" style="display:none;">		
-					<button class="basicButtonSize" id="buyABasketButton" onclick="bulkableBuyMax('baskets', 2)">Buy A Basket</button>
+					<button class="basicButtonSize" id="buyABasketButton" onclick="buyABasket()">Buy A Basket</button>
 					<button class="basicButtonSize" id="basketsBulkButton", style="width:80px;" onclick="toggle('basketsBulkToggle')">x10</button>
 					<p class="basicText">Price: 2 Coins</p>
 				</div>	
@@ -175,8 +175,8 @@
 					 <p class="basicText", id="sellYourJuiceAmount">You Need 1 Juice</p>
 					 <p class="basicText", id="sellYourJuiceReward">You Will Be Rewarded 1 Coin</p>
 					 
-					 <button class="basicButtonSize" onclick="decreaseJuiceSold()", style="width:120px;background:lightgray;">Decrease Juice Sold</button>
-					 <button class="basicButtonSize" onclick="increaseJuiceSold()", style="width:120px;background:lightgray;">Increase Juice Sold</button>
+					 <button class="basicButtonSize" id="decreaseJuiceSoldButton" onclick="decreaseJuiceSold()", style="width:120px;">Decrease Juice Sold</button>
+					 <button class="basicButtonSize" id="increaseJuiceSoldButton" onclick="increaseJuiceSold()", style="width:120px;">Increase Juice Sold</button>
 					 <br>
 					 <button class="basicButtonSize" id="deliveryToggleStandardButton", style="width:120px;", onclick="deliveryToggleStandard()">Standard Delivery</button>
 					 <button class="basicButtonSize" id="deliveryToggleExpressButton", style="width:120px;", onclick="deliveryToggleExpress()">Express Delivery</button>
@@ -286,7 +286,7 @@
 				 </div>
 
 				 <div class="basicDiv", id="fasterTransportDiv">			
-					 <button class="specialButton" onclick="fasterTransport()">Faster Transport</button>
+					 <button class="specialButton" onclick="fasterTransport()">Better Transport</button>
 					 <p class="basicText">Add a new delivery type</p>	
 					 <p class="basicText">Price: 2000 Coins</p>	
 				 </div>		
@@ -422,9 +422,11 @@
 			</div>
 
 			<div class="basicDiv" id="betterTraining">
-				<button class="specialButtonTravel" onclick="buyBetterTraining()">Better Training</button>	
+				<button class="specialButtonTravel" onclick="buyBetterTraining()">Search For Specialised Workers</button>	
 				 <p class="basicText" style="display:block;">Increases maximum applicant speed by 100%</p>	
-				 <p class="basicText" style="display:block;">Price: 2 Mega Coins</p>	
+				 <p class="basicText" style="display:block;">The search gets more difficult the more you find</p>	
+
+				 <p class="basicText" id="betterTrainingPrice" style="display:block;">Price: 1 Mega Coins</p>	
 			</div>
 			
 			
@@ -553,7 +555,7 @@
 				 <button class="specialButton" style="background-color:#87a7b3;", onclick="basket()">Empty Baskets</button>
 			     <button class="basicButtonSize" id="basketInfoButton", onclick="toggle('basketInfoToggle')">Info</button>				 
 				 <p class="basicText basketInfo" >Baskets collect 5 Limes per minute each.</p>
-				 <p class="basicText basketInfo" >Baskets collect up to 50 Limes each.</p>
+				 <p class="basicText basketInfo" >Baskets collect up to 25 Limes each.</p>
 				 <p class="basicText basketInfo" id="maxBaskets" >20 baskets fit under the current tree.</p>
 				 
 				 <p class="basicText" id="limesInBaskets">0 Limes.</p>
@@ -805,6 +807,8 @@
 			<button class="specialButton", id="knifebidextrousButton", onclick="barStartGranularSkillBasic('knifebidextrous')">Knifebidextrous</button>	 
 				 <div class="skillInfo">
 						<p class="basicText", id="knifebidextrousInfo">Chance to peel 2 limes rather than 1: +5%.</p>
+						<p class="basicText", id="knifebidextrousInfo">Unlock something special for completing this!</p>
+
 				 </div>	
 			<div class="skillProgress" id="knifebidextrousProgress">
 				<div class="skillBar", id="knifebidextrousBar">0%</div>

@@ -124,6 +124,7 @@ function advertiseBar() {
 	else
 	{
 		gameData.applicationReady = 1
+		gameData.hasAdvertised = 1
 		randomizeApplication()
 	}
 updateValues()
