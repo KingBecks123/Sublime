@@ -157,6 +157,9 @@ var gameDataBase = {
   
   entrepreneurialCertificates: 0,
  
+  juicePricePrice: 1, 
+  juicePriceCents: 0,
+ 
   autosave: 1,
   
   //Should be 0 for normal game, 1 if you want to go faster :)

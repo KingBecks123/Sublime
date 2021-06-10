@@ -27,6 +27,19 @@ function updateValues() {
 	
 	addAesthetic()
 
+
+
+	if (gameData.juiceBulkAmountToggle > 100 && gameData.deliveryTypeToggle < 2)
+	{
+		gameData.juiceBulkAmountToggle = 100
+	}	
+	
+	if (gameData.juiceBulkAmountToggle > 500)
+	{
+		gameData.juiceBulkAmountToggle = 500
+	}	
+	
+
 	if (gameData.coins > 1e6)
 	{
 		gameData.coins = 1e6
@@ -105,6 +118,8 @@ function updateValues() {
 
 	}	
 
+	gameData.juiceSellReward = Math.floor(gameData.juiceBulkAmountToggle * (1 + (gameData.juicePriceCents / 100)))
+
 	
 	gameData.limesInBaskets = Math.floor(gameData.baskets * (gameData.basketBar / 4))
 	
@@ -125,6 +140,9 @@ function updateValues() {
     update("textForLakes", gameData.limeDiseaseLakes + " Lakes")
 	
     update("currentSpeedEmployee", "Current speed: " + gameData.employeeCurrentSpeed + " limes per minute.")
+
+    update("textForJuicePricePrice", "Price: " + gameData.juicePricePrice + " Coins")
+
 	
 	if(gameData.employeeWorking > 0)
 	{
@@ -176,7 +194,13 @@ function updateValues() {
 
     update("textForPeeledLimes", gameData.peeledLimes + " Peeled Limes")
     update("sellYourJuiceAmount", "You Will Deliver " + gameData.juiceBulkAmountToggle + " Juice")
-	update("sellYourJuiceReward", "You Will Get " + gameData.juiceBulkAmountToggle + " Coins")
+	
+
+	update("sellYourJuiceReward", "You Will Get " + gameData.juiceSellReward + " Coins")
+
+
+	
+	
 	update("sellYourJuicePrice", "You Need " + gameData.deliveryPrice + " Coins For Delivery")
 
 	checkShow(gameData.megaCoins, "textForMegaCoins")	
@@ -341,6 +365,7 @@ function updateValues() {
 	if(gameData.maps >= 3)
 	{
 		tabs("travellingArea", "block")		
+		showBasicDiv("increaseJuicePrice")
 		
 		
 		if(gameData.fasterTransport == 0)

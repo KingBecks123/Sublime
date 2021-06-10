@@ -253,15 +253,10 @@ function hireApplicant() {
 		
 		gameData.employees = 1
 		
-		setTimeout(resetWorkingBar, 1000)
-
+		gameData.employeeIsWorking = 0
+		gameData.workingBar = 0		
 	}
 	
-updateValues()
-}
-
-function resetWorkingBar() {
-		gameData.workingBar = 0		
 updateValues()
 }
 
@@ -600,11 +595,42 @@ function sellYourLimes() {
 updateValues()
 }
 
+function increaseJuicePrice() {
+	if(gameData.coins >= gameData.juicePricePrice)
+	{
+		gameData.coins -= gameData.juicePricePrice
+		
+
+		if ( gameData.juicePricePrice % 2 == 0 )
+		{
+			gameData.juicePricePrice *= 5
+			gameData.juicePricePrice /= 2
+		}
+		else{
+			gameData.juicePricePrice *= 2
+		}
+		
+		
+		
+		
+		gameData.juicePriceCents += 1
+	}
+	
+updateValues()
+}
+
 
 function decreaseJuiceSold() {
 	if(gameData.juiceBulkAmountToggle >= 1)
 	{
-		gameData.juiceBulkAmountToggle -= 1
+		if( gameData.juiceBulkAmountToggle > 100)
+		{
+			gameData.juiceBulkAmountToggle -= 10
+		}
+		else
+		{
+			gameData.juiceBulkAmountToggle -= 1
+		}
 	}
 	
 updateValues()
@@ -615,9 +641,9 @@ function increaseJuiceSold() {
 		{
 			gameData.juiceBulkAmountToggle += 1
 		}
-	else if (gameData.juiceBulkAmountToggle < 500 && gameData.fasterTransport > 0)
+	else if (gameData.juiceBulkAmountToggle < 500 && gameData.deliveryTypeToggle == 2 && gameData.fasterTransport > 0)
 		{
-			gameData.juiceBulkAmountToggle += 1
+			gameData.juiceBulkAmountToggle += 10
 		}
 		
 		

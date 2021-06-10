@@ -7,7 +7,9 @@ function advertise() {
 }
 
 function working() {
+	gameData.employeeIsWorking = 1
 	barStartGranular("working")
+
 }
 
 function basket() {
@@ -18,18 +20,26 @@ updateValues()
 }
 
 function workingBar() {
-	if(gameData.workingBar <= 99)
+	if(gameData.workingBar <= 99 && gameData.employeeIsWorking == 1)
 	{
 		gameData.workingBar += 1;
 		setTimeout(workingBar, 600 / gameData.tickspeed)
 	}
 	else
 	{
-		gameData.limes += gameData.employeeCurrentSpeed
-		gameData.employeeWorking -= 1
+		if (gameData.employeeIsWorking == 1)
+		{
+			gameData.limes += gameData.employeeCurrentSpeed
+			gameData.employeeWorking -= 1
+		}
+		
 		if(gameData.employeeWorking > 0)
 		{
 			working()
+		}
+		else
+		{
+			gameData.employeeIsWorking = 0
 		}
 	}
 updateValues()
@@ -215,7 +225,7 @@ function sellYourJuiceBar() {
 	}
 	else
 	{
-	gameData.coins += gameData.juiceBulkAmount
+	gameData.coins += gameData.juiceSellReward
 	gameData.deliveryOngoing = 0
 	}
 updateValues()
