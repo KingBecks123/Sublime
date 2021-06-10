@@ -691,6 +691,11 @@ function updateValues() {
 		
 		hide("buyKnifeDiv")
 	}
+	else
+	{
+		hide("buyAPeelerDiv")
+		hide("sharperPeelerDiv")
+	}
 	
 	if(gameData.sharperPeelers >= 1)
 	{ 
