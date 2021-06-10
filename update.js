@@ -9,6 +9,7 @@ function updateAfterLoad(){
 		restartBar("peeler")
 		restartBar("advertise")
         restartBar("working")
+        restartBar("eat")
 
 			if(gameData.deliveryBar <= 99 && gameData.deliveryBar != 0)
 		{

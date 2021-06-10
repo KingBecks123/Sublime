@@ -159,6 +159,8 @@ var gameDataBase = {
  
   juicePricePrice: 1, 
   juicePriceCents: 0,
+  
+  isOptionsOpen: 0,
  
   autosave: 1,
   
@@ -189,6 +191,8 @@ function gameStart(){
 tab("shop")
 
 function tab(tabby) {
+	
+	
   tabs("options", "none")
   tabs("market", "none")
   tabs("inventory", "none")
@@ -199,7 +203,14 @@ function tab(tabby) {
   tabs("company", "none")
   tabs("forest", "none")
 
-  document.getElementById(tabby).style.display = "inline-block"
+  if (tabby == "options" && gameData.isOptionsOpen == 1){
+	  gameData.isOptionsOpen = 0
+  }
+  
+  else{ 
+ 	 gameData.isOptionsOpen = 1
+	document.getElementById(tabby).style.display = "inline-block"
+  }
 }
 
 
