@@ -11,7 +11,7 @@ function updateAfterLoad(){
         restartBar("eat")
 		
 		
-		if(gameData.autoCollectingBar < (gameData.nourishment + 1) * 100 && gameData.autoCollectingBar !== 0)
+		if(gameData.autoCollectingBar !== 0)
 		{
 			autoCollectingBar()
 		}
