@@ -113,7 +113,7 @@ function addAesthetic(){
 
 
 
-	if(gameData.autoCollectingBar == 0 || gameData.autoCollectingBar == 100)
+	if(gameData.autoCollectingBar == 0 || gameData.autoCollectingBar == (gameData.nourishment + 1) * 100)
 	{
 		colorChanger("pickUpLimes", limesRelatedAccent)
 	}
