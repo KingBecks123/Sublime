@@ -11,14 +11,14 @@ function updateAfterLoad(){
         restartBar("eat")
 		
 		
-		if(gameData.autoCollectingBar < (gameData.nourishment + 1) * 100 && gameData.autoCollectingBar != 0)
+		if(gameData.autoCollectingBar == (gameData.nourishment + 1) * 100 || gameData.autoCollectingBar == 0)
 		{
 			autoCollectingBar()
 		}
 		
 		
 
-			if(gameData.deliveryBar <= 99 && gameData.deliveryBar != 0)
+		if(gameData.deliveryBar <= 99 && gameData.deliveryBar != 0)
 		{
 			sellYourJuiceBar()
 		}
