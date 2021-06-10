@@ -38,6 +38,14 @@ function updateValues() {
 	gameData.juicePricePrice = gameData.juicePriceCents + 1
 
 	gameData.nourishmentPrice = Math.pow(10, gameData.nourishment);
+
+
+	if (gameData.knifebidextrousSkillLevel >  gameData.knifebidextrousSkillLevelMax)
+	{
+		gameData.knifebidextrousSkillLevel = gameData.knifebidextrousSkillLevelMax
+	}		
+	
+	
 	
 	
 	if (gameData.juiceBulkAmountToggle > 100 && gameData.deliveryTypeToggle < 2)
