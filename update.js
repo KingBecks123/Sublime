@@ -1,6 +1,5 @@
 function updateAfterLoad(){
 		restartBar("learnANewSkill")
-		restartBar("autoCollecting")
 		restartBar("rottenWisdom")
 		restartBar("limebidextrous")
 		restartBar("knifebidextrous")
@@ -10,6 +9,14 @@ function updateAfterLoad(){
 		restartBar("advertise")
         restartBar("working")
         restartBar("eat")
+		
+		
+		if(gameData.autoCollectingBar < (gameData.nourishment + 1) * 100 && gameData.autoCollectingBar != 0)
+		{
+			autoCollectingBar()
+		}
+		
+		
 
 			if(gameData.deliveryBar <= 99 && gameData.deliveryBar != 0)
 		{
@@ -28,8 +35,11 @@ function updateValues() {
 	
 	addAesthetic()
 
+	gameData.juicePricePrice = gameData.juicePriceCents + 1
 
-
+	gameData.nourishmentPrice = Math.pow(10, gameData.nourishment);
+	
+	
 	if (gameData.juiceBulkAmountToggle > 100 && gameData.deliveryTypeToggle < 2)
 	{
 		gameData.juiceBulkAmountToggle = 100
@@ -143,6 +153,9 @@ function updateValues() {
     update("currentSpeedEmployee", "Current speed: " + gameData.employeeCurrentSpeed + " limes per minute.")
 
     update("textForJuicePricePrice", "Price: " + gameData.juicePricePrice + " Coins")
+	
+    update("textForNourishmentPrice", "You need " + gameData.nourishmentPrice + " Limes")
+
 
 	
 	if(gameData.employeeWorking > 0)
@@ -216,7 +229,7 @@ function updateValues() {
 	checkShowNonVariable(gameData.baskets, "forestButton")
 	checkShowNonVariable(gameData.hasGottenJuice, "juiceMarket")
 
-	moveBar("autoCollecting")
+
 	moveBar("juicer")
 	moveBar("delivery")
 	moveBar("advertise")
@@ -225,6 +238,7 @@ function updateValues() {
 	moveBar("working")
 	moveBar("eat")	
 	moveBasket()	
+	moveAutoCollecting()
 	
 	moveBar("rottenWisdom")
 		update("rottenWisdom", gameData.rottenWisdom + "% Chance")
@@ -265,7 +279,11 @@ function updateValues() {
 	{
 		update("juicerInfo", gameData.peeledLimesPerJuice + " Peeled Limes -> 1 Juice")	
 	}
+	
+	
 
+	
+	
 
 
 	if(gameData.entrepreneurialCertificates == 0)
@@ -278,7 +296,14 @@ function updateValues() {
 	}
 
 
-
+	if(gameData.deliveryTypeToggle == 2 && gameData.fasterTransport > 0)
+	{
+		gameData.juiceBulkAmountMax = 500
+	}
+	else
+	{
+		gameData.juiceBulkAmountMax = 100
+	}
 	
 	
 	
@@ -362,12 +387,40 @@ function updateValues() {
 		update("deliveryToggleStandardButton", "Hyper Delivery")
 	}	
 	
+	
+	if(gameData.deliveryManager == 0)
+	{
+		hide("sellMaxJuiceButton")
+		tabs("decreaseJuiceSoldButton", "inline-block")
+		tabs("increaseJuiceSoldButton", "inline-block")
+	}
+	else
+	{		
+		tabs("sellMaxJuiceButton", "inline-block")
+		hide("decreaseJuiceSoldButton")
+		hide("increaseJuiceSoldButton")
+
+	}
+	
+	
+	
+	if(gameData.deliveryManager == 0 && gameData.maps >= 2)
+	{
+		showBasicDiv("buyADeliveryManager")
+	}
+	else
+	{		
+		hide("buyADeliveryManager")
+	}
+
 
 	if(gameData.maps >= 3)
 	{
 		tabs("travellingArea", "block")		
 		showBasicDiv("increaseJuicePrice")
 		
+
+
 		
 		if(gameData.fasterTransport == 0)
 		{

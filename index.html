@@ -150,11 +150,22 @@
 	
 		 <div id="marketMain">	
 			<div style="display:inline-block;">
+			
+			
 				<div class="basicDiv" id="sellYourLimesDiv" style="display:none;">	
 					 <button class="basicButtonSize", id="sellYourLimesButton" onclick="sellYourLimes()">Sell Your Limes</button>
 					 <p class="basicText",  id="sellYourLimesAmount">You Need 50 Limes</p>
 					 <p class="basicText",  id="sellYourLimesReward">You Will Be Rewarded 1 Coin</p>
-				</div>	 
+				</div>	
+
+				<div class="basicDiv" id="collectingUpgrade">	
+					 <button class="specialButton", id="collectingUpgradeButton" onclick="collectingUpgrade()">Nourishment</button>
+					 
+					 <p class="basicText" id="textForNourishmentPrice">You Need 10 Limes</p>
+					 <p class="basicText">Double collection time</p>
+				</div>	
+
+				
 				<div class="basicDiv", id="buyAJuicerDiv" style="display:none;">	
 					<button class="basicButtonSize", id="buyAJuicerButton" onclick="bulkableBuyMax('juicers', 1)">Buy A Juicer</button>
 					<button class="basicButtonSize" id="juicersBulkButton", style="width:80px;" onclick="toggle('juicersBulkToggle')">x10</button>
@@ -177,6 +188,9 @@
 					 
 					 <button class="basicButtonSize" id="decreaseJuiceSoldButton" onclick="decreaseJuiceSold()", style="width:120px;">Decrease Juice Sold</button>
 					 <button class="basicButtonSize" id="increaseJuiceSoldButton" onclick="increaseJuiceSold()", style="width:120px;">Increase Juice Sold</button>
+					 
+					 <button class="basicButtonSize" id="sellMaxJuiceButton" onclick="sellMaxJuice()", style="width:120px;">Sell Max Juice</button>
+					 
 					 <br>
 					 <button class="basicButtonSize" id="deliveryToggleStandardButton", style="width:120px;", onclick="deliveryToggleStandard()">Standard Delivery</button>
 					 <button class="basicButtonSize" id="deliveryToggleExpressButton", style="width:120px;", onclick="deliveryToggleExpress()">Express Delivery</button>
@@ -300,6 +314,16 @@
 					 
 					 <p class="basicText" id="textForJuicePricePrice">Price: 1 Coins</p>	
 				 </div>		
+				 
+				 
+				 <div class="basicDiv", id="buyADeliveryManager">			
+					 <button class="specialButton" onclick="basicBuy('deliveryManager', 100)">Buy A Delivery Manager</button>
+					 <p class="basicText">Option to deliver maximum juice</p>	
+					 <p class="basicText">Price: 100 Coins</p>	
+
+					 
+					 </div>	
+				 
 
 				 <div class="basicDiv", id="buyFourthMapDiv">			
 					 <button class="specialButton" onclick="buyAMap()">Buy A Giant Map</button>
@@ -718,7 +742,7 @@
 
 
 	
-	 <div id="skills">	
+	 <div id="skills" style="width:380px" >	
 	 
 	 	 <div class="basicDiv">		 
 			 <button class="specialButton" onclick="eat()">Eat Food</button>	 
@@ -829,13 +853,13 @@
 
 	 </div>	
 	 
-	<script src="aesthetic.js?v=49" charset="utf-8" type="text/javascript"></script>
-	<script src="myfunctions.js?v=49" charset="utf-8" type="text/javascript"></script>
-	<script src="main.js?v=49" charset="utf-8" type="text/javascript"></script>
-	<script src="technical.js?v=49" charset="utf-8" type="text/javascript"></script>
-	<script src="bars.js?v=49" charset="utf-8" type="text/javascript"></script>	
-	<script src="update.js?v=49" charset="utf-8" type="text/javascript"></script>	
-	<script src="oldupdatefixes.js?v=49" charset="utf-8" type="text/javascript"></script>	
+	<script src="aesthetic.js?v=51" charset="utf-8" type="text/javascript"></script>
+	<script src="myfunctions.js?v=51" charset="utf-8" type="text/javascript"></script>
+	<script src="main.js?v=51" charset="utf-8" type="text/javascript"></script>
+	<script src="technical.js?v=51" charset="utf-8" type="text/javascript"></script>
+	<script src="bars.js?v=51" charset="utf-8" type="text/javascript"></script>	
+	<script src="update.js?v=51" charset="utf-8" type="text/javascript"></script>	
+	<script src="oldupdatefixes.js?v=51" charset="utf-8" type="text/javascript"></script>	
 	
   </body>
 </html>

@@ -1,3 +1,29 @@
+function sellMaxJuice() {
+	if(gameData.juice < gameData.juiceBulkAmountMax)
+	{
+		gameData.juiceBulkAmountToggle = gameData.juice
+	}
+	else
+	{
+		gameData.juiceBulkAmountToggle = gameData.juiceBulkAmountMax
+	}
+	
+updateValues()
+}
+
+function collectingUpgrade() {
+	if(gameData.limes >= gameData.nourishmentPrice)
+	{
+
+		gameData.limes -= gameData.nourishmentPrice
+		gameData.nourishment += 1
+		gameData.autoCollectingBar = 0
+
+	}
+
+updateValues()
+}
+
 function startSimulation() {
 	
 	if (gameData.civiliansPlaced == gameData.civiliansTotal)
@@ -600,17 +626,6 @@ function increaseJuicePrice() {
 	{
 		gameData.coins -= gameData.juicePricePrice
 		
-
-		if ( gameData.juicePricePrice % 2 == 0 )
-		{
-			gameData.juicePricePrice *= 5
-			gameData.juicePricePrice /= 2
-		}
-		else{
-			gameData.juicePricePrice *= 2
-		}
-		
-		
 		
 		
 		gameData.juicePriceCents += 1
@@ -676,11 +691,18 @@ function moveBasket() {
 	elem.innerHTML = Math.floor(gameData.basketBar)  + "%";
 }
 
+function moveAutoCollecting() {
+
+	var elem = document.getElementById("autoCollectingBar");
+	var x = Math.floor(gameData.autoCollectingBar / (gameData.nourishment + 1))
+	
+	elem.style.width = x + "%";
+	elem.innerHTML = x + "%";
+}
+
+
 function buyABasket() {
 
 	gameData.basketBar -= gameData.basketBar / (gameData.baskets + 1)	
 	bulkableBuyMax('baskets', 2)
-
-	
-	
 }

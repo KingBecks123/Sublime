@@ -172,7 +172,7 @@ function bulkableBuyMax(x, price) {
 
 		}
 	}
-	else if(eval("gameData." + x + "BulkToggle") == 1)
+	else
 	{
 		if(gameData.coins >= (price * 10))
 		{
@@ -455,7 +455,7 @@ function loadStuff(savegame){
   if (savegame !== null) {
 		Object.assign(gameData, savegame);
 		backwardsCompatibility(savegame.versionNumber)
-		gameData.versionNumber = 49
+		gameData.versionNumber = 51
 		updateValues()
 		updateAfterLoad()
   }

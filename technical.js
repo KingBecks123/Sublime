@@ -155,10 +155,16 @@ var gameDataBase = {
 ],
   
   
+  juiceBulkAmountMax: 100, 
+  
   entrepreneurialCertificates: 0,
  
   juicePricePrice: 1, 
   juicePriceCents: 0,
+  
+  deliveryManager: 0,
+  
+  nourishment: 0,
   
   isOptionsOpen: 0,
  

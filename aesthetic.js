@@ -19,6 +19,8 @@ function addAesthetic(){
 
 	colorChanger('backgroundForValues', "#000000")
 	
+	colorChanger('sellMaxJuiceButton', grayAccentLight)	
+	
 	colorChanger('pickUpLimes', limesRelatedAccent)
 	colorChanger('application', accent4)
 	
@@ -164,6 +166,8 @@ function addAesthetic(){
 		colorChanger('decreaseJuiceSoldButton', grayAccentLight)	
 		colorChanger('increaseJuiceSoldButton', grayAccentLight)	
 	}	
+	
+	
 	
 
 	colorChanger('lookAroundButton', grayAccentLight)	

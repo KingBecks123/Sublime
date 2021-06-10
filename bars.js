@@ -94,20 +94,21 @@ function eatBar() {
 
 
 function autoCollecting() {
-	if( gameData.autoCollectingBar == 100 || gameData.autoCollectingBar == 0 )
+	if( gameData.autoCollectingBar == (gameData.nourishment + 1) * 100 || gameData.autoCollectingBar == 0 )
 	{
-		barStartGranular("autoCollecting")
+		gameData.autoCollectingBar = 0
+		autoCollectingBar()
 	}
 }
 
 function autoCollectingBar() {
-	if(gameData.autoCollectingBar <= 99.5)
+	if(gameData.autoCollectingBar <= (((gameData.nourishment + 1) * 100) - 0.5))
 	{
 		gameData.autoCollectingBar += 0.5;
 		setTimeout(autoCollectingBar, 50)
 	}
 	
-	if(gameData.autoCollectingBar % 10 == 0)
+	if(gameData.autoCollectingBar % 10  == 0)
 	{
 		getLimes()
 	}
