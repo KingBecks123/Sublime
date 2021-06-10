@@ -225,7 +225,7 @@ function sellYourJuiceBar() {
 	}
 	else
 	{
-	gameData.coins += gameData.juiceSellReward
+	gameData.coins += Math.floor(gameData.juiceBulkAmount * (1 + (gameData.juicePriceCents / 100)))
 	gameData.deliveryOngoing = 0
 	}
 updateValues()
@@ -331,9 +331,8 @@ function makeMaxJuice() {
 		}
 		if (gameData.howMuchJuice > 0)
 		{
-		
-		gameData.juicerBar = 0;
-		juicerBar()
+			gameData.juicerBar = 0;
+			juicerBar()
 		}
 	}
 updateValues()
