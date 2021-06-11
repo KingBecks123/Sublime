@@ -330,14 +330,11 @@ function update(id, content) {
 function updateNumber(id) {
   Id = jsUcfirst(id) 
   x = "textFor" + Id + "s"
-  if(eval("gameData." + id + "s") == 1)
-  {
-	y = eval("gameData." + id + "s") + " " + Id
-  }
-  else
-  {
-	y = eval("gameData." + id + "s") + " " + Id + "s"
-  }
+  var key = id + "s"
+  var val = gameData[key]
+  y = val + " " + Id
+  if(val != 1)
+	y += "s"
   update(x, y)
 }
 
