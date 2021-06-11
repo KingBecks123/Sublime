@@ -229,7 +229,9 @@ function tab(tabby) {
 	{
 	
 		gameData.isOptionsOpen = 0
-		document.getElementById(tabby).style.display = "inline-block"
+		tabbyElem = document.getElementById(tabby)
+		if (tabbyElem)
+			tabbyElem.style.display = "inline-block"
   
 	}
 
