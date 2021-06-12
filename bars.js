@@ -51,7 +51,7 @@ function teachBar() {
 }
 
 function eat() {
-    if ((gameData.eatBar == 100 || gameData.eatBar == 0) && gameData.eat < 100) {
+    if ((gameData.eatBar >= 100 - (gameData.fork) / 2 || gameData.eatBar == 0) && gameData.eat < 100) {
         if (gameData.foodTypeToggle == 0 && gameData.limes > 0) {
             gameData.limes -= 1
             gameData.foodType = 5
@@ -65,7 +65,7 @@ function eat() {
 }
 
 function eatBar() {
-    if (gameData.eatBar <= 100 - ((gameData.fork + 1) / 2) ) {
+    if (gameData.eatBar < 100) {
         gameData.eatBar += 0.5 * (gameData.fork + 1) ;
         setTimeout(eatBar, 10)
 		moveBar("eat")
