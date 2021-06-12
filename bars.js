@@ -194,6 +194,7 @@ function sellYourJuiceBar() {
             if (gameData.deliveryBar <= 99.9) {
                 gameData.deliveryOngoing = 1
                 gameData.deliveryBar += 0.1;
+			    moveBar("delivery")
                 setTimeout(sellYourJuiceBar, (100 / (gameData.deliveryType * 100 + 1)) / gameData.tickspeed)
             }
         } else if (gameData.deliveryType == 2) {
