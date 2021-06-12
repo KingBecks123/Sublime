@@ -144,7 +144,10 @@ var gameDataBase = {
     autoCheckSimulation: 0,
 
     diseaseTileSize: 0,
+	
+	autoPlaceACivilian: 0,
 
+	increaseJuicePricePermanance: 0,
 
     silkRobe: 0,
 

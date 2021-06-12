@@ -280,6 +280,23 @@ function diseaseControlTask() {
 			}
 
 		}
+		
+		if (gameData.autoPlaceACivilian == 1) {
+		for (i = 0; i < 1; i) {
+
+			x = beckyRandom(4) - 1
+			y = beckyRandom(4) - 1
+			if (gameData.diseaseArray[x][y] == 0) {
+
+				gameData.diseaseArray[x][y] = 1
+	            gameData.civiliansPlaced += 1
+				i = 1
+				
+
+			}
+
+		}
+		}
 	
 	}
 
@@ -514,6 +531,14 @@ function hireANutritionist() {
 
 function travelToNextVillage() {
     if (window.prompt("Are you sure? Type 'yes' if you are") == "yes") {
+		
+    if (gameData.increaseJuicePricePermanance == 1) {
+        juicePricePriceNow = gameData.juicePricePrice
+        juicePriceCentsNow = gameData.juicePriceCents
+		increaseJuicePricePermananceNow = gameData.increaseJuicePricePermanance
+    } 
+
+		
         megaCoinsNow = gameData.megaCoinsInBank
         bigGlovesNow = gameData.bigGloves
         desktopModeNow = gameData.desktopMode
@@ -531,11 +556,14 @@ function travelToNextVillage() {
 
         Object.assign(gameData, gameDataBase)
 
-
+		if (increaseJuicePricePermananceNow == 1) {
+			gameData.juicePricePrice = juicePricePriceNow
+			gameData.juicePriceCents = juicePriceCentsNow
+			gameData.increaseJuicePricePermanance = increaseJuicePricePermananceNow
+		} 
 
         gameData.megaCoins = megaCoinsNow
 
-        gameData.megaCoinsInBank = megaCoinsNow
         gameData.bigGloves = bigGlovesNow
         gameData.desktopMode = desktopModeNow
 		

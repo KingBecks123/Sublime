@@ -49,6 +49,8 @@ function addAesthetic() {
     toggleAesthetic("autoStartTask")
     toggleAesthetic("autoStartSimulation")
     toggleAesthetic("autoCheckSimulation")
+    toggleAesthetic("autoPlaceACivilian")
+
 
 
     if (gameData.diseaseControlFinished == 1) {
@@ -140,13 +142,25 @@ function addAesthetic() {
         colorChanger("pickUpLimes", grayAccent)
     }
 
-    if (gameData.respect >= 60) {
-        colorChanger('60RespectMilestone', limesRelatedAccent)
+    if (gameData.respect >= 100) {
+        colorChanger('100RespectMilestone', limesRelatedAccent)
     } else {
 
-        colorChanger('60RespectMilestone', grayAccentLight)
+        colorChanger('100RespectMilestone', grayAccentLight)
     }
 	
+    if (gameData.respect >= 500) {
+        colorChanger('500RespectMilestone', limesRelatedAccent)
+    } else {
+
+        colorChanger('500RespectMilestone', grayAccentLight)
+    }
+	
+    if (gameData.increaseJuicePricePermanance < 1) {
+        colorChanger('increaseJuicePriceButton', accent4)
+    } else {
+        colorChanger('increaseJuicePriceButton', '#FF999A')
+	}	
 	
 	
 	

@@ -308,11 +308,30 @@ function updateValues() {
         hide("autoStartSimulationButton")
 	}
 	
-    if (gameData.respect >= 60) {
+    if (gameData.respect >= 100) {
         tabs("autoCheckSimulationButton", "inline-block")
     } else {
         hide("autoCheckSimulationButton")
 	}
+	
+    if (gameData.increaseJuicePricePermanance < 1) {
+        tabs("increaseJuicePricePermanance", "inline-block")
+		hide("upgradeJuicePricePermanance")
+
+		
+    } else {
+        hide("increaseJuicePricePermanance")
+		tabs("upgradeJuicePricePermanance", "inline-block")
+	}
+	
+	
+	
+    if (gameData.respect >= 500) {
+        tabs("autoPlaceACivilianButton", "inline-block")
+    } else {
+        hide("autoPlaceACivilianButton")
+	}
+
 
 
 
@@ -343,7 +362,7 @@ function updateValues() {
 
 
 
-    if (gameData.villageNumber > 1 || gameData.betterTraining > 0) {
+    if (gameData.villageNumber > 1 || gameData.betterTraining > 0 || gameData.increaseJuicePricePermanance == 1) {
         tabs("megaCoinUpgradesNavigationButton", "block")
     } else {
         hide("megaCoinUpgradesNavigationButton")

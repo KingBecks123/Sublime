@@ -308,7 +308,7 @@
                 </div>
 
                 <div class="basicDiv" , id="increaseJuicePrice">
-                    <button class="specialButton" onclick="increaseJuicePrice()">Increase Juice Price</button>
+                    <button class="basicButtonSize" id="increaseJuicePriceButton" onclick="increaseJuicePrice()">Increase Juice Price</button>
                     <p class="basicText">'Squeeze' more money from your customers</p>
                     <p class="basicText">The more you raise the price, the more it takes to convince the customer to still buy</p>
                     <p class="basicText">+1% Profit</p>
@@ -344,6 +344,14 @@
                     <p class="basicText">Guaranteed to make you look rich!</p>
                     <p class="basicText">Respect +50</p>
                     <p class="basicText">Price: 1,000 Coins</p>
+
+                </div>
+				
+                <div id="increaseJuicePricePermanance" class="basicDiv">
+
+                    <button class="basicButtonSize", style="background-color:#FF999A;" onclick="basicBuy('increaseJuicePricePermanance', 10000)">Unlock Permanance</button>
+                    <p class="basicText">Make 'Increase juice price' stay after travelling!</p>
+                    <p class="basicText">Price: 10,000 Coins</p>
 
                 </div>
 
@@ -616,6 +624,11 @@
             <p class="basicText">Nutritionist</p>
             <p class="basicText">Doubles food points from eating.</p>
         </div>
+		
+        <div class="basicDiv" id="upgradeJuicePricePermanance">
+            <p class="basicText">Juice Price Permanance</p>
+            <p class="basicText">Juice price is saved after travelling.</p>
+        </div>
 
         <div class="basicDiv" id="upgradeCreditScore">
             <p class="basicText">Credit Score</p>
@@ -700,6 +713,9 @@
 
 
                 <p class="basicText" id="numberOfCivilians">Number of civilians: 2</p>
+                <button class="basicButtonSize" id="autoPlaceACivilianButton" style="display:inline-block" onclick="switchValue('autoPlaceACivilian')">Auto Place A Civilian</button><br>
+                <p class="basicText">Rule: Random empty spot</p>
+
                 <button class="specialButton" onclick="startSimulation()" style="width:150px">Start Simulation</button>
                 <button class="basicButtonSize" id="autoStartSimulationButton" style="display:inline-block" onclick="switchValue('autoStartSimulation')">Auto</button>
                 <button class="specialButton" onclick="diseaseControlReset()">Reset</button>
@@ -754,7 +770,9 @@
                 <p class="basicTextSize" id="25RespectMilestone">25 Respect: Automatically start simulation</p>
 
                 <p class="basicTextSize" id="50RespectMilestone">50 Respect: Allow entrance to the Special Shopping District</p>
-                <p class="basicTextSize" id="60RespectMilestone">60 Respect: Automatically check simulation</p>
+                <p class="basicTextSize" id="100RespectMilestone">100 Respect: Automatically check simulation</p>
+                <p class="basicTextSize" id="500RespectMilestone">500 Respect: Automatically situate a civilian</p>
+
 				
 				
 
@@ -904,13 +922,13 @@
     </div>
     </div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="aesthetic.js?v=66" charset="utf-8" type="text/javascript"></script>
-    <script src="myfunctions.js?v=66" charset="utf-8" type="text/javascript"></script>
-    <script src="main.js?v=66" charset="utf-8" type="text/javascript"></script>
-    <script src="technical.js?v=66" charset="utf-8" type="text/javascript"></script>
-    <script src="bars.js?v=66" charset="utf-8" type="text/javascript"></script>
-    <script src="update.js?v=66" charset="utf-8" type="text/javascript"></script>
-    <script src="oldupdatefixes.js?v=66" charset="utf-8" type="text/javascript"></script>
+    <script src="aesthetic.js?v=67" charset="utf-8" type="text/javascript"></script>
+    <script src="myfunctions.js?v=67" charset="utf-8" type="text/javascript"></script>
+    <script src="main.js?v=67" charset="utf-8" type="text/javascript"></script>
+    <script src="technical.js?v=67" charset="utf-8" type="text/javascript"></script>
+    <script src="bars.js?v=67" charset="utf-8" type="text/javascript"></script>
+    <script src="update.js?v=67" charset="utf-8" type="text/javascript"></script>
+    <script src="oldupdatefixes.js?v=67" charset="utf-8" type="text/javascript"></script>
 
 </body>
 
