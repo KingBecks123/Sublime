@@ -112,7 +112,7 @@
         <button id="inventoryButton" style="background:lightgray;width: 120px;display:none;" , onclick="tab('inventory')">Inventory</button>
         <button id="forestButton" style="background:lightgray;display:none;width: 120px;" , onclick="tab('forest')">Forest</button>
         <button id="companyButton" , style="background:lightgray;display:none;width: 120px;" , onclick="tab('company')">Lime Inc.</button>
-        <button id="peopleButton" , style="background:lightgray;display:none;width: 120px;" , onclick="tab('megaCoinUpgrades')">Upgrades</button>
+        <button id="megaCoinUpgradesNavigationButton" , style="background:lightgray;display:none;width: 120px;" , onclick="tab('megaCoinUpgrades')">Upgrades</button>
         <button id="tasksButton" , style="background:lightgray;display:none;width: 120px;" , onclick="tab('tasks')">Tasks</button>
 
 
@@ -698,10 +698,15 @@
 
 
                 <p class="basicText" id="numberOfCivilians">Number of civilians: 2</p>
-                <button class="specialButton" onclick="startSimulation()">Start Simulation</button>
+                <button class="specialButton" onclick="startSimulation()" style="width:150px">Start Simulation</button>
                 <button class="basicButtonSize" id="autoStartSimulationButton" style="display:inline-block" onclick="switchValue('autoStartSimulation')">Auto</button>
                 <button class="specialButton" onclick="diseaseControlReset()">Reset</button>
-                <button class="specialButton" onclick="checkResults()">Check Results</button>
+                <button class="specialButton" onclick="diseaseControlQuit()">Quit</button>
+
+				<br>
+				
+                <button class="specialButton" style="width:150px" onclick="checkResults()">Check Results</button>
+                <button class="basicButtonSize" id="autoCheckSimulationButton" style="display:inline-block" onclick="switchValue('autoCheckSimulation')">Auto</button>
                 <button class="basicButtonSize" id="limeDiseaseInfoButton" , onclick="toggle('limeDiseaseInfoToggle')">Info</button>
 
             </div>
@@ -743,6 +748,10 @@
                 <p class="basicTextSize" id="25RespectMilestone">25 Respect: Automatically start simulation</p>
 
                 <p class="basicTextSize" id="50RespectMilestone">50 Respect: Allow entrance to the Special Shopping District</p>
+                <p class="basicTextSize" id="60RespectMilestone">60 Respect: Automatically check simulation</p>
+				
+				
+
                 <p class="basicTextSize" id="1000RespectMilestone" style="display:none">1000 Respect: Unlock Scientific Research</p>
 
 
@@ -889,13 +898,13 @@
     </div>
     </div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="aesthetic.js?v=59" charset="utf-8" type="text/javascript"></script>
-    <script src="myfunctions.js?v=59" charset="utf-8" type="text/javascript"></script>
-    <script src="main.js?v=59" charset="utf-8" type="text/javascript"></script>
-    <script src="technical.js?v=59" charset="utf-8" type="text/javascript"></script>
-    <script src="bars.js?v=59" charset="utf-8" type="text/javascript"></script>
-    <script src="update.js?v=59" charset="utf-8" type="text/javascript"></script>
-    <script src="oldupdatefixes.js?v=59" charset="utf-8" type="text/javascript"></script>
+    <script src="aesthetic.js?v=60" charset="utf-8" type="text/javascript"></script>
+    <script src="myfunctions.js?v=60" charset="utf-8" type="text/javascript"></script>
+    <script src="main.js?v=60" charset="utf-8" type="text/javascript"></script>
+    <script src="technical.js?v=60" charset="utf-8" type="text/javascript"></script>
+    <script src="bars.js?v=60" charset="utf-8" type="text/javascript"></script>
+    <script src="update.js?v=60" charset="utf-8" type="text/javascript"></script>
+    <script src="oldupdatefixes.js?v=60" charset="utf-8" type="text/javascript"></script>
 
 </body>
 

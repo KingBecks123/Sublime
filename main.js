@@ -16,13 +16,18 @@ function mainGameLoop() {
 	if(loopNumbercurrentTask == 10)
 	{
 		loopNumbercurrentTask = 0
+
+		 if (gameData.autoStartSimulation == 1) {
+			startSimulation()
+		}
 		
 		 if (gameData.autoStartTask == 1) {
 			diseaseControlTask()
 		}
 		
-		 if (gameData.autoStartSimulation == 1) {
-			startSimulation()
+		
+		 if (gameData.autoCheckSimulation == 1) {
+			checkResults()
 		}
 	
 		 if (gameData.currentTask == 'eatFood') {
@@ -147,54 +152,87 @@ function startSimulation() {
 
 }
 
+function diseaseControlQuit() {
+
+
+		diseaseControlFailed = 1
+
+
+		if (gameData.simulationTime == 1) {
+
+			gameData.diseaseControlFinished = 1
+			diseaseControlReset("hard")
+					 if (gameData.autoStartTask == 1) {
+				diseaseControlTask()
+			}
+
+				gameData.respect -= (gameData.limeDiseaseLakes + 1)
+			
+		} else {
+			gameData.diseaseControlFinished = 1
+			diseaseControlReset("hard")
+			gameData.respect -= (gameData.limeDiseaseLakes + 1)
+			
+					 if (gameData.autoStartTask == 1) {
+				diseaseControlTask()
+			}
+		}
+
+
+    updateValues()
+
+}
 
 function checkResults() {
 
-    diseaseControlFailed = 0
-    for (x = 0; x < 4; x++) {
+if (gameData.civiliansPlaced == gameData.civiliansTotal)
+	
+		{
+		diseaseControlFailed = 0
+		for (x = 0; x < 4; x++) {
 
-        for (y = 0; y < 4; y++) {
+			for (y = 0; y < 4; y++) {
 
-            tileType = (gameData.diseaseArray[x][y])
-
-
-            if (tileType == 3) {
-
-                diseaseControlFailed = 1
-
-            }
-
-        }
-
-    }
+				tileType = (gameData.diseaseArray[x][y])
 
 
-    if (gameData.civiliansPlaced == gameData.civiliansTotal && gameData.simulationTime == 1) {
+				if (tileType == 3) {
 
-        gameData.diseaseControlFinished = 1
-        diseaseControlReset("hard")
-				 if (gameData.autoStartTask == 1) {
-			diseaseControlTask()
+					diseaseControlFailed = 1
+
+				}
+
+			}
+
 		}
 
 
-        if (diseaseControlFailed == 0) {
-            gameData.respect += (gameData.limeDiseaseLakes + 1)
-        } else {
-            gameData.respect -= (gameData.limeDiseaseLakes + 1)
-        }
-		
-    } else {
-        gameData.diseaseControlFinished = 1
-        diseaseControlReset("hard")
-        gameData.respect -= (gameData.limeDiseaseLakes + 1)
-		
-				 if (gameData.autoStartTask == 1) {
-			diseaseControlTask()
+		if (gameData.simulationTime == 1) {
+
+			gameData.diseaseControlFinished = 1
+			diseaseControlReset("hard")
+					 if (gameData.autoStartTask == 1) {
+				diseaseControlTask()
+			}
+
+
+			if (diseaseControlFailed == 0) {
+				gameData.respect += (gameData.limeDiseaseLakes + 1)
+			} else {
+				gameData.respect -= (gameData.limeDiseaseLakes + 1)
+			}
+			
+		} else {
+			gameData.diseaseControlFinished = 1
+			diseaseControlReset("hard")
+			gameData.respect -= (gameData.limeDiseaseLakes + 1)
+			
+					 if (gameData.autoStartTask == 1) {
+				diseaseControlTask()
+			}
 		}
-    }
 
-
+	}
 
     updateValues()
 

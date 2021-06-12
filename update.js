@@ -176,7 +176,7 @@ function updateValues() {
         hide("applicationInfo")
     }
 
-    update("textForBetterTraining", "Current increase: " + gameData.betterTraining.toLocaleString() + "00%")
+    update("textForBetterTraining", "Current maximum: " + (gameData.betterTraining + 10).toLocaleString() + "00%")
 
 
     update("speedEmployee", "Speed: " + gameData.employeeSpeed.toLocaleString() + "% of what I'm taught.")
@@ -307,6 +307,12 @@ function updateValues() {
     } else {
         hide("autoStartSimulationButton")
 	}
+	
+    if (gameData.respect >= 60) {
+        tabs("autoCheckSimulationButton", "inline-block")
+    } else {
+        hide("autoCheckSimulationButton")
+	}
 
 
 
@@ -337,10 +343,10 @@ function updateValues() {
 
 
 
-    if (gameData.villageNumber > 1) {
-        tabs("peopleButton", "block")
+    if (gameData.villageNumber > 1 || gameData.betterTraining > 0) {
+        tabs("megaCoinUpgradesNavigationButton", "block")
     } else {
-        hide("peopleButton")
+        hide("megaCoinUpgradesNavigationButton")
     }
 
 

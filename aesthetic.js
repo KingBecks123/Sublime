@@ -48,6 +48,8 @@ function addAesthetic() {
 
     toggleAesthetic("autoStartTask")
     toggleAesthetic("autoStartSimulation")
+    toggleAesthetic("autoCheckSimulation")
+
 
 
 
@@ -105,7 +107,16 @@ function addAesthetic() {
         colorChanger("pickUpLimes", grayAccent)
     }
 
+    if (gameData.respect >= 60) {
+        colorChanger('60RespectMilestone', limesRelatedAccent)
+    } else {
 
+        colorChanger('60RespectMilestone', grayAccentLight)
+    }
+	
+	
+	
+	
 
     if (gameData.respect >= 50) {
         colorChanger('50RespectMilestone', limesRelatedAccent)

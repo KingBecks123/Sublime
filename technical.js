@@ -141,6 +141,8 @@ var gameDataBase = {
     civiliansTotal: 2,
 	
     autoStartTask: 0,
+    autoCheckSimulation: 0,
+
 
 
     silkRobe: 0,
