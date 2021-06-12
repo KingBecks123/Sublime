@@ -16,6 +16,14 @@ function mainGameLoop() {
 	if(loopNumbercurrentTask == 10)
 	{
 		loopNumbercurrentTask = 0
+		
+		 if (gameData.autoStartTask == 1) {
+			diseaseControlTask()
+		}
+		
+		 if (gameData.autoStartSimulation == 1) {
+			startSimulation()
+		}
 	
 		 if (gameData.currentTask == 'eatFood') {
 			eat()
@@ -165,6 +173,9 @@ function checkResults() {
 
         gameData.diseaseControlFinished = 1
         diseaseControlReset("hard")
+				 if (gameData.autoStartTask == 1) {
+			diseaseControlTask()
+		}
 
 
         if (diseaseControlFailed == 0) {
@@ -172,10 +183,15 @@ function checkResults() {
         } else {
             gameData.respect -= (gameData.limeDiseaseLakes + 1)
         }
+		
     } else {
         gameData.diseaseControlFinished = 1
         diseaseControlReset("hard")
         gameData.respect -= (gameData.limeDiseaseLakes + 1)
+		
+				 if (gameData.autoStartTask == 1) {
+			diseaseControlTask()
+		}
     }
 
 
@@ -207,24 +223,27 @@ function mapTile(x, y) {
 
 function diseaseControlTask() {
 
-    diseaseControlReset("soft")
-    gameData.diseaseControlFinished = 0
-    gameData.civiliansTotal = beckyRandom(5)
+    if (gameData.diseaseControlFinished == 1) {	
+		diseaseControlReset("soft")
+		gameData.diseaseControlFinished = 0
+		gameData.civiliansTotal = beckyRandom(4)
 
 
-    for (gameData.limeDiseaseLakesCurrent = 0; gameData.limeDiseaseLakesCurrent < gameData.limeDiseaseLakes; gameData.limeDiseaseLakesCurrent) {
+		for (gameData.limeDiseaseLakesCurrent = 0; gameData.limeDiseaseLakesCurrent < gameData.limeDiseaseLakes; gameData.limeDiseaseLakesCurrent) {
 
-        x = beckyRandom(4) - 1
-        y = beckyRandom(4) - 1
+			x = beckyRandom(4) - 1
+			y = beckyRandom(4) - 1
 
-        if (gameData.diseaseArray[x][y] !== 4) {
+			if (gameData.diseaseArray[x][y] !== 4) {
 
-            gameData.diseaseArray[x][y] = 4
-            gameData.limeDiseaseLakesCurrent += 1
+				gameData.diseaseArray[x][y] = 4
+				gameData.limeDiseaseLakesCurrent += 1
 
-        }
+			}
 
-    }
+		}
+	
+	}
 
 
 

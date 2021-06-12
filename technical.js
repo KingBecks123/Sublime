@@ -139,6 +139,9 @@ var gameDataBase = {
 
     civiliansPlaced: 0,
     civiliansTotal: 2,
+	
+    autoStartTask: 0,
+
 
     silkRobe: 0,
 

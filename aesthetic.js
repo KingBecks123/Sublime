@@ -46,6 +46,10 @@ function addAesthetic() {
     basicToggle("peelers", "Bulk")
     basicToggle("baskets", "Bulk")
 
+    toggleAesthetic("autoStartTask")
+    toggleAesthetic("autoStartSimulation")
+
+
 
 
     //Map Tile
@@ -110,6 +114,20 @@ function addAesthetic() {
 
         colorChanger('50RespectMilestone', grayAccentLight)
         hide("storeTypesButtonsDiv")
+    }
+	
+	    if (gameData.respect >= 10) {
+        colorChanger('10RespectMilestone', limesRelatedAccent)
+    } else {
+
+        colorChanger('10RespectMilestone', grayAccentLight)
+    }
+	
+	    if (gameData.respect >= 25) {
+        colorChanger('25RespectMilestone', limesRelatedAccent)
+    } else {
+
+        colorChanger('25RespectMilestone', grayAccentLight)
     }
 
 

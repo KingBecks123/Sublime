@@ -130,6 +130,22 @@ function showOrHideClass(input) {
 }
 
 
+function toggleAesthetic(input) {
+
+
+    button = input + "Button"
+
+    if (eval("gameData." + input + " == 1")) {
+        document.getElementById(button).style.backgroundColor = accent3;
+
+    } else {
+        document.getElementById(button).style.backgroundColor = accent2;
+
+
+    }
+
+}
+
 
 function basicToggle(input, type) {
 
@@ -433,7 +449,7 @@ function loadStuff(savegame) {
     if (savegame !== null) {
         Object.assign(gameData, savegame);
         backwardsCompatibility(savegame.versionNumber)
-        gameData.versionNumber = 58
+        gameData.versionNumber = 59
         updateValues()
         updateAfterLoad()
     } else {

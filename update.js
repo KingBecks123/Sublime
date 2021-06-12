@@ -296,6 +296,18 @@ function updateValues() {
         hide("upgradeBetterTraining")
     }
 
+    if (gameData.respect >= 10) {
+        tabs("autoStartTaskButton", "inline-block")
+    } else {
+        hide("autoStartTaskButton")
+	}
+	
+    if (gameData.respect >= 25) {
+        tabs("autoStartSimulationButton", "inline-block")
+    } else {
+        hide("autoStartSimulationButton")
+	}
+
 
 
     if (gameData.diseaseControlFinished == 1) {
