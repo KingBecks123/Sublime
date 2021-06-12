@@ -24,6 +24,62 @@ function showBasicDiv(x) {
     tabs(x, "block")
 }
 
+function pin(x) {
+	
+	if(gameData.pin == x && gameData.pin !== "none")
+	{
+		gameData.pin = "none"
+	}
+	else
+	{
+		gameData.pin = x
+	}
+		
+		normalizeButtons()
+		pinButton()
+		
+		
+		
+
+	updateValues()
+}
+
+function normalizeButtons(){
+	$( ".juiceMarket" ).prepend( document.getElementById("sellYourJuiceButton") )
+	document.getElementById("sellYourJuiceButton").style.width = "120px"
+	document.getElementById("sellYourJuiceButton").style.margin = "5px"
+
+}
+
+function pinButton() {
+	if(gameData.pin !== "none")
+	{
+
+	$( ".navigateButtons" ).append( document.getElementById(gameData.pin) )
+	
+	document.getElementById(gameData.pin).style.width = "120px"
+	document.getElementById(gameData.pin).style.margin = "0px"
+	document.getElementById(gameData.pin).style.padding = "0px";
+	}
+	
+	updateValues()
+}
+
+
+function pickCurrentTask(x) {
+	
+	if(gameData.currentTask == x && gameData.currentTask !== "none")
+	{
+		gameData.currentTask = "none"
+	}
+	else
+	{
+		gameData.currentTask = x
+	}
+	
+	updateValues()
+}
+
 
 function showOrHideSkill(x) {
 
@@ -179,25 +235,18 @@ function beckyRandom(max) {
 function basicBarSkill(variable) {
     i = eval("gameData." + variable + "Bar")
 
-    if (i <= 99) {
-        eval("gameData." + variable + "Bar += 1");
+    if (i <= 99.5) {
+        eval("gameData." + variable + "Bar += 0.5");
         x = variable + "Bar()"
         if (variable != "eat") {
-            setTimeout(x, (100 / (gameData.intelligenceSkillLevel / gameData.intelligenceSkillLevelMax + 1)) / gameData.tickspeed)
+            setTimeout(x, (50 / (gameData.intelligenceSkillLevel / gameData.intelligenceSkillLevelMax + 1)) / gameData.tickspeed)
         } else {
             setTimeout(x, 10 / gameData.tickspeed)
         }
     } else {
-        if (variable != "eat") {
-            eval("gameData." + variable + "SkillLevel += 1");
-            eval("gameData." + variable + " += 2");
-        } else {
-            gameData.eat += gameData.foodType * (gameData.nutritionists + 1)
-            if (gameData.eat > 100) {
-                gameData.eat = 100
-            }
 
-        }
+        eval("gameData." + variable + "SkillLevel += 1");
+        eval("gameData." + variable + " += 2");
     }
     updateValues()
 }
@@ -384,7 +433,7 @@ function loadStuff(savegame) {
     if (savegame !== null) {
         Object.assign(gameData, savegame);
         backwardsCompatibility(savegame.versionNumber)
-        gameData.versionNumber = 57
+        gameData.versionNumber = 58
         updateValues()
         updateAfterLoad()
     } else {

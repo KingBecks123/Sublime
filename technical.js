@@ -24,7 +24,7 @@ var gameDataBase = {
     rottenWisdomBar: 0,
     rottenWisdom: 0,
     learnANewSkillBar: 0,
-    learnANewSkill: 0,
+    learnANewSkill: -2,
     limebidextrousBar: 0,
     limebidextrous: 0,
     intelligenceBar: 0,
@@ -160,6 +160,21 @@ var gameDataBase = {
     deliveryManager: 0,
 
     nourishment: 0,
+	
+    fork: 0,
+    shoes: 0,
+
+    pin: "none",
+
+
+    currentTask: "none",
+
+    keenEyeBar: 0,	
+    keenEyeSkillLevel: 1,
+    keenEyeSkillLevelMax: 20,
+
+    desktopMode: 1,
+	
 
     isOptionsOpen: 0,
 

@@ -9,7 +9,9 @@ function updateAfterLoad() {
     restartBar("advertise")
     restartBar("working")
     restartBar("eat")
-
+	
+	normalizeButtons()
+	pinButton()
 
     if (gameData.autoCollectingBar !== 0) {
         autoCollectingBar()
@@ -23,6 +25,7 @@ function updateAfterLoad() {
 
     updateValues()
 }
+
 
 function updateValues() {
 
@@ -128,7 +131,7 @@ function updateValues() {
 
     update("textForCoins", gameData.coins.toLocaleString() + " Coins")
     update("textForJuice", gameData.juice.toLocaleString() + " Juice")
-    update("textForMegaCoinsInBank", gameData.megaCoinsInBank.toLocaleString() + " / " + gameData.megaCoinsInBankMax.toLocaleString() + " Mega Coins")
+    update("textForMegaCoinsInBank", gameData.megaCoinsInBank.toLocaleString() + " / " + gameData.megaCoinsInBankMax.toLocaleString() + " Mega Coins In Bank")
     update("textForMegaCoins", gameData.megaCoins.toLocaleString() + " Mega Coins")
 
     update("juicersAmount", gameData.juicers.toLocaleString() + " / " + gameData.juicersMax.toLocaleString() + " Juicers")
@@ -192,7 +195,7 @@ function updateValues() {
 
 
     update("textForPeeledLimes", gameData.peeledLimes.toLocaleString() + " Peeled Limes")
-    update("sellYourJuiceAmount", "You Will Deliver " + gameData.juiceBulkAmountToggle.toLocaleString() + " Juice")
+    update("sellYourJuiceAmount", "You Will Deliver " + gameData.juiceBulkAmountToggle.toLocaleString() + " / " + gameData.juiceBulkAmountMax.toLocaleString() + " Juice")
 
 
     update("sellYourJuiceReward", "You Will Get " + gameData.juiceSellReward.toLocaleString() + " Coins")
@@ -215,26 +218,25 @@ function updateValues() {
     checkShowNonVariable(gameData.hasGottenJuice, "juiceMarket")
 
 
-    moveBar("juicer")
-    moveBar("delivery")
-    moveBar("advertise")
     moveBar("teach")
-    moveBar("peeler")
     moveBar("working")
-    moveBar("eat")
     moveBasket()
     moveAutoCollecting()
 
     moveBar("rottenWisdom")
     update("rottenWisdom", gameData.rottenWisdom + "% Chance")
     update("rottenWisdomSkillLevel", gameData.rottenWisdomSkillLevel + " / " + gameData.rottenWisdomSkillLevelMax)
+	
+    moveBar("keenEye")
+    update("keenEye", gameData.keenEyeSkillLevel * 5 + "% Chance")
+    update("keenEyeSkillLevel", gameData.keenEyeSkillLevel + " / " + gameData.keenEyeSkillLevelMax)
 
     moveBar("limebidextrous")
     update("limebidextrous", gameData.limebidextrous + "% Chance")
     update("limebidextrousSkillLevel", gameData.limebidextrousSkillLevel + " / " + gameData.limebidextrousSkillLevelMax)
 
     moveBar("intelligence")
-    update("intelligence", Math.floor((gameData.intelligenceSkillLevel / gameData.intelligenceSkillLevelMax) * 100) + "% Faster")
+    update("intelligence", Math.floor(((gameData.intelligenceSkillLevel * 2)/ gameData.intelligenceSkillLevelMax) * 100) + "% Faster")
     update("intelligenceSkillLevel", gameData.intelligenceSkillLevel + " / " + gameData.intelligenceSkillLevelMax)
 
     moveBar("knifebidextrous")
@@ -382,13 +384,48 @@ function updateValues() {
         hide("fasterTransportDiv")
     }
 
-
+    if (gameData.fork == 0 && gameData.learnANewSkill > -1) {
+        showBasicDiv('buyAForkDiv')
+    } else {
+        hide('buyAForkDiv')
+    }
+	
+    if (gameData.shoes == 0 && gameData.learnANewSkill > -2) {
+        showBasicDiv('buyShoesDiv')
+    } else {
+        hide('buyShoesDiv')
+    }
 
 
     if (gameData.hideCompletedSkills == 0) {
         update("hideCompletedSkillsButton", "Completed Skills Shown")
     } else {
         update("hideCompletedSkillsButton", "Completed Skills Hidden")
+    }
+
+	tabs('skillsSection1', 'inline-block')
+	tabs('skillsSection2', 'inline-block')
+
+
+    if (gameData.desktopMode == 0) {
+		
+		document.getElementById('skills').style.width = '380px'
+		document.getElementById('skillsSection1').style.position = 'relative'
+		document.getElementById('skillsSection2').style.position = 'relative'
+
+		
+        update("desktopModeButton", "In Mobile Mode")
+		
+		
+    } else {
+		
+		document.getElementById('skillsSection1').style.top = '0'
+		document.getElementById('skillsSection1').style.position = 'absolute'
+		document.getElementById('skillsSection2').style.position = 'absolute'
+		document.getElementById('skillsSection2').style.right = '0'
+		document.getElementById('skills').style.width = '760px'
+        update("desktopModeButton", "In Desktop Mode")
+		
     }
 
 
@@ -438,11 +475,10 @@ function updateValues() {
         hide("advertisingMethods")
 
         if (gameData.hasAdvertised == 1) {
-            tabs("researchBetterAdvertising", "block")
+            showBasicDiv("researchBetterAdvertising")
         } else {
             hide("researchBetterAdvertising")
         }
-
 
     } else {
         tabs("advertisingMethods", "block")
@@ -505,6 +541,21 @@ function updateValues() {
 
     }
 
+
+
+    if (gameData.learnANewSkill >= -1) {	
+		showBasicDiv("autoCollectingDiv")
+		showBasicDiv("nourishment")
+		tabs("skillInfoButton", "inline-block")
+    }
+
+    if (gameData.learnANewSkill >= 0) {	
+		showBasicDiv("eatFoodDiv")
+		showOrHideSkill("keenEye")
+    }
+
+
+	
     if (gameData.learnANewSkill >= 1) {
         showOrHideSkill("rottenWisdom")
     }
@@ -622,7 +673,7 @@ function updateValues() {
 
 
 
-    if (gameData.advertisingSpeed >= 6) {
+    if (gameData.advertisingLevel2 && gameData.advertisingLevel3) {
         hide("researchBetterAdvertising")
         hide("advertisingBillboard")
         hide("advertisingLeaflets")

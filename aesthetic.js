@@ -9,6 +9,8 @@ function addAesthetic() {
     accent2 = "gray"; //When buttons are toggled off
     accent3 = "#4DFE89"; //When buttons are toggled on
     accent4 = "#FFBB9A"; //Special Buttons
+    accent4Dark = "#FF894C"; //Special Buttons Dark
+
     grayAccent = "#50514F";
     grayAccentLight = "#BBBBBB";
     limesRelatedAccent = "#4DFE89";
@@ -43,7 +45,6 @@ function addAesthetic() {
     basicToggle("juicers", "Bulk")
     basicToggle("peelers", "Bulk")
     basicToggle("baskets", "Bulk")
-
 
 
 
@@ -124,6 +125,37 @@ function addAesthetic() {
     ifMaxDarkGray("juicer")
     ifMaxDarkGray("peeler")
 
+	currentTaskAesthetic('usePeelers')		
+	currentTaskAesthetic('useMaxPeelers')	
+	
+	currentTaskAesthetic('makeJuice')		
+	currentTaskAesthetic('makeMaxJuice')
+
+	currentTaskAesthetic('keenEye')		
+	currentTaskAesthetic('eatFood')	
+	currentTaskAesthetic('learnANewSkill')
+	currentTaskAesthetic('intelligence')
+	currentTaskAesthetic('knifebidextrous')
+	currentTaskAesthetic('limebidextrous')
+	currentTaskAesthetic('rottenWisdom')
+
+	if (gameData.currentTask == 'sellYourJuice') {
+		colorChanger('sellYourJuiceButton', accent4Dark)
+	} else {
+		colorChanger('sellYourJuiceButton', accent4)
+	}
+	
+	function currentTaskAesthetic(x){
+		
+		button = x + "Button"
+		if (gameData.currentTask == x) {
+			colorChanger(button, accent4Dark)
+		} else {
+			colorChanger(button, accent4)
+		}
+		
+	}
+
 
     if (gameData.lookAround == 3) {
         hide('lookAroundButton')
@@ -132,15 +164,18 @@ function addAesthetic() {
     }
 
     if (gameData.juiceBulkAmountToggle == 100 && gameData.deliveryTypeToggle < 2) {
-        colorChanger('decreaseJuiceSoldButton', grayAccent)
         colorChanger('increaseJuiceSoldButton', grayAccent)
 
     } else {
-        colorChanger('decreaseJuiceSoldButton', grayAccentLight)
         colorChanger('increaseJuiceSoldButton', grayAccentLight)
     }
 
+    if (gameData.juiceBulkAmountToggle == 0) {
+        colorChanger('decreaseJuiceSoldButton', grayAccent)
 
+    } else {
+        colorChanger('decreaseJuiceSoldButton', grayAccentLight)
+    }
 
 
     colorChanger('lookAroundButton', grayAccentLight)
@@ -213,7 +248,12 @@ function addAesthetic() {
         x[i].style['margin'] = "5px 5px 5px 5px";
     }
 
-
+    //Pin Button
+    var x = document.getElementsByClassName("pinButton");
+    for (i = 0; i < x.length; i++) {
+        x[i].style.backgroundColor = "#FF999A";
+        x[i].style['margin'] = "5px";
+    }
 
 
     //Skills

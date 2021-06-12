@@ -1,17 +1,71 @@
 var loopNumberBasket = 0;
+var loopNumbercurrentTask = 0;
+
 
 function mainGameLoop() {
 	
 	loopNumberBasket += 1
+	loopNumbercurrentTask += 1
 	
 	
-	 if (gameData.basketBar < 100 && loopNumberBasket == 24) {
+	 if (gameData.basketBar < 100 && loopNumberBasket >= 24) {
         gameData.basketBar += 0.2;
 		loopNumberBasket = 0
     }
 	
+	if(loopNumbercurrentTask == 10)
+	{
+		loopNumbercurrentTask = 0
 	
+		 if (gameData.currentTask == 'eatFood') {
+			eat()
+		}
+		
+		 else if (gameData.currentTask == 'rottenWisdom') {
+			barStartGranularSkillBasic('rottenWisdom')
+		}
+		
+		 else if (gameData.currentTask == 'intelligence') {
+			barStartGranularSkillBasic('intelligence')
+		}
+
+		 else if (gameData.currentTask == 'knifebidextrous') {
+			barStartGranularSkillBasic('knifebidextrous')
+		}
+		
+		 else if (gameData.currentTask == 'limebidextrous') {
+			barStartGranularSkillBasic('limebidextrous')
+		}
+		
+		 else if (gameData.currentTask == 'learnANewSkill') {
+			learnANewSkill()
+		}
+		
+		 else if (gameData.currentTask == 'sellYourJuice') {
+			sellYourJuice()
+		}
 	
+		 else if (gameData.currentTask == 'makeMaxJuice') {
+			makeMaxJuice()
+		}	
+	
+		 else if (gameData.currentTask == 'makeJuice') {
+			makeJuice()
+		}	
+
+		 else if (gameData.currentTask == 'usePeelers') {
+			peelerPeel()
+		}	
+	
+		 else if (gameData.currentTask == 'useMaxPeelers') {
+			peelerPeelMax()
+		}		
+
+		 else if (gameData.currentTask == 'keenEye') {
+			barStartGranularSkillBasic('keenEye')
+		}			
+	
+	}
 	
 	
 	setTimeout(mainGameLoop, 50)
@@ -283,21 +337,35 @@ function getLimesButton() {
 }
 
 function getLimes() {
-
-    if (Math.random() <= (gameData.rottenWisdom / 100)) {
-        if (Math.random() <= (gameData.limebidextrous / 100)) {
-            gameData.limes += gameData.limesPerClick
-            if (gameData.teachBar > 0 && gameData.teachBar < 100) {
-                gameData.employeeCurrentSpeed += (gameData.limesPerClick * gameData.employeeSpeed) / 10
-            }
-        }
-        gameData.limes += gameData.limesPerClick
-        if (gameData.teachBar > 0 && gameData.teachBar < 100) {
-            gameData.employeeCurrentSpeed += (gameData.limesPerClick * gameData.employeeSpeed) / 10
-        }
-    } else {
-        gameData.rottenLimes += gameData.limesPerClick
-    }
+	if( beckyRandom(eval(gameData.keenEyeSkillLevelMax)) <= gameData.keenEyeSkillLevel)
+	{
+		if (gameData.keenEyeSkillLevel != gameData.keenEyeSkillLevelMax)
+		{
+			update("newInfo", "You found something!")
+		}
+		
+		
+		if (Math.random() <= (gameData.rottenWisdom / 100)) {
+			if (Math.random() <= (gameData.limebidextrous / 100)) {
+				gameData.limes += gameData.limesPerClick
+				if (gameData.teachBar > 0 && gameData.teachBar < 100) {
+					gameData.employeeCurrentSpeed += (gameData.limesPerClick * gameData.employeeSpeed) / 10
+				}
+			}
+			gameData.limes += gameData.limesPerClick
+			if (gameData.teachBar > 0 && gameData.teachBar < 100) {
+				gameData.employeeCurrentSpeed += (gameData.limesPerClick * gameData.employeeSpeed) / 10
+			}
+		} else {
+			gameData.rottenLimes += gameData.limesPerClick
+		}
+		
+	}
+	else
+	{
+		update("newInfo", "Couldn't find any limes...")
+	}
+		
     updateValues()
 }
 
@@ -312,7 +380,6 @@ function peelLime() {
     }
     updateValues()
 }
-
 
 function buyTome() {
     if (gameData.coins >= 10) {
@@ -392,6 +459,8 @@ function travelToNextVillage() {
     if (window.prompt("Are you sure? Type 'yes' if you are") == "yes") {
         megaCoinsNow = gameData.megaCoinsInBank
         bigGlovesNow = gameData.bigGloves
+        desktopModeNow = gameData.desktopMode
+
         nutritionistsNow = gameData.nutritionists
         megaCoinsInBankMaxNow = gameData.megaCoinsInBankMax
         betterTrainingNow = gameData.betterTraining
@@ -411,6 +480,8 @@ function travelToNextVillage() {
 
         gameData.megaCoinsInBank = megaCoinsNow
         gameData.bigGloves = bigGlovesNow
+        gameData.desktopMode = desktopModeNow
+		
         gameData.nutritionists = nutritionistsNow
         gameData.megaCoinsInBankMax = megaCoinsInBankMaxNow
         gameData.betterTraining = betterTrainingNow
@@ -477,8 +548,8 @@ function buyAMap() {
 
 
 function bulkBuyUnlock() {
-    if (gameData.coins >= 1000) {
-        gameData.coins -= 1000
+    if (gameData.coins >= 500) {
+        gameData.coins -= 500
         gameData.bulkBuyUnlock = 1
     }
     updateValues()
