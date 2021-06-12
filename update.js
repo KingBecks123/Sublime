@@ -356,6 +356,12 @@ function updateValues() {
     } else {
         update("deliveryToggleStandardButton", "Hyper Delivery")
     }
+	
+	if (gameData.diseaseTileSize == 0) {
+        update("diseaseTileSizeButton", "Disease Tiles Small")
+    } else {
+        update("diseaseTileSizeButton", "Disease Tiles Large")
+    }
 
 
     if (gameData.deliveryManager == 0) {

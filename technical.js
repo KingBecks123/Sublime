@@ -143,6 +143,7 @@ var gameDataBase = {
     autoStartTask: 0,
     autoCheckSimulation: 0,
 
+    diseaseTileSize: 0,
 
 
     silkRobe: 0,

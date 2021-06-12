@@ -71,16 +71,28 @@ function addAesthetic() {
 		colorChanger('checkResultsButton', grayAccent)
 	}
 	
-
-
+	
 
 
     //Map Tile
     var x = document.getElementsByClassName("mapTile");
     for (i = 0; i < x.length; i++) {
-        x[i].style['width'] = "20px";
-        x[i].style['height'] = "20px";
+		
+		if(gameData.diseaseTileSize == 0) 
+		{
+			x[i].style['width'] = "20px";
+			x[i].style['height'] = "20px";
+		}
+		else
+		{
+			x[i].style['width'] = "40px";
+			x[i].style['height'] = "40px";
+		}
+		
+		
         x[i].style['margin'] = "5px 0px 0px 0px";
+		
+		
     }
 
     for (x = 0; x < 4; x++) {
