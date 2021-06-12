@@ -51,6 +51,27 @@ function addAesthetic() {
     toggleAesthetic("autoCheckSimulation")
 
 
+    if (gameData.diseaseControlFinished == 1) {
+		
+		colorChanger('decreaseLakesButton', grayAccentLight)
+		colorChanger('increaseLakesButton', grayAccentLight)
+	}
+	else
+	{
+		colorChanger('decreaseLakesButton', grayAccent)
+		colorChanger('increaseLakesButton', grayAccent)
+	}
+	
+	if (gameData.simulationTime == 1){
+		
+		colorChanger('checkResultsButton', accent4)
+	}
+	else
+	{
+		colorChanger('checkResultsButton', grayAccent)
+	}
+	
+
 
 
 
