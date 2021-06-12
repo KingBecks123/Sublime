@@ -415,10 +415,13 @@ function exportGame() {
 
 function importGame() {
     var savegame = JSON.parse(window.prompt("Import Code: "));
-    Object.assign(gameData, gameDataBase)
-    loadStuff(savegame)
-    saveGame()
-    location.reload();
+	if(savegame !== null)
+	{
+		Object.assign(gameData, gameDataBase)
+		loadStuff(savegame)
+		saveGame()
+		location.reload();
+	}
 
 }
 
@@ -449,7 +452,7 @@ function loadStuff(savegame) {
     if (savegame !== null) {
         Object.assign(gameData, savegame);
         backwardsCompatibility(savegame.versionNumber)
-        gameData.versionNumber = 63
+        gameData.versionNumber = 64
         updateValues()
         updateAfterLoad()
     } else {
