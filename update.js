@@ -9,6 +9,8 @@ function updateAfterLoad() {
     restartBar("advertise")
     restartBar("working")
     restartBar("eat")
+    restartBar("keenEye")
+
 	
 	normalizeButtons()
 	pinButton()

@@ -189,11 +189,6 @@ function addAesthetic() {
     }
 
 
-    if (gameData.respect >= 1000) {
-        colorChanger('1000RespectMilestone', limesRelatedAccent)
-    } else {
-        colorChanger('1000RespectMilestone', grayAccentLight)
-    }
 
 
 
