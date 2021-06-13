@@ -214,13 +214,6 @@ function updateValues() {
 
     update("sellYourJuicePrice", "You Need " + gameData.deliveryPrice.toLocaleString() + " Coins For Delivery")
 
-    checkShow(gameData.megaCoins, "textForMegaCoins")
-    checkShow(gameData.peeledLimes, "textForPeeledLimes")
-    checkShow(gameData.coins, "textForCoinsDiv")
-    checkShow(gameData.rottenLimes, "textForRottenLimes")
-    checkShow(gameData.coins, "achievementsButton")
-    checkShow(gameData.hasGottenJuice, "textForJuice")
-
     checkShowNonVariable(gameData.juicers, "inventoryButton")
     checkShowNonVariable(gameData.employees, "companyButton")
     checkShowNonVariable(gameData.baskets, "forestButton")

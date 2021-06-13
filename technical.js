@@ -216,7 +216,7 @@ function gameStart() {
     tabTasks("earn")
 }
 
-tab("shop")
+tab("null")
 
 function tab(tabby) {
 
@@ -241,7 +241,7 @@ function tab(tabby) {
         }
 
 
-    } else if (tabby !== "options") {
+    } else if (tabby !== "options" && tabby !== 'null') {
 
         gameData.isOptionsOpen = 0
         document.getElementById(tabby).style.display = "inline-block"
