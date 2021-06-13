@@ -105,42 +105,19 @@ function addAesthetic() {
         }
     }
 
-
-
-
-    if (gameData.achievement1 == 1) {
-        document.getElementById('coinsAchievement').style.backgroundColor = limesRelatedAccent;
-    }
-    if (gameData.achievement2 == 1) {
-        document.getElementById('coinsAchievement2').style.backgroundColor = limesRelatedAccent;
-    }
-    if (gameData.achievement3 == 1) {
-        document.getElementById('coinsAchievement3').style.backgroundColor = limesRelatedAccent;
-    }
-    if (gameData.achievement4 == 1) {
-        document.getElementById('coinsAchievement4').style.backgroundColor = limesRelatedAccent;
-    }
-
+	
+	//for (i = 1; i <= 4; i++) {
+	//	if (gameData['achievement' + i] == 1) {
+	//		achievement = 'coinsAchievement' + i
+	//		document.getElementById(achievement).style.backgroundColor = limesRelatedAccent;
+	//	}
+	//}
 
 
     if (gameData.autoCollectingBar == 0 || gameData.autoCollectingBar == (gameData.nourishment + 1) * 100) {
         colorChanger("pickUpLimes", limesRelatedAccent)
     } else {
         colorChanger("pickUpLimes", grayAccent)
-    }
-
-    if (gameData.respect >= 100) {
-        colorChanger('100RespectMilestone', limesRelatedAccent)
-    } else {
-
-        colorChanger('100RespectMilestone', grayAccentLight)
-    }
-	
-    if (gameData.respect >= 500) {
-        colorChanger('500RespectMilestone', limesRelatedAccent)
-    } else {
-
-        colorChanger('500RespectMilestone', grayAccentLight)
     }
 	
     if (gameData.increaseJuicePricePermanance < 1) {
@@ -160,29 +137,29 @@ function addAesthetic() {
 	
 
     if (gameData.respect >= 50) {
-        colorChanger('50RespectMilestone', limesRelatedAccent)
         showBasicDiv("storeTypesButtonsDiv")
     } else {
 
-        colorChanger('50RespectMilestone', grayAccentLight)
         hide("storeTypesButtonsDiv")
     }
 	
-	    if (gameData.respect >= 10) {
-        colorChanger('10RespectMilestone', limesRelatedAccent)
-    } else {
 
-        colorChanger('10RespectMilestone', grayAccentLight)
-    }
-	
-	    if (gameData.respect >= 25) {
-        colorChanger('25RespectMilestone', limesRelatedAccent)
-    } else {
-
-        colorChanger('25RespectMilestone', grayAccentLight)
-    }
+	checkRespectMilestone(10)
+	checkRespectMilestone(25)
+	checkRespectMilestone(50)
+	checkRespectMilestone(100)
+	checkRespectMilestone(500)
 
 
+	function checkRespectMilestone(number){
+		
+		if (gameData.respect >= number) {
+			colorChanger(number + 'RespectMilestone', limesRelatedAccent)
+		} else {
+
+			colorChanger(number + 'RespectMilestone', grayAccentLight)
+		}
+	}
 
 
 
