@@ -361,9 +361,9 @@ function updateValues() {
 
 
     if (gameData.villageNumber > 1 || gameData.betterTraining > 0 || gameData.increaseJuicePricePermanance == 1) {
-        tabs("megaCoinUpgradesNavigationButton", "block")
+        tabs("megaCoinUpgradesButton", "block")
     } else {
-        hide("megaCoinUpgradesNavigationButton")
+        hide("megaCoinUpgradesButton")
     }
 
 

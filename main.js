@@ -1,81 +1,79 @@
 var loopNumberBasket = 0;
 var loopNumbercurrentTask = 0;
 
+function mainGameLoopSlow() {
+	
+	 if (gameData.autoStartSimulation == 1) {
+		startSimulation()
+	}
+	
+	 if (gameData.autoStartTask == 1) {
+		diseaseControlTask()
+	}
+	
+	
+	 if (gameData.autoCheckSimulation == 1) {
+		checkResults()
+	}
+
+	 if (gameData.currentTask == 'eatFood') {
+		eat()
+	}
+	
+	 else if (gameData.currentTask == 'rottenWisdom') {
+		barStartGranularSkillBasic('rottenWisdom')
+	}
+	
+	 else if (gameData.currentTask == 'intelligence') {
+		barStartGranularSkillBasic('intelligence')
+	}
+
+	 else if (gameData.currentTask == 'knifebidextrous') {
+		barStartGranularSkillBasic('knifebidextrous')
+	}
+	
+	 else if (gameData.currentTask == 'limebidextrous') {
+		barStartGranularSkillBasic('limebidextrous')
+	}
+	
+	 else if (gameData.currentTask == 'sellYourJuice') {
+		sellYourJuice()
+	}
+
+	 else if (gameData.currentTask == 'makeMaxJuice') {
+		makeMaxJuice()
+	}	
+
+	 else if (gameData.currentTask == 'makeJuice') {
+		makeJuice()
+	}	
+
+	 else if (gameData.currentTask == 'usePeelers') {
+		peelerPeel()
+	}	
+
+	 else if (gameData.currentTask == 'useMaxPeelers') {
+		peelerPeelMax()
+	}		
+
+	 else if (gameData.currentTask == 'keenEye') {
+		barStartGranularSkillBasic('keenEye')
+	}			
+	
+	
+	
+	setTimeout(mainGameLoopSlow, 500)
+}
 
 function mainGameLoop() {
 	
-	loopNumberBasket += 1
-	loopNumbercurrentTask += 1
-	
+	loopNumberBasket += 1	
 	
 	 if (gameData.basketBar < 100 && loopNumberBasket >= 24) {
         gameData.basketBar += 0.2;
 		loopNumberBasket = 0
     }
-	
-	if(loopNumbercurrentTask == 10)
-	{
-		loopNumbercurrentTask = 0
 
-		 if (gameData.autoStartSimulation == 1) {
-			startSimulation()
-		}
-		
-		 if (gameData.autoStartTask == 1) {
-			diseaseControlTask()
-		}
-		
-		
-		 if (gameData.autoCheckSimulation == 1) {
-			checkResults()
-		}
-	
-		 if (gameData.currentTask == 'eatFood') {
-			eat()
-		}
-		
-		 else if (gameData.currentTask == 'rottenWisdom') {
-			barStartGranularSkillBasic('rottenWisdom')
-		}
-		
-		 else if (gameData.currentTask == 'intelligence') {
-			barStartGranularSkillBasic('intelligence')
-		}
-
-		 else if (gameData.currentTask == 'knifebidextrous') {
-			barStartGranularSkillBasic('knifebidextrous')
-		}
-		
-		 else if (gameData.currentTask == 'limebidextrous') {
-			barStartGranularSkillBasic('limebidextrous')
-		}
-		
-		 else if (gameData.currentTask == 'sellYourJuice') {
-			sellYourJuice()
-		}
-	
-		 else if (gameData.currentTask == 'makeMaxJuice') {
-			makeMaxJuice()
-		}	
-	
-		 else if (gameData.currentTask == 'makeJuice') {
-			makeJuice()
-		}	
-
-		 else if (gameData.currentTask == 'usePeelers') {
-			peelerPeel()
-		}	
-	
-		 else if (gameData.currentTask == 'useMaxPeelers') {
-			peelerPeelMax()
-		}		
-
-		 else if (gameData.currentTask == 'keenEye') {
-			barStartGranularSkillBasic('keenEye')
-		}			
-	
-	}
-	
 	
 	setTimeout(mainGameLoop, 50)
     updateValues()

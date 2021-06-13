@@ -16,19 +16,6 @@ function addAesthetic() {
     limesRelatedAccent = "#4DFE89";
     yellowAccent = "#FCFF4E";
 
-    colorChanger('sellYourLimesButton', yellowAccent)
-    colorChanger('sellYourJuiceButton', yellowAccent)
-
-    colorChanger('backgroundForValues', "#000000")
-
-    colorChanger('sellMaxJuiceButton', grayAccentLight)
-
-    colorChanger('pickUpLimes', limesRelatedAccent)
-    colorChanger('application', accent4)
-
-    colorChanger('mainBody', background)
-    colorChanger('inventoryKnifeLime', accent3)
-
     twoToggleButtons('deliveryToggleExpressButton', 'deliveryToggleStandardButton', gameData.deliveryTypeToggle)
     twoToggleButtons('foodToggleRottenLimesButton', 'foodToggleLimesButton', gameData.foodTypeToggle)
     twoToggleButtons('juicePeeledLimesToggleButton', 'juiceLimesToggleButton', gameData.limeTypeToJuice)
@@ -253,6 +240,33 @@ function addAesthetic() {
     colorChanger('deliveryBar', accent3)
 
 
+}
+
+function twoToggleButtons(button1, button2, value) {
+	if (value == 1) {
+		colorChanger(button1, accent3)
+		colorChanger(button2, accent2)
+	} else {
+		colorChanger(button1, accent2)
+		colorChanger(button2, accent3)
+	}
+}
+
+function addAestheticBase(){
+
+    colorChanger('sellYourLimesButton', yellowAccent)
+    colorChanger('sellYourJuiceButton', yellowAccent)
+
+    colorChanger('backgroundForValues', "#000000")
+
+    colorChanger('sellMaxJuiceButton', grayAccentLight)
+
+    colorChanger('pickUpLimes', limesRelatedAccent)
+    colorChanger('application', accent4)
+
+    colorChanger('mainBody', background)
+    colorChanger('inventoryKnifeLime', accent3)
+	
     //Basic Div
     var x = document.getElementsByClassName("basicDiv");
     for (i = 0; i < x.length; i++) {
@@ -340,20 +354,6 @@ function addAesthetic() {
     for (i = 0; i < x.length; i++) {
         x[i].style.backgroundColor = accent0;
         x[i].style['margin'] = "5px 5px 5px 5px";
-    }
-
-
-
-
-    function twoToggleButtons(button1, button2, value) {
-        if (value == 1) {
-            colorChanger(button1, accent3)
-            colorChanger(button2, accent2)
-        } else {
-            colorChanger(button1, accent2)
-            colorChanger(button2, accent3)
-        }
-    }
-
-
+    }	
+	
 }

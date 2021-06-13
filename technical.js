@@ -209,14 +209,19 @@ function gameStart() {
 
     mainGameLoop()
 	
+    mainGameLoopSlow()
+
+	
     updateValues()
     autosave()
+	
+    addAestheticBase()
 
+	tab("null")
     tabStore("plebian")
     tabTasks("earn")
 }
 
-tab("null")
 
 function tab(tabby) {
 
@@ -230,21 +235,37 @@ function tab(tabby) {
     tabs("tasks", "none")
     tabs("company", "none")
     tabs("forest", "none")
+	
+	
+	colorChanger('optionsButton', '#BBBBBB')
+	colorChanger('marketButton', '#BBBBBB')
+	colorChanger('inventoryButton', '#BBBBBB')
+	colorChanger('achievementsButton', '#BBBBBB')
+	colorChanger('skillsButton', '#BBBBBB')
+	colorChanger('megaCoinUpgradesButton', '#BBBBBB')
+	colorChanger('tasksButton', '#BBBBBB')
+	colorChanger('companyButton', '#BBBBBB')
+	colorChanger('forestButton', '#BBBBBB')
 
-    if (tabby == "options") {
+
+
+    if (tabby == "options" && tabby !== "null") {
         if (gameData.isOptionsOpen == 0) {
             gameData.isOptionsOpen = 1
             document.getElementById(tabby).style.display = "inline-block"
+			colorChanger(tabby + "Button", "#50514F")
+
 
         } else if (gameData.isOptionsOpen == 1) {
             gameData.isOptionsOpen = 0
         }
 
 
-    } else if (tabby !== "options" && tabby !== 'null') {
+    } else if (tabby !== "options" && tabby !== "null") {
 
         gameData.isOptionsOpen = 0
         document.getElementById(tabby).style.display = "inline-block"
+		colorChanger(tabby + "Button", "#50514F")
 
     }
 
