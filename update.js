@@ -10,6 +10,8 @@ function updateAfterLoad() {
     restartBar("working")
     restartBar("eat")
     restartBar("keenEye")
+    restartBar("teach")
+
 
 	
 	normalizeButtons()

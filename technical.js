@@ -172,6 +172,8 @@ var gameDataBase = {
 	
     fork: 0,
     shoes: 0,
+	
+	isCurrentlyJuicing: 0,
 
     pin: "none",
 
