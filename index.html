@@ -7,14 +7,22 @@
     <title>Lime Clicker</title>
 
     <style>
+	
+		.stat
+		{
+			 font-family: pixelated;  font-size: 20px;
+		}
+		.ar 
+		{
+			float: right;
+		}
+		
         body {
             -webkit-user-select: none;
             -ms-user-select: none;
             user-select: none;
         }
-    </style>
 
-    <style>
         @font-face {
             font-family: pixelated;
             src: url('redalertinet.ttf');
@@ -29,17 +37,14 @@
             font-family: pixelated;
             font-size: 20px;
         }
-    </style>
 
-    <style>
         .column {
             float: left;
             padding: 10px;
             height: 300px;
             width: 100px;
         }
-    </style>
-    <style>
+
         .skillProgress {
             width: 350px;
             height: 30px;
@@ -52,8 +57,7 @@
             font-family: pixelated;
             font-size: 20px;
         }
-    </style>
-    <style>
+
         .verticalProgress {
             width: 350px;
             height: 300px;
@@ -75,15 +79,15 @@
 
 <body id="mainBody" , onload="gameStart()">
 
-    <div class="column" id="backgroundForValues">
-        <p id="textForLimes" style="color:#00FF01;">0 Limes</p>
-        <p id="textForPeeledLimes" , style="color:#4EFF4D; display:none;"></p>
-        <p id="textForRottenLimes" , style="color:#006600;display:none;">0 Rotten Limes</p>
-        <div id="textForCoinsDiv" , style="display:none;">
-            <p id="textForCoins" , style="color:yellow;">0 Coins</p>
-        </div>
-        <p id="textForJuice" , style="color:#99FF99; display:none;">0 Juice</p>
-    </div>
+	<div style="float: left;padding: 10px;width: 100px;" id="backgroundForValues">
+		<br>
+		<div class="stat" id="textForMegaCoinsDiv"   style="color:#800;display:none  ;">Mega Coins  </div><div class="stat ar" id="textForMegaCoins"   style="color:#F00; display:none; ">0</div><p id="textForMegaCoinsP"   style="display:none; "> </p><br  id="textForMegaCoinsBr"    style="display:none; "/>
+		<div class="stat" id="textForLimesDiv"       style="color:#080;display:none  ;">Limes       </div><div class="stat ar" id="textForLimes"       style="color:#0F0; display:none; ">0</div><p id="textForLimesP"       style="display:none; "> </p><br  id="textForLimesBr"        style="display:none; "/>
+		<div class="stat" id="textForPeeledLimesDiv" style="color:#282;display:none  ;">Peeled Limes</div><div class="stat ar" id="textForPeeledLimes" style="color:#5F5; display:none; ">0</div><p id="textForPeeledLimesP" style="display:none; "> </p><br  id="textForPeeledLimesBr"  style="display:none; "/>
+		<div class="stat" id="textForRottenLimesDiv" style="color:#030;display:none  ;">Rotten Limes</div><div class="stat ar" id="textForRottenLimes" style="color:#060; display:none; ">0</div><p id="textForRottenLimesP" style="display:none; "> </p><br  id="textForRottenLimesBr"  style="display:none; "/>
+		<div class="stat" id="textForCoinsDiv"       style="color:#880;display:none  ;">Coins       </div><div class="stat ar" id="textForCoins"       style="color:#FF0; display:none; ">0</div><p id="textForCoinsP"       style="display:none; "> </p><br  id="textForCoinsBr"        style="display:none; "/>
+		<div class="stat" id="textForJuiceDiv"       style="color:#484;display:none  ;">Juice       </div><div class="stat ar" id="textForJuice"       style="color:#9F9; display:none; ">0</div><p id="textForJuiceP"       style="display:none; "> </p><br  id="textForJuiceBr"        style="display:none; "/>
+	</div>	
 
     <div class="row" style="background-color:#bfbfbf;padding-left: 130px;display:block;height:60px;">
         <p id="newInfo" style="display:inline-block;margin-bottom:none;">You are in a lime forest.</p>
@@ -446,10 +450,6 @@
                 </div>
             </div>
 			
-			<div class="basicDiv">
-				<p class="basicTextSize" id="textForMegaCoins" style="color:#FE0000;display:none;background-color:#000000;">0 Mega Coins</p>
-			</div>
-			
             <div class="basicDiv" id="buyBigGloves">
                 <button class="specialButtonTravel" onclick="buyBigGloves()">Buy Big Gloves</button>
                 <p class="basicText" style="display:block;">Helps you pick up double limes!</p>
@@ -809,7 +809,7 @@
             <div class="skillInfo">
 
                 <p class="basicText">Collect limes without the pesky clicking</p>
-                <p class="basicText">Automatically collects limes at 1/s</p>
+                <p class="basicText" id="textForAutomaticallyCollectsLimes" ></p>
                 <p class="basicText">Disables the Collect Limes button</p>
 
 
@@ -824,7 +824,7 @@
 
 
         <div class="basicDiv">
-            <button class="basicButtonSize" , id="learnANewSkillButton" , onclick="pickCurrentTask('learnANewSkill')">Learn A New Skill</button>
+            <button class="specialButton" , id="learnANewSkillButton" , onclick="learnANewSkill()">Learn A New Skill</button>
             <button class="basicButtonSize" id="skillInfoButton"  style="display:none" onclick="toggle('skillInfoToggle')">Info</button>
             <div class="skillProgress" id="learnANewSkillProgress">
                 <div class="skillBar" , id="learnANewSkillBar">0%</div>
@@ -917,13 +917,13 @@
     </div>
     </div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="aesthetic.js?v=68" charset="utf-8" type="text/javascript"></script>
-    <script src="myfunctions.js?v=68" charset="utf-8" type="text/javascript"></script>
-    <script src="main.js?v=68" charset="utf-8" type="text/javascript"></script>
-    <script src="technical.js?v=68" charset="utf-8" type="text/javascript"></script>
-    <script src="bars.js?v=68" charset="utf-8" type="text/javascript"></script>
-    <script src="update.js?v=68" charset="utf-8" type="text/javascript"></script>
-    <script src="oldupdatefixes.js?v=68" charset="utf-8" type="text/javascript"></script>
+    <script src="aesthetic.js?v=69" charset="utf-8" type="text/javascript"></script>
+    <script src="myfunctions.js?v=69" charset="utf-8" type="text/javascript"></script>
+    <script src="main.js?v=69" charset="utf-8" type="text/javascript"></script>
+    <script src="technical.js?v=69" charset="utf-8" type="text/javascript"></script>
+    <script src="bars.js?v=69" charset="utf-8" type="text/javascript"></script>
+    <script src="update.js?v=69" charset="utf-8" type="text/javascript"></script>
+    <script src="oldupdatefixes.js?v=69" charset="utf-8" type="text/javascript"></script>
 
 </body>
 

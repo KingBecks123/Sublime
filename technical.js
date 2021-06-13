@@ -143,7 +143,7 @@ var gameDataBase = {
     autoStartTask: 0,
     autoCheckSimulation: 0,
 
-    diseaseTileSize: 0,
+    diseaseTileSize: 1,
 	
 	autoPlaceACivilian: 0,
 

@@ -50,10 +50,6 @@ function mainGameLoop() {
 			barStartGranularSkillBasic('limebidextrous')
 		}
 		
-		 else if (gameData.currentTask == 'learnANewSkill') {
-			learnANewSkill()
-		}
-		
 		 else if (gameData.currentTask == 'sellYourJuice') {
 			sellYourJuice()
 		}

@@ -86,9 +86,6 @@ function updateValues() {
     overMaximum("peelers")
     overMaximum("intelligenceSkillLevel")
 
-    updateNumber("lime")
-    updateNumberSpecial("rottenLime", "Rotten Lime")
-
     switch (gameData.showBarPercent) {
         case 0:
             update("barPercentButton", "Bar Percent Hidden")
@@ -130,11 +127,19 @@ function updateValues() {
 
 
     gameData.limesInBaskets = Math.floor(gameData.baskets * (gameData.basketBar / 4))
+	
+    updateNumber("limes")
+    updateNumber("rottenLimes")
+    updateNumber("coins")
+    updateNumber("juice")
+    updateNumber("megaCoins")
+    updateNumber("peeledLimes")
 
-    update("textForCoins", gameData.coins.toLocaleString() + " Coins")
-    update("textForJuice", gameData.juice.toLocaleString() + " Juice")
+
+
+	
+	
     update("textForMegaCoinsInBank", gameData.megaCoinsInBank.toLocaleString() + " / " + gameData.megaCoinsInBankMax.toLocaleString() + " Mega Coins In Bank")
-    update("textForMegaCoins", gameData.megaCoins.toLocaleString() + " Mega Coins")
 
     update("juicersAmount", gameData.juicers.toLocaleString() + " / " + gameData.juicersMax.toLocaleString() + " Juicers")
     update("peelersAmount", gameData.peelers.toLocaleString() + " / " + gameData.peelersMax.toLocaleString() + " Peelers")
@@ -177,6 +182,9 @@ function updateValues() {
         update("application", "Pin applications here")
         hide("applicationInfo")
     }
+	
+    update("textForAutomaticallyCollectsLimes", "Automatically collects limes at " + (gameData.shoes + 1) + "/s")
+
 
     update("textForBetterTraining", "Current maximum: " + (gameData.betterTraining + 10).toLocaleString() + "00%")
 
@@ -196,7 +204,6 @@ function updateValues() {
 
 
 
-    update("textForPeeledLimes", gameData.peeledLimes.toLocaleString() + " Peeled Limes")
     update("sellYourJuiceAmount", "You Will Deliver " + gameData.juiceBulkAmountToggle.toLocaleString() + " / " + gameData.juiceBulkAmountMax.toLocaleString() + " Juice")
 
 
@@ -252,12 +259,6 @@ function updateValues() {
         divVisibility("navigateButtons", "visible")
     }
 
-    if (gameData.rottenWisdomSkillLevel == gameData.rottenWisdomSkillLevelMax) {
-        hide("textForRottenLimes")
-        hide("foodToggleRottenLimesButton")
-        gameData.foodTypeToggle = 0
-    }
-
     if (gameData.limeTypeToJuice == 0) {
         update("juicerInfo", gameData.limesPerJuice + " Limes -> 1 Juice")
     } else if (gameData.limeTypeToJuice == 1) {
@@ -279,6 +280,8 @@ function updateValues() {
     } else {
         gameData.juiceBulkAmountMax = 100
     }
+	
+	
 
 
 

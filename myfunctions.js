@@ -334,27 +334,35 @@ function update(id, content) {
 
 //Replaces a number with new text.
 function updateNumber(id) {
-    Id = jsUcfirst(id)
-    x = "textFor" + Id + "s"
-    if (eval("gameData." + id + "s") == 1) {
-        y = eval("gameData." + id + "s.toLocaleString()") + " " + Id
-    } else {
-        y = eval("gameData." + id + "s.toLocaleString()") + " " + Id + "s"
-    }
-    update(x, y)
+  elem = "textFor" + jsUcfirst(id)
+  valRaw = gameData[id]
+  if (valRaw > 1e9)
+       val = valRaw.toExponential(3)
+  else
+       val = valRaw.toLocaleString()
+  if (valRaw)
+  {
+	  if(valRaw > 0){
+      label = document.getElementById(elem+'Div')
+      if (label)
+          label.style.display = "block"
+	  
+	  label = document.getElementById(elem+'P')
+      if (label)
+          label.style.display = "block"
+	  
+	  label = document.getElementById(elem)
+      if (label)
+          label.style.display = "block"
+	  
+	  label = document.getElementById(elem+'Br')
+      if (label)
+          label.style.display = "block"
+	  }
+  }      
+  update(elem, val)
 }
 
-//Replaces a number with new text.
-function updateNumberSpecial(id, textToShow) {
-    Id = jsUcfirst(id)
-    x = "textFor" + Id + "s"
-    if (eval("gameData." + id + "s") == 1) {
-        y = eval("gameData." + id + "s.toLocaleString()") + " " + textToShow
-    } else {
-        y = eval("gameData." + id + "s.toLocaleString()") + " " + textToShow + "s"
-    }
-    update(x, y)
-}
 
 //Capitalises the first letter in a string.
 function jsUcfirst(string) {
@@ -452,7 +460,7 @@ function loadStuff(savegame) {
     if (savegame !== null) {
         Object.assign(gameData, savegame);
         backwardsCompatibility(savegame.versionNumber)
-        gameData.versionNumber = 68
+        gameData.versionNumber = 69
         updateValues()
         updateAfterLoad()
     } else {

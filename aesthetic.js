@@ -204,7 +204,6 @@ function addAesthetic() {
 
 	currentTaskAesthetic('keenEye')		
 	currentTaskAesthetic('eatFood')	
-	currentTaskAesthetic('learnANewSkill')
 	currentTaskAesthetic('intelligence')
 	currentTaskAesthetic('knifebidextrous')
 	currentTaskAesthetic('limebidextrous')
