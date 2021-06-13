@@ -528,11 +528,13 @@ function hireANutritionist() {
 function travelToNextVillage() {
     if (window.prompt("Are you sure? Type 'yes' if you are") == "yes") {
 		
-    if (gameData.increaseJuicePricePermanance == 1) {
-        juicePricePriceNow = gameData.juicePricePrice
-        juicePriceCentsNow = gameData.juicePriceCents
+		if (gameData.increaseJuicePricePermanance == 1) {
+			juicePricePriceNow = gameData.juicePricePrice
+			juicePriceCentsNow = gameData.juicePriceCents
+		} 
+		
 		increaseJuicePricePermananceNow = gameData.increaseJuicePricePermanance
-    } 
+
 
 		
         megaCoinsNow = gameData.megaCoinsInBank
