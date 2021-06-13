@@ -608,6 +608,11 @@ function updateValues() {
     if (gameData.tomes >= 1) {
         hide("tomeDiv")
     }
+	
+    if (gameData.autoCollectingBar == (gameData.nourishment + 1) * 100 || gameData.autoCollectingBar == 0) {
+		gameData.isAutoCollecting = 0
+    }
+	
 
     if (gameData.learnANewSkill >= 3) {
         showOrHideSkill("intelligence")

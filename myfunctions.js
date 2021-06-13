@@ -1,3 +1,17 @@
+function loadStuff(savegame) {
+
+
+    if (savegame !== null) {
+        Object.assign(gameData, savegame);
+        backwardsCompatibility(savegame.versionNumber)
+        gameData.versionNumber = 75
+        updateValues()
+        updateAfterLoad()
+    } else {
+        update("newInfo", "Save File Empty.")
+    }
+}
+
 function ifMaxDarkGray(x) {
 
     addS = "gameData." + x + "s"
@@ -48,18 +62,21 @@ function normalizeButtons(){
 	$( ".juiceMarket" ).prepend( document.getElementById("sellYourJuiceButton") )
 	document.getElementById("sellYourJuiceButton").style.width = "120px"
 	document.getElementById("sellYourJuiceButton").style.margin = "5px"
+	
+	$( ".autoCollectingDiv" ).prepend( document.getElementById("autoCollectingButton") )
+	document.getElementById("autoCollectingButton").style.width = "150px"
+	document.getElementById("autoCollectingButton").style.margin = "5px"
 
 }
 
 function pinButton() {
 	if(gameData.pin !== "none")
 	{
-
-	$( ".navigateButtons" ).append( document.getElementById(gameData.pin) )
-	
-	document.getElementById(gameData.pin).style.width = "120px"
-	document.getElementById(gameData.pin).style.margin = "0px"
-	document.getElementById(gameData.pin).style.padding = "0px";
+		$( ".navigateButtons" ).append( document.getElementById(gameData.pin) )
+		
+		document.getElementById(gameData.pin).style.width = "120px"
+		document.getElementById(gameData.pin).style.margin = "0px"
+		document.getElementById(gameData.pin).style.padding = "0px";
 	}
 	
 	updateValues()
@@ -460,20 +477,5 @@ function resetGame() {
         Object.assign(gameData, gameDataBase)
         localStorage.setItem('mathAdventureSave', JSON.stringify(gameData))
         location.reload();
-    }
-}
-
-
-function loadStuff(savegame) {
-
-
-    if (savegame !== null) {
-        Object.assign(gameData, savegame);
-        backwardsCompatibility(savegame.versionNumber)
-        gameData.versionNumber = 74
-        updateValues()
-        updateAfterLoad()
-    } else {
-        update("newInfo", "Save File Empty.")
     }
 }

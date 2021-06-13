@@ -148,7 +148,14 @@ function addAesthetic() {
     } else {
         colorChanger('increaseJuicePriceButton', '#FF999A')
 	}	
-	
+
+
+    if (gameData.isAutoCollecting == 0) {
+        colorChanger('autoCollectingButton', accent4)
+    } else {
+
+        colorChanger('autoCollectingButton', grayAccent)
+    }	
 	
 	
 
@@ -255,7 +262,6 @@ function twoToggleButtons(button1, button2, value) {
 function addAestheticBase(){
 
     colorChanger('sellYourLimesButton', yellowAccent)
-    colorChanger('sellYourJuiceButton', yellowAccent)
 
     colorChanger('backgroundForValues', "#000000")
 

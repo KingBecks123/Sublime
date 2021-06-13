@@ -82,6 +82,7 @@ function eatBar() {
 function autoCollecting() {
     if (gameData.autoCollectingBar == (gameData.nourishment + 1) * 100 || gameData.autoCollectingBar == 0) {
         gameData.autoCollectingBar = 0
+		gameData.isAutoCollecting = 1
         autoCollectingBar()
     }
 }

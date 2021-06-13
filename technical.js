@@ -184,6 +184,8 @@ var gameDataBase = {
 
     desktopMode: 1,
 	
+	isAutoCollecting: 0,
+	
 
     isOptionsOpen: 0,
 
