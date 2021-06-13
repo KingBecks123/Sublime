@@ -411,6 +411,15 @@ function checkShowNonVariable(i, txt) {
 
 }
 
+function saveBeforeWipe(id) {
+	eval(id + 'Now' + '=' + 'gameData.' + id )
+}
+
+
+function saveAfterWipe(id) {
+	eval('gameData.' + id + '=' + id + 'Now')
+}
+
 function saveGame() {
 
     localStorage.setItem('mathAdventureSave', JSON.stringify(gameData))
@@ -461,7 +470,7 @@ function loadStuff(savegame) {
     if (savegame !== null) {
         Object.assign(gameData, savegame);
         backwardsCompatibility(savegame.versionNumber)
-        gameData.versionNumber = 71
+        gameData.versionNumber = 72
         updateValues()
         updateAfterLoad()
     } else {

@@ -204,6 +204,8 @@ function gameStart() {
     Object.assign(gameData, gameDataBase)
 
     loadGame()
+	
+	gameData.hasGottenJuice = 1
 
     mainGameLoop()
 	

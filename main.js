@@ -529,50 +529,46 @@ function travelToNextVillage() {
     if (window.prompt("Are you sure? Type 'yes' if you are") == "yes") {
 		
 		if (gameData.increaseJuicePricePermanance == 1) {
-			juicePricePriceNow = gameData.juicePricePrice
-			juicePriceCentsNow = gameData.juicePriceCents
+			saveBeforeWipe('juicePricePrice')
+		    saveBeforeWipe('juicePriceCents')
 		} 
 		
-		increaseJuicePricePermananceNow = gameData.increaseJuicePricePermanance
-
+        saveBeforeWipe('increaseJuicePricePermanance')
 
 		
         megaCoinsNow = gameData.megaCoinsInBank
-        bigGlovesNow = gameData.bigGloves
-        desktopModeNow = gameData.desktopMode
 
-        nutritionistsNow = gameData.nutritionists
-        megaCoinsInBankMaxNow = gameData.megaCoinsInBankMax
-        betterTrainingNow = gameData.betterTraining
+        saveBeforeWipe('bigGloves')
+        saveBeforeWipe('desktopMode')
+        saveBeforeWipe('nutritionists')
+        saveBeforeWipe('megaCoinsInBankMax')
+        saveBeforeWipe('betterTraining')
+        saveBeforeWipe('autosave')
+        saveBeforeWipe('showBarPercent')
+        saveBeforeWipe('hideCompletedSkills')
+        saveBeforeWipe('hideMaxedPurchases')
 
-        autosaveNow = gameData.autosave
-        showBarPercentNow = gameData.showBarPercent
-        hideCompletedSkillsNow = gameData.hideCompletedSkills
-        hideMaxedPurchasesNow = gameData.hideMaxedPurchases
 
 
 
         Object.assign(gameData, gameDataBase)
 
 		if (increaseJuicePricePermananceNow == 1) {
-			gameData.juicePricePrice = juicePricePriceNow
-			gameData.juicePriceCents = juicePriceCentsNow
-			gameData.increaseJuicePricePermanance = increaseJuicePricePermananceNow
+			saveAfterWipe('juicePricePrice')
+			saveAfterWipe('juicePriceCents')
+			saveAfterWipe('increaseJuicePricePermanance')
 		} 
 
-        gameData.megaCoins = megaCoinsNow
-
-        gameData.bigGloves = bigGlovesNow
-        gameData.desktopMode = desktopModeNow
-		
-        gameData.nutritionists = nutritionistsNow
-        gameData.megaCoinsInBankMax = megaCoinsInBankMaxNow
-        gameData.betterTraining = betterTrainingNow
-
-        gameData.autosave = autosaveNow
-        gameData.showBarPercent = showBarPercentNow
-        gameData.hideCompletedSkills = hideCompletedSkillsNow
-        gameData.hideMaxedPurchases = hideMaxedPurchasesNow
+        saveAfterWipe('megaCoins')
+        saveAfterWipe('bigGloves')
+        saveAfterWipe('desktopMode')
+        saveAfterWipe('nutritionists')
+        saveAfterWipe('megaCoinsInBankMax')
+        saveAfterWipe('betterTraining')
+        saveAfterWipe('autosave')
+        saveAfterWipe('showBarPercent')
+        saveAfterWipe('hideCompletedSkills')
+        saveAfterWipe('hideMaxedPurchases')
 
         gameData.villageNumber = 2
         saveGame()
@@ -627,24 +623,6 @@ function buyAMap() {
     updateValues()
 }
 
-
-
-
-function bulkBuyUnlock() {
-    if (gameData.coins >= 500) {
-        gameData.coins -= 500
-        gameData.bulkBuyUnlock = 1
-    }
-    updateValues()
-}
-
-function storageUnlock() {
-    if (gameData.coins >= 200) {
-        gameData.coins -= 200
-        gameData.storageUnlock = 1
-    }
-    updateValues()
-}
 
 function storageJuicersUnlock() {
     if (gameData.coins >= 100) {

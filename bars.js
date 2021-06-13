@@ -274,7 +274,8 @@ function peelerPeelMax() {
 
 function makeMaxJuice() {
 
-    if (gameData.juicerBar == 100 || gameData.juicerBar == 0) {
+    if ((gameData.juicerBar == 100 || gameData.juicerBar == 0) && gameData.hasGottenJuice == 1) {
+
         if (gameData.limeTypeToJuice == 0) {
             gameData.howMuchJuice = Math.floor(gameData.limes / gameData.limesPerJuice)
             if (gameData.howMuchJuice > gameData.juicers) {
@@ -293,6 +294,7 @@ function makeMaxJuice() {
         }
         if (gameData.howMuchJuice > 0) {
             gameData.juicerBar = 0;
+			gameData.hasGottenJuice = 0
             juicerBar()
         }
     }
