@@ -343,6 +343,7 @@ function updateNumber(id) {
   if (valRaw)
   {
 	  if(valRaw > 0){
+		  
       label = document.getElementById(elem+'Div')
       if (label)
           label.style.display = "block"
@@ -460,7 +461,7 @@ function loadStuff(savegame) {
     if (savegame !== null) {
         Object.assign(gameData, savegame);
         backwardsCompatibility(savegame.versionNumber)
-        gameData.versionNumber = 69
+        gameData.versionNumber = 70
         updateValues()
         updateAfterLoad()
     } else {
