@@ -11,6 +11,10 @@ function updateAfterLoad() {
     restartBar("eat")
     restartBar("keenEye")
     restartBar("teach")
+    restartBar("watertight")
+    restartBar("surveying")
+
+
 
 
 	
@@ -138,8 +142,108 @@ function updateValues() {
     updateNumber("peeledLimes")
 
 
-
+	researchersAvailable = gameData.researchers - gameData.watertightResearchers - gameData.surveyingResearchers
 	
+    update("watertightText", "Currently: " + gameData.peeledLimesPerJuice + " Peeled Limes -> 1 Juice")
+    update("surveyingText", "Currently: " + gameData.numberOfTiles + " / 20 Tiles")
+
+    update("textForResearchers", researchersAvailable + " Available Researchers")
+    update("textForWatertightResearchers", gameData.watertightResearchers + " Researchers")
+    update("textForSurveyingResearchers", gameData.surveyingResearchers + " Researchers")
+
+
+	if(gameData.numberOfTiles >= 17)
+	{
+		tabs('mapTile-4-0', 'inline-block')
+	}
+	if(gameData.numberOfTiles >= 18)
+	{
+		tabs('mapTile-4-1', 'inline-block')
+	}
+	if(gameData.numberOfTiles >= 19)
+	{
+		tabs('mapTile-4-2', 'inline-block')
+	}
+	if(gameData.numberOfTiles >= 20)
+	{
+		tabs('mapTile-4-3', 'inline-block')
+	}
+	
+	
+	watertightResearchTime = Math.floor((2000 * Math.pow(10, 5 - gameData.peeledLimesPerJuice))/ gameData.watertightResearchers)
+	surveyingResearchTime = Math.floor(200 * (Math.pow(2, gameData.numberOfTiles - 15)) / gameData.surveyingResearchers)
+	
+	if(watertightResearchTime > 200)
+	{
+		watertightResearchTimeShown = Math.floor(watertightResearchTime / 60)
+	}
+	else
+	{
+		watertightResearchTimeShown = watertightResearchTime
+
+	}
+	
+	if(surveyingResearchTime > 200)
+	{
+		surveyingResearchTimeShown = Math.floor(surveyingResearchTime / 60)
+	}
+	else
+	{
+		surveyingResearchTimeShown = surveyingResearchTime
+
+	}
+	
+	
+	
+	if (gameData.watertightResearchers == 0)
+	{
+		update("watertightTime", "Estimated Time: Infinite Seconds")
+	}
+	
+	else if (watertightResearchTime <= 200)
+	{
+		update("watertightTime", "Estimated Time: " + watertightResearchTimeShown.toLocaleString() + " Seconds")
+	}
+	
+	else
+	{
+		update("watertightTime", "Estimated Time: " + watertightResearchTimeShown.toLocaleString() + " Minutes")
+	}
+	
+	
+	
+	if (gameData.surveyingResearchers  == 0)
+	{
+		update("surveyingTime", "Estimated Time: Infinite Seconds")
+	}
+	
+	else if (surveyingResearchTime <= 200)
+	{
+		update("surveyingTime", "Estimated Time: " + surveyingResearchTimeShown.toLocaleString() + " Seconds")
+	}
+	
+	else
+	{
+		update("surveyingTime", "Estimated Time: " + surveyingResearchTimeShown.toLocaleString() + " Minutes")
+	}
+	
+	if (gameData.hideRottenLimes == 0)
+	{
+		showBasicDiv("rottenLimesHide")
+	}
+	else
+	{
+		hide("rottenLimesHide")
+	}
+	
+	if (gameData.rottenWisdomSkillLevel == gameData.rottenWisdomSkillLevelMax)
+	{
+		showBasicDiv("hideRottenLimesButton")
+	}
+	else
+	{
+		hide("hideRottenLimesButton")
+	}
 	
     update("textForMegaCoinsInBank", gameData.megaCoinsInBank.toLocaleString() + " / " + gameData.megaCoinsInBankMax.toLocaleString() + " Mega Coins In Bank")
 
@@ -158,7 +262,7 @@ function updateValues() {
 
     update("textForJuicePricePrice", "Price: " + gameData.juicePricePrice.toLocaleString() + " Coins")
 
-    update("textForNourishmentPrice", "You need " + gameData.nourishmentPrice.toLocaleString() + " Limes")
+    update("textForNourishmentPrice", "You Need: " + gameData.nourishmentPrice.toLocaleString() + " Limes")
 
 
 
@@ -276,6 +380,16 @@ function updateValues() {
         gameData.juiceBulkAmountMax = 100
     }
 	
+    if (gameData.pinUnlock == 1) {
+        hide("pinUnlockDiv")
+		var x = document.getElementsByClassName("pinButton");
+		for (i = 0; i < x.length; i++) {
+			x[i].style.display = "inline-block";
+		}
+
+    } else {
+        showBasicDiv("pinUnlockDiv")
+    }
 	
 
 
@@ -296,19 +410,19 @@ function updateValues() {
         hide("upgradeBetterTraining")
     }
 
-    if (gameData.respect >= 10) {
+    if (gameData.respectMilestone10) {
         tabs("autoStartTaskButton", "inline-block")
     } else {
         hide("autoStartTaskButton")
 	}
 	
-    if (gameData.respect >= 25) {
+    if (gameData.respectMilestone25) {
         tabs("autoStartSimulationButton", "inline-block")
     } else {
         hide("autoStartSimulationButton")
 	}
 	
-    if (gameData.respect >= 100) {
+    if (gameData.respectMilestone100) {
         tabs("autoCheckSimulationButton", "inline-block")
     } else {
         hide("autoCheckSimulationButton")
@@ -321,15 +435,31 @@ function updateValues() {
 		
     } else {
         hide("increaseJuicePricePermanance")
-		tabs("upgradeJuicePricePermanance", "inline-block")
+		showBasicDiv("upgradeJuicePricePermanance")
 	}
 	
 	
 	
-    if (gameData.respect >= 500) {
+    if (gameData.respectMilestone500) {
         tabs("autoPlaceACivilianButton", "inline-block")
     } else {
         hide("autoPlaceACivilianButton")
+	}
+	
+    if (gameData.manuscripts == 0) {
+        showBasicDiv("buyManuscriptsDiv")
+    } else {
+        hide("buyManuscriptsDiv")	}
+	
+	
+    if (gameData.respectMilestone1000) {
+        tabs("scienceButton", "inline-block")
+
+		
+    } else {
+        hide("scienceButton")
+
+		
 	}
 
 
@@ -377,10 +507,17 @@ function updateValues() {
     }
 	
 	if (gameData.diseaseTileSize == 0) {
-        update("diseaseTileSizeButton", "Disease Tiles Small")
+        update("diseaseTileSizeButton", "Disease Tiles: Small")
     } else {
-        update("diseaseTileSizeButton", "Disease Tiles Large")
+        update("diseaseTileSizeButton", "Disease Tiles: Large")
     }
+	
+	if (gameData.diseaseTileSymbols == 0) {
+        update("diseaseTileSymbolsButton", "Disease Tiles: Blank")
+    } else {
+        update("diseaseTileSymbolsButton", "Disease Tiles: Symbols")
+    }
+
 
 
     if (gameData.deliveryManager == 0) {
@@ -487,6 +624,16 @@ function updateValues() {
         hide("bulkBuyUnlockDiv")
     } else if (gameData.maps >= 2 && gameData.bulkBuyUnlock == 1) {
         hide("bulkBuyUnlockDiv")
+		
+		if (gameData.bulkBuyUnlock2)
+		{
+			hide("bulkBuyUnlock2Div")
+		}
+		else
+		{
+			showBasicDiv("bulkBuyUnlock2Div")
+		}
+
 
     } else if (gameData.bulkBuyUnlock == 0 && gameData.maps < 2) {
         hide("bulkBuyUnlockDiv")
@@ -548,6 +695,12 @@ function updateValues() {
         tabs("peelersBulkButton", "inline-block")
         tabs("basketsBulkButton", "inline-block")
         tabs("juicersBulkButton", "inline-block")
+    }
+	
+    if (gameData.bulkBuyUnlock2) {
+        update("peelersBulkButton", "x100")
+		update("basketsBulkButton", "x100")
+		update("juicersBulkButton", "x100")
     }
 
 

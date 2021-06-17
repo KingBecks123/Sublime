@@ -77,6 +77,59 @@ function eatBar() {
 		}
 }
 
+function watertight() {
+    if (gameData.peeledLimesPerJuice > 1) {
+		
+		
+		barStartGranular('watertight')
+	}
+}
+
+function watertightBar() {
+    if (gameData.watertightBar < 100) {
+		if (gameData.watertightResearchers > 0)
+		{
+			if(watertightBarDoMove)
+				gameData.watertightBar += 0.5;
+			
+			watertightBarDoMove = 1
+			
+			setTimeout(watertightBar, (1e4 * Math.pow(10, 5 - gameData.peeledLimesPerJuice)) / gameData.watertightResearchers)
+		}
+		
+		moveBar("watertight")
+        } else {
+			gameData.peeledLimesPerJuice -= 1
+		}
+}
+
+function surveying() {
+    if (gameData.numberOfTiles < 20) {
+
+		barStartGranular('surveying')
+	}
+}
+
+function surveyingBar() {
+    if (gameData.surveyingBar < 100) {
+		if (gameData.surveyingResearchers > 0)
+		{
+			if(surveyingBarDoMove)
+				gameData.surveyingBar += 0.5;
+			
+			surveyingBarDoMove = 1
+			setTimeout(surveyingBar, (1e3 * Math.pow(2, gameData.numberOfTiles - 15)) / gameData.surveyingResearchers)
+		}
+		
+		moveBar("surveying")
+		
+        } else {
+			gameData.numberOfTiles += 1
+			diseaseControlQuit()
+		}
+}
+
+
 
 
 function autoCollecting() {
@@ -275,7 +328,7 @@ function peelerPeelMax() {
 
 function makeMaxJuice() {
 
-    if ((gameData.juicerBar == 100 || gameData.juicerBar == 0) && gameData.isCurrentlyJuicing == 1) {
+    if ((gameData.juicerBar == 100 || gameData.juicerBar == 0) && gameData.isCurrentlyJuicing == 0) {
 
         if (gameData.limeTypeToJuice == 0) {
             gameData.howMuchJuice = Math.floor(gameData.limes / gameData.limesPerJuice)
@@ -295,7 +348,7 @@ function makeMaxJuice() {
         }
         if (gameData.howMuchJuice > 0) {
             gameData.juicerBar = 0;
-			gameData.isCurrentlyJuicing = 0
+			gameData.isCurrentlyJuicing = 1
             juicerBar()
         }
     }
@@ -309,7 +362,8 @@ function juicerBar() {
         setTimeout(juicerBar, 50 / x)
     } else {
         gameData.juice += gameData.howMuchJuice;
-        gameData.isCurrentlyJuicing = 1
+		gameData.hasGottenJuice = 1
+        gameData.isCurrentlyJuicing = 0
     }
 }
 

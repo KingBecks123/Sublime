@@ -16,49 +16,8 @@ function mainGameLoopSlow() {
 		checkResults()
 	}
 
-	 if (gameData.currentTask == 'eatFood') {
-		eat()
-	}
-	
-	 else if (gameData.currentTask == 'rottenWisdom') {
-		barStartGranularSkillBasic('rottenWisdom')
-	}
-	
-	 else if (gameData.currentTask == 'intelligence') {
-		barStartGranularSkillBasic('intelligence')
-	}
-
-	 else if (gameData.currentTask == 'knifebidextrous') {
-		barStartGranularSkillBasic('knifebidextrous')
-	}
-	
-	 else if (gameData.currentTask == 'limebidextrous') {
-		barStartGranularSkillBasic('limebidextrous')
-	}
-	
-	 else if (gameData.currentTask == 'sellYourJuice') {
-		sellYourJuice()
-	}
-
-	 else if (gameData.currentTask == 'makeMaxJuice') {
-		makeMaxJuice()
-	}	
-
-	 else if (gameData.currentTask == 'makeJuice') {
-		makeJuice()
-	}	
-
-	 else if (gameData.currentTask == 'usePeelers') {
-		peelerPeel()
-	}	
-
-	 else if (gameData.currentTask == 'useMaxPeelers') {
-		peelerPeelMax()
-	}		
-
-	 else if (gameData.currentTask == 'keenEye') {
-		barStartGranularSkillBasic('keenEye')
-	}			
+	startCurrentTask(gameData.currentTask)	
+		
 	
 	
 	
@@ -95,6 +54,8 @@ function collectingUpgrade() {
         gameData.limes -= gameData.nourishmentPrice
         gameData.nourishment += 1
         gameData.autoCollectingBar = 0
+		gameData.isAutoCollecting = 1
+
 
     }
 
@@ -255,41 +216,40 @@ function mapTile(x, y) {
 
 function diseaseControlTask() {
 
-    if (gameData.diseaseControlFinished == 1) {	
+    if (gameData.diseaseControlFinished == 1) {
 		diseaseControlReset("soft")
 		gameData.diseaseControlFinished = 0
 		gameData.civiliansTotal = beckyRandom(4)
+				
+		tiles = gameData.numberOfTiles - 16
 
 
 		for (gameData.limeDiseaseLakesCurrent = 0; gameData.limeDiseaseLakesCurrent < gameData.limeDiseaseLakes; gameData.limeDiseaseLakesCurrent) {
 
-			x = beckyRandom(4) - 1
-			y = beckyRandom(4) - 1
+			x = beckyRandom(5) - 1
+			y = beckyRandom(5) - 1
 
-			if (gameData.diseaseArray[x][y] !== 4) {
-
+			if( ((x < 4 && y < 4) || (x == 4 && y < tiles)) && gameData.diseaseArray[x][y] !== 4)
+			{
 				gameData.diseaseArray[x][y] = 4
 				gameData.limeDiseaseLakesCurrent += 1
-
 			}
-
 		}
 		
-		if (gameData.autoPlaceACivilian == 1) {
-		for (i = 0; i < 1; i) {
+		if (gameData.autoPlaceACivilian == 1 && gameData.numberOfTiles !== gameData.limeDiseaseLakes)  {
+			
+			for (i = 0; gameData.civiliansPlaced < 1; i) {
 
-			x = beckyRandom(4) - 1
-			y = beckyRandom(4) - 1
-			if (gameData.diseaseArray[x][y] == 0) {
+				x = beckyRandom(5) - 1
+				y = beckyRandom(5) - 1
 
-				gameData.diseaseArray[x][y] = 1
-	            gameData.civiliansPlaced += 1
-				i = 1
+				if(( (x < 4 && y < 4) || (x == 4 && y < tiles) ) && gameData.diseaseArray[x][y] == 0)
+				{
+					gameData.diseaseArray[x][y] = 1
+					gameData.civiliansPlaced += 1
+				}
 				
-
 			}
-
-		}
 		}
 	
 	}
@@ -301,9 +261,9 @@ function diseaseControlTask() {
 
 function diseaseControlReset(type) {
 
-    for (x = 0; x < 4; x++) {
+    for (x = 0; x < 5; x++) {
 
-        for (y = 0; y < 4; y++) {
+        for (y = 0; y < 5; y++) {
 
             if (gameData.diseaseArray[x][y] !== 4 || type == "hard") {
                 gameData.diseaseArray[x][y] = 0
@@ -531,6 +491,12 @@ function travelToNextVillage() {
 		    saveBeforeWipe('juicePriceCents')
 		} 
 		
+		if (gameData.manuscripts > 0) {
+			saveBeforeWipe('respectMilestone1000')
+		} 
+        saveBeforeWipe('manuscripts')
+
+		
         saveBeforeWipe('increaseJuicePricePermanance')
 
 		
@@ -545,18 +511,26 @@ function travelToNextVillage() {
         saveBeforeWipe('showBarPercent')
         saveBeforeWipe('hideCompletedSkills')
         saveBeforeWipe('hideMaxedPurchases')
-
+        saveBeforeWipe('researchers')
 
 
 
         Object.assign(gameData, gameDataBase)
+
+
 
 		if (increaseJuicePricePermananceNow == 1) {
 			saveAfterWipe('juicePricePrice')
 			saveAfterWipe('juicePriceCents')
 			saveAfterWipe('increaseJuicePricePermanance')
 		} 
+		
+        saveAfterWipe('manuscripts')
+		if (gameData.manuscripts > 0) {
+			saveAfterWipe('respectMilestone1000')
+		} 
 
+        saveAfterWipe('researchers')
         saveAfterWipe('megaCoins')
         saveAfterWipe('bigGloves')
         saveAfterWipe('desktopMode')
@@ -701,7 +675,7 @@ function changeLakeAmount(x) {
 
     if (gameData.diseaseControlFinished == 1) {
 
-		if (gameData.limeDiseaseLakes < 16 && x == 1) {
+		if (gameData.limeDiseaseLakes < gameData.numberOfTiles && x == 1) {
 			
 			gameData.limeDiseaseLakes += x
 			

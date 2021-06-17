@@ -1,6 +1,8 @@
 //Should be 0 if ur not cheating, 1 if you want to :)
 var cheatNum = 0;
 
+var researchersAvailable;
+
 var gameDataBase = {
     limes: 1,
     coins: 0,
@@ -96,6 +98,8 @@ var gameDataBase = {
     employeeStatsInfoToggle: 0,
 
     bulkBuyUnlock: 0,
+    bulkBuyUnlock2: 0,
+
 
     storageUnlock: 0,
     storageJuicersUnlock: 0,
@@ -142,6 +146,8 @@ var gameDataBase = {
 	
     autoStartTask: 0,
     autoCheckSimulation: 0,
+    autoStartSimulation: 0,
+
 
     diseaseTileSize: 1,
 	
@@ -152,11 +158,13 @@ var gameDataBase = {
     silkRobe: 0,
 
     diseaseArray: [
-        [0, 0, 0, 0],
-        [0, 0, 0, 0],
-        [0, 0, 0, 0],
-        [0, 0, 0, 0]
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0]
     ],
+    numberOfTiles: 16,
 
 
     juiceBulkAmountMax: 100,
@@ -176,6 +184,13 @@ var gameDataBase = {
 	isCurrentlyJuicing: 0,
 
     pin: "none",
+    pinUnlock: 0,
+	
+	hideRottenLimes: 0,
+	hideKnife: 0,
+	manuscripts: 0,
+
+
 
 
     currentTask: "none",
@@ -187,6 +202,24 @@ var gameDataBase = {
     desktopMode: 1,
 	
 	isAutoCollecting: 0,
+	
+	watertightBar: 0,
+	watertightResearchers: 0,
+	surveyingBar: 0,
+	surveyingResearchers: 0,
+	researchers: 0,
+
+	respectMilestone10: 0,
+	respectMilestone25: 0,
+	respectMilestone50: 0,
+	respectMilestone100: 0,
+	respectMilestone500: 0,
+	respectMilestone1000: 0,
+	respectMilestone2000: 0,
+
+	diseaseTileSymbols: 1,
+
+
 	
 
     isOptionsOpen: 0,
@@ -205,12 +238,16 @@ var gameData = {}
 
 function gameStart() {
 
+	surveyingBarDoMove = 0
+	watertightBarDoMove = 0
+
+    addAestheticBase()
+
+
     Object.assign(gameData, gameDataBase)
 
     loadGame()
 	
-	gameData.hasGottenJuice = 1
-
     mainGameLoop()
 	
     mainGameLoopSlow()
@@ -219,11 +256,12 @@ function gameStart() {
     updateValues()
     autosave()
 	
-    addAestheticBase()
-
 	tab("null")
+    tabMarket("marketMain")
     tabStore("plebian")
     tabTasks("earn")
+    tabScience("research")
+
 }
 
 
@@ -239,15 +277,17 @@ function tab(tabby) {
     tabs("tasks", "none")
     tabs("company", "none")
     tabs("forest", "none")
+    tabs("science", "none")
+
 	
-	
+	colorChanger('scienceButton', '#9ABBFF')
 	colorChanger('optionsButton', '#BBBBBB')
 	colorChanger('marketButton', '#BBBBBB')
 	colorChanger('inventoryButton', '#BBBBBB')
 	colorChanger('achievementsButton', '#BBBBBB')
 	colorChanger('skillsButton', '#BBBBBB')
-	colorChanger('megaCoinUpgradesButton', '#BBBBBB')
-	colorChanger('tasksButton', '#BBBBBB')
+	colorChanger('megaCoinUpgradesButton', "#FF999A")
+	colorChanger('tasksButton', '#FF98DD')
 	colorChanger('companyButton', '#BBBBBB')
 	colorChanger('forestButton', '#BBBBBB')
 
@@ -257,7 +297,7 @@ function tab(tabby) {
         if (gameData.isOptionsOpen == 0) {
             gameData.isOptionsOpen = 1
             document.getElementById(tabby).style.display = "inline-block"
-			colorChanger(tabby + "Button", "#50514F")
+			colorChanger(tabby + "Button", "#898989")
 
 
         } else if (gameData.isOptionsOpen == 1) {
@@ -269,29 +309,69 @@ function tab(tabby) {
 
         gameData.isOptionsOpen = 0
         document.getElementById(tabby).style.display = "inline-block"
-		colorChanger(tabby + "Button", "#50514F")
+		colorChanger(tabby + "Button", "#898989")
+		
+		if(tabby == 'science')
+			colorChanger(tabby + "Button", "#4D88FE")
+		if(tabby == 'tasks')
+			colorChanger(tabby + "Button", "#FF4DFF")
+		if(tabby == 'megaCoinUpgrades')
+			colorChanger(tabby + "Button", "#FF4D4D")
 
     }
 
 }
 
 
-function tabMarket(tab) {
+function tabMarket(tabby) {
     tabs("marketStore", "none")
     tabs("marketMain", "none")
     tabs("hiringArea", "none")
     tabs("travel", "none")
-    document.getElementById(tab).style.display = "block"
+	
+	
+	colorChanger('marketStoreButton', "#BBBBBB")
+	colorChanger('marketMainButton', '#BBBBBB')
+	colorChanger('hiringAreaButton', '#BBBBBB')
+	colorChanger('travelButton', '#BBBBBB')
+	
+	
+	
+	colorChanger(tabby + "Button", "#898989")
+    document.getElementById(tabby).style.display = "block"
 }
 
-function tabTasks(tab) {
+function tabTasks(tabby) {
     tabs("earn", "none")
     tabs("milestones", "none")
-    document.getElementById(tab).style.display = "block"
+	
+	colorChanger('earnButton', '#BBBBBB')
+	colorChanger('milestonesButton', '#BBBBBB')	
+	
+	colorChanger(tabby + "Button", "#898989")
+    document.getElementById(tabby).style.display = "block"
 }
 
-function tabStore(tab) {
+function tabStore(tabby) {
     tabs("plebian", "none")
     tabs("patrician", "none")
-    document.getElementById(tab).style.display = "block"
+	
+	colorChanger('plebianButton', '#BBBBBB')
+	colorChanger('patricianButton', '#BBBBBB')
+	
+    document.getElementById(tabby).style.display = "block"
+	colorChanger(tabby + "Button", "#898989")
+
+}
+
+function tabScience(tabby) {
+    tabs("research", "none")
+    tabs("researchers", "none")
+	
+	colorChanger('researchButton', '#BBBBBB')
+	colorChanger('researchersButton', '#BBBBBB')		
+	
+	colorChanger(tabby + "Button", "#898989")
+	
+    document.getElementById(tabby).style.display = "block"
 }

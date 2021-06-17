@@ -6,4 +6,16 @@ function backwardsCompatibility(versionNumber) {
         gameData.peelersMax = 500
         gameData.intelligenceSkillLevelMax = 20
     }
+    if (versionNumber < 78) {
+
+		gameData.diseaseArray = [
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0]
+    ]
+		diseaseControlQuit()
+
+    }
 }
