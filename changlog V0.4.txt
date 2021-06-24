@@ -1,0 +1,41 @@
+**V 0.4 (1,808 total additions)**
+
+Warning: balancing may change, so if you are worried about your save file, export it before trying new features.
+
+**Main Change: Added Currency Exchange (Current Late Game)**
+
+_Aesthetic_
+Option buttons vary depending on progress in the game.
+Changed the order of currencies and which ones appear in the black box.
+New colors for possible permanent respect milestones.
+
+_Brokers_
+Added brokers, employees that help you get faster alpha coin trades, better prices for alpha coin trades, and more at a time.
+You can pay 10 alpha coins to auto hire them with a set rule (planning on adding more in the future)
+
+_Currency Exchange_
+Exchange your coins for alpha coins -> mega coins, rather than directly, and get a much better deal.
+Use alpha coins to improve broker applicants, thereby improving alpha coin production.
+Pay 10 alpha coins to be able to toggle the exchange coins button.
+
+_Market_
+You can now increase juice price by 10 at a time.
+Added a new section in the hiring area tab for getting brokers.
+Added the ability to convert your coins to instant mega coins at 1 / 20 the normal rate.
+Rebalanced all late game prices.
+Added many new mega coin upgrades.
+
+_Achievements_
+Added achievements, which for now are just basic coin achievements. Once you get them all you beat the game :)
+
+_Performance_
+Changed lots of aesthetic + text updating loops to happen only when needed or in the min slow game loop (every 1 second)
+
+_Tasks_
+Added a new respect milestone.
+Added benevolence which can increase respect gained exponentially.
+Auto starting happens instantly.
+
+_Science_
+Added benevolence which can increase respect gained exponentially.
+

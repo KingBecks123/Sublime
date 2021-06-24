@@ -1,0 +1,34 @@
+**V 0.3.1**
+
+**Main Change: Added science. (Current Late Game)**
+
+_Aesthetic_
+Added colors to some navigation buttons.
+Navigation buttons darken when you are in their tab.
+Toggleable buttons are rounded so its easier to differentiate them.
+
+_Market_
+Added another bulk buying tier.
+Added pinning of buttons to navigation as a purchase.
+
+_Skills_
+Removed the togglability of skills for faster early game.
+
+_Science_
+Added Watertight Research, decrease peeled limes needed to juice.
+Added Surveying Research, increase tiles in the disease task.
+Added manuscripts to keep science milestone after travelling.
+
+_Disease Task_
+Completely recoded the way disease tiles function.
+Added option to have text on the buttons for colorblind peeps.
+Added respect milestone saver, so you can't lose a milestone by losing respect.
+Surveying Research increases tiles.
+Added new respect milestones.
+
+_Performance_
+Changed the way the main game loop runs.
+Changed the way the aesthetic game loop runs.
+
+_Bug Fixes_
+Fixed issue with max juicing toggle giving 0 juice.
