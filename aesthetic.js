@@ -18,6 +18,8 @@ function addAesthetic() {
     twoToggleButtons('deliveryToggleExpressButton', 'deliveryToggleStandardButton', gameData.deliveryTypeToggle)
     twoToggleButtons('foodToggleRottenLimesButton', 'foodToggleLimesButton', gameData.foodTypeToggle)
     twoToggleButtons('juicePeeledLimesToggleButton', 'juiceLimesToggleButton', gameData.limeTypeToJuice)
+    twoToggleButtons('hireBrokerToggleButton', 'hireEmployeeToggleButton', gameData.typeToHireToggle)
+
 
     showOrHideClass("unlockDiseaseAreaSwamp")
 
@@ -37,7 +39,24 @@ function addAesthetic() {
     toggleAesthetic("autoStartSimulation")
     toggleAesthetic("autoCheckSimulation")
     toggleAesthetic("autoPlaceACivilian")
+    toggleAesthetic("benevolenceToggle")
+    toggleAesthetic("autoAdvertiseBroker")
+    toggleAesthetic("increaseJuicePricex10")
 
+    //Achievement
+    var x = document.getElementsByClassName("achievement");
+    for (i = 0; i < x.length; i++) {
+		if (gameData['achievement' + (i + 1)])
+		{
+			x[i].style.backgroundColor = limesRelatedAccent;
+		}
+		else
+		{
+			x[i].style.backgroundColor = grayAccent;
+		}
+        x[i].style.padding = "5px";
+        x[i].style['margin'] = "5px";
+    }
 
 
     if (gameData.diseaseControlFinished == 1) {
@@ -61,77 +80,6 @@ function addAesthetic() {
 	}
 	
 	
-
-
-    //Map Tile
-    var x = document.getElementsByClassName("mapTile");
-    for (i = 0; i < x.length; i++) {
-		
-		if(gameData.diseaseTileSize == 0) 
-		{
-			x[i].style['width'] = "20px";
-			x[i].style['height'] = "20px";
-		}
-		else
-		{
-			x[i].style['width'] = "40px";
-			x[i].style['height'] = "40px";
-		}
-		
-        x[i].style.padding = "5px 5px 5px 5px";
-		
-		
-        x[i].style['margin'] = "5px 0px 0px 0px";
-		
-		
-    }
-
-    for (x = 0; x < 5; x++) {
-        for (y = 0; y < 5; y++) {
-
-            whichButton = "mapTile-" + x + "-" + y
-            tileType = (gameData.diseaseArray[x][y])
-
-
-            if (tileType == 0) {                                //Blank
-                colorChanger(whichButton, accent4)
-				if (gameData.diseaseTileSize && gameData.diseaseTileSymbols)
-					update(whichButton, "‏‏‎ ‎‏‏‎ ‎‎")
-            } else if (tileType == 1) {                         //Civillian
-                colorChanger(whichButton, limesRelatedAccent)
-				if (gameData.diseaseTileSize && gameData.diseaseTileSymbols)
-					update(whichButton, ":)")
-
-            } else if (tileType == 2) {                         //Disease
-                colorChanger(whichButton, "#FF999A")
-				if (gameData.diseaseTileSize && gameData.diseaseTileSymbols)
-					update(whichButton, " +")
-
-            } else if (tileType == 3) {                         //Dead Civillian
-                colorChanger(whichButton, "#565656")
-				if (gameData.diseaseTileSize && gameData.diseaseTileSymbols)
-					update(whichButton, ":(")
-
-            } else if (tileType == 4) {                         //Lake
-                colorChanger(whichButton, "#4DFFFF")
-				if (gameData.diseaseTileSize && gameData.diseaseTileSymbols)
-					update(whichButton, "_")
-
-            }
-			
-				if (!gameData.diseaseTileSize || !gameData.diseaseTileSymbols)
-					update(whichButton, "‎‎‎‏‏‎")
-
-        }
-    }
-
-	
-	//for (i = 1; i <= 4; i++) {
-	//	if (gameData['achievement' + i] == 1) {
-	//		achievement = 'coinsAchievement' + i
-	//		document.getElementById(achievement).style.backgroundColor = limesRelatedAccent;
-	//	}
-	//}
 
 
     if (gameData.autoCollectingBar == 0 || gameData.autoCollectingBar == (gameData.nourishment + 1) * 100) {
@@ -164,18 +112,18 @@ function addAesthetic() {
     }
 	
 
-	checkRespectMilestone(10)
-	checkRespectMilestone(25)
-	checkRespectMilestone(50)
-	checkRespectMilestone(100)
-	checkRespectMilestone(500)
-	checkRespectMilestone(1000)
-	checkRespectMilestone(2000)
+	checkRespectMilestone(10,    'lime',  'Automatically start tasks')
+	checkRespectMilestone(25,    'lime',  'Automatically start simulation')
+	checkRespectMilestone(50,    'lime',  'Allow entrance to the Special Shopping District')
+	checkRespectMilestone(100,   'lime',  'Automatically check simulation')
+	checkRespectMilestone(500,   'lime',  'Automatically situate a civilian')
+	checkRespectMilestone(1000,  'lime',  'Unlock scientific research')
+	checkRespectMilestone(10000, 'red' ,  'Unlock more mega coin upgrades')
 
 
 
 
-	function checkRespectMilestone(number){
+	function checkRespectMilestone(number, color, text){
 		
 		i = 'respectMilestone' + number
 
@@ -185,7 +133,13 @@ function addAesthetic() {
 		}
 		
 		if (gameData[i]) {
-			colorChanger(number + 'RespectMilestone', limesRelatedAccent)
+			
+			update(number + 'RespectMilestone', number.toLocaleString() + ' Respect: ' + text)
+			
+			if(color == 'lime')
+				colorChanger(number + 'RespectMilestone', limesRelatedAccent)
+			if(color == 'red')
+				colorChanger(number + 'RespectMilestone', '#FF999A')
 		} else {
 
 			colorChanger(number + 'RespectMilestone', grayAccentLight)
@@ -206,6 +160,11 @@ function addAesthetic() {
 	
 	currentTaskAesthetic('eatFood')	
 
+	if (gameData.currentTask == 'autoCurrencyConversionBuy') {
+		colorChanger('currencyConvertAlphaCoinsButton', '#F8FF01')
+	} else {
+		colorChanger('currencyConvertAlphaCoinsButton', '#FDFF9A')
+	}
 
 	if (gameData.currentTask == 'sellYourJuice') {
 		colorChanger('sellYourJuiceButton', accent4Dark)
@@ -224,6 +183,16 @@ function addAesthetic() {
 		
 	}
 
+	function currentSkillAesthetic(x){
+		
+		button = x + "Button"
+		if (gameData.currentSkill == x) {
+			colorChanger(button, accent4Dark)
+		} else {
+			colorChanger(button, accent4)
+		}
+		
+	}
 
     if (gameData.lookAround == 3) {
         hide('lookAroundButton')
@@ -244,6 +213,47 @@ function addAesthetic() {
     } else {
         colorChanger('decreaseJuiceSoldButton', grayAccentLight)
     }
+	
+	
+    //Skill Button
+    var x = document.getElementsByClassName("skillButton");
+	if(gameData.multitasking){
+			for (i = 0; i < x.length; i++) {
+				x[i].style['margin'] = "5px";
+				x[i].style['padding'] = "1px 10px 1px 10px";
+				x[i].style['border-radius'] = "12px";
+			}
+			currentSkillAesthetic('keenEye')		
+			currentSkillAesthetic('rottenWisdom')	
+			currentSkillAesthetic('limebidextrous')		
+			currentSkillAesthetic('intelligence')
+			currentSkillAesthetic('knifebidextrous')	
+		}
+		else{
+			for (i = 0; i < x.length; i++) {
+				x[i].style.backgroundColor = accent4;
+				x[i].style['margin'] = "5px 5px 5px 5px";
+			}
+	}
+	
+	
+    //Currency Button
+    var x = document.getElementsByClassName("currencyButton");
+	if(gameData.autoCurrencyConversionBuy){
+			for (i = 0; i < x.length; i++) {
+				
+				x[i].style['margin'] = "5px";
+				x[i].style['padding'] = "1px 10px 1px 10px";
+				x[i].style['border-radius'] = "12px";
+			}
+
+		}
+		else{
+			for (i = 0; i < x.length; i++) {
+				x[i].style.backgroundColor = '#FDFF9A';
+				x[i].style['margin'] = "5px 5px 5px 5px";
+			}
+	}
 
 
     colorChanger('lookAroundButton', grayAccentLight)
@@ -272,7 +282,8 @@ function addAestheticBase(){
     colorChanger('sellMaxJuiceButton', grayAccentLight)
 
     colorChanger('pickUpLimes', limesRelatedAccent)
-    colorChanger('application', accent4)
+    colorChanger('application', accent4)    
+
 
     colorChanger('mainBody', background)
     colorChanger('inventoryKnifeLime', accent3)
@@ -297,6 +308,14 @@ function addAestheticBase(){
     var x = document.getElementsByClassName("basicText");
     for (i = 0; i < x.length; i++) {
         x[i].style.backgroundColor = grayAccentLight;
+        x[i].style.padding = "5px";
+        x[i].style['margin'] = "5px 5px 5px 5px";
+    }
+	
+    //Basic Text Yellow
+    var x = document.getElementsByClassName("basicTextYellow");
+    for (i = 0; i < x.length; i++) {
+        x[i].style.backgroundColor = '#FDFF9A';
         x[i].style.padding = "5px";
         x[i].style['margin'] = "5px 5px 5px 5px";
     }
@@ -344,7 +363,8 @@ function addAestheticBase(){
         x[i].style.backgroundColor = accent4;
         x[i].style['margin'] = "5px 5px 5px 5px";
     }
-
+	
+	
     //Special Button Travel
     var x = document.getElementsByClassName("specialButtonTravel");
     for (i = 0; i < x.length; i++) {

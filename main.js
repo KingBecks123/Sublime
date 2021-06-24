@@ -3,24 +3,63 @@ var loopNumbercurrentTask = 0;
 
 function mainGameLoopSlow() {
 	
-	 if (gameData.autoStartSimulation == 1) {
+	 if (gameData.autoStartSimulation)
 		startSimulation()
-	}
 	
-	 if (gameData.autoStartTask == 1) {
+	 if (gameData.autoStartTask) 
 		diseaseControlTask()
-	}
 	
-	
-	 if (gameData.autoCheckSimulation == 1) {
+	 if (gameData.autoCheckSimulation)
 		checkResults()
+
+	 if (gameData.autoAdvertiseBroker && gameData.currencyApplicantSpeed > gameData.autoAdvertiseSpeedValue)
+		advertise()
+
+	if(gameData.numberOfTiles >= 17)
+	{
+		tabs('mapTile-4-0', 'inline-block')
+	}
+	if(gameData.numberOfTiles >= 18)
+	{
+		tabs('mapTile-4-1', 'inline-block')
+	}
+	if(gameData.numberOfTiles >= 19)
+	{
+		tabs('mapTile-4-2', 'inline-block')
+	}
+	if(gameData.numberOfTiles >= 20)
+	{
+		tabs('mapTile-4-3', 'inline-block')
+	}
+	if(gameData.numberOfTiles >= 21)
+	{
+		gameData.numberOfTiles = 20
 	}
 
 	startCurrentTask(gameData.currentTask)	
+	
+	if(gameData.currentSkill !== 'none')
+		barStartGranularSkillBasic(gameData.currentSkill)
+
 		
+	if(gameData.bachelorsDegreeFinance)
+	{
+		if(beckyRandom(2) == 1 && gameData.alphaCoinsExchangeRate < 200)
+			gameData.alphaCoinsExchangeRate += 1
+		else if (gameData.alphaCoinsExchangeRate > 50)
+			gameData.alphaCoinsExchangeRate -= 1
+	}
 	
+	gameData.achievementBar = 0
+    for (i = 1; i < 7; i++) {
+		
+		if (gameData['achievement' + i]) {
+			gameData.achievementBar += 100 / 7
+		}
+	}
 	
-	
+	moveBar('achievement')
+	updateMapTileAesthetic()
 	setTimeout(mainGameLoopSlow, 500)
 }
 
@@ -54,245 +93,47 @@ function collectingUpgrade() {
         gameData.limes -= gameData.nourishmentPrice
         gameData.nourishment += 1
         gameData.autoCollectingBar = 0
-		gameData.isAutoCollecting = 1
-
 
     }
 
-    updateValues()
-}
-
-function startSimulation() {
-
-    if (gameData.civiliansPlaced == gameData.civiliansTotal) {
-
-        for (x = 0; x < 4; x++) {
-
-            for (y = 0; y < 4; y++) {
-
-                isACivilianThere = (gameData.diseaseArray[x][y])
-
-
-                if (isACivilianThere == 1 || isACivilianThere == 3) {
-                    for (xSpread = x - 1; xSpread < x + 2; xSpread++) {
-
-                        for (ySpread = y - 1; ySpread < y + 2; ySpread++) {
-
-
-                            if ((xSpread < 4 && xSpread >= 0 && ySpread < 4 && ySpread >= 0) && !(x == xSpread && y == ySpread)) {
-                                if (gameData.diseaseArray[xSpread][ySpread] == 0) {
-                                    gameData.diseaseArray[xSpread][ySpread] = 2
-
-                                } else if (gameData.diseaseArray[xSpread][ySpread] == 1) {
-                                    gameData.diseaseArray[xSpread][ySpread] = 3
-
-                                }
-                            }
-
-                        }
-
-                    }
-
-                }
-
-            }
-
-        }
-
-    }
-
-    gameData.simulationTime = 1
-
-    updateValues()
-
-}
-
-function diseaseControlQuit() {
-
-
-		diseaseControlFailed = 1
-
-
-		if (gameData.simulationTime == 1) {
-
-			gameData.diseaseControlFinished = 1
-			diseaseControlReset("hard")
-					 if (gameData.autoStartTask == 1) {
-				diseaseControlTask()
-			}
-
-				gameData.respect -= (gameData.limeDiseaseLakes + 1)
-			
-		} else {
-			gameData.diseaseControlFinished = 1
-			diseaseControlReset("hard")
-			gameData.respect -= (gameData.limeDiseaseLakes + 1)
-			
-					 if (gameData.autoStartTask == 1) {
-				diseaseControlTask()
-			}
-		}
-
-
-    updateValues()
-
-}
-
-function checkResults() {
-
-if (gameData.civiliansPlaced == gameData.civiliansTotal)
-	
-		{
-		diseaseControlFailed = 0
-		for (x = 0; x < 4; x++) {
-
-			for (y = 0; y < 4; y++) {
-
-				tileType = (gameData.diseaseArray[x][y])
-
-
-				if (tileType == 3) {
-
-					diseaseControlFailed = 1
-
-				}
-
-			}
-
-		}
-
-
-		if (gameData.simulationTime == 1) {
-
-			gameData.diseaseControlFinished = 1
-			diseaseControlReset("hard")
-					 if (gameData.autoStartTask == 1) {
-				diseaseControlTask()
-			}
-
-
-			if (diseaseControlFailed == 0) {
-				gameData.respect += (gameData.limeDiseaseLakes + 1)
-			} else {
-				gameData.respect -= (gameData.limeDiseaseLakes + 1)
-			}
-			
-		} else {
-			gameData.diseaseControlFinished = 1
-			diseaseControlReset("hard")
-			gameData.respect -= (gameData.limeDiseaseLakes + 1)
-			
-					 if (gameData.autoStartTask == 1) {
-				diseaseControlTask()
-			}
-		}
-
-	}
-
-    updateValues()
-
-}
-
-
-
-function mapTile(x, y) {
-
-
-    whichButton = "mapTile-" + x + "-" + y
-    isACivilianThere = (gameData.diseaseArray[x][y])
-
-    if (gameData.diseaseControlFinished == 0) {
-        if (isACivilianThere == 0 && gameData.civiliansPlaced < gameData.civiliansTotal) {
-            gameData.diseaseArray[x][y] = 1
-            gameData.civiliansPlaced += 1
-        } else if (isACivilianThere == 1) {
-            gameData.diseaseArray[x][y] = 0
-            gameData.civiliansPlaced -= 1
-        }
-    }
-
-    updateValues()
-}
-
-function diseaseControlTask() {
-
-    if (gameData.diseaseControlFinished == 1) {
-		diseaseControlReset("soft")
-		gameData.diseaseControlFinished = 0
-		gameData.civiliansTotal = beckyRandom(4)
-				
-		tiles = gameData.numberOfTiles - 16
-
-
-		for (gameData.limeDiseaseLakesCurrent = 0; gameData.limeDiseaseLakesCurrent < gameData.limeDiseaseLakes; gameData.limeDiseaseLakesCurrent) {
-
-			x = beckyRandom(5) - 1
-			y = beckyRandom(5) - 1
-
-			if( ((x < 4 && y < 4) || (x == 4 && y < tiles)) && gameData.diseaseArray[x][y] !== 4)
-			{
-				gameData.diseaseArray[x][y] = 4
-				gameData.limeDiseaseLakesCurrent += 1
-			}
-		}
-		
-		if (gameData.autoPlaceACivilian == 1 && gameData.numberOfTiles !== gameData.limeDiseaseLakes)  {
-			
-			for (i = 0; gameData.civiliansPlaced < 1; i) {
-
-				x = beckyRandom(5) - 1
-				y = beckyRandom(5) - 1
-
-				if(( (x < 4 && y < 4) || (x == 4 && y < tiles) ) && gameData.diseaseArray[x][y] == 0)
-				{
-					gameData.diseaseArray[x][y] = 1
-					gameData.civiliansPlaced += 1
-				}
-				
-			}
-		}
-	
-	}
-
-
-
-    updateValues()
-}
-
-function diseaseControlReset(type) {
-
-    for (x = 0; x < 5; x++) {
-
-        for (y = 0; y < 5; y++) {
-
-            if (gameData.diseaseArray[x][y] !== 4 || type == "hard") {
-                gameData.diseaseArray[x][y] = 0
-            }
-        }
-    }
-    gameData.civiliansPlaced = 0
-    gameData.simulationTime = 0
     updateValues()
 }
 
 function randomizeApplication() {
-    if (gameData.firstApplicant == 1) {
-        gameData.applicantSpeed = 100
-        gameData.applicantPrice = 0
-        gameData.applicantWage = 5
-        gameData.applicantHunger = 1
+	if(gameData.typeToHire == 0){
+		
+		if (gameData.firstApplicant == 1) {
+			gameData.applicantSpeed = 100
+			gameData.applicantPrice = 0
+			gameData.applicantWage = 5
+			gameData.applicantHunger = 1
 
-        gameData.firstApplicant = 0
-    } else {
-        gameData.applicantSpeed = (Math.floor(Math.random() * (10 + gameData.betterTraining) + 1) * 100)
-        gameData.applicantPrice = Math.floor(Math.random() * 200)
-        gameData.applicantWage = Math.floor(Math.random() * 16) + 5
-        gameData.applicantHunger = Math.floor(Math.random() * 20) + 1
-    }
+			gameData.firstApplicant = 0
+		} else {
+			gameData.applicantSpeed = (Math.floor(Math.random() * (10 + gameData.betterTraining) + 1) * 100)
+			gameData.applicantPrice = Math.floor(Math.random() * 200)
+			gameData.applicantWage = Math.floor(Math.random() * 16) + 5
+			gameData.applicantHunger = Math.floor(Math.random() * 20) + 1
+		}
+		
+		gameData.applicationType = 0
+	}
+	else{
+		gameData.currencyApplicantFee = beckyRandomMinMax(gameData.minBrokerApplicantFee, gameData.maxBrokerApplicantFee)
+		gameData.currencyApplicantSpeed = beckyRandomMinMax(gameData.minBrokerApplicantSpeed, gameData.maxBrokerApplicantSpeed)
+		gameData.currencyApplicantPrice = (Math.floor(Math.random() * 20) + 1) * 10000
+		gameData.currencyApplicantTransferAmount = beckyRandomMinMax(gameData.minBrokerApplicantAmount, gameData.maxBrokerApplicantAmount)
+		
+		gameData.applicationType = 1
+
+	}
 
 
     updateValues()
 }
+
+
+
 
 function deliveryToggleStandard() {
     if (gameData.fasterTransport == 0) {
@@ -333,31 +174,93 @@ function payEmployee() {
 }
 
 function hireApplicant() {
-    if (gameData.coins >= gameData.applicantPrice && gameData.applicationReady == 1) {
-        gameData.applicationReady = 0
-        gameData.employeeWorking = 0
-        gameData.workingBar = 0
+	if(gameData.applicationType == 0){
+		if (gameData.coins >= gameData.applicantPrice && gameData.applicationReady == 1) {
+			gameData.applicationReady = 0
+			gameData.employeeWorking = 0
+			gameData.workingBar = 0
 
-        gameData.coins -= gameData.applicantPrice
+			gameData.coins -= gameData.applicantPrice
 
-        gameData.employeeHunger = gameData.applicantHunger
-        gameData.employeeSpeed = gameData.applicantSpeed
-        gameData.employeePrice = gameData.applicantPrice
-        gameData.employeeWage = gameData.applicantWage
+			gameData.employeeHunger = gameData.applicantHunger
+			gameData.employeeSpeed = gameData.applicantSpeed
+			gameData.employeePrice = gameData.applicantPrice
+			gameData.employeeWage = gameData.applicantWage
 
-        gameData.employeeCurrentSpeed = -(gameData.employeeHunger * 60)
+			gameData.employeeCurrentSpeed = -(gameData.employeeHunger * 60)
 
-        gameData.employees = 1
+			gameData.employees = 1
 
-        gameData.employeeIsWorking = 0
-        gameData.workingBar = 0
-    }
+			gameData.employeeIsWorking = 0
+			gameData.workingBar = 0
+			
+			update("speedEmployee", "Speed: " + gameData.employeeSpeed.toLocaleString() + "% of what I'm taught.")
+			update("wageEmployee", "Wages: " + gameData.employeeWage.toLocaleString() + " Coins per minute.")
+			update("hungerEmployee", "Hunger: " + gameData.employeeHunger.toLocaleString() + " Limes per second.")
+		}
+	}
+	else{
+		if (gameData.coins >= gameData.currencyApplicantPrice && gameData.applicationReady == 1) {
+			gameData.applicationReady = 0
+			gameData.doesHaveCurrencyBroker = 1
 
+			gameData.coins -= gameData.currencyApplicantPrice
+
+			gameData.currencyBrokerFee = gameData.currencyApplicantFee
+			gameData.currencyBrokerSpeed = gameData.currencyApplicantSpeed
+			gameData.currencyBrokerPrice = gameData.currencyApplicantPrice
+			gameData.currencyBrokerTransferAmount = gameData.currencyApplicantTransferAmount
+		}
+	}
     updateValues()
 }
 
 function getLimesButton() {
+	if (gameData.lookAround < 1)
+		gameData.collectLimesAtBeginning += 1
+	
+	switch (gameData.collectLimesAtBeginning) {
+	  case 10:
+        update("newInfo", "Maybe you should try looking around!")
+		break;
+	  case 20:
+        update("newInfo", "Seriously you aren't going to find anything.")
+		break;
+	  case 30:
+        update("newInfo", "Do you see the Look Around button?")
+		break;
+	  case 40:
+        update("newInfo", "There doesn't seem to be any limes here.")
+		break;
+	  case 50:
+        update("newInfo", "Is that a lime?")
+		break;
+	  case 60:
+        update("newInfo", "Nope, it's dirt.")
+		break;
+	  case 70:
+        update("newInfo", "I would suggest looking around more.")
+		break;
+	  case 80:
+        update("newInfo", "You aren't getting a secret achievement.")
+		break;
+	  case 90:
+        update("newInfo", "This is literally just a waste of time.")
+		break;
+	  case 100:
+        update("newInfo", "Can you please play the game correctly?")
+		break;
+	  case 110:
+        update("newInfo", "Is that something priceless in the distance?")
+		break;
+	  case 120:
+        update("newInfo", "Nope, it's dirt.")
+		break;
+	  case 130:
+        update("newInfo", "I'm leaving.")
 
+	}
+	
     if (gameData.autoCollectingBar == 0 || gameData.autoCollectingBar == (gameData.nourishment + 1) * 100) {
         getLimes()
     }
@@ -365,7 +268,7 @@ function getLimesButton() {
 }
 
 function getLimes() {
-	if( beckyRandom(eval(gameData.keenEyeSkillLevelMax)) <= gameData.keenEyeSkillLevel)
+	if( beckyRandom(gameData.keenEyeSkillLevelMax) <= gameData.keenEyeSkillLevel)
 	{
 		if (gameData.keenEyeSkillLevel != gameData.keenEyeSkillLevelMax)
 		{
@@ -391,7 +294,8 @@ function getLimes() {
 	}
 	else
 	{
-		update("newInfo", "Couldn't find any limes...")
+		if ((gameData.lookAround < 1 && gameData.collectLimesAtBeginning < 10) || gameData.lookAround >= 1)
+			update("newInfo", "Couldn't find any limes...")
 	}
 		
     updateValues()
@@ -417,23 +321,95 @@ function buyTome() {
     updateValues()
 }
 
+function typeToHire(id) {
+	gameData.typeToHireToggle = id
+	updateValues()
+}
+
+function unlockCurrencyBrokers() {
+    if (gameData.alphaCoins >= 5) {
+        gameData.alphaCoins -= 5
+        gameData.unlockCurrencyBrokers = 1
+    }
+    updateValues()
+}
+
 function buyARobe() {
-    if (gameData.coins >= 1000) {
-        gameData.coins -= 1000
+    if (gameData.coins >= 1e5) {
+        gameData.coins -= 1e5
         gameData.silkRobe = 1
         gameData.respect += 50
     }
     updateValues()
 }
 
-function unlockDiseaseAreaSwamp() {
-    if (gameData.coins >= 10000) {
-        gameData.coins -= 10000
-        gameData.unlockDiseaseAreaSwamp = 1
-    }
+function brokerApplicant(id, type) {
+
+	if(gameData.alphaCoins >= gameData['brokerApplicant'+ id + 'Price'])
+	{
+		if(type == 'max')
+		{
+			if (gameData['maxBrokerApplicant' + id] > gameData['minBrokerApplicant' + id]) {
+				
+				brokerApplicantPrice(id)
+
+
+				gameData['maxBrokerApplicant' + id] -= 1
+			}
+		}
+		else if(type == 'maxup')
+		{
+			brokerApplicantPrice(id)
+			gameData['maxBrokerApplicant' + id] += 1
+		}
+		else if(type == 'minup')
+		{
+			if (gameData['maxBrokerApplicant' + id] > gameData['minBrokerApplicant' + id]) {
+				
+				brokerApplicantPrice(id)
+
+				gameData['minBrokerApplicant' + id] += 1
+			}
+		}
+		else if(type == 'max100')
+		{
+			brokerApplicantPrice(id)
+			gameData['maxBrokerApplicant' + id] -= 100
+		}
+		else if(type == 'min100')
+		{
+			if (gameData['maxBrokerApplicant' + id] > gameData['minBrokerApplicant' + id]) {
+				
+				brokerApplicantPrice(id)
+
+				gameData['minBrokerApplicant' + id] -= 100
+			}
+		}
+		else
+		{
+			if (gameData['minBrokerApplicant' + id] > 1) {
+				
+				brokerApplicantPrice(id)
+				
+				gameData['minBrokerApplicant' + id] -= 1
+			}
+		}
+	}
     updateValues()
 }
 
+function brokerApplicantPrice(id){
+	gameData.alphaCoins -= gameData['brokerApplicant'+ id + 'Price']
+	gameData['brokerApplicant'+ id + 'Price'] += 5
+}
+
+function buyAdvertisingManager(){
+    if (gameData.alphaCoins >= 10) {
+        gameData.alphaCoins -= 10
+        gameData.advertisingManagerBroker = 1
+    }
+    updateValues()
+}
 
 function buyEntrepreneurialCertificate() {
     if (gameData.megaCoins >= 10) {
@@ -446,14 +422,59 @@ function buyEntrepreneurialCertificate() {
 function increaseCreditScore() {
     if (gameData.megaCoins >= 2) {
         gameData.megaCoins -= 2
-        gameData.megaCoinsInBankMax = 50
+        gameData.megaCoinsInBankMax += 30
+    }
+    updateValues()
+}
+
+function increaseCreditScore2() {
+    if (gameData.megaCoins >= 5) {
+        gameData.megaCoins -= 5
+        gameData.megaCoinsInBankMax += 150
+        gameData.creditScore2 = 1
+
+    }
+    updateValues()
+}
+
+function increaseCreditScore3() {
+    if (gameData.megaCoins >= 50) {
+        gameData.megaCoins -= 50
+        gameData.megaCoinsInBankMax += 800
+        gameData.creditScore3 = 1
+
+    }
+    updateValues()
+}
+
+function buyABiggerWallet() {
+    if (gameData.megaCoins >= 50) {
+        gameData.megaCoins -= 50
+        gameData.coinsMax += 1e6
+
     }
     updateValues()
 }
 
 function buyMegaCoins() {
-    if (gameData.coins >= 1000 && gameData.megaCoinsInBank < gameData.megaCoinsInBankMax) {
-        gameData.coins -= 1000
+    if (gameData.coins >= 10000 && gameData.megaCoinsInBank < gameData.megaCoinsInBankMax) {
+        gameData.coins -= 10000
+        gameData.megaCoinsInBank += 5
+    }
+    updateValues()
+}
+
+function autoCurrencyConversionBuy() {
+    if (gameData.alphaCoins >= 10) {
+        gameData.alphaCoins -= 10
+        gameData.autoCurrencyConversionBuy = 1
+    }
+    updateValues()
+}
+
+function buyMegaCoinsWithAlphaCoins() {
+    if (gameData.alphaCoins >= 10 && gameData.megaCoinsInBank < gameData.megaCoinsInBankMax) {
+        gameData.alphaCoins -= 10
         gameData.megaCoinsInBank += 1
     }
     updateValues()
@@ -471,6 +492,21 @@ function buyBetterTraining() {
     if (gameData.megaCoins >= gameData.betterTraining) {
         gameData.megaCoins -= gameData.betterTraining
         gameData.betterTraining += 1
+    }
+    updateValues()
+}
+
+function upgradeMoreStorage() {
+    if (gameData.megaCoins >= upgradeMoreStoragePrice) {
+		
+        gameData.megaCoins -= upgradeMoreStoragePrice
+
+		gameData.juicersMax +=  500
+		gameData.peelersMax +=  2500
+
+		gameData.upgradeMoreStorage += 1
+
+
     }
     updateValues()
 }
@@ -501,7 +537,15 @@ function travelToNextVillage() {
 
 		
         megaCoinsNow = gameData.megaCoinsInBank
-
+		
+		saveBeforeWipe('alphaCoins')
+		saveBeforeWipe('nationalJuiceMarketing')
+		saveBeforeWipe('creditScore2')
+		saveBeforeWipe('creditScore3')
+		saveBeforeWipe('coinsMax')
+		saveBeforeWipe('respectMilestone10000')
+        saveBeforeWipe('unlockBenevolence')
+        saveBeforeWipe('nationalTradeCert')
         saveBeforeWipe('bigGloves')
         saveBeforeWipe('desktopMode')
         saveBeforeWipe('nutritionists')
@@ -512,7 +556,7 @@ function travelToNextVillage() {
         saveBeforeWipe('hideCompletedSkills')
         saveBeforeWipe('hideMaxedPurchases')
         saveBeforeWipe('researchers')
-
+        saveBeforeWipe('upgradeMoreStorage')
 
 
         Object.assign(gameData, gameDataBase)
@@ -529,7 +573,16 @@ function travelToNextVillage() {
 		if (gameData.manuscripts > 0) {
 			saveAfterWipe('respectMilestone1000')
 		} 
-
+	
+	    saveAfterWipe('upgradeMoreStorage')
+		saveAfterWipe('alphaCoins')
+		saveAfterWipe('creditScore2')
+		saveAfterWipe('creditScore3')
+		saveAfterWipe('nationalJuiceMarketing')
+		saveAfterWipe('coinsMax')		
+		saveAfterWipe('respectMilestone10000')
+        saveAfterWipe('unlockBenevolence')
+        saveAfterWipe('nationalTradeCert')
         saveAfterWipe('researchers')
         saveAfterWipe('megaCoins')
         saveAfterWipe('bigGloves')
@@ -541,6 +594,10 @@ function travelToNextVillage() {
         saveAfterWipe('showBarPercent')
         saveAfterWipe('hideCompletedSkills')
         saveAfterWipe('hideMaxedPurchases')
+
+		gameData.juicersMax = 100 + gameData.upgradeMoreStorage * 500
+		gameData.peelersMax = 500 + gameData.upgradeMoreStorage * 2500
+
 
         gameData.villageNumber = 2
         saveGame()
@@ -588,35 +645,72 @@ function buyAMap() {
     } else if (gameData.coins >= 2000 && gameData.maps == 2) {
         gameData.coins -= 2000
         gameData.maps = 3
-    } else if (gameData.coins >= 20000 && gameData.maps == 3) {
-        gameData.coins -= 20000
+    } else if (gameData.coins >= 2e5 && gameData.maps == 3) {
+        gameData.coins -= 2e5
         gameData.maps = 4
+    } else if (gameData.coins >= 2e5 && gameData.maps == 4) {
+        gameData.coins -= 2e5
+        gameData.maps = 5
     }
     updateValues()
 }
 
 
 function storageJuicersUnlock() {
-    if (gameData.coins >= 100) {
-        gameData.coins -= 100
-        gameData.storageJuicersUnlock = 1
-        gameData.juicersMax *= 5
-    }
+	
+	if(gameData.confirmStorage)
+	{
+		if (window.prompt("Are you sure? Type 'yes' if you are") == "yes")
+		{	
+			if (gameData.coins >= 100) {
+				gameData.coins -= 100
+				gameData.storageJuicersUnlock = 1
+				gameData.juicersMax *= 5
+			}
+		}
+	}
+	else
+	{
+		if (gameData.coins >= 100) {
+			gameData.coins -= 100
+			gameData.storageJuicersUnlock = 1
+			gameData.juicersMax *= 5
+		}
+	}
     updateValues()
 }
 
 function storagePeelersUnlock() {
-    if (gameData.coins >= 100) {
-        gameData.coins -= 100
-        gameData.storagePeelersUnlock = 1
-        gameData.peelersMax *= 5
-    }
+	if(gameData.confirmStorage)
+	{
+		if (window.prompt("Are you sure? Type 'yes' if you are") == "yes")
+		{	
+			if (gameData.coins >= 100) {
+				gameData.coins -= 100
+				gameData.storagePeelersUnlock = 1
+				gameData.peelersMax *= 5
+			}
+		}
+	}
+	else
+	{
+		if (gameData.coins >= 100) {
+			gameData.coins -= 100
+			gameData.storagePeelersUnlock = 1
+			gameData.peelersMax *= 5
+		}
+	}
     updateValues()
 }
 
 function juiceLimesToggle() {
     gameData.limeTypeToJuice = 0
     updateValues()
+}
+
+function benevolenceToggle(){
+	if (gameData.diseaseControlFinished)
+		switchValue('benevolenceToggle')
 }
 
 function juicePeeledLimesToggle() {
@@ -634,14 +728,27 @@ function sellYourLimes() {
 }
 
 function increaseJuicePrice() {
-    if (gameData.coins >= gameData.juicePricePrice) {
-        gameData.coins -= gameData.juicePricePrice
+	if(gameData.increaseJuicePricex10){
+		for (i = 0; i < 10; i++) {
+			if (gameData.coins >= gameData.juicePricePrice) {
+				gameData.coins -= gameData.juicePricePrice
 
 
 
-        gameData.juicePriceCents += 1
-    }
+				gameData.juicePriceCents += 1
+			}
+		}
+	}
+	else
+	{
+		if (gameData.coins >= gameData.juicePricePrice) {
+			gameData.coins -= gameData.juicePricePrice
 
+
+
+			gameData.juicePriceCents += 1
+		}
+	}
     updateValues()
 }
 
@@ -671,22 +778,15 @@ function increaseJuiceSold() {
     updateValues()
 }
 
-function changeLakeAmount(x) {
+function bribeTheBanks() {
+    if (gameData.alphaCoins >= 2) {
+        gameData.alphaCoins -= 2
+        gameData.amountCoinsToAlphaMax += 1
 
-    if (gameData.diseaseControlFinished == 1) {
+    } 
 
-		if (gameData.limeDiseaseLakes < gameData.numberOfTiles && x == 1) {
-			
-			gameData.limeDiseaseLakes += x
-			
-		}
-		
-		else if (gameData.limeDiseaseLakes > 0 && x == -1) {
-			
-			gameData.limeDiseaseLakes += x
-			
-		}
-    }
+
+
 
     updateValues()
 }

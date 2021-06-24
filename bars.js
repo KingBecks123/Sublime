@@ -1,7 +1,16 @@
 function advertise() {
-    if (gameData.coins >= 10) {
-        gameData.coins -= 10
-        barStartGranular("advertise")
+    if ((gameData.advertiseBar == 100 || gameData.advertiseBar == 0) && (gameData.coins >= gameData.advertisePrice)) {
+        gameData.coins -= gameData.advertisePrice
+		gameData.typeToHire = gameData.typeToHireToggle
+        gameData.advertiseBar = 0
+        advertiseBar()
+    }
+}
+
+function searchForACurrencyBroker() {
+    if (gameData.alphaCoins >= 10) {
+        gameData.alphaCoins -= 10
+        barStartGranular("currencyBrokerHire")
     }
 }
 
@@ -10,6 +19,49 @@ function working() {
     barStartGranular("working")
 
 }
+
+function coinsToAlphaStart() {
+	
+	if(!gameData.autoCurrencyConversionBuy){
+		price = (gameData.alphaCoinsExchangeRate + gameData.currencyBrokerFee) * gameData.currencyBrokerTransferAmount
+		if (gameData.coins >= price && (gameData.coinsToAlphaBar == 100 || gameData.coinsToAlphaBar == 0)) {
+			gameData.coins -= price
+			gameData.coinsToAlphaBar = 0
+			coinsToAlphaBar()
+		}
+	}
+	else
+	{
+		pickCurrentTask('autoCurrencyConversionBuy')
+	}
+
+}
+
+function coinsToAlphaClick(){
+	price = (gameData.alphaCoinsExchangeRate + gameData.currencyBrokerFee) * gameData.currencyBrokerTransferAmount
+	if (gameData.coins >= price && (gameData.coinsToAlphaBar == 100 || gameData.coinsToAlphaBar == 0)) {
+		gameData.coins -= price
+		gameData.coinsToAlphaBar = 0
+		coinsToAlphaBar()
+	}
+}
+
+function coinsToAlphaBar() {
+    if (gameData.coinsToAlphaBar <= 99.5) {
+
+        gameData.coinsToAlphaBar += 0.5;
+		moveBar("coinsToAlpha")
+		if(gameData.doesHaveCurrencyBroker)
+			setTimeout(coinsToAlphaBar, 5 * gameData.currencyBrokerSpeed / gameData.tickspeed)
+		else
+			setTimeout(coinsToAlphaBar, 100 / gameData.tickspeed)
+    } else {
+		gameData.alphaCoins += gameData.currencyBrokerTransferAmount
+		
+    }
+}
+
+
 
 function basket() {
     gameData.basketBar = 0;
@@ -110,6 +162,9 @@ function surveying() {
 	}
 }
 
+
+
+
 function surveyingBar() {
     if (gameData.surveyingBar < 100) {
 		if (gameData.surveyingResearchers > 0)
@@ -125,11 +180,28 @@ function surveyingBar() {
 		
         } else {
 			gameData.numberOfTiles += 1
+			
 			diseaseControlQuit()
 		}
 }
 
-
+function benevolenceBar() {
+    if (gameData.benevolenceBar < 100) {
+		if (gameData.benevolenceResearchers > 0)
+		{
+			if(benevolenceBarDoMove)
+				gameData.benevolenceBar += 0.5;
+			
+			benevolenceBarDoMove = 1
+			setTimeout(benevolenceBar, (1e3 * Math.pow(2, gameData.benevolence * 2)) / gameData.benevolenceResearchers)
+		}
+		
+		moveBar("benevolence")
+		
+        } else {
+			gameData.benevolence += 1
+		}
+}
 
 
 function autoCollecting() {
@@ -152,7 +224,29 @@ function autoCollectingBar() {
 
 }
 
+function convertCoinsNow() {
+    if (gameData.coins >= 1e5 && (gameData.convertCoinsNowBar == 0 || gameData.convertCoinsNowBar == 100)) {
+        gameData.coins -= 1e5
+		gameData.convertCoinsNowBar = 0
+        convertCoinsNowBar()
+    }
+}
 
+
+function convertCoinsNowBar() {
+    if (gameData.convertCoinsNowBar < 100) {
+        gameData.convertCoinsNowBar += 0.5;
+		moveBar("convertCoinsNow")
+        setTimeout(convertCoinsNowBar, 100)
+    }
+	else
+	{
+        gameData.megaCoins += 1
+	}
+		
+
+
+}
 
 
 function learnANewSkill() {
@@ -173,6 +267,20 @@ function advertiseBar() {
     }
     
 }
+
+
+function currencyBrokerHireBar() {
+    if (gameData.currencyBrokerHireBar < 100) {
+        gameData.currencyBrokerHireBar += 0.5;
+		moveBar("currencyBrokerHire")
+        setTimeout(currencyBrokerHireBar, (20 / gameData.tickspeed))
+    } else {
+		gameData.currencyApplicationReady = 1
+        randomizeApplicationCurrencyBroker()
+    }
+    
+}
+
 
 function intelligenceBar() {
     basicBarSkill("intelligence")
@@ -229,7 +337,7 @@ function learnANewSkillBar() {
 }
 
 function sellYourJuice() {
-    if ((gameData.deliveryBar >= 99.9 || gameData.deliveryBar == 0) && gameData.coins >= gameData.deliveryPrice && gameData.juice >= gameData.juiceBulkAmountToggle) {
+    if (!gameData.deliveryOngoing && (gameData.deliveryBar >= 99.9 || gameData.deliveryBar == 0) && gameData.coins >= gameData.deliveryPrice && gameData.juice >= gameData.juiceBulkAmountToggle) {
         gameData.deliveryType = gameData.deliveryTypeToggle
         gameData.juiceBulkAmount = gameData.juiceBulkAmountToggle
         gameData.coins -= gameData.deliveryPrice
@@ -260,7 +368,7 @@ function sellYourJuiceBar() {
             }
         }
     } else {
-        gameData.coins += Math.floor(gameData.juiceBulkAmount * (1 + (gameData.juicePriceCents / 100)))
+        gameData.coins += (gameData.nationalJuiceMarketing + 1) * Math.floor(gameData.juiceBulkAmount * (1 + (gameData.juicePriceCents / 100)))
         gameData.deliveryOngoing = 0
     }
 }

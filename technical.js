@@ -6,6 +6,7 @@ var researchersAvailable;
 var gameDataBase = {
     limes: 1,
     coins: 0,
+	coinsMax: 1e6,
     juicers: 0,
     juice: 0,
     juiceBulkAmount: 1,
@@ -13,9 +14,14 @@ var gameDataBase = {
     juicerBar: 0,
     howMuchJuice: 0,
     exploreLevel: 0,
+	achievementBar: 0,
     achievement1: 0,
     achievement2: 0,
+    achievement3: 0,
     achievement4: 0,
+    achievement5: 0,
+    achievement6: 0,
+    achievement7: 0,
     limesPerClick: 1,
     knife: 0,
     peeledLimes: 0,
@@ -86,7 +92,6 @@ var gameDataBase = {
     peelers: 0,
     peelerBar: 0,
     howManyPeeledLimes: 0,
-    achievement3: 0,
     basketInfoToggle: 1,
 
     basketsMax: 50,
@@ -112,6 +117,12 @@ var gameDataBase = {
     advertisingLevel1: 0,
     advertisingLevel2: 0,
     advertisingLevel3: 0,
+	
+	nationalJuiceMarketing: 0,
+	multitasking: 0,
+	currentSkill: 'none',
+	increaseJuicePricex10: 0,
+
 
     versionNumber: 0,
 
@@ -123,6 +134,8 @@ var gameDataBase = {
     bigGloves: 0,
     villageNumber: 1,
     nutritionists: 0,
+    showAchievements: 0,
+
 
     megaCoins: 0,
     megaCoinsInBank: 0,
@@ -147,6 +160,15 @@ var gameDataBase = {
     autoStartTask: 0,
     autoCheckSimulation: 0,
     autoStartSimulation: 0,
+	upgradeMoreStorage: 0,
+	
+    bachelorsDegreeFinance: 0,
+    benevolence: 0,
+    benevolenceBar: 0,
+    benevolenceResearchers: 0,
+    unlockBenevolence: 0,
+	benevolenceToggle: 0,
+
 
 
     diseaseTileSize: 1,
@@ -190,13 +212,14 @@ var gameDataBase = {
 	hideKnife: 0,
 	manuscripts: 0,
 
+	collectLimesAtBeginning: 0,
 
 
 
     currentTask: "none",
 
     keenEyeBar: 0,	
-    keenEyeSkillLevel: 1,
+    keenEyeSkillLevel: 0,
     keenEyeSkillLevelMax: 20,
 
     desktopMode: 1,
@@ -215,12 +238,58 @@ var gameDataBase = {
 	respectMilestone100: 0,
 	respectMilestone500: 0,
 	respectMilestone1000: 0,
-	respectMilestone2000: 0,
+	respectMilestone10000: 0,
 
 	diseaseTileSymbols: 1,
 
-
+	alphaCoins: 0,
+	alphaCoinsExchangeRate: 100,
+	creditScore2: 0,
+	creditScore3: 0,
+	coinsToAlphaBar: 0,
+	currencyBrokerHireBar: 0,
+	confirmStorage: 0,
 	
+	amountCoinsToAlpha: 0,
+	amountCoinsToAlphaMax: 10,
+
+	currencyApplicationReady: 0,
+	applicationType: 0,
+	unlockCurrencyBrokers: 0,
+	typeToHire: 0,
+	typeToHireToggle: 0,
+	doesHaveCurrencyBroker: 0,
+	convertCoinsNowBar: 0,
+
+	currencyApplicantFee: 0,
+	currencyApplicantSpeed: 0,
+	currencyApplicantPrice: 0,
+	currencyApplicantTransferAmount: 0,
+	
+	currencyBrokerFee: 200000,
+	currencyBrokerSpeed: 20,
+	currencyBrokerPrice: 0,
+	currencyBrokerTransferAmount: 1,
+	
+	minBrokerApplicantSpeed: 20,
+	maxBrokerApplicantSpeed: 60,
+	brokerApplicantSpeedPrice: 0,
+
+	minBrokerApplicantFee: 5000,
+	maxBrokerApplicantFee: 10000,
+	brokerApplicantFeePrice: 0,
+	autoCurrencyConversionBuy: 0,
+	
+	minBrokerApplicantAmount: 1,
+	maxBrokerApplicantAmount: 10,
+	brokerApplicantAmountPrice: 0,
+	
+	advertisingManagerBroker: 0,
+	autoAdvertiseBroker: 0,
+	autoAdvertiseSpeedValue: 30,
+	autoAdvertiseSpeedValueMax: 60,
+	advertisePrice: 10,
+
 
     isOptionsOpen: 0,
 
@@ -239,6 +308,7 @@ var gameData = {}
 function gameStart() {
 
 	surveyingBarDoMove = 0
+	benevolenceBarDoMove = 0
 	watertightBarDoMove = 0
 
     addAestheticBase()
@@ -322,23 +392,27 @@ function tab(tabby) {
 
 }
 
+function tabManager(id){
+	hide(id)
+	colorChanger(id + "Button", "#BBBBBB")
+}
 
 function tabMarket(tabby) {
-    tabs("marketStore", "none")
-    tabs("marketMain", "none")
-    tabs("hiringArea", "none")
-    tabs("travel", "none")
 	
-	
-	colorChanger('marketStoreButton', "#BBBBBB")
-	colorChanger('marketMainButton', '#BBBBBB')
-	colorChanger('hiringAreaButton', '#BBBBBB')
-	colorChanger('travelButton', '#BBBBBB')
-	
-	
+	tabManager('marketStore')	
+	tabManager('marketMain')	
+	tabManager('hiringArea')	
+	tabManager('travel')	
+
+	hide('trade')
+	colorChanger("tradeButton", "#FDFF9A")
 	
 	colorChanger(tabby + "Button", "#898989")
-    document.getElementById(tabby).style.display = "block"
+	document.getElementById(tabby).style.display = "block"
+		
+	if(tabby == 'trade')
+		colorChanger(tabby + "Button", "#FCFF4E")
+		
 }
 
 function tabTasks(tabby) {

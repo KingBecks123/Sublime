@@ -4,12 +4,33 @@ function loadStuff(savegame) {
     if (savegame !== null) {
         Object.assign(gameData, savegame);
         backwardsCompatibility(savegame.versionNumber)
-        gameData.versionNumber = 84
+        gameData.versionNumber = 98
         updateValues()
         updateAfterLoad()
     } else {
         update("newInfo", "Save File Empty.")
     }
+}
+
+function timeToShowScience(id){
+	
+	var researchTime = eval(id + 'ResearchTime')
+	var time = id + 'Time'
+	
+	if (gameData[id + 'Researchers'] == 0)
+	{
+		update(time, "Estimated Time: Infinite Seconds")
+	}
+	
+	else if (researchTime <= 200)
+	{
+		update(time, "Estimated Time: " + researchTime.toLocaleString() + " Seconds")
+	}
+	
+	else
+	{
+		update(time, "Estimated Time: " + Math.floor(researchTime / 60).toLocaleString() + " Minutes")
+	}
 }
 
 function ifMaxDarkGray(x) {
@@ -107,6 +128,28 @@ function pickCurrentTask(x) {
 	updateValues()
 }
 
+function pickCurrentSkill(x) {
+	if (!event.shiftKey && gameData.multitasking){
+		if(gameData.currentSkill == x && gameData.currentSkill !== "none")
+		{
+			gameData.currentSkill = "none"
+		}
+		else
+		{
+			gameData.currentSkill = x
+		}
+	}
+	
+	
+	else {
+		barStartGranularSkillBasic(x)
+	}
+	
+	updateValues()
+}
+
+
+
 function startCurrentTask(x) {
 		
 	 if (x == 'eatFood') {
@@ -131,7 +174,10 @@ function startCurrentTask(x) {
 
 	 else if (x == 'useMaxPeelers') {
 		peelerPeelMax()
-	}		
+	}
+	 else if (x == 'autoCurrencyConversionBuy') {
+		coinsToAlphaClick()
+	}	
 	
 	updateValues()
 }
@@ -258,6 +304,16 @@ function basicBuy(x, price) {
     updateValues()
 }
 
+function basicBuyMegaCoins(x, price) {
+
+    if (gameData.megaCoins >= price) {
+        gameData.megaCoins -= price
+        eval("gameData." + x + "+= 1")
+    }
+
+    updateValues()
+}
+
 function addResearchers(id, amount) {
 
 	if (amount > 0 && (researchersAvailable - amount >= 0))
@@ -277,8 +333,8 @@ function addResearchers(id, amount) {
 function hireResearcher(id) {
 	
     if (id == 'coins') {
-		if (gameData[id] >= 5000) {
-			gameData[id] -= 5000
+		if (gameData[id] >= 1e5) {
+			gameData[id] -= 1e5
 			gameData.researchers += 1
 
 		}
@@ -358,6 +414,11 @@ function beckyRandom(max) {
     return Math.floor(Math.random() * max) + 1;
 }
 
+// returns a random integer from X to Y
+function beckyRandomMinMax(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+}
+
 //Recurring function for continuing a loading bar.
 function basicBarSkill(variable) {
     i = eval("gameData." + variable + "Bar")
@@ -375,7 +436,7 @@ function basicBarSkill(variable) {
         eval("gameData." + variable + "SkillLevel += 1");
         eval("gameData." + variable + " += 2");
     }
-    updateValues()
+    moveBar(variable)
 }
 
 function toggle(i) {
@@ -515,6 +576,29 @@ function checkShow(i, n, txt) {
 function checkShow(i, txt) {
     if (i >= 1) {
         tabs(txt, "block")
+    }
+
+}
+
+function increaseValue(id) {
+
+    if (gameData[id] < gameData[id + 'Max']) {
+        gameData[id] += 1
+    }
+    updateValues()
+}
+
+function decreaseValue(id){
+    if (gameData[id] >= 1) {
+        gameData[id] -= 1
+    }
+updateValues()
+}
+
+//Checks if a value is higher than 0, and shows an element if so.
+function checkHide(i, txt) {
+    if (i) {
+        hide(txt)
     }
 
 }
