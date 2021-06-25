@@ -4,7 +4,7 @@ function loadStuff(savegame) {
     if (savegame !== null) {
         Object.assign(gameData, savegame);
         backwardsCompatibility(savegame.versionNumber)
-        gameData.versionNumber = 101
+        gameData.versionNumber = 102
         updateValues()
         updateAfterLoad()
     } else {
@@ -180,7 +180,6 @@ function startCurrentTask(x) {
 		coinsToAlphaClick()
 	}	
 	
-	updateValues()
 }
 
 

@@ -11,6 +11,7 @@ function mainGameLoopSlow() {
 	
 	if (gameData.autoCheckSimulation)
 		checkResults()
+	
 	if (gameData.autoAdvertiseBroker)
 	{
 		if (gameData.currencyApplicantSpeed > gameData.autoAdvertiseSpeedValue || (gameData.smarterAdvertisingManagerBroker && gameData.currencyApplicantTransferAmount < gameData.autoAdvertiseAmountValue))
