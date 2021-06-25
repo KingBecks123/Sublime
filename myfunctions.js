@@ -4,7 +4,7 @@ function loadStuff(savegame) {
     if (savegame !== null) {
         Object.assign(gameData, savegame);
         backwardsCompatibility(savegame.versionNumber)
-        gameData.versionNumber = 100
+        gameData.versionNumber = 101
         updateValues()
         updateAfterLoad()
     } else {
@@ -102,6 +102,7 @@ function pinButton() {
 	
 	updateValues()
 }
+
 
 
 function pickCurrentTask(x) {
@@ -465,6 +466,7 @@ function restartBar(x) {
     if (y <= 99 && y != 0) {
         eval(x + "Bar()")
     }
+	
 }
 
 function restartBarNoMovement(x) {
@@ -582,7 +584,7 @@ function checkShow(i, txt) {
 
 function increaseValue(id) {
 
-    if (gameData[id] < gameData[id + 'Max']) {
+    if (gameData[id] < gameData[id + 'Max'] || gameData[id + 'Max'] == null) {
         gameData[id] += 1
     }
     updateValues()

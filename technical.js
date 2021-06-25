@@ -247,8 +247,10 @@ var gameDataBase = {
 	creditScore2: 0,
 	creditScore3: 0,
 	coinsToAlphaBar: 0,
+	isCoinsToAlphaBar: 0,
 	currencyBrokerHireBar: 0,
 	confirmStorage: 0,
+	smarterAdvertisingManagerBroker: 0,
 	
 	amountCoinsToAlpha: 0,
 	amountCoinsToAlphaMax: 10,
@@ -288,7 +290,10 @@ var gameDataBase = {
 	autoAdvertiseBroker: 0,
 	autoAdvertiseSpeedValue: 30,
 	autoAdvertiseSpeedValueMax: 60,
+	autoAdvertiseAmountValue: 5, 
 	advertisePrice: 10,
+	isAdvertising: 0,
+
 
 
     isOptionsOpen: 0,
@@ -310,6 +315,7 @@ function gameStart() {
 	surveyingBarDoMove = 0
 	benevolenceBarDoMove = 0
 	watertightBarDoMove = 0
+
 
     addAestheticBase()
 

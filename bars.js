@@ -1,10 +1,26 @@
 function advertise() {
-    if ((gameData.advertiseBar == 100 || gameData.advertiseBar == 0) && (gameData.coins >= gameData.advertisePrice)) {
+    if ((gameData.advertiseBar == 100 || gameData.advertiseBar == 0) && (gameData.coins >= gameData.advertisePrice) && gameData.isAdvertising == 0) {
         gameData.coins -= gameData.advertisePrice
 		gameData.typeToHire = gameData.typeToHireToggle
         gameData.advertiseBar = 0
+		gameData.isAdvertising = 1
         advertiseBar()
     }
+}
+
+function advertiseBar() {
+    if (gameData.advertiseBar <= 99) {
+        gameData.advertiseBar += 1;
+		moveBar("advertise")
+        setTimeout(advertiseBar, (200 / (gameData.advertisingLevel2 * 2 * gameData.advertisingLevel3 + gameData.advertisingLevel2 + 2 * gameData.advertisingLevel3 + 1) / gameData.tickspeed))
+    } else {
+        gameData.applicationReady = 1
+        gameData.hasAdvertised = 1
+        randomizeApplication()
+		gameData.isAdvertising = 0
+
+    }
+    
 }
 
 function searchForACurrencyBroker() {
@@ -255,19 +271,6 @@ function learnANewSkill() {
     }
 }
 
-function advertiseBar() {
-    if (gameData.advertiseBar <= 99) {
-        gameData.advertiseBar += 1;
-		moveBar("advertise")
-        setTimeout(advertiseBar, (200 / (gameData.advertisingLevel2 * 2 * gameData.advertisingLevel3 + gameData.advertisingLevel2 + 2 * gameData.advertisingLevel3 + 1) / gameData.tickspeed))
-    } else {
-        gameData.applicationReady = 1
-        gameData.hasAdvertised = 1
-        randomizeApplication()
-    }
-    
-}
-
 
 function currencyBrokerHireBar() {
     if (gameData.currencyBrokerHireBar < 100) {
@@ -353,13 +356,15 @@ function sellYourJuiceBar() {
 
     if (gameData.deliveryBar <= 99.9) {
         if (gameData.deliveryType <= 1) {
-            if (gameData.deliveryBar <= 99.9) {
+
                 gameData.deliveryOngoing = 1
                 gameData.deliveryBar += 0.1;
 			    moveBar("delivery")
                 setTimeout(sellYourJuiceBar, (100 / (gameData.deliveryType * 100 + 1)) / gameData.tickspeed)
-            }
-        } else if (gameData.deliveryType == 2) {
+
+        } 
+		else 
+		{
             if (gameData.deliveryBar <= 99.5) {
                 gameData.deliveryOngoing = 1
                 gameData.deliveryBar += 0.5;
@@ -367,7 +372,8 @@ function sellYourJuiceBar() {
                 setTimeout(sellYourJuiceBar, (100 / (gameData.deliveryType * 100 + 1)) / gameData.tickspeed)
             }
         }
-    } else {
+    } 
+	else {
         gameData.coins += (gameData.nationalJuiceMarketing + 1) * Math.floor(gameData.juiceBulkAmount * (1 + (gameData.juicePriceCents / 100)))
         gameData.deliveryOngoing = 0
     }

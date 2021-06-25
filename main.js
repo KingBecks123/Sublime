@@ -3,17 +3,21 @@ var loopNumbercurrentTask = 0;
 
 function mainGameLoopSlow() {
 	
-	 if (gameData.autoStartSimulation)
+	if (gameData.autoStartSimulation)
 		startSimulation()
 	
-	 if (gameData.autoStartTask) 
+	if (gameData.autoStartTask) 
 		diseaseControlTask()
 	
-	 if (gameData.autoCheckSimulation)
+	if (gameData.autoCheckSimulation)
 		checkResults()
-
-	 if (gameData.autoAdvertiseBroker && gameData.currencyApplicantSpeed > gameData.autoAdvertiseSpeedValue)
-		advertise()
+	if (gameData.autoAdvertiseBroker)
+	{
+		if (gameData.currencyApplicantSpeed > gameData.autoAdvertiseSpeedValue || (gameData.smarterAdvertisingManagerBroker && gameData.currencyApplicantTransferAmount < gameData.autoAdvertiseAmountValue))
+		{
+			advertise()
+		}
+	}
 
 	if(gameData.numberOfTiles >= 17)
 	{
@@ -210,6 +214,9 @@ function hireApplicant() {
 			gameData.currencyBrokerSpeed = gameData.currencyApplicantSpeed
 			gameData.currencyBrokerPrice = gameData.currencyApplicantPrice
 			gameData.currencyBrokerTransferAmount = gameData.currencyApplicantTransferAmount
+			
+			gameData.coinsToAlphaBar = 0
+
 		}
 	}
     updateValues()
@@ -407,6 +414,14 @@ function buyAdvertisingManager(){
     if (gameData.alphaCoins >= 10) {
         gameData.alphaCoins -= 10
         gameData.advertisingManagerBroker = 1
+    }
+    updateValues()
+}
+
+function buySmarterAdvertisingManager(){
+    if (gameData.alphaCoins >= 50) {
+        gameData.alphaCoins -= 50
+        gameData.smarterAdvertisingManagerBroker = 1
     }
     updateValues()
 }

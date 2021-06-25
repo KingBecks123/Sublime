@@ -289,7 +289,8 @@ function updateValues() {
     update("textForBrokerApplicantAmount", "Currently " + gameData.minBrokerApplicantAmount.toLocaleString() + " - " + gameData.maxBrokerApplicantAmount.toLocaleString() + " Coins")
 
     update("textForAdvertisingBrokerRule", "Auto advertise if speed is over " + gameData.autoAdvertiseSpeedValue.toLocaleString() + " seconds")
-    update("advertisePrice", "Price: " + gameData.advertisePrice.toLocaleString() + " Coins")
+    update("textForSmarterAdvertisingBrokerRule", "And if transfer amount is under " + gameData.autoAdvertiseAmountValue.toLocaleString())
+	update("advertisePrice", "Price: " + gameData.advertisePrice.toLocaleString() + " Coins")
 
 
 	//gameData.minBrokerApplicantFee = 5000
@@ -505,7 +506,18 @@ function updateValues() {
     } else {
         hide("upgradeWallet")
     }
+	
+    if (gameData.advertisingManagerBroker && !gameData.smarterAdvertisingManagerBroker) {
+        showBasicDiv("smarterAutoBrokerAdvertiser")
+    } else {
+        hide("smarterAutoBrokerAdvertiser")
+    }
 
+    if (gameData.smarterAdvertisingManagerBroker) {
+        showBasicDiv("textForSmarterAdvertisingBrokerRule")
+    } else {
+        hide("textForSmarterAdvertisingBrokerRule")
+    }
 
     if (gameData.respectMilestone10) {
         tabs("autoStartTaskButton", "inline-block")
