@@ -243,6 +243,7 @@ function autoCollectingBar() {
 function convertCoinsNow() {
     if (gameData.coins >= 1e5 && (gameData.convertCoinsNowBar == 0 || gameData.convertCoinsNowBar == 100)) {
         gameData.coins -= 1e5
+		gameData.convertedCoinsSinceTravel += 1
 		gameData.convertCoinsNowBar = 0
         convertCoinsNowBar()
     }
@@ -253,7 +254,7 @@ function convertCoinsNowBar() {
     if (gameData.convertCoinsNowBar < 100) {
         gameData.convertCoinsNowBar += 0.5;
 		moveBar("convertCoinsNow")
-        setTimeout(convertCoinsNowBar, 100)
+        setTimeout(convertCoinsNowBar, 50 * (gameData.convertedCoinsSinceTravel + 1))
     }
 	else
 	{
@@ -266,7 +267,7 @@ function convertCoinsNowBar() {
 
 
 function learnANewSkill() {
-    if (gameData.learnANewSkill <= 2 || (gameData.tomes == 1 && gameData.learnANewSkill <= 3)) {
+    if (gameData.learnANewSkill <= 2 || (gameData.tomes == 1 && gameData.learnANewSkill <= 3) || (gameData.tomes == 2 && gameData.learnANewSkill <= 4)) {
         barStartGranular("learnANewSkill")
     }
 }
@@ -305,6 +306,10 @@ function keenEyeBar() {
     basicBarSkill("keenEye")
 }
 
+function ambidextrousBar() {
+    basicBarSkill("ambidextrous")
+}
+
 function learnANewSkillBar() {
     if (gameData.learnANewSkillBar < 100) {
         gameData.learnANewSkillBar += 0.1;
@@ -334,6 +339,10 @@ function learnANewSkillBar() {
             case 3:
                 gameData.learnANewSkill = 4
                 update("newInfo", "You Learned Knifebidextrous!")
+                break;
+            case 4:
+                gameData.learnANewSkill = 5
+                update("newInfo", "You Learned Ambidextrous!")
         }
     }
 
@@ -405,14 +414,11 @@ function makeJuice() {
 
 function peelerPeel() {
 
-    if (gameData.peelerBar >= 99 || gameData.peelerBar == 0) {
-
-        if (gameData.limes >= 1) {
-            gameData.howManyPeeledLimes = 1
-            gameData.limes -= 1
-            gameData.peelerBar = 0
-            peelerBar()
-        }
+    if ((gameData.peelerBar >= 99 || gameData.peelerBar == 0) && gameData.limes >= 1) {
+		gameData.howManyPeeledLimes = 1
+		gameData.limes -= 1
+		gameData.peelerBar = 0
+		peelerBar()
     }
 
 }
@@ -472,8 +478,7 @@ function juicerBar() {
     if (gameData.juicerBar <= 99.5) {
         gameData.juicerBar += 0.5;
 		moveBar("juicer")
-        var x = (gameData.limeTypeToJuiceToggle * 3 + 1) * gameData.tickspeed
-        setTimeout(juicerBar, 50 / x)
+        setTimeout(juicerBar, 50 / ((gameData.limeTypeToJuiceToggle * 3 + 1) * gameData.tickspeed))
     } else {
         gameData.juice += gameData.howMuchJuice;
 		gameData.hasGottenJuice = 1

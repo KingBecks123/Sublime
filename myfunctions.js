@@ -4,7 +4,7 @@ function loadStuff(savegame) {
     if (savegame !== null) {
         Object.assign(gameData, savegame);
         backwardsCompatibility(savegame.versionNumber)
-        gameData.versionNumber = 102
+        gameData.versionNumber = 104
         updateValues()
         updateAfterLoad()
     } else {
@@ -106,19 +106,52 @@ function pinButton() {
 
 
 function pickCurrentTask(x) {
+	
 	if (!event.shiftKey){
-		if(gameData.currentTask == x && gameData.currentTask !== "none")
-		{
-			gameData.currentTask = "none"
+		if(gameData.ambidextrousSkillLevel !== gameData.ambidextrousSkillLevelMax){
+			if(gameData.currentTask == x && gameData.currentTask !== "none")
+			{
+				gameData.currentTask = "none"
+			}
+			else
+			{
+				gameData.currentTask = x
+			}
+			
 		}
 		else
 		{
-			gameData.currentTask = x
+			if(gameData.currentTask == x || gameData.currentTask == "none" )
+			{
+				if(gameData.currentTask == x && gameData.currentTask !== "none")
+				{
+					gameData.currentTask = "none"
+				}
+				else if (gameData.currentTask == "none")
+				{
+					if(!((gameData.currentTask2 == 'makeJuice' && x == 'makeMaxJuice') || (gameData.currentTask2 == 'makeMaxJuice' && x == 'makeJuice') || (gameData.currentTask2 == 'usePeelers' && x == 'useMaxPeelers') || (gameData.currentTask2 == 'useMaxPeelers' && x == 'usePeelers')))
+					gameData.currentTask = x
+				}
+				
+
+			}
+			else
+			{
+				if(gameData.currentTask2 == x && gameData.currentTask2 !== "none")
+				{
+					gameData.currentTask2 = "none"
+				}
+				else if (gameData.currentTask2 == "none")
+				{
+					if(!((gameData.currentTask == 'makeJuice' && x == 'makeMaxJuice') || (gameData.currentTask == 'makeMaxJuice' && x == 'makeJuice') || (gameData.currentTask == 'usePeelers' && x == 'useMaxPeelers') || (gameData.currentTask == 'useMaxPeelers' && x == 'usePeelers')))
+					gameData.currentTask2 = x
+				}
+
+			}
 		}
 		
-		 if (gameData.currentTask == 'eatFood') {
-			eat()
-		}
+		
+		
 	}
 	
 	
@@ -291,6 +324,18 @@ function switchValue(x) {
     }
 
     updateValues()
+    updateValues()
+}
+
+function universalBuy(id, price, currency) {
+
+    if (gameData[currency] >= price) {
+		
+        gameData[currency] -= price
+        gameData[id] += 1
+		
+    }
+
     updateValues()
 }
 
@@ -475,18 +520,11 @@ function restartBarNoMovement(x) {
     }
 }
 
-//Starts a loading bar.
-function barStart(i, functionToCall, variable) {
-    if (i >= 99.9 || i == 0) {
-        eval(variable)
-        eval(functionToCall)
-    }
-}
-
 //Starts a granular loading bar.
 function barStartGranular(variable) {
     variableBar = variable + "Bar"
     i = eval("gameData." + variableBar)
+	
     if (i == 100 || i == 0) {
         eval("gameData." + variableBar + " = 0")
         eval(variableBar + "()")

@@ -169,6 +169,9 @@ var gameDataBase = {
     unlockBenevolence: 0,
 	benevolenceToggle: 0,
 
+    ambidextrousBar: 0,
+    ambidextrousSkillLevel: 0,
+    ambidextrousSkillLevelMax: 100,
 
 
     diseaseTileSize: 1,
@@ -217,6 +220,8 @@ var gameDataBase = {
 
 
     currentTask: "none",
+    currentTask2: "none",
+
 
     keenEyeBar: 0,	
     keenEyeSkillLevel: 0,
@@ -251,6 +256,10 @@ var gameDataBase = {
 	currencyBrokerHireBar: 0,
 	confirmStorage: 0,
 	smarterAdvertisingManagerBroker: 0,
+	convertedCoinsSinceTravel: 0,
+	
+	buyMegaCoinsTimes: 0,
+	buyMegaCoinsTimesMax: 10,
 	
 	amountCoinsToAlpha: 0,
 	amountCoinsToAlphaMax: 10,

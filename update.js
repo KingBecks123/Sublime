@@ -169,7 +169,6 @@ function updateValues() {
 		update("surveyingText", "Currently: " + gameData.numberOfTiles + " / 20 Tiles")
 		update("benevolenceText", "Currently: Level " + gameData.benevolence)
 
-
 		update("textForResearchers", researchersAvailable + " Available Researchers")
 		
 		update("textForWatertightResearchers", gameData.watertightResearchers + " Researchers")
@@ -280,6 +279,8 @@ function updateValues() {
     update("textForLakes", gameData.limeDiseaseLakes.toLocaleString() + " Lakes")
 
     update("currentSpeedEmployee", "Current speed: " + gameData.employeeCurrentSpeed.toLocaleString() + " limes per minute.")
+    update("speedEmployee", "Speed: " + gameData.employeeSpeed.toLocaleString() + "% Of What I'm Taught.")
+
 
     update("textForJuicePricePrice", "Price: " + gameData.juicePricePrice.toLocaleString() + " Coins")
 
@@ -386,6 +387,7 @@ function updateValues() {
 
 	}
 	
+	update("buyMegaCoinsTimes", "Transfer times: " + gameData.buyMegaCoinsTimes + " / " + gameData.buyMegaCoinsTimesMax)
 
 
 	
@@ -430,6 +432,9 @@ function updateValues() {
     moveBar("working")
     moveBasket()
     moveAutoCollecting()
+
+    moveBar("ambidextrous")
+    update("ambidextrousSkillLevel", gameData.ambidextrousSkillLevel + " / " + gameData.ambidextrousSkillLevelMax)
 
     moveBar("rottenWisdom")
     update("rottenWisdom", gameData.rottenWisdom + "% Chance")
@@ -514,9 +519,9 @@ function updateValues() {
     }
 
     if (gameData.smarterAdvertisingManagerBroker) {
-        showBasicDiv("textForSmarterAdvertisingBrokerRule")
+        showBasicDiv("smarterAdvertisingBrokerRule")
     } else {
-        hide("textForSmarterAdvertisingBrokerRule")
+        hide("smarterAdvertisingBrokerRule")
     }
 
     if (gameData.respectMilestone10) {
@@ -547,7 +552,11 @@ function updateValues() {
 		showBasicDiv("upgradeJuicePricePermanance")
 	}
 	
-	
+	if (gameData.ambidextrousSkillLevel == gameData.ambidextrousSkillLevelMax) {
+		tabs("stopActionsButton", "inline-block")
+    } else {
+        hide("stopActionsButton")
+	}
 	
     if (gameData.respectMilestone500) {
         tabs("autoPlaceACivilianButton", "inline-block")
@@ -1028,8 +1037,11 @@ function updateValues() {
         showOrHideSkill("limebidextrous")
     }
 
-    if (gameData.tomes >= 1) {
+    if (gameData.tomes > 0) {
         hide("tomeDiv")
+    }
+    if (gameData.tomes > 1) {
+        hide("tomeDiv2")
     }
 	
     if (gameData.autoCollectingBar == (gameData.nourishment + 1) * 100 || gameData.autoCollectingBar == 0) {
@@ -1055,9 +1067,23 @@ function updateValues() {
     if (gameData.learnANewSkill >= 4) {
         showOrHideSkill("knifebidextrous")
 
+        if (gameData.tomes == 1) {
+            document.getElementById('learnANewSkillButton').style.backgroundColor = 'darkgray';
+            gameData.learnANewSkillBar = 100;
+        } else if (gameData.tomes == 2) {
+            document.getElementById('learnANewSkillButton').style.backgroundColor = '#FFBB9A';
+        }
+    }
+	
+    if (gameData.learnANewSkill >= 5) {
+        showOrHideSkill("ambidextrous")
+
         gameData.learnANewSkillBar = 100;
         document.getElementById('learnANewSkillButton').style.backgroundColor = 'darkgray';
     }
+	
+	
+	
 
     if (gameData.villageNumber > 0) {
         tabs("marketMainButtonsDiv", "block")

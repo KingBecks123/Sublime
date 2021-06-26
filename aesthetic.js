@@ -43,6 +43,17 @@ function addAesthetic() {
     toggleAesthetic("autoAdvertiseBroker")
     toggleAesthetic("increaseJuicePricex10")
 
+	currentTaskAesthetic('usePeelers')		
+	currentTaskAesthetic('useMaxPeelers')	
+	
+	currentTaskAesthetic('makeJuice')		
+	currentTaskAesthetic('makeMaxJuice')
+	
+	currentTaskAesthetic('eatFood')	
+	currentTaskAesthetic('sellYourJuice')	
+
+
+
     //Achievement
     var x = document.getElementsByClassName("achievement");
     for (i = 0; i < x.length; i++) {
@@ -152,30 +163,17 @@ function addAesthetic() {
     ifMaxDarkGray("juicer")
     ifMaxDarkGray("peeler")
 
-	currentTaskAesthetic('usePeelers')		
-	currentTaskAesthetic('useMaxPeelers')	
-	
-	currentTaskAesthetic('makeJuice')		
-	currentTaskAesthetic('makeMaxJuice')
-	
-	currentTaskAesthetic('eatFood')	
 
-	if (gameData.currentTask == 'autoCurrencyConversionBuy') {
+	if (gameData.currentTask == 'autoCurrencyConversionBuy' || gameData.currentTask2 == 'autoCurrencyConversionBuy') {
 		colorChanger('currencyConvertAlphaCoinsButton', '#F8FF01')
 	} else {
 		colorChanger('currencyConvertAlphaCoinsButton', '#FDFF9A')
-	}
-
-	if (gameData.currentTask == 'sellYourJuice') {
-		colorChanger('sellYourJuiceButton', accent4Dark)
-	} else {
-		colorChanger('sellYourJuiceButton', accent4)
 	}
 	
 	function currentTaskAesthetic(x){
 		
 		button = x + "Button"
-		if (gameData.currentTask == x) {
+		if (gameData.currentTask == x || gameData.currentTask2 == x) {
 			colorChanger(button, accent4Dark)
 		} else {
 			colorChanger(button, accent4)
@@ -228,6 +226,8 @@ function addAesthetic() {
 			currentSkillAesthetic('limebidextrous')		
 			currentSkillAesthetic('intelligence')
 			currentSkillAesthetic('knifebidextrous')	
+			currentSkillAesthetic('ambidextrous')	
+
 		}
 		else{
 			for (i = 0; i < x.length; i++) {

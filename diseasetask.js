@@ -1,10 +1,12 @@
+var diseaseArrayDimensions = 5;
+
 function startSimulation() {
 
     if (gameData.civiliansPlaced == gameData.civiliansTotal) {
 
-        for (x = 0; x < 4; x++) {
+        for (x = 0; x < diseaseArrayDimensions; x++) {
 
-            for (y = 0; y < 4; y++) {
+            for (y = 0; y < diseaseArrayDimensions; y++) {
 
                 tileType = (gameData.diseaseArray[x][y])
 
@@ -15,7 +17,7 @@ function startSimulation() {
                         for (ySpread = y - 1; ySpread < y + 2; ySpread++) {
 
 
-                            if ((xSpread < 5 && xSpread >= 0 && ySpread < 5 && ySpread >= 0) && !(x == xSpread && y == ySpread)) {
+                            if ((xSpread < diseaseArrayDimensions && xSpread >= 0 && ySpread < diseaseArrayDimensions && ySpread >= 0) && !(x == xSpread && y == ySpread)) {
                                 if (gameData.diseaseArray[xSpread][ySpread] == 0) {
                                     gameData.diseaseArray[xSpread][ySpread] = 2
 
@@ -73,9 +75,9 @@ function checkResults() {
 if (gameData.civiliansPlaced == gameData.civiliansTotal && gameData.simulationTime == 1)
 	{
 		diseaseControlFailed = 0
-		for (x = 0; x < 4; x++) {
+		for (x = 0; x < diseaseArrayDimensions; x++) {
 
-			for (y = 0; y < 4; y++) {
+			for (y = 0; y < diseaseArrayDimensions; y++) {
 
 				if (gameData.diseaseArray[x][y] == 3) {
 
