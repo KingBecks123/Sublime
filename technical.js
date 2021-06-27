@@ -261,6 +261,8 @@ var gameDataBase = {
 	buyMegaCoinsTimes: 0,
 	buyMegaCoinsTimesMax: 10,
 	
+	changeZoomSize: 100,
+	
 	amountCoinsToAlpha: 0,
 	amountCoinsToAlphaMax: 10,
 

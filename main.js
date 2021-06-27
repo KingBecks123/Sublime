@@ -690,6 +690,22 @@ function storagePeelersUnlock() {
     updateValues()
 }
 
+function changeZoomSize() {
+
+	if (gameData.changeZoomSize == 150)
+	{
+		gameData.changeZoomSize = 100
+		document.body.style.zoom=1.0;
+	}
+	else
+	{
+		gameData.changeZoomSize += 10
+		document.body.style.zoom= gameData.changeZoomSize / 100;
+	}
+	
+    updateValues()
+}
+
 function juiceLimesToggle() {
     gameData.limeTypeToJuice = 0
     updateValues()
