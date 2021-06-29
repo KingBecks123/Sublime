@@ -4,7 +4,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <meta charset="utf-8">
-    <title>Lime Clicker</title>
+    <title>Sublime</title>
 
     <style>
 	
@@ -93,7 +93,7 @@
 
 	</div>	
 
-    <div class="row" style="background-color:#bfbfbf;padding-left: 130px;display:block;height:60px;">
+    <div class="row" id="newInfoBox" style="background-color:#bfbfbf;padding-left: 130px;display:block;height:60px;">
         <p id="newInfo" style="display:inline-block;margin-bottom:none;">You are in a lime forest.</p>
         <div style="width: 150px;height:50px;float:right;">
             <button id="optionsButton" style="background:lightgray;width: 150px;height:30px;background-color:#d1d9d9;" , onclick="tab('options')">Options</button>
@@ -176,7 +176,7 @@
         </div>
 
         <div id="marketMain">
-            <div style="display:inline-block;">
+            <div style="display:inline-block;width:380px;">
 
 
                 <div class="basicDiv" id="sellYourLimesDiv" style="display:none;">
@@ -229,6 +229,11 @@
                     <button class="basicButtonSize" id="buyABasketButton" onclick="buyABasket()">Buy A Basket</button>
                     <button class="basicButtonSize" id="basketsBulkButton" , style="width:80px;" onclick="toggle('basketsBulkToggle')">x10</button>
                     <p class="basicText">Price: 2 Coins</p>
+                </div>
+                <div class="basicDiv" , id="offlineBasket" style="display:none;">
+                    <button class="specialButton" id="buyAScarecrowButton" onclick="basicBuy('basketScarecrow', 10)">Buy A Scarecrow</button>
+                    <p class="basicText">Allows your baskets to collect limes while you're away (offline).</p>
+                    <p class="basicText">Price: 10 Coins</p>
                 </div>
                 <div class="basicDiv juiceMarket" , id="juiceMarket" , style="display:none;">
                     <button class="basicButtonSizeRound" id="sellYourJuiceButton" , onclick="pickCurrentTask('sellYourJuice')">Sell Juice</button>
@@ -1313,14 +1318,14 @@
     </div>
     </div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="aesthetic.js?v=               105" charset="utf-8" type="text/javascript"></script>
-    <script src="myfunctions.js?v=             105" charset="utf-8" type="text/javascript"></script>
-    <script src="main.js?v=                    105" charset="utf-8" type="text/javascript"></script>
-    <script src="diseasetask.js?v=             105" charset="utf-8" type="text/javascript"></script>
-    <script src="technical.js?v=               105" charset="utf-8" type="text/javascript"></script>
-    <script src="bars.js?v=                    105" charset="utf-8" type="text/javascript"></script>
-    <script src="update.js?v=                  105" charset="utf-8" type="text/javascript"></script>
-    <script src="oldupdatefixes.js?v=          105" charset="utf-8" type="text/javascript"></script>
+    <script src="aesthetic.js?v=               106" charset="utf-8" type="text/javascript"></script>
+    <script src="myfunctions.js?v=             106" charset="utf-8" type="text/javascript"></script>
+    <script src="main.js?v=                    106" charset="utf-8" type="text/javascript"></script>
+    <script src="diseasetask.js?v=             106" charset="utf-8" type="text/javascript"></script>
+    <script src="technical.js?v=               106" charset="utf-8" type="text/javascript"></script>
+    <script src="bars.js?v=                    106" charset="utf-8" type="text/javascript"></script>
+    <script src="update.js?v=                  106" charset="utf-8" type="text/javascript"></script>
+    <script src="oldupdatefixes.js?v=          106" charset="utf-8" type="text/javascript"></script>
 
 </body>
 

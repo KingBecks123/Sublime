@@ -258,6 +258,9 @@ var gameDataBase = {
 	smarterAdvertisingManagerBroker: 0,
 	convertedCoinsSinceTravel: 0,
 	
+	lastSaveTime: Date.now(),
+
+	
 	buyMegaCoinsTimes: 0,
 	buyMegaCoinsTimesMax: 10,
 	
@@ -304,6 +307,7 @@ var gameDataBase = {
 	autoAdvertiseAmountValue: 5, 
 	advertisePrice: 10,
 	isAdvertising: 0,
+	basketScarecrow: 0,
 
 
 
@@ -335,9 +339,12 @@ function gameStart() {
 
     loadGame()
 	
+	calculateOfflineProgress()
+
     mainGameLoop()
 	
     mainGameLoopSlow()
+
 
 	
     updateValues()

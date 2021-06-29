@@ -591,6 +591,13 @@ function updateValues() {
         hide("currencyBroker")	
 	}
 	
+    if (gameData.baskets > 0 && !gameData.basketScarecrow) {
+        showBasicDiv("offlineBasket")
+    } else {
+        hide("offlineBasket")	
+	}
+	
+	
 	
 	if (gameData.creditScore2) {
         hide("increaseCreditScore2")

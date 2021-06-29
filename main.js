@@ -65,6 +65,8 @@ function mainGameLoopSlow() {
 		}
 	}
 	
+	gameData.lastSaveTime = Date.now()
+	
 	moveBar('achievement')
 	updateMapTileAesthetic()
 	setTimeout(mainGameLoopSlow, 500)
@@ -82,6 +84,19 @@ function mainGameLoop() {
 	
 	setTimeout(mainGameLoop, 50)
     updateValues()
+}
+
+function calculateOfflineProgress(){
+	secondsOffline = Math.floor((Date.now() - gameData.lastSaveTime) / 1000)
+	secondsOfflineThree = Math.floor(secondsOffline / 3)
+	
+	if(gameData.basketScarecrow)
+	{
+		if(gameData.basketBar + secondsOfflineThree < 100)
+			gameData.basketBar += secondsOfflineThree
+		else
+			gameData.basketBar = 100
+	}
 }
 
 function sellMaxJuice() {

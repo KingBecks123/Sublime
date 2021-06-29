@@ -4,7 +4,7 @@ function loadStuff(savegame) {
     if (savegame !== null) {
         Object.assign(gameData, savegame);
         backwardsCompatibility(savegame.versionNumber)
-        gameData.versionNumber = 105
+        gameData.versionNumber = 106
         updateValues()
         updateAfterLoad()
     } else {
@@ -662,7 +662,6 @@ function saveAfterWipe(id) {
 }
 
 function saveGame() {
-
     localStorage.setItem('mathAdventureSave', JSON.stringify(gameData))
 
 }
@@ -687,6 +686,10 @@ function importGame() {
 function loadGame() {
     var savegame = JSON.parse(localStorage.getItem("mathAdventureSave"))
     loadStuff(savegame)
+}
+
+function resetTime() {
+	gameData.tickspeed = 1
 }
 
 function autosave() {
