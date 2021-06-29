@@ -7,6 +7,9 @@ accent2 = "gray"; //When buttons are toggled off
 accent3 = "#4DFE89"; //When buttons are toggled on
 accent4 = "#FFBB9A"; //Special Buttons
 accent4Dark = "#FF894C"; //Special Buttons Dark
+whiteBlue = "#99DEFF"; //White
+grayBlue = "#4DC3FF"; //White
+
 
 grayAccent = "#50514F";
 grayAccentLight = "#BBBBBB";
@@ -394,4 +397,61 @@ function addAestheticBase(){
         x[i].style['margin'] = "5px 5px 5px 5px";
     }	
 	
+	changeVariablesColorAesthetic()
+}
+
+function changeVariablesColor(){
+	switchValue('moreVisibleVariables')
+	changeVariablesColorAesthetic()
+}
+
+function changeVariablesColorAesthetic(){
+	
+	if(gameData.moreVisibleVariables)
+	{
+		color = whiteBlue
+		colorDark = grayBlue
+
+		
+		for (let i = 0; i < mainVariables.length; i++) {
+			changeVariableColors("textFor" + jsUcfirst(mainVariables[i]), color, colorDark)
+		}
+
+
+	}
+	
+	else
+	{
+		changeVariableColorsPretty('Limes', '#00B300', '#00FF01')
+		changeVariableColorsPretty('RottenLimes', '#00B300', '#00FF01')
+		changeVariableColorsPretty('Coins', '#AEB301', '#F8FF01')
+		changeVariableColorsPretty('Juice', '#00B33D', '#00FF55')
+		changeVariableColorsPretty('MegaCoins', '#B40001', '#FE0000')
+		changeVariableColorsPretty('AlphaCoins', '#B37700', '#FFAA01')
+		changeVariableColorsPretty('PeeledLimes', '#72B301', '#A0FF01')
+		
+
+	}
+
+
+	
+	
+
+
+}
+
+function changeVariableColorsPretty(elem, colorDark, color){
+	colorChangerText('textFor' + elem + 'Div', colorDark)
+	colorChangerText('textFor' + elem, color)
+}
+
+function changeVariableColors(elem, color, colorDark){
+		  label = document.getElementById(elem+'Div')
+	  if (label)
+		  label.style.color = colorDark
+	  
+	  label = document.getElementById(elem)
+	  if (label)
+		  label.style.color = color
+
 }

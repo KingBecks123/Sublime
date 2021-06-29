@@ -315,14 +315,15 @@ function learnANewSkillBar() {
         gameData.learnANewSkillBar += 0.1;
         setTimeout(learnANewSkillBar, 10 / gameData.tickspeed)
     } else {
+		
         switch (gameData.learnANewSkill) {
             case -2:
                 gameData.learnANewSkill = -1
-                update("newInfo", "You unlocked auto collection!")
+                update("newInfo", "You learned Keen Eye!")
                 break;
             case -1:
                 gameData.learnANewSkill = 0
-                update("newInfo", "You learned Keen Eye!")
+                update("newInfo", "You unlocked auto collection!")
                 break;
             case 0:
                 gameData.learnANewSkill = 1
@@ -344,6 +345,7 @@ function learnANewSkillBar() {
                 gameData.learnANewSkill = 5
                 update("newInfo", "You Learned Ambidextrous!")
         }
+		updateLearnANewSkill()
     }
 
 }

@@ -1,6 +1,9 @@
 var loopNumberBasket = 0;
 var loopNumbercurrentTask = 0;
 
+mainVariables = ['limes', 'rottenLimes', 'coins', 'juice', 'megaCoins', 'alphaCoins', 'peeledLimes'];
+//Main variables change color in options and are updated as numbers.
+
 function mainGameLoopSlow() {
 	
 	if (gameData.autoStartSimulation)

@@ -33,15 +33,12 @@ function updateAfterLoad() {
     if (gameData.deliveryBar <= 99 && gameData.deliveryBar != 0) {
         sellYourJuiceBar()
     }
-
+	updateLearnANewSkill()
     updateValues()
 }
 
 
 function updateValues() {
-
-	//Takes 8 - 13 ms.
-
 
     addAesthetic()
 
@@ -68,6 +65,10 @@ function updateValues() {
 
     if (gameData.coins > gameData.coinsMax) {
         gameData.coins = gameData.coinsMax
+    }
+	
+    if (gameData.basketBar > 100) {
+        gameData.basketBar = 100
     }
 	
     if (gameData.megaCoinsInBank > gameData.megaCoinsInBankMax) {
@@ -145,13 +146,9 @@ function updateValues() {
 
     gameData.limesInBaskets = Math.floor(gameData.baskets * (gameData.basketBar / 4))
 	
-    updateNumber("limes")
-    updateNumber("rottenLimes")
-    updateNumber("coins")
-    updateNumber("juice")
-    updateNumber("megaCoins")
-    updateNumber("alphaCoins")
-    updateNumber("peeledLimes")
+	for (let i = 0; i < mainVariables.length; i++) {
+		 updateNumber(mainVariables[i])
+	}
 	
 	if (gameData.coins > 0){
 		gameData.showAchievements = 1
@@ -264,11 +261,6 @@ function updateValues() {
 	
     update("textForMegaCoinsInBank", gameData.megaCoinsInBank.toLocaleString() + " / " + gameData.megaCoinsInBankMax.toLocaleString() + " Mega Coins In Bank")
 
-    update("juicersAmount", gameData.juicers.toLocaleString() + " / " + gameData.juicersMax.toLocaleString() + " Juicers")
-    update("peelersAmount", gameData.peelers.toLocaleString() + " / " + gameData.peelersMax.toLocaleString() + " Peelers")
-
-    update("basketsAmount", gameData.baskets.toLocaleString() + " / " + gameData.basketsMax.toLocaleString() + " Baskets")
-    update("maxBaskets", gameData.basketsMax.toLocaleString() + " baskets fit under the current tree.")
 
     update("limesInBaskets", gameData.limesInBaskets.toLocaleString() + " Limes")
 
@@ -286,27 +278,33 @@ function updateValues() {
 
     update("textForNourishmentPrice", "You Need: " + gameData.nourishmentPrice.toLocaleString() + " Limes")
 
-    update("textForBrokerApplicantSpeed", "Currently " + gameData.minBrokerApplicantSpeed.toLocaleString() + " - " + gameData.maxBrokerApplicantSpeed.toLocaleString() + " Seconds")
-    update("textForBrokerApplicantAmount", "Currently " + gameData.minBrokerApplicantAmount.toLocaleString() + " - " + gameData.maxBrokerApplicantAmount.toLocaleString() + " Coins")
 
-    update("textForAdvertisingBrokerRule", "Auto advertise if speed is over " + gameData.autoAdvertiseSpeedValue.toLocaleString() + " seconds")
-    update("textForSmarterAdvertisingBrokerRule", "And if transfer amount is under " + gameData.autoAdvertiseAmountValue.toLocaleString())
+	update("juicersAmount", gameData.juicers.toLocaleString() + " / " + gameData.juicersMax.toLocaleString() + " Juicers")
+	update("peelersAmount", gameData.peelers.toLocaleString() + " / " + gameData.peelersMax.toLocaleString() + " Peelers")
+
+
+	update("basketsAmount", gameData.baskets.toLocaleString() + " / " + gameData.basketsMax.toLocaleString() + " Baskets")
+	update("maxBaskets", gameData.basketsMax.toLocaleString() + " baskets fit under the current tree.")
+
+
+
 	update("advertisePrice", "Price: " + gameData.advertisePrice.toLocaleString() + " Coins")
 
 
-	//gameData.minBrokerApplicantFee = 5000
-	//gameData.maxBrokerApplicantFee = 10000
-	//gameData.brokerApplicantFeePrice = 0
 
-    update("textForBrokerApplicantFee", "Currently " + gameData.minBrokerApplicantFee.toLocaleString() + " - " + gameData.maxBrokerApplicantFee.toLocaleString() + " Coins")
+	if(gameData.bachelorsDegreeFinance){
+		update("textForBrokerApplicantSpeed", "Currently " + gameData.minBrokerApplicantSpeed.toLocaleString() + " - " + gameData.maxBrokerApplicantSpeed.toLocaleString() + " Seconds")
+		update("textForBrokerApplicantAmount", "Currently " + gameData.minBrokerApplicantAmount.toLocaleString() + " - " + gameData.maxBrokerApplicantAmount.toLocaleString() + " Coins")
+		update("textForAdvertisingBrokerRule", "Auto advertise if speed is over " + gameData.autoAdvertiseSpeedValue.toLocaleString() + " seconds")
+		update("textForSmarterAdvertisingBrokerRule", "And if transfer amount is under " + gameData.autoAdvertiseAmountValue.toLocaleString())
+		update("textForBrokerApplicantFee", "Currently " + gameData.minBrokerApplicantFee.toLocaleString() + " - " + gameData.maxBrokerApplicantFee.toLocaleString() + " Coins")
+		update("brokerApplicantSpeedPrice", "Price: " + gameData.brokerApplicantSpeedPrice.toLocaleString() + " Alpha Coins")
+		update("brokerApplicantFeePrice", "Price: " + gameData.brokerApplicantFeePrice.toLocaleString() + " Alpha Coins")
+		update("brokerApplicantAmountPrice", "Price: " + gameData.brokerApplicantAmountPrice.toLocaleString() + " Alpha Coins")
+	}
 
 
 
-
-
-    update("brokerApplicantSpeedPrice", "Price: " + gameData.brokerApplicantSpeedPrice.toLocaleString() + " Alpha Coins")
-    update("brokerApplicantFeePrice", "Price: " + gameData.brokerApplicantFeePrice.toLocaleString() + " Alpha Coins")
-    update("brokerApplicantAmountPrice", "Price: " + gameData.brokerApplicantAmountPrice.toLocaleString() + " Alpha Coins")
 
 
 
@@ -387,6 +385,8 @@ function updateValues() {
 
 	}
 	
+	
+	
 	update("buyMegaCoinsTimes", "Transfer times: " + gameData.buyMegaCoinsTimes + " / " + gameData.buyMegaCoinsTimesMax)
 
 
@@ -408,10 +408,9 @@ function updateValues() {
     update("betterTrainingPrice", "Price: " + gameData.betterTraining.toLocaleString() + " Mega Coins")
 	
 
-
-    update("sellYourJuiceAmount", "You Will Deliver " + gameData.juiceBulkAmountToggle.toLocaleString() + " / " + gameData.juiceBulkAmountMax.toLocaleString() + " Juice")
-    update("sellYourJuiceReward", "You Will Get " + gameData.juiceSellReward.toLocaleString() + " Coins")
-    update("sellYourJuicePrice", "You Need " + gameData.deliveryPrice.toLocaleString() + " Coins For Delivery")
+	update("sellYourJuiceAmount", "You Will Deliver " + gameData.juiceBulkAmountToggle.toLocaleString() + " / " + gameData.juiceBulkAmountMax.toLocaleString() + " Juice")
+	update("sellYourJuiceReward", "You Will Get " + gameData.juiceSellReward.toLocaleString() + " Coins")
+	update("sellYourJuicePrice", "You Need " + gameData.deliveryPrice.toLocaleString() + " Coins For Delivery")
 
 	
     update("upgradeMoreStoragePrice", "Price: " + upgradeMoreStoragePrice.toLocaleString() + " Mega Coins")
@@ -422,42 +421,35 @@ function updateValues() {
 
 
 
-    checkShowNonVariable(gameData.juicers, "inventoryButton")
-    checkShowNonVariable(gameData.employees, "companyButton")
-    checkShowNonVariable(gameData.baskets, "forestButton")
-    checkShowNonVariable(gameData.hasGottenJuice, "juiceMarket")
+    checkShowOrHide(gameData.juicers, "inventoryButton")
+    checkShowOrHide(gameData.employees, "companyButton")
+    checkShowOrHide(gameData.baskets, "forestButton")
+    checkShowOrHide(gameData.hasGottenJuice, "juiceMarket")
 
 
     moveBar("teach")
     moveBar("working")
     moveBasket()
     moveAutoCollecting()
-
-    moveBar("ambidextrous")
-    update("ambidextrousSkillLevel", gameData.ambidextrousSkillLevel + " / " + gameData.ambidextrousSkillLevelMax)
-
-    moveBar("rottenWisdom")
-    update("rottenWisdom", gameData.rottenWisdom + "% Chance")
-    update("rottenWisdomSkillLevel", gameData.rottenWisdomSkillLevel + " / " + gameData.rottenWisdomSkillLevelMax)
 	
-    moveBar("keenEye")
-    update("keenEye", gameData.keenEyeSkillLevel * 5 + "% Chance")
-    update("keenEyeSkillLevel", gameData.keenEyeSkillLevel + " / " + gameData.keenEyeSkillLevelMax)
+	update("ambidextrousSkillLevel", gameData.ambidextrousSkillLevel + " / " + gameData.ambidextrousSkillLevelMax)
 
-    moveBar("limebidextrous")
-    update("limebidextrous", gameData.limebidextrous + "% Chance")
-    update("limebidextrousSkillLevel", gameData.limebidextrousSkillLevel + " / " + gameData.limebidextrousSkillLevelMax)
+	update("rottenWisdom", gameData.rottenWisdom + "% Chance")
+	update("rottenWisdomSkillLevel", gameData.rottenWisdomSkillLevel + " / " + gameData.rottenWisdomSkillLevelMax)
+	
+	update("keenEye", gameData.keenEyeSkillLevel * 5 + "% Chance")
+	update("keenEyeSkillLevel", gameData.keenEyeSkillLevel + " / " + gameData.keenEyeSkillLevelMax)
 
-    moveBar("intelligence")
-    update("intelligence", Math.floor(((gameData.intelligenceSkillLevel * 2)/ gameData.intelligenceSkillLevelMax) * 100) + "% Faster")
-    update("intelligenceSkillLevel", gameData.intelligenceSkillLevel + " / " + gameData.intelligenceSkillLevelMax)
+	update("limebidextrous", gameData.limebidextrous + "% Chance")
+	update("limebidextrousSkillLevel", gameData.limebidextrousSkillLevel + " / " + gameData.limebidextrousSkillLevelMax)
 
-    moveBar("knifebidextrous")
-    update("knifebidextrous", gameData.knifebidextrous * 2.5 + "% Chance")
-    update("knifebidextrousSkillLevel", gameData.knifebidextrousSkillLevel + " / " + gameData.knifebidextrousSkillLevelMax)
+	update("intelligence", Math.floor(((gameData.intelligenceSkillLevel * 2)/ gameData.intelligenceSkillLevelMax) * 100) + "% Faster")
+	update("intelligenceSkillLevel", gameData.intelligenceSkillLevel + " / " + gameData.intelligenceSkillLevelMax)
 
-    update("eat", gameData.eat + " / 100")
+	update("knifebidextrous", gameData.knifebidextrous * 2.5 + "% Chance")
+	update("knifebidextrousSkillLevel", gameData.knifebidextrousSkillLevel + " / " + gameData.knifebidextrousSkillLevelMax)
 
+	update("eat", gameData.eat + " / 100")
 
     if (gameData.lookAround >= 1) {
         divVisibility("navigateButtons", "visible")
@@ -500,12 +492,10 @@ function updateValues() {
         gameData.limesPerClick = 2 + gameData.difficulty * 5
     }
 
-    if (gameData.betterTraining > 0) {
-        showBasicDiv("upgradeBetterTraining")
-    } else {
-        hide("upgradeBetterTraining")
-    }
-	
+	checkShowOrHide(gameData.betterTraining, 'upgradeBetterTraining')
+	checkShowOrHide(gameData.smarterAdvertisingManagerBroker, 'smarterAdvertisingBrokerRule')
+
+
     if (gameData.coinsMax > 1e6) {
         showBasicDiv("upgradeWallet")
     } else {
@@ -516,12 +506,6 @@ function updateValues() {
         showBasicDiv("smarterAutoBrokerAdvertiser")
     } else {
         hide("smarterAutoBrokerAdvertiser")
-    }
-
-    if (gameData.smarterAdvertisingManagerBroker) {
-        showBasicDiv("smarterAdvertisingBrokerRule")
-    } else {
-        hide("smarterAdvertisingBrokerRule")
     }
 
     if (gameData.respectMilestone10) {
@@ -585,11 +569,8 @@ function updateValues() {
 		
 	}
 	
-    if (gameData.doesHaveCurrencyBroker) {
-        showBasicDiv("currencyBroker")
-    } else {
-        hide("currencyBroker")	
-	}
+	checkShowOrHide(gameData.doesHaveCurrencyBroker, "currencyBroker")
+
 	
     if (gameData.baskets > 0 && !gameData.basketScarecrow) {
         showBasicDiv("offlineBasket")
@@ -958,18 +939,9 @@ function updateValues() {
         tabs("advertisingMethods", "block")
         hide("researchBetterAdvertising")
     }
+	
 
-    if (gameData.advertisingLevel2 == 0) {
-        tabs("advertisingLeaflets", "block")
-    } else {
-        hide("advertisingLeaflets")
-    }
 
-    if (gameData.advertisingLevel3 == 0) {
-        tabs("advertisingBillboard", "block")
-    } else {
-        hide("advertisingBillboard")
-    }
 
     if (gameData.bulkBuyUnlock == 0) {
         hide("peelersBulkButton")
@@ -986,19 +958,11 @@ function updateValues() {
 		update("basketsBulkButton", "x100")
 		update("juicersBulkButton", "x100")
     }
-
-
-
-    if (gameData.storagePeelersUnlock == 1) {
-        hide("storagePeelersDiv")
-    }
-
-    if (gameData.storageJuicersUnlock == 1) {
-        hide("storageJuicersDiv")
-    }
-
-
-
+	
+	checkHide(gameData.advertisingLevel2, "advertisingLeaflets")
+	checkHide(gameData.advertisingLevel3, "advertisingBillboard")
+	checkHide(gameData.storagePeelersUnlock, "storagePeelersDiv")
+	checkHide(gameData.storageJuicersUnlock, "storageJuicersDiv")
 
     if (gameData.lookAround >= 2) {
         tabs("sellYourLimesDiv", "block")
@@ -1021,32 +985,9 @@ function updateValues() {
 
     }
 
+	checkHide(gameData.tomes, "tomeDiv")
 
 
-    if (gameData.learnANewSkill >= -1) {	
-		showBasicDiv("autoCollectingDiv")
-		showBasicDiv("nourishment")
-		tabs("skillInfoButton", "inline-block")
-    }
-
-    if (gameData.learnANewSkill >= 0) {	
-		showBasicDiv("eatFoodDiv")
-		showOrHideSkill("keenEye")
-    }
-
-
-	
-    if (gameData.learnANewSkill >= 1) {
-        showOrHideSkill("rottenWisdom")
-    }
-
-    if (gameData.learnANewSkill >= 2) {
-        showOrHideSkill("limebidextrous")
-    }
-
-    if (gameData.tomes > 0) {
-        hide("tomeDiv")
-    }
     if (gameData.tomes > 1) {
         hide("tomeDiv2")
     }
@@ -1057,47 +998,11 @@ function updateValues() {
 	else{
 		gameData.isAutoCollecting = 1
     }
-		
 	
 
-    if (gameData.learnANewSkill >= 3) {
-        showOrHideSkill("intelligence")
-
-        if (gameData.tomes == 0) {
-            document.getElementById('learnANewSkillButton').style.backgroundColor = 'darkgray';
-            gameData.learnANewSkillBar = 100;
-        } else if (gameData.tomes == 1) {
-            document.getElementById('learnANewSkillButton').style.backgroundColor = '#FFBB9A';
-        }
-    }
-
-    if (gameData.learnANewSkill >= 4) {
-        showOrHideSkill("knifebidextrous")
-
-        if (gameData.tomes == 1) {
-            document.getElementById('learnANewSkillButton').style.backgroundColor = 'darkgray';
-            gameData.learnANewSkillBar = 100;
-        } else if (gameData.tomes == 2) {
-            document.getElementById('learnANewSkillButton').style.backgroundColor = '#FFBB9A';
-        }
-    }
-	
-    if (gameData.learnANewSkill >= 5) {
-        showOrHideSkill("ambidextrous")
-
-        gameData.learnANewSkillBar = 100;
-        document.getElementById('learnANewSkillButton').style.backgroundColor = 'darkgray';
-    }
-	
-	
-	
-
-    if (gameData.villageNumber > 0) {
-        tabs("marketMainButtonsDiv", "block")
-    }
 
     if (gameData.maps >= 1) {
-        tabs("marketMainButtonsDiv", "block")
+        tabs("marketMainButtonsDiv", "inline-block")
         tabs("marketStoreButton", "inline-block")
         hide("buyAMapDiv")
     }
@@ -1111,6 +1016,15 @@ function updateValues() {
     if (gameData.maps >= 3 || gameData.villageNumber > 1) {
         tabs("travelButton", "inline-block")
     }
+	
+	if (gameData.maps > 2){
+		document.getElementById("marketMainButtonsDiv").style.width = "380px"
+	}
+	else{
+		document.getElementById("marketMainButtonsDiv").style.width = "auto"
+	
+	}
+
 
     if (gameData.peeledLimes >= 1) {
         divVisibility("textForPeeledLimes", "inline-block")
@@ -1146,18 +1060,12 @@ function updateValues() {
         hide("sharperPeelerDiv")
     }
 
-    if (gameData.sharperPeelers >= 1) {
-        hide("sharperPeelerDiv")
-    }
+
+	checkHide(gameData.sharperPeelers, "sharperPeelerDiv")
+	checkHide(gameData.silkRobe, "buyARobe")
+	checkHide(gameData.unlockDiseaseAreaSwamp, "unlockDiseaseAreaSwamp")
 
 
-    if (gameData.silkRobe >= 1) {
-        hide("buyARobe")
-    }
-
-    if (gameData.unlockDiseaseAreaSwamp >= 1) {
-        hide("unlockDiseaseAreaSwamp")
-    }
 
     if (gameData.juicers >= 2) {
         divVisibility("makeMaxJuiceButton", "visible")
@@ -1171,10 +1079,7 @@ function updateValues() {
     }
 
 
-
-    if (gameData.peelers >= 1) {
-        showBasicDiv("peelerDiv")
-    }
+	checkShow(gameData.peelers, "peelerDiv")
 
 
 
@@ -1193,7 +1098,58 @@ function updateValues() {
 			gameData['achievement' + i] = 1
 		}
 	}
-
+	
     moveBar("learnANewSkill")
 
+}
+
+function updateLearnANewSkill(){
+
+	if (gameData.learnANewSkill >= -1) {	
+		showBasicDiv("eatFoodDiv")
+		showOrHideSkill("keenEye")
+    }
+
+    if (gameData.learnANewSkill >= 0) {	
+		showBasicDiv("autoCollectingDiv")
+		showBasicDiv("nourishment")
+		tabs("skillInfoButton", "inline-block")
+    }
+	
+    if (gameData.learnANewSkill >= 1) {
+        showOrHideSkill("rottenWisdom")
+    }
+
+    if (gameData.learnANewSkill >= 2) {
+        showOrHideSkill("limebidextrous")
+    }
+	
+    if (gameData.learnANewSkill >= 3) {
+        showOrHideSkill("intelligence")
+
+        if (gameData.tomes == 0) {
+            document.getElementById('learnANewSkillButton').style.backgroundColor = 'darkgray';
+            gameData.learnANewSkillBar = 100;
+        } else if (gameData.tomes == 1) {
+            document.getElementById('learnANewSkillButton').style.backgroundColor = '#FFBB9A';
+        }
+    }
+
+    if (gameData.learnANewSkill >= 4) {
+        showOrHideSkill("knifebidextrous")
+
+        if (gameData.tomes == 1) {
+            document.getElementById('learnANewSkillButton').style.backgroundColor = 'darkgray';
+            gameData.learnANewSkillBar = 100;
+        } else if (gameData.tomes == 2) {
+            document.getElementById('learnANewSkillButton').style.backgroundColor = '#FFBB9A';
+        }
+    }
+	
+    if (gameData.learnANewSkill >= 5) {
+        showOrHideSkill("ambidextrous")
+
+        gameData.learnANewSkillBar = 100;
+        document.getElementById('learnANewSkillButton').style.backgroundColor = 'darkgray';
+    }
 }

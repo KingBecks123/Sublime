@@ -4,7 +4,7 @@ function loadStuff(savegame) {
     if (savegame !== null) {
         Object.assign(gameData, savegame);
         backwardsCompatibility(savegame.versionNumber)
-        gameData.versionNumber = 106
+        gameData.versionNumber = 107
         updateValues()
         updateAfterLoad()
     } else {
@@ -466,20 +466,21 @@ function beckyRandomMinMax(min, max) {
 
 //Recurring function for continuing a loading bar.
 function basicBarSkill(variable) {
-    i = eval("gameData." + variable + "Bar")
+	
+	variableBar = variable + "Bar"
 
-    if (i <= 99.5) {
-        eval("gameData." + variable + "Bar += 0.5");
-        x = variable + "Bar()"
-        if (variable != "eat") {
-            setTimeout(x, (50 / (gameData.intelligenceSkillLevel / gameData.intelligenceSkillLevelMax + 1)) / gameData.tickspeed)
-        } else {
-            setTimeout(x, 10 / gameData.tickspeed)
-        }
+    if (gameData[variableBar] <= 99.5) {
+		
+        gameData[variableBar] += 0.5
+				
+        setTimeout(variableBar + "()", (100 / (gameData.intelligenceSkillLevel / gameData.intelligenceSkillLevelMax + 1)) / gameData.tickspeed)
+
+		
     } else {
+		
+		gameData[variable + "SkillLevel"] += 1
+		gameData[variable] += 2
 
-        eval("gameData." + variable + "SkillLevel += 1");
-        eval("gameData." + variable + " += 2");
     }
     moveBar(variable)
 }
@@ -604,11 +605,24 @@ function colorChanger(id, content) {
     document.getElementById(id).style.backgroundColor = content;
 }
 
+//Text Color Changer
+function colorChangerText(id, content) {
+    document.getElementById(id).style.color = content;
+}
+
 //Checks if a value is high enough, and shows an element if so.
 function checkShow(i, n, txt) {
     if (i >= n) {
         tabs(txt, "block")
     }
+}
+
+//Checks if a value is higher than 0, and hides an element if so.
+function checkHide(i, txt) {
+    if (i >= 1) {
+        hide(txt)
+    }
+
 }
 
 //Checks if a value is higher than 0, and shows an element if so.
@@ -634,16 +648,8 @@ function decreaseValue(id){
 updateValues()
 }
 
-//Checks if a value is higher than 0, and shows an element if so.
-function checkHide(i, txt) {
-    if (i) {
-        hide(txt)
-    }
-
-}
-
 //Checks if a value is higher than 0, and shows an element if so. If not, hides the element.
-function checkShowNonVariable(i, txt) {
+function checkShowOrHide(i, txt) {
     if (i >= 1) {
         tabs(txt, "block")
     } else {
@@ -667,12 +673,16 @@ function saveGame() {
 }
 
 function exportGame() {
+    update("exportCode", btoa(JSON.stringify(gameData)))
+}
+
+function exportGamePT() {
     update("exportCode", JSON.stringify(gameData))
 }
 
 
 function importGame() {
-    var savegame = JSON.parse(window.prompt("Import Code: "));
+    var savegame =  JSON.parse(atob(prompt("Import Code: ")))
 	if(savegame !== null)
 	{
 		Object.assign(gameData, gameDataBase)
