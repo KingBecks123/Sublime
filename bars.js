@@ -119,7 +119,7 @@ function teachBar() {
 }
 
 function eat() {
-    if ((gameData.eatBar >= 100 - (gameData.fork) / 2 || gameData.eatBar == 0) && gameData.eat < 100) {
+    if ((gameData.eatBar >= 100 - gameData.fork / 2 || gameData.eatBar == 0) && gameData.eat < 100) {
         if (gameData.foodTypeToggle == 0 && gameData.limes > 0) {
             gameData.limes -= 1
             gameData.foodType = 5
@@ -355,7 +355,6 @@ function learnANewSkillBar() {
                 gameData.learnANewSkill = 5
                 update("newInfo", "You Learned Ambidextrous!")
         }
-		updateLearnANewSkill()
     }
 
 }

@@ -5,7 +5,7 @@ function loadStuff(savegame) {
         Object.assign(gameData, savegame);
 
         backwardsCompatibility(gameData.versionNumber)
-        gameData.versionNumber = 109
+        gameData.versionNumber = 110
         updateValues()
         updateAfterLoad()
     } else {
@@ -509,7 +509,7 @@ function sleep(milliseconds) {
 
 function restartBar(x) {
     y = eval("gameData." + x + "Bar")
-    if (y <= 99 && y != 0) {
+    if (y < 100 && y != 0) {
         eval(x + "Bar()")
     }
 	
@@ -517,7 +517,7 @@ function restartBar(x) {
 
 function restartBarNoMovement(x) {
     y = eval("gameData." + x + "Bar")
-    if (y <= 99 && y != 0) {
+    if (y < 100 && y != 0) {
         eval(x + "Bar(0)")
     }
 }

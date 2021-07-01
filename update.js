@@ -35,7 +35,6 @@ function updateAfterLoad() {
     if (gameData.deliveryBar <= 99 && gameData.deliveryBar != 0) {
         sellYourJuiceBar()
     }
-	updateLearnANewSkill()
     updateValues()
 }
 
@@ -808,13 +807,13 @@ function updateValues() {
 	
 	
 
-    if (gameData.fork == 0 && gameData.learnANewSkill > -1) {
+    if (gameData.fork == 0 && gameData.learnANewSkill > -2) {
         showBasicDiv('buyAForkDiv')
     } else {
         hide('buyAForkDiv')
     }
 	
-    if (gameData.shoes == 0 && gameData.learnANewSkill > -2) {
+    if (gameData.shoes == 0 && gameData.learnANewSkill > -1) {
         showBasicDiv('buyShoesDiv')
     } else {
         hide('buyShoesDiv')
@@ -1102,12 +1101,6 @@ function updateValues() {
 	
     moveBar("learnANewSkill")
 	
-	updateLearnANewSkill()
-
-}
-
-function updateLearnANewSkill(){
-
 	if (gameData.learnANewSkill >= -1) {	
 		showBasicDiv("eatFoodDiv")
 		showOrHideSkill("keenEye")
@@ -1155,4 +1148,6 @@ function updateLearnANewSkill(){
         gameData.learnANewSkillBar = 100;
         document.getElementById('learnANewSkillButton').style.backgroundColor = 'darkgray';
     }
+
 }
+
