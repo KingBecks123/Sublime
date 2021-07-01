@@ -4,6 +4,10 @@ var loopNumbercurrentTask = 0;
 mainVariables = ['limes', 'rottenLimes', 'coins', 'juice', 'megaCoins', 'alphaCoins', 'peeledLimes'];
 //Main variables change color in options and are updated as numbers.
 
+mainSkills = ['rottenWisdom', 'limebidextrous', 'knifebidextrous', 'intelligence', 'ambidextrous', 'keenEye'];
+//uses: Restart bar after reloading. Sets the level to the max level if it somehow goes above.
+
+
 function mainGameLoopSlow() {
 	
 	if (gameData.autoStartSimulation)
@@ -538,6 +542,7 @@ function travelToNextVillage() {
 		
         megaCoinsNow = gameData.megaCoinsInBank
 		
+		saveBeforeWipe('versionNumber')
 		saveBeforeWipe('alphaCoins')
 		saveBeforeWipe('nationalJuiceMarketing')
 		saveBeforeWipe('creditScore2')
@@ -573,7 +578,8 @@ function travelToNextVillage() {
 		if (gameData.manuscripts > 0) {
 			saveAfterWipe('respectMilestone1000')
 		} 
-	
+		
+		saveAfterWipe('versionNumber')	
 	    saveAfterWipe('upgradeMoreStorage')
 		saveAfterWipe('alphaCoins')
 		saveAfterWipe('creditScore2')
@@ -595,12 +601,15 @@ function travelToNextVillage() {
         saveAfterWipe('hideCompletedSkills')
         saveAfterWipe('hideMaxedPurchases')
 
+
 		gameData.juicersMax = 100 + gameData.upgradeMoreStorage * 500
 		gameData.peelersMax = 500 + gameData.upgradeMoreStorage * 2500
 
 
         gameData.villageNumber = 2
         saveGame()
+
+
         location.reload();
     }
 }

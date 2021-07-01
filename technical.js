@@ -310,6 +310,7 @@ var gameDataBase = {
 	basketScarecrow: 0,
 	mainTab: 'null',
 	moreVisibleVariables: 0,
+	invertText: 0,
 
 
     isOptionsOpen: 0,
@@ -335,6 +336,7 @@ function gameStart() {
 
 
     Object.assign(gameData, gameDataBase)
+	
 
     loadGame()
 	
@@ -349,7 +351,7 @@ function gameStart() {
 	
     updateValues()
     autosave()
-	
+
 	tab(gameData.mainTab)
     tabMarket("marketMain")
     tabStore("plebian")

@@ -3,8 +3,9 @@ function loadStuff(savegame) {
 
     if (savegame !== null) {
         Object.assign(gameData, savegame);
-        backwardsCompatibility(savegame.versionNumber)
-        gameData.versionNumber = 107
+
+        backwardsCompatibility(gameData.versionNumber)
+        gameData.versionNumber = 108
         updateValues()
         updateAfterLoad()
     } else {
@@ -674,10 +675,6 @@ function saveGame() {
 
 function exportGame() {
     update("exportCode", btoa(JSON.stringify(gameData)))
-}
-
-function exportGamePT() {
-    update("exportCode", JSON.stringify(gameData))
 }
 
 

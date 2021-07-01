@@ -1,15 +1,22 @@
 function updateAfterLoad() {
+	
+	for (let i = 0; i < mainSkills.length; i++) {
+		restartBar(mainSkills[i])
+		
+		if(gameData[mainSkills[i] + 'SkillLevel'] > gameData[mainSkills[i] + 'SkillLevelMax'])
+		{
+			gameData[mainSkills[i] + 'SkillLevel'] = gameData[mainSkills[i] + 'SkillLevelMax']
+		}
+	}
+
+
+
     restartBar("learnANewSkill")
-    restartBar("rottenWisdom")
-    restartBar("limebidextrous")
-    restartBar("knifebidextrous")
-    restartBar("intelligence")
     restartBar("juicer")
     restartBar("peeler")
     restartBar("advertise")
     restartBar("working")
     restartBar("eat")
-    restartBar("keenEye")
     restartBar("teach")
     restartBar("watertight")
     restartBar("surveying")
@@ -1100,6 +1107,8 @@ function updateValues() {
 	}
 	
     moveBar("learnANewSkill")
+	
+	updateLearnANewSkill()
 
 }
 
