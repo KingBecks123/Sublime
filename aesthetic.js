@@ -398,6 +398,8 @@ function addAestheticBase(){
     }	
 	
 	changeVariablesColorAesthetic()
+	normalizeButtons()
+	pinButton()
 }
 
 function changeVariablesColor(){

@@ -123,12 +123,22 @@ function eat() {
         if (gameData.foodTypeToggle == 0 && gameData.limes > 0) {
             gameData.limes -= 1
             gameData.foodType = 5
-            barStartGranularSkillBasic("eat")
+			
+			if (gameData.eatBar == 100 || gameData.eatBar == 0) {
+				gameData.eatBar = 0
+				eatBar()
+			}
+			
+			
         } else if (gameData.foodTypeToggle == 1 && gameData.rottenLimes > 0) {
             gameData.rottenLimes -= 1
             gameData.foodType = 1
-            barStartGranularSkillBasic("eat")
-        }
+			
+			if (gameData.eatBar == 100 || gameData.eatBar == 0) {
+				gameData.eatBar = 0
+				eatBar()
+			}
+		}
     }
 }
 

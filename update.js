@@ -26,11 +26,6 @@ function updateAfterLoad() {
 
 
 
-
-	
-	normalizeButtons()
-	pinButton()
-
     if (gameData.autoCollectingBar !== 0) {
         autoCollectingBar()
     }
@@ -174,10 +169,7 @@ function updateValues() {
 		update("benevolenceText", "Currently: Level " + gameData.benevolence)
 
 		update("textForResearchers", researchersAvailable + " Available Researchers")
-		
-		update("textForWatertightResearchers", gameData.watertightResearchers + " Researchers")
-		update("textForSurveyingResearchers", gameData.surveyingResearchers + " Researchers")
-		update("textForBenevolenceResearchers", gameData.benevolenceResearchers + " Researchers")
+				
 		
 		if (gameData.limeDiseaseLakes < 10)
 			benevolenceRespectIncrease = 0
@@ -190,10 +182,12 @@ function updateValues() {
 		
 		update("benevolenceRespectIncrease", "Respect increase:  " + benevolenceRespectIncrease.toLocaleString())
 
-		
-		timeToShowScience('watertight')
-		timeToShowScience('surveying')
-		timeToShowScience('benevolence')
+		for (let i = 0; i < mainSciences.length; i++) {
+			
+			update("textFor" + jsUcfirst(mainSciences[i]) + "Researchers", gameData[mainSciences[i] + "Researchers"] + " Researchers")
+			timeToShowScience(mainSciences[i])
+			
+		}	
 		
 	}
 	
@@ -439,22 +433,22 @@ function updateValues() {
     moveBasket()
     moveAutoCollecting()
 	
-	update("ambidextrousSkillLevel", gameData.ambidextrousSkillLevel + " / " + gameData.ambidextrousSkillLevelMax)
+	for (let i = 0; i < mainSkills.length; i++) {
+		update(mainSkills[i] + "SkillLevel", gameData[mainSkills[i] + "SkillLevel"] + " / " + gameData[mainSkills[i] + "SkillLevelMax"])
 
+	}
+	
 	update("rottenWisdom", gameData.rottenWisdom + "% Chance")
-	update("rottenWisdomSkillLevel", gameData.rottenWisdomSkillLevel + " / " + gameData.rottenWisdomSkillLevelMax)
 	
 	update("keenEye", gameData.keenEyeSkillLevel * 5 + "% Chance")
-	update("keenEyeSkillLevel", gameData.keenEyeSkillLevel + " / " + gameData.keenEyeSkillLevelMax)
 
 	update("limebidextrous", gameData.limebidextrous + "% Chance")
-	update("limebidextrousSkillLevel", gameData.limebidextrousSkillLevel + " / " + gameData.limebidextrousSkillLevelMax)
 
 	update("intelligence", Math.floor(((gameData.intelligenceSkillLevel * 2)/ gameData.intelligenceSkillLevelMax) * 100) + "% Faster")
-	update("intelligenceSkillLevel", gameData.intelligenceSkillLevel + " / " + gameData.intelligenceSkillLevelMax)
 
 	update("knifebidextrous", gameData.knifebidextrous * 2.5 + "% Chance")
-	update("knifebidextrousSkillLevel", gameData.knifebidextrousSkillLevel + " / " + gameData.knifebidextrousSkillLevelMax)
+
+
 
 	update("eat", gameData.eat + " / 100")
 
