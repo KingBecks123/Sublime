@@ -370,6 +370,15 @@ function typeToHire(id) {
 	updateValues()
 }
 
+function buyAFork() {
+    if (gameData.coins >= 1) {
+        gameData.coins -= 1
+        gameData.fork = 1
+        gameData.eatBar = 0
+    }
+    updateValues()
+}
+
 function buyARobe() {
     if (gameData.coins >= 1e5) {
         gameData.coins -= 1e5
