@@ -72,25 +72,23 @@ function updateValues() {
         gameData.basketBar = 100
     }
 	
+    if (gameData.eatBar > 100) {
+        gameData.eatBar = 100
+    }
+	
     if (gameData.megaCoinsInBank > gameData.megaCoinsInBankMax) {
         gameData.megaCoinsInBank = gameData.megaCoinsInBankMax
     }
 	
-    if (gameData.coins < 0) {
-        gameData.coins = 0
-    }
+	preventNegative('coins')
+	preventNegative('limes')
+	preventNegative('respect')
 
-    if (gameData.deliveryBar > 99.9999) {
+
+    if (gameData.deliveryBar > 100) {
         gameData.deliveryBar = 100
     }
 
-    if (gameData.limes < 0) {
-        gameData.limes = 0
-    }
-
-    if (gameData.respect < 0) {
-        gameData.respect = 0
-    }
 
     if (gameData.learnANewSkillBar > 100) {
         gameData.learnANewSkillBar = 100
