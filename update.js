@@ -1006,7 +1006,9 @@ function updateValues() {
 		gameData.isAutoCollecting = 1
     }
 	
-
+    if (gameData.villageNumber > 1) {
+        tabs("marketMainButtonsDiv", "inline-block")
+    }
 
     if (gameData.maps >= 1) {
         tabs("marketMainButtonsDiv", "inline-block")

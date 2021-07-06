@@ -364,6 +364,7 @@ function gameStart() {
 
 function tab(tabby) {
 	gameData.mainTab = tabby
+    update("exportCode", "")
 
     tabs("options", "none")
     tabs("market", "none")
