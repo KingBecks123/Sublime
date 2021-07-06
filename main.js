@@ -106,23 +106,21 @@ function calculateOfflineProgress(){
 		else
 			gameData.basketBar = 100
 	}
-	if(gameData.surveillanceCamera)
+	if(gameData.surveillanceCamera && secondsOffline > 60 && gameData.employeeWorking > 0)
 	{
-		if (secondsOffline > 60 && gameData.employeeWorking > 0)
-		{
-			for (i = 0; i < Math.floor(secondsOffline / 60); i++) {
-				gameData.employeeWorking -= 1
-				gameData.limes += gameData.employeeCurrentSpeed
-			}
-			
-			if(!gameData.employeeWorking)
-			{
-				gameData.workingBar = 0
-			}
+		for (i = 0; i < Math.floor(secondsOffline / 60); i++) {
+			gameData.employeeWorking -= 1
+			gameData.limes += gameData.employeeCurrentSpeed
+		}
 		
-			
+		if(!gameData.employeeWorking)
+		{
+			gameData.workingBar = 0
 		}
 	}
+	
+	saveGame()
+
 }
 
 function sellMaxJuice() {
