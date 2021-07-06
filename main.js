@@ -1,4 +1,5 @@
 var loopNumberBasket = 0;
+var loopNumberTimePlayed = 0;
 var loopNumbercurrentTask = 0;
 
 mainVariables = ['limes', 'rottenLimes', 'coins', 'juice', 'megaCoins', 'alphaCoins', 'peeledLimes'];
@@ -75,7 +76,13 @@ function mainGameLoopSlow() {
 	}
 	
 	gameData.lastSaveTime = Date.now()
-	
+	loopNumberTimePlayed += 1
+	if(loopNumberTimePlayed == 2)
+	{
+		gameData.timePlayed += 1 
+		loopNumberTimePlayed = 0
+	}
+
 	moveBar('achievement')
 	updateMapTileAesthetic()
 	setTimeout(mainGameLoopSlow, 500)
@@ -98,7 +105,7 @@ function mainGameLoop() {
 function calculateOfflineProgress(){
 	secondsOffline = Math.floor((Date.now() - gameData.lastSaveTime) / 1000)
 	secondsOfflineThree = Math.floor(secondsOffline / 3)
-	
+	secondsOffline = 100
 	if(gameData.basketScarecrow)
 	{
 		if(gameData.basketBar + secondsOfflineThree < 100)
@@ -108,15 +115,15 @@ function calculateOfflineProgress(){
 	}
 	if(gameData.surveillanceCamera && secondsOffline > 60 && gameData.employeeWorking > 0)
 	{
-		for (i = 0; i < Math.floor(secondsOffline / 60); i++) {
+		for (i = 0; i < Math.floor(secondsOffline / 60) && gameData.employeeWorking > 0; i++) {
+			
 			gameData.employeeWorking -= 1
 			gameData.limes += gameData.employeeCurrentSpeed
+
 		}
-		
-		if(!gameData.employeeWorking)
-		{
-			gameData.workingBar = 0
-		}
+
+		gameData.workingBar = 0
+
 	}
 	
 	saveGame()
@@ -570,6 +577,7 @@ function travelToNextVillage() {
         megaCoinsNow = gameData.megaCoinsInBank
 		
 		saveBeforeWipe('versionNumber')
+		saveBeforeWipe('timePlayed')	
 		saveBeforeWipe('alphaCoins')
 		saveBeforeWipe('nationalJuiceMarketing')
 		saveBeforeWipe('creditScore2')
@@ -607,6 +615,7 @@ function travelToNextVillage() {
 		} 
 		
 		saveAfterWipe('versionNumber')	
+		saveAfterWipe('timePlayed')	
 	    saveAfterWipe('upgradeMoreStorage')
 		saveAfterWipe('alphaCoins')
 		saveAfterWipe('creditScore2')

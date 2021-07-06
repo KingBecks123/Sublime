@@ -5,7 +5,7 @@ function loadStuff(savegame) {
         Object.assign(gameData, savegame);
 
         backwardsCompatibility(gameData.versionNumber)
-        gameData.versionNumber = 115
+        gameData.versionNumber = 116
         updateValues()
         updateAfterLoad()
     } else {
@@ -624,7 +624,7 @@ function checkShow(i, n, txt) {
 
 //Checks if a value is higher than 0, and hides an element if so.
 function checkHide(i, txt) {
-    if (i >= 1) {
+    if (i > 0) {
         hide(txt)
     }
 
@@ -707,7 +707,7 @@ function autosave() {
     if (gameData.autosave == 1) {
         saveGame()
     }
-    setTimeout(autosave, 3000)
+    setTimeout(autosave, 500)
 }
 
 function resetGame() {

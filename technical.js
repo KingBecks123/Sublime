@@ -312,6 +312,7 @@ var gameDataBase = {
 	moreVisibleVariables: 0,
 	invertText: 0,
 	surveillanceCamera: 0,
+	timePlayed: 0,
 
 
     isOptionsOpen: 0,
@@ -341,7 +342,6 @@ function gameStart() {
 
     loadGame()
 	
-	calculateOfflineProgress()
     mainGameLoop()
 	
     mainGameLoopSlow()
@@ -482,6 +482,8 @@ function tabScience(tabby) {
 function tabOptions(tabby) {
     tabs("gameOptions", "none")
     tabs("uiOptions", "none")
+    tabs("statsOptions", "none")
+
 	
     document.getElementById(tabby).style.display = "block"
 }

@@ -1,5 +1,6 @@
 function updateAfterLoad() {
-	
+	calculateOfflineProgress()
+
 	for (let i = 0; i < mainSkills.length; i++) {
 		restartBar(mainSkills[i])
 		
@@ -15,7 +16,6 @@ function updateAfterLoad() {
     restartBar("juicer")
     restartBar("peeler")
     restartBar("advertise")
-    restartBar("working")
     restartBar("eat")
     restartBar("teach")
     restartBar("watertight")
@@ -24,7 +24,9 @@ function updateAfterLoad() {
     restartBar("coinsToAlpha")
     restartBar("convertCoinsNow")
 
-
+    if (gameData.workingBar < 100 && (gameData.workingBar != 0 || gameData.employeeWorking > 0)) {
+        workingBar()
+    }
 
     if (gameData.autoCollectingBar !== 0) {
         autoCollectingBar()
@@ -263,6 +265,8 @@ function updateValues() {
     update("limesInBaskets", gameData.limesInBaskets.toLocaleString() + " Limes")
 
     update("textForRespect", gameData.respect.toLocaleString() + " Respect")
+	
+    update("textForTimePlayed", "Total Time Played: " + gameData.timePlayed.toLocaleString() + " Seconds")
 
 
 
@@ -932,6 +936,15 @@ function updateValues() {
 
 
 
+	if (gameData.hasAdvertised && !gameData.surveillanceCamera) {
+		showBasicDiv("offlineEmployee")
+	} 
+	else 
+	{
+		hide("offlineEmployee")
+	}
+	
+	
 
     if (gameData.advertisingLevel1 == 0) {
         hide("advertisingMethods")
@@ -940,11 +953,13 @@ function updateValues() {
             showBasicDiv("researchBetterAdvertising")
         } else {
             hide("researchBetterAdvertising")
+
         }
 
     } else {
         tabs("advertisingMethods", "block")
         hide("researchBetterAdvertising")
+
     }
 	
 
@@ -1073,7 +1088,6 @@ function updateValues() {
 	checkHide(gameData.sharperPeelers, "sharperPeelerDiv")
 	checkHide(gameData.silkRobe, "buyARobe")
 	checkHide(gameData.unlockDiseaseAreaSwamp, "unlockDiseaseAreaSwamp")
-	checkHide(gameData.surveillanceCamera, "offlineEmployee")
 
 
 
