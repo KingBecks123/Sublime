@@ -323,6 +323,7 @@ function ambidextrousBar() {
 function learnANewSkillBar() {
     if (gameData.learnANewSkillBar < 100) {
         gameData.learnANewSkillBar += 0.1;
+		moveBar("learnANewSkill")
         setTimeout(learnANewSkillBar, 10 / gameData.tickspeed)
     } else {
 		

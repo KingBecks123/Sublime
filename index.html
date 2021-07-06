@@ -137,29 +137,44 @@
     </div>
 
 
-    <div id="options" class="basicDiv">
+    <div id="options">
+	
+        <div class="basicDiv">
+            <button class="specialButton" onclick="tabOptions('gameOptions')">Game</button>
+            <button class="specialButton" onclick="tabOptions('uiOptions')">UI</button>
 
-        <p class="basicText">Sublime by Becky</p>
-        <p class="basicText">Alpha Version</p>
 
-        <button class="specialButton" onclick="exportGame()">Export Game</button>
-        <button class="specialButton" onclick="importGame()">Import Game</button><br>
-
-        <button class="basicButtonSize" onclick="resetGame()" style="background-color:#FF999A">Reset Game</button><br>
+        </div>
 		
-        <button class="specialButton" onclick="changeZoomSize()">Change zoom size</button>
+		<div class="basicDiv">
+			<p class="basicText">Sublime by Becky</p>
+			<p class="basicText">Alpha Version</p>
+
+			<div id="gameOptions">
+			
+				<button class="specialButton" onclick="exportGame()">Export Game</button>
+				<button class="specialButton" onclick="importGame()">Import Game</button><br>
+
+				<button class="basicButtonSize" onclick="resetGame()" style="background-color:#FF999A">Reset Game</button><br>
+			
+			</div>
+			<div id="uiOptions">
+			
+				<button class="specialButton" onclick="changeZoomSize()">Change Zoom Size</button>
 
 
-        <button class="basicButton" id="aestheticButton" onclick="switchValue('aesthetic')" style="display:none">Aesthetic: Modern</button>
-        <button class="specialButton" id="barPercentButton" onclick="switchValue('showBarPercent')">Bar Percent Shown</button>
-        <button class="specialButton" onclick="changeVariablesColor()">Switch Variable Colors</button><br>
-        <button class="specialButton" id="hideCompletedSkillsButton" onclick="switchValue('hideCompletedSkills')">Completed Skills Shown</button><br>
-        <button class="specialButton" id="hideMaxedPurchasesButton" onclick="switchValue('hideMaxedPurchases')">Maxed Purchases Shown</button>
-        <button class="specialButton" id="desktopModeButton" onclick="switchValue('desktopMode')">In Desktop Mode</button><br>
-        <button class="specialButton" id="diseaseTileSizeButton" onclick="switchValue('diseaseTileSize')">Disease Tiles Small</button>
-        <button class="specialButton" id="diseaseTileSymbolsButton" onclick="switchValue('diseaseTileSymbols')">Disease Tiles No Symbols</button>
-        <button class="specialButton" id="hideRottenLimesButton" onclick="switchValue('hideRottenLimes')">Hide Rotten Limes</button>
-        <button class="specialButton" id="confirmStorageButton" onclick="switchValue('confirmStorage')">Don't Confirm x5 Storage</button>
+				<button class="basicButton"   id="aestheticButton" onclick="switchValue('aesthetic')" style="display:none">Aesthetic: Modern</button>
+				<button class="specialButton" id="barPercentButton" onclick="switchValue('showBarPercent')">Bar Percent Shown</button>
+				<button class="specialButton" onclick="changeVariablesColor()">Switch Variable Colors</button><br>
+				<button class="specialButton" id="hideCompletedSkillsButton" onclick="switchValue('hideCompletedSkills')">Completed Skills Shown</button><br>
+				<button class="specialButton" id="hideMaxedPurchasesButton" onclick="switchValue('hideMaxedPurchases')">Maxed Purchases Shown</button>
+				<button class="specialButton" id="desktopModeButton" onclick="switchValue('desktopMode')">In Desktop Mode</button><br>
+				<button class="specialButton" id="diseaseTileSizeButton" onclick="switchValue('diseaseTileSize')">Disease Tiles Small</button>
+				<button class="specialButton" id="diseaseTileSymbolsButton" onclick="switchValue('diseaseTileSymbols')">Disease Tiles No Symbols</button>
+				<button class="specialButton" id="hideRottenLimesButton" onclick="switchValue('hideRottenLimes')">Hide Rotten Limes</button>
+				<button class="specialButton" id="confirmStorageButton" onclick="switchValue('confirmStorage')">Don't Confirm x5 Storage</button>
+
+			</div>
 
 
 
@@ -167,8 +182,8 @@
 
 
 
-
-        <p class="basicText" id="exportCode" , style="background-color:#bfbfbf;width:300px;word-wrap: break-word;-webkit-user-select: all;-ms-user-select: all;user-select: all;">Export Code</p>
+			<p class="basicText" id="exportCode" , style="background-color:#bfbfbf;width:300px;word-wrap: break-word;-webkit-user-select: all;-ms-user-select: all;user-select: all;">Export Code</p>
+		</div>
     </div>
 
     <div id="market" style="padding:0px;margin:0px;">
@@ -367,9 +382,9 @@
 
 
                 <div class="basicDiv" , id="buyADeliveryManager">
-                    <button class="specialButton" onclick="basicBuy('deliveryManager', 100)">Buy A Delivery Manager</button>
+                    <button class="specialButton" onclick="basicBuy('deliveryManager', 500)">Buy A Delivery Manager</button>
                     <p class="basicText">Option to deliver maximum juice</p>
-                    <p class="basicText">Price: 100 Coins</p>
+                    <p class="basicText">Price: 500 Coins</p>
 
 
                 </div>
@@ -496,16 +511,22 @@
 
                 <div id="advertisingMethods" style="display:none">
                     <div class="basicDiv" id="advertisingLeaflets">
-                        <button class="specialButton" onclick="basicBuy('advertisingLevel2', 10)">Hand Out Leaflets</button>
+                        <button class="specialButton" onclick="basicBuy('advertisingLevel2', 100)">Hand Out Leaflets</button>
                         <p class="basicText">Doubles advertising speed</p>
-                        <p class="basicText">Price: 10 Coins</p>
-                    </div>
-                    <div class="basicDiv" id="advertisingBillboard">
-                        <button class="specialButton" onclick="basicBuy('advertisingLevel3', 100)">Buy A Billboard</button>
-                        <p class="basicText">Triples advertising speed</p>
                         <p class="basicText">Price: 100 Coins</p>
                     </div>
+                    <div class="basicDiv" id="advertisingBillboard">
+                        <button class="specialButton" onclick="basicBuy('advertisingLevel3', 500)">Buy A Billboard</button>
+                        <p class="basicText">Triples advertising speed</p>
+                        <p class="basicText">Price: 500 Coins</p>
+                    </div>
                 </div>
+				
+				<div class="basicDiv" id="offlineEmployee">
+					<button class="specialButton" onclick="basicBuy('surveillanceCamera', 1000)">Buy A Surveillance Camera</button>
+					<p class="basicText">Make sure employees are working while you're away (offline)</p>
+					<p class="basicText">Price: 1,000 Coins</p>
+				</div>
 
             </div>
         </div>
@@ -1324,14 +1345,14 @@
     </div>
     </div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="aesthetic.js?v=               112" charset="utf-8" type="text/javascript"></script>
-    <script src="myfunctions.js?v=             112" charset="utf-8" type="text/javascript"></script>
-    <script src="main.js?v=                    112" charset="utf-8" type="text/javascript"></script>
-    <script src="diseasetask.js?v=             112" charset="utf-8" type="text/javascript"></script>
-    <script src="technical.js?v=               112" charset="utf-8" type="text/javascript"></script>
-    <script src="bars.js?v=                    112" charset="utf-8" type="text/javascript"></script>
-    <script src="update.js?v=                  112" charset="utf-8" type="text/javascript"></script>
-    <script src="oldupdatefixes.js?v=          112" charset="utf-8" type="text/javascript"></script>
+    <script src="aesthetic.js?v=               113" charset="utf-8" type="text/javascript"></script>
+    <script src="myfunctions.js?v=             113" charset="utf-8" type="text/javascript"></script>
+    <script src="main.js?v=                    113" charset="utf-8" type="text/javascript"></script>
+    <script src="diseasetask.js?v=             113" charset="utf-8" type="text/javascript"></script>
+    <script src="technical.js?v=               113" charset="utf-8" type="text/javascript"></script>
+    <script src="bars.js?v=                    113" charset="utf-8" type="text/javascript"></script>
+    <script src="update.js?v=                  113" charset="utf-8" type="text/javascript"></script>
+    <script src="oldupdatefixes.js?v=          113" charset="utf-8" type="text/javascript"></script>
 
 </body>
 

@@ -106,6 +106,23 @@ function calculateOfflineProgress(){
 		else
 			gameData.basketBar = 100
 	}
+	if(gameData.surveillanceCamera)
+	{
+		if (secondsOffline > 60 && gameData.employeeWorking > 0)
+		{
+			for (i = 0; i < Math.floor(secondsOffline / 60); i++) {
+				gameData.employeeWorking -= 1
+				gameData.limes += gameData.employeeCurrentSpeed
+			}
+			
+			if(!gameData.employeeWorking)
+			{
+				gameData.workingBar = 0
+			}
+		
+			
+		}
+	}
 }
 
 function sellMaxJuice() {
@@ -250,6 +267,7 @@ function hireApplicant() {
 }
 
 function getLimesButton() {
+
 	if (gameData.lookAround < 1)
 		gameData.collectLimesAtBeginning += 1
 	
@@ -765,10 +783,9 @@ function increaseJuicePrice() {
 		for (i = 0; i < 10; i++) {
 			if (gameData.coins >= gameData.juicePricePrice) {
 				gameData.coins -= gameData.juicePricePrice
-
-
-
 				gameData.juicePriceCents += 1
+				gameData.juicePricePrice = gameData.juicePriceCents + 1
+
 			}
 		}
 	}

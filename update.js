@@ -506,23 +506,47 @@ function updateValues() {
         hide("smarterAutoBrokerAdvertiser")
     }
 
-    if (gameData.respectMilestone10) {
-        tabs("autoStartTaskButton", "inline-block")
-    } else {
-        hide("autoStartTaskButton")
-	}
+	//Respect Milstones
+		checkRespectMilestone(10,    'lime',  'Automatically start tasks',                        'autoStartTaskButton')
+		checkRespectMilestone(25,    'lime',  'Automatically start simulation',                   'autoStartSimulationButton')
+		checkRespectMilestone(50,    'lime',  'Allow entrance to the Special Shopping District')
+		checkRespectMilestone(100,   'lime',  'Automatically check simulation',                   'autoCheckSimulationButton')
+		checkRespectMilestone(500,   'lime',  'Automatically situate a civilian',                 'autoPlaceACivilianButton')
+		checkRespectMilestone(1000,  'lime',  'Unlock scientific research',                       'scienceButton')
+		checkRespectMilestone(10000, 'red' ,  'Unlock more mega coin upgrades')
+
+
+
+		function checkRespectMilestone(number, color, text, id){
+			
+			i = 'respectMilestone' + number
+			
+			if (gameData.respect >= number) {
+				gameData[i] = 1
+			}
+
+			
+			if (gameData[i]) {
+				if(id !== undefined)
+					tabs(id, "inline-block")
 	
-    if (gameData.respectMilestone25) {
-        tabs("autoStartSimulationButton", "inline-block")
-    } else {
-        hide("autoStartSimulationButton")
-	}
-	
-    if (gameData.respectMilestone100) {
-        tabs("autoCheckSimulationButton", "inline-block")
-    } else {
-        hide("autoCheckSimulationButton")
-	}
+				update(number + 'RespectMilestone', number.toLocaleString() + ' Respect: ' + text)
+				
+				if(color == 'lime')
+					colorChanger(number + 'RespectMilestone', limesRelatedAccent)
+				if(color == 'red')
+					colorChanger(number + 'RespectMilestone', '#FF999A')
+				
+				
+			} else {
+				if(id !== undefined)
+					hide(id)
+				
+				colorChanger(number + 'RespectMilestone', grayAccentLight)
+			}
+			
+		}
+	//Respect Milstones End
 	
     if (gameData.increaseJuicePricePermanance < 1) {
         tabs("increaseJuicePricePermanance", "inline-block")
@@ -540,12 +564,7 @@ function updateValues() {
         hide("stopActionsButton")
 	}
 	
-    if (gameData.respectMilestone500) {
-        tabs("autoPlaceACivilianButton", "inline-block")
-    } else {
-        hide("autoPlaceACivilianButton")
-	}
-	
+
     if (gameData.manuscripts) {
         hide("buyManuscriptsDiv")
         showBasicDiv("upgradeManuscripts")
@@ -556,16 +575,6 @@ function updateValues() {
 		
 		}
 	
-	
-    if (gameData.respectMilestone1000) {
-        tabs("scienceButton", "inline-block")
-
-		
-    } else {
-        hide("scienceButton")
-
-		
-	}
 	
 	checkShowOrHide(gameData.doesHaveCurrencyBroker, "currencyBroker")
 
@@ -1062,6 +1071,7 @@ function updateValues() {
 	checkHide(gameData.sharperPeelers, "sharperPeelerDiv")
 	checkHide(gameData.silkRobe, "buyARobe")
 	checkHide(gameData.unlockDiseaseAreaSwamp, "unlockDiseaseAreaSwamp")
+	checkHide(gameData.surveillanceCamera, "offlineEmployee")
 
 
 
@@ -1096,9 +1106,7 @@ function updateValues() {
 			gameData['achievement' + i] = 1
 		}
 	}
-	
-    moveBar("learnANewSkill")
-	
+		
 	if (gameData.learnANewSkill >= -1) {	
 		showBasicDiv("eatFoodDiv")
 		showOrHideSkill("keenEye")
