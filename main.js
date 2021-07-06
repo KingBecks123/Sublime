@@ -105,7 +105,6 @@ function mainGameLoop() {
 function calculateOfflineProgress(){
 	secondsOffline = Math.floor((Date.now() - gameData.lastSaveTime) / 1000)
 	secondsOfflineThree = Math.floor(secondsOffline / 3)
-	secondsOffline = 100
 	if(gameData.basketScarecrow)
 	{
 		if(gameData.basketBar + secondsOfflineThree < 100)

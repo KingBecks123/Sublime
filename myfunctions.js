@@ -5,7 +5,7 @@ function loadStuff(savegame) {
         Object.assign(gameData, savegame);
 
         backwardsCompatibility(gameData.versionNumber)
-        gameData.versionNumber = 116
+        gameData.versionNumber = 117
         updateValues()
         updateAfterLoad()
     } else {
@@ -193,30 +193,30 @@ function pickCurrentSkill(x) {
 
 function startCurrentTask(x) {
 		
-	 if (x == 'eatFood') {
+	if (x == 'eatFood') {
 		eat()
 	}
 	
-	 else if (x == 'sellYourJuice') {
+	else if (x == 'sellYourJuice') {
 		sellYourJuice()
 	}
 
-	 else if (x == 'makeMaxJuice') {
+	else if (x == 'makeMaxJuice') {
 		makeMaxJuice()
 	}	
 
-	 else if (x == 'makeJuice') {
+	else if (x == 'makeJuice') {
 		makeJuice()
 	}	
 
-	 else if (x == 'usePeelers') {
+	else if (x == 'usePeelers') {
 		peelerPeel()
 	}	
 
-	 else if (x == 'useMaxPeelers') {
+	else if (x == 'useMaxPeelers') {
 		peelerPeelMax()
 	}
-	 else if (x == 'autoCurrencyConversionBuy') {
+	else if (x == 'autoCurrencyConversionBuy') {
 		coinsToAlphaClick()
 	}	
 	

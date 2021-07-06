@@ -273,7 +273,7 @@ function addAestheticBase(){
     for (i = 0; i < x.length; i++) {
         x[i].style.backgroundColor = grayAccentLight;
         x[i].style.padding = "5px";
-        x[i].style['margin'] = "5px 5px 5px 5px";
+        x[i].style['margin'] = "5px";
     }
 	
     //Basic Text Yellow
@@ -281,34 +281,34 @@ function addAestheticBase(){
     for (i = 0; i < x.length; i++) {
         x[i].style.backgroundColor = '#FDFF9A';
         x[i].style.padding = "5px";
-        x[i].style['margin'] = "5px 5px 5px 5px";
+        x[i].style['margin'] = "5px";
     }
 
     //Basic Text Size
     var x = document.getElementsByClassName("basicTextSize");
     for (i = 0; i < x.length; i++) {
         x[i].style.padding = "5px";
-        x[i].style['margin'] = "5px 5px 5px 5px";
+        x[i].style['margin'] = "5px";
     }
 
     //Gray Button
     var x = document.getElementsByClassName("grayButton");
     for (i = 0; i < x.length; i++) {
         x[i].style.backgroundColor = grayAccentLight;
-        x[i].style['margin'] = "5px 5px 5px 5px";
+        x[i].style['margin'] = "5px";
     }
 
     //Basic Button
     var x = document.getElementsByClassName("basicButton");
     for (i = 0; i < x.length; i++) {
         x[i].style.backgroundColor = accent3;
-        x[i].style['margin'] = "5px 5px 5px 5px";
+        x[i].style['margin'] = "5px";
     }
 
     //Basic Button Size
     var x = document.getElementsByClassName("basicButtonSize");
     for (i = 0; i < x.length; i++) {
-        x[i].style['margin'] = "5px 5px 5px 5px";
+        x[i].style['margin'] = "5px";
     }
 
     //Basic Button Size Round
@@ -325,7 +325,7 @@ function addAestheticBase(){
     var x = document.getElementsByClassName("specialButton");
     for (i = 0; i < x.length; i++) {
         x[i].style.backgroundColor = accent4;
-        x[i].style['margin'] = "5px 5px 5px 5px";
+        x[i].style['margin'] = "5px";
     }
 	
 	
@@ -333,7 +333,7 @@ function addAestheticBase(){
     var x = document.getElementsByClassName("specialButtonTravel");
     for (i = 0; i < x.length; i++) {
         x[i].style.backgroundColor = "#FF999A";
-        x[i].style['margin'] = "5px 5px 5px 5px";
+        x[i].style['margin'] = "5px";
     }
 
     //Pin Button
@@ -351,15 +351,16 @@ function addAestheticBase(){
     var x = document.getElementsByClassName("skillProgress");
     for (i = 0; i < x.length; i++) {
         x[i].style.backgroundColor = accent0;
-        x[i].style['margin'] = "5px 5px 5px 5px";
+        x[i].style['margin'] = "5px";
     }
 
     //Vertical Progress
     var x = document.getElementsByClassName("verticalProgress");
     for (i = 0; i < x.length; i++) {
         x[i].style.backgroundColor = accent0;
-        x[i].style['margin'] = "5px 5px 5px 5px";
+        x[i].style['margin'] = "5px";
     }	
+	
 	
 	changeVariablesColorAesthetic()
 	normalizeButtons()
