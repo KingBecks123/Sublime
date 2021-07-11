@@ -5,7 +5,7 @@ function loadStuff(savegame) {
         Object.assign(gameData, savegame);
 
         backwardsCompatibility(gameData.versionNumber)
-        gameData.versionNumber = 117
+        gameData.versionNumber = 119
         updateValues()
         updateAfterLoad()
     } else {
@@ -480,7 +480,7 @@ function basicBarSkill(variable) {
 		
         gameData[variableBar] += 0.5
 				
-        setTimeout(variableBar + "()", (100 / (gameData.intelligenceSkillLevel / gameData.intelligenceSkillLevelMax + 1)) / gameData.tickspeed)
+        setTimeout(variableBar + "()", (100 / (gameData.intelligenceSkillLevel * 2 / 20 + 1)) / gameData.tickspeed)
 
 		
     } else {

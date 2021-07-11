@@ -31,6 +31,14 @@ var gameDataBase = {
     rottenLimes: 0,
     rottenWisdomBar: 0,
     rottenWisdom: 0,
+	
+	
+    motivationBar: 0,
+    motivationSkillLevel: 0,
+    motivationSkillLevelMax: 100,
+	
+	
+	
     learnANewSkillBar: 0,
     learnANewSkill: -2,
     limebidextrousBar: 0,
@@ -312,6 +320,8 @@ var gameDataBase = {
 	moreVisibleVariables: 0,
 	invertText: 0,
 	surveillanceCamera: 0,
+	surveillanceCamera2: 0,
+
 	timePlayed: 0,
 
 

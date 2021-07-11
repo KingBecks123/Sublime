@@ -5,8 +5,8 @@ var loopNumbercurrentTask = 0;
 mainVariables = ['limes', 'rottenLimes', 'coins', 'juice', 'megaCoins', 'alphaCoins', 'peeledLimes'];
 //Main variables change color in options and are updated as numbers.
 
-mainSkills = ['rottenWisdom', 'limebidextrous', 'knifebidextrous', 'intelligence', 'ambidextrous', 'keenEye'];
-//Uses: Restart bar after reloading. Sets the level to the max level if it somehow goes above. Updates test for level / levelMax.
+mainSkills = ['rottenWisdom', 'limebidextrous', 'knifebidextrous', 'intelligence', 'ambidextrous', 'keenEye', 'motivation'];
+//Uses: Restart bar after reloading. Sets the level to the max level if it somehow goes above. Updates test for level / levelMax. Updates aesthetic for the skill's button.
 
 mainSciences = ['watertight', 'surveying', 'benevolence'];
 //Uses: Updates time to complete science. Updates number of researchers allocated.
@@ -105,6 +105,7 @@ function mainGameLoop() {
 function calculateOfflineProgress(){
 	secondsOffline = Math.floor((Date.now() - gameData.lastSaveTime) / 1000)
 	secondsOfflineThree = Math.floor(secondsOffline / 3)
+
 	if(gameData.basketScarecrow)
 	{
 		if(gameData.basketBar + secondsOfflineThree < 100)
@@ -123,6 +124,49 @@ function calculateOfflineProgress(){
 
 		gameData.workingBar = 0
 
+	}
+	if(gameData.surveillanceCamera2 && secondsOffline > 60)
+	{
+		
+		for (let i = 0; i < mainSciences.length; i++) {
+			
+			var barFilled   = gameData[mainSciences[i] + "Bar"]
+			var researchers = gameData[mainSciences[i] + "Researchers"]
+			
+			if (researchers > 0 && barFilled != 0)
+			{
+				if (mainSciences[i] == 'benevolence')
+					x = benevolenceEquation
+				if (mainSciences[i] == 'surveying')
+					x = surveyingEquation
+				if (mainSciences[i] == 'watertight')
+					x = watertightEquation
+
+				//0.5 makes it add half a bar.
+
+				amountToAdd = Math.floor(secondsOffline * 0.5 * researchers / x)
+				
+				if(barFilled + amountToAdd < 100)
+				{
+					gameData[mainSciences[i] + "Bar"] += amountToAdd
+				}
+				else
+				{
+					gameData[mainSciences[i] + "Bar"] = 0
+					
+					if (mainSciences[i] == 'surveying' && gameData.numberOfTiles < 20)
+						gameData.numberOfTiles += 1
+					else if (mainSciences[i] == 'watertight' && gameData.peeledLimesPerJuice > 1)
+						gameData.peeledLimesPerJuice -= 1
+					else
+						gameData[mainSciences[i]] += 1
+
+				}
+				moveBar(mainSciences[i])
+			}
+	
+		}
+	
 	}
 	
 	saveGame()
@@ -201,6 +245,15 @@ function deliveryToggleStandard() {
 function deliveryToggleExpress() {
     gameData.deliveryTypeToggle = 1
     gameData.deliveryPrice = 5
+    updateValues()
+}
+
+function motivateEmployee() {
+	if(gameData.employeeWorking > 0 && gameData.workingBar < 99 - gameData.motivationSkillLevel / 20)
+	{
+	    gameData.workingBar += gameData.motivationSkillLevel / 20
+	}
+
     updateValues()
 }
 
@@ -440,8 +493,11 @@ function brokerApplicant(id, type) {
 		}
 		else if(type == 'max100')
 		{
-			brokerApplicantPrice(id)
-			gameData['maxBrokerApplicant' + id] -= 100
+			if (gameData['maxBrokerApplicant' + id] > gameData['minBrokerApplicant' + id])
+			{
+				brokerApplicantPrice(id)
+				gameData['maxBrokerApplicant' + id] -= 100
+			}
 		}
 		else if(type == 'min100')
 		{
@@ -575,6 +631,7 @@ function travelToNextVillage() {
 		
         megaCoinsNow = gameData.megaCoinsInBank
 		
+		saveBeforeWipe('surveillanceCamera2')		
 		saveBeforeWipe('versionNumber')
 		saveBeforeWipe('timePlayed')	
 		saveBeforeWipe('alphaCoins')
@@ -613,6 +670,7 @@ function travelToNextVillage() {
 			saveAfterWipe('respectMilestone1000')
 		} 
 		
+		saveAfterWipe('surveillanceCamera2')		
 		saveAfterWipe('versionNumber')	
 		saveAfterWipe('timePlayed')	
 	    saveAfterWipe('upgradeMoreStorage')
@@ -840,8 +898,9 @@ function moveAutoCollecting() {
 
     var elem = document.getElementById("autoCollectingBar");
     var x = Math.floor(gameData.autoCollectingBar / (gameData.nourishment + 1))
+    var x2 = gameData.autoCollectingBar / (gameData.nourishment + 1)
 
-    elem.style.width = x + "%";
+    elem.style.width = x2 + "%";
     elem.innerHTML = x + "%";
 }
 

@@ -185,12 +185,14 @@ function addAesthetic() {
 				x[i].style['padding'] = "1px 10px 1px 10px";
 				x[i].style['border-radius'] = "12px";
 			}
-			currentSkillAesthetic('keenEye')		
-			currentSkillAesthetic('rottenWisdom')	
-			currentSkillAesthetic('limebidextrous')		
-			currentSkillAesthetic('intelligence')
-			currentSkillAesthetic('knifebidextrous')	
-			currentSkillAesthetic('ambidextrous')	
+			
+			
+			for (let i = 0; i < mainSkills.length; i++) {
+				currentSkillAesthetic(mainSkills[i])		
+			}			
+
+
+
 
 		}
 		else{
@@ -399,11 +401,6 @@ function changeVariablesColorAesthetic(){
 		
 
 	}
-
-
-	
-	
-
 
 }
 

@@ -86,7 +86,7 @@ function basket() {
 }
 
 function workingBar() {
-    if (gameData.workingBar <= 99 && gameData.employeeIsWorking == 1) {
+    if (gameData.workingBar < 100 && gameData.employeeIsWorking == 1) {
         gameData.workingBar += 1;
         setTimeout(workingBar, 600 / gameData.tickspeed)
     } else {
@@ -219,7 +219,7 @@ function benevolenceBar() {
 				gameData.benevolenceBar += 0.5;
 			
 			benevolenceBarDoMove = 1
-			setTimeout(benevolenceBar, (1e3 * Math.pow(2, gameData.benevolence * 2)) / gameData.benevolenceResearchers)
+			setTimeout(benevolenceBar, (1e3 * benevolenceEquation) / gameData.benevolenceResearchers)
 		}
 		
 		moveBar("benevolence")
@@ -241,6 +241,7 @@ function autoCollecting() {
 function autoCollectingBar() {
     if (gameData.autoCollectingBar <= (((gameData.nourishment + 1) * 100) - 0.5)) {
         gameData.autoCollectingBar += 0.5;
+		moveAutoCollecting()
         setTimeout(autoCollectingBar, 50)
     }
 
@@ -264,7 +265,7 @@ function convertCoinsNowBar() {
     if (gameData.convertCoinsNowBar < 100) {
         gameData.convertCoinsNowBar += 0.5;
 		moveBar("convertCoinsNow")
-        setTimeout(convertCoinsNowBar, 50 * (gameData.convertedCoinsSinceTravel + 1))
+        setTimeout(convertCoinsNowBar, 50 * Math.pow(2, (gameData.convertedCoinsSinceTravel + 1)))
     }
 	else
 	{
@@ -320,6 +321,10 @@ function ambidextrousBar() {
     basicBarSkill("ambidextrous")
 }
 
+function motivationBar() {
+    basicBarSkill("motivation")
+}
+
 function learnANewSkillBar() {
     if (gameData.learnANewSkillBar < 100) {
         gameData.learnANewSkillBar += 0.1;
@@ -354,6 +359,10 @@ function learnANewSkillBar() {
                 break;
             case 4:
                 gameData.learnANewSkill = 5
+                update("newInfo", "You Learned Motivation!")
+                break;
+            case 5:
+                gameData.learnANewSkill = 6
                 update("newInfo", "You Learned Ambidextrous!")
         }
     }

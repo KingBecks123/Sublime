@@ -36,12 +36,15 @@ function startSimulation() {
             }
 
         }
-		
-		 if (gameData.autoCheckSimulation)
-			checkResults()
-
 		gameData.simulationTime = 1
-		updateMapTileAesthetic()
+
+		if (gameData.autoCheckSimulation)
+			checkResults()
+		else
+		{
+			updateMapTileAesthetic()
+		}
+
     }
 	
 
@@ -225,18 +228,10 @@ function updateMapTileAesthetic(){
     //Map Tile
     var x = document.getElementsByClassName("mapTile");
     for (i = 0; i < x.length; i++) {
-		
-		if(gameData.diseaseTileSize == 0) 
-		{
-			x[i].style['width'] = "20px";
-			x[i].style['height'] = "20px";
-		}
-		else
-		{
-			x[i].style['width'] = "40px";
-			x[i].style['height'] = "40px";
-		}
-		
+
+		x[i].style['width'] = "40px";
+		x[i].style['height'] = "40px";
+
         x[i].style.padding = "5px 5px 5px 5px";
 		
 		
@@ -254,31 +249,31 @@ function updateMapTileAesthetic(){
 
             if (tileType == 0) {                                //Blank
                 colorChanger(whichButton, accent4)
-				if (gameData.diseaseTileSize && gameData.diseaseTileSymbols)
+				if (gameData.diseaseTileSymbols)
 					update(whichButton, "‏‏‎ ‎‏‏‎ ‎‎")
             } else if (tileType == 1) {                         //Civillian
                 colorChanger(whichButton, limesRelatedAccent)
-				if (gameData.diseaseTileSize && gameData.diseaseTileSymbols)
+				if (gameData.diseaseTileSymbols)
 					update(whichButton, ":)")
 
             } else if (tileType == 2) {                         //Disease
                 colorChanger(whichButton, "#FF999A")
-				if (gameData.diseaseTileSize && gameData.diseaseTileSymbols)
+				if (gameData.diseaseTileSymbols)
 					update(whichButton, " +")
 
             } else if (tileType == 3) {                         //Dead Civillian
                 colorChanger(whichButton, "#565656")
-				if (gameData.diseaseTileSize && gameData.diseaseTileSymbols)
+				if (gameData.diseaseTileSymbols)
 					update(whichButton, ":(")
 
             } else if (tileType == 4) {                         //Lake
                 colorChanger(whichButton, "#4DFFFF")
-				if (gameData.diseaseTileSize && gameData.diseaseTileSymbols)
+				if (gameData.diseaseTileSymbols)
 					update(whichButton, "_")
 
             }
 			
-				if (!gameData.diseaseTileSize || !gameData.diseaseTileSymbols)
+				if (!gameData.diseaseTileSymbols)
 					update(whichButton, "‎‎‎‏‏‎")
 
         }

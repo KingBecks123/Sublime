@@ -24,7 +24,7 @@ function updateAfterLoad() {
     restartBar("coinsToAlpha")
     restartBar("convertCoinsNow")
 
-    if (gameData.workingBar < 100 && (gameData.workingBar != 0 || gameData.employeeWorking > 0)) {
+    if (gameData.workingBar <= 100 && (gameData.workingBar != 0 || gameData.employeeWorking > 0)) {
         workingBar()
     }
 
@@ -42,6 +42,8 @@ function updateAfterLoad() {
 
 
 function updateValues() {
+
+
 
     addAesthetic()
 
@@ -76,6 +78,14 @@ function updateValues() {
 	
     if (gameData.eatBar > 100) {
         gameData.eatBar = 100
+    }
+	
+    if (gameData.respect < 0) {
+        gameData.respect = 0
+    }
+	
+    if (gameData.workingBar > 100) {
+        gameData.workingBar = 100
     }
 	
     if (gameData.megaCoinsInBank > gameData.megaCoinsInBankMax) {
@@ -159,13 +169,16 @@ function updateValues() {
 		tabs('achievementsButton', 'inline-block')
 	}
 
+	//All Science Updates.
 	if (gameData.respectMilestone1000) {
 		
-		researchersAvailable = gameData.researchers - gameData.watertightResearchers - gameData.surveyingResearchers - gameData.benevolenceResearchers
-		
-		update("watertightText", "Currently: " + gameData.peeledLimesPerJuice + " Peeled Limes -> 1 Juice")
-		update("surveyingText", "Currently: " + gameData.numberOfTiles + " / 20 Tiles")
-		update("benevolenceText", "Currently: Level " + gameData.benevolence)
+		benevolenceEquation = Math.pow(2, gameData.benevolence * 2)
+		watertightEquation = Math.pow(10, 6 - gameData.peeledLimesPerJuice)
+		surveyingEquation = Math.pow(2, gameData.numberOfTiles - 15)
+			
+		update("watertightText",  "Currently: "       + gameData.peeledLimesPerJuice + " Peeled Limes -> 1 Juice")
+		update("surveyingText",   "Currently: "       + gameData.numberOfTiles       + " / 20 Tiles"             )
+		update("benevolenceText", "Currently: Level " + gameData.benevolence                                     )
 
 		update("textForResearchers", researchersAvailable + " Available Researchers")
 				
@@ -174,31 +187,34 @@ function updateValues() {
 			benevolenceRespectIncrease = 0
 		else 
 			benevolenceRespectIncrease = (Math.pow(2, gameData.limeDiseaseLakes - 10)) * gameData.benevolence
-
-		watertightResearchTime = Math.floor((2000 * Math.pow(10, 5 - gameData.peeledLimesPerJuice))/ gameData.watertightResearchers)
-		surveyingResearchTime = Math.floor(200 * (Math.pow(2, gameData.numberOfTiles - 15)) / gameData.surveyingResearchers)
-		benevolenceResearchTime = Math.floor(200 * (Math.pow(2, gameData.benevolence * 2)) / gameData.benevolenceResearchers)
 		
 		update("benevolenceRespectIncrease", "Respect increase:  " + benevolenceRespectIncrease.toLocaleString())
+		
+		researchersAvailable = gameData.researchers
+		
+		checkShowOrHide(gameData.benevolence, "benevolence")
+		checkShowOrHide(gameData.unlockBenevolence, "benevolenceDiv")
 
+
+		
+		//Adds the properties of all sciences.
 		for (let i = 0; i < mainSciences.length; i++) {
 			
+			//Shows how many researchers are currently working on the science.
 			update("textFor" + jsUcfirst(mainSciences[i]) + "Researchers", gameData[mainSciences[i] + "Researchers"] + " Researchers")
+
+			//Shows the estimated time to complete the science by multiplying the time for half a bar by 200.
+			eval([mainSciences[i] + 'ResearchTime'] + " = Math.floor(200 * " + [mainSciences[i] + 'Equation'] + "/ gameData[mainSciences[i] + 'Researchers'])")
+			
+			//Converts time to seconds or minutes or infinity depending on size.
 			timeToShowScience(mainSciences[i])
 			
+			//Updates the amount of researchers available.
+			researchersAvailable -= gameData[mainSciences[i] + "Researchers"]
+
 		}	
 		
 	}
-	
-	if (gameData.benevolence > 0)
-	{
-		showBasicDiv("benevolence")
-	}
-	else
-	{
-		hide("benevolence")
-	}
-	
 	
 	if (gameData.hideRottenLimes == 0)
 	{
@@ -236,15 +252,6 @@ function updateValues() {
 	else
 	{
 		hide("unlockBenevolence")
-	}
-	
-	if (gameData.unlockBenevolence)
-	{
-		showBasicDiv("benevolenceDiv")	
-	}
-	else
-	{
-		hide("benevolenceDiv")
 	}
 	
 	if (gameData.rottenWisdomSkillLevel == gameData.rottenWisdomSkillLevelMax)
@@ -511,13 +518,13 @@ function updateValues() {
     }
 
 	//Respect Milstones
-		checkRespectMilestone(10,    'lime',  'Automatically start tasks',                        'autoStartTaskButton')
-		checkRespectMilestone(25,    'lime',  'Automatically start simulation',                   'autoStartSimulationButton')
-		checkRespectMilestone(50,    'lime',  'Allow entrance to the Special Shopping District')
-		checkRespectMilestone(100,   'lime',  'Automatically check simulation',                   'autoCheckSimulationButton')
-		checkRespectMilestone(500,   'lime',  'Automatically situate a civilian',                 'autoPlaceACivilianButton')
-		checkRespectMilestone(1000,  'lime',  'Unlock scientific research',                       'scienceButton')
-		checkRespectMilestone(10000, 'red' ,  'Unlock more mega coin upgrades')
+		checkRespectMilestone(10,    'lime',  'Automatically start tasks'                       ,'autoStartTaskButton'      )
+		checkRespectMilestone(25,    'lime',  'Automatically start simulation'                  ,'autoStartSimulationButton')
+		checkRespectMilestone(50,    'lime',  'Allow entrance to the Special Shopping District'                             )
+		checkRespectMilestone(100,   'lime',  'Automatically check simulation'                  ,'autoCheckSimulationButton')
+		checkRespectMilestone(500,   'lime',  'Automatically situate a civilian'                ,'autoPlaceACivilianDiv'    )
+		checkRespectMilestone(1000,  'lime',  'Unlock scientific research'                      ,'scienceButton'            )
+		checkRespectMilestone(10000, 'red' ,  'Unlock more mega coin upgrades'                                              )
 
 
 
@@ -532,7 +539,12 @@ function updateValues() {
 			
 			if (gameData[i]) {
 				if(id !== undefined)
-					tabs(id, "inline-block")
+				{
+					if(number == 500)
+						tabs(id, "block")
+					else
+						tabs(id, "inline-block")
+				}
 	
 				update(number + 'RespectMilestone', number.toLocaleString() + ' Respect: ' + text)
 				
@@ -703,12 +715,6 @@ function updateValues() {
         update("deliveryToggleStandardButton", "Hyper Delivery")
     }
 	
-	if (gameData.diseaseTileSize == 0) {
-        update("diseaseTileSizeButton", "Disease Tiles: Small")
-    } else {
-        update("diseaseTileSizeButton", "Disease Tiles: Large")
-    }
-	
 	if (gameData.diseaseTileSymbols == 0) {
         update("diseaseTileSymbolsButton", "Disease Tiles: Blank")
     } else {
@@ -789,11 +795,9 @@ function updateValues() {
     }	
 	
 	if (gameData.maps < 4) {
-		hide("diseaseTileSizeButton")
 		hide("diseaseTileSymbolsButton")
 	} else {
 
-		tabs("diseaseTileSizeButton", "inline-block")
 		tabs("diseaseTileSymbolsButton", "inline-block")
 
 	}
@@ -944,7 +948,11 @@ function updateValues() {
 		hide("offlineEmployee")
 	}
 	
-	
+	if (gameData.surveillanceCamera2) {
+		hide("offlineScience")
+		showBasicDiv("upgradeHighTechSurveillance")
+	} 
+
 
     if (gameData.advertisingLevel1 == 0) {
         hide("advertisingMethods")
@@ -1012,7 +1020,12 @@ function updateValues() {
 
     if (gameData.tomes > 1) {
         hide("tomeDiv2")
+		showBasicDiv("motivateEmployeeButton")
     }
+    if (gameData.tomes > 2) {
+        hide("tomeDiv3")
+    }
+
 	
     if (gameData.autoCollectingBar == (gameData.nourishment + 1) * 100 || gameData.autoCollectingBar == 0) {
 		gameData.isAutoCollecting = 0
@@ -1041,13 +1054,8 @@ function updateValues() {
         tabs("travelButton", "inline-block")
     }
 	
-	if (gameData.maps > 2){
-		document.getElementById("marketMainButtonsDiv").style.width = "380px"
-	}
-	else{
-		document.getElementById("marketMainButtonsDiv").style.width = "auto"
-	
-	}
+
+	document.getElementById("marketMainButtonsDiv").style.width = "360px"
 
 
     if (gameData.peeledLimes >= 1) {
@@ -1116,7 +1124,7 @@ function updateValues() {
 	
 
 	
-    for (i = 1; i < 7; i++) {
+    for (i = 1; i < 8; i++) {
 		
 		if (gameData.coins >= Math.pow(10, i)) {
 			gameData['achievement' + i] = 1
@@ -1165,6 +1173,17 @@ function updateValues() {
     }
 	
     if (gameData.learnANewSkill >= 5) {
+        showOrHideSkill("motivation")
+		
+        if (gameData.tomes == 2) {
+            document.getElementById('learnANewSkillButton').style.backgroundColor = 'darkgray';
+            gameData.learnANewSkillBar = 100;
+        } else if (gameData.tomes == 3) {
+            document.getElementById('learnANewSkillButton').style.backgroundColor = '#FFBB9A';
+        }
+    }
+
+    if (gameData.learnANewSkill >= 6) {
         showOrHideSkill("ambidextrous")
 
         gameData.learnANewSkillBar = 100;
