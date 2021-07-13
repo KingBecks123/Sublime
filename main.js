@@ -1,6 +1,8 @@
 var loopNumberBasket = 0;
 var loopNumberTimePlayed = 0;
 var loopNumbercurrentTask = 0;
+var numberOfBasicAchievements = 7;
+var numberOfSpecialAchievements = 2;
 
 mainVariables = ['limes', 'rottenLimes', 'coins', 'juice', 'megaCoins', 'alphaCoins', 'peeledLimes'];
 //Main variables change color in options and are updated as numbers.
@@ -501,7 +503,7 @@ function brokerApplicant(id, type) {
 		}
 		else if(type == 'min100')
 		{
-			if (gameData['maxBrokerApplicant' + id] > gameData['minBrokerApplicant' + id]) {
+			if (gameData['minBrokerApplicant' + id] > 0) {
 				
 				brokerApplicantPrice(id)
 
@@ -631,6 +633,14 @@ function travelToNextVillage() {
 		
         megaCoinsNow = gameData.megaCoinsInBank
 		
+		
+		for (i = 1; i <= numberOfBasicAchievements; i++) {
+			saveBeforeWipe('achievement' + i)
+		}
+		for (i = 1; i <= numberOfSpecialAchievements; i++) {
+			saveBeforeWipe('specialAchievement' + i)	
+		}
+		
 		saveBeforeWipe('surveillanceCamera2')		
 		saveBeforeWipe('versionNumber')
 		saveBeforeWipe('timePlayed')	
@@ -670,6 +680,12 @@ function travelToNextVillage() {
 			saveAfterWipe('respectMilestone1000')
 		} 
 		
+		for (i = 1; i <= numberOfBasicAchievements; i++) {
+			saveAfterWipe('achievement' + i)
+		}
+		for (i = 1; i <= numberOfSpecialAchievements; i++) {
+			saveAfterWipe('specialAchievement' + i)	
+		}
 		saveAfterWipe('surveillanceCamera2')		
 		saveAfterWipe('versionNumber')	
 		saveAfterWipe('timePlayed')	
@@ -755,6 +771,10 @@ function buyAMap() {
     } else if (gameData.coins >= 2e5 && gameData.maps == 3) {
         gameData.coins -= 2e5
         gameData.maps = 4
+		if(thisTownDeliveries < 2)
+		{
+			gameData.specialAchievement2 = 1
+		}
     } else if (gameData.coins >= 2e5 && gameData.maps == 4) {
         gameData.coins -= 2e5
         gameData.maps = 5
@@ -769,22 +789,26 @@ function storageJuicersUnlock() {
 	{
 		if (window.prompt("Are you sure? Type 'yes' if you are") == "yes")
 		{	
-			if (gameData.coins >= 100) {
-				gameData.coins -= 100
-				gameData.storageJuicersUnlock = 1
-				gameData.juicersMax *= 5
-			}
+			storageJuicersUnlockDo()
 		}
 	}
 	else
 	{
-		if (gameData.coins >= 100) {
-			gameData.coins -= 100
-			gameData.storageJuicersUnlock = 1
-			gameData.juicersMax *= 5
-		}
+		storageJuicersUnlockDo()
 	}
     updateValues()
+}
+
+function storageJuicersUnlockDo() {
+	if (gameData.coins >= 100) {
+		gameData.coins -= 100
+		gameData.storageJuicersUnlock = 1
+		gameData.juicersMax *= 5
+		if (gameData.upgradeMoreStorage > 0)
+		{
+			gameData.specialAchievement1 = 1
+		}
+	}
 }
 
 function storagePeelersUnlock() {
@@ -792,22 +816,26 @@ function storagePeelersUnlock() {
 	{
 		if (window.prompt("Are you sure? Type 'yes' if you are") == "yes")
 		{	
-			if (gameData.coins >= 100) {
-				gameData.coins -= 100
-				gameData.storagePeelersUnlock = 1
-				gameData.peelersMax *= 5
-			}
+			storagePeelersUnlock()
 		}
 	}
 	else
 	{
-		if (gameData.coins >= 100) {
-			gameData.coins -= 100
-			gameData.storagePeelersUnlock = 1
-			gameData.peelersMax *= 5
-		}
+		storagePeelersUnlock()
 	}
     updateValues()
+}
+
+function storagePeelersUnlock() {
+	if (gameData.coins >= 100) {
+		gameData.coins -= 100
+		gameData.storagePeelersUnlock = 1
+		gameData.peelersMax *= 5
+		if (gameData.upgradeMoreStorage > 0)
+		{
+			gameData.specialAchievement1 = 1
+		}
+	}
 }
 
 function changeZoomSize() {

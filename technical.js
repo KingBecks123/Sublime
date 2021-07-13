@@ -22,6 +22,10 @@ var gameDataBase = {
     achievement5: 0,
     achievement6: 0,
     achievement7: 0,
+    specialAchievement1: 0,
+    specialAchievement2: 0,
+
+    thisTownDeliveries: 0,
     limesPerClick: 1,
     knife: 0,
     peeledLimes: 0,

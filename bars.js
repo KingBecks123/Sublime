@@ -9,10 +9,10 @@ function advertise() {
 }
 
 function advertiseBar() {
-    if (gameData.advertiseBar <= 99) {
-        gameData.advertiseBar += 1;
+    if (gameData.advertiseBar < 100) {
+        gameData.advertiseBar += 0.5;
 		moveBar("advertise")
-        setTimeout(advertiseBar, (200 / (gameData.advertisingLevel2 * 2 * gameData.advertisingLevel3 + gameData.advertisingLevel2 + 2 * gameData.advertisingLevel3 + 1) / gameData.tickspeed))
+        setTimeout(advertiseBar, (100 / (gameData.advertisingLevel2 * 2 * gameData.advertisingLevel3 + gameData.advertisingLevel2 + 2 * gameData.advertisingLevel3 + 1) / gameData.tickspeed))
     } else {
         gameData.applicationReady = 1
         gameData.hasAdvertised = 1
@@ -278,7 +278,7 @@ function convertCoinsNowBar() {
 
 
 function learnANewSkill() {
-    if (gameData.learnANewSkill <= 2 || (gameData.tomes == 1 && gameData.learnANewSkill <= 3) || (gameData.tomes == 2 && gameData.learnANewSkill <= 4)) {
+    if (gameData.learnANewSkill - gameData.tomes <= 2) {
         barStartGranular("learnANewSkill")
     }
 }
@@ -376,6 +376,7 @@ function sellYourJuice() {
         gameData.coins -= gameData.deliveryPrice
         gameData.juice -= gameData.juiceBulkAmount
         gameData.deliveryBar = 0;
+		gameData.thisTownDeliveries += 1
         sellYourJuiceBar()
     }
 

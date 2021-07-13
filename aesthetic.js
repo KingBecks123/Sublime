@@ -71,6 +71,21 @@ function addAesthetic() {
         x[i].style.padding = "5px";
         x[i].style['margin'] = "5px";
     }
+	
+    //Special Achievement
+    var x = document.getElementsByClassName("specialAchievement");
+    for (i = 0; i < x.length; i++) {
+		if (gameData['specialAchievement' + (i + 1)])
+		{
+			x[i].style.backgroundColor = limesRelatedAccent;
+		}
+		else
+		{
+			x[i].style.backgroundColor = grayAccent;
+		}
+        x[i].style.padding = "5px";
+        x[i].style['margin'] = "5px";
+    }
 
 
     if (gameData.diseaseControlFinished == 1) {
