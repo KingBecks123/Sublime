@@ -5,7 +5,7 @@ function loadStuff(savegame) {
         Object.assign(gameData, savegame);
 
         backwardsCompatibility(gameData.versionNumber)
-        gameData.versionNumber = 120
+        gameData.versionNumber = 121
         updateValues()
         updateAfterLoad()
     } else {
@@ -115,49 +115,30 @@ function pinButton() {
 function pickCurrentTask(x) {
 	
 	if (!event.shiftKey){
-		if(gameData.ambidextrousSkillLevel !== gameData.ambidextrousSkillLevelMax){
-			if(gameData.currentTask == x && gameData.currentTask !== "none")
-			{
-				gameData.currentTask = "none"
-			}
-			else
-			{
-				gameData.currentTask = x
-			}
-			
-		}
-		else
+		
+
+		if(gameData.currentTask == x && gameData.currentTask !== "none" && gameData.currentTask2 !== x)
 		{
-			if(gameData.currentTask == x || gameData.currentTask == "none" )
-			{
-				if(gameData.currentTask == x && gameData.currentTask !== "none")
-				{
-					gameData.currentTask = "none"
-				}
-				else if (gameData.currentTask == "none")
-				{
-					if(!((gameData.currentTask2 == 'makeJuice' && x == 'makeMaxJuice') || (gameData.currentTask2 == 'makeMaxJuice' && x == 'makeJuice') || (gameData.currentTask2 == 'usePeelers' && x == 'useMaxPeelers') || (gameData.currentTask2 == 'useMaxPeelers' && x == 'usePeelers')))
-					gameData.currentTask = x
-				}
-				
-
-			}
-			else
-			{
-				if(gameData.currentTask2 == x && gameData.currentTask2 !== "none")
-				{
-					gameData.currentTask2 = "none"
-				}
-				else if (gameData.currentTask2 == "none")
-				{
-					if(!((gameData.currentTask == 'makeJuice' && x == 'makeMaxJuice') || (gameData.currentTask == 'makeMaxJuice' && x == 'makeJuice') || (gameData.currentTask == 'usePeelers' && x == 'useMaxPeelers') || (gameData.currentTask == 'useMaxPeelers' && x == 'usePeelers')))
-					gameData.currentTask2 = x
-				}
-
-			}
+			gameData.currentTask = "none"
 		}
 		
+
+		else if (gameData.currentTask == "none" && gameData.currentTask2 !== x)
+		{
+			if(!((gameData.currentTask2 == 'makeJuice' && x == 'makeMaxJuice') || (gameData.currentTask2 == 'makeMaxJuice' && x == 'makeJuice') || (gameData.currentTask2 == 'usePeelers' && x == 'useMaxPeelers') || (gameData.currentTask2 == 'useMaxPeelers' && x == 'usePeelers')))
+			gameData.currentTask = x
+		}
 		
+		else if(gameData.currentTask2 == x && gameData.currentTask2 !== "none")
+		{
+			gameData.currentTask2 = "none"
+		}
+
+		else if (gameData.currentTask2 == "none")
+		{
+			if(!((gameData.currentTask == 'makeJuice' && x == 'makeMaxJuice') || (gameData.currentTask == 'makeMaxJuice' && x == 'makeJuice') || (gameData.currentTask == 'usePeelers' && x == 'useMaxPeelers') || (gameData.currentTask == 'useMaxPeelers' && x == 'usePeelers')))
+			gameData.currentTask2 = x
+		}
 		
 	}
 	
@@ -168,6 +149,9 @@ function pickCurrentTask(x) {
 	
 	updateValues()
 }
+
+
+
 
 function pickCurrentSkill(x) {
 	if (!event.shiftKey && gameData.multitasking){

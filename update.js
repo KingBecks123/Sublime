@@ -1024,12 +1024,14 @@ function updateValues() {
 
 	checkHide(gameData.tomes, "tomeDiv")
 
-
+    if (gameData.tomes < 1) {
+        hide("tomeDiv2")
+    }
     if (gameData.tomes > 1) {
         hide("tomeDiv2")
 		showBasicDiv("motivateEmployeeButton")
     }
-    if (gameData.tomes > 2) {
+    if (gameData.tomes > 2 || gameData.tomes < 2) {
         hide("tomeDiv3")
     }
 
