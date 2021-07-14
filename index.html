@@ -741,6 +741,17 @@
                     <p class="basicText">Price: 100 Alpha Coins</p>
                 </div>
 				
+                <div id="changeResearchersBy10Unlock" class="basicDiv">
+                    <button class="specialButton" onclick="universalBuy('changeResearchersBy10Unlock', 100, 'alphaCoins')">Unlock Bulk Researcher Transfer</button>
+                    <p class="basicText">Cart researchers around rather than giving them any special attention</p>
+                    <p class="basicText">Price: 100 Alpha Coins</p>
+                </div>		
+
+                <div id="saveAlphaCoinsUnlock" class="basicDiv">
+                    <button class="specialButtonTravel" onclick="universalBuy('saveAlphaCoinsUnlock', 1000, 'alphaCoins')">Buy A Safe On Wheels</button>
+                    <p class="basicText">Bring your alpha coins with you during your travels without pesky plebians stealing them</p>
+                    <p class="basicText">Price: 1,000 Alpha Coins</p>
+                </div>				
 				
 
 			</div>
@@ -947,9 +958,13 @@
             <p class="basicTextSize" style="background-color:#FF999A;" >High Tech Surveillance Camera</p>
                 <p class="basicText" style="display:block;">Makes sure researchers are working while you're away</p>
 
+        </div>	
+		
+        <div class="basicDiv" id="upgradeSaveAlphaCoinsUnlock">
+            <p class="basicTextSize" style="background-color:#FF999A;" >A Safe On Wheels</p>
+            <p class="basicText">Keep alpha coins after travelling</p>
+
         </div>		
-		
-		
 
     </div>
 
@@ -1134,8 +1149,11 @@
 					
 					<p class="basicTextSize" id="textForWatertightResearchers" style="color:#00AAFF;background-color:#000000">0 Researchers</p>
 					
-					<button class="basicButtonSize" style="background-color:#00AAFF;width:30px;" onclick="addResearchers('watertight', -1)">-</button>
-					<button class="basicButtonSize" style="background-color:#00AAFF;width:30px;" onclick="addResearchers('watertight', 1)">+</button>
+					<button class="basicButtonSize"                       style="background-color:#00AAFF;width:30px;" onclick="addResearchers('watertight', -1)">-</button>
+					<button class="basicButtonSize changeResearchersBy10" style="background-color:#00AAFF;width:50px;" onclick="addResearchers('watertight', -10)">-10</button>
+
+					<button class="basicButtonSize"                       style="background-color:#00AAFF;width:30px;" onclick="addResearchers('watertight', 1)">+</button>
+					<button class="basicButtonSize changeResearchersBy10" style="background-color:#00AAFF;width:50px;" onclick="addResearchers('watertight', 10)">+10</button>
 
 					
 					
@@ -1158,8 +1176,11 @@
 					
 					<p class="basicTextSize" id="textForSurveyingResearchers" style="color:#00AAFF;background-color:#000000">0 Researchers</p>
 					
-					<button class="basicButtonSize" style="background-color:#00AAFF;width:30px;" onclick="addResearchers('surveying', -1)">-</button>
-					<button class="basicButtonSize" style="background-color:#00AAFF;width:30px;" onclick="addResearchers('surveying', 1)">+</button>
+					<button class="basicButtonSize"                       style="background-color:#00AAFF;width:30px;" onclick="addResearchers('surveying', -1)">-</button>
+					<button class="basicButtonSize changeResearchersBy10" style="background-color:#00AAFF;width:50px;" onclick="addResearchers('surveying', -10)">-10</button>
+
+					<button class="basicButtonSize"                       style="background-color:#00AAFF;width:30px;" onclick="addResearchers('surveying', 1)">+</button>
+					<button class="basicButtonSize changeResearchersBy10" style="background-color:#00AAFF;width:50px;" onclick="addResearchers('surveying', 10)">+10</button>
 
 					
 					
@@ -1182,8 +1203,11 @@
 					
 					<p class="basicTextSize" id="textForBenevolenceResearchers" style="color:#00AAFF;background-color:#000000">0 Researchers</p>
 					
-					<button class="basicButtonSize" style="background-color:#00AAFF;width:30px;" onclick="addResearchers('benevolence', -1)">-</button>
-					<button class="basicButtonSize" style="background-color:#00AAFF;width:30px;" onclick="addResearchers('benevolence', 1)">+</button>
+					<button class="basicButtonSize"                       style="background-color:#00AAFF;width:30px;" onclick="addResearchers('benevolence', -1)">-</button>
+					<button class="basicButtonSize changeResearchersBy10" style="background-color:#00AAFF;width:50px;" onclick="addResearchers('benevolence', -10)">-10</button>
+
+					<button class="basicButtonSize"                       style="background-color:#00AAFF;width:30px;" onclick="addResearchers('benevolence', 1)">+</button>
+					<button class="basicButtonSize changeResearchersBy10" style="background-color:#00AAFF;width:50px;" onclick="addResearchers('benevolence', 10)">+10</button>
 
 					
 					
@@ -1207,7 +1231,7 @@
 	
                 <div class="basicDiv" id="buyManuscriptsDiv" >
                     <button class="specialButtonTravel" onclick="basicBuy('manuscripts', 5e5)">Buy Manuscripts</button>
-                    <p class="basicText" id="hireResearcherMegaCoins" >Keep 1,000 respect milestone after travelling</p>
+                    <p class="basicText" >Keep 1,000 respect milestone after travelling</p>
                     <p class="basicText" >Price: 500,000 Coins</p>
 
                 </div>	
@@ -1215,7 +1239,7 @@
 				
                 <div class="basicDiv">
                     <button class="specialButtonTravel" onclick="hireResearcher('megaCoins')">Pay with mega coins</button>
-                    <p class="basicText" id="hireResearcherMegaCoins" >Price: 1 Mega Coin</p>
+                    <p class="basicText" >Price: 1 Mega Coin</p>
                 </div>	
 
 			</div>
@@ -1398,14 +1422,14 @@
     </div>
     </div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="aesthetic.js?v=               121" charset="utf-8" type="text/javascript"></script>
-    <script src="myfunctions.js?v=             121" charset="utf-8" type="text/javascript"></script>
-    <script src="main.js?v=                    121" charset="utf-8" type="text/javascript"></script>
-    <script src="diseasetask.js?v=             121" charset="utf-8" type="text/javascript"></script>
-    <script src="technical.js?v=               121" charset="utf-8" type="text/javascript"></script>
-    <script src="bars.js?v=                    121" charset="utf-8" type="text/javascript"></script>
-    <script src="update.js?v=                  121" charset="utf-8" type="text/javascript"></script>
-    <script src="oldupdatefixes.js?v=          121" charset="utf-8" type="text/javascript"></script>
+    <script src="aesthetic.js?v=               122" charset="utf-8" type="text/javascript"></script>
+    <script src="myfunctions.js?v=             122" charset="utf-8" type="text/javascript"></script>
+    <script src="main.js?v=                    122" charset="utf-8" type="text/javascript"></script>
+    <script src="diseasetask.js?v=             122" charset="utf-8" type="text/javascript"></script>
+    <script src="technical.js?v=               122" charset="utf-8" type="text/javascript"></script>
+    <script src="bars.js?v=                    122" charset="utf-8" type="text/javascript"></script>
+    <script src="update.js?v=                  122" charset="utf-8" type="text/javascript"></script>
+    <script src="oldupdatefixes.js?v=          122" charset="utf-8" type="text/javascript"></script>
 
 </body>
 

@@ -495,7 +495,7 @@ function brokerApplicant(id, type) {
 		}
 		else if(type == 'max100')
 		{
-			if (gameData['maxBrokerApplicant' + id] > gameData['minBrokerApplicant' + id])
+			if (gameData['maxBrokerApplicant' + id] > gameData['minBrokerApplicant' + id] && gameData['maxBrokerApplicant' + id] >  100)
 			{
 				brokerApplicantPrice(id)
 				gameData['maxBrokerApplicant' + id] -= 100
@@ -625,6 +625,12 @@ function travelToNextVillage() {
 		if (gameData.manuscripts > 0) {
 			saveBeforeWipe('respectMilestone1000')
 		} 
+		
+		if (gameData.saveAlphaCoinsUnlock) {
+			saveBeforeWipe('alphaCoins')
+		} 
+		
+		saveBeforeWipe('saveAlphaCoinsUnlock')
         saveBeforeWipe('manuscripts')
 
 		
@@ -644,7 +650,6 @@ function travelToNextVillage() {
 		saveBeforeWipe('surveillanceCamera2')		
 		saveBeforeWipe('versionNumber')
 		saveBeforeWipe('timePlayed')	
-		saveBeforeWipe('alphaCoins')
 		saveBeforeWipe('nationalJuiceMarketing')
 		saveBeforeWipe('creditScore2')
 		saveBeforeWipe('creditScore3')
@@ -668,6 +673,11 @@ function travelToNextVillage() {
         Object.assign(gameData, gameDataBase)
 
 
+		saveAfterWipe('saveAlphaCoinsUnlock')
+
+		if (gameData.saveAlphaCoinsUnlock) {
+			saveAfterWipe('alphaCoins')
+		} 
 
 		if (increaseJuicePricePermananceNow == 1) {
 			saveAfterWipe('juicePricePrice')
@@ -676,6 +686,9 @@ function travelToNextVillage() {
 		} 
 		
         saveAfterWipe('manuscripts')
+		
+		
+		
 		if (gameData.manuscripts > 0) {
 			saveAfterWipe('respectMilestone1000')
 		} 
@@ -690,7 +703,6 @@ function travelToNextVillage() {
 		saveAfterWipe('versionNumber')	
 		saveAfterWipe('timePlayed')	
 	    saveAfterWipe('upgradeMoreStorage')
-		saveAfterWipe('alphaCoins')
 		saveAfterWipe('creditScore2')
 		saveAfterWipe('creditScore3')
 		saveAfterWipe('nationalJuiceMarketing')

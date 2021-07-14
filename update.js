@@ -88,6 +88,10 @@ function updateValues() {
         gameData.workingBar = 100
     }
 	
+    if (gameData.coinsToAlphaBar > 100) {
+        gameData.coinsToAlphaBar = 100
+    }
+	
     if (gameData.megaCoinsInBank > gameData.megaCoinsInBankMax) {
         gameData.megaCoinsInBank = gameData.megaCoinsInBankMax
     }
@@ -1000,6 +1004,11 @@ function updateValues() {
 	checkHide(gameData.advertisingLevel3, "advertisingBillboard")
 	checkHide(gameData.storagePeelersUnlock, "storagePeelersDiv")
 	checkHide(gameData.storageJuicersUnlock, "storageJuicersDiv")
+	checkHide(gameData.changeResearchersBy10Unlock, "changeResearchersBy10Unlock")
+	checkHide(gameData.saveAlphaCoinsUnlock, "saveAlphaCoinsUnlock")
+	checkShow(gameData.saveAlphaCoinsUnlock, "upgradeSaveAlphaCoinsUnlock")
+
+
 
     if (gameData.lookAround >= 2) {
         tabs("sellYourLimesDiv", "block")

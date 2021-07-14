@@ -63,18 +63,36 @@ function coinsToAlphaClick(){
 }
 
 function coinsToAlphaBar() {
-    if (gameData.coinsToAlphaBar <= 99.5) {
+	if (gameData.currencyBrokerSpeed == 1)
+	{
+		if (gameData.coinsToAlphaBar < 100) {
 
-        gameData.coinsToAlphaBar += 0.5;
-		moveBar("coinsToAlpha")
-		if(gameData.doesHaveCurrencyBroker)
-			setTimeout(coinsToAlphaBar, 5 * gameData.currencyBrokerSpeed / gameData.tickspeed)
-		else
-			setTimeout(coinsToAlphaBar, 100 / gameData.tickspeed)
-    } else {
-		gameData.alphaCoins += gameData.currencyBrokerTransferAmount
-		
-    }
+			gameData.coinsToAlphaBar += 1.5;
+			if (gameData.coinsToAlphaBar > 100)
+				gameData.coinsToAlphaBar = 100
+
+			moveBar("coinsToAlpha")
+			setTimeout(coinsToAlphaBar, 15 / gameData.tickspeed)
+		} else {
+			gameData.alphaCoins += gameData.currencyBrokerTransferAmount
+			
+		}
+	}
+	else
+	{
+		if (gameData.coinsToAlphaBar <= 99.5) {
+
+			gameData.coinsToAlphaBar += 0.5;
+			moveBar("coinsToAlpha")
+			if(gameData.doesHaveCurrencyBroker)
+				setTimeout(coinsToAlphaBar, 5 * gameData.currencyBrokerSpeed / gameData.tickspeed)
+			else
+				setTimeout(coinsToAlphaBar, 100 / gameData.tickspeed)
+		} else {
+			gameData.alphaCoins += gameData.currencyBrokerTransferAmount
+			
+		}
+	}
 }
 
 
@@ -377,6 +395,7 @@ function sellYourJuice() {
         gameData.juice -= gameData.juiceBulkAmount
         gameData.deliveryBar = 0;
 		gameData.thisTownDeliveries += 1
+		
         sellYourJuiceBar()
     }
 
@@ -386,21 +405,30 @@ function sellYourJuiceBar() {
 
 
     if (gameData.deliveryBar <= 99.9) {
-        if (gameData.deliveryType <= 1) {
+        if (gameData.deliveryType == 0) {
 
                 gameData.deliveryOngoing = 1
                 gameData.deliveryBar += 0.1;
 			    moveBar("delivery")
-                setTimeout(sellYourJuiceBar, (100 / (gameData.deliveryType * 100 + 1)) / gameData.tickspeed)
+                setTimeout(sellYourJuiceBar, 100 / gameData.tickspeed)
 
         } 
-		else 
+		else if (gameData.deliveryType == 1)
 		{
             if (gameData.deliveryBar <= 99.5) {
                 gameData.deliveryOngoing = 1
                 gameData.deliveryBar += 0.5;
 			    moveBar("delivery")
-                setTimeout(sellYourJuiceBar, (100 / (gameData.deliveryType * 100 + 1)) / gameData.tickspeed)
+                setTimeout(sellYourJuiceBar, 15 / gameData.tickspeed)
+            }
+        }
+		else 
+		{
+            if (gameData.deliveryBar < 100) {
+                gameData.deliveryOngoing = 1
+                gameData.deliveryBar += 1;
+			    moveBar("delivery")
+                setTimeout(sellYourJuiceBar, 15 / gameData.tickspeed)
             }
         }
     } 

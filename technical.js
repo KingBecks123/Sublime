@@ -191,6 +191,7 @@ var gameDataBase = {
 	autoPlaceACivilian: 0,
 
 	increaseJuicePricePermanance: 0,
+	changeResearchersBy10Unlock: 0,
 
     silkRobe: 0,
 
@@ -328,7 +329,7 @@ var gameDataBase = {
 
 	timePlayed: 0,
 
-
+	saveAlphaCoinsUnlock: 0,
     isOptionsOpen: 0,
 
     autosave: 1,

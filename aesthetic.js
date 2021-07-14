@@ -57,6 +57,20 @@ function addAesthetic() {
 
 
 
+
+    var x = document.getElementsByClassName("changeResearchersBy10");
+    for (i = 0; i < x.length; i++) {
+		if (gameData.changeResearchersBy10Unlock)
+		{
+			x[i].style.display = 'inline-block';
+		}
+		else
+		{
+			x[i].style.display = 'none';
+		}
+
+    }
+
     //Achievement
     var x = document.getElementsByClassName("achievement");
     for (i = 0; i < x.length; i++) {
