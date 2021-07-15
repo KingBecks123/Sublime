@@ -557,7 +557,8 @@
                 <div class="basicDiv">
 					<div id="alphaCoinToMegaCoinDiv">
 
-						<button class="specialButton" onclick="buyMegaCoinsWithAlphaCoins()">Transfer Alpha Coins</button>
+						<button class="specialButton" style="width:300px;"                             onclick="buyMegaCoinsWithAlphaCoins(1)">Transfer Alpha Coins</button>
+						<button class="specialButton" style="width:300px;display:none;" id="transferAlphaCoinsBulk" onclick="buyMegaCoinsWithAlphaCoins(10)">Transfer 10 Alpha Coins</button>
 						<p class="basicText" style="display:block;">10 Alpha Coins -> 1 Mega Coin In Bank</p>
 
 					</div>
@@ -752,6 +753,12 @@
                     <p class="basicText">Bring your alpha coins with you during your travels without pesky plebians stealing them</p>
                     <p class="basicText">Price: 1,000 Alpha Coins</p>
                 </div>				
+				
+                <div id="transferAlphaCoinsBulkUnlock" class="basicDiv">
+                    <button class="specialButton" onclick="universalBuy('transferAlphaCoinsBulkUnlock', 1000, 'alphaCoins')">Buy Alpha Coin Rolls</button>
+                    <p class="basicText">Unlocks bulk alpha coin -> mega coin transfer</p>
+                    <p class="basicText">Price: 1,000 Alpha Coins</p>
+                </div>		
 				
 
 			</div>
@@ -1422,14 +1429,14 @@
     </div>
     </div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="aesthetic.js?v=               123" charset="utf-8" type="text/javascript"></script>
-    <script src="myfunctions.js?v=             123" charset="utf-8" type="text/javascript"></script>
-    <script src="main.js?v=                    123" charset="utf-8" type="text/javascript"></script>
-    <script src="diseasetask.js?v=             123" charset="utf-8" type="text/javascript"></script>
-    <script src="technical.js?v=               123" charset="utf-8" type="text/javascript"></script>
-    <script src="bars.js?v=                    123" charset="utf-8" type="text/javascript"></script>
-    <script src="update.js?v=                  123" charset="utf-8" type="text/javascript"></script>
-    <script src="oldupdatefixes.js?v=          123" charset="utf-8" type="text/javascript"></script>
+    <script src="aesthetic.js?v=               124" charset="utf-8" type="text/javascript"></script>
+    <script src="myfunctions.js?v=             124" charset="utf-8" type="text/javascript"></script>
+    <script src="main.js?v=                    124" charset="utf-8" type="text/javascript"></script>
+    <script src="diseasetask.js?v=             124" charset="utf-8" type="text/javascript"></script>
+    <script src="technical.js?v=               124" charset="utf-8" type="text/javascript"></script>
+    <script src="bars.js?v=                    124" charset="utf-8" type="text/javascript"></script>
+    <script src="update.js?v=                  124" charset="utf-8" type="text/javascript"></script>
+    <script src="oldupdatefixes.js?v=          124" charset="utf-8" type="text/javascript"></script>
 
 </body>
 

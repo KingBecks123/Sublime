@@ -1047,7 +1047,6 @@ function updateValues() {
 	{
 		showBasicDiv("tomeDiv3")
 	}
-
 	
     if (gameData.autoCollectingBar == (gameData.nourishment + 1) * 100 || gameData.autoCollectingBar == 0) {
 		gameData.isAutoCollecting = 0
@@ -1134,6 +1133,8 @@ function updateValues() {
 
 
 	checkShow(gameData.peelers, "peelerDiv")
+	checkShow(gameData.transferAlphaCoinsBulkUnlock, "transferAlphaCoinsBulk")
+	checkHide(gameData.transferAlphaCoinsBulkUnlock, "transferAlphaCoinsBulkUnlock")
 
 
 

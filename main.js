@@ -582,11 +582,21 @@ function buyMegaCoins() {
     updateValues()
 }
 
-function buyMegaCoinsWithAlphaCoins() {
-    if (gameData.alphaCoins >= 10 && gameData.megaCoinsInBank < gameData.megaCoinsInBankMax) {
-        gameData.alphaCoins -= 10
-        gameData.megaCoinsInBank += 1
-    }
+function buyMegaCoinsWithAlphaCoins(amount) {
+	if(amount == 1)
+	{
+		if (gameData.alphaCoins >= 10 && gameData.megaCoinsInBank < gameData.megaCoinsInBankMax) {
+			gameData.alphaCoins -= 10
+			gameData.megaCoinsInBank += 1
+		}
+	}
+	else
+	{
+		if (gameData.alphaCoins >= 100 && gameData.megaCoinsInBank + 10 <= gameData.megaCoinsInBankMax) {
+			gameData.alphaCoins -= 100
+			gameData.megaCoinsInBank += 10
+		}
+	}
     updateValues()
 }
 

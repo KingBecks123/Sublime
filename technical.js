@@ -331,6 +331,7 @@ var gameDataBase = {
 
 	saveAlphaCoinsUnlock: 0,
     isOptionsOpen: 0,
+	transferAlphaCoinsBulkUnlock: 0,
 
     autosave: 1,
 
