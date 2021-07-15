@@ -1043,6 +1043,10 @@ function updateValues() {
     if (gameData.tomes > 2 || gameData.tomes < 2) {
         hide("tomeDiv3")
     }
+	else
+	{
+		showBasicDiv("tomeDiv3")
+	}
 
 	
     if (gameData.autoCollectingBar == (gameData.nourishment + 1) * 100 || gameData.autoCollectingBar == 0) {
