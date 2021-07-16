@@ -40,6 +40,17 @@ function updateAfterLoad() {
     updateValues()
 }
 
+function addHTML(){
+	
+	for (let i = 0; i < mainSkills.length; i++) {
+		  var skillLevel       = document.createElement("p");
+		      skillLevel.id    = mainSkills[i] + "SkillLevel";
+		      skillLevel.classList.add("basicText");
+		      document.getElementById(mainSkills[i] + "Div").appendChild(skillLevel);
+	}
+	
+}
+
 
 function updateValues() {
 
@@ -1035,7 +1046,7 @@ function updateValues() {
 
 	checkHide(gameData.tomes, "tomeDiv")
 
-    if (gameData.tomes == 1) {
+    if (gameData.tomes == 1) 
         showBasicDiv("tomeDiv2")
 	else
 		hide("tomeDiv2")

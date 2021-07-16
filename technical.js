@@ -347,6 +347,9 @@ var gameData = {}
 
 
 function gameStart() {
+	
+	addHTML()
+
 
 	surveyingBarDoMove = 0
 	benevolenceBarDoMove = 0

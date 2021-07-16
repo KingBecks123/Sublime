@@ -8,7 +8,7 @@ mainVariables = ['limes', 'rottenLimes', 'coins', 'juice', 'megaCoins', 'alphaCo
 //Main variables change color in options and are updated as numbers.
 
 mainSkills = ['rottenWisdom', 'limebidextrous', 'knifebidextrous', 'intelligence', 'ambidextrous', 'keenEye', 'motivation'];
-//Uses: Restart bar after reloading. Sets the level to the max level if it somehow goes above. Updates test for level / levelMax. Updates aesthetic for the skill's button.
+//Uses: Restart bar after reloading. Sets the level to the max level if it somehow goes above. Updates test for level / levelMax. Updates aesthetic for the skill's button. Creates HTML for the skill.
 
 mainSciences = ['watertight', 'surveying', 'benevolence'];
 //Uses: Updates time to complete science. Updates number of researchers allocated.
