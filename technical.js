@@ -34,7 +34,6 @@ var gameDataBase = {
     lookAround: 0,
     rottenLimes: 0,
     rottenWisdomBar: 0,
-    rottenWisdom: 0,
 	
 	
     motivationBar: 0,
@@ -332,6 +331,8 @@ var gameDataBase = {
 	saveAlphaCoinsUnlock: 0,
     isOptionsOpen: 0,
 	transferAlphaCoinsBulkUnlock: 0,
+	lightRobe: 0,
+	rottenActualWisdom: 0,
 
     autosave: 1,
 

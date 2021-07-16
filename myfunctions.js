@@ -5,7 +5,7 @@ function loadStuff(savegame) {
         Object.assign(gameData, savegame);
 
         backwardsCompatibility(gameData.versionNumber)
-        gameData.versionNumber = 124
+        gameData.versionNumber = 125
         updateValues()
         updateAfterLoad()
     } else {
@@ -663,6 +663,16 @@ function checkShowOrHide(i, txt) {
         tabs(txt, "block")
     } else {
         tabs(txt, "none")
+    }
+
+}
+
+//Checks if a value is higher than 0, and hides an element if so. If not, shows the element.
+function checkHideOrShow(i, txt) {
+    if (i >= 1) {
+        tabs(txt, "none")
+    } else {
+        tabs(txt, "block")
     }
 
 }

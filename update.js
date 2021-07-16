@@ -450,7 +450,7 @@ function updateValues() {
 
 	}
 	
-	update("rottenWisdom", gameData.rottenWisdom + "% Chance")
+	update("rottenWisdom", 100 * gameData.rottenWisdomSkillLevel / gameData.rottenWisdomSkillLevelMax + "% Chance")
 	
 	update("keenEye", gameData.keenEyeSkillLevel * 5 + "% Chance")
 
@@ -784,6 +784,8 @@ function updateValues() {
 		else
 			hide('earnBachelorFinance')
 
+		checkHideOrShow(gameData.rottenActualWisdom, "rottenActualWisdom")
+
 		
 		if (!gameData.creditScore2)
 			showBasicDiv('increaseCreditScore2')
@@ -1033,20 +1035,18 @@ function updateValues() {
 
 	checkHide(gameData.tomes, "tomeDiv")
 
-    if (gameData.tomes < 1) {
-        hide("tomeDiv2")
-    }
-    if (gameData.tomes > 1) {
-        hide("tomeDiv2")
-		showBasicDiv("motivateEmployeeButton")
-    }
-    if (gameData.tomes > 2 || gameData.tomes < 2) {
-        hide("tomeDiv3")
-    }
+    if (gameData.tomes == 1) {
+        showBasicDiv("tomeDiv2")
 	else
-	{
-		showBasicDiv("tomeDiv3")
-	}
+		hide("tomeDiv2")
+
+
+
+    if (gameData.tomes == 2)
+        showBasicDiv("tomeDiv3")
+	else
+		hide("tomeDiv3")
+	
 	
     if (gameData.autoCollectingBar == (gameData.nourishment + 1) * 100 || gameData.autoCollectingBar == 0) {
 		gameData.isAutoCollecting = 0
@@ -1135,6 +1135,7 @@ function updateValues() {
 	checkShow(gameData.peelers, "peelerDiv")
 	checkShow(gameData.transferAlphaCoinsBulkUnlock, "transferAlphaCoinsBulk")
 	checkHide(gameData.transferAlphaCoinsBulkUnlock, "transferAlphaCoinsBulkUnlock")
+	checkHide(gameData.lightRobe, "lightRobe")
 
 
 

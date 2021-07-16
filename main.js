@@ -387,7 +387,7 @@ function getLimes() {
 		}
 		
 		
-		if (Math.random() <= (gameData.rottenWisdom / 100)) {
+		if (Math.random() <= (gameData.rottenWisdomSkillLevel / gameData.rottenWisdomSkillLevelMax)) {
 			if (Math.random() <= (gameData.limebidextrous / 100)) {
 				gameData.limes += gameData.limesPerClick
 				if (gameData.teachBar > 0 && gameData.teachBar < 100) {
@@ -642,6 +642,8 @@ function travelToNextVillage() {
 		
 		saveBeforeWipe('saveAlphaCoinsUnlock')
         saveBeforeWipe('manuscripts')
+		
+        saveBeforeWipe('lightRobe')
 
 		
         saveBeforeWipe('increaseJuicePricePermanance')
@@ -678,6 +680,9 @@ function travelToNextVillage() {
         saveBeforeWipe('hideMaxedPurchases')
         saveBeforeWipe('researchers')
         saveBeforeWipe('upgradeMoreStorage')
+        saveBeforeWipe('changeResearchersBy10Unlock')
+        saveBeforeWipe('rottenActualWisdom')
+
 
 
         Object.assign(gameData, gameDataBase)
@@ -689,16 +694,14 @@ function travelToNextVillage() {
 			saveAfterWipe('alphaCoins')
 		} 
 
-		if (increaseJuicePricePermananceNow == 1) {
+		if (increaseJuicePricePermananceNow) {
 			saveAfterWipe('juicePricePrice')
 			saveAfterWipe('juicePriceCents')
 			saveAfterWipe('increaseJuicePricePermanance')
 		} 
 		
+		
         saveAfterWipe('manuscripts')
-		
-		
-		
 		if (gameData.manuscripts > 0) {
 			saveAfterWipe('respectMilestone1000')
 		} 
@@ -731,14 +734,25 @@ function travelToNextVillage() {
         saveAfterWipe('showBarPercent')
         saveAfterWipe('hideCompletedSkills')
         saveAfterWipe('hideMaxedPurchases')
+        saveAfterWipe('changeResearchersBy10Unlock')
+        saveAfterWipe('rottenActualWisdom')
+
 
 
 		gameData.juicersMax = 100 + gameData.upgradeMoreStorage * 500
 		gameData.peelersMax = 500 + gameData.upgradeMoreStorage * 2500
+		
+		if (lightRobeNow) {
+			gameData.respect += 50
+		} 
+		
+		if(rottenActualWisdom)
+			gameData.rottenWisdomSkillLevelMax = 25
 
 
         gameData.villageNumber = 2
         saveGame()
+		
 
 
         location.reload();
@@ -748,6 +762,11 @@ function travelToNextVillage() {
 function stopActions(){
 	gameData.currentTask = 'none'
 	gameData.currentTask2 = 'none'
+}
+
+function rottenActualWisdom(){
+	universalBuy('rottenActualWisdom', 50 , 'megaCoins')
+	gameData.rottenWisdomSkillLevelMax = 25
 }
 
 function lookAround() {
