@@ -43,14 +43,53 @@ function updateAfterLoad() {
 function addHTML(){
 	
 	for (let i = 0; i < mainSkills.length; i++) {
-		  var skillLevel       = document.createElement("p");
-		      skillLevel.id    = mainSkills[i] + "SkillLevel";
-		      skillLevel.classList.add("basicText");
-		      document.getElementById(mainSkills[i] + "Div").appendChild(skillLevel);
+	
+		var name = mainSkills[i]
+		var div = document.getElementById(name + "Div")
+		var title = ''
+		
+		if(name == 'rottenWisdom')
+			title = 'Rotten Wisdom'
+		else if(name == 'keenEye')
+			title = 'Keen Eye'
+		else
+		    title = jsUcfirst(name)
+		
+		
+		
+		
+		var skillLevel       = document.createElement("p");
+		    skillLevel.id    = name + "SkillLevel";
+		    skillLevel.classList.add("basicText");
+		    div.appendChild(skillLevel);
+			
+		var skillProgressSpan                = document.createElement("span")
+		skillProgressSpan.innerHTML          = '<div class="skillProgress" id="' + name + 'Progress"><div class="skillBar" , id="' + name + 'Bar">0%</div></div>';
+		insert(div, skillProgressSpan)
+		
+		
+		var skillButtonSpan                  = document.createElement("span")
+		skillButtonSpan.innerHTML            = '<button class="skillButton" id="' + name + "Button" + '" onclick="pickCurrentSkill(&apos;' + name + '&apos;)">' + title + '</button>';
+		insert(div, skillButtonSpan)
+
+
 	}
+	
+	
+	function insert(div, thing)
+	{
+		div.insertBefore(thing, div.firstChild);
+
+	}
+
 	
 }
 
+			
+			
+			
+			
+			
 
 function updateValues() {
 

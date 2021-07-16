@@ -7,7 +7,7 @@ var numberOfSpecialAchievements = 2;
 mainVariables = ['limes', 'rottenLimes', 'coins', 'juice', 'megaCoins', 'alphaCoins', 'peeledLimes'];
 //Main variables change color in options and are updated as numbers.
 
-mainSkills = ['rottenWisdom', 'limebidextrous', 'knifebidextrous', 'intelligence', 'ambidextrous', 'keenEye', 'motivation'];
+mainSkills = ['keenEye', 'rottenWisdom', 'limebidextrous', 'intelligence', 'knifebidextrous', 'motivation', 'ambidextrous'];
 //Uses: Restart bar after reloading. Sets the level to the max level if it somehow goes above. Updates test for level / levelMax. Updates aesthetic for the skill's button. Creates HTML for the skill.
 
 mainSciences = ['watertight', 'surveying', 'benevolence'];
@@ -659,36 +659,46 @@ function travelToNextVillage() {
 			saveBeforeWipe('specialAchievement' + i)	
 		}
 		
-		saveBeforeWipe('surveillanceCamera2')		
-		saveBeforeWipe('versionNumber')
-		saveBeforeWipe('timePlayed')	
-		saveBeforeWipe('nationalJuiceMarketing')
-		saveBeforeWipe('creditScore2')
-		saveBeforeWipe('creditScore3')
-		saveBeforeWipe('coinsMax')
-		saveBeforeWipe('respectMilestone10000')
-        saveBeforeWipe('unlockBenevolence')
-        saveBeforeWipe('nationalTradeCert')
-        saveBeforeWipe('bigGloves')
-        saveBeforeWipe('desktopMode')
-        saveBeforeWipe('nutritionists')
-        saveBeforeWipe('megaCoinsInBankMax')
-        saveBeforeWipe('betterTraining')
-        saveBeforeWipe('autosave')
-        saveBeforeWipe('showBarPercent')
-        saveBeforeWipe('hideCompletedSkills')
-        saveBeforeWipe('hideMaxedPurchases')
-        saveBeforeWipe('researchers')
-        saveBeforeWipe('upgradeMoreStorage')
-        saveBeforeWipe('changeResearchersBy10Unlock')
-        saveBeforeWipe('rottenActualWisdom')
+		saveWipeValues = [
+		'surveillanceCamera2', 
+		'versionNumber', 
+		'nationalJuiceMarketing', 
+		'creditScore2', 
+		'creditScore3', 
+		'coinsMax', 
+		'respectMilestone10000', 
+		'unlockBenevolence', 
+		'nationalTradeCert', 
+		'bigGloves', 
+		'desktopMode', 
+		'nutritionists', 
+		'megaCoinsInBankMax', 
+		'betterTraining', 
+		'autosave', 
+		'showBarPercent', 
+		'hideCompletedSkills', 
+		'hideMaxedPurchases', 
+		'researchers', 
+		'upgradeMoreStorage', 
+		'changeResearchersBy10Unlock', 
+		'rottenActualWisdom', 
+		'timePlayed'];
+
+		for (let i = 0; i < saveWipeValues.length; i++) {
+			saveBeforeWipe(saveWipeValues[i])		
+		}
 
 
 
-        Object.assign(gameData, gameDataBase)
+
+		//Before Travel
+			Object.assign(gameData, gameDataBase)
+        //After Travel
+
 
 
 		saveAfterWipe('saveAlphaCoinsUnlock')
+		saveAfterWipe('megaCoins')	
 
 		if (gameData.saveAlphaCoinsUnlock) {
 			saveAfterWipe('alphaCoins')
@@ -712,30 +722,14 @@ function travelToNextVillage() {
 		for (i = 1; i <= numberOfSpecialAchievements; i++) {
 			saveAfterWipe('specialAchievement' + i)	
 		}
-		saveAfterWipe('surveillanceCamera2')		
-		saveAfterWipe('versionNumber')	
-		saveAfterWipe('timePlayed')	
-	    saveAfterWipe('upgradeMoreStorage')
-		saveAfterWipe('creditScore2')
-		saveAfterWipe('creditScore3')
-		saveAfterWipe('nationalJuiceMarketing')
-		saveAfterWipe('coinsMax')		
-		saveAfterWipe('respectMilestone10000')
-        saveAfterWipe('unlockBenevolence')
-        saveAfterWipe('nationalTradeCert')
-        saveAfterWipe('researchers')
-        saveAfterWipe('megaCoins')
-        saveAfterWipe('bigGloves')
-        saveAfterWipe('desktopMode')
-        saveAfterWipe('nutritionists')
-        saveAfterWipe('megaCoinsInBankMax')
-        saveAfterWipe('betterTraining')
-        saveAfterWipe('autosave')
-        saveAfterWipe('showBarPercent')
-        saveAfterWipe('hideCompletedSkills')
-        saveAfterWipe('hideMaxedPurchases')
-        saveAfterWipe('changeResearchersBy10Unlock')
-        saveAfterWipe('rottenActualWisdom')
+		
+		
+
+		for (let i = 0; i < saveWipeValues.length; i++) {
+			saveBeforeWipe(saveWipeValues[i])		
+		}
+		
+
 
 
 

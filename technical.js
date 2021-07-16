@@ -33,20 +33,13 @@ var gameDataBase = {
     limeTypeToJuiceToggle: 0,
     lookAround: 0,
     rottenLimes: 0,
-    rottenWisdomBar: 0,
-	
-	
-    motivationBar: 0,
-    motivationSkillLevel: 0,
-    motivationSkillLevelMax: 100,
+
 	
 	
 	
     learnANewSkillBar: 0,
     learnANewSkill: -2,
-    limebidextrousBar: 0,
-    limebidextrous: 0,
-    intelligenceBar: 0,
+
     teachBar: 0,
     workingBar: 0,
     lookAroundNumber: 0,
@@ -72,8 +65,7 @@ var gameDataBase = {
     deliveryOngoing: 0,
     juiceBulkAmountToggle: 1,
     tomes: 0,
-    knifebidextrous: 0,
-    knifebidextrousBar: 0,
+
     applicationReady: 0,
     aesthetic: 0,
     foodTypeToggle: 1,
@@ -87,14 +79,7 @@ var gameDataBase = {
     hasGottenJuice: 0,
     foodType: 0,
     showBarPercent: 0,
-    intelligenceSkillLevel: 0,
-    limebidextrousSkillLevel: 0,
-    knifebidextrousSkillLevel: 0,
-    rottenWisdomSkillLevel: 0,
-    intelligenceSkillLevelMax: 20,
-    limebidextrousSkillLevelMax: 50,
-    knifebidextrousSkillLevelMax: 20,
-    rottenWisdomSkillLevelMax: 50,
+
     basketBar: 0,
     baskets: 0,
     limesInBaskets: 0,
@@ -180,9 +165,6 @@ var gameDataBase = {
     unlockBenevolence: 0,
 	benevolenceToggle: 0,
 
-    ambidextrousBar: 0,
-    ambidextrousSkillLevel: 0,
-    ambidextrousSkillLevelMax: 100,
 
 
     diseaseTileSize: 1,
@@ -235,10 +217,18 @@ var gameDataBase = {
     currentTask2: "none",
 
 
-    keenEyeBar: 0,	
-    keenEyeSkillLevel: 0,
-    keenEyeSkillLevelMax: 20,
-
+	keenEyeSkillLevelMax:         20,
+	intelligenceSkillLevelMax:    20,
+	limebidextrousSkillLevelMax:  50,
+	knifebidextrousSkillLevelMax: 20,
+	rottenWisdomSkillLevelMax:    50,
+	motivationSkillLevelMax:     100,
+	ambidextrousSkillLevelMax:   100,
+		
+	knifebidextrous: 0,
+    limebidextrous: 0,
+	
+	
     desktopMode: 1,
 	
 	isAutoCollecting: 0,
@@ -342,6 +332,15 @@ var gameDataBase = {
     //default is 1 :D
     tickspeed: 1,
 }
+
+
+	for (let i = 0; i < mainSkills.length; i++) {
+		gameDataBase[mainSkills[i] + 'Bar'] = 0
+		gameDataBase[mainSkills[i] + 'SkillLevel'] = 0
+	}
+
+
+
 
 var gameData = {}
 

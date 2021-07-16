@@ -5,7 +5,7 @@ function loadStuff(savegame) {
         Object.assign(gameData, savegame);
 
         backwardsCompatibility(gameData.versionNumber)
-        gameData.versionNumber = 126
+        gameData.versionNumber = 127
         updateValues()
         updateAfterLoad()
     } else {
@@ -547,7 +547,7 @@ function barStartGranular(variable) {
 function barStartGranularSkillBasic(variable) {
     variableBar = variable + "Bar"
 
-    i = eval("gameData." + variableBar)
+    i = gameData[variableBar]
     if ((i == 100 || i == 0) && (eval("gameData." + variable + "SkillLevel") < eval("gameData." + variable + "SkillLevelMax") && gameData.eat >= eval("gameData." + variable + "SkillLevel"))) {
         eval("gameData.eat -= gameData." + variable + "SkillLevel")
         eval("gameData." + variableBar + " = 0")
