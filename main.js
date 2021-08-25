@@ -726,7 +726,7 @@ function travelToNextVillage() {
 		
 
 		for (let i = 0; i < saveWipeValues.length; i++) {
-			saveBeforeWipe(saveWipeValues[i])		
+			saveAfterWipe(saveWipeValues[i])		
 		}
 		
 
