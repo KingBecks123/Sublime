@@ -5,8 +5,8 @@ accent0 = "#222222"; //Main Color
 accent1 = "#4DFE89"; //Accent Color
 accent2 = "gray"; //When buttons are toggled off
 accent3 = "#4DFE89"; //When buttons are toggled on
-accent4 = "#DEAD85"; //Special Buttons
-accent4Dark = "#C67848"; //Special Buttons Dark
+accent4 = "#FFBB9A"; //Special Buttons
+accent4Dark = "#FF894C"; //Special Buttons Dark
 whiteBlue = "#99DEFF"; //White
 grayBlue = "#4DC3FF"; //White
 
@@ -18,30 +18,6 @@ yellowAccent = "#FCFF4E";
 
 function addAesthetic() {
 
-
-    if (gameData.desktopMode == 0) {
-		
-		document.getElementById('skills').style.width = '380px'
-		document.getElementById('skillsSection1').style.position = 'relative'
-		document.getElementById('skillsSection2').style.position = 'relative'
-
-		
-        update("desktopModeButton", "In Mobile Mode")
-		
-		
-    } else {
-		
-		document.getElementById('skillsSection1').style.top = '0'
-		document.getElementById('skillsSection1').style.position = 'absolute'
-		document.getElementById('skillsSection2').style.position = 'absolute'
-		document.getElementById('skillsSection2').style.right = '0'
-		document.getElementById('skills').style.width = '760px'
-        update("desktopModeButton", "In Desktop Mode")
-		
-    }
-	
-	
-	
     twoToggleButtons('deliveryToggleExpressButton', 'deliveryToggleStandardButton', gameData.deliveryTypeToggle)
     twoToggleButtons('foodToggleRottenLimesButton', 'foodToggleLimesButton', gameData.foodTypeToggle)
     twoToggleButtons('juicePeeledLimesToggleButton', 'juiceLimesToggleButton', gameData.limeTypeToJuice)
@@ -69,8 +45,6 @@ function addAesthetic() {
     toggleAesthetic("benevolenceToggle")
     toggleAesthetic("autoAdvertiseBroker")
     toggleAesthetic("increaseJuicePricex10")
-    toggleAesthetic("pieConveyorBeltOn")
-
 
 	currentTaskAesthetic('usePeelers')		
 	currentTaskAesthetic('useMaxPeelers')	
@@ -80,36 +54,9 @@ function addAesthetic() {
 	
 	currentTaskAesthetic('eatFood')	
 	currentTaskAesthetic('sellYourJuice')	
-	
-	currentTaskAesthetic('findPieCustomers')	
-	
-	
 
-	if(gameData.wheat)
-		colorChanger('winnowWheat', accent4)
-	else
-		colorChanger('winnowWheat', grayAccentLight)
 
-	if(gameData.wheatSeeds)
-		colorChanger('grindFlour', accent4)
-	else
-		colorChanger('grindFlour', grayAccentLight)
-	
 
-	if(gameData.forestTreeType == 1)
-	{
-		colorChanger('forestTree1', accent3)
-		colorChanger('forestTree2', accent2)
-	}
-
-	else
-	{
-		colorChanger('forestTree2', accent3)
-		colorChanger('forestTree1', accent2)
-	}
-	
-	
-	
 
     var x = document.getElementsByClassName("changeResearchersBy10");
     for (i = 0; i < x.length; i++) {
@@ -166,30 +113,43 @@ function addAesthetic() {
 		colorChanger('increaseLakesButton', grayAccent)
 	}
 	
-	if (gameData.simulationTime == 1)
+	if (gameData.simulationTime == 1){
+		
 		colorChanger('checkResultsButton', accent4)
+	}
 	else
+	{
 		colorChanger('checkResultsButton', grayAccent)
+	}
 
-
-    if (gameData.autoCollectingBar == 0 || gameData.autoCollectingBar == (gameData.nourishment + 1) * 100)
+    if (gameData.autoCollectingBar == 0 || gameData.autoCollectingBar == (gameData.nourishment + 1) * 100) {
         colorChanger("pickUpLimes", limesRelatedAccent)
-    else
+    } else {
         colorChanger("pickUpLimes", grayAccent)
+    }
 	
-	
-    if (gameData.increaseJuicePricePermanance < 1)
+    if (gameData.increaseJuicePricePermanance < 1) {
         colorChanger('increaseJuicePriceButton', accent4)
-    else
+    } else {
         colorChanger('increaseJuicePriceButton', '#FF999A')
-	
+	}	
 
 
-    if (gameData.isAutoCollecting == 0)
+    if (gameData.isAutoCollecting == 0) {
         colorChanger('autoCollectingButton', accent4)
-    else
+    } else {
+
         colorChanger('autoCollectingButton', grayAccent)
+    }	
 	
+	
+
+    if (gameData.respect >= 50) {
+        showBasicDiv("storeTypesButtonsDiv")
+    } else {
+
+        hide("storeTypesButtonsDiv")
+    }
 	
 
     ifMaxDarkGray("basket")
@@ -197,105 +157,99 @@ function addAesthetic() {
     ifMaxDarkGray("peeler")
 
 
-	if (gameData.currentTask == 'autoCurrencyConversionBuy' || gameData.currentTask2 == 'autoCurrencyConversionBuy')
+	if (gameData.currentTask == 'autoCurrencyConversionBuy' || gameData.currentTask2 == 'autoCurrencyConversionBuy') {
 		colorChanger('currencyConvertAlphaCoinsButton', '#F8FF01')
-	else
+	} else {
 		colorChanger('currencyConvertAlphaCoinsButton', '#FDFF9A')
-	
-	if (gameData.currentTask == 'alphaToBeta' || gameData.currentTask2 == 'alphaToBeta')
-		colorChanger('currencyConvertBetaCoinsButton', '#F8FF01')
-	else
-		colorChanger('currencyConvertBetaCoinsButton', '#FDFF9A')
-	
-	
+	}
 	
 	function currentTaskAesthetic(x){
 		
 		button = x + "Button"
-		if (gameData.currentTask == x || gameData.currentTask2 == x)
+		if (gameData.currentTask == x || gameData.currentTask2 == x) {
 			colorChanger(button, accent4Dark)
-		else
+		} else {
 			colorChanger(button, accent4)
+		}
 		
 	}
 
 	function currentSkillAesthetic(x){
 		
 		button = x + "Button"
-		if (gameData.currentSkill == x)
+		if (gameData.currentSkill == x) {
 			colorChanger(button, accent4Dark)
-		else
+		} else {
 			colorChanger(button, accent4)
+		}
 		
 	}
 
-    if (gameData.lookAround == 3)
+    if (gameData.lookAround == 3) {
         hide('lookAroundButton')
-    else
+    } else {
         tabs('lookAroundButton', "inline-block")
+    }
 
-
-    if (gameData.juiceBulkAmountToggle == 100 && gameData.deliveryTypeToggle < 2)
+    if (gameData.juiceBulkAmountToggle == 100 && gameData.deliveryTypeToggle < 2) {
         colorChanger('increaseJuiceSoldButton', grayAccent)
-	else
+
+    } else {
         colorChanger('increaseJuiceSoldButton', grayAccentLight)
+    }
 
-
-    if (gameData.juiceBulkAmountToggle == 0)
+    if (gameData.juiceBulkAmountToggle == 0) {
         colorChanger('decreaseJuiceSoldButton', grayAccent)
-	else
+
+    } else {
         colorChanger('decreaseJuiceSoldButton', grayAccentLight)
+    }
 	
 	
     //Skill Button
     var x = document.getElementsByClassName("skillButton");
-	if(gameData.multitasking)
-	{
-		for (i = 0; i < x.length; i++) {
-			x[i].style['padding'] = "1px 10px 1px 10px";
-			x[i].style['border-radius'] = "12px";
+	if(gameData.multitasking){
+			for (i = 0; i < x.length; i++) {
+				x[i].style['margin'] = "5px";
+				x[i].style['padding'] = "1px 10px 1px 10px";
+				x[i].style['border-radius'] = "12px";
+			}
+			
+			
+			for (let i = 0; i < mainSkills.length; i++) {
+				currentSkillAesthetic(mainSkills[i])		
+			}			
+
+
+
+
 		}
-		
-		
-		for (let i = 0; i < mainSkills.length; i++) {
-			currentSkillAesthetic(mainSkills[i])		
-		}
-	}
-	else
-	{
-		for (i = 0; i < x.length; i++) {
-			x[i].style.backgroundColor = accent4;
-		}
-	}
-	
-	for (i = 0; i < x.length; i++) 
-	{
-		x[i].style['margin'] = "5px";
+		else{
+			for (i = 0; i < x.length; i++) {
+				x[i].style.backgroundColor = accent4;
+				x[i].style['margin'] = "5px 5px 5px 5px";
+			}
 	}
 	
 	
     //Currency Button
     var x = document.getElementsByClassName("currencyButton");
-	if(gameData.autoCurrencyConversionBuy)
-	{
-		for (i = 0; i < x.length; i++) 
-		{
-			x[i].style['padding'] = "1px 10px 1px 10px";
-			x[i].style['border-radius'] = "12px";
-		}
+	if(gameData.autoCurrencyConversionBuy){
+			for (i = 0; i < x.length; i++) {
+				
+				x[i].style['margin'] = "5px";
+				x[i].style['padding'] = "1px 10px 1px 10px";
+				x[i].style['border-radius'] = "12px";
+			}
 
-	}
-	else
-	{
-		for (i = 0; i < x.length; i++) 
-		{
-			x[i].style.backgroundColor = '#FDFF9A';
 		}
+		else{
+			for (i = 0; i < x.length; i++) {
+				x[i].style.backgroundColor = '#FDFF9A';
+				x[i].style['margin'] = "5px 5px 5px 5px";
+			}
 	}
-	for (i = 0; i < x.length; i++) 
-	{
-		x[i].style['margin'] = "5px";
-	}
+
 
     colorChanger('lookAroundButton', grayAccentLight)
     colorChanger('deliveryProgress', accent0)
@@ -328,8 +282,6 @@ function addAestheticBase(){
 
     colorChanger('mainBody', background)
     colorChanger('inventoryKnifeLime', accent3)
-	
-	selectedWheatItemAesthetic(gameData.selectedWheatItem)
 	
     //Basic Div
     var x = document.getElementsByClassName("basicDiv");
@@ -396,6 +348,8 @@ function addAestheticBase(){
         x[i].style['margin'] = "5px";
         x[i].style['padding'] = "1px 10px 1px 10px";
         x[i].style['border-radius'] = "12px";
+
+
     }
 
     //Special Button
@@ -421,6 +375,7 @@ function addAestheticBase(){
         x[i].style['margin'] = "5px";
     }
 
+
     //Skills
 
     //Skill Progress
@@ -437,23 +392,8 @@ function addAestheticBase(){
         x[i].style['margin'] = "5px";
     }	
 	
-	//Field Tile
-    var x = document.getElementsByClassName("fieldTile");
-    for (i = 0; i < x.length; i++) {
-        x[i].style.color = "#964D1A";
-        x[i].style.display = "none";
-        x[i].style.backgroundColor = "#DEAD85";
-        x[i].style.height = '90px';
-        x[i].style.width = '90px';
-        x[i].style.padding = '0px';
-		x[i].style.margin = '5px 0px 0px 0px';
-
-    }
-
-	
 	
 	changeVariablesColorAesthetic()
-	updateFieldTileAesthetic()
 	normalizeButtons()
 	pinButton()
 }
@@ -480,16 +420,31 @@ function changeVariablesColorAesthetic(){
 	
 	else
 	{
-		for (let i = 0; i < mainVariables.length; i++) {			
-			colorChangerText('textFor' + jsUcfirst(mainVariables[i]) + 'Div', mainVariablesColor2[i])
-			colorChangerText('textFor' + jsUcfirst(mainVariables[i])        , mainVariablesColor [i])
-		}
+		changeVariableColorsPretty('Limes', '#00B300', '#00FF01')
+		changeVariableColorsPretty('RottenLimes', '#00B300', '#00FF01')
+		changeVariableColorsPretty('Coins', '#AEB301', '#F8FF01')
+		changeVariableColorsPretty('Juice', '#00B33D', '#00FF55')
+		changeVariableColorsPretty('MegaCoins', '#B40001', '#FE0000')
+		changeVariableColorsPretty('AlphaCoins', '#B37700', '#FFAA01')
+		changeVariableColorsPretty('PeeledLimes', '#72B301', '#A0FF01')
+		
+
 	}
 
 }
 
+function changeVariableColorsPretty(elem, colorDark, color){
+	colorChangerText('textFor' + elem + 'Div', colorDark)
+	colorChangerText('textFor' + elem, color)
+}
 
 function changeVariableColors(elem, color, colorDark){
-	document.getElementById(elem+'Div').style.color = colorDark
-	document.getElementById(elem).style.color = color
+		  label = document.getElementById(elem+'Div')
+	  if (label)
+		  label.style.color = colorDark
+	  
+	  label = document.getElementById(elem)
+	  if (label)
+		  label.style.color = color
+
 }

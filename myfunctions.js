@@ -5,7 +5,7 @@ function loadStuff(savegame) {
         Object.assign(gameData, savegame);
 
         backwardsCompatibility(gameData.versionNumber)
-        gameData.versionNumber = 129
+        gameData.versionNumber = 127
         updateValues()
         updateAfterLoad()
     } else {
@@ -17,11 +17,6 @@ function preventNegative(id){
     if (gameData[id] < 0) {
         gameData[id] 
     }
-}
-
-function setRotation(id, number){
-	document.getElementById(id).style.transform = 'rotate(' + number + 'deg)'		
-
 }
 
 function timeToShowScience(id){
@@ -185,7 +180,7 @@ function pickCurrentSkill(x) {
 	
 	
 	else {
-		barStartGranularSkillBasic(x, true)
+		barStartGranularSkillBasic(x)
 	}
 	
 	updateValues()
@@ -214,21 +209,12 @@ function startCurrentTask(x) {
 	else if (x == 'usePeelers') {
 		peelerPeel()
 	}	
-	
+
 	else if (x == 'useMaxPeelers') {
 		peelerPeelMax()
 	}
-	
 	else if (x == 'autoCurrencyConversionBuy') {
 		coinsToAlphaClick()
-	}	
-	
-	else if (x == 'alphaToBeta') {
-		alphaToBetaClick()
-	}	
-	
-	else if (x == 'findPieCustomers') {
-		findPieCustomers()
 	}	
 	
 }
@@ -324,11 +310,10 @@ function basicToggle(input, type) {
 
 function moveBar(x) {
     i = x + "Bar"
-	if(gameData[i] > 100)
-		gameData[i] = 100
+
 
     var elem = document.getElementById(i);
-    elem.style.width = gameData[i] + "%";
+    elem.style.width = eval("gameData." + i) + "%";
     elem.innerHTML = "  " + Math.ceil(eval("gameData." + i)) + "%";
 }
 
@@ -491,7 +476,7 @@ function beckyRandomMinMax(min, max) {
 }
 
 //Recurring function for continuing a loading bar.
-function basicBarSkill(variable, speed) {
+function basicBarSkill(variable) {
 	
 	variableBar = variable + "Bar"
 
@@ -499,10 +484,7 @@ function basicBarSkill(variable, speed) {
 		
         gameData[variableBar] += 0.5
 				
-		if(speed == 'slow')
-			setTimeout(variableBar + "()", (1000 / (gameData.intelligenceSkillLevel * 2 / 20 + 1)) / gameData.tickspeed)
-		else
-			setTimeout(variableBar + "()", (100 / (gameData.intelligenceSkillLevel * 2 / 20 + 1)) / gameData.tickspeed)
+        setTimeout(variableBar + "()", (100 / (gameData.intelligenceSkillLevel * 2 / 20 + 1)) / gameData.tickspeed)
 
 		
     } else {
@@ -536,7 +518,7 @@ function sleep(milliseconds) {
 }
 
 function restartBar(x) {
-    y = gameData[x + "Bar"]
+    y = eval("gameData." + x + "Bar")
     if (y < 100 && y != 0) {
         eval(x + "Bar()")
     }
@@ -562,26 +544,15 @@ function barStartGranular(variable) {
 }
 
 //Starts a granular loading bar for basic skills.
-function barStartGranularSkillBasic(variable, useSkillTrainer) {
-	
+function barStartGranularSkillBasic(variable) {
     variableBar = variable + "Bar"
+
     i = gameData[variableBar]
-    if ((i == 100 || i == 0) && (gameData[variable + "SkillLevel"] < gameData[variable + "SkillLevelMax"] && gameData.eat >= gameData[variable + "SkillLevel"])) {
-
-		gameData.eat -= gameData[variable + "SkillLevel"]
-
-		if(gameData.skillTrainer == 1 && useSkillTrainer == true)
-		{
-			gameData[variableBar] = 100
-		}
-		else
-		{
-			gameData[variableBar] = 0
-		}
-		
-		eval(variableBar + "()")
+    if ((i == 100 || i == 0) && (eval("gameData." + variable + "SkillLevel") < eval("gameData." + variable + "SkillLevelMax") && gameData.eat >= eval("gameData." + variable + "SkillLevel"))) {
+        eval("gameData.eat -= gameData." + variable + "SkillLevel")
+        eval("gameData." + variableBar + " = 0")
+        eval(variableBar + "()")
     }
-	
 }
 
 //Replaces an element with new text.
@@ -593,38 +564,34 @@ function update(id, content) {
 function updateNumber(id) {
   elem = "textFor" + jsUcfirst(id)
   valRaw = gameData[id]
-  
   if (valRaw > 1e9)
        val = valRaw.toExponential(3)
   else
        val = valRaw.toLocaleString()
-   
-	if((valRaw && gameData[id + 'ShowVariable']) || id == 'limes')
-	{
-		showBasicDiv(elem + 'Div')
-		showBasicDiv(elem + 'Br' )
-		showBasicDiv(elem + 'P'  )
-		showBasicDiv(elem        )
-	}
-	else
-	{
-		hide        (elem + 'Div')
-		hide        (elem + 'Br' )
-		hide        (elem + 'P'  )
-		hide        (elem        )
-	}
+  if (valRaw)
+  {
+	  if(valRaw > 0){
+		  
+      label = document.getElementById(elem+'Div')
+      if (label)
+          label.style.display = "block"
 	  
+	  label = document.getElementById(elem+'P')
+      if (label)
+          label.style.display = "block"
+	  
+	  label = document.getElementById(elem)
+      if (label)
+          label.style.display = "block"
+	  
+	  label = document.getElementById(elem+'Br')
+      if (label)
+          label.style.display = "block"
+	  }
+  }      
   update(elem, val)
 }
 
-function currencyDisplay(id){
-	variable = mainVariables[id] + 'ShowVariable'
-	if (gameData[variable])
-		gameData[variable] = false
-	else
-		gameData[variable] = true
-
-}
 
 //Capitalises the first letter in a string.
 function jsUcfirst(string) {
@@ -711,7 +678,7 @@ function checkHideOrShow(i, txt) {
 }
 
 function saveBeforeWipe(id) {
-	eval(id + 'Now = gameData.' + id )
+	eval(id + 'Now' + '=' + 'gameData.' + id )
 }
 
 
@@ -750,36 +717,17 @@ function resetTime() {
 	gameData.tickspeed = 1
 }
 
+function autosave() {
+    if (gameData.autosave == 1) {
+        saveGame()
+    }
+    setTimeout(autosave, 500)
+}
+
 function resetGame() {
     if (window.prompt("Are you sure? Type 'yes' if you are") == "yes") {
         Object.assign(gameData, gameDataBase)
         localStorage.setItem('mathAdventureSave', JSON.stringify(gameData))
         location.reload();
     }
-}
-
-function backwardsCompatibility(versionNumber) {
-    if (versionNumber == undefined || versionNumber < 30) {
-
-        gameData.basketsMax = 50
-        gameData.juicersMax = 100
-        gameData.peelersMax = 500
-        gameData.intelligenceSkillLevelMax = 20
-    }
-    if (versionNumber < 78) {
-
-		gameData.diseaseArray = [
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0]
-    ]
-		diseaseControlQuit()
-
-    }
-}
-
-function setValue(id, amount){
-	gameData[id] = amount
 }

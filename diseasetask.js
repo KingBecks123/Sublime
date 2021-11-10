@@ -100,15 +100,15 @@ if (gameData.civiliansPlaced == gameData.civiliansTotal && gameData.simulationTi
 
 		if (diseaseControlFailed == 0) {
 			if (gameData.benevolenceToggle)
-				gameData.respect += gameData.limeDiseaseLakes + 1 + benevolenceRespectIncrease + gameData.respectBillboard
+				gameData.respect += gameData.limeDiseaseLakes + 1 + benevolenceRespectIncrease
 			else
-				gameData.respect += gameData.limeDiseaseLakes + 1 + gameData.respectBillboard
+				gameData.respect += gameData.limeDiseaseLakes + 1
 			
 		} else {
 			if (gameData.benevolenceToggle)
-				gameData.respect -= gameData.limeDiseaseLakes + 1 + benevolenceRespectIncrease + gameData.respectBillboard
+				gameData.respect -= gameData.limeDiseaseLakes + 1 + benevolenceRespectIncrease
 			else
-				gameData.respect -= gameData.limeDiseaseLakes + 1 + gameData.respectBillboard
+				gameData.respect -= gameData.limeDiseaseLakes + 1
 
 		}
 

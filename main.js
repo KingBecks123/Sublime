@@ -1,24 +1,14 @@
 var loopNumberBasket = 0;
-var loopNumberGoldenLimes = 0;
 var loopNumberTimePlayed = 0;
 var loopNumbercurrentTask = 0;
 var numberOfBasicAchievements = 7;
 var numberOfSpecialAchievements = 2;
 
+mainVariables = ['limes', 'rottenLimes', 'coins', 'juice', 'megaCoins', 'alphaCoins', 'peeledLimes'];
+//Main variables change color in options and are updated as numbers.
 
-mainVariables       = ['limes'  , 'rottenLimes' , 'peeledLimes' , 'juice'  , 'coins'  , 'megaCoins' , 'alphaCoins' , 'betaCoins' , 'pies'   , 'pieCoins' , 'goldenLimes' ];
-mainVariablesNames  = ['Limes'  , 'Rotten Limes', 'Peeled Limes', 'Juice'  , 'Coins'  , 'Mega Coins', 'Alpha Coins', 'Beta Coins', 'Pies'   , 'Pie Coins', 'Golden Limes'];
-
-mainVariablesColor  = ['#00B300', '#00B300'     , '#72B301'     , '#00B33D', '#AEB301', '#B40001'   , '#B37700'    , '#AEB301'   , '#964D1A', '#964D1A'  , '#AEB301'     ];
-mainVariablesColor2 = ['#00FF01', '#00FF01'     , '#A0FF01'     , '#00FF55', '#F8FF01', '#FE0000'   , '#FFAA01'    , '#F8FF01'   , '#C67848', '#C67848'  , '#F8FF01'     ];
-
-
-
-mainSkills =      ['keenEye' , 'rottenWisdom' , 'limebidextrous', 'intelligence', 'knifebidextrous', 'motivation', 'ambidextrous', 'bitterSpeed' ];
-mainSkillsNames = ['Keen Eye', 'Rotten Wisdom', 'Limebidextrous', 'Intelligence', 'Knifebidextrous', 'Motivation', 'Ambidextrous', 'Bitter Speed'];
-
+mainSkills = ['keenEye', 'rottenWisdom', 'limebidextrous', 'intelligence', 'knifebidextrous', 'motivation', 'ambidextrous'];
 //Uses: Restart bar after reloading. Sets the level to the max level if it somehow goes above. Updates test for level / levelMax. Updates aesthetic for the skill's button. Creates HTML for the skill.
-//Order is used for showing skills.
 
 mainSciences = ['watertight', 'surveying', 'benevolence'];
 //Uses: Updates time to complete science. Updates number of researchers allocated.
@@ -68,7 +58,7 @@ function mainGameLoopSlow() {
 
 	
 	if(gameData.currentSkill !== 'none')
-		barStartGranularSkillBasic(gameData.currentSkill, false)
+		barStartGranularSkillBasic(gameData.currentSkill)
 
 		
 	if(gameData.bachelorsDegreeFinance)
@@ -79,18 +69,12 @@ function mainGameLoopSlow() {
 			gameData.alphaCoinsExchangeRate -= 1
 	}
 	
-	if(gameData.maps > 4)
-	{
-		if(beckyRandom(2) == 1 && gameData.betaCoinsExchangeRate < 5000)
-			gameData.betaCoinsExchangeRate += 5
-		else if (gameData.betaCoinsExchangeRate > 500)
-			gameData.betaCoinsExchangeRate -= 5
-	}
-	
 	gameData.achievementBar = 0
     for (i = 1; i < 7; i++) {
-		if (gameData['achievement' + i])
+		
+		if (gameData['achievement' + i]) {
 			gameData.achievementBar += 100 / 7
+		}
 	}
 	
 	gameData.lastSaveTime = Date.now()
@@ -100,62 +84,21 @@ function mainGameLoopSlow() {
 		gameData.timePlayed += 1 
 		loopNumberTimePlayed = 0
 	}
-	
-	if(gameData.isThereACustomer)
-	{
-		if(gameData.customerWaitTime < 5)
-			update("customerButton", ":)")
-		else if(gameData.customerWaitTime >= 5 && gameData.customerWaitTime < 10)
-			update("customerButton", ":l")
-		else if(gameData.customerWaitTime >= 10 && gameData.customerWaitTime < 15)
-			update("customerButton", ":(")
-		else if (gameData.customerWaitTime == 15)
-		{
-			gameData.isThereACustomer = 0
-			gameData.customerWaitTime = 0
-			update("customerButton", "  ")
-			update("couldFindCustomer", "The customer left")	
-		}
-	}
-	else
-	{
-		update("customerButton", "  ")
-	}
-		
-	updatePieStuffSlow()
-
-	gameData.customerWaitTime += 1
-
 
 	moveBar('achievement')
 	updateMapTileAesthetic()
-	saveGame()
 	setTimeout(mainGameLoopSlow, 500)
 }
 
 function mainGameLoop() {
 	
 	loopNumberBasket += 1	
-	loopNumberGoldenLimes += 1	
-
 	
-	if (gameData.basketBar < 100 && loopNumberBasket >= 24) {
+	 if (gameData.basketBar < 100 && loopNumberBasket >= 24) {
         gameData.basketBar += 0.2;
 		loopNumberBasket = 0
-		
-		if(beckyRandom(100) == 1)
-			gameData.goldenLimesInBaskets += 1
     }
-	
-	if (loopNumberGoldenLimes >= 200) {
-        if(gameData.goldenLimes > 0)
-		{
-			gameData.goldenLimes -= 1
-		}
-		
-		loopNumberGoldenLimes = 0
 
-    }
 	
 	setTimeout(mainGameLoop, 50)
     updateValues()
@@ -231,7 +174,6 @@ function calculateOfflineProgress(){
 	saveGame()
 
 }
-
 
 function sellMaxJuice() {
     if (gameData.juice < gameData.juiceBulkAmountMax) {
@@ -309,7 +251,7 @@ function deliveryToggleExpress() {
 }
 
 function motivateEmployee() {
-	if(gameData.employeeWorking > 0)
+	if(gameData.employeeWorking > 0 && gameData.workingBar < 99 - gameData.motivationSkillLevel / 20)
 	{
 	    gameData.workingBar += gameData.motivationSkillLevel / 20
 	}
@@ -326,6 +268,7 @@ function foodToggleRottenLimes() {
     gameData.foodTypeToggle = 1
     updateValues()
 }
+
 
 function payEmployee() {
     if (gameData.coins >= gameData.employeeWage && gameData.employeeWorking < gameData.employeeWorkingMax) {
@@ -731,6 +674,7 @@ function travelToNextVillage() {
 		'nutritionists', 
 		'megaCoinsInBankMax', 
 		'betterTraining', 
+		'autosave', 
 		'showBarPercent', 
 		'hideCompletedSkills', 
 		'hideMaxedPurchases', 

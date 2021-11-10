@@ -149,8 +149,6 @@ var gameDataBase = {
     hasAdvertised: 0,
 
     betterTraining: 0,
-	
-	respectBillboard: 0,
 
     civiliansPlaced: 0,
     civiliansTotal: 2,
@@ -203,12 +201,11 @@ var gameDataBase = {
     shoes: 0,
 	
 	isCurrentlyJuicing: 0,
-	isCurrentlyExchangingAlpha: 0,
-
 
     pin: "none",
     pinUnlock: 0,
 	
+	hideRottenLimes: 0,
 	hideKnife: 0,
 	manuscripts: 0,
 
@@ -226,9 +223,7 @@ var gameDataBase = {
 	knifebidextrousSkillLevelMax: 20,
 	rottenWisdomSkillLevelMax:    50,
 	motivationSkillLevelMax:     100,
-	ambidextrousSkillLevelMax:   20,
-	bitterSpeedSkillLevelMax:   200,
-
+	ambidextrousSkillLevelMax:   100,
 		
 	knifebidextrous: 0,
     limebidextrous: 0,
@@ -320,7 +315,6 @@ var gameDataBase = {
 	invertText: 0,
 	surveillanceCamera: 0,
 	surveillanceCamera2: 0,
-	skillTrainer: 0,
 
 	timePlayed: 0,
 
@@ -329,81 +323,8 @@ var gameDataBase = {
 	transferAlphaCoinsBulkUnlock: 0,
 	lightRobe: 0,
 	rottenActualWisdom: 0,
-	
-	forestTree2: 0,
-	forestTreeType: 1,
-	goldenLimes: 0,
-	goldenLimesInBaskets: 0,
-	eatGoldenLimeBar: 100,
-	bitterSpeeding: 0,
 
-	
-	//Beta Coins
-	betaCoins: 0,
-	betaCoinsExchangeRate: 2500,
-	betaCoinTransferAmount: 1,
-	alphaToBetaBar: 0,
-	
-	//Pie
-	pies: 0,
-	hasGottenPies: 0,
-	piePrice: 1,
-	findPieCustomersBar: 0,
-	couldFindCustomer: 2,
-	isFindingPieCustomers: 0,
-	isThereACustomer: 0,
-	customerWaitTime: 0,
-	hasSoldPie: 0,
-	pieConveyorBelt : 0,
-	pieConveyorBeltOn: 0,
-	isPieBaking: 0,
-	
-	pieBucket: 0,
-	pieFlourBucket: 0,
-
-	juiceInPieBucket: 0,
-	flourInPieBucket: 0,
-	
-	pieBucketNozzle: 0,	
-	pieFlourBucketNozzle: 0,
-
-	juiceBucketHoleSize: 10,
-	flourBucketHoleSize: 10,
-	
-	bellows: 0,
-	bellowsBar: 0,
-	bellowsCurrentlyBlowing: 0,
-	
-	pieEmployee: 0,
-	pieEmployeeSalesLeft: 0,
-	upgradeNozzles: 0,
-
-
-	//Wheat
-	wheatField: 0,
-	wheat: 0,
-	wheatSeeds: 0,
-    wheatFieldArray: [
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0]
-    ],
-	wheatFieldXDimension: 1,
-	mortarAndPestle: 0,
-	flour: 0,
-	pieOven: 0,
-	bakePieBar: 0,
-	juiceAsPieIngredient: 0,
-	flourAsPieIngredient: 0,
-	pieCoins: 0,
-	
-	wheatHarvesters: 0,
-	seedDrills: 0,
-	hasGottenFieldTools: 0,
-	
-	selectedWheatItem: 'seed',
+    autosave: 1,
 
     //Should be 0 for normal game, 1 if you want to go faster :)
     difficulty: 0,
@@ -418,10 +339,7 @@ var gameDataBase = {
 		gameDataBase[mainSkills[i] + 'SkillLevel'] = 0
 	}
 
-	for (let i = 0; i < mainVariables.length; i++) {
-		gameDataBase[mainVariables[i] + 'ShowVariable'] = true
-		gameDataBase[mainVariables[i] + 'UnlockedVariable'] = false
-	}
+
 
 
 var gameData = {}
@@ -435,7 +353,6 @@ function gameStart() {
 	surveyingBarDoMove = 0
 	benevolenceBarDoMove = 0
 	watertightBarDoMove = 0
-	findPieCustomersBarDoMove = 0
 
 
 
@@ -452,6 +369,7 @@ function gameStart() {
 
 	
     updateValues()
+    autosave()
 
 	tab(gameData.mainTab)
     tabMarket("marketMain")
@@ -477,9 +395,6 @@ function tab(tabby) {
     tabs("company", "none")
     tabs("forest", "none")
     tabs("science", "none")
-    tabs("bakery", "none")
-    tabs("field", "none")
-
 
 	
 	colorChanger('scienceButton', '#9ABBFF')
@@ -492,8 +407,6 @@ function tab(tabby) {
 	colorChanger('tasksButton', '#FF98DD')
 	colorChanger('companyButton', '#BBBBBB')
 	colorChanger('forestButton', '#BBBBBB')
-	colorChanger('bakeryButton', '#BBBBBB')
-	colorChanger('fieldButton', '#C67848')
 
 
 
@@ -521,8 +434,6 @@ function tab(tabby) {
 			colorChanger(tabby + "Button", "#FF4DFF")
 		if(tabby == 'megaCoinUpgrades')
 			colorChanger(tabby + "Button", "#FF4D4D")
-		if(tabby == 'field')
-			colorChanger(tabby + "Button", "#964D1A")
 
     }
 
@@ -586,6 +497,7 @@ function tabScience(tabby) {
     document.getElementById(tabby).style.display = "block"
 }
 
+
 function tabOptions(tabby) {
     tabs("gameOptions", "none")
     tabs("uiOptions", "none")
@@ -593,121 +505,4 @@ function tabOptions(tabby) {
 
 	
     document.getElementById(tabby).style.display = "block"
-}
-
-function fixOverMaxedVariables(){
-	if (gameData.knifebidextrousSkillLevel > gameData.knifebidextrousSkillLevelMax) {
-        gameData.knifebidextrousSkillLevel = gameData.knifebidextrousSkillLevelMax
-    }
-
-    if (gameData.juiceBulkAmountToggle > 100 && gameData.deliveryTypeToggle < 2) {
-        gameData.juiceBulkAmountToggle = 100
-    }
-
-    if (gameData.juiceBulkAmountToggle > 500) {
-        gameData.juiceBulkAmountToggle = 500
-    }
-
-
-    if (gameData.coins > gameData.coinsMax) {
-        gameData.coins = gameData.coinsMax
-    }
-	
-    if (gameData.basketBar > 100) {
-        gameData.basketBar = 100
-    }
-	
-    if (gameData.eatBar > 100) {
-        gameData.eatBar = 100
-    }
-	
-    if (gameData.respect < 0) {
-        gameData.respect = 0
-    }
-	
-    if (gameData.workingBar > 100) {
-        gameData.workingBar = 100
-    }
-	
-    if (gameData.coinsToAlphaBar > 100) {
-        gameData.coinsToAlphaBar = 100
-    }
-	
-    if (gameData.megaCoinsInBank > gameData.megaCoinsInBankMax) {
-        gameData.megaCoinsInBank = gameData.megaCoinsInBankMax
-    }
-	
-    if (gameData.deliveryBar > 100) {
-        gameData.deliveryBar = 100
-    }
-
-    if (gameData.learnANewSkillBar > 100) {
-        gameData.learnANewSkillBar = 100
-    }
-
-    if (gameData.employeeWorking > gameData.employeeWorkingMax) {
-        gameData.employeeWorking = gameData.employeeWorkingMax
-    }
-
-    overMaximum("baskets")
-    overMaximum("juicers")
-    overMaximum("peelers")
-    overMaximum("intelligenceSkillLevel")
-	
-	preventNegative('coins')
-	preventNegative('limes')
-	preventNegative('respect')
-}
-
-function addHTML(){
-	
-	for (let i = 0; i < mainSkills.length; i++) {
-	
-		var name = mainSkills[i]
-		var div = document.getElementById(name + "Div")
-		var title = mainSkillsNames[i]
-		
-		
-		
-		
-		
-		var skillLevel       = document.createElement("p");
-		    skillLevel.id    = name + "SkillLevel";
-		    skillLevel.classList.add("basicText");
-		    div.appendChild(skillLevel);
-			
-		var skillProgressSpan                = document.createElement("span")
-		skillProgressSpan.innerHTML          = '<div class="skillProgress" id="' + name + 'Progress"><div class="skillBar" , id="' + name + 'Bar">0%</div></div>';
-		insert(div, skillProgressSpan)
-		
-		
-		var skillButtonSpan                  = document.createElement("span")
-		skillButtonSpan.innerHTML            = '<button class="skillButton" id="' + name + "Button" + '" onclick="pickCurrentSkill(&apos;' + name + '&apos;)">' + title + '</button>';
-		insert(div, skillButtonSpan)
-
-
-	}
-
-	for (let i = 1; i < mainVariables.length; i++) {	
-		var showVariableButton                  = document.createElement("span")
-		showVariableButton.innerHTML            = '<button class="specialButton" id="currencyDisplay(' + i + ')" onclick="currencyDisplay(' + i + ')"  style="width:167px;">Show ' + mainVariablesNames[i] + '</button>';
-		document.getElementById('backpackDiv').append(showVariableButton)
-	}
-	
-	for (let i = 0; i < mainVariables.length; i++) {	
-		var id = jsUcfirst(mainVariables[i])
-		var stat                  = document.createElement("span")
-		stat.innerHTML            = '<div class="stat" id="textFor' + id + 'Div">' + mainVariablesNames[i] + ' </div><div class="stat ar" id="textFor' + id + '"  style="display:none ; ">0</div><p id="textFor' + id + 'P"  style="display:none ; "> </p><br  id="textFor' + id + 'Br"   style="display:none ; "/>';
-		document.getElementById('backgroundForValues').append(stat)
-	}
-	
-	document.getElementById('textForBetaCoinsDiv').style.textDecoration = 'underline'
-	document.getElementById('textForPieCoinsDiv').style.textDecoration = 'underline'
-
-	function insert(div, thing)
-	{
-		div.insertBefore(thing, div.firstChild);
-	}
-
-	
 }
