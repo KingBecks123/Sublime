@@ -23,6 +23,74 @@ function advertiseBar() {
     
 }
 
+function useBellows() {
+	if(gameData.bellowsBar < 0.5)
+	{	
+		gameData.bellowsBar = 100
+		bellowsBar()
+	}
+
+	gameData.bellowsBar = 100
+	gameData.bellowsCurrentlyBlowing = 1
+
+}
+
+function bellowsBar() {
+    if (gameData.bellowsBar > 0) {
+        gameData.bellowsBar -= 0.5;
+		moveBar("bellows")
+        setTimeout(bellowsBar, 100)
+    } else {
+		gameData.bellowsCurrentlyBlowing = 0
+    }
+}
+
+function bakePie() {
+    if ((gameData.bakePieBar == 100 || gameData.bakePieBar == 0) && gameData.juiceAsPieIngredient > 0 && gameData.flourAsPieIngredient > 0 && !gameData.isPieBaking) {
+        gameData.bakePieBar = 0
+		gameData.isPieBaking = 1
+        bakePieBar()
+    }
+}
+
+function bakePieBar() {
+    if (gameData.bakePieBar < 100) {
+        gameData.bakePieBar += 0.5;
+		moveBar("bakePie")
+        setTimeout(bakePieBar, 100 / (gameData.bellowsCurrentlyBlowing + 1))
+    } else {
+		gameData.pies += 1
+		gameData.juiceAsPieIngredient = 0
+		gameData.flourAsPieIngredient = 0
+		gameData.isPieBaking = 0
+    }
+}
+
+function findPieCustomers() {
+    if ((gameData.findPieCustomersBar == 100 || gameData.findPieCustomersBar == 0) && !gameData.isFindingPieCustomers) {
+        gameData.findPieCustomersBar = 0
+		gameData.isFindingPieCustomers = 1			
+		update("couldFindCustomer", "Waiting for customers...")		
+        findPieCustomersBar()
+    }
+}
+
+function findPieCustomersBar() {
+    if (gameData.findPieCustomersBar < 100) {
+		
+		if(findPieCustomersBarDoMove)
+			gameData.findPieCustomersBar += 0.5;
+		
+		findPieCustomersBarDoMove = 1
+		moveBar("findPieCustomers")
+		setTimeout(findPieCustomersBar, (Math.pow(2, gameData.piePrice) + 10) / gameData.tickspeed)
+		
+    } else {
+        lookForCustomer()
+    }
+    
+}
+
 function searchForACurrencyBroker() {
     if (gameData.alphaCoins >= 10) {
         gameData.alphaCoins -= 10
@@ -55,9 +123,10 @@ function coinsToAlphaStart() {
 
 function coinsToAlphaClick(){
 	price = (gameData.alphaCoinsExchangeRate + gameData.currencyBrokerFee) * gameData.currencyBrokerTransferAmount
-	if (gameData.coins >= price && (gameData.coinsToAlphaBar == 100 || gameData.coinsToAlphaBar == 0)) {
+	if (gameData.coins >= price && (gameData.coinsToAlphaBar == 100 || gameData.coinsToAlphaBar == 0) && gameData.isCurrentlyExchangingAlpha == 0) {
 		gameData.coins -= price
 		gameData.coinsToAlphaBar = 0
+		gameData.isCurrentlyExchangingAlpha = 1
 		coinsToAlphaBar()
 	}
 }
@@ -75,7 +144,7 @@ function coinsToAlphaBar() {
 			setTimeout(coinsToAlphaBar, 15 / gameData.tickspeed)
 		} else {
 			gameData.alphaCoins += gameData.currencyBrokerTransferAmount
-			
+			gameData.isCurrentlyExchangingAlpha = 0
 		}
 	}
 	else
@@ -90,17 +159,41 @@ function coinsToAlphaBar() {
 				setTimeout(coinsToAlphaBar, 100 / gameData.tickspeed)
 		} else {
 			gameData.alphaCoins += gameData.currencyBrokerTransferAmount
-			
+			gameData.isCurrentlyExchangingAlpha = 0
 		}
 	}
 }
 
+function alphaToBetaClick(){
+	price = gameData.betaCoinsExchangeRate * gameData.betaCoinTransferAmount
+	if (gameData.alphaCoins >= price && (gameData.alphaToBetaBar == 100 || gameData.alphaToBetaBar == 0)) {
+		gameData.alphaCoins -= price
+		gameData.alphaToBetaBar = 0
+		alphaToBetaBar()
+	}
+}
+
+function alphaToBetaBar() {
+	if (gameData.alphaToBetaBar <= 99.5) {
+
+		gameData.alphaToBetaBar += 0.5;
+		moveBar("alphaToBeta")
+		setTimeout(alphaToBetaBar, 15 / gameData.tickspeed)
+		
+	} else {
+		gameData.betaCoins += gameData.betaCoinTransferAmount
+		
+	}
+}
 
 
 function basket() {
     gameData.basketBar = 0;
     gameData.limes += gameData.limesInBaskets;
+	gameData.goldenLimes += gameData.goldenLimesInBaskets;
     gameData.limesInBaskets = 0;
+    gameData.goldenLimesInBaskets = 0;
+
 }
 
 function workingBar() {
@@ -336,11 +429,15 @@ function keenEyeBar() {
 }
 
 function ambidextrousBar() {
-    basicBarSkill("ambidextrous")
+    basicBarSkill("ambidextrous", "slow")
 }
 
 function motivationBar() {
     basicBarSkill("motivation")
+}
+
+function bitterSpeedBar() {
+    basicBarSkill("bitterSpeed")
 }
 
 function learnANewSkillBar() {
@@ -382,6 +479,9 @@ function learnANewSkillBar() {
             case 5:
                 gameData.learnANewSkill = 6
                 update("newInfo", "You Learned Ambidextrous!")
+            case 6:
+                gameData.learnANewSkill = 7
+                update("newInfo", "You Learned Bitter Speed!")
         }
     }
 
@@ -404,34 +504,31 @@ function sellYourJuice() {
 function sellYourJuiceBar() {
 
 
-    if (gameData.deliveryBar <= 99.9) {
-        if (gameData.deliveryType == 0) {
-
-                gameData.deliveryOngoing = 1
-                gameData.deliveryBar += 0.1;
-			    moveBar("delivery")
-                setTimeout(sellYourJuiceBar, 100 / gameData.tickspeed)
-
+    if (gameData.deliveryBar <= 99.9) 
+	{
+        if (gameData.deliveryType == 0) 
+		{
+			gameData.deliveryOngoing = 1
+			gameData.deliveryBar += 0.1;
+			setTimeout(sellYourJuiceBar, 100 / gameData.tickspeed)
         } 
-		else if (gameData.deliveryType == 1)
+		else if (gameData.deliveryType == 1 && gameData.deliveryBar <= 99.5)
 		{
-            if (gameData.deliveryBar <= 99.5) {
-                gameData.deliveryOngoing = 1
-                gameData.deliveryBar += 0.5;
-			    moveBar("delivery")
-                setTimeout(sellYourJuiceBar, 15 / gameData.tickspeed)
-            }
+			gameData.deliveryOngoing = 1
+			gameData.deliveryBar += 0.5;
+			setTimeout(sellYourJuiceBar, 15 / gameData.tickspeed)
         }
-		else 
+		else if (gameData.deliveryBar < 100)
 		{
-            if (gameData.deliveryBar < 100) {
-                gameData.deliveryOngoing = 1
-                gameData.deliveryBar += 1;
-			    moveBar("delivery")
-                setTimeout(sellYourJuiceBar, 15 / gameData.tickspeed)
-            }
+			gameData.deliveryOngoing = 1
+			gameData.deliveryBar += 1;
+			setTimeout(sellYourJuiceBar, 15 / gameData.tickspeed)
         }
+		
+		moveBar("delivery")
+
     } 
+	
 	else {
         gameData.coins += (gameData.nationalJuiceMarketing + 1) * Math.floor(gameData.juiceBulkAmount * (1 + (gameData.juicePriceCents / 100)))
         gameData.deliveryOngoing = 0
@@ -441,15 +538,19 @@ function sellYourJuiceBar() {
 
 function makeJuice() {
 
-    if ((gameData.juicerBar >= 99 || gameData.juicerBar == 0)) {
-        if (gameData.limeTypeToJuice == 0 && gameData.limes >= gameData.limesPerJuice) {
+    if (gameData.juicerBar >= 99 || gameData.juicerBar == 0) 
+	{
+        if (gameData.limeTypeToJuice == 0 && gameData.limes >= gameData.limesPerJuice) 
+		{
             gameData.limes -= gameData.limesPerJuice
             gameData.juicerBar = 0
             gameData.howMuchJuice = 1
             gameData.limeTypeToJuiceToggle = 0
 
             juicerBar()
-        } else if (gameData.limeTypeToJuice == 1 && gameData.peeledLimes >= gameData.peeledLimesPerJuice) {
+        } 
+		else if (gameData.limeTypeToJuice == 1 && gameData.peeledLimes >= gameData.peeledLimesPerJuice) 
+		{
             gameData.peeledLimes -= gameData.peeledLimesPerJuice
             gameData.juicerBar = 0
             gameData.howMuchJuice = 1
@@ -476,13 +577,12 @@ function peelerPeel() {
 
 function peelerPeelMax() {
 
-    if (gameData.peelerBar >= 99 || gameData.peelerBar == 0) {
+    if (gameData.peelerBar >= 99 || gameData.peelerBar == 0) 
+	{
         gameData.howManyPeeledLimes = gameData.limes
 
-        if (gameData.howManyPeeledLimes > gameData.peelers) {
+        if (gameData.howManyPeeledLimes > gameData.peelers) 
             gameData.howManyPeeledLimes = gameData.peelers
-        }
-
 
         gameData.limes -= gameData.howManyPeeledLimes
 
@@ -498,24 +598,28 @@ function peelerPeelMax() {
 
 function makeMaxJuice() {
 
-    if ((gameData.juicerBar == 100 || gameData.juicerBar == 0) && gameData.isCurrentlyJuicing == 0) {
+    if ((gameData.juicerBar >= 100 || gameData.juicerBar == 0) && gameData.isCurrentlyJuicing == 0) {
 
-        if (gameData.limeTypeToJuice == 0) {
+        if (gameData.limeTypeToJuice == 0)
+		{
             gameData.howMuchJuice = Math.floor(gameData.limes / gameData.limesPerJuice)
-            if (gameData.howMuchJuice > gameData.juicers) {
+			
+            if (gameData.howMuchJuice > gameData.juicers)
                 gameData.howMuchJuice = gameData.juicers
-            }
+			
             gameData.limeTypeToJuiceToggle = 0
             gameData.limes -= gameData.howMuchJuice * gameData.limesPerJuice
-        } else {
+        } 
+		else 
+		{
             gameData.howMuchJuice = Math.floor(gameData.peeledLimes / gameData.peeledLimesPerJuice)
-            if (gameData.howMuchJuice > gameData.juicers) {
+            if (gameData.howMuchJuice > gameData.juicers)
                 gameData.howMuchJuice = gameData.juicers
-            }
 
             gameData.peeledLimes -= gameData.howMuchJuice * gameData.peeledLimesPerJuice
             gameData.limeTypeToJuiceToggle = 1
         }
+		
         if (gameData.howMuchJuice > 0) {
             gameData.juicerBar = 0;
 			gameData.isCurrentlyJuicing = 1
@@ -525,11 +629,14 @@ function makeMaxJuice() {
 }
 
 function juicerBar() {
-    if (gameData.juicerBar <= 99.5) {
-        gameData.juicerBar += 0.5;
+    if (gameData.juicerBar < 100) 
+	{
+        gameData.juicerBar += 0.5 + gameData.bitterSpeeding * 10;
 		moveBar("juicer")
         setTimeout(juicerBar, 50 / ((gameData.limeTypeToJuiceToggle * 3 + 1) * gameData.tickspeed))
-    } else {
+    } 
+	else 
+	{
         gameData.juice += gameData.howMuchJuice;
 		gameData.hasGottenJuice = 1
         gameData.isCurrentlyJuicing = 0
@@ -537,12 +644,33 @@ function juicerBar() {
 }
 
 function peelerBar() {
-    if (gameData.peelerBar <= 99.5) {
-
-        gameData.peelerBar += 0.5;
+    if (gameData.peelerBar < 100) 
+	{
+        gameData.peelerBar += 0.5 + gameData.bitterSpeeding * 10
 		moveBar("peeler")
         setTimeout(peelerBar, (50 / ((gameData.sharperPeelers + 1) * 2)) / gameData.tickspeed)
-    } else {
-        gameData.peeledLimes += gameData.howManyPeeledLimes;
-    }
+    } 
+	else 
+		gameData.peeledLimes += gameData.howManyPeeledLimes;
+}
+
+function eatGoldenLime(){
+	if(gameData.goldenLimes > 0)
+	{
+		gameData.goldenLimes -= 1
+		gameData.eatGoldenLimeBar = 100
+		gameData.bitterSpeeding = 1
+		eatGoldenLimeBar()
+	}
+}
+
+function eatGoldenLimeBar(){
+    if (gameData.eatGoldenLimeBar > 0) 
+	{
+        gameData.eatGoldenLimeBar -= 0.5;
+		moveBar("eatGoldenLime")
+        setTimeout(eatGoldenLimeBar, (gameData.bitterSpeedSkillLevel / gameData.tickspeed))
+    } 
+	else 
+		gameData.bitterSpeeding = 0
 }

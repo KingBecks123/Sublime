@@ -1,0 +1,8 @@
+How to add a new skill
+
+Suggested: add a way to obtain the skill, eg. a new tome for sale
+
+main.js: Add new text to mainSkills and mainSkillsNames.
+index.html: Add a new div in skillsSection2 with the relevant information.
+bars.js: Add the notifcation for when you learn the skill in function learnANewSkillBar()
+Add the function called when the button is pressed.
