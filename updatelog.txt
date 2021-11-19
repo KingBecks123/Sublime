@@ -1,0 +1,65 @@
+Update Log
+
+21/11/19
+Gameplay:
+	Added Train delivery type
+
+21/11/17
+Gameplay:
+	Completely rewrote the code for fields
+
+21/11/15
+Gameplay:
+	Added the ability to hire pie merchant employees in the Hiring Area
+	Added the Alpha Coin to Beta Coin Broker
+	Added the Wishing Well
+	Added bucket steel plating to increase height
+Bugs / Aesthetic:
+	Changed the code for Vertical Bars
+	Changed the layout of the js files
+	Fixed tiles not updating in the Field
+
+21/11/12
+Gameplay:
+	Added Dont Toggle Button
+	Added alpha coin bags
+
+21/11/10
+Gameplay:
+	Added new tree type purchased from an orchardist for 1,000,000 coins.
+	Added Golden Limes obtainable from that tree.
+	Added a new tome + skill, Bitter Speed.
+Bugs / Aesthetic:
+	Bulk Researcher Transfer now shows up in Upgrades tab
+	Eating rotten limes is now an option again
+	Fixed bug where clicking Rotten Actual Wisdom automatically upgrades it for you.
+	No longer gain golden limes when in the basic tree.
+	Golden div only shows up after getting tree 2 unlocked.
+
+21/11/09
+Gameplay:
+	Added the respect billboard to increase tasks speed.
+	Added the Skill Trainer.
+Bugs / Aesthetic:
+	Reworded Convert Coins description.
+	Fixed Motivation button not showing up.
+	Fixed unlocking variables only when game reloads.
+	Rewrote eval code.
+
+21/11/07
+Bugs / Aesthetic:
+	Fixed unlocking new variables bug.
+
+21/11/06
+Bugs / Aesthetic:
+	Fixed 'A Safe On Wheels' showing up before purchased.
+
+21/11/05
+Bugs / Aesthetic:
+	Fixed flashing rotten limes text.
+	Backpack hiding of UI element only appear when you have gotten those items before.
+	Changed the way variable showing works.
+	Rearranged UI buttons.
+	Added border to juicers div & text boxes and changed background color.
+	Changed special button color to brown.
+
