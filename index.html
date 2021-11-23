@@ -149,11 +149,13 @@
 </head>
 
 <body id="mainBody" , onload="gameStart()">
+	
 <span id="sublimeMain">
+
 	<div style="float: left;padding: 10px;width: 100px;" id="backgroundForValues">
 		<br>
 	</div>	
-
+	
     <div class="row" id="newInfoBox" style="background-color:#bfbfbf;padding-left: 130px;display:block;height:60px;">
         <p id="newInfo" style="display:inline-block;margin-bottom:none;">You are in a lime forest.</p>
         <div style="width: 150px;height:50px;float:right;">
@@ -287,8 +289,8 @@
                 </div>
 				
                 <div class="basicDiv juiceMarket" , id="juiceMarket" , style="display:none;">
-                    <button class="basicButtonSizeRound" id="sellYourJuiceButton" , onclick="pickCurrentTask('sellYourJuice')">Sell Juice</button>
-                    <button class="pinButton" onclick="pin('sellYourJuiceButton')" style="display:none">+</button>
+                    <button class="basicButtonSizeRound" id="deliveryButton" , onclick="pickCurrentTask('delivery')">Sell Juice</button>
+                    <button class="pinButton" onclick="pin('deliveryButton')" style="display:none">+</button>
 
                     <p class="basicText" , id="sellYourJuicePrice">You Need 2 Coins For Delivery</p>
                     <p class="basicText" , id="sellYourJuiceAmount">You Need 1 Juice</p>
@@ -1657,7 +1659,7 @@
 				
 				<div class="basicDiv" id="benevolenceDiv">
 
-					<button class="specialButton" onclick="barStartGranular('benevolence')">Benevolence</button>
+					<button class="specialButton" onclick="barStart('benevolence')">Benevolence</button>
 					
 					<p class="basicTextSize" id="textForBenevolenceResearchers" style="color:#00AAFF;background-color:#000000">0 Researchers</p>
 					
@@ -1829,26 +1831,53 @@
 	
 	
     <div id="endScreen" style="background-color:#000000;width:100%;height:100%;position: absolute;top:0px;left:0px;color:#FFFFFF;display:none;">
-		<p>You won the game Sublime!! Don't worry, new updates are always coming. Good job! :)
-		You can keep playing don't worry.<p>
+		<p>You completed Sublime!! Good job! :)<br>
+		You can keep playing and expanding your lime empire while you wait for new updates.<p>
 		<p id="endStats"><p>
         <button class="basicButtonSize" style="width:99%;display:block;" onclick="toggle('endScreen')">Continue</button>
+        <!-- <button class="basicButtonSize" style="width:99%;display:block;" onclick="soulArea('wellField')">Explore Deeper...</button> -->
+
 	</div>
 
+    <div id="wellField" style="background-color:#000000;width:100%;height:100%;position: absolute;top:0px;left:0px;color:#FFFFFF;display:none;">
+		<p>Your soul hangs in a void with a field of wells.
+		Enter one.<p>
+		<p id="trueLimes" style="color:#4DFE89;text-align:center;font-size:40px;"></p>
+		
+        <button class="basicButtonSize" style="width:99%;display:block;" onclick="soulArea('start')">Sublime</button>
+
+	</div>
+
+    <div id="soulAreaSerf">
+		<div id="soulAreaSerfWidth" style="width:380px;">
+
+			<div class="basicDiv" style="display:block;">
+
+				<button class="specialButton" onclick="harvestRice()">Harvest Rice</button>
+				<div class="skillProgress" id="harvestRiceProgress"><div class="skillBar" id="harvestRiceBar"></div></div>
+				
+			</div>
+
+			<button class="basicButtonSize" style="width:370px;display:block;" onclick="soulArea('wellField')">Enter The Well</button>
+		</div>	
+	</div>
 	
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	
-    <script src="aesthetic.js?v=               129" charset="utf-8" type="text/javascript"></script>
-    <script src="myfunctions.js?v=             129" charset="utf-8" type="text/javascript"></script>
-    <script src="main.js?v=                    129" charset="utf-8" type="text/javascript"></script>
-    <script src="technical.js?v=               129" charset="utf-8" type="text/javascript"></script>
-    <script src="bars.js?v=                    129" charset="utf-8" type="text/javascript"></script>
-    <script src="update.js?v=                  129" charset="utf-8" type="text/javascript"></script>
+    <script src="aesthetic.js?v=               130" charset="utf-8" type="text/javascript"></script>
+    <script src="myfunctions.js?v=             130" charset="utf-8" type="text/javascript"></script>
+    <script src="main.js?v=                    130" charset="utf-8" type="text/javascript"></script>
+    <script src="technical.js?v=               130" charset="utf-8" type="text/javascript"></script>
+    <script src="bars.js?v=                    130" charset="utf-8" type="text/javascript"></script>
+    <script src="update.js?v=                  130" charset="utf-8" type="text/javascript"></script>
 	
-    <script src="game/diseasetask.js?v=        129" charset="utf-8" type="text/javascript"></script>
-    <script src="game/pie.js?v=                129" charset="utf-8" type="text/javascript"></script>
-    <script src="game/hiringarea.js?v=         129" charset="utf-8" type="text/javascript"></script>
+    <script src="game/diseasetask.js?v=        130" charset="utf-8" type="text/javascript"></script>
+    <script src="game/pie.js?v=                130" charset="utf-8" type="text/javascript"></script>
+    <script src="game/hiringarea.js?v=         130" charset="utf-8" type="text/javascript"></script>
+    <script src="game/science.js?v=            130" charset="utf-8" type="text/javascript"></script>
+    <script src="game/brokers.js?v=            130" charset="utf-8" type="text/javascript"></script>
+    <script src="game/serf.js?v=               130" charset="utf-8" type="text/javascript"></script>
 
 
 

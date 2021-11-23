@@ -2,7 +2,7 @@ function loadStuff(savegame) {
 	if (savegame !== null) {
 		Object.assign(gameData, savegame);
 		backwardsCompatibility(gameData.versionNumber)
-		gameData.versionNumber = 129
+		gameData.versionNumber = 130
 		updateAfterLoad()
 	} else {
 		update("newInfo", "Save File Empty.")
@@ -17,18 +17,6 @@ function preventNegative(id) {
 
 function setRotation(id, number) {
 	document.getElementById(id).style.transform = 'rotate(' + number + 'deg)'
-}
-
-function timeToShowScience(id) {
-	var researchTime = eval(id + 'ResearchTime')
-	var time = id + 'Time'
-	if (gameData[id + 'Researchers'] == 0) {
-		update(time, "Estimated Time: Infinite Seconds")
-	} else if (researchTime <= 200) {
-		update(time, "Estimated Time: " + researchTime.toLocaleString() + " Seconds")
-	} else {
-		update(time, "Estimated Time: " + Math.floor(researchTime / 60).toLocaleString() + " Minutes")
-	}
 }
 
 function ifMaxDarkGray(x) {
@@ -60,9 +48,9 @@ function pin(x) {
 }
 
 function normalizeButtons() {
-	$(".juiceMarket").prepend(document.getElementById("sellYourJuiceButton"))
-	document.getElementById("sellYourJuiceButton").style.width = "120px"
-	document.getElementById("sellYourJuiceButton").style.margin = "5px"
+	$(".juiceMarket").prepend(document.getElementById("deliveryButton"))
+	document.getElementById("deliveryButton").style.width = "120px"
+	document.getElementById("deliveryButton").style.margin = "5px"
 
 	$(".autoCollectingDiv").prepend(document.getElementById("autoCollectingButton"))
 	document.getElementById("autoCollectingButton").style.width = "150px"
@@ -130,8 +118,8 @@ function startCurrentTask(x) {
 
 	if (x == 'eatFood') {
 		eat()
-	} else if (x == 'sellYourJuice') {
-		sellYourJuice()
+	} else if (x == 'delivery') {
+		delivery()
 	} else if (x == 'makeMaxJuice') {
 		makeMaxJuice()
 	} else if (x == 'makeJuice') {
@@ -341,8 +329,7 @@ function restartBarNoMovement(x) {
 	}
 }
 
-//Starts a granular loading bar.
-function barStartGranular(variable) {
+function barStart(variable) {
 	variableBar = variable + "Bar"
 	if (gameData[variableBar] == 100 || gameData[variableBar] == 0) {
 		gameData[variableBar] = 0
@@ -365,7 +352,7 @@ function barStartGranularSkillBasic(variable, useSkillTrainer) {
 }
 
 function update(id, content) {
-	document.getElementById(id).innerHTML = content;
+	document.getElementById(id).innerHTML = content
 }
 
 function updateNumber(id) {
@@ -388,7 +375,41 @@ function updateNumber(id) {
 		hide(elem + 'P')
 		hide(elem)
 	}
+	
 	update(elem, val)
+}
+
+
+function updateAreaNumbers() {
+	for (let i = 0; i < avs.length; i++) {
+		for (let j = 0; j < avs[i].v.length; j++) {
+			id = avs[i].v[j].id
+			elem = "textFor" + avs[i].v[j].name
+			valRaw = gameData[avs[i].area][avs[i].v[j].id]
+
+
+
+			if (valRaw > 1e9)
+				val = valRaw.toExponential(3)
+			else
+				val = valRaw.toLocaleString()
+
+			if ((valRaw && gameData[id + 'ShowVariable']) || id == 'limes') {
+				showBasicDiv(elem + 'Div')
+				showBasicDiv(elem + 'Br')
+				showBasicDiv(elem + 'P')
+				showBasicDiv(elem)
+			} else {
+				hide(elem + 'Div')
+				hide(elem + 'Br')
+				hide(elem + 'P')
+				hide(elem)
+			}
+			
+			update(elem, val)
+		}
+	}
+
 }
 
 function currencyDisplay(id) {
@@ -451,6 +472,14 @@ function decreaseValue(id) {
 
 function checkShowOrHide(i, txt) {
 	if (i >= 1) {
+		tabs(txt, "block")
+	} else {
+		tabs(txt, "none")
+	}
+}
+
+function checkShowSmart(i, txt) {
+	if (gameData[i] >= 1) {
 		tabs(txt, "block")
 	} else {
 		tabs(txt, "none")
@@ -523,8 +552,28 @@ function backwardsCompatibility(versionNumber) {
 		]
 		diseaseControlQuit()
 	}
+	
+	if (gameData.pin == 'sellYourJuiceButton')
+		gameData.pin = 'deliveryButton'
 }
 
 function setValue(id, amount) {
 	gameData[id] = amount
+}
+
+function barMover(id, amount, time){
+	gameData[id + 'Bar'] += amount;
+	moveBar(id)
+	setTimeout(eval(id + 'Bar'), time / gameData.tickspeed)
+}
+
+function barMoverAdvanced(id, amount, time){
+	if (gameData[id + 'Bar'] < 100) {
+		barMover(id, amount, time)
+	} else {
+		if (gameData[id + 'Bar'] > 100)
+			gameData[id + 'Bar'] = 100
+		eval(id + 'BarEnd()')
+	}
+
 }

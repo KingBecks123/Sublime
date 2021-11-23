@@ -447,8 +447,16 @@ var gameDataBase = {
 	mainTab: 'null',
 	marketTab: 'marketMain',
 
-	endScreen: 0
+	endScreen: 0,
+	soulArea: 'start',
+	trueLimes: 0,
+	
+	
+	serf: {
+		rice: 0
+	},
 
+	harvestRiceBar: 0,
 	
 }
 
@@ -465,9 +473,17 @@ var gameDataBase = {
 		gameDataBase[mainVariables[i] + 'ShowVariable'] = true
 		gameDataBase[mainVariables[i] + 'UnlockedVariable'] = false
 	}
+	
+	for (let i = 0; i < avs.length; i++) {
+		for (let j = 0; j < avs[i].v.length; j++) {
+			gameDataBase[avs[i].v[j].id + 'ShowVariable'] = true
+			gameDataBase[avs[i].v[j].id + 'UnlockedVariable'] = false
+		}
+	}
 
 
 var gameData = {}
+
 
 
 function gameStart() {
@@ -491,9 +507,10 @@ function gameStart() {
     mainGameLoopSlow()
 
 	addAestheticBase()
-
 	
     updateValues()
+	
+	
 
 	tab(gameData.mainTab)
     tabMarket(gameData.marketTab)
@@ -618,18 +635,6 @@ function tabStore(tabby) {
 
 }
 
-function tabScience(tabby) {
-    tabs("research", "none")
-    tabs("researchers", "none")
-	
-	colorChanger('researchButton', '#BBBBBB')
-	colorChanger('researchersButton', '#BBBBBB')		
-	
-	colorChanger(tabby + "Button", "#898989")
-	
-    document.getElementById(tabby).style.display = "block"
-}
-
 function tabOptions(tabby) {
     tabs("gameOptions", "none")
     tabs("uiOptions", "none")
@@ -744,6 +749,35 @@ function addHTML(){
 		document.getElementById('backgroundForValues').append(stat)
 	}
 	
+	for (let i = 0; i < avs.length; i++) {
+		
+		
+		var e = $("<div />", {
+			id: "backgroundForValues" + avs[i].area,
+			style: "padding:10px;background-color:#FFFFFF;width:100px;display:block;",
+		})
+
+		$(document.getElementById('soulArea' + avs[i].name + 'Width')).prepend(e);
+		
+		e = $("<button />", {
+			class: "basicButtonSize",
+			style: "width:99%;display:block;",
+			onclick: "soulArea(" + i + ")",
+			id: 'soulArea' + avs[i].name + 'WellButton'
+		})
+
+		$(document.getElementById('wellField')).append(e)
+		update('soulArea' + avs[i].name + 'WellButton', avs[i].name)
+
+
+
+		for (let j = 0; j < avs[i].v.length; j++) {
+			var avsStat = document.createElement("span")
+			avsStat.innerHTML = '<div class="stat" id="textFor' + avs[i].v[j].name + 'Div">' + avs[i].v[j].id + ' </div><div class="stat ar" id="textFor' + avs[i].v[j].name + '"  style="display:none ; ">0</div><p id="textFor' + avs[i].v[j].name + 'P"  style="display:none ; "> </p><br  id="textFor' + avs[i].v[j].name + 'Br"   style="display:none ; "/>';
+			document.getElementById('backgroundForValues' + avs[i].area).append(avsStat)
+		}
+	}
+	
 	document.getElementById('textForBetaCoinsDiv').style.textDecoration = 'underline'
 	document.getElementById('textForPieCoinsDiv').style.textDecoration = 'underline'
 
@@ -759,6 +793,7 @@ function addHTML(){
 			document.getElementById('fullField').append(fieldTile)
 		}
 	}
+	
 
 	
 }

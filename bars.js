@@ -1,115 +1,7 @@
-function searchForACurrencyBroker() {
-    if (gameData.alphaCoins >= 10) {
-        gameData.alphaCoins -= 10
-        barStartGranular("currencyBrokerHire")
-    }
-}
-
 function working() {
     gameData.employeeIsWorking = 1
-    barStartGranular("working")
+    barStart("working")
 
-}
-
-function coinsToAlphaStart() {
-	
-	if(!gameData.autoCurrencyConversionBuy){
-		price = (gameData.alphaCoinsExchangeRate + gameData.currencyBrokerFee) * gameData.currencyBrokerTransferAmount
-		if (gameData.coins >= price && (gameData.coinsToAlphaBar == 100 || gameData.coinsToAlphaBar == 0)) {
-			gameData.coins -= price
-			gameData.coinsToAlphaBar = 0
-			coinsToAlphaBar()
-		}
-	}
-	else
-	{
-		pickCurrentTask('autoCurrencyConversionBuy')
-	}
-
-}
-
-function coinsToAlphaClick(){
-	price = ((gameData.alphaCoinsExchangeRate + gameData.currencyBrokerFee) * gameData.currencyBrokerTransferAmount) * ((gameData.alphaCoinConvertBulkToggle * 9) + 1)
-	if (gameData.coins >= price && (gameData.coinsToAlphaBar == 100 || gameData.coinsToAlphaBar == 0) && !gameData.isCurrentlyExchangingAlpha) {
-		gameData.alphaCoinConvertBulkToggleSet = gameData.alphaCoinConvertBulkToggle
-		gameData.coins -= price
-		gameData.coinsToAlphaBar = 0
-		gameData.isCurrentlyExchangingAlpha = 1
-		coinsToAlphaBar()
-	}
-}
-
-function coinsToAlphaBar() {
-	if (gameData.currencyBrokerSpeed == 1)
-	{
-		if (gameData.coinsToAlphaBar < 100) {
-			gameData.coinsToAlphaBar += 1.5;
-			if (gameData.coinsToAlphaBar > 100)
-				gameData.coinsToAlphaBar = 100
-
-			moveBar("coinsToAlpha")
-			setTimeout(coinsToAlphaBar, 15 / gameData.tickspeed)
-		} else {
-			end()
-		}
-	}
-	else
-	{
-		if (gameData.coinsToAlphaBar <= 99.5) {
-
-			gameData.coinsToAlphaBar += 0.5;
-			moveBar("coinsToAlpha")
-			if(gameData.doesHaveCurrencyBroker)
-				setTimeout(coinsToAlphaBar, 5 * gameData.currencyBrokerSpeed / gameData.tickspeed)
-			else
-				setTimeout(coinsToAlphaBar, 100 / gameData.tickspeed)
-		} else {
-			end()
-		}
-	}
-	
-	function end(){
-		
-		if(gameData.alphaCoinConvertBulkToggleSet == 0)
-			gameData.alphaCoins += gameData.currencyBrokerTransferAmount
-		else
-			gameData.alphaCoins += gameData.currencyBrokerTransferAmount * 10
-		
-		gameData.isCurrentlyExchangingAlpha = 0
-	}
-}
-
-
-
-function alphaToBetaClick(){
-	if(gameData.textForA2BBrokerAmountToggle == 0)
-		price = gameData.betaCoinsExchangeRate
-	else
-		price = gameData.betaCoinsExchangeRate * gameData.basicA2BBrokerAmount
-
-	if (gameData.alphaCoins >= price && (gameData.alphaToBetaBar == 100 || gameData.alphaToBetaBar == 0)) {
-		gameData.alphaCoins -= price
-		gameData.alphaToBetaBar = 0
-		gameData.a2BBrokerAmountSet = gameData.textForA2BBrokerAmountToggle
-		alphaToBetaBar()
-	}
-}
-
-function alphaToBetaBar() {
-	if (gameData.alphaToBetaBar <= 99.5) {
-
-		gameData.alphaToBetaBar += 0.5;
-		moveBar("alphaToBeta")
-		setTimeout(alphaToBetaBar, 15 / gameData.tickspeed)
-		
-	} else {
-		if(gameData.a2BBrokerAmountSet == 0)
-			gameData.betaCoins += 1
-		else
-			gameData.betaCoins += gameData.basicA2BBrokerAmount
-
-		
-	}
 }
 
 
@@ -126,7 +18,9 @@ function workingBar() {
     if (gameData.workingBar < 100 && gameData.employeeIsWorking == 1) {
         gameData.workingBar += 1;
         setTimeout(workingBar, 600 / gameData.tickspeed)
-    } else {
+    } 
+	
+	else {
         if (gameData.employeeIsWorking == 1) {
             gameData.limes += gameData.employeeCurrentSpeed
             gameData.employeeWorking -= 1
@@ -141,19 +35,15 @@ function workingBar() {
 }
 
 function teach() {
-	
     gameData.employeeCurrentSpeed = -(gameData.employeeHunger * 60)
-	
-	setTimeout('barStartGranular("teach")', 1000)
-    
+	setTimeout('barStart("teach")', 1000)
 }
 
 function teachBar() {
-    if (gameData.teachBar <= 99) {
-        gameData.teachBar += 1;
-        setTimeout(teachBar, 20)
-    }
+	barMoverAdvanced('teach', 1, 20)
 }
+
+function teachBarEnd() {}
 
 function eat() {
     if ((gameData.eatBar == 100 || gameData.eatBar == 0) && gameData.eat < 100) {
@@ -180,91 +70,11 @@ function eat() {
 }
 
 function eatBar() {
-    if (gameData.eatBar < 100) {
-        gameData.eatBar += 0.5 * (gameData.fork + 1) ;
-        setTimeout(eatBar, 10)
-		moveBar("eat")
-        } else {
-            gameData.eat += gameData.foodType * (gameData.nutritionists + 1)
-            if (gameData.eat > 100) {
-                gameData.eat = 100
-            }
-		}
+	barMoverAdvanced('eat', 0.5 * (gameData.fork + 1), 10)
 }
 
-function watertight() {
-    if (gameData.peeledLimesPerJuice > 1) {
-		
-		
-		barStartGranular('watertight')
-	}
-}
-
-function watertightBar() {
-    if (gameData.watertightBar < 100) {
-		if (gameData.watertightResearchers > 0)
-		{
-			if(watertightBarDoMove)
-				gameData.watertightBar += 0.5;
-			
-			watertightBarDoMove = 1
-			
-			setTimeout(watertightBar, (1e4 * Math.pow(10, 5 - gameData.peeledLimesPerJuice)) / gameData.watertightResearchers)
-		}
-		
-		moveBar("watertight")
-        } else {
-			gameData.peeledLimesPerJuice -= 1
-		}
-}
-
-function surveying() {
-    if (gameData.numberOfTiles < 20) {
-
-		barStartGranular('surveying')
-	}
-}
-
-
-
-
-function surveyingBar() {
-    if (gameData.surveyingBar < 100) {
-		if (gameData.surveyingResearchers > 0)
-		{
-			if(surveyingBarDoMove)
-				gameData.surveyingBar += 0.5;
-			
-			surveyingBarDoMove = 1
-			setTimeout(surveyingBar, (1e3 * Math.pow(2, gameData.numberOfTiles - 15)) / gameData.surveyingResearchers)
-		}
-		
-		moveBar("surveying")
-		
-        } else {
-			gameData.numberOfTiles += 1
-			
-			diseaseControlQuit()
-		}
-}
-
-function benevolenceBar() {
-	benevolenceEquation = Math.pow(2, gameData.benevolence * 2)
-    if (gameData.benevolenceBar < 100) {
-		if (gameData.benevolenceResearchers > 0)
-		{
-			if(benevolenceBarDoMove)
-				gameData.benevolenceBar += 0.5;
-			
-			benevolenceBarDoMove = 1
-			setTimeout(benevolenceBar, (1e3 * benevolenceEquation) / gameData.benevolenceResearchers)
-		}
-		
-		moveBar("benevolence")
-		
-        } else {
-			gameData.benevolence += 1
-		}
+function eatBarEnd() {
+    gameData.eat += gameData.foodType * (gameData.nutritionists + 1)
 }
 
 
@@ -300,38 +110,28 @@ function convertCoinsNow() {
 
 
 function convertCoinsNowBar() {
-    if (gameData.convertCoinsNowBar < 100) {
-        gameData.convertCoinsNowBar += 0.5;
-		moveBar("convertCoinsNow")
-        setTimeout(convertCoinsNowBar, 50 * Math.pow(2, (gameData.convertedCoinsSinceTravel + 1)))
-    }
-	else
-	{
-        gameData.megaCoins += 1
-	}
-		
+	barMoverAdvanced('currencyBrokerHire', 0.5, 50 * Math.pow(2, (gameData.convertedCoinsSinceTravel + 1)))
+}
 
-
+function convertCoinsNowBarEnd() {
+    gameData.megaCoins += 1
 }
 
 
 function learnANewSkill() {
     if (gameData.learnANewSkill - gameData.tomes <= 2) {
-        barStartGranular("learnANewSkill")
+        barStart("learnANewSkill")
     }
 }
 
 
 function currencyBrokerHireBar() {
-    if (gameData.currencyBrokerHireBar < 100) {
-        gameData.currencyBrokerHireBar += 0.5;
-		moveBar("currencyBrokerHire")
-        setTimeout(currencyBrokerHireBar, (20 / gameData.tickspeed))
-    } else {
-		gameData.currencyApplicationReady = 1
-        randomizeApplicationCurrencyBroker()
-    }
-    
+	barMoverAdvanced('currencyBrokerHire', 0.5, 20)
+}
+
+function currencyBrokerHireBarEnd() {
+	gameData.currencyApplicationReady = 1
+	randomizeApplicationCurrencyBroker()
 }
 
 
@@ -368,54 +168,50 @@ function bitterSpeedBar() {
 }
 
 function learnANewSkillBar() {
-    if (gameData.learnANewSkillBar < 100) {
-        gameData.learnANewSkillBar += 0.1;
-		moveBar("learnANewSkill")
-        setTimeout(learnANewSkillBar, 10 / gameData.tickspeed)
-    } else {
-		
-        switch (gameData.learnANewSkill) {
-            case -2:
-                gameData.learnANewSkill = -1
-                update("newInfo", "You learned Keen Eye!")
-                break;
-            case -1:
-                gameData.learnANewSkill = 0
-                update("newInfo", "You unlocked auto collection!")
-                break;
-            case 0:
-                gameData.learnANewSkill = 1
-                update("newInfo", "You Learned Rotten Wisdom!")
-                break;
-            case 1:
-                gameData.learnANewSkill = 2
-                update("newInfo", "You Learned Limebidextrous!")
-                break;
-            case 2:
-                gameData.learnANewSkill = 3
-                update("newInfo", "You Learned Intelligence!")
-                break;
-            case 3:
-                gameData.learnANewSkill = 4
-                update("newInfo", "You Learned Knifebidextrous!")
-                break;
-            case 4:
-                gameData.learnANewSkill = 5
-                update("newInfo", "You Learned Motivation!")
-                break;
-            case 5:
-                gameData.learnANewSkill = 6
-                update("newInfo", "You Learned Ambidextrous!")
-                break;
-            case 6:
-                gameData.learnANewSkill = 7
-                update("newInfo", "You Learned Bitter Speed!")
-        }
-    }
-
+	barMoverAdvanced('learnANewSkill', 0.2, 15)
 }
 
-function sellYourJuice() {
+function learnANewSkillBarEnd() {
+	switch (gameData.learnANewSkill) {
+		case -2:
+			gameData.learnANewSkill = -1
+			update("newInfo", "You learned Keen Eye!")
+			break;
+		case -1:
+			gameData.learnANewSkill = 0
+			update("newInfo", "You unlocked auto collection!")
+			break;
+		case 0:
+			gameData.learnANewSkill = 1
+			update("newInfo", "You Learned Rotten Wisdom!")
+			break;
+		case 1:
+			gameData.learnANewSkill = 2
+			update("newInfo", "You Learned Limebidextrous!")
+			break;
+		case 2:
+			gameData.learnANewSkill = 3
+			update("newInfo", "You Learned Intelligence!")
+			break;
+		case 3:
+			gameData.learnANewSkill = 4
+			update("newInfo", "You Learned Knifebidextrous!")
+			break;
+		case 4:
+			gameData.learnANewSkill = 5
+			update("newInfo", "You Learned Motivation!")
+			break;
+		case 5:
+			gameData.learnANewSkill = 6
+			update("newInfo", "You Learned Ambidextrous!")
+			break;
+		case 6:
+			gameData.learnANewSkill = 7
+			update("newInfo", "You Learned Bitter Speed!")
+    }
+}
+
+function delivery() {
     if (!gameData.deliveryOngoing && (gameData.deliveryBar >= 99.9 || gameData.deliveryBar == 0) && gameData.coins >= gameData.deliveryPrice && gameData.juice >= gameData.juiceBulkAmountToggle) {
         gameData.deliveryType = gameData.deliveryTypeToggle
         gameData.juiceBulkAmount = gameData.juiceBulkAmountToggle
@@ -424,43 +220,28 @@ function sellYourJuice() {
         gameData.deliveryBar = 0;
 		gameData.thisTownDeliveries += 1
 		
-        sellYourJuiceBar()
+        deliveryBar()
     }
 
 }
 
-function sellYourJuiceBar() {
-
-
-    if (gameData.deliveryBar <= 99.9) 
-	{
-        if (gameData.deliveryType == 0) 
-		{
-			gameData.deliveryOngoing = 1
-			gameData.deliveryBar += 0.1;
-			setTimeout(sellYourJuiceBar, 100 / gameData.tickspeed)
-        } 
-		else if (gameData.deliveryType == 1 && gameData.deliveryBar <= 99.5)
-		{
-			gameData.deliveryOngoing = 1
-			gameData.deliveryBar += 0.5;
-			setTimeout(sellYourJuiceBar, 15 / gameData.tickspeed)
-        }
-		else if (gameData.deliveryBar < 100)
-		{
-			gameData.deliveryOngoing = 1
-			gameData.deliveryBar += 1;
-			setTimeout(sellYourJuiceBar, 15 / gameData.tickspeed)
-        }
-		
-		moveBar("delivery")
-
-    } 
+function deliveryBar() {
+	gameData.deliveryOngoing = 1
 	
-	else {
-        gameData.coins += (gameData.nationalJuiceMarketing + 1) * Math.floor(gameData.juiceBulkAmount * (1 + (gameData.juicePriceCents / 100)))
-        gameData.deliveryOngoing = 0
-    }
+	if (gameData.deliveryType == 0) 
+		barMoverAdvanced('delivery', 0.1, 100)
+	
+	else if (gameData.deliveryType == 1)
+		barMoverAdvanced('delivery', 0.5, 15)
+	
+	else
+		barMoverAdvanced('delivery', 1, 15)
+
+}
+
+function deliveryBarEnd() {
+	gameData.coins += (gameData.nationalJuiceMarketing + 1) * Math.floor(gameData.juiceBulkAmount * (1 + (gameData.juicePriceCents / 100)))
+	gameData.deliveryOngoing = 0
 }
 
 
@@ -556,30 +337,24 @@ function makeMaxJuice() {
     }
 }
 
-function juicerBar() {
-    if (gameData.juicerBar < 100) 
-	{
-        gameData.juicerBar += 0.5 + gameData.bitterSpeeding * 10;
-		moveBar("juicer")
-        setTimeout(juicerBar, 50 / ((gameData.limeTypeToJuiceToggle * 3 + 1) * gameData.tickspeed))
-    } 
-	else 
-	{
-        gameData.juice += gameData.howMuchJuice;
-		gameData.hasGottenJuice = 1
-        gameData.isCurrentlyJuicing = 0
-    }
+function peelerBar() {
+	barMoverAdvanced('peeler', 0.5 + gameData.bitterSpeeding * 10, 50 / (gameData.sharperPeelers + 1) * 2)
 }
 
-function peelerBar() {
-    if (gameData.peelerBar < 100) 
-	{
-        gameData.peelerBar += 0.5 + gameData.bitterSpeeding * 10
-		moveBar("peeler")
-        setTimeout(peelerBar, (50 / ((gameData.sharperPeelers + 1) * 2)) / gameData.tickspeed)
-    } 
-	else 
-		gameData.peeledLimes += gameData.howManyPeeledLimes;
+function peelerBarEnd() {
+	gameData.juice += gameData.howMuchJuice
+	gameData.hasGottenJuice = 1
+	gameData.isCurrentlyJuicing = 0
+}
+
+function juicerBar() {
+	barMoverAdvanced('juicer', 0.5 + gameData.bitterSpeeding * 10, 50 / (gameData.limeTypeToJuiceToggle * 3 + 1))
+}
+
+function juicerBarEnd() {
+	gameData.juice += gameData.howMuchJuice
+	gameData.hasGottenJuice = 1
+	gameData.isCurrentlyJuicing = 0
 }
 
 function eatGoldenLime(){

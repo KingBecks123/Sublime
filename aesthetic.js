@@ -64,7 +64,7 @@ function addAesthetic() {
 	currentTaskAesthetic('makeJuice')
 	currentTaskAesthetic('makeMaxJuice')
 	currentTaskAesthetic('eatFood')
-	currentTaskAesthetic('sellYourJuice')
+	currentTaskAesthetic('delivery')
 	currentTaskAesthetic('findPieCustomers')
 
 	ifMaxDarkGray("basket")
@@ -93,7 +93,6 @@ function addAesthetic() {
 		colorChanger(button1, accent3)
 		colorChanger(button2, accent2)
 		colorChanger(button3, accent2)
-
 	} else if (gameData.deliveryTypeToggle == 1) {
 		colorChanger(button1, accent2)
 		colorChanger(button2, accent3)
@@ -411,22 +410,37 @@ function changeVariablesColor() {
 }
 
 function changeVariablesColorAesthetic() {
-	if (gameData.moreVisibleVariables) {
-		color = "#99DEFF"
-		colorDark = "#4DC3FF"
-		for (let i = 0; i < mainVariables.length; i++) {
-			changeVariableColors("textFor" + jsUcfirst(mainVariables[i]), color, colorDark)
+	for (let i = 0; i < mainVariables.length; i++) {
+		
+		if (gameData.moreVisibleVariables) {
+			color = "#99DEFF"
+			colorDark = "#4DC3FF"
 		}
-	} else {
-		for (let i = 0; i < mainVariables.length; i++) {
-			colorChangerText('textFor' + jsUcfirst(mainVariables[i]) + 'Div', mainVariablesColor2[i])
-			colorChangerText('textFor' + jsUcfirst(mainVariables[i]), mainVariablesColor[i])
+		else
+		{
+			color = mainVariablesColor[i]
+			colorDark = mainVariablesColor2[i]
+		}
+		
+		colorChangerText('textFor' + jsUcfirst(mainVariables[i]) + 'Div', colorDark)
+		colorChangerText('textFor' + jsUcfirst(mainVariables[i]), color)
+	}
+	
+	for (let i = 0; i < avs.length; i++) {
+		for (let j = 0; j < avs[i].v.length; j++) {
+			if (gameData.moreVisibleVariables) {
+				color = "#99DEFF"
+				colorDark = "#4DC3FF"
+			}
+			else
+			{
+				color = avs[i].v[j].mainColor
+				colorDark = avs[i].v[j].darkColor
+			}
+
+			
+			colorChangerText('textFor' + avs[i].v[j].name + 'Div', colorDark)
+			colorChangerText('textFor' + avs[i].v[j].name, color)
 		}
 	}
-}
-
-
-function changeVariableColors(elem, color, colorDark) {
-	document.getElementById(elem + 'Div').style.color = colorDark
-	document.getElementById(elem).style.color = color
 }

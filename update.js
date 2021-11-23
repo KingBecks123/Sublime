@@ -41,7 +41,7 @@ function updateAfterLoad() {
 	}
 
 	if (gameData.deliveryBar <= 99 && gameData.deliveryBar != 0) {
-		sellYourJuiceBar()
+		deliveryBar()
 	}
 
 	updateValues()
@@ -101,6 +101,8 @@ function updateValues() {
 	for (let i = 0; i < mainVariables.length; i++) {
 		updateNumber(mainVariables[i])
 	}
+	
+	updateAreaNumbers()
 
 	if (gameData.coins > 0) {
 		gameData.showAchievements = 1
@@ -120,52 +122,7 @@ function updateValues() {
 			hide('currencyDisplay(' + i + ')')
 	}
 
-	benevolenceEquation = Math.pow(2, gameData.benevolence * 2)
-	watertightEquation = Math.pow(10, 6 - gameData.peeledLimesPerJuice)
-	surveyingEquation = Math.pow(2, gameData.numberOfTiles - 15)
-
-	//All Science Updates.
-	if (gameData.respectMilestone1000) {
-
-		update("watertightText", "Currently: " + gameData.peeledLimesPerJuice + " Peeled Limes -> 1 Juice")
-		update("surveyingText", "Currently: " + gameData.numberOfTiles + " / 20 Tiles")
-		update("benevolenceText", "Currently: Level " + gameData.benevolence)
-
-		update("textForResearchers", researchersAvailable + " Available Researchers")
-
-
-		if (gameData.limeDiseaseLakes < 10)
-			benevolenceRespectIncrease = 0
-		else
-			benevolenceRespectIncrease = (Math.pow(2, gameData.limeDiseaseLakes - 10)) * gameData.benevolence
-
-		update("benevolenceRespectIncrease", "Respect increase:  " + benevolenceRespectIncrease.toLocaleString())
-
-		researchersAvailable = gameData.researchers
-
-		checkShowOrHide(gameData.benevolence, "benevolence")
-		checkShowOrHide(gameData.unlockBenevolence, "benevolenceDiv")
-
-
-
-		//Adds the properties of all sciences.
-		for (let i = 0; i < mainSciences.length; i++) {
-
-			//Shows how many researchers are currently working on the science.
-			update("textFor" + jsUcfirst(mainSciences[i]) + "Researchers", gameData[mainSciences[i] + "Researchers"] + " Researchers")
-
-			//Shows the estimated time to complete the science by multiplying the time for half a bar by 200.
-			eval([mainSciences[i] + 'ResearchTime'] + " = Math.floor(200 * " + [mainSciences[i] + 'Equation'] + "/ gameData[mainSciences[i] + 'Researchers'])")
-
-			//Converts time to seconds or minutes or infinity depending on size.
-			timeToShowScience(mainSciences[i])
-
-			//Updates the amount of researchers available.
-			researchersAvailable -= gameData[mainSciences[i] + "Researchers"]
-
-		}
-
-	}
+	updateScience()
 
 	if (gameData.nationalJuiceMarketing) {
 		hide('juiceMarketing')
@@ -174,16 +131,62 @@ function updateValues() {
 		hide('upgradeJuiceMarketing')
 		showBasicDiv('juiceMarketing')
 	}
-
-	if (!gameData.unlockBenevolence && gameData.respectMilestone1000) {
-		showBasicDiv("unlockBenevolence")
-	} else {
-		hide("unlockBenevolence")
+	
+	
+	
+	
+	
+	
+	updateObj = [
+		 "textForMegaCoinsInBank"            , gameData.megaCoinsInBank.toLocaleString() + " / " + gameData.megaCoinsInBankMax.toLocaleString() + " Mega Coins In Bank"
+		,"textForRespect"                    , gameData.respect.toLocaleString() + " Respect"
+		,"textForTimePlayed"                 , "Total Time Played: " + gameData.timePlayed.toLocaleString() + " Seconds"
+		,"textForLakes"                      , gameData.limeDiseaseLakes.toLocaleString() + " Lakes"
+		,"currentSpeedEmployee"              , "Current speed: " + gameData.employeeCurrentSpeed.toLocaleString() + " limes per minute."
+		,"speedEmployee"                     , "Speed: " + gameData.employeeSpeed.toLocaleString() + "% Of What I'm Taught."
+		,"textForJuicePricePrice"            , "Price: " + gameData.juicePricePrice.toLocaleString() + " Coins"
+		,"textForNourishmentPrice"           , "You Need: " + gameData.nourishmentPrice.toLocaleString() + " Limes"
+		,"juicersAmount"                     , gameData.juicers.toLocaleString() + " / " + gameData.juicersMax.toLocaleString() + " Juicers"
+		,"peelersAmount"                     , gameData.peelers.toLocaleString() + " / " + gameData.peelersMax.toLocaleString() + " Peelers"
+		,"basketsAmount"                     , gameData.baskets.toLocaleString() + " / " + gameData.basketsMax.toLocaleString() + " Baskets"
+		,"maxBaskets"                        , gameData.basketsMax.toLocaleString() + " baskets fit under the current tree."
+		,"buyMegaCoinsTimes"                 , "Transfer times: " + gameData.buyMegaCoinsTimes + " / " + gameData.buyMegaCoinsTimesMax
+		,"textForAutomaticallyCollectsLimes" , "Automatically collects limes at " + (gameData.shoes + 1) + "/s"
+		,"textForBetterTraining"             , "Current maximum: " + (gameData.betterTraining + 10).toLocaleString() + "00%"
+		,"textForCoinsMax"                   , "Current maximum: " + gameData.coinsMax.toLocaleString() + " Coins"
+		,"textForCurrentEmployees"           , "Current Employees: " + gameData.employees.toLocaleString() + " / " + gameData.maxEmployees.toLocaleString()
+		,"numberOfCivilians"                 , "Number Of Civilians: " + gameData.civiliansTotal.toLocaleString()
+		,"betterTrainingPrice"               , "Price: " + gameData.betterTraining.toLocaleString() + " Mega Coins"
+		,"sellYourJuiceAmount"               , "You Will Deliver " + gameData.juiceBulkAmountToggle.toLocaleString() + " / " + gameData.juiceBulkAmountMax.toLocaleString() + " Juice"
+		,"sellYourJuiceReward"               , "You Will Get " + gameData.juiceSellReward.toLocaleString() + " Coins"
+		,"sellYourJuicePrice"                , "You Need " + gameData.deliveryPrice.toLocaleString() + " Coins For Delivery"
+		,"upgradeMoreStoragePrice"           , "Price: " + upgradeMoreStoragePrice.toLocaleString() + " Mega Coins"
+	]
+	
+	for (i = 0; i < updateObj.length / 2; i++) {
+		update(updateObj[i * 2], updateObj[i * 2 + 1])
 	}
+	
+	checkShowOrHideObj = [
+	 'juicers'               , 'inventoryButton'
+	,'employees'             , 'companyButton'
+	,'baskets'               , 'forestButton'
+	,'hasGottenJuice'        , 'juiceMarket'
+	,'upgradeMoreStorage'    , 'upgradeMoreLand'
+	,'betterTraining'        , 'upgradeBetterTraining'
+	,'forestWell'            , 'forestWellDiv'
+	,'bitterSpeedSkillLevel' , 'eatGoldenLimeProgress'
+	,'bitterSpeedSkillLevel' , 'eatGoldenLime'
+	]
+	
+	for (i = 0; i < checkShowOrHideObj.length / 2; i++) {
+		checkShowSmart(checkShowOrHideObj[i * 2], checkShowOrHideObj[i * 2 + 1])
+	}
+	
+
 
 	upgradeMoreStoragePrice = Math.pow(2, gameData.upgradeMoreStorage) * 50
 
-	update("textForMegaCoinsInBank", gameData.megaCoinsInBank.toLocaleString() + " / " + gameData.megaCoinsInBankMax.toLocaleString() + " Mega Coins In Bank")
 
 	if (gameData.forestTreeType == 1)
 		update("limesInBaskets", gameData.limesInBaskets.toLocaleString() + " Limes")
@@ -191,82 +194,7 @@ function updateValues() {
 		update("limesInBaskets", gameData.limesInBaskets.toLocaleString() + " Limes + " + gameData.goldenLimesInBaskets.toLocaleString() + " Golden Limes")
 
 
-	update("textForRespect", gameData.respect.toLocaleString() + " Respect")
-
-	update("textForTimePlayed", "Total Time Played: " + gameData.timePlayed.toLocaleString() + " Seconds")
-
-
-
-	update("textForLakes", gameData.limeDiseaseLakes.toLocaleString() + " Lakes")
-
-	update("currentSpeedEmployee", "Current speed: " + gameData.employeeCurrentSpeed.toLocaleString() + " limes per minute.")
-	update("speedEmployee", "Speed: " + gameData.employeeSpeed.toLocaleString() + "% Of What I'm Taught.")
-
-
-	update("textForJuicePricePrice", "Price: " + gameData.juicePricePrice.toLocaleString() + " Coins")
-
-	update("textForNourishmentPrice", "You Need: " + gameData.nourishmentPrice.toLocaleString() + " Limes")
-
-
-	update("juicersAmount", gameData.juicers.toLocaleString() + " / " + gameData.juicersMax.toLocaleString() + " Juicers")
-	update("peelersAmount", gameData.peelers.toLocaleString() + " / " + gameData.peelersMax.toLocaleString() + " Peelers")
-
-
-	update("basketsAmount", gameData.baskets.toLocaleString() + " / " + gameData.basketsMax.toLocaleString() + " Baskets")
-	update("maxBaskets", gameData.basketsMax.toLocaleString() + " baskets fit under the current tree.")
-
-
-	if (gameData.advertisePriceType == 'coins')
-		update("advertisePrice", "Price: " + gameData.advertisePrice.toLocaleString() + " Coins")
-	else if (gameData.advertisePriceType == 'betaCoins')
-		update("advertisePrice", "Price: " + gameData.advertisePrice.toLocaleString() + " Beta Coins")
-
-
-	if (gameData.bachelorsDegreeFinance) {
-		
-		tabs('tradeButton', 'inline-block')
-		showBasicDiv('alphaCoinToMegaCoinDiv')
-		showBasicDiv('upgradeBroker')
-		
-		update("textForBrokerApplicantSpeed", "Currently " + gameData.minBrokerApplicantSpeed.toLocaleString() + " - " + gameData.maxBrokerApplicantSpeed.toLocaleString() + " Seconds")
-		update("textForBrokerApplicantAmount", "Currently " + gameData.minBrokerApplicantAmount.toLocaleString() + " - " + gameData.maxBrokerApplicantAmount.toLocaleString() + " Coins")
-		update("textForAdvertisingBrokerRule", "Auto advertise if speed is over " + gameData.autoAdvertiseSpeedValue.toLocaleString() + " seconds")
-		update("textForSmarterAdvertisingBrokerRule", "And if transfer amount is under " + gameData.autoAdvertiseAmountValue.toLocaleString())
-		update("textForBrokerApplicantFee", "Currently " + gameData.minBrokerApplicantFee.toLocaleString() + " - " + gameData.maxBrokerApplicantFee.toLocaleString() + " Coins")
-		update("brokerApplicantSpeedPrice", "Price: " + gameData.brokerApplicantSpeedPrice.toLocaleString() + " Alpha Coins")
-		update("brokerApplicantFeePrice", "Price: " + gameData.brokerApplicantFeePrice.toLocaleString() + " Alpha Coins")
-		update("brokerApplicantAmountPrice", "Price: " + gameData.brokerApplicantAmountPrice.toLocaleString() + " Alpha Coins")
-
-		update("textForA2BBrokerRule", "Converts Alpha Coins to Beta Coins if the conversion rate is below " + gameData.basicA2BBrokerRule.toLocaleString())
-
-		update("textForA2BBrokerAmountToggleButton", "Bulk convert amount: " + gameData.basicA2BBrokerAmount.toLocaleString())
-		update("textForA2BBrokerPrice", "Increase for " + gameData.increaseBasicA2BBrokerAmountPrice.toLocaleString() + " Pie Coins")
-		
-		update("currencyBrokerTransferAmount", "Speed: " + gameData.currencyBrokerSpeed.toLocaleString() + " Seconds.")
-		update("currencyBrokerFee", "Transfer Fee: " + gameData.currencyBrokerFee.toLocaleString() + ".")
-		update("currencyBrokerSpeed", "Alpha Coins Per Transfer: " + gameData.currencyBrokerTransferAmount.toLocaleString() + ".")
-		update("alphaCoinTransactionFee", "Transfer Fee: " + gameData.currencyBrokerFee.toLocaleString() + " Coins Per Alpha Coin")
-
-		alphaCoinTotalPrice = (gameData.alphaCoinsExchangeRate + gameData.currencyBrokerFee) * gameData.currencyBrokerTransferAmount
-
-		if (!gameData.alphaCoinConvertBulkToggle) {
-			update("alphaCoinExhangeRate", "Exchange Rate: " + gameData.alphaCoinsExchangeRate.toLocaleString() + " Coins -> 1 Alpha Coin")
-			update("alphaCoinTotalPrice", "Total Price: " + alphaCoinTotalPrice.toLocaleString() + " Coins")
-			update("currencyConvertAlphaCoinsButton", "Convert Coins to " + gameData.currencyBrokerTransferAmount.toLocaleString() + " Alpha Coins")
-		} else {
-			update("alphaCoinExhangeRate", "Exchange Rate: " + (gameData.alphaCoinsExchangeRate * 10).toLocaleString() + " Coins -> 10 Alpha Coins")
-			update("alphaCoinTotalPrice", "Total Price: " + (alphaCoinTotalPrice * 10).toLocaleString() + " Coins")
-			update("currencyConvertAlphaCoinsButton", "Convert Coins to " + (gameData.currencyBrokerTransferAmount * 10).toLocaleString() + " Alpha Coins")
-		}
-
-	} else {
-
-		hide('tradeButton')
-		hide('alphaCoinToMegaCoinDiv')
-		hide('upgradeBroker')
-	}
-
-
+	updateBrokers()
 
 
 	if (gameData.villageNumber > 1 || gameData.betterTraining > 0 || gameData.increaseJuicePricePermanance == 1)
@@ -302,28 +230,7 @@ function updateValues() {
 
 	updateHiringArea()
 
-	update("buyMegaCoinsTimes", "Transfer times: " + gameData.buyMegaCoinsTimes + " / " + gameData.buyMegaCoinsTimesMax)
-	update("textForAutomaticallyCollectsLimes", "Automatically collects limes at " + (gameData.shoes + 1) + "/s")
-	update("textForBetterTraining", "Current maximum: " + (gameData.betterTraining + 10).toLocaleString() + "00%")
-	update("textForCoinsMax", "Current maximum: " + gameData.coinsMax.toLocaleString() + " Coins")
-	update("textForCurrentEmployees", "Current Employees: " + gameData.employees.toLocaleString() + " / " + gameData.maxEmployees.toLocaleString())
-	update("numberOfCivilians", "Number Of Civilians: " + gameData.civiliansTotal.toLocaleString())
-	update("betterTrainingPrice", "Price: " + gameData.betterTraining.toLocaleString() + " Mega Coins")
-	update("sellYourJuiceAmount", "You Will Deliver " + gameData.juiceBulkAmountToggle.toLocaleString() + " / " + gameData.juiceBulkAmountMax.toLocaleString() + " Juice")
-	update("sellYourJuiceReward", "You Will Get " + gameData.juiceSellReward.toLocaleString() + " Coins")
-	update("sellYourJuicePrice", "You Need " + gameData.deliveryPrice.toLocaleString() + " Coins For Delivery")
-	update("upgradeMoreStoragePrice", "Price: " + upgradeMoreStoragePrice.toLocaleString() + " Mega Coins")
-
-
-
-	checkShowOrHide(gameData.juicers, "inventoryButton")
-	checkShowOrHide(gameData.employees, "companyButton")
-	checkShowOrHide(gameData.baskets, "forestButton")
-	checkShowOrHide(gameData.hasGottenJuice, "juiceMarket")
-	checkShowOrHide(gameData.doesHaveCurrencyBroker, "currencyBroker")
-
 	checkHideOrShow(gameData.forestWell, "buyAWell")
-	checkShowOrHide(gameData.forestWell, "forestWellDiv")
 
 
 	moveBar("teach")
@@ -385,9 +292,6 @@ function updateValues() {
 		gameData.limesPerClick = 2 + gameData.difficulty * 5
 	}
 
-	checkShowOrHide(gameData.betterTraining, 'upgradeBetterTraining')
-	checkShowOrHide(gameData.smarterAdvertisingManagerBroker, 'smarterAdvertisingBrokerRule')
-
 
 	if (gameData.coinsMax > 1e6)
 		showBasicDiv("upgradeWallet")
@@ -395,12 +299,6 @@ function updateValues() {
 		hide("upgradeWallet")
 
 
-
-
-	if (gameData.advertisingManagerBroker && !gameData.smarterAdvertisingManagerBroker)
-		showBasicDiv("smarterAutoBrokerAdvertiser")
-	else
-		hide("smarterAutoBrokerAdvertiser")
 
 
 	checkRespectMilestone(10, 'lime', 'Automatically start tasks', 'autoStartTaskButton')
@@ -479,28 +377,8 @@ function updateValues() {
 	}
 
 
-	if (gameData.advertisingManagerBroker && gameData.typeToHireToggle == 1)
-		tabs("autoAdvertiseBrokerDiv", "inline-block")
-	else
-		hide("autoAdvertiseBrokerDiv")
 
 
-
-	if (gameData.unlockCurrencyBrokers) {
-		hide("unlockCurrencyBrokers")
-		showBasicDiv("hireToggleButtons")
-		showBasicDiv("brokerApplicantUpgrades")
-		if (gameData.advertisingManagerBroker)
-			hide("autoBrokerAdvertiser")
-		else
-			showBasicDiv("autoBrokerAdvertiser")
-	} else {
-
-		showBasicDiv("unlockCurrencyBrokers")
-		hide("hireToggleButtons")
-		hide("brokerApplicantUpgrades")
-		hide("autoBrokerAdvertiser")
-	}
 
 	if (!gameData.multitasking && gameData.learnANewSkill > 0)
 		showBasicDiv("buySkillToggler")
@@ -722,8 +600,6 @@ function updateValues() {
 	else
 		hide('buyShoesDiv')
 
-	checkShowOrHide(gameData.upgradeMoreStorage, 'upgradeMoreLand')
-
 	if (gameData.hideCompletedSkills == 0)
 		update("hideCompletedSkillsButton", "Completed Skills Shown")
 	else
@@ -804,15 +680,8 @@ function updateValues() {
 	checkHide(gameData.storagePeelersUnlock, "storagePeelersDiv")
 	checkHide(gameData.storageJuicersUnlock, "storageJuicersDiv")
 	checkHide(gameData.changeResearchersBy10Unlock, "changeResearchersBy10Unlock")
-	checkHide(gameData.saveAlphaCoinsUnlock, "saveAlphaCoinsUnlock")
-	checkShow(gameData.saveAlphaCoinsUnlock, "upgradeSaveAlphaCoinsUnlock")
 	checkShow(gameData.changeResearchersBy10Unlock, "upgradeChangeResearchersBy10")
 	checkShow(gameData.rottenActualWisdom, "upgradeRottenActualWisdomUnlock")
-
-
-
-	checkHide(gameData.surveillanceCamera2, "offlineScience")
-	checkShow(gameData.surveillanceCamera2, "upgradeHighTechSurveillance")
 
 	checkHide(gameData.forestTree2, "buyANewTree")
 	checkShow(gameData.forestTree2, "treeTypeDiv")
@@ -840,20 +709,13 @@ function updateValues() {
 
 	checkHide(gameData.tomes, "tomeDiv")
 
-	if (gameData.tomes == 1)
-		showBasicDiv("tomeDiv2")
-	else
-		hide("tomeDiv2")
+	for (i = 1; i <= 3; i++) {
+		if (gameData.tomes == i)
+			showBasicDiv("tomeDiv" + (i + 1))
+		else
+			hide("tomeDiv" + (i + 1))
+	}
 
-	if (gameData.tomes == 2)
-		showBasicDiv("tomeDiv3")
-	else
-		hide("tomeDiv3")
-
-	if (gameData.tomes == 3)
-		showBasicDiv("tomeDiv4")
-	else
-		hide("tomeDiv4")
 	
 	if (gameData.tomes > 3)
 		showBasicDiv("goldenBarDiv")
@@ -918,16 +780,9 @@ function updateValues() {
 
 
 	checkShow(gameData.peelers, "peelerDiv")
-	checkShow(gameData.transferAlphaCoinsBulkUnlock, "transferAlphaCoinsBulk")
-	checkHide(gameData.transferAlphaCoinsBulkUnlock, "transferAlphaCoinsBulkUnlock")
 	checkHide(gameData.lightRobe, "lightRobe")
 	checkHide(gameData.skillTrainer, "skillTrainer")
-	checkShow(gameData.bitterSpeedSkillLevel, "eatGoldenLimeProgress")
-	checkShow(gameData.bitterSpeedSkillLevel, "eatGoldenLime")
-	checkHide(gameData.transferAlphaCoinBags, "transferAlphaCoinBagsUnlock")
 
-	if (gameData.transferAlphaCoinBags)
-		tabs("alphaCoinConvertBulkButton", "inline-block")
 
 
 
@@ -998,6 +853,35 @@ function updateValues() {
 		hide('sublimeMain')
 		showBasicDiv('endScreen')
 	}
+	
+	if (gameData.endScreen == 0) {
+		hide('endScreen')
+		if (gameData.soulArea == 'start')
+		{
+			showBasicDiv('sublimeMain')
+			hide('wellField')
+			hide('soulAreaSerf')
+		}
+		else if (gameData.soulArea == 'wellField')
+		{
+			showBasicDiv('wellField')
+			hide('sublimeMain')
+			hide('soulAreaSerf')
+		}
+		else
+		{
+			hide('wellField')
+			hide('sublimeMain')
+			for (let i = 0; i < avs.length; i++) {
+				hide('soulArea' + avs[i].name)
+			}
+			showBasicDiv('soulArea' + gameData.soulArea)
+		}
+
+	} else {
+		hide('sublimeMain')
+		showBasicDiv('endScreen')
+	}
 
 	update("endStats", "Total Time Played: " + gameData.timePlayed.toLocaleString() + " Seconds")
 
@@ -1008,5 +892,12 @@ function updateValues() {
 
 	if(gameData.trainTransport)
 		tabs('deliveryToggleTrainButton', 'inline-block')
+	
+	update("trueLimes", "True Limes: " + gameData.trueLimes.toLocaleString())
+	
+	if(gameData.forestWell)
+		update("textForLimesDiv", "'Limes'")
+
+
 
 }
