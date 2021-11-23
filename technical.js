@@ -666,6 +666,10 @@ function fixOverMaxedVariables(){
         gameData.alphaCoins = 1e5
     }
 	
+    if (gameData.eat > 100) {
+        gameData.eat = 100
+    }
+	
     if (gameData.basketBar > 100) {
         gameData.basketBar = 100
     }
