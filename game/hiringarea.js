@@ -112,18 +112,14 @@ function advertise() {
 }
 
 function advertiseBar() {
-	if (gameData.advertiseBar < 100) {
-		gameData.advertiseBar += 0.5;
-		moveBar("advertise")
-		setTimeout(advertiseBar, (100 / (gameData.advertisingLevel2 * 2 * gameData.advertisingLevel3 + gameData.advertisingLevel2 + 2 * gameData.advertisingLevel3 + 1) / gameData.tickspeed))
-	} else {
-		gameData.applicationReady = 1
-		gameData.hasAdvertised = 1
-		randomizeApplication()
-		gameData.isAdvertising = 0
+	barMoverAdvanced('advertise', 0.5, 100 / (gameData.advertisingLevel2 * 2 * gameData.advertisingLevel3 + gameData.advertisingLevel2 + 2 * gameData.advertisingLevel3 + 1))
+}
 
-	}
-
+function advertiseBarEnd() {
+	gameData.applicationReady = 1
+	gameData.hasAdvertised = 1
+	randomizeApplication()
+	gameData.isAdvertising = 0
 }
 
 function updateHiringArea() {
