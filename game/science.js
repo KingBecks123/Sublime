@@ -1,12 +1,13 @@
 mainSciences = ['watertight', 'surveying', 'benevolence'];
 //Uses: Updates time to complete science. Updates number of researchers allocated.
 
-benevolenceEquation = Math.pow(2, gameData.benevolence * 2)
-watertightEquation = Math.pow(10, 6 - gameData.peeledLimesPerJuice)
-surveyingEquation = Math.pow(2, gameData.numberOfTiles - 15)
 
 function updateScience() {
 	if (gameData.respectMilestone1000) {
+
+		var benevolenceEquation = Math.pow(2, gameData.benevolence * 2)
+		var watertightEquation = Math.pow(10, 6 - gameData.peeledLimesPerJuice)
+		var surveyingEquation = Math.pow(2, gameData.numberOfTiles - 15)
 
 		update("watertightText", "Currently: " + gameData.peeledLimesPerJuice + " Peeled Limes -> 1 Juice")
 		update("surveyingText", "Currently: " + gameData.numberOfTiles + " / 20 Tiles")
@@ -35,7 +36,8 @@ function updateScience() {
 
 			//Shows the estimated time to complete the science by multiplying the time for half a bar by 200.
 			eval([mainSciences[i] + 'ResearchTime'] + " = Math.floor(200 * " + [mainSciences[i] + 'Equation'] + "/ gameData[mainSciences[i] + 'Researchers'])")
-
+			
+			
 			//Converts time to seconds or minutes or infinity depending on size.
 			timeToShowScience(mainSciences[i])
 
@@ -58,7 +60,7 @@ function watertight() {
     if (gameData.peeledLimesPerJuice > 1) {
 		
 		
-		barStartGranular('watertight')
+		barStart('watertight')
 	}
 }
 
@@ -82,8 +84,7 @@ function watertightBar() {
 
 function surveying() {
     if (gameData.numberOfTiles < 20) {
-
-		barStartGranular('surveying')
+		barStart('surveying')
 	}
 }
 
@@ -177,6 +178,7 @@ function surveillanceCamera2(){
 
 function timeToShowScience(id) {
 	var researchTime = eval(id + 'ResearchTime')
+	//console.log(id)
 	var time = id + 'Time'
 	if (gameData[id + 'Researchers'] == 0) {
 		update(time, "Estimated Time: Infinite Seconds")
