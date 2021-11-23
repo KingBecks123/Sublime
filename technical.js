@@ -637,6 +637,7 @@ function tabOptions(tabby) {
     tabs("gameOptions", "none")
     tabs("uiOptions", "none")
     tabs("statsOptions", "none")
+    tabs("contactOptions", "none")
 
 	
     document.getElementById(tabby).style.display = "block"
