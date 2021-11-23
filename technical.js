@@ -495,8 +495,6 @@ function gameStart() {
 	watertightBarDoMove = 0
 	findPieCustomersBarDoMove = 0
 
-
-
     Object.assign(gameData, gameDataBase)
 	
 
