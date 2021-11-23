@@ -342,9 +342,7 @@ function peelerBar() {
 }
 
 function peelerBarEnd() {
-	gameData.juice += gameData.howMuchJuice
-	gameData.hasGottenJuice = 1
-	gameData.isCurrentlyJuicing = 0
+	gameData.peeledLimes += gameData.howManyPeeledLimes;
 }
 
 function juicerBar() {
