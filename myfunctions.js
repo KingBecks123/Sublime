@@ -2,7 +2,7 @@ function loadStuff(savegame) {
 	if (savegame !== null) {
 		Object.assign(gameData, savegame);
 		backwardsCompatibility(gameData.versionNumber)
-		gameData.versionNumber = 130
+		gameData.versionNumber = 131
 		updateAfterLoad()
 	} else {
 		update("newInfo", "Save File Empty.")
@@ -364,7 +364,7 @@ function updateNumber(id) {
 	else
 		val = valRaw.toLocaleString()
 
-	if ((valRaw && gameData[id + 'ShowVariable']) || id == 'limes') {
+	if ((gameData[id + 'UnlockedVariable'] && gameData[id + 'ShowVariable']) || id == 'limes') {
 		showBasicDiv(elem + 'Div')
 		showBasicDiv(elem + 'Br')
 		showBasicDiv(elem + 'P')
@@ -394,7 +394,7 @@ function updateAreaNumbers() {
 			else
 				val = valRaw.toLocaleString()
 
-			if ((valRaw && gameData[id + 'ShowVariable']) || id == 'limes') {
+			if ((gameData[id + 'UnlockedVariable'] && gameData[id + 'ShowVariable']) || id == 'limes') {
 				showBasicDiv(elem + 'Div')
 				showBasicDiv(elem + 'Br')
 				showBasicDiv(elem + 'P')
