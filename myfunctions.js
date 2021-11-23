@@ -2,7 +2,7 @@ function loadStuff(savegame) {
 	if (savegame !== null) {
 		Object.assign(gameData, savegame);
 		backwardsCompatibility(gameData.versionNumber)
-		gameData.versionNumber = 134
+		gameData.versionNumber = 135
 		updateAfterLoad()
 	} else {
 		update("newInfo", "Save File Empty.")
@@ -141,7 +141,7 @@ function startCurrentTask(x) {
 function showOrHideSkill(x) {
 	div = x + "Div"
 
-	if (gameData.hideCompletedSkills == 1 && gameData[x + 'skillLevel'] == gameData[x + 'skillLevelMax']) {
+	if (gameData.hideCompletedSkills == 1 && gameData[x + 'SkillLevel'] == gameData[x + 'SkillLevelMax']) {
 		tabs(div, "none")
 	} else {
 		tabs(div, "block")
