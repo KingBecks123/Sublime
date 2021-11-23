@@ -473,7 +473,6 @@ function updateValues() {
 		tabs("marketMainButtonsDiv", "inline-block")
 		tabs("marketStoreButton", "inline-block")
 		document.getElementById("marketMainButtonsDiv").style.width = "360px"
-		hide("buyAMapDiv")
 	}
 
 	if (gameData.maps > 1) {
@@ -704,6 +703,12 @@ function updateValues() {
 			hide("buyABasketDiv")
 		} else {
 			showBasicDiv("buyABasketDiv")
+		}
+		
+		if (gameData.maps > 0) {
+			hide("buyAMapDiv")
+		} else {
+			showBasicDiv("buyAMapDiv")
 		}
 	}
 
