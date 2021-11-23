@@ -110,7 +110,7 @@ function convertCoinsNow() {
 
 
 function convertCoinsNowBar() {
-	barMoverAdvanced('currencyBrokerHire', 0.5, 50 * Math.pow(2, (gameData.convertedCoinsSinceTravel + 1)))
+	barMoverAdvanced('convertCoinsNow', 0.5, 50 * Math.pow(2, (gameData.convertedCoinsSinceTravel + 1)))
 }
 
 function convertCoinsNowBarEnd() {
