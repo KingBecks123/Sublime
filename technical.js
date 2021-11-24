@@ -671,6 +671,10 @@ function fixOverMaxedVariables(){
         gameData.eat = 100
     }
 	
+    if (gameData.limes < 0) {
+        gameData.limes = 0
+    }
+	
     if (gameData.basketBar > 100) {
         gameData.basketBar = 100
     }
