@@ -29,11 +29,11 @@ function updateBrokers(){
 		if (!gameData.alphaCoinConvertBulkToggle) {
 			update("alphaCoinExhangeRate", "Exchange Rate: " + gameData.alphaCoinsExchangeRate.toLocaleString() + " Coins -> 1 Alpha Coin")
 			update("alphaCoinTotalPrice", "Total Price: " + alphaCoinTotalPrice.toLocaleString() + " Coins")
-			update("currencyConvertAlphaCoinsButton", "Convert Coins to " + gameData.currencyBrokerTransferAmount.toLocaleString() + " Alpha Coins")
+			update("coinsToAlphaClickButton", "Convert Coins to " + gameData.currencyBrokerTransferAmount.toLocaleString() + " Alpha Coins")
 		} else {
 			update("alphaCoinExhangeRate", "Exchange Rate: " + (gameData.alphaCoinsExchangeRate * 10).toLocaleString() + " Coins -> 10 Alpha Coins")
 			update("alphaCoinTotalPrice", "Total Price: " + (alphaCoinTotalPrice * 10).toLocaleString() + " Coins")
-			update("currencyConvertAlphaCoinsButton", "Convert Coins to " + (gameData.currencyBrokerTransferAmount * 10).toLocaleString() + " Alpha Coins")
+			update("coinsToAlphaClickButton", "Convert Coins to " + (gameData.currencyBrokerTransferAmount * 10).toLocaleString() + " Alpha Coins")
 		}
 
 	} else {
@@ -166,7 +166,6 @@ function brokerApplicant(id, type) {
 			}
 		}
 	}
-    updateValues()
 }
 
 function brokerApplicantPrice(id){
@@ -202,7 +201,7 @@ function searchForACurrencyBroker() {
 
 function coinsToAlphaStart() {
 	if(gameData.autoCurrencyConversionBuy)
-		pickCurrentTask('autoCurrencyConversionBuy')
+		pickCurrentTask('coinsToAlphaClick')
 	else
 		coinsToAlphaClick()
 }
