@@ -851,14 +851,6 @@ function updateValues() {
 			showOrHideSkill(mainSkills[i])
 		}
 	}
-
-	if (gameData.endScreen == 0) {
-		hide('endScreen')
-		showBasicDiv('sublimeMain')
-	} else {
-		hide('sublimeMain')
-		showBasicDiv('endScreen')
-	}
 	
 	if (gameData.endScreen == 0) {
 		hide('endScreen')

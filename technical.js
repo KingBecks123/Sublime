@@ -410,7 +410,6 @@ var gameDataBase = {
         [59, 59, 59, 59, 59],
         [59, 59, 59, 59, 59]
     ],
-	wheatFieldXDimension: 1,
 	mortarAndPestle: 0,
 	flour: 0,
 	pieOven: 0,
