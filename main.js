@@ -128,9 +128,13 @@ function mainGameLoop() {
 		loopNumberGoldenLimes = 0
 
     }
-	
+	   
 	setTimeout(mainGameLoop, 50)
-    updateValues()
+}
+
+function mainGameLoopFast() {
+	updateValues()
+	setTimeout(mainGameLoopFast, 15)
 }
 
 function calculateOfflineProgress(){

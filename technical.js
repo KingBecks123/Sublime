@@ -503,6 +503,8 @@ function gameStart() {
     mainGameLoop()
 	
     mainGameLoopSlow()
+	
+    mainGameLoopFast()
 
 	addAestheticBase()
 	

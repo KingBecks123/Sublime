@@ -2,7 +2,7 @@ function loadStuff(savegame) {
 	if (savegame !== null) {
 		Object.assign(gameData, savegame);
 		backwardsCompatibility(gameData.versionNumber)
-		gameData.versionNumber = 138
+		gameData.versionNumber = 139
 		updateAfterLoad()
 	} else {
 		update("newInfo", "Save File Empty.")
@@ -66,8 +66,6 @@ function pinButton() {
 		document.getElementById(gameData.pin).style.margin = "0px"
 		document.getElementById(gameData.pin).style.padding = "0px";
 	}
-
-	updateValues()
 }
 
 function pickCurrentTask(x) {
@@ -99,7 +97,6 @@ function pickCurrentTask(x) {
 		startCurrentTask(x)
 	}
 
-	updateValues()
 }
 
 function pickCurrentSkill(x) {
@@ -534,25 +531,6 @@ function resetGame() {
 }
 
 function backwardsCompatibility(versionNumber) {
-	if (versionNumber == undefined || versionNumber < 30) {
-
-		gameData.basketsMax = 50
-		gameData.juicersMax = 100
-		gameData.peelersMax = 500
-		gameData.intelligenceSkillLevelMax = 20
-	}
-	if (versionNumber < 78) {
-
-		gameData.diseaseArray = [
-			[0, 0, 0, 0, 0],
-			[0, 0, 0, 0, 0],
-			[0, 0, 0, 0, 0],
-			[0, 0, 0, 0, 0],
-			[0, 0, 0, 0, 0]
-		]
-		diseaseControlQuit()
-	}
-	
 	if (gameData.pin == 'sellYourJuiceButton')
 		gameData.pin = 'deliveryButton'
 }
