@@ -14,7 +14,7 @@ mainVariablesColor2 = ['#00FF01', '#00FF01'     , '#A0FF01'     , '#00FF55', '#F
 mainSkills =      ['keenEye' , 'rottenWisdom' , 'limebidextrous', 'intelligence', 'knifebidextrous', 'motivation', 'ambidextrous', 'bitterSpeed' ];
 mainSkillsNames = ['Keen Eye', 'Rotten Wisdom', 'Limebidextrous', 'Intelligence', 'Knifebidextrous', 'Motivation', 'Ambidextrous', 'Bitter Speed'];
 
-//Area Based Variables
+//Area Variables
 avs       = [ 
 	{
 		area: 'serf',
@@ -32,10 +32,6 @@ avs       = [
 		],
 	},
 ]
-
-
-//Uses: Restart bar after reloading. Sets the level to the max level if it somehow goes above. Updates test for level / levelMax. Updates aesthetic for the skill's button. Creates HTML for the skill.
-//Order is used for showing skills.
 
 function mainGameLoopSlow() {
 

@@ -15,25 +15,35 @@ limesRelatedAccent = "#4DFE89";
 yellowAccent = "#FCFF4E";
 
 function addAesthetic() {
-
+	var one = document.getElementById('skillsSection1')
+	var two = document.getElementById('skillsSection2')
+	var skills = document.getElementById('skills')
+	
 	if (gameData.desktopMode == 0) {
-		document.getElementById('skills').style.width = '380px'
-		document.getElementById('skillsSection1').style.position = 'relative'
-		document.getElementById('skillsSection2').style.position = 'relative'
+		skills.style.width = '380px'
+		one.style.position = 'relative'
+		two.style.position = 'relative'
 		update("desktopModeButton", "In Mobile Mode")
 	} else {
-		document.getElementById('skillsSection1').style.top = '0'
-		document.getElementById('skillsSection1').style.position = 'absolute'
-		document.getElementById('skillsSection2').style.position = 'absolute'
-		document.getElementById('skillsSection2').style.right = '0'
-		document.getElementById('skills').style.width = '760px'
+		skills.style.width = '760px'
+		one.style.top = '0'
+		one.style.position = 'absolute'
+		two.style.position = 'absolute'
+		two.style.right = '0'
 		update("desktopModeButton", "In Desktop Mode")
 	}
 	
 	twoToggleButtons('foodToggleRottenLimesButton', 'foodToggleLimesButton', gameData.foodTypeToggle)
 	twoToggleButtons('juicePeeledLimesToggleButton', 'juiceLimesToggleButton', gameData.limeTypeToJuice)
 
-	showOrHideClass("unlockDiseaseAreaSwamp")
+
+	var x = document.getElementsByClassName(unlockDiseaseAreaSwamp)
+	for (i = 0; i < x.length; i++) {
+		if (gameData.unlockDiseaseAreaSwamp)
+			x[i].style.display = "block";
+		else
+			x[i].style.display = "none";
+	}
 
 	basicToggle("skill", "Info")
 	basicToggle("limeDisease", "Info")
@@ -59,11 +69,11 @@ function addAesthetic() {
 	toggleAesthetic("dontToggle")
 	toggleAesthetic("textForA2BBrokerAmountToggle")
 
-	currentTaskAesthetic('usePeelers')
-	currentTaskAesthetic('useMaxPeelers')
+	currentTaskAesthetic('peelerPeel')
+	currentTaskAesthetic('peelerPeelMax')
 	currentTaskAesthetic('makeJuice')
 	currentTaskAesthetic('makeMaxJuice')
-	currentTaskAesthetic('eatFood')
+	currentTaskAesthetic('eat')
 	currentTaskAesthetic('delivery')
 	currentTaskAesthetic('findPieCustomers')
 
@@ -178,20 +188,20 @@ function addAesthetic() {
 	else
 		colorChanger('increaseJuicePriceButton', '#FF999A')
 
-	if (gameData.isAutoCollecting == 0)
-		colorChanger('autoCollectingButton', accent4)
-	else
+	if (gameData.isAutoCollecting)
 		colorChanger('autoCollectingButton', grayAccent)
-
-	if (gameData.currentTask == 'autoCurrencyConversionBuy' || gameData.currentTask2 == 'autoCurrencyConversionBuy')
-		colorChanger('currencyConvertAlphaCoinsButton', '#F8FF01')
 	else
-		colorChanger('currencyConvertAlphaCoinsButton', '#FDFF9A')
+		colorChanger('autoCollectingButton', accent4)
 
-	if (gameData.currentTask == 'alphaToBeta' || gameData.currentTask2 == 'alphaToBeta')
-		colorChanger('currencyConvertBetaCoinsButton', '#F8FF01')
+	if (gameData.currentTask == 'coinsToAlphaClick' || gameData.currentTask2 == 'coinsToAlphaClick')
+		colorChanger('coinsToAlphaClickButton', '#F8FF01')
 	else
-		colorChanger('currencyConvertBetaCoinsButton', '#FDFF9A')
+		colorChanger('coinsToAlphaClickButton', '#FDFF9A')
+
+	if (gameData.currentTask == 'alphaToBetaClick' || gameData.currentTask2 == 'alphaToBetaClick')
+		colorChanger('alphaToBetaClickButton', '#F8FF01')
+	else
+		colorChanger('alphaToBetaClickButton', '#FDFF9A')
 
 	function currentTaskAesthetic(x) {
 		button = x + "Button"
@@ -238,9 +248,7 @@ function addAesthetic() {
 			x[i].style.backgroundColor = accent4;
 		}
 	}
-	for (i = 0; i < x.length; i++) {
-		x[i].style['margin'] = "5px";
-	}
+
 
 	var x = document.getElementsByClassName("currencyButton");
 	if (gameData.autoCurrencyConversionBuy) {
@@ -256,9 +264,6 @@ function addAesthetic() {
 	for (i = 0; i < x.length; i++) {
 		x[i].style['margin'] = "5px";
 	}
-	colorChanger('lookAroundButton', grayAccentLight)
-	colorChanger('deliveryProgress', accent0)
-	colorChanger('deliveryBar', accent3)
 }
 
 function twoToggleButtons(button1, button2, value) {
@@ -272,132 +277,7 @@ function twoToggleButtons(button1, button2, value) {
 }
 
 function addAestheticBase() {
-
-	colorChanger('sellYourLimesButton', yellowAccent)
-	colorChanger('backgroundForValues', "#000000")
-	colorChanger('sellMaxJuiceButton', grayAccentLight)
-	colorChanger('pickUpLimes', limesRelatedAccent)
-	colorChanger('application', accent4)
-	colorChanger('mainBody', background)
-	colorChanger('inventoryKnifeLime', accent3)
-
 	selectedWheatItemAesthetic(gameData.selectedWheatItem)
-
-	//Basic Div
-	var x = document.getElementsByClassName("basicDiv");
-	for (i = 0; i < x.length; i++) {
-		x[i].style.backgroundColor = accent0;
-	}
-
-	//Basic Div Size
-	var x = document.getElementsByClassName("basicDivSize");
-	for (i = 0; i < x.length; i++) {
-		x[i].style.padding = "5px 5px 5px 5px";
-		x[i].style['margin'] = "10px 5px 10px 5px";
-	}
-
-	//Basic Text
-	var x = document.getElementsByClassName("basicText");
-	for (i = 0; i < x.length; i++) {
-		x[i].style.backgroundColor = grayAccentLight;
-		x[i].style.padding = "5px";
-		x[i].style['margin'] = "5px";
-	}
-
-	//Basic Text Yellow
-	var x = document.getElementsByClassName("basicTextYellow");
-	for (i = 0; i < x.length; i++) {
-		x[i].style.backgroundColor = '#FDFF9A';
-		x[i].style.padding = "5px";
-		x[i].style['margin'] = "5px";
-	}
-
-	//Basic Text Size
-	var x = document.getElementsByClassName("basicTextSize");
-	for (i = 0; i < x.length; i++) {
-		x[i].style.padding = "5px";
-		x[i].style['margin'] = "5px";
-	}
-
-	//Gray Button
-	var x = document.getElementsByClassName("grayButton");
-	for (i = 0; i < x.length; i++) {
-		x[i].style.backgroundColor = grayAccentLight;
-		x[i].style['margin'] = "5px";
-	}
-
-	//Basic Button
-	var x = document.getElementsByClassName("basicButton");
-	for (i = 0; i < x.length; i++) {
-		x[i].style.backgroundColor = accent3;
-		x[i].style['margin'] = "5px";
-	}
-
-	//Basic Button Size
-	var x = document.getElementsByClassName("basicButtonSize");
-	for (i = 0; i < x.length; i++) {
-		x[i].style['margin'] = "5px";
-	}
-
-	//Basic Button Size Round
-	var x = document.getElementsByClassName("basicButtonSizeRound");
-	for (i = 0; i < x.length; i++) {
-		x[i].style['margin'] = "5px";
-		x[i].style['padding'] = "1px 10px 1px 10px";
-		x[i].style['border-radius'] = "12px";
-	}
-
-	//Special Button
-	var x = document.getElementsByClassName("specialButton");
-	for (i = 0; i < x.length; i++) {
-		x[i].style.backgroundColor = accent4;
-		x[i].style['margin'] = "5px";
-	}
-
-
-	//Special Button Travel
-	var x = document.getElementsByClassName("specialButtonTravel");
-	for (i = 0; i < x.length; i++) {
-		x[i].style.backgroundColor = "#FF999A";
-		x[i].style['margin'] = "5px";
-	}
-
-	//Pin Button
-	var x = document.getElementsByClassName("pinButton");
-	for (i = 0; i < x.length; i++) {
-		x[i].style.backgroundColor = "#FF999A";
-		x[i].style.height = '25px';
-		x[i].style['margin'] = "5px";
-	}
-
-	//Skills
-
-	//Skill Progress
-	var x = document.getElementsByClassName("skillProgress");
-	for (i = 0; i < x.length; i++) {
-		x[i].style.backgroundColor = accent0;
-		x[i].style['margin'] = "5px";
-	}
-
-	//Vertical Progress
-	var x = document.getElementsByClassName("verticalProgress");
-	for (i = 0; i < x.length; i++) {
-		x[i].style.backgroundColor = accent0;
-		x[i].style['margin'] = "5px";
-	}
-
-	//Field Tile
-	var x = document.getElementsByClassName("fieldTile");
-	for (i = 0; i < x.length; i++) {
-		x[i].style.color = "#964D1A";
-		x[i].style.height = '90px';
-		x[i].style.width = '90px';
-		x[i].style.padding = '0px';
-		x[i].style.margin = '0px 0px 0px 0px';
-	}
-
-
-
 	changeVariablesColorAesthetic()
 	updateFieldTileAesthetic()
 	normalizeButtons()

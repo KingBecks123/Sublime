@@ -8,139 +8,40 @@
 
     <style>
 
-		.highlight {
-			background-color: #fff2ac;
-			background-image: linear-gradient(to right, #ffe359 0%, #fff2ac 100%);
-		}
+		.basicDiv     {padding: 5px 5px 5px 5px;margin: 10px 5px 10px 5px;background-color:#222222;}
+		.basicDivSize {padding: 5px 5px 5px 5px;margin: 10px 5px 10px 5px;}
 		
-		.basicDiv {
-			padding: 5px 5px 5px 5px;
-			margin: 10px 5px 10px 5px;
-		}
+		.basicText {padding: 5px; margin: 5px; background-color:#BBBBBB;}
+		.basicTextSize {padding: 5px; margin: 5px;}
+		.basicTextYellow {padding: 5px; margin: 5px; background-color:#FDFF9A;}
+
+		.basicButtonSize {margin: 5px;}
+		.specialButton {margin: 5px;background-color:#DEAD85;}
+		.specialButtonTravel {margin: 5px;background-color:#FF999A;}
+		.roundButton {margin: 5px;padding: 1px 10px 1px 10px;border-radius: 12px;}
+
+
+		.fieldTile {height:90px;width:90px;padding:0px;margin:0px;}
+		.pinButton {background-color:#FF999A;height:25px;margin:5px;}
+		.stat{font-family: pixelated;  font-size: 20px; display:none;}
+		.ar{float: right;}
+		.skillButton{margin:5px;}
+        .skillProgress {width: 350px;height: 30px;margin:5px;background-color:#000000;}
+        .skillBar {width: 0%;height: 30px;line-height: 30px;font-family: pixelated;font-size: 20px;padding: 0px 0px 0px 0px;background-color: #4DFE89;}
+        .skillBarColored {width: 0%;height: 30px;line-height: 30px;font-family: pixelated;font-size: 20px;padding: 0px 0px 0px 0px;}
+        .verticalProgress {width: 350px;height: 300px;margin: auto;position: relative;background-color:#000000;margin:5px;}
+        .verticalBar {height: 0%;width: 350px;bottom: 0px;right: 0px;position: absolute;font-family: pixelated;font-size: 20px;padding: 0px 0px 0px 0px;}
+        .bucketProgress {background-color: #BBBBBB;width: 167px;height: 100px;display: inline-block;margin: 5px;position: relative;}
+        .smallContainerBar {height: 0%;width: 167px;bottom: 0px;right: 0px;font-family: pixelated;font-size: 20px;position: absolute;bottom: 0px;}
+        .bucketHoleBar {height: 10px;background-color:#000000;bottom: 0px;position: absolute;}
+        .specialAchievement {display: none;}
 		
-		.basicDivSmall {
-			padding: 5px 5px 5px 5px;
-			margin: 10px 5px 10px 5px;
-			width: 360px;
-		}
+		@font-face {font-family: pixelated;src: url('redalertinet.ttf');}
+        p {font-family: pixelated;font-size: 20px;}
+        a {font-family: pixelated;font-size: 20px;}
+        button {font-family: pixelated;font-size: 20px;}
+
 		
-		.stat
-		{
-			 font-family: pixelated;  font-size: 20px; display:none;
-		}
-		.ar 
-		{
-			float: right;
-		}
-		
-        body {
-            -webkit-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        @font-face {
-            font-family: pixelated;
-            src: url('redalertinet.ttf');
-        }
-
-        p {
-            font-family: pixelated;
-            font-size: 20px;
-        }
-		
-        a {
-            font-family: pixelated;
-            font-size: 20px;
-        }
-
-        button {
-            font-family: pixelated;
-            font-size: 20px;
-        }
-
-        .column {
-            float: left;
-            padding: 10px;
-            height: 300px;
-            width: 100px;
-        }
-
-        .skillProgress {
-            width: 350px;
-            height: 30px;
-        }
-
-        .skillBar {
-            width: 0%;
-            height: 30px;
-            line-height: 30px;
-            font-family: pixelated;
-            font-size: 20px;
-			padding: 0px 0px 0px 0px;
-			background-color: #4DFE89;
-        }
-		
-        .skillBarColored {
-            width: 0%;
-            height: 30px;
-            line-height: 30px;
-            font-family: pixelated;
-            font-size: 20px;
-			padding: 0px 0px 0px 0px;
-
-        }
-
-        .verticalProgress {
-            width: 350px;
-            height: 300px;
-            margin: auto;
-            position: relative;
-        }
-
-        .verticalBar {
-            height: 0%;
-            width: 350px;
-            bottom: 0px;
-            right: 0px;
-            position: absolute;
-            font-family: pixelated;
-            font-size: 20px;
-			padding: 0px 0px 0px 0px;
-        }
-		
-        .bucketProgress {
-			background-color: #BBBBBB;
-            width: 167px;
-            height: 100px;
-			display: inline-block;
-			margin: 5px;
-            position: relative;
-        }
-
-        .smallContainerBar {
-            height: 0%;
-            width: 167px;
-            bottom: 0px;
-            right: 0px;
-            font-family: pixelated;
-            font-size: 20px;
-            position: absolute;
-            bottom: 0px;
-        }
-
-        .bucketHoleBar {
-            height: 10px;
-			background-color:#000000;
-            bottom: 0px;
-            position: absolute;
-
-        }
-		
-        .specialAchievement {
-            display: none;
-
-        }
     </style>
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-5S0BD7ZKYH"></script>
@@ -153,11 +54,11 @@
 	</script>
 </head>
 
-<body id="mainBody" , onload="gameStart()">
+<body id="mainBody" style="-webkit-user-select: none;-ms-user-select: none;user-select: none;background-color:#3C3C3C;" onload="gameStart()">
 	
 <span id="sublimeMain">
 
-	<div style="float: left;padding: 10px;width: 100px;" id="backgroundForValues">
+	<div style="float:left;padding:10px;width:100px;background-color:#000000;" id="backgroundForValues">
 		<br>
 	</div>	
 	
@@ -170,8 +71,8 @@
 
     </div>
     <div style="display:block;float: left;margin-left:5px;margin-top:5px;">
-        <button class="basicButtonSize" id="pickUpLimes" style="width:120px" onkeydown="return event.key != 'Enter';" onclick="getLimesButton()">Collect Limes</button>
-        <button class="basicButtonSize" id="lookAroundButton" onclick="lookAround()">Look Around</button>
+        <button class="basicButtonSize" id="pickUpLimes" style="width:120px;background-color:#4DFE89" onkeydown="return event.key != 'Enter';" onclick="getLimesButton()">Collect Limes</button>
+        <button class="basicButtonSize" id="lookAroundButton" style="background-color:#BBBBBB" onclick="lookAround()">Look Around</button>
         <button class="specialButton" id="stopActionsButton" style="width:120px" onclick="stopActions()">Stop Actions</button>
         <button class="basicButtonSize" id="dontToggleButton" style="width:120px" onclick="toggle('dontToggle')">Don't Toggle</button>
 
@@ -239,7 +140,6 @@
 				<button class="specialButton" onclick="changeZoomSize()">Change Zoom Size</button>
 
 
-				<button class="basicButton"   id="aestheticButton" onclick="toggle('aesthetic')" style="display:none">Aesthetic: Modern</button>
 				<button class="specialButton" id="barPercentButton" onclick="toggle('showBarPercent')">Bar Percent Shown</button><br>
 				<button class="specialButton" onclick="changeVariablesColor()">Switch Variable Colors</button>
 				<button class="specialButton" id="hideCompletedSkillsButton" onclick="toggle('hideCompletedSkills')">Completed Skills Shown</button><br>
@@ -277,7 +177,7 @@
 
 
                 <div class="basicDiv" id="sellYourLimesDiv" style="display:none;">
-                    <button class="basicButtonSize" id="sellYourLimesButton" onclick="universalBuy('coins', 50, 'limes')">Sell Your Limes</button>
+                    <button class="basicButtonSize" id="sellYourLimesButton" style="background-color:#FCFF4E" onclick="universalBuy('coins', 50, 'limes')">Sell Your Limes</button>
                     <p class="basicText" , id="sellYourLimesAmount">You Need 50 Limes</p>
                     <p class="basicText" , id="sellYourLimesReward">You Will Be Rewarded 1 Coin</p>
                 </div>
@@ -301,7 +201,7 @@
                 </div>
 				
                 <div class="basicDiv juiceMarket" , id="juiceMarket" , style="display:none;">
-                    <button class="basicButtonSizeRound" id="deliveryButton" , onclick="pickCurrentTask('delivery')">Sell Juice</button>
+                    <button class="roundButton" id="deliveryButton" , onclick="pickCurrentTask('delivery')">Sell Juice</button>
                     <button class="pinButton" onclick="pin('deliveryButton')" style="display:none">+</button>
 
                     <p class="basicText" , id="sellYourJuicePrice">You Need 2 Coins For Delivery</p>
@@ -311,7 +211,7 @@
                     <button class="basicButtonSize" id="decreaseJuiceSoldButton" onclick="decreaseJuiceSold()" , style="width:120px;">Decrease Juice Sold</button>
                     <button class="basicButtonSize" id="increaseJuiceSoldButton" onclick="increaseJuiceSold()" , style="width:120px;">Increase Juice Sold</button>
 
-                    <button class="basicButtonSize" id="sellMaxJuiceButton" onclick="sellMaxJuice()" , style="width:105px;">Sell Max Juice</button>
+                    <button class="basicButtonSize" id="sellMaxJuiceButton" onclick="sellMaxJuice()" , style="width:105px;background-color:#BBBBBB">Sell Max Juice</button>
 
                     <br>
                     <button class="basicButtonSize" id="deliveryToggleStandardButton" , style="width:105px;display:inline-block;" , onclick="deliveryToggleStandard()">Standard Delivery</button>
@@ -320,8 +220,8 @@
 
                     <br><br>
 
-                    <div class="skillProgress" , id="deliveryProgress" , style="margin:auto;">
-                        <div class="skillBar" , id="deliveryBar">0%</div>
+                    <div class="skillProgress" id="deliveryProgress" style="margin:auto;">
+                        <div class="skillBar" id="deliveryBar">0%</div>
                     </div>
                 </div>
             </div>
@@ -708,7 +608,7 @@
                     </div>
 
                     <p class="basicText" id="advertisePrice" , style="display:block;">Price: 10 Coins</p>
-                    <button id="application" , style="display:block;width:300px;margin:auto;" , onclick="hireApplicant()">Pin applications here</button>
+                    <button id="application" , style="display:block;width:300px;margin:auto;background-color:#DEAD85;" , onclick="hireApplicant()">Pin applications here</button>
                     <p class="basicText" id="applicationInfo" , style="display:block;">Click the application to accept</p>
                     <p class="basicText" id="textForCurrentEmployees" , style="display:block;">Current Employees: 0/1</p>
                 </div>
@@ -894,7 +794,7 @@
         <div id="trade" style="width:380px" >
 
             <div class="basicDiv" id="earnAlphaCoins">
-                <button class="currencyButton" id="currencyConvertAlphaCoinsButton" style="display:inline-block;background-color:#FDFF9A" onclick="coinsToAlphaStart()">Convert Coins to Alpha Coins</button>
+                <button class="currencyButton" id="coinsToAlphaClickButton" style="display:inline-block;background-color:#FDFF9A" onclick="coinsToAlphaStart()">Convert Coins to Alpha Coins</button>
                 <button class="basicButtonSize" id="alphaCoinConvertBulkButton" style="width:40px;display:none;" onclick="toggle('alphaCoinConvertBulkToggle')">x10</button>
 
 
@@ -1018,7 +918,7 @@
 				</div>
 			
 			
-                <button class="currencyButton" id="currencyConvertBetaCoinsButton" style="display:block;background-color:#FDFF9A" onclick="pickCurrentTask('alphaToBeta')">Convert Alpha Coins to Beta Coins</button>
+                <button class="currencyButton" id="alphaToBetaClickButton" style="display:block;background-color:#FDFF9A" onclick="pickCurrentTask('alphaToBetaClick')">Convert Alpha Coins to Beta Coins</button>
 
 				<div class="skillProgress" id="alphaToBetaProgress">
 					<div class="skillBar" , id="alphaToBetaBar">0%</div>
@@ -1120,8 +1020,8 @@
             <p class="basicText" style="border-style: solid;border-width: 2px;border-color: #222222" id="juicersAmount">1 Juicers</p>
 			
             <br>	
-            <button class="basicButtonSizeRound" id="makeJuiceButton" style="width:150px;" , onclick="pickCurrentTask('makeJuice')">Use Juicer</button>
-            <button class="basicButtonSizeRound" id="makeMaxJuiceButton" , onclick="pickCurrentTask('makeMaxJuice')" , style="visibility: hidden;width:150px;">Max Juicers</button>
+            <button class="roundButton" id="makeJuiceButton" style="width:150px;" , onclick="pickCurrentTask('makeJuice')">Use Juicer</button>
+            <button class="roundButton" id="makeMaxJuiceButton" , onclick="pickCurrentTask('makeMaxJuice')" , style="visibility: hidden;width:150px;">Max Juicers</button>
 			
 
             <br>
@@ -1135,8 +1035,8 @@
 
         <div class="basicDiv" id="peelerDiv" style="display:none">
             <p class="basicText" id="peelersAmount">1 Peeler</p>
-            <button class="basicButtonSizeRound" id="usePeelersButton" style="width:150px;" , onclick="pickCurrentTask('usePeelers')">Use Peeler</button>
-            <button class="basicButtonSizeRound" id="useMaxPeelersButton" onclick="pickCurrentTask('useMaxPeelers')" , style="display:none;width:150px;">Max Peelers</button>
+            <button class="roundButton" id="peelerPeelButton" style="width:150px;" , onclick="pickCurrentTask('peelerPeel')">Use Peeler</button>
+            <button class="roundButton" id="peelerPeelMaxButton" onclick="pickCurrentTask('peelerPeelMax')" , style="display:none;width:150px;">Max Peelers</button>
             <br>
             <div class="skillProgress" id="peelerProgress">
                 <div class="skillBar" id="peelerBar">0%</div>
@@ -1191,7 +1091,7 @@
 		
         <div class="basicDiv">
             <p class="basicText" id="basketsAmount" , style="background-color:#bfbfbf;padding: 5px;">1 Basket</p>
-            <button class="specialButton" style="background-color:#87a7b3;" , onclick="basket()">Empty Baskets</button>
+            <button class="specialButton" onclick="basket()">Empty Baskets</button>
             <button class="basicButtonSize" id="basketInfoButton" , onclick="toggle('basketInfoToggle')">Info</button>
             <p class="basicText basketInfo">Baskets collect 5 Limes per minute each</p>
             <p class="basicText basketInfo">Baskets collect up to 25 Limes each</p>
@@ -1232,7 +1132,7 @@
 				<p class="basicText sellingPieInfo" >The lower the price the faster you find customers</p>
 				<p class="basicText sellingPieInfo" >Click on the customer to sell to them before they become unhappy and leave!</p>
 
-				<button class="basicButtonSizeRound" id="findPieCustomersButton" onclick="pickCurrentTask('findPieCustomers')">Start Selling Pie</button>
+				<button class="roundButton" id="findPieCustomersButton" onclick="pickCurrentTask('findPieCustomers')">Start Selling Pie</button>
 				<button class="basicButtonSize" id="sellingPieInfoButton" , style="width:80px;" onclick="toggle('sellingPieInfoToggle')">Info</button>
 
 
@@ -1324,8 +1224,6 @@
 					<p class="basicText" id="seedDrillNumber"></p>
 				</div>
 				
-				<!--<p class="basicText">Resources slowly overflow and disappear when you dont have enough storage for them<p>-->
-
 
 				<button class="basicButtonSize" id="winnowWheat" onclick="winnowWheat()">Winnow Wheat</button>
 				<button class="basicButtonSize" id="grindFlour" onclick="grindFlour()">Grind Seeds Into Flour</button>
@@ -1726,7 +1624,7 @@
 		
 		
         <div class="basicDiv" id="eatFoodDiv" style="display:none" >
-            <button class="basicButtonSizeRound" id="eatFoodButton" onclick="pickCurrentTask('eatFood')">   Eat Food   </button>
+            <button class="roundButton" id="eatButton" onclick="pickCurrentTask('eat')">   Eat Food   </button>
 
             <button class="basicButtonSize" id="foodToggleLimesButton" onclick="foodToggleLimes()">Limes</button>
             <button class="basicButtonSize" id="foodToggleRottenLimesButton" onclick="foodToggleRottenLimes()">Rotten Limes</button>
@@ -1847,7 +1745,7 @@
 		You can keep playing and expanding your lime empire while you wait for new updates.<p>
 		<p id="endStats"><p>
         <button class="basicButtonSize" style="width:99%;display:block;" onclick="toggle('endScreen')">Continue</button>
-        <!-- <button class="basicButtonSize" style="width:99%;display:block;" onclick="soulArea('wellField')">Explore Deeper...</button> -->
+        <!--<button class="basicButtonSize" style="width:99%;display:block;" onclick="soulArea('wellField')">Explore Deeper...</button>-->
 
 	</div>
 
@@ -1877,19 +1775,19 @@
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	
-    <script src="aesthetic.js?v=               141" charset="utf-8" type="text/javascript"></script>
-    <script src="myfunctions.js?v=             141" charset="utf-8" type="text/javascript"></script>
-    <script src="main.js?v=                    141" charset="utf-8" type="text/javascript"></script>
-    <script src="technical.js?v=               141" charset="utf-8" type="text/javascript"></script>
-    <script src="bars.js?v=                    141" charset="utf-8" type="text/javascript"></script>
-    <script src="update.js?v=                  141" charset="utf-8" type="text/javascript"></script>
+    <script src="aesthetic.js?v=               142" charset="utf-8" type="text/javascript"></script>
+    <script src="myfunctions.js?v=             142" charset="utf-8" type="text/javascript"></script>
+    <script src="main.js?v=                    142" charset="utf-8" type="text/javascript"></script>
+    <script src="technical.js?v=               142" charset="utf-8" type="text/javascript"></script>
+    <script src="bars.js?v=                    142" charset="utf-8" type="text/javascript"></script>
+    <script src="update.js?v=                  142" charset="utf-8" type="text/javascript"></script>
 
-    <script src="game/diseasetask.js?v=        141" charset="utf-8" type="text/javascript"></script>
-    <script src="game/pie.js?v=                141" charset="utf-8" type="text/javascript"></script>
-    <script src="game/hiringarea.js?v=         141" charset="utf-8" type="text/javascript"></script>
-    <script src="game/science.js?v=            141" charset="utf-8" type="text/javascript"></script>
-    <script src="game/brokers.js?v=            141" charset="utf-8" type="text/javascript"></script>
-    <script src="game/serf.js?v=               141" charset="utf-8" type="text/javascript"></script>
+    <script src="game/diseasetask.js?v=        142" charset="utf-8" type="text/javascript"></script>
+    <script src="game/pie.js?v=                142" charset="utf-8" type="text/javascript"></script>
+    <script src="game/hiringarea.js?v=         142" charset="utf-8" type="text/javascript"></script>
+    <script src="game/science.js?v=            142" charset="utf-8" type="text/javascript"></script>
+    <script src="game/brokers.js?v=            142" charset="utf-8" type="text/javascript"></script>
+    <script src="game/serf.js?v=               142" charset="utf-8" type="text/javascript"></script>
 
 
 

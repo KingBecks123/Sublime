@@ -132,9 +132,7 @@ function updateValues() {
 		showBasicDiv('juiceMarketing')
 	}
 	
-	
-	
-	
+		
 	
 	
 	updateObj = [
@@ -161,6 +159,10 @@ function updateValues() {
 		,"sellYourJuiceReward"               , "You Will Get " + gameData.juiceSellReward.toLocaleString() + " Coins"
 		,"sellYourJuicePrice"                , "You Need " + gameData.deliveryPrice.toLocaleString() + " Coins For Delivery"
 		,"upgradeMoreStoragePrice"           , "Price: " + upgradeMoreStoragePrice.toLocaleString() + " Mega Coins"
+		,"betaCoinExhangeRate"               , "Exchange Rate: " + gameData.betaCoinsExchangeRate.toLocaleString() + " Alpha Coins -> 1 Beta Coin"
+		,"betaCoinTotalPrice"                , "Total Price: " + gameData.betaCoinsExchangeRate * (gameData.textForA2BBrokerAmountToggle * (gameData.basicA2BBrokerAmount - 1) + 1).toLocaleString() + " Alpha Coins"
+ 		,"piePrice"                          , "Current Price: " + gameData.piePrice.toLocaleString() + " Pie Coins"
+ 
 	]
 	
 	for (i = 0; i < updateObj.length / 2; i++) {
@@ -537,10 +539,6 @@ function updateValues() {
 	}
 	
 	if (gameData.maps > 4) {
-		update("betaCoinExhangeRate", "Exchange Rate: " + gameData.betaCoinsExchangeRate.toLocaleString() + " Alpha Coins -> 1 Beta Coin")
-		betaCoinTotalPrice = gameData.betaCoinsExchangeRate * (gameData.textForA2BBrokerAmountToggle * (gameData.basicA2BBrokerAmount - 1) + 1)
-		update("betaCoinTotalPrice", "Total Price: " + betaCoinTotalPrice.toLocaleString() + " Alpha Coins")
-		update("piePrice", "Current Price: " + gameData.piePrice.toLocaleString() + " Pie Coins")
 		showBasicDiv('earnBetaCoins')
 		showBasicDiv('buyPie')
 		if (gameData.basicAlphaToBetaBroker == 0) {
@@ -772,6 +770,9 @@ function updateValues() {
 
 
 
+	
+	
+
 	if (gameData.juicers >= 2) {
 		divVisibility("makeMaxJuiceButton", "visible")
 	}
@@ -780,7 +781,7 @@ function updateValues() {
 
 
 	if (gameData.peelers >= 2) {
-		tabs("useMaxPeelersButton", "inline-block")
+		tabs("peelerPeelMaxButton", "inline-block")
 	}
 
 

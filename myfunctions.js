@@ -1,8 +1,19 @@
+function importGame() {
+	var savegame = JSON.parse(atob(prompt("Import Code: ")))
+	if (savegame !== null) {
+		loadStuff(savegame)
+		saveGame()
+		location.reload();
+	}
+}
+
 function loadStuff(savegame) {
+	Object.assign(gameData, gameDataBase)
+
 	if (savegame !== null) {
 		Object.assign(gameData, savegame);
 		backwardsCompatibility(gameData.versionNumber)
-		gameData.versionNumber = 141
+		gameData.versionNumber = 142
 		updateAfterLoad()
 	} else {
 		update("newInfo", "Save File Empty.")
@@ -48,23 +59,27 @@ function pin(x) {
 }
 
 function normalizeButtons() {
-	$(".juiceMarket").prepend(document.getElementById("deliveryButton"))
-	document.getElementById("deliveryButton").style.width = "120px"
-	document.getElementById("deliveryButton").style.margin = "5px"
+	
+	var x = document.getElementById("deliveryButton")
+	$(".juiceMarket").prepend(x)
+	x.style.width = "120px"
+	x.style.margin = "5px"
 
-	$(".autoCollectingDiv").prepend(document.getElementById("autoCollectingButton"))
-	document.getElementById("autoCollectingButton").style.width = "150px"
-	document.getElementById("autoCollectingButton").style.margin = "5px"
+	x = document.getElementById("autoCollectingButton")
+	$(".autoCollectingDiv").prepend(x)
+	x.style.width = "150px"
+	x.style.margin = "5px"
 
 }
 
 function pinButton() {
 	if (gameData.pin !== "none") {
-		$(".navigateButtons").append(document.getElementById(gameData.pin))
+		var x = document.getElementById(gameData.pin)
+		$(".navigateButtons").append(x)
 
-		document.getElementById(gameData.pin).style.width = "120px"
-		document.getElementById(gameData.pin).style.margin = "0px"
-		document.getElementById(gameData.pin).style.padding = "0px";
+		x.style.width = "120px"
+		x.style.margin = "0px"
+		x.style.padding = "0px"
 	}
 }
 
@@ -112,27 +127,8 @@ function pickCurrentSkill(x) {
 }
 
 function startCurrentTask(x) {
-
-	if (x == 'eatFood') {
-		eat()
-	} else if (x == 'delivery') {
-		delivery()
-	} else if (x == 'makeMaxJuice') {
-		makeMaxJuice()
-	} else if (x == 'makeJuice') {
-		makeJuice()
-	} else if (x == 'usePeelers') {
-		peelerPeel()
-	} else if (x == 'useMaxPeelers') {
-		peelerPeelMax()
-	} else if (x == 'autoCurrencyConversionBuy') {
-		coinsToAlphaClick()
-	} else if (x == 'alphaToBeta') {
-		alphaToBetaClick()
-	} else if (x == 'findPieCustomers') {
-		findPieCustomers()
-	}
-
+	if(x !== 'none')
+		eval(x + '()')
 }
 
 function showOrHideSkill(x) {
@@ -149,16 +145,6 @@ function showOrHideSkill(x) {
 function overMaximum(x) {
 	if (gameData[x] > gameData[x + 'Max']) {
 		gameData[x] = gameData[x + 'Max']
-	}
-}
-
-function showOrHideClass(input) {
-	classToChange = document.getElementsByClassName(input)
-	for (i = 0; i < classToChange.length; i++) {
-		if (gameData[input])
-			classToChange[i].style.display = "block";
-		else
-			classToChange[i].style.display = "none";
 	}
 }
 
@@ -391,7 +377,7 @@ function updateAreaNumbers() {
 			else
 				val = valRaw.toLocaleString()
 
-			if ((gameData[id + 'UnlockedVariable'] && gameData[id + 'ShowVariable']) || id == 'limes') {
+			if ((gameData[id + 'UnlockedVariable'] && gameData[id + 'ShowVariable']) || j == 0) {
 				showBasicDiv(elem + 'Div')
 				showBasicDiv(elem + 'Br')
 				showBasicDiv(elem + 'P')
@@ -507,21 +493,6 @@ function exportGame() {
 	update("exportCode", btoa(JSON.stringify(gameData)))
 }
 
-function importGame() {
-	var savegame = JSON.parse(atob(prompt("Import Code: ")))
-	if (savegame !== null) {
-		Object.assign(gameData, gameDataBase)
-		loadStuff(savegame)
-		saveGame()
-		location.reload();
-	}
-}
-
-function loadGame() {
-	var savegame = JSON.parse(localStorage.getItem("mathAdventureSave"))
-	loadStuff(savegame)
-}
-
 function resetGame() {
 	if (window.prompt("Are you sure? Type 'yes' if you are") == "yes") {
 		Object.assign(gameData, gameDataBase)
@@ -533,6 +504,12 @@ function resetGame() {
 function backwardsCompatibility(versionNumber) {
 	if (gameData.pin == 'sellYourJuiceButton')
 		gameData.pin = 'deliveryButton'
+	
+	if (gameData.versionNumber < 142)
+	{
+		gameData.currentTask = 'none'
+		gameData.currentTask2 = 'none'
+	}
 }
 
 function setValue(id, amount) {

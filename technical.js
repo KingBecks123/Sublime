@@ -476,8 +476,8 @@ var gameDataBase = {
 	
 	for (let i = 0; i < avs.length; i++) {
 		for (let j = 0; j < avs[i].v.length; j++) {
-			gameDataBase[avs[i].v[j].id + 'ShowVariable'] = true
-			gameDataBase[avs[i].v[j].id + 'UnlockedVariable'] = false
+			gameDataBase[avs[i].area][avs[i].v[j].id + 'ShowVariable'] = true
+			gameDataBase[avs[i].area][avs[i].v[j].id + 'UnlockedVariable'] = false
 		}
 	}
 
@@ -495,10 +495,9 @@ function gameStart() {
 	watertightBarDoMove = 0
 	findPieCustomersBarDoMove = 0
 
-    Object.assign(gameData, gameDataBase)
-	
+    loadStuff(JSON.parse(localStorage.getItem("mathAdventureSave")))
 
-    loadGame()
+
 	
     mainGameLoop()
 	
