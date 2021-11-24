@@ -295,8 +295,8 @@ function selectedWheatItemAesthetic(id){
 function updatePieStuffSlow(){
 	
 	updateFieldTileAesthetic()
-	for (var x = 0; x < gameData.wheatFieldXDimension; x++) {
-		for (var y = 0; y < gameData.wheatFieldXDimension; y++) {
+	for (var x = 0; x < 5; x++) {
+		for (var y = 0; y < 5; y++) {
 			
 			var tileType = gameData.wheatFieldArray[x][y]
 
@@ -601,14 +601,6 @@ function updatePieStuff(){
 	if(gameData.hasGottenFieldTools)
 		showBasicDiv('fieldPlacementOptions')
 
-
-	
-	if(gameData.wheatFieldXDimension == 2)
-	{
-        tabs("fieldTile1-0", "inline-block")
-        tabs("fieldTile0-1", "inline-block")
-        tabs("fieldTile1-1", "inline-block")
-	}
 	
 	
 	update("wheatNumber", "Wheat: " + gameData.wheat.toLocaleString() + " / 30")
