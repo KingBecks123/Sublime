@@ -338,11 +338,11 @@ function makeMaxJuice() {
 }
 
 function peelerBar() {
-	barMoverAdvanced('peeler', 0.5 + gameData.bitterSpeeding * 10, 50 / (gameData.sharperPeelers + 1) * 2)
+	barMoverAdvanced('peeler', 0.5 + gameData.bitterSpeeding * 10, 50 / ((gameData.sharperPeelers + 1) * 2))
 }
 
 function peelerBarEnd() {
-	gameData.peeledLimes += gameData.howManyPeeledLimes;
+	gameData.peeledLimes += gameData.howManyPeeledLimes
 }
 
 function juicerBar() {
