@@ -80,6 +80,16 @@ function addAesthetic() {
 	ifMaxDarkGray("basket")
 	ifMaxDarkGray("juicer")
 	ifMaxDarkGray("peeler")
+	
+	function ifMaxDarkGray(x) {
+		button = "buyA" + jsUcfirst(x) + "Button"
+
+		if (gameData[x + 's'] == gameData[x + 'sMax']) {
+			colorChanger(button, grayAccent)
+		} else {
+			colorChanger(button, accent4)
+		}
+	}
 
 	if (gameData.typeToHireToggle == 0) {
 		colorChanger('hireEmployeeToggleButton', accent3)

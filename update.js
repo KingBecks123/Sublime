@@ -117,7 +117,7 @@ function updateValues() {
 			gameData[mainVariables[i] + 'UnlockedVariable'] = true
 
 		if (gameData[mainVariables[i] + 'UnlockedVariable'])
-			showBasicDiv('currencyDisplay(' + i + ')')
+			tabs('currencyDisplay(' + i + ')', 'inline-block')
 		else
 			hide('currencyDisplay(' + i + ')')
 	}

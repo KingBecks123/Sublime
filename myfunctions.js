@@ -13,7 +13,7 @@ function loadStuff(savegame) {
 	if (savegame !== null) {
 		Object.assign(gameData, savegame);
 		backwardsCompatibility(gameData.versionNumber)
-		gameData.versionNumber = 143
+		gameData.versionNumber = 144
 		updateAfterLoad()
 	} else {
 		update("newInfo", "Save File Empty.")
@@ -28,16 +28,6 @@ function preventNegative(id) {
 
 function setRotation(id, number) {
 	document.getElementById(id).style.transform = 'rotate(' + number + 'deg)'
-}
-
-function ifMaxDarkGray(x) {
-	button = "buyA" + jsUcfirst(x) + "Button"
-
-	if (gameData[x + 's'] == gameData[x + 'sMax']) {
-		colorChanger(button, grayAccent)
-	} else {
-		colorChanger(button, accent4)
-	}
 }
 
 function hide(x) {

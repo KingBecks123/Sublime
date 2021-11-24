@@ -312,8 +312,6 @@ function getLimes() {
 		if ((gameData.lookAround < 1 && gameData.collectLimesAtBeginning < 10) || gameData.lookAround >= 1)
 			update("newInfo", "Couldn't find any limes...")
 	}
-		
-    updateValues()
 }
 
 function peelLime() {
@@ -325,7 +323,6 @@ function peelLime() {
         }
         gameData.peeledLimes += 1
     }
-    updateValues()
 }
 
 function buyTome() {
@@ -343,7 +340,6 @@ function buyTome() {
 			gameData.tomes = 2
 		}
 	}
-    updateValues()
 }
 
 function buyAFork() {
@@ -352,7 +348,6 @@ function buyAFork() {
         gameData.fork = 1
         gameData.eatBar = 0
     }
-    updateValues()
 }
 
 function buyARobe() {
@@ -361,7 +356,6 @@ function buyARobe() {
         gameData.silkRobe = 1
         gameData.respect += 50
     }
-    updateValues()
 }
 
 function increaseCreditScore() {
@@ -369,7 +363,6 @@ function increaseCreditScore() {
         gameData.megaCoins -= 2
         gameData.megaCoinsInBankMax += 30
     }
-    updateValues()
 }
 
 function increaseCreditScore2() {
@@ -379,7 +372,6 @@ function increaseCreditScore2() {
         gameData.creditScore2 = 1
 
     }
-    updateValues()
 }
 
 function increaseCreditScore3() {
@@ -389,7 +381,6 @@ function increaseCreditScore3() {
         gameData.creditScore3 = 1
 
     }
-    updateValues()
 }
 
 function buyABiggerWallet() {
@@ -398,7 +389,6 @@ function buyABiggerWallet() {
         gameData.coinsMax += 1e6
 
     }
-    updateValues()
 }
 
 function buyMegaCoins() {
@@ -407,7 +397,6 @@ function buyMegaCoins() {
         gameData.megaCoinsInBank += 5
 		gameData.buyMegaCoinsTimes += 1
     }
-    updateValues()
 }
 
 function buyMegaCoinsWithAlphaCoins(amount) {
@@ -425,7 +414,6 @@ function buyMegaCoinsWithAlphaCoins(amount) {
 			gameData.megaCoinsInBank += 10
 		}
 	}
-    updateValues()
 }
 
 
@@ -434,22 +422,15 @@ function buyBetterTraining() {
         gameData.megaCoins -= gameData.betterTraining
         gameData.betterTraining += 1
     }
-    updateValues()
 }
 
 function upgradeMoreStorage() {
     if (gameData.megaCoins >= upgradeMoreStoragePrice) {
-		
         gameData.megaCoins -= upgradeMoreStoragePrice
-
 		gameData.juicersMax +=  500
 		gameData.peelersMax +=  2500
-
 		gameData.upgradeMoreStorage += 1
-
-
     }
-    updateValues()
 }
 
 function travelToNextVillage() {

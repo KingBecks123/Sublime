@@ -744,9 +744,14 @@ function addHTML(){
 	}
 
 	for (let i = 1; i < mainVariables.length; i++) {	
-		var showVariableButton                  = document.createElement("span")
-		showVariableButton.innerHTML            = '<button class="specialButton" id="currencyDisplay(' + i + ')" onclick="currencyDisplay(' + i + ')"  style="width:167px;">Show ' + mainVariablesNames[i] + '</button>';
-		document.getElementById('backpackDiv').append(showVariableButton)
+		var e = $("<button />", {
+			class: "specialButton",
+			id: "currencyDisplay(" + i + ")",
+			onclick: "currencyDisplay(" + i + ")",
+			style: "width:167px;"
+		})
+		$(document.getElementById('backpackDiv')).append(e)
+		update("currencyDisplay(" + i + ")", "Show " + mainVariablesNames[i])
 	}
 	
 	for (let i = 0; i < mainVariables.length; i++) {	
