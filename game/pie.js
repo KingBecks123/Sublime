@@ -116,22 +116,25 @@ function closePlotManagementDiv(){
 }
 
 function managePlot(){
-	if(gameData.wheatFieldArray[gameData.selectedPlotX][gameData.selectedPlotY] == 59 && gameData.pieCoins >= gameData.nextPlotPrice)
-	{
-		gameData.pieCoins -= gameData.nextPlotPrice
-		gameData.nextPlotPrice *= 2
-		gameData.wheatFieldArray[gameData.selectedPlotX][gameData.selectedPlotY] = 0
-		updateFieldTileAesthetic()
-		hide('plotManagementDiv')
-	}
-	else
-	{
-		gameData.wheatFieldArray[gameData.selectedPlotX][gameData.selectedPlotY] = 59
-		gameData.nextPlotPrice /= 2
-		gameData.pieCoins += gameData.nextPlotPrice
-		updateFieldTileAesthetic()
-		hide('plotManagementDiv')
-	}
+		if(gameData.wheatFieldArray[gameData.selectedPlotX][gameData.selectedPlotY] == 59)
+		{
+			if(gameData.pieCoins >= gameData.nextPlotPrice)
+			{
+				gameData.pieCoins -= gameData.nextPlotPrice
+				gameData.nextPlotPrice *= 2
+				gameData.wheatFieldArray[gameData.selectedPlotX][gameData.selectedPlotY] = 0
+				updateFieldTileAesthetic()
+				hide('plotManagementDiv')
+			}
+		}
+		else
+		{
+			gameData.wheatFieldArray[gameData.selectedPlotX][gameData.selectedPlotY] = 59
+			gameData.nextPlotPrice /= 2
+			gameData.pieCoins += gameData.nextPlotPrice
+			updateFieldTileAesthetic()
+			hide('plotManagementDiv')
+		}
 }
 
 function fieldTile(x, y) {
@@ -688,6 +691,10 @@ function findPieCustomersBar() {
 		findPieCustomersBarDoMove = 1
 		moveBar("findPieCustomers")
 		time = (Math.pow(2 - gameData.pieMerchantCharm / 20, gameData.piePrice) + 10)
+
+		if(time == 'Infinity')
+			time = 1e9
+		
 		if (time < 15)
 			time = 15
 		
