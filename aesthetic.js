@@ -36,8 +36,7 @@ function addAesthetic() {
 	twoToggleButtons('foodToggleRottenLimesButton', 'foodToggleLimesButton', gameData.foodTypeToggle)
 	twoToggleButtons('juicePeeledLimesToggleButton', 'juiceLimesToggleButton', gameData.limeTypeToJuice)
 
-
-	var x = document.getElementsByClassName(unlockDiseaseAreaSwamp)
+	var x = document.getElementsByClassName('unlockDiseaseAreaSwamp')
 	for (i = 0; i < x.length; i++) {
 		if (gameData.unlockDiseaseAreaSwamp)
 			x[i].style.display = "block";

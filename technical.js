@@ -160,7 +160,7 @@ var gameDataBase = {
     benevolenceBar: 0,
     benevolenceResearchers: 0,
     unlockBenevolence: 0,
-	benevolenceToggle: 0,
+	benevolenceToggle: 1,
 
 
 
@@ -229,7 +229,7 @@ var gameDataBase = {
 	
 	
     desktopMode: 1,
-	shiftClickOption: 1,
+	shiftClickOption: 0,
 	dontToggle: 0,
 	
 	isAutoCollecting: 0,

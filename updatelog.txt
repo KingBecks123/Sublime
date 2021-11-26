@@ -5,20 +5,29 @@ Bugs / Aesthetic:
 	To Fix:
 		Research sometimes not moving
 		Cant tell when research is moving
-		Benevolence is hard to figure out
-		Peelers not working
-		Rotten wisdom starting with max skill level = 25
-		10m map not showing up
-		People can't figure out the swamp
 		You should be allowed to collect limes with the enter key just raising and lowering
-		Can't collect limes while the auto collector is working
-		Knifebidextrous not unlocking peelers
 		Golden limes wither away too quickly
 		Game stops running in other tab
-		Shift clicking isnt obvious
-		Selling pies for a few thousand pie coins makes it go instantly
 	Fixed:
+		Knifebidextrous not unlocking peelers
+		Can't collect limes while the auto collector is working
+		Selling pies for a few thousand pie coins makes it go instantly
+		You can buy fields no matter what
+		Peelers not working
+		Bars going up in jumps
+		Skills going up in jumps
+		10m map not showing up
+		Benevolence not working unless toggled
+		Swamp area auto unlocking
+		Rotten wisdom starting with max skill level = 25
+		Warehouse capacity restarts after refreshing
+		Field only working with 2x2 grid of squares
+		Collect limes button not available while auto collecting
+		UI shifting when collecting / losing rotten limes
+		Not able to click a skill / ability without toggling
 		
+
+
 	
 	
 

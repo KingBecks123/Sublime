@@ -524,6 +524,8 @@ function updateValues() {
 
 	if (gameData.maps !== 4)
 		hide("buyMapDiv5")
+	else
+		showBasicDiv("buyMapDiv5")
 	
 	if (gameData.maps > 2) {
 		tabs("travellingArea", "block")

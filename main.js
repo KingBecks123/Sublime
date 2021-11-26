@@ -488,6 +488,7 @@ function travelToNextVillage() {
 		'upgradeMoreStorage', 
 		'changeResearchersBy10Unlock', 
 		'rottenActualWisdom', 
+		'tickspeed',
 		'timePlayed'];
 
 		for (let i = 0; i < saveWipeValues.length; i++) {
@@ -546,7 +547,7 @@ function travelToNextVillage() {
 			gameData.respect += 50
 		} 
 		
-		if(rottenActualWisdom)
+		if(rottenActualWisdomNow)
 			gameData.rottenWisdomSkillLevelMax = 25
 
 
