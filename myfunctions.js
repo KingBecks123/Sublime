@@ -2,7 +2,9 @@ function importGame() {
 	var savegame = JSON.parse(atob(prompt("Import Code: ")))
 	if (savegame !== null) {
 		loadStuff(savegame)
+		console.log('loaded')
 		saveGame()
+		console.log('saved')
 		location.reload();
 	}
 }
@@ -16,7 +18,7 @@ function loadStuff(savegame) {
 		Object.assign(gameData.serf, savegame.serf)
 		
 		backwardsCompatibility(gameData.versionNumber)
-		gameData.versionNumber = 149
+		gameData.versionNumber = 150
 		updateAfterLoad()
 	} else {
 		update("newInfo", "Save File Empty.")
