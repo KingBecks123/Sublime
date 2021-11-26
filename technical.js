@@ -52,7 +52,6 @@ var gameDataBase = {
     deliveryType: 0,
     deliveryTypeToggle: 0,
     deliveryPrice: 2,
-    deliveryOngoing: 0,
     juiceBulkAmountToggle: 1,
     tomes: 0,
 

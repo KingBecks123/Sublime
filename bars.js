@@ -212,7 +212,7 @@ function learnANewSkillBarEnd() {
 }
 
 function delivery() {
-    if (!gameData.deliveryOngoing && (gameData.deliveryBar >= 99.9 || gameData.deliveryBar == 0) && gameData.coins >= gameData.deliveryPrice && gameData.juice >= gameData.juiceBulkAmountToggle) {
+    if (!gameData.deliveryBarRunning && (gameData.deliveryBar >= 99.9 || gameData.deliveryBar == 0) && gameData.coins >= gameData.deliveryPrice && gameData.juice >= gameData.juiceBulkAmountToggle) {
         gameData.deliveryType = gameData.deliveryTypeToggle
         gameData.juiceBulkAmount = gameData.juiceBulkAmountToggle
         gameData.coins -= gameData.deliveryPrice
@@ -225,9 +225,7 @@ function delivery() {
 
 }
 
-function deliveryBar() {
-	gameData.deliveryOngoing = 1
-	
+function deliveryBar() {	
 	if (gameData.deliveryType == 0) 
 		barMoverAdvanced('delivery', 0.1, 100)
 	
@@ -241,7 +239,6 @@ function deliveryBar() {
 
 function deliveryBarEnd() {
 	gameData.coins += (gameData.nationalJuiceMarketing + 1) * Math.floor(gameData.juiceBulkAmount * (1 + (gameData.juicePriceCents / 100)))
-	gameData.deliveryOngoing = 0
 }
 
 

@@ -148,7 +148,7 @@ function updateValues() {
 		showBasicDiv('juiceMarketing')
 	}
 	
-	juicePricePrice = gameData.juicePricePrice + gameData.juicePricePrice * 9 * gameData.increaseJuicePricex10 + 45 * gameData.increaseJuicePricex10
+	juicePricePrice = gameData.juicePricePrice + gameData.increaseJuicePricex10 * (gameData.juicePricePrice * 9 + 45)
 	
 	updateObj = [
 		 "textForMegaCoinsInBank"            , gameData.megaCoinsInBank.toLocaleString() + " / " + gameData.megaCoinsInBankMax.toLocaleString() + " Mega Coins In Bank"
