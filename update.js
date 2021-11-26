@@ -908,6 +908,11 @@ function updateValues() {
 	
 	update("trueLimes", "True Limes: " + gameData.trueLimes.toLocaleString())
 	
+	if(gameData.pieCoinsInWell == 200)
+		tabs('enterTheWell', 'inline-block')
+	else
+		hide('enterTheWell')
+
 	if(gameData.forestWell)
 		update("textForLimesDiv", "'Limes'")
 	
