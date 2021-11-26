@@ -3,6 +3,14 @@ mainSciences = ['watertight', 'surveying', 'benevolence'];
 
 
 function updateScience() {
+	
+	if(isNaN(gameData.respect))
+		gameData.respect = 0
+	if (gameData.limeDiseaseLakes < 10)
+		benevolenceRespectIncrease = 0
+	else
+		benevolenceRespectIncrease = (Math.pow(2, gameData.limeDiseaseLakes - 10)) * gameData.benevolence
+	
 	if (gameData.respectMilestone1000) {
 
 		var benevolenceEquation = Math.pow(2, gameData.benevolence * 2)
@@ -15,14 +23,8 @@ function updateScience() {
 
 		update("textForResearchers", researchersAvailable + " Available Researchers")
 
-
-		if (gameData.limeDiseaseLakes < 10)
-			benevolenceRespectIncrease = 0
-		else
-			benevolenceRespectIncrease = (Math.pow(2, gameData.limeDiseaseLakes - 10)) * gameData.benevolence
-
 		update("benevolenceRespectIncrease", "Respect increase:  " + benevolenceRespectIncrease.toLocaleString())
-
+		
 		researchersAvailable = gameData.researchers
 
 		checkShowOrHide(gameData.benevolence, "benevolence")
