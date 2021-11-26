@@ -583,19 +583,19 @@ function lookAround() {
     }
 
     if (gameData.lookAround == 0) {
-        if (gameData.lookAroundNumber == 10 || gameData.difficulty >= 1) {
+        if (gameData.lookAroundNumber == 5) {
             update("newInfo", "You see a nearby market.")
             gameData.lookAround = 1
 
         }
     } else if (gameData.lookAround == 1) {
-        if (gameData.lookAroundNumber == 20 || gameData.difficulty >= 1) {
+        if (gameData.lookAroundNumber == 10) {
             update("newInfo", "You find a merchant willing to buy limes.")
             gameData.lookAround = 2
 
         }
     } else if (gameData.lookAround == 2) {
-        if (gameData.lookAroundNumber == 30 || gameData.difficulty >= 1) {
+        if (gameData.lookAroundNumber >= 15) {
             update("newInfo", "You find a merchant selling various items.")
             gameData.lookAround = 3
         }

@@ -18,7 +18,7 @@ function loadStuff(savegame) {
 		Object.assign(gameData.serf, savegame.serf)
 		
 		backwardsCompatibility(gameData.versionNumber)
-		gameData.versionNumber = 151
+		gameData.versionNumber = 152
 		updateAfterLoad()
 	} else {
 		update("newInfo", "Save File Empty.")
@@ -301,9 +301,10 @@ function sleep(milliseconds) {
 }
 
 function restartBar(x) {
-	if (gameData[x + "Bar"] < 100 && gameData[x + "Bar"] != 0) {
+	if (gameData[x + "Bar"] < 100 && gameData[x + "Bar"] != 0)
 		eval(x + "Bar()")
-	}
+	else
+		gameData[x + 'BarRunning'] = false
 }
 
 function restartBarNoMovement(x) {

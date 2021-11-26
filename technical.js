@@ -196,9 +196,6 @@ var gameDataBase = {
 	
     fork: 0,
     shoes: 0,
-	
-	isCurrentlyExchangingAlpha: 0,
-
 
     pin: "none",
     pinUnlock: 0,
