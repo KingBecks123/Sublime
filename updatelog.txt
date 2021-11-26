@@ -26,6 +26,8 @@ Bugs / Aesthetic:
 		UI shifting when collecting / losing rotten limes
 		Not able to click a skill / ability without toggling
 		Enter The Well button automatically appears before filling the well
+		Science equations dont exist, console error
+		Benevolence equation doesnt exist, console error
 		
 
 

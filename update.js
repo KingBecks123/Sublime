@@ -449,7 +449,8 @@ function updateValues() {
 		tabs("dontToggleButton", "none")
 	} else {
 		update("shiftClickOption", "Don't Toggle: Button Option")
-		tabs("dontToggleButton", "inline-block")
+		if(gameData.learnANewSkill > -2)
+			tabs("dontToggleButton", "inline-block")
 	}
 
 	if (gameData.deliveryManager == 0) {
