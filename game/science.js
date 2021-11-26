@@ -11,11 +11,12 @@ function updateScience() {
 	else
 		benevolenceRespectIncrease = (Math.pow(2, gameData.limeDiseaseLakes - 10)) * gameData.benevolence
 	
+	
+	benevolenceEquation = Math.pow(2, gameData.benevolence * 2)
+	watertightEquation = Math.pow(10, 6 - gameData.peeledLimesPerJuice)
+	surveyingEquation = Math.pow(2, gameData.numberOfTiles - 15)
+	
 	if (gameData.respectMilestone1000) {
-
-		var benevolenceEquation = Math.pow(2, gameData.benevolence * 2)
-		var watertightEquation = Math.pow(10, 6 - gameData.peeledLimesPerJuice)
-		var surveyingEquation = Math.pow(2, gameData.numberOfTiles - 15)
 
 		update("watertightText", "Currently: " + gameData.peeledLimesPerJuice + " Peeled Limes -> 1 Juice")
 		update("surveyingText", "Currently: " + gameData.numberOfTiles + " / 20 Tiles")
