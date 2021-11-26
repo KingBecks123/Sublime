@@ -23,6 +23,8 @@ function updateAfterLoad() {
 	restartBar("alphaToBeta")
 	restartBar("findPieCustomers")
 	restartBar("bakePie")
+	restartBar("harvestRice")
+
 
 	if (gameData.bellowsBar > 0) {
 		bellowsBar()
@@ -49,7 +51,13 @@ function updateAfterLoad() {
 
 
 function updateValues() {
-
+	
+	startCurrentTask(gameData.currentTask)	
+	startCurrentTask(gameData.currentTask2)	
+	
+	if(gameData.currentSkill !== 'none')
+		barStartGranularSkillBasic(gameData.currentSkill, false)
+	
 	addAesthetic()
 	fixOverMaxedVariables()
 
@@ -121,6 +129,13 @@ function updateValues() {
 		else
 			hide('currencyDisplay(' + i + ')')
 	}
+	
+	for (let i = 0; i < avs.length; i++) {
+		for (let j = 0; j < avs[i].v.length; j++) {
+			if(gameData[avs[i].area][avs[i].v[j].id])
+				gameData[avs[i].area][avs[i].v[j].id + 'UnlockedVariable'] = true
+		}
+	}
 
 	updateScience()
 
@@ -131,8 +146,6 @@ function updateValues() {
 		hide('upgradeJuiceMarketing')
 		showBasicDiv('juiceMarketing')
 	}
-	
-		
 	
 	
 	updateObj = [
@@ -160,7 +173,7 @@ function updateValues() {
 		,"sellYourJuicePrice"                , "You Need " + gameData.deliveryPrice.toLocaleString() + " Coins For Delivery"
 		,"upgradeMoreStoragePrice"           , "Price: " + upgradeMoreStoragePrice.toLocaleString() + " Mega Coins"
 		,"betaCoinExhangeRate"               , "Exchange Rate: " + gameData.betaCoinsExchangeRate.toLocaleString() + " Alpha Coins -> 1 Beta Coin"
-		,"betaCoinTotalPrice"                , "Total Price: " + gameData.betaCoinsExchangeRate * (gameData.textForA2BBrokerAmountToggle * (gameData.basicA2BBrokerAmount - 1) + 1).toLocaleString() + " Alpha Coins"
+		,"betaCoinTotalPrice"                , "Total Price: " + (gameData.betaCoinsExchangeRate * (gameData.textForA2BBrokerAmountToggle * (gameData.basicA2BBrokerAmount - 1) + 1)).toLocaleString() + " Alpha Coins"
  		,"piePrice"                          , "Current Price: " + gameData.piePrice.toLocaleString() + " Pie Coins"
  
 	]
@@ -895,7 +908,8 @@ function updateValues() {
 	
 	if(gameData.forestWell)
 		update("textForLimesDiv", "'Limes'")
-
+	
+	updateSerfStuff()
 
 
 }

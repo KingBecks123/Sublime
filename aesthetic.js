@@ -188,11 +188,6 @@ function addAesthetic() {
 	else
 		colorChanger('checkResultsButton', grayAccent)
 
-	if (gameData.autoCollectingBar == 0 || gameData.autoCollectingBar == (gameData.nourishment + 1) * 100)
-		colorChanger("pickUpLimes", limesRelatedAccent)
-	else
-		colorChanger("pickUpLimes", grayAccent)
-
 	if (gameData.increaseJuicePricePermanance < 1)
 		colorChanger('increaseJuicePriceButton', accent4)
 	else
@@ -329,8 +324,8 @@ function changeVariablesColorAesthetic() {
 			}
 
 			
-			colorChangerText('textFor' + avs[i].v[j].name + 'Div', colorDark)
-			colorChangerText('textFor' + avs[i].v[j].name, color)
+			colorChangerText('textFor' + avs[i].name + avs[i].v[j].name + 'Div', colorDark)
+			colorChangerText('textFor' + avs[i].name + avs[i].v[j].name, color)
 		}
 	}
 }

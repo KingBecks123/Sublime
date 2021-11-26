@@ -46,7 +46,7 @@ function teachBar() {
 function teachBarEnd() {}
 
 function eat() {
-    if ((gameData.eatBar == 100 || gameData.eatBar == 0) && gameData.eat < 100) {
+    if ((gameData.eatBar == 100 || gameData.eatBar == 0) && gameData.eat < 100 && gameData.eatBarRunning == false) {
         if (gameData.foodTypeToggle == 0 && gameData.limes > 0) {
             gameData.limes -= 1
             gameData.foodType = 5
@@ -247,7 +247,7 @@ function deliveryBarEnd() {
 
 function makeJuice() {
 
-    if (gameData.juicerBar >= 99 || gameData.juicerBar == 0) 
+    if ((gameData.juicerBar >= 99 || gameData.juicerBar == 0) && gameData.juicerBarRunning == 0) 
 	{
         if (gameData.limeTypeToJuice == 0 && gameData.limes >= gameData.limesPerJuice) 
 		{
@@ -255,7 +255,6 @@ function makeJuice() {
             gameData.juicerBar = 0
             gameData.howMuchJuice = 1
             gameData.limeTypeToJuiceToggle = 0
-
             juicerBar()
         } 
 		else if (gameData.limeTypeToJuice == 1 && gameData.peeledLimes >= gameData.peeledLimesPerJuice) 
@@ -264,7 +263,6 @@ function makeJuice() {
             gameData.juicerBar = 0
             gameData.howMuchJuice = 1
             gameData.limeTypeToJuiceToggle = 1
-
             juicerBar()
         }
     }
@@ -274,7 +272,7 @@ function makeJuice() {
 
 function peelerPeel() {
 
-    if ((gameData.peelerBar >= 99 || gameData.peelerBar == 0) && gameData.limes >= 1) {
+    if ((gameData.peelerBar >= 99 || gameData.peelerBar == 0) && gameData.limes >= 1 && gameData.peelerBarRunning == false) {
 		gameData.howManyPeeledLimes = 1
 		gameData.limes -= 1
 		gameData.peelerBar = 0
@@ -286,7 +284,7 @@ function peelerPeel() {
 
 function peelerPeelMax() {
 
-    if (gameData.peelerBar >= 99 || gameData.peelerBar == 0) 
+    if ((gameData.peelerBar >= 99 || gameData.peelerBar == 0) && gameData.peelerBarRunning == false) 
 	{
         gameData.howManyPeeledLimes = gameData.limes
 
@@ -307,7 +305,7 @@ function peelerPeelMax() {
 
 function makeMaxJuice() {
 
-    if ((gameData.juicerBar >= 100 || gameData.juicerBar == 0) && gameData.isCurrentlyJuicing == 0) {
+    if ((gameData.juicerBar >= 100 || gameData.juicerBar == 0) && gameData.juicerBarRunning == 0) {
 
         if (gameData.limeTypeToJuice == 0)
 		{
@@ -331,7 +329,6 @@ function makeMaxJuice() {
 		
         if (gameData.howMuchJuice > 0) {
             gameData.juicerBar = 0;
-			gameData.isCurrentlyJuicing = 1
             juicerBar()
         }
     }
@@ -352,7 +349,6 @@ function juicerBar() {
 function juicerBarEnd() {
 	gameData.juice += gameData.howMuchJuice
 	gameData.hasGottenJuice = 1
-	gameData.isCurrentlyJuicing = 0
 }
 
 function eatGoldenLime(){

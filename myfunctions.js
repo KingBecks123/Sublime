@@ -9,15 +9,22 @@ function importGame() {
 
 function loadStuff(savegame) {
 	Object.assign(gameData, gameDataBase)
-
 	if (savegame !== null) {
-		Object.assign(gameData, savegame);
+		Object.assign(gameData, savegame)
+		
+		gameData.serf = JSON.parse(JSON.stringify(gameDataBase.serf))
+		Object.assign(gameData.serf, savegame.serf)
+		
 		backwardsCompatibility(gameData.versionNumber)
-		gameData.versionNumber = 144
+		gameData.versionNumber = 145
 		updateAfterLoad()
 	} else {
 		update("newInfo", "Save File Empty.")
 	}
+}
+
+function saveGame() {
+	localStorage.setItem('mathAdventureSave', JSON.stringify(gameData))
 }
 
 function preventNegative(id) {
@@ -263,8 +270,9 @@ function beckyRandomMinMax(min, max) {
 function basicBarSkill(variable, speed) {
 
 	variableBar = variable + "Bar"
-
-	if (gameData[variableBar] <= 99.5) {
+	gameData[variable + 'BarRunning'] = true
+	
+	if (gameData[variableBar] < 100) {
 
 		gameData[variableBar] += 0.5
 
@@ -274,7 +282,7 @@ function basicBarSkill(variable, speed) {
 			setTimeout(variableBar + "()", (100 / (gameData.intelligenceSkillLevel * 2 / 20 + 1)) / gameData.tickspeed)
 
 	} else {
-
+		gameData[variable + 'BarRunning'] = false
 		gameData[variable + "SkillLevel"] += 1
 		gameData[variable] += 2
 
@@ -313,7 +321,7 @@ function barStart(variable) {
 //Starts a granular loading bar for basic skills.
 function barStartGranularSkillBasic(variable, useSkillTrainer) {
 	variableBar = variable + "Bar"
-	if ((gameData[variableBar] == 100 || gameData[variableBar] == 0) && (gameData[variable + "SkillLevel"] < gameData[variable + "SkillLevelMax"] && gameData.eat >= gameData[variable + "SkillLevel"])) {
+	if ((gameData[variableBar] == 100 || gameData[variableBar] == 0) && gameData[variable + "SkillLevel"] < gameData[variable + "SkillLevelMax"] && gameData.eat >= gameData[variable + "SkillLevel"] && !gameData[variable + 'BarRunning']) {
 		gameData.eat -= gameData[variable + "SkillLevel"]
 		if (gameData.skillTrainer == 1 && useSkillTrainer == true) {
 			gameData[variableBar] = 100
@@ -357,10 +365,8 @@ function updateAreaNumbers() {
 	for (let i = 0; i < avs.length; i++) {
 		for (let j = 0; j < avs[i].v.length; j++) {
 			id = avs[i].v[j].id
-			elem = "textFor" + avs[i].v[j].name
+			elem = "textFor" + avs[i].name + avs[i].v[j].name
 			valRaw = gameData[avs[i].area][avs[i].v[j].id]
-
-
 
 			if (valRaw > 1e9)
 				val = valRaw.toExponential(3)
@@ -475,10 +481,6 @@ function saveAfterWipe(id) {
 	eval('gameData.' + id + '=' + id + 'Now')
 }
 
-function saveGame() {
-	localStorage.setItem('mathAdventureSave', JSON.stringify(gameData))
-}
-
 function exportGame() {
 	update("exportCode", btoa(JSON.stringify(gameData)))
 }
@@ -513,12 +515,16 @@ function barMover(id, amount, time){
 }
 
 function barMoverAdvanced(id, amount, time){
+	gameData[id + 'BarRunning'] = true
+	
 	if (gameData[id + 'Bar'] < 100) {
 		barMover(id, amount, time)
 	} else {
 		if (gameData[id + 'Bar'] > 100)
 			gameData[id + 'Bar'] = 100
 		eval(id + 'BarEnd()')
+		if (gameData[id + 'BarRunning'])
+			gameData[id + 'BarRunning'] = false
 	}
 
 }

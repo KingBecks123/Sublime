@@ -29,18 +29,18 @@ avs       = [
 				darkColor: '#BBBBBB',
 
 			},
+			{
+				id: 'coins',
+				name: 'Coins',
+				mainColor: '#B37700',
+				darkColor: '#B37700',
+
+			},
 		],
 	},
 ]
 
 function mainGameLoopSlow() {
-
-	startCurrentTask(gameData.currentTask)	
-	startCurrentTask(gameData.currentTask2)	
-
-	
-	if(gameData.currentSkill !== 'none')
-		barStartGranularSkillBasic(gameData.currentSkill, false)
 
 	
 	if(gameData.maps > 4)
@@ -276,9 +276,7 @@ function getLimesButton() {
 
 	}
 	
-    if (gameData.autoCollectingBar == 0 || gameData.autoCollectingBar == (gameData.nourishment + 1) * 100) {
-        getLimes()
-    }
+    getLimes()
 
 }
 

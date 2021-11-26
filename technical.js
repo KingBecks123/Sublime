@@ -62,6 +62,10 @@ var gameDataBase = {
 
     eat: 0,
     eatBar: 0,
+    eatBarRunning: false,
+    juicerBarRunning: false,
+    peelerBarRunning: false,
+
 
     autoCollectingBar: 0,
 
@@ -193,7 +197,6 @@ var gameDataBase = {
     fork: 0,
     shoes: 0,
 	
-	isCurrentlyJuicing: 0,
 	isCurrentlyExchangingAlpha: 0,
 
 
@@ -452,12 +455,21 @@ var gameDataBase = {
 	
 	
 	serf: {
-		rice: 0
+		rice: 0,
+		coins: 0,
+		lordsRice: 1000000000,
+		lordsCoins: 1000000000,
+		health: 20,
+		riceOwed: 5,
+
 	},
 
 	harvestRiceBar: 0,
-	
+	serfHealthBar: 0,
+	newBakerySerf: 0,
+
 }
+
 
 	for (let i = 1; i <= 7; i++) {
 		gameDataBase['achievement' + i] = 0
@@ -466,6 +478,7 @@ var gameDataBase = {
 	for (let i = 0; i < mainSkills.length; i++) {
 		gameDataBase[mainSkills[i] + 'Bar'] = 0
 		gameDataBase[mainSkills[i] + 'SkillLevel'] = 0
+		gameDataBase[mainSkills[i] + 'BarRunning'] = false
 	}
 
 	for (let i = 0; i < mainVariables.length; i++) {
@@ -766,10 +779,10 @@ function addHTML(){
 		
 		var e = $("<div />", {
 			id: "backgroundForValues" + avs[i].area,
-			style: "padding:10px;background-color:#FFFFFF;width:100px;display:block;",
+			style: "padding:10px;background-color:#000000;width:100px;display:inline-block;",
 		})
 
-		$(document.getElementById('soulArea' + avs[i].name + 'Width')).prepend(e);
+		$(document.getElementById('soulArea' + avs[i].name)).prepend(e);
 		
 		e = $("<button />", {
 			class: "basicButtonSize",
@@ -785,7 +798,8 @@ function addHTML(){
 
 		for (let j = 0; j < avs[i].v.length; j++) {
 			var avsStat = document.createElement("span")
-			avsStat.innerHTML = '<div class="stat" id="textFor' + avs[i].v[j].name + 'Div">' + avs[i].v[j].id + ' </div><div class="stat ar" id="textFor' + avs[i].v[j].name + '"  style="display:none ; ">0</div><p id="textFor' + avs[i].v[j].name + 'P"  style="display:none ; "> </p><br  id="textFor' + avs[i].v[j].name + 'Br"   style="display:none ; "/>';
+			var fullName = avs[i].name + avs[i].v[j].name
+			avsStat.innerHTML = '<div class="stat" id="textFor' + fullName + 'Div">' + avs[i].v[j].name + ' </div><div class="stat ar" id="textFor' + fullName + '"  style="display:none ; ">0</div><p id="textFor' + fullName + 'P"  style="display:none ; "> </p><br  id="textFor' + fullName + 'Br"   style="display:none ; "/>';
 			document.getElementById('backgroundForValues' + avs[i].area).append(avsStat)
 		}
 	}

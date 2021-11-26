@@ -496,6 +496,12 @@
                     <p class="basicText">Price: 200 Pie Coins</p>
                 </div>
 				
+                <div class="basicDiv" id="newBakerySerfDiv" style="display:none">
+                    <button class="specialButton" onclick="universalBuy('newBakerySerf', 200, 'pieCoins')">New Bakery</button>
+                    <p class="basicText">Open up a new bakery in the rough part of town</p>
+                    <p class="basicText">Price: 200 Pie Coins</p>
+                </div>
+				
 				
             </div>
 
@@ -1759,34 +1765,63 @@
 	</div>
 
     <div id="soulAreaSerf">
-		<div id="soulAreaSerfWidth" style="width:380px;">
+		<div class="basicDiv" style="display:inline-block;top:0;position:fixed;margin:8px;">
+		
+			<div class="skillProgress" style="display:inline-block" id="serfHealthProgress"><div class="skillBar" id="serfHealthBar" style="background-color:#B40001"></div></div>
+            <p class="basicText" id='serfHealthText'>You are healthy.</p>
 
+		</div>
+
+		<div id="soulAreaSerfWidth" style="width:380px;margin:20px;">
+		
 			<div class="basicDiv" style="display:block;">
 
-				<button class="specialButton" onclick="harvestRice()">Harvest Rice</button>
-				<div class="skillProgress" id="harvestRiceProgress"><div class="skillBar" id="harvestRiceBar"></div></div>
+				<button class="basicButtonSize" style="background-color:#BBBBBB" onclick="harvestRice()">Harvest Rice</button>
+				<div class="skillProgress" id="harvestRiceProgress"><div class="skillBar" id="harvestRiceBar" style="background-color:#DEAD85"></div></div>
+				<button class="specialButton" style="background-color:#BBBBBB" onclick="eatRice()">Eat Rice</button>
+
+			</div>
+			
+			<div class="basicDiv" style="display:block;">
+
+				<button class="specialButton" onclick="giveLordRice()">Give your lord rice</button>	
+                <p class="basicText" id='lordEmotion'>The lord is pleased.</p>
+                <p class="basicText" id='lordsRice'></p>
+                <p class="basicText" id='lordsCoins'></p>
+                <p class="basicText" id='riceOwed'></p>
+
+				<button class="specialButton" id='acceptLordsFood' onclick="acceptLordsFood()">Accept your Lord's generosity</button>	
+
+				
+			</div>
+			
+			<div class="basicDiv" style="display:block;">
+
+				<button class="specialButton" onclick="sellRice()">Sell Rice</button>	
+                <p class="basicText">Reward: 1 Coin</p>
+
 				
 			</div>
 
-			<button class="basicButtonSize" style="width:370px;display:block;" onclick="soulArea('wellField')">Enter The Well</button>
+			<button class="basicButtonSize" style="width:370px;display:block;background-color:#000000;color:#FFFFFF;" onclick="soulArea('wellField')">Enter The Well</button>
 		</div>	
 	</div>
 	
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	
-    <script src="aesthetic.js?v=               144" charset="utf-8" type="text/javascript"></script>
-    <script src="myfunctions.js?v=             144" charset="utf-8" type="text/javascript"></script>
-    <script src="main.js?v=                    144" charset="utf-8" type="text/javascript"></script>
-    <script src="technical.js?v=               144" charset="utf-8" type="text/javascript"></script>
-    <script src="bars.js?v=                    144" charset="utf-8" type="text/javascript"></script>
-    <script src="update.js?v=                  144" charset="utf-8" type="text/javascript"></script>
-    <script src="game/diseasetask.js?v=        144" charset="utf-8" type="text/javascript"></script>
-    <script src="game/pie.js?v=                144" charset="utf-8" type="text/javascript"></script>
-    <script src="game/hiringarea.js?v=         144" charset="utf-8" type="text/javascript"></script>
-    <script src="game/science.js?v=            144" charset="utf-8" type="text/javascript"></script>
-    <script src="game/brokers.js?v=            144" charset="utf-8" type="text/javascript"></script>
-    <script src="game/serf.js?v=               144" charset="utf-8" type="text/javascript"></script>
+    <script src="aesthetic.js?v=               145" charset="utf-8" type="text/javascript"></script>
+    <script src="myfunctions.js?v=             145" charset="utf-8" type="text/javascript"></script>
+    <script src="main.js?v=                    145" charset="utf-8" type="text/javascript"></script>
+    <script src="technical.js?v=               145" charset="utf-8" type="text/javascript"></script>
+    <script src="bars.js?v=                    145" charset="utf-8" type="text/javascript"></script>
+    <script src="update.js?v=                  145" charset="utf-8" type="text/javascript"></script>
+    <script src="game/diseasetask.js?v=        145" charset="utf-8" type="text/javascript"></script>
+    <script src="game/pie.js?v=                145" charset="utf-8" type="text/javascript"></script>
+    <script src="game/hiringarea.js?v=         145" charset="utf-8" type="text/javascript"></script>
+    <script src="game/science.js?v=            145" charset="utf-8" type="text/javascript"></script>
+    <script src="game/brokers.js?v=            145" charset="utf-8" type="text/javascript"></script>
+    <script src="game/serf.js?v=               145" charset="utf-8" type="text/javascript"></script>
 
 
 
