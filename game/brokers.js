@@ -208,11 +208,10 @@ function coinsToAlphaStart() {
 
 function coinsToAlphaClick(){
 	price = (gameData.alphaCoinsExchangeRate + gameData.currencyBrokerFee) * gameData.currencyBrokerTransferAmount * (gameData.alphaCoinConvertBulkToggle * 9 + 1)
-	if (gameData.coins >= price && (gameData.coinsToAlphaBar == 100 || gameData.coinsToAlphaBar == 0) && !gameData.isCurrentlyExchangingAlpha) {
+	if (gameData.coins >= price && (gameData.coinsToAlphaBar == 100 || gameData.coinsToAlphaBar == 0) && !gameData.coinsToAlphaBarRunning) {
 		gameData.alphaCoinConvertBulkToggleSet = gameData.alphaCoinConvertBulkToggle
 		gameData.coins -= price
 		gameData.coinsToAlphaBar = 0
-		gameData.isCurrentlyExchangingAlpha = 1
 		coinsToAlphaBar()
 	}
 }
@@ -225,13 +224,10 @@ function coinsToAlphaBar() {
 }
 
 function coinsToAlphaBarEnd(){
-	
 	if(gameData.alphaCoinConvertBulkToggleSet == 0)
 		gameData.alphaCoins += gameData.currencyBrokerTransferAmount
 	else
 		gameData.alphaCoins += gameData.currencyBrokerTransferAmount * 10
-	
-	gameData.isCurrentlyExchangingAlpha = 0
 }
 
 function alphaToBetaClick(){
