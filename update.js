@@ -148,6 +148,7 @@ function updateValues() {
 		showBasicDiv('juiceMarketing')
 	}
 	
+	juicePricePrice = gameData.juicePricePrice + gameData.juicePricePrice * 9 * gameData.increaseJuicePricex10
 	
 	updateObj = [
 		 "textForMegaCoinsInBank"            , gameData.megaCoinsInBank.toLocaleString() + " / " + gameData.megaCoinsInBankMax.toLocaleString() + " Mega Coins In Bank"
@@ -156,7 +157,7 @@ function updateValues() {
 		,"textForLakes"                      , gameData.limeDiseaseLakes.toLocaleString() + " Lakes"
 		,"currentSpeedEmployee"              , "Current speed: " + gameData.employeeCurrentSpeed.toLocaleString() + " limes per minute."
 		,"speedEmployee"                     , "Speed: " + gameData.employeeSpeed.toLocaleString() + "% Of What I'm Taught."
-		,"textForJuicePricePrice"            , "Price: " + gameData.juicePricePrice.toLocaleString() + " Coins"
+		,"textForJuicePricePrice"            , "Price: " + juicePricePrice.toLocaleString() + " Coins"
 		,"textForNourishmentPrice"           , "You Need: " + gameData.nourishmentPrice.toLocaleString() + " Limes"
 		,"juicersAmount"                     , gameData.juicers.toLocaleString() + " / " + gameData.juicersMax.toLocaleString() + " Juicers"
 		,"peelersAmount"                     , gameData.peelers.toLocaleString() + " / " + gameData.peelersMax.toLocaleString() + " Peelers"
