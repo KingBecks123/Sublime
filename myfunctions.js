@@ -18,7 +18,7 @@ function loadStuff(savegame) {
 		Object.assign(gameData.serf, savegame.serf)
 		
 		backwardsCompatibility(gameData.versionNumber)
-		gameData.versionNumber = 153
+		gameData.versionNumber = 154
 		updateAfterLoad()
 	} else {
 		update("newInfo", "Save File Empty.")
