@@ -1,9 +1,9 @@
 function updateBrokers(){
 	if (gameData.bachelorsDegreeFinance) {
 		
-		tabs('tradeButton', 'inline-block')
-		showBasicDiv('alphaCoinToMegaCoinDiv')
-		showBasicDiv('upgradeBroker')
+		show('tradeButton', 'inline')
+		show('alphaCoinToMegaCoinDiv')
+		show('upgradeBroker')
 		
 		update("textForBrokerApplicantSpeed", "Currently " + gameData.minBrokerApplicantSpeed.toLocaleString() + " - " + gameData.maxBrokerApplicantSpeed.toLocaleString() + " Seconds")
 		update("textForBrokerApplicantAmount", "Currently " + gameData.minBrokerApplicantAmount.toLocaleString() + " - " + gameData.maxBrokerApplicantAmount.toLocaleString() + " Coins")
@@ -48,15 +48,15 @@ function updateBrokers(){
 	
 	if (gameData.unlockCurrencyBrokers) {
 		hide("unlockCurrencyBrokers")
-		showBasicDiv("hireToggleButtons")
-		showBasicDiv("brokerApplicantUpgrades")
+		show("hireToggleButtons")
+		show("brokerApplicantUpgrades")
 		if (gameData.advertisingManagerBroker)
 			hide("autoBrokerAdvertiser")
 		else
-			showBasicDiv("autoBrokerAdvertiser")
+			show("autoBrokerAdvertiser")
 	} else {
 
-		showBasicDiv("unlockCurrencyBrokers")
+		show("unlockCurrencyBrokers")
 		hide("hireToggleButtons")
 		hide("brokerApplicantUpgrades")
 		hide("autoBrokerAdvertiser")
@@ -64,17 +64,17 @@ function updateBrokers(){
 	
 	
 	if (gameData.advertisingManagerBroker && gameData.typeToHireToggle == 1)
-		tabs("autoAdvertiseBrokerDiv", "inline-block")
+		show("autoAdvertiseBrokerDiv", "inline")
 	else
 		hide("autoAdvertiseBrokerDiv")
 	
 	if (gameData.advertisingManagerBroker && !gameData.smarterAdvertisingManagerBroker)
-		showBasicDiv("smarterAutoBrokerAdvertiser")
+		show("smarterAutoBrokerAdvertiser")
 	else
 		hide("smarterAutoBrokerAdvertiser")	
 	
 	if (gameData.transferAlphaCoinBags)
-		tabs("alphaCoinConvertBulkButton", "inline-block")
+		show("alphaCoinConvertBulkButton", "inline")
 	checkHide(gameData.transferAlphaCoinBags, "transferAlphaCoinBagsUnlock")
 	checkShow(gameData.transferAlphaCoinsBulkUnlock, "transferAlphaCoinsBulk")
 	checkHide(gameData.transferAlphaCoinsBulkUnlock, "transferAlphaCoinsBulkUnlock")	

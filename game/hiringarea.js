@@ -134,7 +134,7 @@ function updateHiringArea() {
 				"Hunger: " + gameData.applicantHunger.toLocaleString() + " Limes Per Second." + "<br>" +
 				"<br>"
 			)
-			showBasicDiv("applicationInfo")
+			show("applicationInfo")
 		} else if (gameData.applicationType == 1) {
 
 			update("application",

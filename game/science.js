@@ -50,7 +50,7 @@ function updateScience() {
 	}
 	
 	if (!gameData.unlockBenevolence && gameData.respectMilestone1000) {
-		showBasicDiv("unlockBenevolence")
+		show("unlockBenevolence")
 	} else {
 		hide("unlockBenevolence")
 	}
@@ -193,8 +193,8 @@ function timeToShowScience(id) {
 }
 
 function tabScience(tabby) {
-    tabs("research", "none")
-    tabs("researchers", "none")
+    hide("research")
+    hide("researchers")
 	
 	colorChanger('researchButton', '#BBBBBB')
 	colorChanger('researchersButton', '#BBBBBB')		
