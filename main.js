@@ -627,46 +627,21 @@ function buyAMap() {
     updateValues()
 }
 
-
-function storageJuicersUnlock() {
-	
+function storageUnlock(id){
 	if(gameData.confirmStorage)
 	{
 		if (window.prompt("Are you sure? Type 'yes' if you are") == "yes")
-			storageJuicersUnlockDo()
+			window['storageUnlockDo'](id)
 	}
 	else
-		storageJuicersUnlockDo()
+		window['storageUnlockDo'](id)
 }
 
-function storageJuicersUnlockDo() {
+function storageUnlockDo(id){
 	if (gameData.coins >= 100) {
 		gameData.coins -= 100
-		gameData.storageJuicersUnlock = 1
-		gameData.juicersMax *= 5
-		if (gameData.upgradeMoreStorage > 0)
-		{
-			gameData.specialAchievement1 = 1
-		}
-	}
-}
-
-function storagePeelersUnlock() {
-	if(gameData.confirmStorage)
-	{
-		if (window.prompt("Are you sure? Type 'yes' if you are") == "yes")
-			storagePeelersUnlock()
-	}
-	else
-		storagePeelersUnlock()
-    updateValues()
-}
-
-function storagePeelersUnlock() {
-	if (gameData.coins >= 100) {
-		gameData.coins -= 100
-		gameData.storagePeelersUnlock = 1
-		gameData.peelersMax *= 5
+		gameData['storage' + jsUcfirst(id) + 'Unlock'] = 1
+		gameData[id + 'Max'] *= 5
 		if (gameData.upgradeMoreStorage > 0)
 		{
 			gameData.specialAchievement1 = 1
@@ -679,32 +654,25 @@ function changeZoomSize() {
 	if (gameData.changeZoomSize == 150)
 	{
 		gameData.changeZoomSize = 100
-		document.body.style.zoom=1.0;
+		document.body.style.zoom = 1.0
 	}
 	else
 	{
 		gameData.changeZoomSize += 10
-		document.body.style.zoom= gameData.changeZoomSize / 100;
+		document.body.style.zoom = gameData.changeZoomSize / 100
 	}
 	
     updateValues()
 }
 
-function juiceLimesToggle() {
-    gameData.limeTypeToJuice = 0
-    updateValues()
+function juiceToggle(x) {
+    gameData.limeTypeToJuice = x
 }
 
 function benevolenceToggle(){
 	if (gameData.diseaseControlFinished)
 		toggle('benevolenceToggle')
 }
-
-function juicePeeledLimesToggle() {
-    gameData.limeTypeToJuice = 1
-    updateValues()
-}
-
 
 function increaseJuicePrice() {
 	if(gameData.increaseJuicePricex10){

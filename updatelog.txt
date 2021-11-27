@@ -29,7 +29,7 @@ Bugs / Aesthetic:
 		Science equations dont exist, console error
 		Benevolence equation doesnt exist, console error
 		Multiple abilities not starting because of incorrect BarRunning variable
-
+		Looking around sometimes skips past look around markers causing it to stop functioning
 
 
 

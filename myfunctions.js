@@ -18,7 +18,7 @@ function loadStuff(savegame) {
 		Object.assign(gameData.serf, savegame.serf)
 		
 		backwardsCompatibility(gameData.versionNumber)
-		gameData.versionNumber = 157
+		gameData.versionNumber = 158
 		updateAfterLoad()
 	} else {
 		update("newInfo", "Save File Empty.")
@@ -43,8 +43,12 @@ function hide(x) {
 	tabs(x, "none")
 }
 
-function showBasicDiv(x) {
-	tabs(x, "block")
+function show(x, type) {
+	if (type == 'inline')
+		tabs(x, "inline-block")
+	else
+		tabs(x, "block")
+
 }
 
 function pin(x) {
@@ -133,11 +137,10 @@ function startCurrentTask(x) {
 function showOrHideSkill(x) {
 	div = x + "Div"
 
-	if (gameData.hideCompletedSkills == 1 && gameData[x + 'SkillLevel'] == gameData[x + 'SkillLevelMax']) {
-		tabs(div, "none")
-	} else {
-		tabs(div, "block")
-	}
+	if (gameData.hideCompletedSkills == 1 && gameData[x + 'SkillLevel'] == gameData[x + 'SkillLevelMax'])
+		hide(div)
+	else
+		show(div)
 
 }
 
@@ -268,29 +271,7 @@ function beckyRandomMinMax(min, max) {
 	return Math.floor(Math.random() * (max - min)) + min;
 }
 
-//Recurring function for continuing a loading bar.
-function basicBarSkill(variable, speed) {
 
-	variableBar = variable + "Bar"
-	gameData[variable + 'BarRunning'] = true
-	
-	if (gameData[variableBar] < 100) {
-
-		gameData[variableBar] += 0.5
-
-		if (speed == 'slow')
-			setTimeout(variableBar + "()", (1000 / (gameData.intelligenceSkillLevel * 2 / 20 + 1)) / gameData.tickspeed)
-		else
-			setTimeout(variableBar + "()", (100 / (gameData.intelligenceSkillLevel * 2 / 20 + 1)) / gameData.tickspeed)
-
-	} else {
-		gameData[variable + 'BarRunning'] = false
-		gameData[variable + "SkillLevel"] += 1
-		gameData[variable] += 2
-
-	}
-	moveBar(variable)
-}
 
 function sleep(milliseconds) {
 	const date = Date.now();
@@ -298,41 +279,6 @@ function sleep(milliseconds) {
 	do {
 		currentDate = Date.now();
 	} while (currentDate - date < milliseconds);
-}
-
-function restartBar(x) {
-	if (gameData[x + "Bar"] < 100 && gameData[x + "Bar"] != 0)
-		eval(x + "Bar()")
-	else
-		gameData[x + 'BarRunning'] = false
-}
-
-function restartBarNoMovement(x) {
-	if (gameData[x + 'Bar'] < 100 && gameData[x + 'Bar'] != 0) {
-		eval(x + "Bar(0)")
-	}
-}
-
-function barStart(variable) {
-	variableBar = variable + "Bar"
-	if (gameData[variableBar] == 100 || gameData[variableBar] == 0) {
-		gameData[variableBar] = 0
-		eval(variableBar + "()")
-	}
-}
-
-//Starts a granular loading bar for basic skills.
-function barStartGranularSkillBasic(variable, useSkillTrainer) {
-	variableBar = variable + "Bar"
-	if ((gameData[variableBar] == 100 || gameData[variableBar] == 0) && gameData[variable + "SkillLevel"] < gameData[variable + "SkillLevelMax"] && gameData.eat >= gameData[variable + "SkillLevel"] && !gameData[variable + 'BarRunning']) {
-		gameData.eat -= gameData[variable + "SkillLevel"]
-		if (gameData.skillTrainer == 1 && useSkillTrainer == true) {
-			gameData[variableBar] = 100
-		} else {
-			gameData[variableBar] = 0
-		}
-		eval(variableBar + "()")
-	}
 }
 
 function update(id, content) {
@@ -349,10 +295,10 @@ function updateNumber(id) {
 		val = valRaw.toLocaleString()
 
 	if ((gameData[id + 'UnlockedVariable'] && gameData[id + 'ShowVariable']) || id == 'limes') {
-		showBasicDiv(elem + 'Div')
-		showBasicDiv(elem + 'Br')
-		showBasicDiv(elem + 'P')
-		showBasicDiv(elem)
+		show(elem + 'Div')
+		show(elem + 'Br')
+		show(elem + 'P')
+		show(elem)
 	} else {
 		hide(elem + 'Div')
 		hide(elem + 'Br')
@@ -377,10 +323,10 @@ function updateAreaNumbers() {
 				val = valRaw.toLocaleString()
 
 			if ((gameData[id + 'UnlockedVariable'] && gameData[id + 'ShowVariable']) || j == 0) {
-				showBasicDiv(elem + 'Div')
-				showBasicDiv(elem + 'Br')
-				showBasicDiv(elem + 'P')
-				showBasicDiv(elem)
+				show(elem + 'Div')
+				show(elem + 'Br')
+				show(elem + 'P')
+				show(elem)
 			} else {
 				hide(elem + 'Div')
 				hide(elem + 'Br')
@@ -424,20 +370,18 @@ function colorChangerText(id, content) {
 
 function checkShow(i, n, txt) {
 	if (i >= n) {
-		tabs(txt, "block")
+		show(txt)
 	}
 }
 
 function checkHide(i, txt) {
-	if (i > 0) {
+	if (i > 0)
 		hide(txt)
-	}
 }
 
 function checkShow(i, txt) {
-	if (i >= 1) {
-		tabs(txt, "block")
-	}
+	if (i >= 1)
+		show(txt)
 }
 
 function increaseValue(id) {
@@ -454,25 +398,25 @@ function decreaseValue(id) {
 
 function checkShowOrHide(i, txt) {
 	if (i >= 1) {
-		tabs(txt, "block")
+		show(txt)
 	} else {
-		tabs(txt, "none")
+		hide(txt)
 	}
 }
 
 function checkShowSmart(i, txt) {
 	if (gameData[i] >= 1) {
-		tabs(txt, "block")
+		show(txt)
 	} else {
-		tabs(txt, "none")
+		hide(txt)
 	}
 }
 
 function checkHideOrShow(i, txt) {
 	if (i >= 1) {
-		tabs(txt, "none")
+		hide(txt)
 	} else {
-		tabs(txt, "block")
+		show(txt)
 	}
 }
 
@@ -509,25 +453,4 @@ function backwardsCompatibility(versionNumber) {
 
 function setValue(id, amount) {
 	gameData[id] = amount
-}
-
-function barMover(id, amount, time){
-	gameData[id + 'Bar'] += amount;
-	moveBar(id)
-	setTimeout(eval(id + 'Bar'), time / gameData.tickspeed)
-}
-
-function barMoverAdvanced(id, amount, time){
-	gameData[id + 'BarRunning'] = true
-	
-	if (gameData[id + 'Bar'] < 100) {
-		barMover(id, amount, time)
-	} else {
-		if (gameData[id + 'Bar'] > 100)
-			gameData[id + 'Bar'] = 100
-		eval(id + 'BarEnd()')
-		if (gameData[id + 'BarRunning'])
-			gameData[id + 'BarRunning'] = false
-	}
-
 }

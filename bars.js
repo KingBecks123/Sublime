@@ -4,16 +4,6 @@ function working() {
 
 }
 
-
-function basket() {
-    gameData.basketBar = 0;
-    gameData.limes += gameData.limesInBaskets;
-	gameData.goldenLimes += gameData.goldenLimesInBaskets;
-    gameData.limesInBaskets = 0;
-    gameData.goldenLimesInBaskets = 0;
-
-}
-
 function workingBar() {
     if (gameData.workingBar < 100 && gameData.employeeIsWorking == 1) {
         gameData.workingBar += 1;
@@ -34,6 +24,15 @@ function workingBar() {
     }
 }
 
+function basket() {
+    gameData.basketBar = 0
+    gameData.limes += gameData.limesInBaskets
+	gameData.goldenLimes += gameData.goldenLimesInBaskets
+    gameData.limesInBaskets = 0
+    gameData.goldenLimesInBaskets = 0
+
+}
+
 function teach() {
     gameData.employeeCurrentSpeed = -(gameData.employeeHunger * 60)
 	setTimeout('barStart("teach")', 1000)
@@ -46,27 +45,20 @@ function teachBar() {
 function teachBarEnd() {}
 
 function eat() {
-    if ((gameData.eatBar == 100 || gameData.eatBar == 0) && gameData.eat < 100 && gameData.eatBarRunning == false) {
-        if (gameData.foodTypeToggle == 0 && gameData.limes > 0) {
-            gameData.limes -= 1
-            gameData.foodType = 5
-			
-			if (gameData.eatBar == 100 || gameData.eatBar == 0) {
-				gameData.eatBar = 0
-				eatBar()
-			}
-			
-			
-        } else if (gameData.foodTypeToggle == 1 && gameData.rottenLimes > 0) {
-            gameData.rottenLimes -= 1
-            gameData.foodType = 1
-			
-			if (gameData.eatBar == 100 || gameData.eatBar == 0) {
-				gameData.eatBar = 0
-				eatBar()
-			}
-		}
+    if (canStartBar('eat') && gameData.eat < 100) {
+		startEatBar('limes', 5, 0)
+		startEatBar('rottenLimes', 1, 1)
     }
+}
+
+function startEatBar(id, nutrition, type) {
+    if (gameData.foodTypeToggle == type && gameData[id] > 0)
+	{
+		gameData[id] -= 1
+		gameData.foodType = nutrition
+		gameData.eatBar = 0
+		eatBar()
+	}
 }
 
 function eatBar() {
@@ -87,11 +79,8 @@ function autoCollecting() {
 }
 
 function autoCollectingBar() {
-    if (gameData.autoCollectingBar <= (((gameData.nourishment + 1) * 100) - 0.5)) {
-        gameData.autoCollectingBar += 0.5;
-		moveAutoCollecting()
-        setTimeout(autoCollectingBar, 50)
-    }
+    if (gameData.autoCollectingBar <= (((gameData.nourishment + 1) * 100) - 0.5))
+		barMover('autoCollecting', 0.5, 50)
 
     if (gameData.autoCollectingBar % (10 / (gameData.shoes + 1)) == 0) {
         getLimes()
@@ -100,14 +89,13 @@ function autoCollectingBar() {
 }
 
 function convertCoinsNow() {
-    if (gameData.coins >= 1e5 && (gameData.convertCoinsNowBar == 0 || gameData.convertCoinsNowBar == 100)) {
+    if (canStartBar('convertCoinsNow') && gameData.coins >= 1e5) {
         gameData.coins -= 1e5
 		gameData.convertedCoinsSinceTravel += 1
 		gameData.convertCoinsNowBar = 0
         convertCoinsNowBar()
     }
 }
-
 
 function convertCoinsNowBar() {
 	barMoverAdvanced('convertCoinsNow', 0.5, 50 * Math.pow(2, (gameData.convertedCoinsSinceTravel + 1)))
@@ -134,33 +122,32 @@ function currencyBrokerHireBarEnd() {
 	randomizeApplicationCurrencyBroker()
 }
 
-
-function intelligenceBar() {
-    basicBarSkill("intelligence")
-}
-
-function limebidextrousBar() {
-    basicBarSkill("limebidextrous")
-}
-
-function knifebidextrousBar() {
-    basicBarSkill("knifebidextrous")
+function keenEyeBar() {
+    basicBarSkill("keenEye")
 }
 
 function rottenWisdomBar() {
     basicBarSkill("rottenWisdom")
 }
 
-function keenEyeBar() {
-    basicBarSkill("keenEye")
+function limebidextrousBar() {
+    basicBarSkill("limebidextrous")
 }
 
-function ambidextrousBar() {
-    basicBarSkill("ambidextrous", "slow")
+function intelligenceBar() {
+    basicBarSkill("intelligence")
+}
+
+function knifebidextrousBar() {
+    basicBarSkill("knifebidextrous")
 }
 
 function motivationBar() {
     basicBarSkill("motivation")
+}
+
+function ambidextrousBar() {
+    basicBarSkill("ambidextrous", "slow")
 }
 
 function bitterSpeedBar() {
@@ -174,45 +161,38 @@ function learnANewSkillBar() {
 function learnANewSkillBarEnd() {
 	switch (gameData.learnANewSkill) {
 		case -2:
-			gameData.learnANewSkill = -1
 			update("newInfo", "You learned Keen Eye!")
 			break;
 		case -1:
-			gameData.learnANewSkill = 0
 			update("newInfo", "You unlocked auto collection!")
 			break;
 		case 0:
-			gameData.learnANewSkill = 1
 			update("newInfo", "You Learned Rotten Wisdom!")
 			break;
 		case 1:
-			gameData.learnANewSkill = 2
 			update("newInfo", "You Learned Limebidextrous!")
 			break;
 		case 2:
-			gameData.learnANewSkill = 3
 			update("newInfo", "You Learned Intelligence!")
 			break;
 		case 3:
-			gameData.learnANewSkill = 4
 			update("newInfo", "You Learned Knifebidextrous!")
 			break;
 		case 4:
-			gameData.learnANewSkill = 5
 			update("newInfo", "You Learned Motivation!")
 			break;
 		case 5:
-			gameData.learnANewSkill = 6
 			update("newInfo", "You Learned Ambidextrous!")
 			break;
 		case 6:
-			gameData.learnANewSkill = 7
 			update("newInfo", "You Learned Bitter Speed!")
+			break;
     }
+	gameData.learnANewSkill += 1
 }
 
 function delivery() {
-    if (!gameData.deliveryBarRunning && (gameData.deliveryBar >= 99.9 || gameData.deliveryBar == 0) && gameData.coins >= gameData.deliveryPrice && gameData.juice >= gameData.juiceBulkAmountToggle) {
+    if (canStartBar('delivery') && gameData.coins >= gameData.deliveryPrice && gameData.juice >= gameData.juiceBulkAmountToggle) {
         gameData.deliveryType = gameData.deliveryTypeToggle
         gameData.juiceBulkAmount = gameData.juiceBulkAmountToggle
         gameData.coins -= gameData.deliveryPrice
@@ -228,10 +208,8 @@ function delivery() {
 function deliveryBar() {	
 	if (gameData.deliveryType == 0) 
 		barMoverAdvanced('delivery', 0.1, 100)
-	
 	else if (gameData.deliveryType == 1)
 		barMoverAdvanced('delivery', 0.5, 15)
-	
 	else
 		barMoverAdvanced('delivery', 1, 15)
 
@@ -242,93 +220,79 @@ function deliveryBarEnd() {
 }
 
 
-function makeJuice() {
-
-    if ((gameData.juicerBar >= 99 || gameData.juicerBar == 0) && gameData.juicerBarRunning == 0) 
-	{
-        if (gameData.limeTypeToJuice == 0 && gameData.limes >= gameData.limesPerJuice) 
-		{
-            gameData.limes -= gameData.limesPerJuice
-            gameData.juicerBar = 0
-            gameData.howMuchJuice = 1
-            gameData.limeTypeToJuiceToggle = 0
-            juicerBar()
-        } 
-		else if (gameData.limeTypeToJuice == 1 && gameData.peeledLimes >= gameData.peeledLimesPerJuice) 
-		{
-            gameData.peeledLimes -= gameData.peeledLimesPerJuice
-            gameData.juicerBar = 0
-            gameData.howMuchJuice = 1
-            gameData.limeTypeToJuiceToggle = 1
-            juicerBar()
-        }
-    }
-
-}
-
-
 function peelerPeel() {
-
-    if ((gameData.peelerBar >= 99 || gameData.peelerBar == 0) && gameData.limes >= 1 && gameData.peelerBarRunning == false) {
+    if (canStartBar('peeler') && gameData.limes > 0) {
 		gameData.howManyPeeledLimes = 1
-		gameData.limes -= 1
-		gameData.peelerBar = 0
-		peelerBar()
+		peelerStart()
     }
-
 }
-
 
 function peelerPeelMax() {
-
-    if ((gameData.peelerBar >= 99 || gameData.peelerBar == 0) && gameData.peelerBarRunning == false) 
+    if (canStartBar('peeler'))
 	{
         gameData.howManyPeeledLimes = gameData.limes
 
         if (gameData.howManyPeeledLimes > gameData.peelers) 
             gameData.howManyPeeledLimes = gameData.peelers
 
-        gameData.limes -= gameData.howManyPeeledLimes
+        if (gameData.howManyPeeledLimes > 0)
+			peelerStart()
+    }
+}
 
-        if (gameData.howManyPeeledLimes > 0) {
+function peelerStart(){
+	gameData.limes -= gameData.howManyPeeledLimes
+	gameData.peelerBar = 0;
+	peelerBar()
+}
 
-            gameData.peelerBar = 0;
-            peelerBar()
+function makeJuice() {
 
+    if (canStartBar('juicer')) 
+	{
+        if (gameData.limeTypeToJuice == 0 && gameData.limes >= gameData.limesPerJuice) 
+		{
+            gameData.limes -= gameData.limesPerJuice
+            gameData.howMuchJuice = 1
+            gameData.limeTypeToJuiceToggle = 0
+            juicerStart()
+        } 
+		else if (gameData.limeTypeToJuice == 1 && gameData.peeledLimes >= gameData.peeledLimesPerJuice) 
+		{
+            gameData.peeledLimes -= gameData.peeledLimesPerJuice
+            gameData.howMuchJuice = 1
+            gameData.limeTypeToJuiceToggle = 1
+            juicerStart()
+        }
+    }
+
+}
+
+function juicerStart(){
+	gameData.juicerBar = 0
+	juicerBar()
+}
+
+function makeMaxJuice() {
+    if (canStartBar('juicer')) {
+
+        if (gameData.limeTypeToJuice)
+			calculateHowMuchJuice('peeledLimes', 1)
+		else 
+			calculateHowMuchJuice('limes', 0)
+		
+        if (gameData.howMuchJuice > 0) {
+            juicerStart()
         }
     }
 }
 
-
-function makeMaxJuice() {
-
-    if ((gameData.juicerBar >= 100 || gameData.juicerBar == 0) && gameData.juicerBarRunning == 0) {
-
-        if (gameData.limeTypeToJuice == 0)
-		{
-            gameData.howMuchJuice = Math.floor(gameData.limes / gameData.limesPerJuice)
-			
-            if (gameData.howMuchJuice > gameData.juicers)
-                gameData.howMuchJuice = gameData.juicers
-			
-            gameData.limeTypeToJuiceToggle = 0
-            gameData.limes -= gameData.howMuchJuice * gameData.limesPerJuice
-        } 
-		else 
-		{
-            gameData.howMuchJuice = Math.floor(gameData.peeledLimes / gameData.peeledLimesPerJuice)
-            if (gameData.howMuchJuice > gameData.juicers)
-                gameData.howMuchJuice = gameData.juicers
-
-            gameData.peeledLimes -= gameData.howMuchJuice * gameData.peeledLimesPerJuice
-            gameData.limeTypeToJuiceToggle = 1
-        }
-		
-        if (gameData.howMuchJuice > 0) {
-            gameData.juicerBar = 0;
-            juicerBar()
-        }
-    }
+function calculateHowMuchJuice(id, x){
+	gameData.howMuchJuice = Math.floor(gameData[id] / gameData[id + 'PerJuice'])
+	if (gameData.howMuchJuice > gameData.juicers)
+		gameData.howMuchJuice = gameData.juicers
+	gameData[id] -= gameData.howMuchJuice * gameData[id + 'PerJuice']
+	gameData.limeTypeToJuiceToggle = x
 }
 
 function peelerBar() {
@@ -361,11 +325,100 @@ function eatGoldenLime(){
 function eatGoldenLimeBar(){
 	
     if (gameData.eatGoldenLimeBar > 0) 
-	{
-        gameData.eatGoldenLimeBar -= 0.5;
-		moveBar("eatGoldenLime")
-        setTimeout(eatGoldenLimeBar, (gameData.bitterSpeedSkillLevel / gameData.tickspeed))
-    } 
+		barMover('eatGoldenLime', -0.5, gameData.bitterSpeedSkillLevel)
 	else 
 		gameData.bitterSpeeding = 0
+}
+
+function barMover(id, amount, time){
+	gameData[id + 'Bar'] += amount
+	moveBar(id)
+	setTimeout(eval(id + 'Bar'), time / gameData.tickspeed)
+}
+
+function barMoverAdvanced(id, amount, time){
+	bar = id + 'Bar'
+	gameData[id + 'BarRunning'] = true
+	
+	if (gameData[bar] > 100)
+		gameData[bar] = 100
+		
+	if (gameData[bar] < 100)
+		barMover(id, amount, time)
+	else {
+		window[id + 'BarEnd']()
+		gameData[id + 'BarRunning'] = false
+	}
+
+}
+
+function restartBar(id) {
+	if (!canStartBar(id))
+		window[id + 'Bar']()
+	else
+		gameData[id + 'BarRunning'] = false
+}
+
+
+
+function barStart(variable) {
+	if (canStartBar(variable)) {
+		gameData[variable + "Bar"] = 0
+		window[variable + "Bar"]()
+	}
+}
+
+function barStartGranularSkillBasic(x, useSkillTrainer) {
+	id = x + "Bar"
+	skillLevel = gameData[x + "SkillLevel"]
+	if (canStartBar(x) && skillLevel < gameData[x + "SkillLevelMax"] && gameData.eat >= skillLevel) {
+		
+		gameData.eat -= skillLevel
+		
+		if (gameData.skillTrainer && useSkillTrainer)
+			gameData[id] = 100
+		else
+			gameData[id] = 0
+
+		window[id]()
+	}
+}
+
+function canStartBar(id){
+    if ((gameData[id + 'Bar'] == 100 || gameData[id + 'Bar'] == 0) && gameData[id + 'BarRunning'] == false)
+		return true
+}
+
+function moveBar(x) {
+    i = x + "Bar"
+	if(gameData[i] > 100)
+		gameData[i] = 100
+
+    document.getElementById(i).style.width = gameData[i] + "%"
+    document.getElementById(i).innerHTML = "  " + Math.ceil(gameData[i]) + "%"
+}
+
+function basicBarSkill(variable, speed) {
+
+	variableBar = variable + "Bar"
+	gameData[variable + 'BarRunning'] = true
+	
+	if (gameData[variableBar] < 100) {
+
+		gameData[variableBar] += 0.5
+
+		var value = 100
+
+		if (speed == 'slow')
+			value = 1000
+
+		setTimeout(variableBar + "()", (value / (gameData.intelligenceSkillLevel * 2 / 20 + 1)) / gameData.tickspeed)
+
+	} else {
+		gameData[variable + 'BarRunning'] = false
+		gameData[variable + "SkillLevel"] += 1
+		gameData[variable] += 2
+
+	}
+	moveBar(variable)
 }
