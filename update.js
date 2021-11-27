@@ -24,7 +24,8 @@ function updateAfterLoad() {
 	restartBar("findPieCustomers")
 	restartBar("bakePie")
 	restartBar("harvestRice")
-	
+	restartBar("delivery")
+
 
 
 	if (gameData.bellowsBar > 0) {
