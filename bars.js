@@ -80,15 +80,19 @@ function autoCollecting() {
 
 function autoCollectingBar() {
     if (gameData.autoCollectingBar <= (((gameData.nourishment + 1) * 100) - 0.5))
-	{
         gameData.autoCollectingBar += 0.5;
 		moveAutoCollecting()
         setTimeout(autoCollectingBar, 50)
-	}
-    if (gameData.autoCollectingBar % (10 / (gameData.shoes + 1)) == 0) {
+    if (gameData.autoCollectingBar % (10 / (gameData.shoes + 1)) == 0 && gameData.autoCollectingBar < (((gameData.nourishment + 1) * 100) - 0.5)) {
         getLimes()
     }
+}
 
+function moveAutoCollecting() {
+    var elem = document.getElementById("autoCollectingBar");
+	var x = gameData.autoCollectingBar / (gameData.nourishment + 1)
+    elem.style.width = x + "%"
+    elem.innerHTML =  Math.floor(x) + "%"
 }
 
 function convertCoinsNow() {

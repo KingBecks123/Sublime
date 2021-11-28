@@ -724,16 +724,6 @@ function moveBasket() {
     elem.innerHTML = Math.floor(gameData.basketBar) + "%";
 }
 
-function moveAutoCollecting() {
-
-    var elem = document.getElementById("autoCollectingBar");
-    var x = Math.floor(gameData.autoCollectingBar / (gameData.nourishment + 1))
-    var x2 = gameData.autoCollectingBar / (gameData.nourishment + 1)
-
-    elem.style.width = x2 + "%";
-    elem.innerHTML = x + "%";
-}
-
 
 function buyABasket() {
 
