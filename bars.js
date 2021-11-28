@@ -358,14 +358,6 @@ function barMoverAdvanced(id, amount, time){
 
 }
 
-function restartBar(id) {
-	if (!canStartBar(id))
-		window[id + 'Bar']()
-	else
-		gameData[id + 'BarRunning'] = false
-}
-
-
 
 function barStart(variable) {
 	if (gameData[variable + "Bar"] == 100 || gameData[variable + "Bar"] == 0) {

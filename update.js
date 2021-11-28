@@ -1,13 +1,8 @@
 function updateAfterLoad() {
 	calculateOfflineProgress()
 
-	for (let i = 0; i < mainSkills.length; i++) {
+	for (let i = 0; i < mainSkills.length; i++)
 		restartBar(mainSkills[i])
-
-		if (gameData[mainSkills[i] + 'SkillLevel'] > gameData[mainSkills[i] + 'SkillLevelMax']) {
-			gameData[mainSkills[i] + 'SkillLevel'] = gameData[mainSkills[i] + 'SkillLevelMax']
-		}
-	}
 
 	restartBar("learnANewSkill")
 	restartBar("juicer")
@@ -25,7 +20,12 @@ function updateAfterLoad() {
 	restartBar("bakePie")
 	restartBar("harvestRice")
 	
-
+	function restartBar(id) {
+		if (canStartBar(id))
+			gameData[id + 'BarRunning'] = false
+		else
+			window[id + 'Bar']()
+	}
 
 	if (gameData.bellowsBar > 0) {
 		bellowsBar()
