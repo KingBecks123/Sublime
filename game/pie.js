@@ -692,7 +692,7 @@ function findPieCustomersBar() {
 		moveBar("findPieCustomers")
 		time = (Math.pow(2 - gameData.pieMerchantCharm / 20, gameData.piePrice) + 10)
 
-		if(time == 'Infinity')
+		if(time == 'Infinity' || gameData.piePrice > 30)
 			time = 1e9
 		
 		if (time < 15)
