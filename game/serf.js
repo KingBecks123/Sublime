@@ -86,7 +86,7 @@ function updateSerfStuff(){
 
 	
 	if(gameData.serf.health == 0)
-		show('acceptLordsFood')
+		showBasicDiv('acceptLordsFood')
 	else
 		hide('acceptLordsFood')
 	

@@ -148,7 +148,7 @@ function fieldTile(x, y) {
 		gameData.selectedPlotY = y
 
 		
-		show('plotManagementDiv')
+		showBasicDiv('plotManagementDiv')
 		if(gameData.wheatFieldArray[x][y] == 59)
 		{
 			update("plotDetails", "Price: " + gameData.nextPlotPrice.toLocaleString() + " Pie Coins")
@@ -461,13 +461,13 @@ function updatePieStuff(){
 
 		}
 		else
-			show("buyAPieFlourBucketNozzle")
+			showBasicDiv("buyAPieFlourBucketNozzle")
 	}
 	else
 	{
 		
 		if(gameData.pieBucket)
-			show("buyAPieFlourBucket")
+			showBasicDiv("buyAPieFlourBucket")
 		else
 			hide("buyAPieFlourBucket")
 		
@@ -483,10 +483,10 @@ function updatePieStuff(){
 	else
 	{
 		hide("buyAPieBucketNozzle")
-		show("bucketHoleChanger")
+		showBasicDiv("bucketHoleChanger")
 		
 		if(gameData.pieFlourBucketNozzle && !gameData.upgradeNozzles)
-			show("upgradeNozzles")
+			showBasicDiv("upgradeNozzles")
 		else
 			hide("upgradeNozzles")
 
@@ -497,19 +497,19 @@ function updatePieStuff(){
 	{
 		hide("buyPieOven")
 		
-		show("pieOvenDiv", "inline")
+		tabs("pieOvenDiv", "inline-block")
 		
 		if(!gameData.pieBucket)
-			show("buyAPieBucket")
+			showBasicDiv("buyAPieBucket")
 		else
 			hide("buyAPieBucket")
 		
 		if(!gameData.bellows)
-			show("buyBellows")
+			showBasicDiv("buyBellows")
 		else
 		{
 			hide("buyBellows")
-			show("bellowsDiv")
+			showBasicDiv("bellowsDiv")
 		}
 	}
 	
@@ -537,7 +537,7 @@ function updatePieStuff(){
 	else
 	{
 		hide("buyAPieConveyorBelt")
-		show("pieConveyorBeltOnButton", "inline")
+		tabs("pieConveyorBeltOnButton", "inline-block")
 	}
 	
 	
@@ -545,24 +545,24 @@ function updatePieStuff(){
 	if(gameData.wheatField)
 	{
 		
-		show("fieldTile0-0", "inline")
-		show("fieldButton")
-		show("buyWheatSeeds")
+		tabs("fieldTile0-0", "inline-block")
+		showBasicDiv("fieldButton")
+		showBasicDiv("buyWheatSeeds")
 		
 		if(!gameData.pieOven)
-			show("buyPieOven")
+			showBasicDiv("buyPieOven")
 		
 		if(!gameData.mortarAndPestle)
-			show("buyMortarAndPestle")
+			showBasicDiv("buyMortarAndPestle")
 		else
 			hide("buyMortarAndPestle")
 		
 
-		show("buyAWheatHarvester")
-		show("buyASeedDrill")
+		showBasicDiv("buyAWheatHarvester")
+		showBasicDiv("buyASeedDrill")
 		
 		if(gameData.seedDrills || gameData.wheatHarvesters)
-			show("wheatMachines")
+			showBasicDiv("wheatMachines")
 
 
 	}
@@ -572,20 +572,20 @@ function updatePieStuff(){
 	
 	
 	if(gameData.mortarAndPestle)
-		show("grindFlour")
+		showBasicDiv("grindFlour")
 	else
 		hide("grindFlour")
 	
 	if(gameData.pieEmployee)
 	{
 		hide("buyPieEmployee")
-		show("payPieEmployeeDiv")
+		showBasicDiv("payPieEmployeeDiv")
 		if(gameData.advancedPieHiring == 0)
-			show("advancedPieHiring")
+			showBasicDiv("advancedPieHiring")
 		else
 		{
 			hide("advancedPieHiring")
-			show("hirePieMerchantToggleButton")
+			showBasicDiv("hirePieMerchantToggleButton")
 		}
 
 
@@ -602,7 +602,7 @@ function updatePieStuff(){
 		gameData.hasGottenFieldTools = 1
 	
 	if(gameData.hasGottenFieldTools)
-		show('fieldPlacementOptions')
+		showBasicDiv('fieldPlacementOptions')
 
 	
 	
@@ -624,7 +624,7 @@ function updatePieStuff(){
 	update("pieMerchantCharm"            , "Charm: "             + gameData.pieMerchantCharm.toLocaleString() + ".")
 
 	if(gameData.doesHavePieMerchant)
-		show('pieMerchant')
+		showBasicDiv('pieMerchant')
 	else
 		hide('pieMerchant')
 
