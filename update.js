@@ -338,7 +338,14 @@ function updateValues() {
 				else
 					show(id, "inline")
 			}
-			update(number + 'RespectMilestone', number.toLocaleString() + ' Respect: ' + text)
+			
+			//if(number == 10000)
+				//update(number + 'RespectMilestone', number.toLocaleString() + ' Respect: ' + text + '<span class="tooltiptext">Tooltip text</span>')
+			//else
+				update(number + 'RespectMilestone', number.toLocaleString() + ' Respect: ' + text)
+
+			
+			
 			if (color == 'lime')
 				colorChanger(milestone, limesRelatedAccent)
 			if (color == 'red')
@@ -384,10 +391,10 @@ function updateValues() {
 
 	if (gameData.creditScore2) {
 		hide("increaseCreditScore2")
-		if (!gameData.creditScore3)
-			show("increaseCreditScore3")
-		else
+		if (gameData.creditScore3)
 			hide("increaseCreditScore3")
+		else
+			show("increaseCreditScore3")
 	} else {
 		show("increaseCreditScore2", "inline")
 		hide("increaseCreditScore3")
@@ -403,14 +410,14 @@ function updateValues() {
 		hide("buySkillToggler")
 
 
-	if (gameData.pieBucket == 1 && gameData.pieFlourBucket == 1)
+	if (gameData.pieBucket && gameData.pieFlourBucket)
 		show("bucketThinSteelPlating")
 	else
 		hide("bucketThinSteelPlating")
 
 	update("bucketHeight", "Current heights: " + (gameData.bucketThinSteelPlating * 5 + 20).toLocaleString() + " Units")
 
-	if (gameData.diseaseControlFinished == 1) {
+	if (gameData.diseaseControlFinished) {
 		hide("diseaseControlStart")
 		show("startDiseaseTask")
 	} else {
@@ -427,7 +434,7 @@ function updateValues() {
 		hide("upgradeCreditScore")
 	}
 
-	if (gameData.nutritionists > 0) {
+	if (gameData.nutritionists) {
 		hide("hireANutritionist")
 		show("upgradeNutritionist")
 	} else {
@@ -435,16 +442,17 @@ function updateValues() {
 		hide("upgradeNutritionist")
 	}
 
-	if (gameData.fasterTransport == 0)
-		update("deliveryToggleStandardButton", "Standard Delivery")
-	else
+	if (gameData.fasterTransport)
 		update("deliveryToggleStandardButton", "Hyper Delivery")
-
-
-	if (gameData.diseaseTileSymbols == 0)
-		update("diseaseTileSymbolsButton", "Disease Tiles: Blank")
 	else
+		update("deliveryToggleStandardButton", "Standard Delivery")
+
+
+
+	if (gameData.diseaseTileSymbols)
 		update("diseaseTileSymbolsButton", "Disease Tiles: Symbols")
+	else
+		update("diseaseTileSymbolsButton", "Disease Tiles: Blank")
 
 	if (gameData.shiftClickOption) {
 		update("shiftClickOption", "Don't Toggle: Shift Click")
@@ -455,14 +463,14 @@ function updateValues() {
 			show("dontToggleButton", "inline")
 	}
 
-	if (gameData.deliveryManager == 0) {
-		hide("sellMaxJuiceButton")
-		show("decreaseJuiceSoldButton", "inline")
-		show("increaseJuiceSoldButton", "inline")
-	} else {
+	if (gameData.deliveryManager) {
 		show("sellMaxJuiceButton", "inline")
 		hide("decreaseJuiceSoldButton")
 		hide("increaseJuiceSoldButton")
+	} else {
+		hide("sellMaxJuiceButton")
+		show("decreaseJuiceSoldButton", "inline")
+		show("increaseJuiceSoldButton", "inline")
 	}
 
 	if (gameData.respectMilestone10000) {
@@ -832,7 +840,7 @@ function updateValues() {
 		}
 	}
 	
-	if (gameData.endScreen == 0) {
+	if (!gameData.endScreen) {
 		hide('endScreen')
 		if (gameData.soulArea == 'start')
 		{
