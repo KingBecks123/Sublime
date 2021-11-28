@@ -139,8 +139,6 @@ var gameDataBase = {
     limeDiseaseControlInfoToggle: 1,
     limeDiseaseLakes: 0,
     limeDiseaseLakesCurrent: 0,
-    limeDiseaseLakesSet: 0,
-
 
     hasAdvertised: 0,
 
@@ -255,6 +253,7 @@ var gameDataBase = {
 	coinsToAlphaBar: 0,
 	isCoinsToAlphaBar: 0,
 	currencyBrokerHireBar: 0,
+	confirmStorage: 0,
 	smarterAdvertisingManagerBroker: 0,
 	convertedCoinsSinceTravel: 0,
 	transferAlphaCoinBags: 0,
@@ -534,18 +533,18 @@ function tab(tabby) {
 	gameData.mainTab = tabby
     update("exportCode", "")
 
-    hide("options")
-    hide("market")
-    hide("inventory")
-    hide("achievements")
-    hide("skills")
-    hide("megaCoinUpgrades")
-    hide("tasks")
-    hide("company")
-    hide("forest")
-    hide("science")
-    hide("bakery")
-    hide("field")
+    tabs("options", "none")
+    tabs("market", "none")
+    tabs("inventory", "none")
+    tabs("achievements", "none")
+    tabs("skills", "none")
+    tabs("megaCoinUpgrades", "none")
+    tabs("tasks", "none")
+    tabs("company", "none")
+    tabs("forest", "none")
+    tabs("science", "none")
+    tabs("bakery", "none")
+    tabs("field", "none")
 
 
 	
@@ -621,8 +620,8 @@ function tabMarket(tabby) {
 }
 
 function tabTasks(tabby) {
-    hide("earn")
-    hide("milestones")
+    tabs("earn", "none")
+    tabs("milestones", "none")
 	
 	colorChanger('earnButton', '#BBBBBB')
 	colorChanger('milestonesButton', '#BBBBBB')	
@@ -632,8 +631,8 @@ function tabTasks(tabby) {
 }
 
 function tabStore(tabby) {
-    hide("plebian")
-    hide("patrician")
+    tabs("plebian", "none")
+    tabs("patrician", "none")
 	
 	colorChanger('plebianButton', '#BBBBBB')
 	colorChanger('patricianButton', '#BBBBBB')
@@ -644,9 +643,9 @@ function tabStore(tabby) {
 }
 
 function tabOptions(tabby) {
-    hide("gameOptions")
-    hide("uiOptions")
-    hide("statsOptions")
+    tabs("gameOptions", "none")
+    tabs("uiOptions", "none")
+    tabs("statsOptions", "none")
 
 	
     document.getElementById(tabby).style.display = "block"

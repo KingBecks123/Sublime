@@ -1,17 +1,7 @@
 Update Log
 
 21/11/25
-
-Aesthetic:
-	To Fix:
-	
-	
-	Fixed:
-		Red in 10,000 respect milestone makes it seem like it isnt unlocked
-	
-	
-	
-Bugs
+Bugs / Aesthetic:
 	To Fix:
 		Research sometimes not moving
 		Cant tell when research is moving
@@ -38,9 +28,7 @@ Bugs
 		Enter The Well button automatically appears before filling the well
 		Science equations dont exist, console error
 		Benevolence equation doesnt exist, console error
-		Multiple abilities not starting because of incorrect BarRunning variable
-		Looking around sometimes skips past look around markers causing it to stop functioning
-
+		
 
 
 	

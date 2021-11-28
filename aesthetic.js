@@ -174,6 +174,14 @@ function addAesthetic() {
 		x[i].style['margin'] = "5px";
 	}
 
+	if (gameData.diseaseControlFinished) {
+		colorChanger('decreaseLakesButton', grayAccentLight)
+		colorChanger('increaseLakesButton', grayAccentLight)
+	} else {
+		colorChanger('decreaseLakesButton', grayAccent)
+		colorChanger('increaseLakesButton', grayAccent)
+	}
+
 	if (gameData.simulationTime)
 		colorChanger('checkResultsButton', accent4)
 	else
@@ -218,7 +226,7 @@ function addAesthetic() {
 	if (gameData.lookAround == 3)
 		hide('lookAroundButton')
 	else
-		show('lookAroundButton', "inline")
+		tabs('lookAroundButton', "inline-block")
 
 	if (gameData.juiceBulkAmountToggle == 100 && gameData.deliveryTypeToggle < 2)
 		colorChanger('increaseJuiceSoldButton', grayAccent)
