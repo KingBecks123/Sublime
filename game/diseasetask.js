@@ -48,9 +48,9 @@ function diseaseControlQuit() {
 	}
 
 	if (gameData.benevolenceToggle)
-		gameData.respect -= gameData.limeDiseaseLakes + 1 + benevolenceRespectIncrease
+		gameData.respect -= gameData.limeDiseaseLakesSet + 1 + benevolenceRespectIncrease
 	else
-		gameData.respect -= gameData.limeDiseaseLakes + 1
+		gameData.respect -= gameData.limeDiseaseLakesSet + 1
 
 	updateMapTileAesthetic()
 	updateValues()
@@ -80,15 +80,15 @@ function checkResults() {
 
 		if (diseaseControlFailed == 0) {
 			if (gameData.benevolenceToggle)
-				gameData.respect += gameData.limeDiseaseLakes + 1 + benevolenceRespectIncrease + gameData.respectBillboard
+				gameData.respect += gameData.limeDiseaseLakesSet + 1 + benevolenceRespectIncrease + gameData.respectBillboard
 			else
-				gameData.respect += gameData.limeDiseaseLakes + 1 + gameData.respectBillboard
+				gameData.respect += gameData.limeDiseaseLakesSet + 1 + gameData.respectBillboard
 
 		} else {
 			if (gameData.benevolenceToggle)
-				gameData.respect -= gameData.limeDiseaseLakes + 1 + benevolenceRespectIncrease + gameData.respectBillboard
+				gameData.respect -= gameData.limeDiseaseLakesSet + 1 + benevolenceRespectIncrease + gameData.respectBillboard
 			else
-				gameData.respect -= gameData.limeDiseaseLakes + 1 + gameData.respectBillboard
+				gameData.respect -= gameData.limeDiseaseLakesSet + 1 + gameData.respectBillboard
 
 		}
 
@@ -124,12 +124,13 @@ function diseaseControlTask() {
 	if (gameData.diseaseControlFinished == 1) {
 		diseaseControlReset("soft")
 		gameData.diseaseControlFinished = 0
+		gameData.limeDiseaseLakesSet = gameData.limeDiseaseLakes
 		gameData.civiliansTotal = beckyRandom(4)
 
 		tiles = gameData.numberOfTiles - 16
 
 
-		for (gameData.limeDiseaseLakesCurrent = 0; gameData.limeDiseaseLakesCurrent < gameData.limeDiseaseLakes; gameData.limeDiseaseLakesCurrent) {
+		for (gameData.limeDiseaseLakesCurrent = 0; gameData.limeDiseaseLakesCurrent < gameData.limeDiseaseLakesSet; gameData.limeDiseaseLakesCurrent) {
 
 			x = beckyRandom(5) - 1
 			y = beckyRandom(5) - 1
@@ -140,7 +141,7 @@ function diseaseControlTask() {
 			}
 		}
 
-		if (gameData.autoPlaceACivilian == 1 && gameData.numberOfTiles !== gameData.limeDiseaseLakes) {
+		if (gameData.autoPlaceACivilian == 1 && gameData.numberOfTiles !== gameData.limeDiseaseLakesSet) {
 
 			for (i = 0; gameData.civiliansPlaced < 1; i) {
 
@@ -154,7 +155,6 @@ function diseaseControlTask() {
 			}
 		}
 		updateMapTileAesthetic()
-		updateValues()
 	}
 }
 
@@ -176,20 +176,10 @@ function diseaseControlReset(type) {
 
 function changeLakeAmount(x) {
 
-	if (gameData.diseaseControlFinished == 1) {
-
-		if (gameData.limeDiseaseLakes < gameData.numberOfTiles && x == 1) {
-
-			gameData.limeDiseaseLakes += x
-
-		} else if (gameData.limeDiseaseLakes > 0 && x == -1) {
-
-			gameData.limeDiseaseLakes += x
-
-		}
-	}
-
-	updateValues()
+	if (gameData.limeDiseaseLakes < gameData.numberOfTiles && x == 1)
+		gameData.limeDiseaseLakes += x
+	else if (gameData.limeDiseaseLakes > 0 && x == -1)
+		gameData.limeDiseaseLakes += x
 }
 
 function updateMapTileAesthetic() {
