@@ -253,7 +253,6 @@ var gameDataBase = {
 	coinsToAlphaBar: 0,
 	isCoinsToAlphaBar: 0,
 	currencyBrokerHireBar: 0,
-	confirmStorage: 0,
 	smarterAdvertisingManagerBroker: 0,
 	convertedCoinsSinceTravel: 0,
 	transferAlphaCoinBags: 0,

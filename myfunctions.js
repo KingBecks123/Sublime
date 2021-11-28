@@ -18,7 +18,7 @@ function loadStuff(savegame) {
 		Object.assign(gameData.serf, savegame.serf)
 		
 		backwardsCompatibility(gameData.versionNumber)
-		gameData.versionNumber = 160
+		gameData.versionNumber = 161
 		updateAfterLoad()
 	} else {
 		update("newInfo", "Save File Empty.")
@@ -90,7 +90,7 @@ function pickCurrentTask(x) {
 	taskOne = gameData.currentTask
 	taskTwo = gameData.currentTask2
 
-	if (!event.shiftKey && !gameData.dontToggle) {
+	if (!event.shiftKey && gameData.dontToggle) {
 
 		if (gameData.ambidextrousSkillLevel == gameData.ambidextrousSkillLevelMax) {
 			if (taskOne == x && taskOne !== "none" && taskTwo !== x) {
@@ -118,7 +118,7 @@ function pickCurrentTask(x) {
 }
 
 function pickCurrentSkill(x) {
-	if (!gameData.dontToggle && !event.shiftKey && gameData.multitasking) {
+	if (gameData.dontToggle && !event.shiftKey && gameData.multitasking) {
 		if (gameData.currentSkill == x && gameData.currentSkill !== "none") {
 			gameData.currentSkill = "none"
 		} else {

@@ -339,9 +339,9 @@ function updateValues() {
 					show(id, "inline")
 			}
 			
-			//if(number == 10000)
-				//update(number + 'RespectMilestone', number.toLocaleString() + ' Respect: ' + text + '<span class="tooltiptext">Tooltip text</span>')
-			//else
+			if(number == 10000)
+				update(number + 'RespectMilestone', number.toLocaleString() + ' Respect: ' + text + '<span class="tooltiptext">Yes, you have this unlocked. The red means that it is permanent.</span>')
+			else
 				update(number + 'RespectMilestone', number.toLocaleString() + ' Respect: ' + text)
 
 			
@@ -597,19 +597,6 @@ function updateValues() {
 		update("hideCompletedSkillsButton", "Completed Skills Shown")
 	else
 		update("hideCompletedSkillsButton", "Completed Skills Hidden")
-
-
-	if (gameData.confirmStorage)
-		update("confirmStorageButton", "Do Confirm x5 Storage")
-	else
-		update("confirmStorageButton", "Don't Confirm x5 Storage")
-
-
-	if (gameData.villageNumber > 1) {
-		show('confirmStorageButton', 'inline')
-	} else {
-		hide('confirmStorageButton')
-	}
 
 
 

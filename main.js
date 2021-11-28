@@ -628,13 +628,7 @@ function buyAMap() {
 }
 
 function storageUnlock(id){
-	if(gameData.confirmStorage)
-	{
-		if (window.prompt("Are you sure? Type 'yes' if you are") == "yes")
-			window['storageUnlockDo'](id)
-	}
-	else
-		window['storageUnlockDo'](id)
+	window['storageUnlockDo'](id)
 }
 
 function storageUnlockDo(id){

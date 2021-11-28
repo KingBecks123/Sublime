@@ -8,7 +8,7 @@
 
     <style>
 		.tooltip {position: relative;}
-		.tooltip .tooltiptext {visibility: hidden;width: 120px;background-color: black;color: #fff;text-align: center;padding: 5px 0;border-radius: 6px;position: absolute;z-index: 1;}
+		.tooltip .tooltiptext {visibility: hidden;width: 120px;background-color: #222222;color: #fff;text-align: center;padding: 5px;border-radius: 6px;position: absolute;z-index: 1;}
 		.tooltip:hover .tooltiptext {visibility: visible;}
 
 		.basicDiv     {padding: 5px 5px 5px 5px;margin: 10px 5px 10px 5px;background-color:#222222;}
@@ -77,7 +77,10 @@
         <button class="basicButtonSize" id="pickUpLimes" style="width:120px;background-color:#4DFE89" onkeydown="return event.key != 'Enter';" onclick="getLimesButton()">Collect Limes</button>
         <button class="basicButtonSize" id="lookAroundButton" style="background-color:#BBBBBB" onclick="lookAround()">Look Around</button>
         <button class="specialButton" id="stopActionsButton" style="width:120px" onclick="stopActions()">Stop Actions</button>
-        <button class="basicButtonSize" id="dontToggleButton" style="width:120px;display:none;" onclick="toggle('dontToggle')">Don't Toggle</button>
+		
+        <button class="basicButtonSize tooltip" id="dontToggleButton" style="width:130px;display:none;" onclick="toggle('dontToggle')">Toggle Actions
+			<span class="tooltiptext">If this is lime, clicking an ability will toggle it. If it is gray, clicking an ability will run it once.</span>
+		</button>
 
 
     </div>
@@ -151,8 +154,6 @@
 				<button class="specialButton" id="desktopModeButton" onclick="toggle('desktopMode')">In Desktop Mode</button><br>
 				<button class="specialButton" id="shiftClickOption" onclick="toggle('shiftClickOption')">Don't Toggle: Shift Click</button>
 				<button class="specialButton" style="display:none" id="diseaseTileSymbolsButton" onclick="toggle('diseaseTileSymbols')">Disease Tiles No Symbols</button>
-				<button class="specialButton" id="confirmStorageButton" onclick="toggle('confirmStorage')">Don't Confirm x5 Storage</button><br>
-
 
 			</div>
 
@@ -1789,18 +1790,18 @@
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	
-    <script src="aesthetic.js?v=               160" charset="utf-8" type="text/javascript"></script>
-    <script src="myfunctions.js?v=             160" charset="utf-8" type="text/javascript"></script>
-    <script src="main.js?v=                    160" charset="utf-8" type="text/javascript"></script>
-    <script src="technical.js?v=               160" charset="utf-8" type="text/javascript"></script>
-    <script src="bars.js?v=                    160" charset="utf-8" type="text/javascript"></script>
-    <script src="update.js?v=                  160" charset="utf-8" type="text/javascript"></script>
-    <script src="game/diseasetask.js?v=        160" charset="utf-8" type="text/javascript"></script>
-    <script src="game/pie.js?v=                160" charset="utf-8" type="text/javascript"></script>
-    <script src="game/hiringarea.js?v=         160" charset="utf-8" type="text/javascript"></script>
-    <script src="game/science.js?v=            160" charset="utf-8" type="text/javascript"></script>
-    <script src="game/brokers.js?v=            160" charset="utf-8" type="text/javascript"></script>
-    <script src="game/serf.js?v=               160" charset="utf-8" type="text/javascript"></script>
+    <script src="aesthetic.js?v=               161" charset="utf-8" type="text/javascript"></script>
+    <script src="myfunctions.js?v=             161" charset="utf-8" type="text/javascript"></script>
+    <script src="main.js?v=                    161" charset="utf-8" type="text/javascript"></script>
+    <script src="technical.js?v=               161" charset="utf-8" type="text/javascript"></script>
+    <script src="bars.js?v=                    161" charset="utf-8" type="text/javascript"></script>
+    <script src="update.js?v=                  161" charset="utf-8" type="text/javascript"></script>
+    <script src="game/diseasetask.js?v=        161" charset="utf-8" type="text/javascript"></script>
+    <script src="game/pie.js?v=                161" charset="utf-8" type="text/javascript"></script>
+    <script src="game/hiringarea.js?v=         161" charset="utf-8" type="text/javascript"></script>
+    <script src="game/science.js?v=            161" charset="utf-8" type="text/javascript"></script>
+    <script src="game/brokers.js?v=            161" charset="utf-8" type="text/javascript"></script>
+    <script src="game/serf.js?v=               161" charset="utf-8" type="text/javascript"></script>
 
 
 

@@ -1,11 +1,10 @@
 function working() {
     gameData.employeeIsWorking = 1
     barStart("working")
-
 }
 
 function workingBar() {
-    if (gameData.workingBar < 100 && gameData.employeeIsWorking == 1) {
+    if (gameData.workingBar < 100) {
         gameData.workingBar += 1;
         setTimeout(workingBar, 600 / gameData.tickspeed)
     } 
