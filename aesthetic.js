@@ -174,14 +174,6 @@ function addAesthetic() {
 		x[i].style['margin'] = "5px";
 	}
 
-	if (gameData.diseaseControlFinished) {
-		colorChanger('decreaseLakesButton', grayAccentLight)
-		colorChanger('increaseLakesButton', grayAccentLight)
-	} else {
-		colorChanger('decreaseLakesButton', grayAccent)
-		colorChanger('increaseLakesButton', grayAccent)
-	}
-
 	if (gameData.simulationTime)
 		colorChanger('checkResultsButton', accent4)
 	else

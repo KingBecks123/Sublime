@@ -35,6 +35,9 @@ function updateAfterLoad() {
 	moveBar('bakePie')
 	moveWell()
 
+	if(gameData.employeeIsWorking && gameData.workingBar == 100)
+		gameData.workingBar = 0
+
 	if (gameData.workingBar <= 100 && (gameData.workingBar != 0 || gameData.employeeWorking > 0)) {
 		workingBar()
 	}

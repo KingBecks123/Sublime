@@ -4,7 +4,7 @@ function working() {
 }
 
 function workingBar() {
-    if (gameData.workingBar < 100) {
+    if (gameData.workingBar < 100 && gameData.employeeIsWorking == 1) {
         gameData.workingBar += 1;
         setTimeout(workingBar, 600 / gameData.tickspeed)
     } 
@@ -368,7 +368,7 @@ function restartBar(id) {
 
 
 function barStart(variable) {
-	if (canStartBar(variable)) {
+	if (gameData[variable + "Bar"] == 100 || gameData[variable + "Bar"] == 0) {
 		gameData[variable + "Bar"] = 0
 		window[variable + "Bar"]()
 	}
