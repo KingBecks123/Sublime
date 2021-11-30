@@ -218,7 +218,7 @@ function addResearchers(id, amount) {
 			gameData[id + "Researchers"] += researchersAvailable
 			researchersAvailable = 0
 		}
-	} else if (amount < 0 && gameData[id + "Researchers"] > 0) {
+	} else if (amount < 0 && gameData[id + "Researchers"] > (-1 - amount)) {
 		if (researchersAvailable - amount <= gameData.researchers) {
 			gameData[id + "Researchers"] += amount
 			researchersAvailable -= amount
