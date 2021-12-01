@@ -32,9 +32,9 @@ function increasePiePrice() {
 }
 
 function changePiePrice(){
-	if(gameData.currentTask = 'findPieCustomers')
+	if(gameData.currentTask == 'findPieCustomers')
 		gameData.currentTask = 'none'
-	if(gameData.currentTask2 = 'findPieCustomers')
+	if(gameData.currentTask2 == 'findPieCustomers')
 		gameData.currentTask2 = 'none'
 	gameData.isFindingPieCustomers = 0
 	gameData.findPieCustomersBar = 0
