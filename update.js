@@ -1,4 +1,5 @@
 function updateAfterLoad() {
+
 	calculateOfflineProgress()
 
 	for (let i = 0; i < mainSkills.length; i++) {

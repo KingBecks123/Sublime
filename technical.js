@@ -64,6 +64,7 @@ var gameDataBase = {
     eatBarRunning: false,
     juicerBarRunning: false,
     peelerBarRunning: false,
+    autoCollectingBarRunning: false,
 
 
     autoCollectingBar: 0,
@@ -415,6 +416,7 @@ var gameDataBase = {
 	flour: 0,
 	pieOven: 0,
 	bakePieBar: 0,
+	bakePieBarRunning: false,
 	juiceAsPieIngredient: 0,
 	flourAsPieIngredient: 0,
 	pieCoins: 0,
@@ -494,10 +496,10 @@ var gameDataBase = {
 
 var gameData = {}
 
-
+ableToSave = true
 
 function gameStart() {
-	
+		
 	addHTML()
 		
 	surveyingBarDoMove = 0
@@ -506,7 +508,6 @@ function gameStart() {
 	findPieCustomersBarDoMove = 0
 
     loadStuff(JSON.parse(localStorage.getItem("mathAdventureSave")))
-
 
 	
     mainGameLoop()

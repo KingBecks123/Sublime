@@ -15,6 +15,7 @@ Update Log
 	Removed excess files
 	Fixed patrician / plebian area disappearing
 	Removed Reset button from the disease task
+	Some actions continued even after resetting game
 	
 
 21/11/25

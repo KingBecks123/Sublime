@@ -2,23 +2,21 @@ function importGame() {
 	var savegame = JSON.parse(atob(prompt("Import Code: ")))
 	if (savegame !== null) {
 		loadStuff(savegame)
-		console.log('loaded')
 		saveGame()
-		console.log('saved')
 		location.reload();
 	}
 }
 
 function loadStuff(savegame) {
+	
 	Object.assign(gameData, gameDataBase)
 	if (savegame !== null) {
 		Object.assign(gameData, savegame)
-		
 		gameData.serf = JSON.parse(JSON.stringify(gameDataBase.serf))
 		Object.assign(gameData.serf, savegame.serf)
-		
+
 		backwardsCompatibility(gameData.versionNumber)
-		gameData.versionNumber = 173
+		gameData.versionNumber = 174
 		updateAfterLoad()
 	} else {
 		update("newInfo", "Save File Empty.")
@@ -26,7 +24,32 @@ function loadStuff(savegame) {
 }
 
 function saveGame() {
-	localStorage.setItem('mathAdventureSave', JSON.stringify(gameData))
+	if (ableToSave)
+		localStorage.setItem('mathAdventureSave', JSON.stringify(gameData))
+}
+
+function exportGame() {
+	update("exportCode", btoa(JSON.stringify(gameData)))
+}
+
+function resetGame() {
+	if (window.prompt("Are you sure? Type 'yes' if you are") == "yes") {
+		ableToSave = false
+		Object.assign(gameData, gameDataBase)
+		localStorage.setItem('mathAdventureSave', JSON.stringify(gameData))
+		location.reload();
+	}
+}
+
+function backwardsCompatibility(versionNumber) {
+	if (gameData.pin == 'sellYourJuiceButton')
+		gameData.pin = 'deliveryButton'
+	
+	if (gameData.versionNumber < 142)
+	{
+		gameData.currentTask = 'none'
+		gameData.currentTask2 = 'none'
+	}
 }
 
 function preventNegative(id) {
@@ -182,9 +205,9 @@ function moveBar(x) {
 	if(gameData[i] > 100)
 		gameData[i] = 100
 
-    var elem = document.getElementById(i);
-    elem.style.width = gameData[i] + "%";
-    elem.innerHTML = "  " + Math.ceil(eval("gameData." + i)) + "%";
+    var elem = document.getElementById(i)
+    elem.style.width = gameData[i] + "%"
+    elem.innerHTML = "" + Math.ceil(gameData[i]) + "%"
 }
 
 function toggle(x) {
@@ -470,29 +493,6 @@ function saveBeforeWipe(id) {
 
 function saveAfterWipe(id) {
 	eval('gameData.' + id + '=' + id + 'Now')
-}
-
-function exportGame() {
-	update("exportCode", btoa(JSON.stringify(gameData)))
-}
-
-function resetGame() {
-	if (window.prompt("Are you sure? Type 'yes' if you are") == "yes") {
-		Object.assign(gameData, gameDataBase)
-		localStorage.setItem('mathAdventureSave', JSON.stringify(gameData))
-		location.reload();
-	}
-}
-
-function backwardsCompatibility(versionNumber) {
-	if (gameData.pin == 'sellYourJuiceButton')
-		gameData.pin = 'deliveryButton'
-	
-	if (gameData.versionNumber < 142)
-	{
-		gameData.currentTask = 'none'
-		gameData.currentTask2 = 'none'
-	}
 }
 
 function setValue(id, amount) {
