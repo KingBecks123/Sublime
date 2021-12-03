@@ -1,5 +1,18 @@
 Update Log
 
+21/12/03
+	Fixed bug where changing pie price causes all actions to stop
+	Made skill bars run more smoothly
+	Made eat bar run more smoothly
+	Dramatically improved performance (14ms per update -> 2.5ms)
+	Changed the Don't Toggle button to the Toggle Actions button
+	Added tooltips:
+		Toggle Actions tooltip
+		10,000 Respect Milestone Tooltip
+	Lakes can now be changed while in a task
+	Change lake button color
+	Removed upgrade broker from upgrades tab (not permanent)
+
 21/11/25
 Bugs / Aesthetic:
 	To Fix:

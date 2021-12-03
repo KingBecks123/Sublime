@@ -139,6 +139,8 @@ var gameDataBase = {
     limeDiseaseControlInfoToggle: 1,
     limeDiseaseLakes: 0,
     limeDiseaseLakesCurrent: 0,
+    limeDiseaseLakesSet: 0,
+
 
     hasAdvertised: 0,
 
@@ -226,7 +228,7 @@ var gameDataBase = {
 	
     desktopMode: 1,
 	shiftClickOption: 0,
-	dontToggle: 0,
+	toggleActions: 0,
 	
 	isAutoCollecting: 0,
 	

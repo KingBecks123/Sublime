@@ -7,6 +7,11 @@
     <title>Sublime</title>
 
     <style>
+	
+	
+		.tooltip {position: relative;}
+		.tooltip .tooltiptext {visibility: hidden;width: 120px;background-color: #222222;color: #fff;text-align: center;padding: 5px;border-radius: 6px;position: absolute;z-index: 1;}
+		.tooltip:hover .tooltiptext {visibility: visible;}
 
 		.basicDiv     {padding: 5px 5px 5px 5px;margin: 10px 5px 10px 5px;background-color:#222222;}
 		.basicDivSize {padding: 5px 5px 5px 5px;margin: 10px 5px 10px 5px;}
@@ -74,7 +79,10 @@
         <button class="basicButtonSize" id="pickUpLimes" style="width:120px;background-color:#4DFE89" onkeydown="return event.key != 'Enter';" onclick="getLimesButton()">Collect Limes</button>
         <button class="basicButtonSize" id="lookAroundButton" style="background-color:#BBBBBB" onclick="lookAround()">Look Around</button>
         <button class="specialButton" id="stopActionsButton" style="width:120px" onclick="stopActions()">Stop Actions</button>
-        <button class="basicButtonSize" id="dontToggleButton" style="width:120px;display:none;" onclick="toggle('dontToggle')">Don't Toggle</button>
+        <button class="basicButtonSize tooltip" id="toggleActionsButton" style="display:none;" onclick="toggle('toggleActions')">Toggle Actions
+			<span class="tooltiptext">If this is lime, clicking an ability will toggle it. If it is gray, clicking an ability will run it once.</span>
+		</button>
+	
 
 
     </div>
@@ -1302,11 +1310,6 @@
 
         </div>
 		
-        <div class="basicDiv" id="upgradeBroker">
-            <p class="basicTextSize" style="background-color:#FF999A;" >Bachelors Degree In Finance</p>
-            <p class="basicText">Access the Currency Exchange market</p>
-        </div>
-		
         <div class="basicDiv" id="upgradeMoreLand">
             <p class="basicTextSize" style="background-color:#FF999A;" >More Land</p>
                 <p class="basicText" style="display:block;">Increases maximum juicers and peelers</p>
@@ -1376,8 +1379,8 @@
                 </div>
 
                 <div class="unlockDiseaseAreaSwamp">
-                    <button class="basicButtonSize" id="decreaseLakesButton" onclick="changeLakeAmount(-1)" , style="width:120px;background:lightgray;">Decrease Lakes</button>
-                    <button class="basicButtonSize" id="increaseLakesButton" onclick="changeLakeAmount(1)" , style="width:120px;background:lightgray;">Increase Lakes</button>
+                    <button class="basicButtonSize" id="decreaseLakesButton" onclick="changeLakeAmount(-1)" , style="width:120px;background:#99FFFF;">Decrease Lakes</button>
+                    <button class="basicButtonSize" id="increaseLakesButton" onclick="changeLakeAmount(1)" , style="width:120px;background:#99FFFF;">Increase Lakes</button>
                 </div>
 
 
@@ -1490,7 +1493,7 @@
                 <p class="basicTextSize" id="100RespectMilestone"   >100 Respect: ???</p>
                 <p class="basicTextSize" id="500RespectMilestone"   >500 Respect: ???</p>
                 <p class="basicTextSize" id="1000RespectMilestone"  >1,000 Respect: ???</p>
-                <p class="basicTextSize" id="10000RespectMilestone" >10,000 Respect: ???</p>
+                <p class="basicTextSize tooltip" id="10000RespectMilestone" >10,000 Respect: ???</p>
 
 
             </div>
@@ -1805,18 +1808,18 @@
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	
-    <script src="aesthetic.js?v=               170" charset="utf-8" type="text/javascript"></script>
-    <script src="myfunctions.js?v=             170" charset="utf-8" type="text/javascript"></script>
-    <script src="main.js?v=                    170" charset="utf-8" type="text/javascript"></script>
-    <script src="technical.js?v=               170" charset="utf-8" type="text/javascript"></script>
-    <script src="bars.js?v=                    170" charset="utf-8" type="text/javascript"></script>
-    <script src="update.js?v=                  170" charset="utf-8" type="text/javascript"></script>
-    <script src="game/diseasetask.js?v=        170" charset="utf-8" type="text/javascript"></script>
-    <script src="game/pie.js?v=                170" charset="utf-8" type="text/javascript"></script>
-    <script src="game/hiringarea.js?v=         170" charset="utf-8" type="text/javascript"></script>
-    <script src="game/science.js?v=            170" charset="utf-8" type="text/javascript"></script>
-    <script src="game/brokers.js?v=            170" charset="utf-8" type="text/javascript"></script>
-    <script src="game/serf.js?v=               170" charset="utf-8" type="text/javascript"></script>
+    <script src="aesthetic.js?v=               171" charset="utf-8" type="text/javascript"></script>
+    <script src="myfunctions.js?v=             171" charset="utf-8" type="text/javascript"></script>
+    <script src="main.js?v=                    171" charset="utf-8" type="text/javascript"></script>
+    <script src="technical.js?v=               171" charset="utf-8" type="text/javascript"></script>
+    <script src="bars.js?v=                    171" charset="utf-8" type="text/javascript"></script>
+    <script src="update.js?v=                  171" charset="utf-8" type="text/javascript"></script>
+    <script src="game/diseasetask.js?v=        171" charset="utf-8" type="text/javascript"></script>
+    <script src="game/pie.js?v=                171" charset="utf-8" type="text/javascript"></script>
+    <script src="game/hiringarea.js?v=         171" charset="utf-8" type="text/javascript"></script>
+    <script src="game/science.js?v=            171" charset="utf-8" type="text/javascript"></script>
+    <script src="game/brokers.js?v=            171" charset="utf-8" type="text/javascript"></script>
+    <script src="game/serf.js?v=               171" charset="utf-8" type="text/javascript"></script>
 
 
 

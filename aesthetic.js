@@ -65,7 +65,7 @@ function addAesthetic() {
 	toggleAesthetic("autoAdvertiseBroker")
 	toggleAesthetic("increaseJuicePricex10")
 	toggleAesthetic("pieConveyorBeltOn")
-	toggleAesthetic("dontToggle")
+	toggleAesthetic("toggleActions")
 	toggleAesthetic("textForA2BBrokerAmountToggle")
 
 	currentTaskAesthetic('peelerPeel')
@@ -172,14 +172,6 @@ function addAesthetic() {
 		}
 		x[i].style.padding = "5px";
 		x[i].style['margin'] = "5px";
-	}
-
-	if (gameData.diseaseControlFinished) {
-		colorChanger('decreaseLakesButton', grayAccentLight)
-		colorChanger('increaseLakesButton', grayAccentLight)
-	} else {
-		colorChanger('decreaseLakesButton', grayAccent)
-		colorChanger('increaseLakesButton', grayAccent)
 	}
 
 	if (gameData.simulationTime)

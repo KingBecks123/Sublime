@@ -338,7 +338,13 @@ function updateValues() {
 				else
 					tabs(id, "inline-block")
 			}
-			update(number + 'RespectMilestone', number.toLocaleString() + ' Respect: ' + text)
+			
+			elem = ''
+			if(number == 10000)
+				elem = '<span class="tooltiptext">Yes, you have this unlocked. The red means that it is permanent.</span>'
+			update(number + 'RespectMilestone', number.toLocaleString() + ' Respect: ' + text + elem)
+			
+			
 			if (color == 'lime')
 				colorChanger(milestone, limesRelatedAccent)
 			if (color == 'red')
@@ -448,11 +454,11 @@ function updateValues() {
 
 	if (gameData.shiftClickOption) {
 		update("shiftClickOption", "Don't Toggle: Shift Click")
-		tabs("dontToggleButton", "none")
+		tabs("toggleActionsButton", "none")
 	} else {
 		update("shiftClickOption", "Don't Toggle: Button Option")
 		if(gameData.learnANewSkill > -2)
-			tabs("dontToggleButton", "inline-block")
+			tabs("toggleActionsButton", "inline-block")
 	}
 
 	if (gameData.deliveryManager == 0) {

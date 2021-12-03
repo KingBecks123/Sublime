@@ -18,7 +18,7 @@ function loadStuff(savegame) {
 		Object.assign(gameData.serf, savegame.serf)
 		
 		backwardsCompatibility(gameData.versionNumber)
-		gameData.versionNumber = 170
+		gameData.versionNumber = 171
 		updateAfterLoad()
 	} else {
 		update("newInfo", "Save File Empty.")
@@ -86,7 +86,7 @@ function pickCurrentTask(x) {
 	taskOne = gameData.currentTask
 	taskTwo = gameData.currentTask2
 
-	if (!event.shiftKey && !gameData.dontToggle) {
+	if (!event.shiftKey && gameData.toggleActions) {
 
 		if (gameData.ambidextrousSkillLevel == gameData.ambidextrousSkillLevelMax) {
 			if (taskOne == x && taskOne !== "none" && taskTwo !== x) {
@@ -114,7 +114,7 @@ function pickCurrentTask(x) {
 }
 
 function pickCurrentSkill(x) {
-	if (!gameData.dontToggle && !event.shiftKey && gameData.multitasking) {
+	if (gameData.toggleActions && !event.shiftKey && gameData.multitasking) {
 		if (gameData.currentSkill == x && gameData.currentSkill !== "none") {
 			gameData.currentSkill = "none"
 		} else {
@@ -268,7 +268,6 @@ function beckyRandomMinMax(min, max) {
 	return Math.floor(Math.random() * (max - min)) + min;
 }
 
-//Recurring function for continuing a loading bar.
 function basicBarSkill(variable, speed) {
 
 	variableBar = variable + "Bar"
@@ -276,12 +275,12 @@ function basicBarSkill(variable, speed) {
 	
 	if (gameData[variableBar] < 100) {
 
-		gameData[variableBar] += 0.5
+		gameData[variableBar] += 0.25
 
 		if (speed == 'slow')
-			setTimeout(variableBar + "()", (1000 / (gameData.intelligenceSkillLevel * 2 / 20 + 1)) / gameData.tickspeed)
+			setTimeout(variableBar + "()", (500 / (gameData.intelligenceSkillLevel * 2 / 20 + 1)) / gameData.tickspeed)
 		else
-			setTimeout(variableBar + "()", (100 / (gameData.intelligenceSkillLevel * 2 / 20 + 1)) / gameData.tickspeed)
+			setTimeout(variableBar + "()", (50 / (gameData.intelligenceSkillLevel * 2 / 20 + 1)) / gameData.tickspeed)
 
 	} else {
 		gameData[variable + 'BarRunning'] = false
@@ -321,10 +320,9 @@ function barStart(variable) {
 	}
 }
 
-//Starts a granular loading bar for basic skills.
 function barStartGranularSkillBasic(variable, useSkillTrainer) {
 	variableBar = variable + "Bar"
-	if ((gameData[variableBar] == 100 || gameData[variableBar] == 0) && gameData[variable + "SkillLevel"] < gameData[variable + "SkillLevelMax"] && gameData.eat >= gameData[variable + "SkillLevel"] && !gameData[variable + 'BarRunning']) {
+	if (canStartBar(variable) && gameData[variable + "SkillLevel"] < gameData[variable + "SkillLevelMax"] && gameData.eat >= gameData[variable + "SkillLevel"]) {
 		gameData.eat -= gameData[variable + "SkillLevel"]
 		if (gameData.skillTrainer == 1 && useSkillTrainer == true) {
 			gameData[variableBar] = 100
@@ -335,8 +333,25 @@ function barStartGranularSkillBasic(variable, useSkillTrainer) {
 	}
 }
 
+function canStartBar(id) {
+	if ((gameData[id + 'Bar'] == 100 || gameData[id + 'Bar'] == 0) && !gameData[id + 'BarRunning'])
+		return true
+}
+
+hasUpdatedObj = {}
+
 function update(id, content) {
-	document.getElementById(id).innerHTML = content
+	stringy = id.replace(/[()-]/g, 'uwu')
+
+	if (typeof hasUpdatedObj[stringy] == undefined)
+		hasUpdatedObj[stringy] = 'noneOwO'
+
+	
+	if (hasUpdatedObj[stringy] != content)
+	{
+		document.getElementById(id).innerHTML = content
+		hasUpdatedObj[stringy] = content
+	}
 }
 
 function updateNumber(id) {
