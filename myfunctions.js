@@ -18,7 +18,7 @@ function loadStuff(savegame) {
 		Object.assign(gameData.serf, savegame.serf)
 		
 		backwardsCompatibility(gameData.versionNumber)
-		gameData.versionNumber = 172
+		gameData.versionNumber = 173
 		updateAfterLoad()
 	} else {
 		update("newInfo", "Save File Empty.")
@@ -206,33 +206,6 @@ function universalBuy(id, price, currency) {
 	if (gameData[currency] >= price) {
 		gameData[currency] -= price
 		gameData[id] += 1
-	}
-}
-
-function addResearchers(id, amount) {
-	if (amount > 0) {
-		if (researchersAvailable - amount >= 0) {
-			gameData[id + "Researchers"] += amount
-			researchersAvailable -= amount
-		} else {
-			gameData[id + "Researchers"] += researchersAvailable
-			researchersAvailable = 0
-		}
-	} else if (amount < 0 && gameData[id + "Researchers"] > 0) {
-		if (researchersAvailable - amount <= gameData.researchers) {
-			gameData[id + "Researchers"] += amount
-			researchersAvailable -= amount
-		} else {
-			researchersAvailable += gameData[id + "Researchers"]
-			gameData[id + "Researchers"] = 0
-		}
-	}
-}
-
-function hireResearcher() {
-	if (gameData.megaCoins >= 1) {
-		gameData.megaCoins -= 1
-		gameData.researchers += 1
 	}
 }
 
