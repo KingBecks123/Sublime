@@ -14,8 +14,10 @@ Update Log
 	Removed upgrade broker from upgrades tab (not permanent)
 	Removed excess files
 	Fixed patrician / plebian area disappearing
+	Fixed science allocation sometimes going below 0
 	Removed Reset button from the disease task
 	Some actions continued even after resetting game
+	Removed the General Store and the Patrician + Plebian Area
 	
 
 21/11/25

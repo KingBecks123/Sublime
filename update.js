@@ -358,9 +358,9 @@ function updateValues() {
 	}
 
 	if (gameData.respectMilestone50)
-		showBasicDiv("storeTypesButtonsDiv")
+		showBasicDiv("patrician")
 	else
-		hide("storeTypesButtonsDiv")
+		hide("patrician")
 
 	if (gameData.increaseJuicePricePermanance < 1) {
 		tabs("increaseJuicePricePermanance", "inline-block")
@@ -496,13 +496,13 @@ function updateValues() {
 	
 	if (gameData.maps > 0) {
 		tabs("marketMainButtonsDiv", "inline-block")
-		tabs("marketStoreButton", "inline-block")
+		tabs("marketStore", "inline-block")
 		document.getElementById("marketMainButtonsDiv").style.width = "360px"
 	}
 
 	if (gameData.maps > 1) {
 		tabs("hiringAreaButton", "inline-block")
-		tabs("marketStoreButton", "inline-block")
+		tabs("marketStore", "inline-block")
 		hide("buyAnotherMapDiv")
 	}
 

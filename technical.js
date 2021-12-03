@@ -524,7 +524,6 @@ function gameStart() {
 
 	tab(gameData.mainTab)
     tabMarket(gameData.marketTab)
-    tabStore("plebian")
     tabTasks("earn")
     tabScience("research")
 	tabOptions("gameOptions")
@@ -606,7 +605,6 @@ function tabMarket(tabby) {
 	
 	gameData.marketTab = tabby
 
-	tabManager('marketStore')	
 	tabManager('marketMain')	
 	tabManager('hiringArea')	
 	tabManager('travel')	
@@ -631,18 +629,6 @@ function tabTasks(tabby) {
 	
 	colorChanger(tabby + "Button", "#898989")
     document.getElementById(tabby).style.display = "block"
-}
-
-function tabStore(tabby) {
-    tabs("plebian", "none")
-    tabs("patrician", "none")
-	
-	colorChanger('plebianButton', '#BBBBBB')
-	colorChanger('patricianButton', '#BBBBBB')
-	
-    document.getElementById(tabby).style.display = "block"
-	colorChanger(tabby + "Button", "#898989")
-
 }
 
 function tabOptions(tabby) {
