@@ -61,21 +61,31 @@ function checkResults() {
 	}
 }
 
-function countPoints(diseaseControlFailed) {console.log(gameData.limeDiseaseLakesSet)
+function countPoints(diseaseControlFailed) {
 
-	gameData.diseaseControlFinished = 1
+	if (gameData.limeDiseaseLakesSet < 10)
+		benevolenceRespectIncrease = 0
+	else
+		benevolenceRespectIncrease = (Math.pow(2, gameData.limeDiseaseLakesSet - 10)) * gameData.benevolence
 	
-	diseaseControlReset()
-
+	
+	
+	
 	if (gameData.benevolenceToggle)
 		points = gameData.limeDiseaseLakesSet + 1 + benevolenceRespectIncrease + gameData.respectBillboard
 	else
 		points = gameData.limeDiseaseLakesSet + 1 + gameData.respectBillboard
 
+	
 	if (diseaseControlFailed) 
 		gameData.respect -= points
 	else
 		gameData.respect += points
+
+
+	gameData.diseaseControlFinished = 1
+	
+	diseaseControlReset()
 	
 	if (gameData.autoStartTask)
 		diseaseControlTask()
@@ -110,7 +120,6 @@ function diseaseControlTask() {
 		tiles = gameData.numberOfTiles - 16
 		
 		gameData.limeDiseaseLakesSet = gameData.limeDiseaseLakes
-		console.log(gameData.limeDiseaseLakesSet)
 
 
 		for (gameData.limeDiseaseLakesCurrent = 0; gameData.limeDiseaseLakesCurrent < gameData.limeDiseaseLakes; gameData.limeDiseaseLakesCurrent) {

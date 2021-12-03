@@ -6,10 +6,11 @@ function updateScience() {
 	
 	if(isNaN(gameData.respect))
 		gameData.respect = 0
+	
 	if (gameData.limeDiseaseLakes < 10)
-		benevolenceRespectIncrease = 0
+		benevolenceRespectIncreaseText = 0
 	else
-		benevolenceRespectIncrease = (Math.pow(2, gameData.limeDiseaseLakes - 10)) * gameData.benevolence
+		benevolenceRespectIncreaseText = (Math.pow(2, gameData.limeDiseaseLakes - 10)) * gameData.benevolence
 	
 	
 	benevolenceEquation = Math.pow(2, gameData.benevolence * 2)
@@ -24,7 +25,7 @@ function updateScience() {
 
 		update("textForResearchers", researchersAvailable + " Available Researchers")
 
-		update("benevolenceRespectIncrease", "Respect increase:  " + benevolenceRespectIncrease.toLocaleString())
+		update("benevolenceRespectIncrease", "Respect increase:  " + benevolenceRespectIncreaseText.toLocaleString())
 		
 		researchersAvailable = gameData.researchers
 
@@ -181,7 +182,6 @@ function surveillanceCamera2(){
 
 function timeToShowScience(id) {
 	var researchTime = eval(id + 'ResearchTime')
-	//console.log(id)
 	var time = id + 'Time'
 	if (gameData[id + 'Researchers'] == 0) {
 		update(time, "Estimated Time: Infinite Seconds")
