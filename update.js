@@ -356,7 +356,7 @@ function updateValues() {
 		}
 	}
 
-	if (gameData.respect >= 50)
+	if (gameData.respectMilestone50)
 		showBasicDiv("storeTypesButtonsDiv")
 	else
 		hide("storeTypesButtonsDiv")

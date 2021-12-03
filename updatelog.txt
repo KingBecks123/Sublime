@@ -12,6 +12,9 @@ Update Log
 	Lakes can now be changed while in a task
 	Change lake button color
 	Removed upgrade broker from upgrades tab (not permanent)
+	Removed excess files
+	Fixed patrician / plebian area disappearing
+	
 
 21/11/25
 Bugs / Aesthetic:
