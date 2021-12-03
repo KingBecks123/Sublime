@@ -18,6 +18,7 @@ Update Log
 	Removed Reset button from the disease task
 	Some actions continued even after resetting game
 	Removed the General Store and the Patrician + Plebian Area
+	Changed the shape of the forest
 	
 
 21/11/25

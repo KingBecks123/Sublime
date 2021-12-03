@@ -1080,38 +1080,38 @@
     </div>
 
 
-    <div id="forest">
-		<div class="basicDiv" id="treeTypeDiv" style="display:none">
-			<button class="basicButtonSize" id="forestTree1" style="background-color:lightgray;" onclick="setValue('forestTreeType', 1)">Basic Tree</button>
-			<button class="basicButtonSize" id="forestTree2" style="background-color:lightgray;" onclick="setValue('forestTreeType', 2)">Golden Lime Tree</button>
+    <div id="forest" style="position:relative;top:0px;">
+		<div style="width:380px;display:inline-block;position:absolute;">
+			<div class="basicDiv" id="treeTypeDiv" style="display:none">
+				<button class="basicButtonSize" id="forestTree1" style="background-color:lightgray;" onclick="setValue('forestTreeType', 1)">Basic Tree</button>
+				<button class="basicButtonSize" id="forestTree2" style="background-color:lightgray;" onclick="setValue('forestTreeType', 2)">Golden Lime Tree</button>
+			</div>
+			
+			<div class="basicDiv">
+				<p class="basicText" id="basketsAmount" , style="background-color:#bfbfbf;padding: 5px;">1 Basket</p>
+				<button class="specialButton" onclick="basket()">Empty Baskets</button>
+				<button class="basicButtonSize" id="basketInfoButton" , onclick="toggle('basketInfoToggle')">Info</button>
+				<p class="basicText basketInfo">Baskets collect 5 Limes per minute each</p>
+				<p class="basicText basketInfo">Baskets collect up to 25 Limes each</p>
+				<p class="basicText basketInfo" id="maxBaskets">20 baskets fit under the current tree</p>
+				<span style="display:none" id="goldenLimesInfo"><p class="basicText basketInfo">Golden limes slowly rot away once you collect them</p></span>
+
+
+				<p class="basicText" id="limesInBaskets">0 Limes</p>
+
+				<div class="verticalProgress" id="basketProgress">
+					<div class="verticalBar" style="background-color:#4DFE89;" id="basketBar">0%</div>
+				</div>
+			</div>
 		</div>
 		
-        <div class="basicDiv">
-            <p class="basicText" id="basketsAmount" , style="background-color:#bfbfbf;padding: 5px;">1 Basket</p>
-            <button class="specialButton" onclick="basket()">Empty Baskets</button>
-            <button class="basicButtonSize" id="basketInfoButton" , onclick="toggle('basketInfoToggle')">Info</button>
-            <p class="basicText basketInfo">Baskets collect 5 Limes per minute each</p>
-            <p class="basicText basketInfo">Baskets collect up to 25 Limes each</p>
-            <p class="basicText basketInfo" id="maxBaskets">20 baskets fit under the current tree</p>
-			<span style="display:none" id="goldenLimesInfo"><p class="basicText basketInfo">Golden limes slowly rot away once you collect them</p></span>
-
-
-            <p class="basicText" id="limesInBaskets">0 Limes</p>
-
-            <div class="verticalProgress" id="basketProgress">
-                <div class="verticalBar" style="background-color:#4DFE89;" id="basketBar">0%</div>
-            </div>
-        </div>
-		
-        <div class="basicDiv" id="forestWellDiv" style="display:none;">
+        <div class="basicDiv" id="forestWellDiv" style="display:none;position:absolute;right:0px;">
             <button class="specialButton" id="throwPieCoinsWell" onclick="throwPieCoinsWell()">Throw Pie Coins In The Well</button>
             <button class="basicButtonSize" id="enterTheWell" style="background-color:#000000;color:#FFFFFF;display:none;" onclick="enterTheWell()">Enter</button>
 
             <div class="verticalProgress" id="wellProgress">
                 <div class="verticalBar" id="wellBar" style="background-color:#C67848;">0%</div>
             </div>			
-			
-			
         </div>
 		
 		
@@ -1795,18 +1795,18 @@
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	
-    <script src="aesthetic.js?v=               175" charset="utf-8" type="text/javascript"></script>
-    <script src="myfunctions.js?v=             175" charset="utf-8" type="text/javascript"></script>
-    <script src="main.js?v=                    175" charset="utf-8" type="text/javascript"></script>
-    <script src="technical.js?v=               175" charset="utf-8" type="text/javascript"></script>
-    <script src="bars.js?v=                    175" charset="utf-8" type="text/javascript"></script>
-    <script src="update.js?v=                  175" charset="utf-8" type="text/javascript"></script>
-    <script src="game/diseasetask.js?v=        175" charset="utf-8" type="text/javascript"></script>
-    <script src="game/pie.js?v=                175" charset="utf-8" type="text/javascript"></script>
-    <script src="game/hiringarea.js?v=         175" charset="utf-8" type="text/javascript"></script>
-    <script src="game/science.js?v=            175" charset="utf-8" type="text/javascript"></script>
-    <script src="game/brokers.js?v=            175" charset="utf-8" type="text/javascript"></script>
-    <script src="game/serf.js?v=               175" charset="utf-8" type="text/javascript"></script>
+    <script src="aesthetic.js?v=               176" charset="utf-8" type="text/javascript"></script>
+    <script src="myfunctions.js?v=             176" charset="utf-8" type="text/javascript"></script>
+    <script src="main.js?v=                    176" charset="utf-8" type="text/javascript"></script>
+    <script src="technical.js?v=               176" charset="utf-8" type="text/javascript"></script>
+    <script src="bars.js?v=                    176" charset="utf-8" type="text/javascript"></script>
+    <script src="update.js?v=                  176" charset="utf-8" type="text/javascript"></script>
+    <script src="game/diseasetask.js?v=        176" charset="utf-8" type="text/javascript"></script>
+    <script src="game/pie.js?v=                176" charset="utf-8" type="text/javascript"></script>
+    <script src="game/hiringarea.js?v=         176" charset="utf-8" type="text/javascript"></script>
+    <script src="game/science.js?v=            176" charset="utf-8" type="text/javascript"></script>
+    <script src="game/brokers.js?v=            176" charset="utf-8" type="text/javascript"></script>
+    <script src="game/serf.js?v=               176" charset="utf-8" type="text/javascript"></script>
 
 
 

@@ -192,7 +192,6 @@ function updateValues() {
 	,'hasGottenJuice'        , 'juiceMarket'
 	,'upgradeMoreStorage'    , 'upgradeMoreLand'
 	,'betterTraining'        , 'upgradeBetterTraining'
-	,'forestWell'            , 'forestWellDiv'
 	,'bitterSpeedSkillLevel' , 'eatGoldenLimeProgress'
 	,'bitterSpeedSkillLevel' , 'eatGoldenLime'
 	]
@@ -216,7 +215,7 @@ function updateValues() {
 
 
 	if (gameData.villageNumber > 1 || gameData.betterTraining > 0 || gameData.increaseJuicePricePermanance == 1)
-		tabs("megaCoinUpgradesButton", "block")
+		showBasicDiv("megaCoinUpgradesButton")
 	else
 		hide("megaCoinUpgradesButton")
 
@@ -316,8 +315,16 @@ function updateValues() {
 	else
 		hide("upgradeWallet")
 
-
-
+	if (gameData.forestWell)
+	{
+		document.getElementById('forest').style.width = '760px'
+		tabs("forestWellDiv", 'inline-block')
+	}
+	else
+	{
+		document.getElementById('forest').style.width = '380px'
+		hide("forestWellDiv")
+	}
 
 	checkRespectMilestone(10, 'lime', 'Automatically start tasks', 'autoStartTaskButton')
 	checkRespectMilestone(25, 'lime', 'Automatically start simulation', 'autoStartSimulationButton')
