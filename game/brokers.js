@@ -3,7 +3,6 @@ function updateBrokers(){
 		
 		tabs('tradeButton', 'inline-block')
 		showBasicDiv('alphaCoinToMegaCoinDiv')
-		showBasicDiv('upgradeBroker')
 		
 		update("textForBrokerApplicantSpeed", "Currently " + gameData.minBrokerApplicantSpeed.toLocaleString() + " - " + gameData.maxBrokerApplicantSpeed.toLocaleString() + " Seconds")
 		update("textForBrokerApplicantAmount", "Currently " + gameData.minBrokerApplicantAmount.toLocaleString() + " - " + gameData.maxBrokerApplicantAmount.toLocaleString() + " Coins")
@@ -40,7 +39,6 @@ function updateBrokers(){
 
 		hide('tradeButton')
 		hide('alphaCoinToMegaCoinDiv')
-		hide('upgradeBroker')
 	}
 	
 	checkShowOrHide(gameData.doesHaveCurrencyBroker, "currencyBroker")
