@@ -544,7 +544,7 @@ function updatePieStuff(){
 	
 	if(gameData.wheatField)
 	{
-		
+		hide("buyWheatField")
 		tabs("fieldTile0-0", "inline-block")
 		showBasicDiv("fieldButton")
 		showBasicDiv("buyWheatSeeds")
