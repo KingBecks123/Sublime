@@ -19,6 +19,7 @@ Update Log
 	Some actions continued even after resetting game
 	Removed the General Store and the Patrician + Plebian Area
 	Changed the shape of the forest
+	Changing lake amount while in game changed point increase
 	
 
 21/11/25
