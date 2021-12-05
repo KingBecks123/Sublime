@@ -1,5 +1,10 @@
 Update Log
 
+21/12/05
+	After purchasing a field, the option to purchase another doesn't disappear until you refresh
+	some ios devices double tap zoom 
+	fixed collect limes + stop actions buttons size incorrection
+
 21/12/03
 	Fixed bug where changing pie price causes all actions to stop
 	Made skill bars run more smoothly
