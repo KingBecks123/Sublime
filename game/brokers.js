@@ -1,8 +1,8 @@
-function updateBrokers(){
+function updateBrokers() {
 	if (gameData.bachelorsDegreeFinance) {
 		
-		tabs('tradeButton', 'inline-block')
-		showBasicDiv('alphaCoinToMegaCoinDiv')
+		show('tradeButton', 'inline')
+		show('alphaCoinToMegaCoinDiv')
 		
 		update("textForBrokerApplicantSpeed", "Currently " + gameData.minBrokerApplicantSpeed.toLocaleString() + " - " + gameData.maxBrokerApplicantSpeed.toLocaleString() + " Seconds")
 		update("textForBrokerApplicantAmount", "Currently " + gameData.minBrokerApplicantAmount.toLocaleString() + " - " + gameData.maxBrokerApplicantAmount.toLocaleString() + " Coins")
@@ -46,15 +46,15 @@ function updateBrokers(){
 	
 	if (gameData.unlockCurrencyBrokers) {
 		hide("unlockCurrencyBrokers")
-		showBasicDiv("hireToggleButtons")
-		showBasicDiv("brokerApplicantUpgrades")
+		show("hireToggleButtons")
+		show("brokerApplicantUpgrades")
 		if (gameData.advertisingManagerBroker)
 			hide("autoBrokerAdvertiser")
 		else
-			showBasicDiv("autoBrokerAdvertiser")
+			show("autoBrokerAdvertiser")
 	} else {
 
-		showBasicDiv("unlockCurrencyBrokers")
+		show("unlockCurrencyBrokers")
 		hide("hireToggleButtons")
 		hide("brokerApplicantUpgrades")
 		hide("autoBrokerAdvertiser")
@@ -62,17 +62,17 @@ function updateBrokers(){
 	
 	
 	if (gameData.advertisingManagerBroker && gameData.typeToHireToggle == 1)
-		tabs("autoAdvertiseBrokerDiv", "inline-block")
+		show("autoAdvertiseBrokerDiv", "inline")
 	else
 		hide("autoAdvertiseBrokerDiv")
 	
 	if (gameData.advertisingManagerBroker && !gameData.smarterAdvertisingManagerBroker)
-		showBasicDiv("smarterAutoBrokerAdvertiser")
+		show("smarterAutoBrokerAdvertiser")
 	else
 		hide("smarterAutoBrokerAdvertiser")	
 	
 	if (gameData.transferAlphaCoinBags)
-		tabs("alphaCoinConvertBulkButton", "inline-block")
+		show("alphaCoinConvertBulkButton", "inline")
 	checkHide(gameData.transferAlphaCoinBags, "transferAlphaCoinBagsUnlock")
 	checkShow(gameData.transferAlphaCoinsBulkUnlock, "transferAlphaCoinsBulk")
 	checkHide(gameData.transferAlphaCoinsBulkUnlock, "transferAlphaCoinsBulkUnlock")	
@@ -166,21 +166,21 @@ function brokerApplicant(id, type) {
 	}
 }
 
-function brokerApplicantPrice(id){
+function brokerApplicantPrice(id) {
 	gameData.alphaCoins -= gameData['brokerApplicant'+ id + 'Price']
 	gameData['brokerApplicant'+ id + 'Price'] += 5
 }
 
-function decreaseBasicA2BBrokerRule(){
+function decreaseBasicA2BBrokerRule() {
 	if(gameData.basicA2BBrokerRule > 0)
 		gameData.basicA2BBrokerRule -= 50
 }
 
-function increaseBasicA2BBrokerRule(){
+function increaseBasicA2BBrokerRule() {
 	gameData.basicA2BBrokerRule += 50
 }
 
-function increaseBasicA2BBrokerAmount(){
+function increaseBasicA2BBrokerAmount() {
 	if(gameData.pieCoins >= gameData.increaseBasicA2BBrokerAmountPrice)
 	{
 		gameData.pieCoins -= gameData.increaseBasicA2BBrokerAmountPrice
@@ -204,7 +204,7 @@ function coinsToAlphaStart() {
 		coinsToAlphaClick()
 }
 
-function coinsToAlphaClick(){
+function coinsToAlphaClick() {
 	price = (gameData.alphaCoinsExchangeRate + gameData.currencyBrokerFee) * gameData.currencyBrokerTransferAmount * (gameData.alphaCoinConvertBulkToggle * 9 + 1)
 	if (gameData.coins >= price && (gameData.coinsToAlphaBar == 100 || gameData.coinsToAlphaBar == 0) && !gameData.coinsToAlphaBarRunning) {
 		gameData.alphaCoinConvertBulkToggleSet = gameData.alphaCoinConvertBulkToggle
@@ -221,14 +221,14 @@ function coinsToAlphaBar() {
 		barMoverAdvanced('coinsToAlpha', 0.5, 5 * gameData.currencyBrokerSpeed * gameData.doesHaveCurrencyBroker + !gameData.doesHaveCurrencyBroker * 100)
 }
 
-function coinsToAlphaBarEnd(){
+function coinsToAlphaBarEnd() {
 	if(gameData.alphaCoinConvertBulkToggleSet == 0)
 		gameData.alphaCoins += gameData.currencyBrokerTransferAmount
 	else
 		gameData.alphaCoins += gameData.currencyBrokerTransferAmount * 10
 }
 
-function alphaToBetaClick(){
+function alphaToBetaClick() {
 	if(gameData.textForA2BBrokerAmountToggle == 0)
 		price = gameData.betaCoinsExchangeRate
 	else
