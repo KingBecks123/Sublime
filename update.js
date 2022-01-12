@@ -4,10 +4,8 @@ function updateAfterLoad() {
 
 	for (let i = 0; i < mainSkills.length; i++) {
 		restartBar(mainSkills[i])
-
-		if (gameData[mainSkills[i] + 'SkillLevel'] > gameData[mainSkills[i] + 'SkillLevelMax']) {
+		if (gameData[mainSkills[i] + 'SkillLevel'] > gameData[mainSkills[i] + 'SkillLevelMax'])
 			gameData[mainSkills[i] + 'SkillLevel'] = gameData[mainSkills[i] + 'SkillLevelMax']
-		}
 	}
 
 	restartBar("learnANewSkill")
@@ -27,26 +25,21 @@ function updateAfterLoad() {
 	restartBar("harvestRice")
 	
 
-
-	if (gameData.bellowsBar > 0) {
+	if (gameData.bellowsBar > 0)
 		bellowsBar()
-	}
 
 	moveBar('delivery')
 	moveBar('bakePie')
 	moveWell()
 
-	if (gameData.workingBar <= 100 && (gameData.workingBar != 0 || gameData.employeeWorking > 0)) {
+	if (gameData.workingBar <= 100 && (gameData.workingBar != 0 || gameData.employeeWorking > 0))
 		workingBar()
-	}
 
-	if (gameData.autoCollectingBar !== 0) {
+	if (gameData.autoCollectingBar !== 0)
 		autoCollectingBar()
-	}
 
-	if (gameData.deliveryBar <= 99 && gameData.deliveryBar != 0) {
+	if (gameData.deliveryBar <= 99 && gameData.deliveryBar != 0)
 		deliveryBar()
-	}
 
 	updateValues()
 }
@@ -119,7 +112,7 @@ function updateValues() {
 	}
 
 	if (gameData.showAchievements) {
-		tabs('achievementsButton', 'inline-block')
+		show('achievementsButton', 'inline')
 	}
 
 	for (let i = 1; i < mainVariables.length; i++) {
@@ -127,7 +120,7 @@ function updateValues() {
 			gameData[mainVariables[i] + 'UnlockedVariable'] = true
 
 		if (gameData[mainVariables[i] + 'UnlockedVariable'])
-			tabs('currencyDisplay(' + i + ')', 'inline-block')
+			show('currencyDisplay(' + i + ')', 'inline')
 		else
 			hide('currencyDisplay(' + i + ')')
 	}
@@ -143,10 +136,10 @@ function updateValues() {
 
 	if (gameData.nationalJuiceMarketing) {
 		hide('juiceMarketing')
-		showBasicDiv('upgradeJuiceMarketing')
+		show('upgradeJuiceMarketing')
 	} else {
 		hide('upgradeJuiceMarketing')
-		showBasicDiv('juiceMarketing')
+		show('juiceMarketing')
 	}
 	
 	juicePricePrice = gameData.juicePricePrice + gameData.increaseJuicePricex10 * (gameData.juicePricePrice * 9 + 45)
@@ -215,7 +208,7 @@ function updateValues() {
 
 
 	if (gameData.villageNumber > 1 || gameData.betterTraining > 0 || gameData.increaseJuicePricePermanance == 1)
-		showBasicDiv("megaCoinUpgradesButton")
+		show("megaCoinUpgradesButton")
 	else
 		hide("megaCoinUpgradesButton")
 
@@ -239,7 +232,7 @@ function updateValues() {
 		)
 
 
-		showBasicDiv("applicationInfo")
+		show("applicationInfo")
 	} else {
 		update("application", "Pin applications here")
 		hide("applicationInfo")
@@ -294,34 +287,32 @@ function updateValues() {
 		}
 
 	} else
-		showBasicDiv("pinUnlockDiv")
+		show("pinUnlockDiv")
 
 
 
 
 	if (gameData.bigGloves == 0) {
-		tabs("buyBigGloves", "block")
+		show("buyBigGloves")
 		hide("upgradeBigGloves")
 		gameData.limesPerClick = 1 + gameData.difficulty * 5
 	} else {
 		hide("buyBigGloves")
-		tabs("upgradeBigGloves", "block")
+		show("upgradeBigGloves")
 		gameData.limesPerClick = 2 + gameData.difficulty * 5
 	}
 
 
 	if (gameData.coinsMax > 1e6)
-		showBasicDiv("upgradeWallet")
+		show("upgradeWallet")
 	else
 		hide("upgradeWallet")
 
-	if (gameData.forestWell)
-	{
+	if (gameData.forestWell) {
 		document.getElementById('forest').style.width = '760px'
-		tabs("forestWellDiv", 'inline-block')
+		show("forestWellDiv", 'inline')
 	}
-	else
-	{
+	else {
 		document.getElementById('forest').style.width = '380px'
 		hide("forestWellDiv")
 	}
@@ -342,9 +333,9 @@ function updateValues() {
 		if (gameData['respectMilestone' + number]) {
 			if (id !== undefined) {
 				if (number == 500)
-					tabs(id, "block")
+					show(id)
 				else
-					tabs(id, "inline-block")
+					show(id, "inline")
 			}
 			
 			elem = ''
@@ -365,45 +356,45 @@ function updateValues() {
 	}
 
 	if (gameData.respectMilestone50)
-		showBasicDiv("patrician")
+		show("patrician")
 	else
 		hide("patrician")
 
 	if (gameData.increaseJuicePricePermanance < 1) {
-		tabs("increaseJuicePricePermanance", "inline-block")
+		show("increaseJuicePricePermanance", "inline")
 		hide("upgradeJuicePricePermanance")
 	} else {
 		hide("increaseJuicePricePermanance")
-		showBasicDiv("upgradeJuicePricePermanance")
+		show("upgradeJuicePricePermanance")
 	}
 
 	if (gameData.ambidextrousSkillLevel == gameData.ambidextrousSkillLevelMax)
-		tabs("stopActionsButton", "inline-block")
+		show("stopActionsButton", "inline")
 	else
 		hide("stopActionsButton")
 
 
 	if (gameData.manuscripts) {
 		hide("buyManuscriptsDiv")
-		showBasicDiv("upgradeManuscripts")
+		show("upgradeManuscripts")
 	} else {
 		hide("upgradeManuscripts")
-		showBasicDiv("buyManuscriptsDiv")
+		show("buyManuscriptsDiv")
 	}
 
 	if (gameData.baskets > 0 && !gameData.basketScarecrow)
-		showBasicDiv("offlineBasket")
+		show("offlineBasket")
 	else
 		hide("offlineBasket")
 
 	if (gameData.creditScore2) {
 		hide("increaseCreditScore2")
 		if (!gameData.creditScore3)
-			showBasicDiv("increaseCreditScore3")
+			show("increaseCreditScore3")
 		else
 			hide("increaseCreditScore3")
 	} else {
-		tabs("increaseCreditScore2", "inline-block")
+		show("increaseCreditScore2", "inline")
 		hide("increaseCreditScore3")
 	}
 
@@ -412,13 +403,13 @@ function updateValues() {
 
 
 	if (!gameData.multitasking && gameData.learnANewSkill > 0)
-		showBasicDiv("buySkillToggler")
+		show("buySkillToggler")
 	else
 		hide("buySkillToggler")
 
 
 	if (gameData.pieBucket == 1 && gameData.pieFlourBucket == 1)
-		showBasicDiv("bucketThinSteelPlating")
+		show("bucketThinSteelPlating")
 	else
 		hide("bucketThinSteelPlating")
 
@@ -426,26 +417,26 @@ function updateValues() {
 
 	if (gameData.diseaseControlFinished == 1) {
 		hide("diseaseControlStart")
-		tabs("startDiseaseTask", "block")
+		show("startDiseaseTask")
 	} else {
-		tabs("diseaseControlStart", "block")
+		show("diseaseControlStart")
 		hide("startDiseaseTask")
 
 	}
 
 	if (gameData.megaCoinsInBankMax > 20) {
 		hide("increaseCreditScore")
-		tabs("upgradeCreditScore", "block")
+		show("upgradeCreditScore")
 	} else {
-		tabs("increaseCreditScore", "block")
+		show("increaseCreditScore")
 		hide("upgradeCreditScore")
 	}
 
 	if (gameData.nutritionists > 0) {
 		hide("hireANutritionist")
-		tabs("upgradeNutritionist", "block")
+		show("upgradeNutritionist")
 	} else {
-		tabs("hireANutritionist", "block")
+		show("hireANutritionist")
 		hide("upgradeNutritionist")
 	}
 
@@ -462,38 +453,38 @@ function updateValues() {
 
 	if (gameData.shiftClickOption) {
 		update("shiftClickOption", "Don't Toggle: Shift Click")
-		tabs("toggleActionsButton", "none")
+		hide("toggleActionsButton")
 	} else {
 		update("shiftClickOption", "Don't Toggle: Button Option")
 		if(gameData.learnANewSkill > -2)
-			tabs("toggleActionsButton", "inline-block")
+			show("toggleActionsButton", "inline")
 	}
 
 	if (gameData.deliveryManager == 0) {
 		hide("sellMaxJuiceButton")
-		tabs("decreaseJuiceSoldButton", "inline-block")
-		tabs("increaseJuiceSoldButton", "inline-block")
+		show("decreaseJuiceSoldButton", "inline")
+		show("increaseJuiceSoldButton", "inline")
 	} else {
-		tabs("sellMaxJuiceButton", "inline-block")
+		show("sellMaxJuiceButton", "inline")
 		hide("decreaseJuiceSoldButton")
 		hide("increaseJuiceSoldButton")
 	}
 
 	if (gameData.deliveryManager == 0 && gameData.maps >= 3)
-		showBasicDiv("buyADeliveryManager")
+		show("buyADeliveryManager")
 	else
 		hide("buyADeliveryManager")
 
 
 	if (gameData.respectMilestone10000) {
-		showBasicDiv('upgradeMoreStorage')
+		show('upgradeMoreStorage')
 		if (!gameData.bachelorsDegreeFinance)
-			showBasicDiv('earnBachelorFinance')
+			show('earnBachelorFinance')
 		else
 			hide('earnBachelorFinance')
 		checkHideOrShow(gameData.rottenActualWisdom, "rottenActualWisdom")
 		if (!gameData.creditScore2)
-			showBasicDiv('increaseCreditScore2')
+			show('increaseCreditScore2')
 	} else {
 		hide('upgradeMoreStorage')
 		hide('earnBachelorFinance')
@@ -502,53 +493,53 @@ function updateValues() {
 	}
 	
 	if (gameData.maps > 0) {
-		tabs("marketMainButtonsDiv", "inline-block")
-		tabs("marketStore", "inline-block")
+		show("marketMainButtonsDiv", "inline")
+		show("marketStore", "inline")
 		document.getElementById("marketMainButtonsDiv").style.width = "360px"
 	}
 
 	if (gameData.maps > 1) {
-		tabs("hiringAreaButton", "inline-block")
-		tabs("marketStore", "inline-block")
+		show("hiringAreaButton", "inline")
+		show("marketStore", "inline")
 		hide("buyAnotherMapDiv")
 	}
 
 	if (gameData.maps == 2) {
-		showBasicDiv("buyThirdMapDiv")
+		show("buyThirdMapDiv")
 	} else {
 		hide("buyThirdMapDiv")
 	}
 	
 	if (gameData.maps == 3)
-		showBasicDiv("buyFourthMapDiv")
+		show("buyFourthMapDiv")
 	
 	
 	if(gameData.maps > 3)
 	{
 		hide("buyFourthMapDiv")
-		showBasicDiv("tasksButton")
+		show("tasksButton")
 	}
 
 	if (gameData.maps > 2 || gameData.villageNumber > 1) {
-		tabs("travelButton", "inline-block")
+		show("travelButton", "inline")
 	}
 	
 	if (gameData.autoCurrencyConversionBuy)
 		hide("autoCurrencyConversion")
 	else if (gameData.maps == 4)
-		showBasicDiv("autoCurrencyConversion")
+		show("autoCurrencyConversion")
 
 
 	if (gameData.maps !== 4)
 		hide("buyMapDiv5")
 	else
-		showBasicDiv("buyMapDiv5")
+		show("buyMapDiv5")
 	
 	if (gameData.maps > 2) {
-		tabs("travellingArea", "block")
-		showBasicDiv("increaseJuicePrice")
+		show("travellingArea")
+		show("increaseJuicePrice")
 		if (gameData.fasterTransport == 0)
-			showBasicDiv("fasterTransportDiv")
+			show("fasterTransportDiv")
 		else
 			hide("fasterTransportDiv")
 	} else {
@@ -559,11 +550,11 @@ function updateValues() {
 
 	if (gameData.maps > 3)
 	{
-		tabs("diseaseTileSymbolsButton", "inline-block")
+		show("diseaseTileSymbolsButton", "inline")
 		update("specialAchievement2", "Buy a Giant Map after only sending one delivery in that town")
 
 		if (gameData.respectBillboard == 0)
-			tabs("respectBillboard", "inline-block")
+			show("respectBillboard", "inline")
 		else
 			hide("respectBillboard")
 	} else {
@@ -571,61 +562,55 @@ function updateValues() {
 	}
 	
 	if (gameData.maps > 4) {
-		showBasicDiv('earnBetaCoins')
-		showBasicDiv('buyPie')
+		show('earnBetaCoins')
+		show('buyPie')
 		if (gameData.basicAlphaToBetaBroker == 0) {
-			showBasicDiv('basicAlphaToBetaBroker')
+			show('basicAlphaToBetaBroker')
 			hide('basicAlphaToBetaBrokerRule')
 		} else {
 			hide('basicAlphaToBetaBroker')
-			showBasicDiv('basicAlphaToBetaBrokerRule')
+			show('basicAlphaToBetaBrokerRule')
 		}
 	}
 
-	if (gameData.maps >= 2 && gameData.bulkBuyUnlock == 0) {
-		tabs("bulkBuyUnlockDiv", "block")
-	} else if (gameData.maps < 2 && gameData.bulkBuyUnlock == 1) {
+	if (gameData.maps >= 2 && gameData.bulkBuyUnlock == 0)
+		show("bulkBuyUnlockDiv")
+	else if (gameData.maps < 2 && gameData.bulkBuyUnlock == 1)
 		hide("bulkBuyUnlockDiv")
-	} else if (gameData.maps >= 2 && gameData.bulkBuyUnlock == 1) {
+	else if (gameData.maps >= 2 && gameData.bulkBuyUnlock == 1) {
 		hide("bulkBuyUnlockDiv")
-
-		if (gameData.bulkBuyUnlock2) {
+		if (gameData.bulkBuyUnlock2)
 			hide("bulkBuyUnlock2Div")
-		} else {
-			showBasicDiv("bulkBuyUnlock2Div")
-		}
-
-
-	} else if (gameData.bulkBuyUnlock == 0 && gameData.maps < 2) {
+		else
+			show("bulkBuyUnlock2Div")
+	} else if (gameData.bulkBuyUnlock == 0 && gameData.maps < 2)
 		hide("bulkBuyUnlockDiv")
-	}
 
 
 
 
 	if (gameData.maps >= 2 && gameData.storageUnlock == 0) {
-		tabs("storageUnlockDiv", "block")
+		show("storageUnlockDiv")
 		hide("storageDiv")
 	} else if (gameData.maps < 2) {
 		hide("storageUnlockDiv")
 		hide("storageDiv")
 	} else if (gameData.maps >= 2 && gameData.storageUnlock == 1) {
-		tabs("storageDiv", "block")
+		show("storageDiv")
 		hide("storageUnlockDiv")
 
-		if (gameData.storageJuicersUnlock == 1 && gameData.storagePeelersUnlock == 1) {
+		if (gameData.storageJuicersUnlock == 1 && gameData.storagePeelersUnlock == 1)
 			hide("storageDiv")
-		}
 	}
 	
 	if (gameData.fork == 0 && gameData.learnANewSkill > -2)
-		showBasicDiv('buyAForkDiv')
+		show('buyAForkDiv')
 	else
 		hide('buyAForkDiv')
 
 
 	if (gameData.shoes == 0 && gameData.learnANewSkill > -1)
-		showBasicDiv('buyShoesDiv')
+		show('buyShoesDiv')
 	else
 		hide('buyShoesDiv')
 
@@ -641,48 +626,37 @@ function updateValues() {
 		update("confirmStorageButton", "Don't Confirm x5 Storage")
 
 
-	if (gameData.villageNumber > 1) {
-		tabs('confirmStorageButton', 'inline-block')
-	} else {
+	if (gameData.villageNumber > 1)
+		show('confirmStorageButton', 'inline')
+	else
 		hide('confirmStorageButton')
-	}
 
 
-
-	if (gameData.hideMaxedPurchases == 0) {
+	if (gameData.hideMaxedPurchases == 0)
 		update("hideMaxedPurchasesButton", "Maxed Purchases Shown")
-	} else {
+	else
 		update("hideMaxedPurchasesButton", "Maxed Purchases Hidden")
-	}
 
 
 
 	if (gameData.hasAdvertised && !gameData.surveillanceCamera)
-		showBasicDiv("offlineEmployee")
+		show("offlineEmployee")
 	else
 		hide("offlineEmployee")
 
 
-	if (gameData.respectMilestone10000) {
+	if (gameData.respectMilestone10000)
 		update("specialAchievement1", "Get a 5x multplier with Buy More Land purchased")
-	}
-
-
 
 	if (gameData.advertisingLevel1 == 0) {
 		hide("advertisingMethods")
-
-		if (gameData.hasAdvertised == 1) {
-			showBasicDiv("researchBetterAdvertising")
-		} else {
+		if (gameData.hasAdvertised == 1)
+			show("researchBetterAdvertising")
+		else
 			hide("researchBetterAdvertising")
-
-		}
-
 	} else {
-		tabs("advertisingMethods", "block")
+		show("advertisingMethods")
 		hide("researchBetterAdvertising")
-
 	}
 
 
@@ -691,9 +665,9 @@ function updateValues() {
 		hide("basketsBulkButton")
 		hide("juicersBulkButton")
 	} else {
-		tabs("peelersBulkButton", "inline-block")
-		tabs("basketsBulkButton", "inline-block")
-		tabs("juicersBulkButton", "inline-block")
+		show("peelersBulkButton", "inline")
+		show("basketsBulkButton", "inline")
+		show("juicersBulkButton", "inline")
 	}
 
 	if (gameData.bulkBuyUnlock2) {
@@ -702,8 +676,6 @@ function updateValues() {
 		update("juicersBulkButton", "x100")
 	}
 
-
-	//Check Hide
 	checkHide(gameData.advertisingLevel2, "advertisingLeaflets")
 	checkHide(gameData.advertisingLevel3, "advertisingBillboard")
 	checkHide(gameData.storagePeelersUnlock, "storagePeelersDiv")
@@ -718,76 +690,64 @@ function updateValues() {
 	updatePieStuff()
 
 
-	if (gameData.lookAround >= 2) {
-		tabs("sellYourLimesDiv", "block")
-	}
+	if (gameData.lookAround >= 2)
+		show("sellYourLimesDiv")
 
 	if (gameData.lookAround >= 3) {
-		if (gameData.hideMaxedPurchases == 1 && gameData.juicers == gameData.juicersMax) {
+		if (gameData.hideMaxedPurchases == 1 && gameData.juicers == gameData.juicersMax)
 			hide("buyAJuicerDiv")
-		} else {
-			showBasicDiv("buyAJuicerDiv")
-		}
+		else
+			show("buyAJuicerDiv")
 
-		if (gameData.hideMaxedPurchases == 1 && gameData.baskets == gameData.basketsMax) {
+		if (gameData.hideMaxedPurchases == 1 && gameData.baskets == gameData.basketsMax)
 			hide("buyABasketDiv")
-		} else {
-			showBasicDiv("buyABasketDiv")
-		}
+		else
+			show("buyABasketDiv")
 		
-		if (gameData.maps > 0) {
+		if (gameData.maps > 0)
 			hide("buyAMapDiv")
-		} else {
-			showBasicDiv("buyAMapDiv")
-		}
+		else
+			show("buyAMapDiv")
 	}
 
 	checkHide(gameData.tomes, "tomeDiv")
 
 	for (i = 1; i <= 3; i++) {
 		if (gameData.tomes == i)
-			showBasicDiv("tomeDiv" + (i + 1))
+			show("tomeDiv" + (i + 1))
 		else
 			hide("tomeDiv" + (i + 1))
 	}
 
-	
 	if (gameData.tomes > 3)
-		showBasicDiv("goldenBarDiv")
+		show("goldenBarDiv")
 
-
-	if (gameData.autoCollectingBar == (gameData.nourishment + 1) * 100 || gameData.autoCollectingBar == 0) {
+	if (gameData.autoCollectingBar == (gameData.nourishment + 1) * 100 || gameData.autoCollectingBar == 0)
 		gameData.isAutoCollecting = 0
-	} else {
+	else
 		gameData.isAutoCollecting = 1
-	}
 
-	if (gameData.villageNumber > 1) {
-		tabs("marketMainButtonsDiv", "inline-block")
-	}
+	if (gameData.villageNumber > 1)
+		show("marketMainButtonsDiv", "inline")
 
 	if (gameData.peeledLimes >= 1) {
-		divVisibility("textForPeeledLimes", "inline-block")
-		tabs("juiceLimesToggleButton", "inline-block")
-		tabs("juicePeeledLimesToggleButton", "inline-block")
+		show("textForPeeledLimes", "inline")
+		show("juiceLimesToggleButton", "inline")
+		show("juicePeeledLimesToggleButton", "inline")
 	}
 
-
 	if (gameData.knife >= 1) {
-		showBasicDiv("knifeDiv")
+		show("knifeDiv")
 
-		if (gameData.hideMaxedPurchases == 1 && gameData.peelers == gameData.peelersMax) {
+		if (gameData.hideMaxedPurchases == 1 && gameData.peelers == gameData.peelersMax)
 			hide("buyAPeelerDiv")
-		} else if (gameData.knifebidextrousSkillLevel == gameData.knifebidextrousSkillLevelMax) {
-			showBasicDiv("buyAPeelerDiv")
-		}
+		else if (gameData.knifebidextrousSkillLevel == gameData.knifebidextrousSkillLevelMax)
+			show("buyAPeelerDiv")
 
-		if (gameData.knifebidextrousSkillLevel == gameData.knifebidextrousSkillLevelMax && gameData.maps > 1) {
-			showBasicDiv("sharperPeelerDiv")
-		} else {
+		if (gameData.knifebidextrousSkillLevel == gameData.knifebidextrousSkillLevelMax && gameData.maps > 1)
+			show("sharperPeelerDiv")
+		else
 			hide("sharperPeelerDiv")
-		}
-
 
 		hide("buyKnifeDiv")
 	} else {
@@ -801,29 +761,15 @@ function updateValues() {
 	checkHide(gameData.unlockDiseaseAreaSwamp, "unlockDiseaseAreaSwamp")
 
 
-
-	
-	
-
-	if (gameData.juicers >= 2) {
+	if (gameData.juicers >= 2)
 		divVisibility("makeMaxJuiceButton", "visible")
-	}
 
-
-
-
-	if (gameData.peelers >= 2) {
-		tabs("peelerPeelMaxButton", "inline-block")
-	}
-
+	if (gameData.peelers >= 2)
+		show("peelerPeelMaxButton", "inline")
 
 	checkShow(gameData.peelers, "peelerDiv")
 	checkHide(gameData.lightRobe, "lightRobe")
 	checkHide(gameData.skillTrainer, "skillTrainer")
-
-
-
-
 
 	if (gameData.advertisingLevel2 && gameData.advertisingLevel3) {
 		hide("researchBetterAdvertising")
@@ -831,23 +777,15 @@ function updateValues() {
 		hide("advertisingLeaflets")
 	}
 
-
-
 	for (i = 1; i <= numberOfBasicAchievements; i++) {
-
-		if (gameData.coins >= Math.pow(10, i)) {
+		if (gameData.coins >= Math.pow(10, i))
 			gameData['achievement' + i] = 1
-		}
 	}
 
 	for (i = 1; i <= numberOfSpecialAchievements; i++) {
-
-		if (gameData['specialAchievement' + i]) {
-			showBasicDiv('specialAchievement' + i)
-		}
-
+		if (gameData['specialAchievement' + i])
+			show('specialAchievement' + i)
 	}
-
 
 	if (gameData.learnANewSkill - 3 == gameData.tomes) {
 		document.getElementById('learnANewSkillButton').style.backgroundColor = 'darkgray';
@@ -855,25 +793,22 @@ function updateValues() {
 	} else
 		document.getElementById('learnANewSkillButton').style.backgroundColor = '#FFBB9A';
 
-
-
-
 	if (gameData.learnANewSkill >= -1) {
-		showBasicDiv("eatFoodDiv")
+		show("eatFoodDiv")
 		showOrHideSkill("keenEye")
 	}
 
 	if (gameData.learnANewSkill >= 0) {
-		showBasicDiv("autoCollectingDiv")
-		showBasicDiv("nourishment")
-		tabs("skillInfoButton", "inline-block")
+		show("autoCollectingDiv")
+		show("nourishment")
+		show("skillInfoButton", "inline")
 	}
 
 	if (gameData.learnANewSkill >= 5)
-		showBasicDiv("motivateEmployeeButton")
+		show("motivateEmployeeButton")
 
 	if (gameData.forestTreeType == 2)
-		showBasicDiv("goldenLimesInfo")
+		show("goldenLimesInfo")
 	else
 		hide("goldenLimesInfo")
 
@@ -888,13 +823,13 @@ function updateValues() {
 		hide('endScreen')
 		if (gameData.soulArea == 'start')
 		{
-			showBasicDiv('sublimeMain')
+			show('sublimeMain')
 			hide('wellField')
 			hide('soulAreaSerf')
 		}
 		else if (gameData.soulArea == 'wellField')
 		{
-			showBasicDiv('wellField')
+			show('wellField')
 			hide('sublimeMain')
 			hide('soulAreaSerf')
 		}
@@ -905,12 +840,12 @@ function updateValues() {
 			for (let i = 0; i < avs.length; i++) {
 				hide('soulArea' + avs[i].name)
 			}
-			showBasicDiv('soulArea' + gameData.soulArea)
+			show('soulArea' + gameData.soulArea)
 		}
 
 	} else {
 		hide('sublimeMain')
-		showBasicDiv('endScreen')
+		show('endScreen')
 	}
 
 	update("endStats", "Total Time Played: " + gameData.timePlayed.toLocaleString() + " Seconds")
@@ -921,12 +856,12 @@ function updateValues() {
 		checkHideOrShow(gameData.trainTransport, 'trainTransportDiv')
 
 	if(gameData.trainTransport)
-		tabs('deliveryToggleTrainButton', 'inline-block')
+		show('deliveryToggleTrainButton', 'inline')
 	
 	update("trueLimes", "True Limes: " + gameData.trueLimes.toLocaleString())
 	
 	if(gameData.pieCoinsInWell == 200)
-		tabs('enterTheWell', 'inline-block')
+		show('enterTheWell', 'inline')
 	else
 		hide('enterTheWell')
 

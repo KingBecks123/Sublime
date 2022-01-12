@@ -8,7 +8,6 @@ function importGame() {
 }
 
 function loadStuff(savegame) {
-	
 	Object.assign(gameData, gameDataBase)
 	if (savegame !== null) {
 		Object.assign(gameData, savegame)
@@ -44,44 +43,35 @@ function resetGame() {
 function backwardsCompatibility(versionNumber) {
 	if (gameData.pin == 'sellYourJuiceButton')
 		gameData.pin = 'deliveryButton'
-	
-	if (gameData.versionNumber < 142)
-	{
+	if (gameData.versionNumber < 142) {
 		gameData.currentTask = 'none'
 		gameData.currentTask2 = 'none'
 	}
 }
 
 function preventNegative(id) {
-	if (gameData[id] < 0) {
+	if (gameData[id] < 0)
 		gameData[id]
-	}
 }
 
 function setRotation(id, number) {
 	document.getElementById(id).style.transform = 'rotate(' + number + 'deg)'
 }
 
-function hide(x) {
-	tabs(x, "none")
-}
-
-function showBasicDiv(x) {
-	tabs(x, "block")
+function hide(id) {
+	document.getElementById(id).style.display = 'none'
 }
 
 function pin(x) {
 	if (gameData.pin == x && gameData.pin !== "none") {
 		gameData.pin = "none"
-	} else {
+	} else
 		gameData.pin = x
-	}
 	normalizeButtons()
 	pinButton()
 }
 
 function normalizeButtons() {
-	
 	var x = document.getElementById("deliveryButton")
 	$(".juiceMarket").prepend(x)
 	x.style.width = "120px"
@@ -91,7 +81,6 @@ function normalizeButtons() {
 	$(".autoCollectingDiv").prepend(x)
 	x.style.width = "150px"
 	x.style.margin = "5px"
-
 }
 
 function pinButton() {
@@ -156,12 +145,10 @@ function startCurrentTask(x) {
 function showOrHideSkill(x) {
 	div = x + "Div"
 
-	if (gameData.hideCompletedSkills == 1 && gameData[x + 'SkillLevel'] == gameData[x + 'SkillLevelMax']) {
-		tabs(div, "none")
-	} else {
-		tabs(div, "block")
-	}
-
+	if (gameData.hideCompletedSkills == 1 && gameData[x + 'SkillLevel'] == gameData[x + 'SkillLevelMax'])
+		hide(div)
+	else
+		show(div)
 }
 
 function overMaximum(x) {
@@ -320,11 +307,11 @@ function barStartGranularSkillBasic(variable, useSkillTrainer) {
 	variableBar = variable + "Bar"
 	if (canStartBar(variable) && gameData[variable + "SkillLevel"] < gameData[variable + "SkillLevelMax"] && gameData.eat >= gameData[variable + "SkillLevel"]) {
 		gameData.eat -= gameData[variable + "SkillLevel"]
-		if (gameData.skillTrainer == 1 && useSkillTrainer == true) {
+		if (gameData.skillTrainer == 1 && useSkillTrainer == true)
 			gameData[variableBar] = 100
-		} else {
+		else
 			gameData[variableBar] = 0
-		}
+		
 		eval(variableBar + "()")
 	}
 }
@@ -341,10 +328,8 @@ function update(id, content) {
 
 	if (typeof hasUpdatedObj[stringy] == undefined)
 		hasUpdatedObj[stringy] = 'noneOwO'
-
 	
-	if (hasUpdatedObj[stringy] != content)
-	{
+	if (hasUpdatedObj[stringy] != content) {
 		document.getElementById(id).innerHTML = content
 		hasUpdatedObj[stringy] = content
 	}
@@ -360,10 +345,10 @@ function updateNumber(id) {
 		val = valRaw.toLocaleString()
 
 	if ((gameData[id + 'UnlockedVariable'] && gameData[id + 'ShowVariable']) || id == 'limes') {
-		showBasicDiv(elem + 'Div')
-		showBasicDiv(elem + 'Br')
-		showBasicDiv(elem + 'P')
-		showBasicDiv(elem)
+		show(elem + 'Div')
+		show(elem + 'Br')
+		show(elem + 'P')
+		show(elem)
 	} else {
 		hide(elem + 'Div')
 		hide(elem + 'Br')
@@ -388,17 +373,16 @@ function updateAreaNumbers() {
 				val = valRaw.toLocaleString()
 
 			if ((gameData[id + 'UnlockedVariable'] && gameData[id + 'ShowVariable']) || j == 0) {
-				showBasicDiv(elem + 'Div')
-				showBasicDiv(elem + 'Br')
-				showBasicDiv(elem + 'P')
-				showBasicDiv(elem)
+				show(elem + 'Div')
+				show(elem + 'Br')
+				show(elem + 'P')
+				show(elem)
 			} else {
 				hide(elem + 'Div')
 				hide(elem + 'Br')
 				hide(elem + 'P')
 				hide(elem)
 			}
-			
 			update(elem, val)
 		}
 	}
@@ -421,8 +405,11 @@ function divVisibility(id, display) {
 	document.getElementById(id).style.visibility = display;
 }
 
-function tabs(id, content) {
-	document.getElementById(id).style.display = content;
+function show(id, x) {
+	if (x == 'inline')
+		document.getElementById(id).style.display = 'inline-block'
+	else
+		document.getElementById(id).style.display = 'block'
 }
 
 function colorChanger(id, content) {
@@ -434,57 +421,49 @@ function colorChangerText(id, content) {
 }
 
 function checkShow(i, n, txt) {
-	if (i >= n) {
-		tabs(txt, "block")
-	}
+	if (i >= n)
+		show(txt)
 }
 
 function checkHide(i, txt) {
-	if (i > 0) {
+	if (i > 0)
 		hide(txt)
-	}
 }
 
 function checkShow(i, txt) {
-	if (i >= 1) {
-		tabs(txt, "block")
-	}
+	if (i >= 1)
+		show(txt)
 }
 
 function increaseValue(id) {
-	if (gameData[id] < gameData[id + 'Max'] || gameData[id + 'Max'] == null) {
+	if (gameData[id] < gameData[id + 'Max'] || gameData[id + 'Max'] == null)
 		gameData[id] += 1
-	}
 }
 
 function decreaseValue(id) {
-	if (gameData[id] >= 1) {
+	if (gameData[id] >= 1)
 		gameData[id] -= 1
-	}
 }
 
 function checkShowOrHide(i, txt) {
-	if (i >= 1) {
-		tabs(txt, "block")
-	} else {
-		tabs(txt, "none")
-	}
+	if (i >= 1)
+		show(txt)
+	else
+		hide(txt)
 }
 
 function checkShowSmart(i, txt) {
-	if (gameData[i] >= 1) {
-		tabs(txt, "block")
-	} else {
-		tabs(txt, "none")
-	}
+	if (gameData[i] >= 1)
+		show(txt)
+	else
+		hide(txt)
 }
 
 function checkHideOrShow(i, txt) {
-	if (i >= 1) {
-		tabs(txt, "none")
-	} else {
-		tabs(txt, "block")
-	}
+	if (i >= 1)
+		hide(txt)
+	else
+		show(txt)
 }
 
 function saveBeforeWipe(id) {
@@ -499,8 +478,8 @@ function setValue(id, amount) {
 	gameData[id] = amount
 }
 
-function barMover(id, amount, time){
-	gameData[id + 'Bar'] += amount;
+function barMover(id, amount, time) {
+	gameData[id + 'Bar'] += amount
 	moveBar(id)
 	setTimeout(eval(id + 'Bar'), time / gameData.tickspeed)
 }
@@ -508,9 +487,9 @@ function barMover(id, amount, time){
 function barMoverAdvanced(id, amount, time){
 	gameData[id + 'BarRunning'] = true
 	
-	if (gameData[id + 'Bar'] < 100) {
+	if (gameData[id + 'Bar'] < 100)
 		barMover(id, amount, time)
-	} else {
+	else {
 		if (gameData[id + 'Bar'] > 100)
 			gameData[id + 'Bar'] = 100
 		eval(id + 'BarEnd()')

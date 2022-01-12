@@ -218,7 +218,7 @@ function addAesthetic() {
 	if (gameData.lookAround == 3)
 		hide('lookAroundButton')
 	else
-		tabs('lookAroundButton', "inline-block")
+		show('lookAroundButton', "inline")
 
 	if (gameData.juiceBulkAmountToggle == 100 && gameData.deliveryTypeToggle < 2)
 		colorChanger('increaseJuiceSoldButton', grayAccent)

@@ -535,18 +535,18 @@ function tab(tabby) {
 	gameData.mainTab = tabby
     update("exportCode", "")
 
-    tabs("options", "none")
-    tabs("market", "none")
-    tabs("inventory", "none")
-    tabs("achievements", "none")
-    tabs("skills", "none")
-    tabs("megaCoinUpgrades", "none")
-    tabs("tasks", "none")
-    tabs("company", "none")
-    tabs("forest", "none")
-    tabs("science", "none")
-    tabs("bakery", "none")
-    tabs("field", "none")
+    hide("options")
+    hide("market")
+    hide("inventory")
+    hide("achievements")
+    hide("skills")
+    hide("megaCoinUpgrades")
+    hide("tasks")
+    hide("company")
+    hide("forest")
+    hide("science")
+    hide("bakery")
+    hide("field")
 
 
 	
@@ -621,8 +621,8 @@ function tabMarket(tabby) {
 }
 
 function tabTasks(tabby) {
-    tabs("earn", "none")
-    tabs("milestones", "none")
+    hide("earn")
+    hide("milestones")
 	
 	colorChanger('earnButton', '#BBBBBB')
 	colorChanger('milestonesButton', '#BBBBBB')	
@@ -632,9 +632,9 @@ function tabTasks(tabby) {
 }
 
 function tabOptions(tabby) {
-    tabs("gameOptions", "none")
-    tabs("uiOptions", "none")
-    tabs("statsOptions", "none")
+    hide("gameOptions")
+    hide("uiOptions")
+    hide("statsOptions")
 
 	
     document.getElementById(tabby).style.display = "block"
