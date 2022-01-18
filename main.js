@@ -14,32 +14,6 @@ mainVariablesColor2 = ['#00FF01', '#00FF01'     , '#A0FF01'     , '#00FF55', '#F
 mainSkills =      ['keenEye' , 'rottenWisdom' , 'limebidextrous', 'intelligence', 'knifebidextrous', 'motivation', 'ambidextrous', 'bitterSpeed' ];
 mainSkillsNames = ['Keen Eye', 'Rotten Wisdom', 'Limebidextrous', 'Intelligence', 'Knifebidextrous', 'Motivation', 'Ambidextrous', 'Bitter Speed'];
 
-//Area Variables
-avs       = [ 
-	{
-		area: 'serf',
-		name: 'Serf',
-		backgroundColor: '#DEAD85',
-		//variables
-		v: [
-			{
-				id: 'rice',
-				name: 'Rice',
-				mainColor: '#DEAD85',
-				darkColor: '#BBBBBB',
-
-			},
-			{
-				id: 'coins',
-				name: 'Coins',
-				mainColor: '#B37700',
-				darkColor: '#B37700',
-
-			},
-		],
-	},
-]
-
 function mainGameLoopSlow() {
 
 	
@@ -92,7 +66,7 @@ function mainGameLoopSlow() {
 
 	
 	gameData.customerWaitTime += 1
-	moveBar('achievement')
+	updateBar('achievement')
 	updateMapTileAesthetic()
 	
 	
@@ -128,11 +102,6 @@ function mainGameLoop() {
 	setTimeout(mainGameLoop, 50)
 }
 
-function mainGameLoopFast() {
-	updateValues()
-	setTimeout(mainGameLoopFast, 15)
-}
-
 function calculateOfflineProgress(){
 	secondsOffline = Math.floor((Date.now() - gameData.lastSaveTime) / 1000)
 	secondsOfflineThree = Math.floor(secondsOffline / 3)
@@ -157,21 +126,16 @@ function calculateOfflineProgress(){
 
 	}
 	
-	surveillanceCamera2()
-	
 	saveGame()
 
 }
 
 
 function sellMaxJuice() {
-    if (gameData.juice < gameData.juiceBulkAmountMax) {
+    if (gameData.juice < gameData.juiceBulkAmountMax)
         gameData.juiceBulkAmountToggle = gameData.juice
-    } else {
+    else
         gameData.juiceBulkAmountToggle = gameData.juiceBulkAmountMax
-    }
-
-    updateValues()
 }
 
 function collectingUpgrade() {
@@ -180,8 +144,6 @@ function collectingUpgrade() {
         gameData.nourishment += 1
         gameData.autoCollectingBar = 0
     }
-
-    updateValues()
 }
 
 function deliveryToggleStandard() {
@@ -211,12 +173,10 @@ function motivateEmployee() {
 
 function foodToggleLimes() {
     gameData.foodTypeToggle = 0
-    updateValues()
 }
 
 function foodToggleRottenLimes() {
     gameData.foodTypeToggle = 1
-    updateValues()
 }
 
 function payEmployee() {
@@ -225,8 +185,6 @@ function payEmployee() {
         gameData.coins -= gameData.employeeWage
         working()
     }
-
-    updateValues()
 }
 
 function getLimesButton() {
@@ -477,7 +435,6 @@ function travelToNextVillage() {
 		'unlockBenevolence', 
 		'nationalTradeCert', 
 		'bigGloves', 
-		'desktopMode', 
 		'nutritionists', 
 		'megaCoinsInBankMax', 
 		'betterTraining', 
@@ -600,7 +557,6 @@ function lookAround() {
             gameData.lookAround = 3
         }
     }
-    updateValues()
 }
 
 function buyAMap() {
@@ -624,19 +580,11 @@ function buyAMap() {
         gameData.coins -= 2e5
         gameData.maps = 5
     }
-    updateValues()
 }
 
 
 function storageJuicersUnlock() {
-	
-	if(gameData.confirmStorage)
-	{
-		if (window.prompt("Are you sure? Type 'yes' if you are") == "yes")
-			storageJuicersUnlockDo()
-	}
-	else
-		storageJuicersUnlockDo()
+	storageJuicersUnlockDo()
 }
 
 function storageJuicersUnlockDo() {
@@ -652,14 +600,7 @@ function storageJuicersUnlockDo() {
 }
 
 function storagePeelersUnlock() {
-	if(gameData.confirmStorage)
-	{
-		if (window.prompt("Are you sure? Type 'yes' if you are") == "yes")
-			storagePeelersUnlock()
-	}
-	else
-		storagePeelersUnlock()
-    updateValues()
+	storagePeelersUnlock()
 }
 
 function storagePeelersUnlock() {
@@ -686,13 +627,10 @@ function changeZoomSize() {
 		gameData.changeZoomSize += 10
 		document.body.style.zoom= gameData.changeZoomSize / 100;
 	}
-	
-    updateValues()
 }
 
 function juiceLimesToggle() {
     gameData.limeTypeToJuice = 0
-    updateValues()
 }
 
 function benevolenceToggle(){
@@ -702,7 +640,6 @@ function benevolenceToggle(){
 
 function juicePeeledLimesToggle() {
     gameData.limeTypeToJuice = 1
-    updateValues()
 }
 
 
@@ -723,7 +660,6 @@ function increaseJuicePrice() {
 			gameData.juicePriceCents += 1
 		}
 	}
-    updateValues()
 }
 
 
@@ -735,8 +671,6 @@ function decreaseJuiceSold() {
             gameData.juiceBulkAmountToggle -= 1
         }
     }
-
-    updateValues()
 }
 
 function increaseJuiceSold() {
@@ -747,7 +681,6 @@ function increaseJuiceSold() {
     } else if (gameData.juiceBulkAmountToggle < 2000 && gameData.deliveryTypeToggle == 3) {
         gameData.juiceBulkAmountToggle += 10
     }
-    updateValues()
 }
 
 function moveBasket() {
@@ -796,14 +729,4 @@ function moveWell() {
 
 function enterTheWell(){
 	gameData.endScreen = 1
-}
-
-function soulArea(uwu){
-	
-	if (typeof uwu == 'number')
-		gameData.soulArea = avs[uwu].name
-	else
-		gameData.soulArea = uwu
-	
-	gameData.endScreen = 0
 }

@@ -1,40 +1,38 @@
-background = "#3C3C3C"; //Background Color
-
-
-accent0 = "#222222"; //Main Color
-accent1 = "#4DFE89"; //Accent Color
-accent2 = "gray"; //When buttons are toggled off
-accent3 = "#4DFE89"; //When buttons are toggled on
-accent4 = "#DEAD85"; //Special Buttons
-accent4Dark = "#C67848"; //Special Buttons Dark
-
-
-grayAccent = "#50514F";
-grayAccentLight = "#BBBBBB";
-limesRelatedAccent = "#4DFE89";
-yellowAccent = "#FCFF4E";
+background = "#3C3C3C" //Background Color
+accent0 = "#222222" //Main Color
+accent1 = "#4DFE89" //Accent Color
+accent2 = "gray" //When buttons are toggled off
+accent3 = "#4DFE89" //When buttons are toggled on
+accent4 = "#DEAD85" //Special Buttons
+accent4Dark = "#C67848" //Special Buttons Dark
+grayAccent = "#50514F"
+grayAccentLight = "#BBBBBB"
+limesRelatedAccent = "#4DFE89"
+yellowAccent = "#FCFF4E"
 
 function addAesthetic() {
 	var one = document.getElementById('skillsSection1')
 	var two = document.getElementById('skillsSection2')
 	var skills = document.getElementById('skills')
 	
-	if (gameData.desktopMode == 0) {
-		skills.style.width = '380px'
-		one.style.position = 'relative'
-		two.style.position = 'relative'
-		update("desktopModeButton", "In Mobile Mode")
-	} else {
-		skills.style.width = '760px'
-		one.style.top = '0'
-		one.style.position = 'absolute'
-		two.style.position = 'absolute'
-		two.style.right = '0'
-		update("desktopModeButton", "In Desktop Mode")
-	}
+	skills.style.width = '760px'
+	one.style.top = '0'
+	one.style.position = 'absolute'
+	two.style.position = 'absolute'
+	two.style.right = '0'
 	
 	twoToggleButtons('foodToggleRottenLimesButton', 'foodToggleLimesButton', gameData.foodTypeToggle)
 	twoToggleButtons('juicePeeledLimesToggleButton', 'juiceLimesToggleButton', gameData.limeTypeToJuice)
+
+	function twoToggleButtons(button1, button2, value) {
+		if (value == 1) {
+			colorChanger(button1, accent3)
+			colorChanger(button2, accent2)
+		} else {
+			colorChanger(button1, accent2)
+			colorChanger(button2, accent3)
+		}
+	}
 
 	var x = document.getElementsByClassName('unlockDiseaseAreaSwamp')
 	for (i = 0; i < x.length; i++) {
@@ -230,93 +228,47 @@ function addAesthetic() {
 	else
 		colorChanger('decreaseJuiceSoldButton', grayAccentLight)
 
-	var x = document.getElementsByClassName("skillButton");
+	var x = document.getElementsByClassName("skillButton")
 	if (gameData.multitasking) {
 		for (i = 0; i < x.length; i++) {
-			x[i].style['padding'] = "1px 10px 1px 10px";
-			x[i].style['border-radius'] = "12px";
+			x[i].style['padding'] = "1px 10px 1px 10px"
+			x[i].style['border-radius'] = "12px"
 		}
 		for (let i = 0; i < mainSkills.length; i++) {
 			currentSkillAesthetic(mainSkills[i])
 		}
 	} else {
 		for (i = 0; i < x.length; i++) {
-			x[i].style.backgroundColor = accent4;
+			x[i].style.backgroundColor = accent4
 		}
 	}
 
 
-	var x = document.getElementsByClassName("currencyButton");
+	var x = document.getElementsByClassName("currencyButton")
 	if (gameData.autoCurrencyConversionBuy) {
 		for (i = 0; i < x.length; i++) {
-			x[i].style['padding'] = "1px 10px 1px 10px";
-			x[i].style['border-radius'] = "12px";
+			x[i].style['padding'] = "1px 10px 1px 10px"
+			x[i].style['border-radius'] = "12px"
 		}
 	} else {
 		for (i = 0; i < x.length; i++) {
-			x[i].style.backgroundColor = '#FDFF9A';
+			x[i].style.backgroundColor = '#FDFF9A'
 		}
 	}
 	for (i = 0; i < x.length; i++) {
-		x[i].style['margin'] = "5px";
-	}
-}
-
-function twoToggleButtons(button1, button2, value) {
-	if (value == 1) {
-		colorChanger(button1, accent3)
-		colorChanger(button2, accent2)
-	} else {
-		colorChanger(button1, accent2)
-		colorChanger(button2, accent3)
+		x[i].style['margin'] = "5px"
 	}
 }
 
 function addAestheticBase() {
 	selectedWheatItemAesthetic(gameData.selectedWheatItem)
-	changeVariablesColorAesthetic()
+	
+	for (let i = 0; i < mainVariables.length; i++) {
+		colorChangerText('textFor' + jsUcfirst(mainVariables[i]) + 'Div', mainVariablesColor2[i])
+		colorChangerText('textFor' + jsUcfirst(mainVariables[i]), mainVariablesColor[i])
+	}
+	
 	updateFieldTileAesthetic()
 	normalizeButtons()
 	pinButton()
-}
-
-function changeVariablesColor() {
-	toggle('moreVisibleVariables')
-	changeVariablesColorAesthetic()
-}
-
-function changeVariablesColorAesthetic() {
-	for (let i = 0; i < mainVariables.length; i++) {
-		
-		if (gameData.moreVisibleVariables) {
-			color = "#99DEFF"
-			colorDark = "#4DC3FF"
-		}
-		else
-		{
-			color = mainVariablesColor[i]
-			colorDark = mainVariablesColor2[i]
-		}
-		
-		colorChangerText('textFor' + jsUcfirst(mainVariables[i]) + 'Div', colorDark)
-		colorChangerText('textFor' + jsUcfirst(mainVariables[i]), color)
-	}
-	
-	for (let i = 0; i < avs.length; i++) {
-		for (let j = 0; j < avs[i].v.length; j++) {
-			if (gameData.moreVisibleVariables) {
-				color = "#99DEFF"
-				colorDark = "#4DC3FF"
-			}
-			else
-			{
-				color = avs[i].v[j].mainColor
-				colorDark = avs[i].v[j].darkColor
-			}
-
-			
-			colorChangerText('textFor' + avs[i].name + avs[i].v[j].name + 'Div', colorDark)
-			colorChangerText('textFor' + avs[i].name + avs[i].v[j].name, color)
-		}
-	}
 }

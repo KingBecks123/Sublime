@@ -11,8 +11,6 @@ function loadStuff(savegame) {
 	Object.assign(gameData, gameDataBase)
 	if (savegame !== null) {
 		Object.assign(gameData, savegame)
-		gameData.serf = JSON.parse(JSON.stringify(gameDataBase.serf))
-		Object.assign(gameData.serf, savegame.serf)
 
 		backwardsCompatibility(gameData.versionNumber)
 		gameData.versionNumber = 180
@@ -52,10 +50,6 @@ function backwardsCompatibility(versionNumber) {
 function preventNegative(id) {
 	if (gameData[id] < 0)
 		gameData[id]
-}
-
-function setRotation(id, number) {
-	document.getElementById(id).style.transform = 'rotate(' + number + 'deg)'
 }
 
 function hide(id) {
@@ -187,7 +181,7 @@ function basicToggle(input, type) {
 	}
 }
 
-function moveBar(x) {
+function updateBar(x) {
     i = x + "Bar"
 	if(gameData[i] > 100)
 		gameData[i] = 100
@@ -251,29 +245,6 @@ function beckyRandomMinMax(min, max) {
 	return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function basicBarSkill(variable, speed) {
-
-	variableBar = variable + "Bar"
-	gameData[variable + 'BarRunning'] = true
-	
-	if (gameData[variableBar] < 100) {
-
-		gameData[variableBar] += 0.25
-
-		if (speed == 'slow')
-			setTimeout(variableBar + "()", (500 / (gameData.intelligenceSkillLevel * 2 / 20 + 1)) / gameData.tickspeed)
-		else
-			setTimeout(variableBar + "()", (50 / (gameData.intelligenceSkillLevel * 2 / 20 + 1)) / gameData.tickspeed)
-
-	} else {
-		gameData[variable + 'BarRunning'] = false
-		gameData[variable + "SkillLevel"] += 1
-		gameData[variable] += 2
-
-	}
-	moveBar(variable)
-}
-
 function sleep(milliseconds) {
 	const date = Date.now();
 	let currentDate = null;
@@ -282,12 +253,6 @@ function sleep(milliseconds) {
 	} while (currentDate - date < milliseconds);
 }
 
-function restartBar(x) {
-	if (gameData[x + "Bar"] < 100 && gameData[x + "Bar"] != 0)
-		eval(x + "Bar()")
-	else
-		gameData[x + 'BarRunning'] = false
-}
 
 function restartBarNoMovement(x) {
 	if (gameData[x + 'Bar'] < 100 && gameData[x + 'Bar'] != 0) {
@@ -296,29 +261,11 @@ function restartBarNoMovement(x) {
 }
 
 function barStart(variable) {
-	variableBar = variable + "Bar"
-	if (gameData[variableBar] == 100 || gameData[variableBar] == 0) {
-		gameData[variableBar] = 0
-		eval(variableBar + "()")
+	bar = variable + "Bar"
+	if (gameData[bar] == 100 || gameData[bar] == 0) {
+		gameData[bar] = 0
+		eval(bar + "()")
 	}
-}
-
-function barStartGranularSkillBasic(variable, useSkillTrainer) {
-	variableBar = variable + "Bar"
-	if (canStartBar(variable) && gameData[variable + "SkillLevel"] < gameData[variable + "SkillLevelMax"] && gameData.eat >= gameData[variable + "SkillLevel"]) {
-		gameData.eat -= gameData[variable + "SkillLevel"]
-		if (gameData.skillTrainer == 1 && useSkillTrainer == true)
-			gameData[variableBar] = 100
-		else
-			gameData[variableBar] = 0
-		
-		eval(variableBar + "()")
-	}
-}
-
-function canStartBar(id) {
-	if ((gameData[id + 'Bar'] == 100 || gameData[id + 'Bar'] == 0) && !gameData[id + 'BarRunning'])
-		return true
 }
 
 hasUpdatedObj = {}
@@ -357,36 +304,6 @@ function updateNumber(id) {
 	}
 	
 	update(elem, val)
-}
-
-
-function updateAreaNumbers() {
-	for (let i = 0; i < avs.length; i++) {
-		for (let j = 0; j < avs[i].v.length; j++) {
-			id = avs[i].v[j].id
-			elem = "textFor" + avs[i].name + avs[i].v[j].name
-			valRaw = gameData[avs[i].area][avs[i].v[j].id]
-
-			if (valRaw > 1e9)
-				val = valRaw.toExponential(3)
-			else
-				val = valRaw.toLocaleString()
-
-			if ((gameData[id + 'UnlockedVariable'] && gameData[id + 'ShowVariable']) || j == 0) {
-				show(elem + 'Div')
-				show(elem + 'Br')
-				show(elem + 'P')
-				show(elem)
-			} else {
-				hide(elem + 'Div')
-				hide(elem + 'Br')
-				hide(elem + 'P')
-				hide(elem)
-			}
-			update(elem, val)
-		}
-	}
-
 }
 
 function currencyDisplay(id) {
@@ -476,25 +393,4 @@ function saveAfterWipe(id) {
 
 function setValue(id, amount) {
 	gameData[id] = amount
-}
-
-function barMover(id, amount, time) {
-	gameData[id + 'Bar'] += amount
-	moveBar(id)
-	setTimeout(eval(id + 'Bar'), time / gameData.tickspeed)
-}
-
-function barMoverAdvanced(id, amount, time){
-	gameData[id + 'BarRunning'] = true
-	
-	if (gameData[id + 'Bar'] < 100)
-		barMover(id, amount, time)
-	else {
-		if (gameData[id + 'Bar'] > 100)
-			gameData[id + 'Bar'] = 100
-		eval(id + 'BarEnd()')
-		if (gameData[id + 'BarRunning'])
-			gameData[id + 'BarRunning'] = false
-	}
-
 }

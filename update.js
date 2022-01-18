@@ -3,7 +3,11 @@ function updateAfterLoad() {
 	calculateOfflineProgress()
 
 	for (let i = 0; i < mainSkills.length; i++) {
-		restartBar(mainSkills[i])
+		x = mainSkills[i]
+		
+		if (gameData[x + "Bar"] < 100 && gameData[x + "Bar"] != 0)
+			basicBarSkill(x)
+		
 		if (gameData[mainSkills[i] + 'SkillLevel'] > gameData[mainSkills[i] + 'SkillLevelMax'])
 			gameData[mainSkills[i] + 'SkillLevel'] = gameData[mainSkills[i] + 'SkillLevelMax']
 	}
@@ -14,9 +18,7 @@ function updateAfterLoad() {
 	restartBar("advertise")
 	restartBar("eat")
 	restartBar("teach")
-	restartBar("watertight")
-	restartBar("surveying")
-	restartBar("benevolence")
+
 	restartBar("coinsToAlpha")
 	restartBar("convertCoinsNow")
 	restartBar("alphaToBeta")
@@ -24,12 +26,16 @@ function updateAfterLoad() {
 	restartBar("bakePie")
 	restartBar("harvestRice")
 	
+	function restartBar(x) {
+		if (gameData[x + "Bar"] > 0)
+			eval(x + "Bar()")
+	}
 
 	if (gameData.bellowsBar > 0)
 		bellowsBar()
 
-	moveBar('delivery')
-	moveBar('bakePie')
+	updateBar('delivery')
+	updateBar('bakePie')
 	moveWell()
 
 	if (gameData.workingBar <= 100 && (gameData.workingBar != 0 || gameData.employeeWorking > 0))
@@ -41,7 +47,6 @@ function updateAfterLoad() {
 	if (gameData.deliveryBar <= 99 && gameData.deliveryBar != 0)
 		deliveryBar()
 
-	updateValues()
 }
 
 
@@ -105,8 +110,6 @@ function updateValues() {
 		updateNumber(mainVariables[i])
 	}
 	
-	updateAreaNumbers()
-
 	if (gameData.coins > 0) {
 		gameData.showAchievements = 1
 	}
@@ -125,13 +128,6 @@ function updateValues() {
 			hide('currencyDisplay(' + i + ')')
 	}
 	
-	for (let i = 0; i < avs.length; i++) {
-		for (let j = 0; j < avs[i].v.length; j++) {
-			if(gameData[avs[i].area][avs[i].v[j].id])
-				gameData[avs[i].area][avs[i].v[j].id + 'UnlockedVariable'] = true
-		}
-	}
-
 	updateScience()
 
 	if (gameData.nationalJuiceMarketing) {
@@ -243,8 +239,8 @@ function updateValues() {
 	checkHideOrShow(gameData.forestWell, "buyAWell")
 
 
-	moveBar("teach")
-	moveBar("working")
+	updateBar("teach")
+	updateBar("working")
 	moveBasket()
 	moveAutoCollecting()
 
@@ -445,12 +441,6 @@ function updateValues() {
 	else
 		update("deliveryToggleStandardButton", "Hyper Delivery")
 
-
-	if (gameData.diseaseTileSymbols == 0)
-		update("diseaseTileSymbolsButton", "Disease Tiles: Blank")
-	else
-		update("diseaseTileSymbolsButton", "Disease Tiles: Symbols")
-
 	if (gameData.shiftClickOption) {
 		update("shiftClickOption", "Don't Toggle: Shift Click")
 		hide("toggleActionsButton")
@@ -550,15 +540,12 @@ function updateValues() {
 
 	if (gameData.maps > 3)
 	{
-		show("diseaseTileSymbolsButton", "inline")
 		update("specialAchievement2", "Buy a Giant Map after only sending one delivery in that town")
 
 		if (gameData.respectBillboard == 0)
 			show("respectBillboard", "inline")
 		else
 			hide("respectBillboard")
-	} else {
-		hide("diseaseTileSymbolsButton")
 	}
 	
 	if (gameData.maps > 4) {
@@ -618,19 +605,6 @@ function updateValues() {
 		update("hideCompletedSkillsButton", "Completed Skills Shown")
 	else
 		update("hideCompletedSkillsButton", "Completed Skills Hidden")
-
-
-	if (gameData.confirmStorage)
-		update("confirmStorageButton", "Do Confirm x5 Storage")
-	else
-		update("confirmStorageButton", "Don't Confirm x5 Storage")
-
-
-	if (gameData.villageNumber > 1)
-		show('confirmStorageButton', 'inline')
-	else
-		hide('confirmStorageButton')
-
 
 	if (gameData.hideMaxedPurchases == 0)
 		update("hideMaxedPurchasesButton", "Maxed Purchases Shown")
@@ -824,23 +798,6 @@ function updateValues() {
 		if (gameData.soulArea == 'start')
 		{
 			show('sublimeMain')
-			hide('wellField')
-			hide('soulAreaSerf')
-		}
-		else if (gameData.soulArea == 'wellField')
-		{
-			show('wellField')
-			hide('sublimeMain')
-			hide('soulAreaSerf')
-		}
-		else
-		{
-			hide('wellField')
-			hide('sublimeMain')
-			for (let i = 0; i < avs.length; i++) {
-				hide('soulArea' + avs[i].name)
-			}
-			show('soulArea' + gameData.soulArea)
 		}
 
 	} else {
@@ -857,9 +814,7 @@ function updateValues() {
 
 	if(gameData.trainTransport)
 		show('deliveryToggleTrainButton', 'inline')
-	
-	update("trueLimes", "True Limes: " + gameData.trueLimes.toLocaleString())
-	
+		
 	if(gameData.pieCoinsInWell == 200)
 		show('enterTheWell', 'inline')
 	else
@@ -868,7 +823,6 @@ function updateValues() {
 	if(gameData.forestWell)
 		update("textForLimesDiv", "'Limes'")
 	
-	updateSerfStuff()
-
-
+	
+	setTimeout(updateValues, 15)
 }

@@ -1,8 +1,6 @@
 //Should be 0 if ur not cheating, 1 if you want to :)
 var cheatNum = 0;
 
-var researchersAvailable;
-
 var gameDataBase = {
     limes: 1,
     coins: 0,
@@ -61,11 +59,6 @@ var gameDataBase = {
 
     eat: 0,
     eatBar: 0,
-    eatBarRunning: false,
-    juicerBarRunning: false,
-    peelerBarRunning: false,
-    autoCollectingBarRunning: false,
-
 
     autoCollectingBar: 0,
 
@@ -227,7 +220,6 @@ var gameDataBase = {
     limebidextrous: 0,
 	
 	
-    desktopMode: 1,
 	shiftClickOption: 0,
 	toggleActions: 0,
 	
@@ -247,16 +239,12 @@ var gameDataBase = {
 	respectMilestone1000: 0,
 	respectMilestone10000: 0,
 
-	diseaseTileSymbols: 1,
-
 	alphaCoins: 0,
 	alphaCoinsExchangeRate: 100,
 	creditScore2: 0,
 	creditScore3: 0,
 	coinsToAlphaBar: 0,
 	isCoinsToAlphaBar: 0,
-	currencyBrokerHireBar: 0,
-	confirmStorage: 0,
 	smarterAdvertisingManagerBroker: 0,
 	convertedCoinsSinceTravel: 0,
 	transferAlphaCoinBags: 0,
@@ -314,7 +302,6 @@ var gameDataBase = {
 	advertisePriceType: 'coins',
 	isAdvertising: 0,
 	basketScarecrow: 0,
-	moreVisibleVariables: 0,
 	invertText: 0,
 	surveillanceCamera: 0,
 	surveillanceCamera2: 0,
@@ -353,13 +340,11 @@ var gameDataBase = {
 	piePrice: 1,
 	findPieCustomersBar: 0,
 	couldFindCustomer: 2,
-	isFindingPieCustomers: 0,
 	isThereACustomer: 0,
 	customerWaitTime: 0,
 	hasSoldPie: 0,
 	pieConveyorBelt : 0,
 	pieConveyorBeltOn: 0,
-	isPieBaking: 0,
 	
 	pieBucket: 0,
 	pieFlourBucket: 0,
@@ -416,7 +401,6 @@ var gameDataBase = {
 	flour: 0,
 	pieOven: 0,
 	bakePieBar: 0,
-	bakePieBarRunning: false,
 	juiceAsPieIngredient: 0,
 	flourAsPieIngredient: 0,
 	pieCoins: 0,
@@ -452,22 +436,6 @@ var gameDataBase = {
 	endScreen: 0,
 	soulArea: 'start',
 	trueLimes: 0,
-	
-	
-	serf: {
-		rice: 0,
-		coins: 0,
-		lordsRice: 1000000000,
-		lordsCoins: 1000000000,
-		health: 20,
-		riceOwed: 5,
-
-	},
-
-	harvestRiceBar: 0,
-	serfHealthBar: 0,
-	newBakerySerf: 0,
-
 }
 
 
@@ -478,19 +446,11 @@ var gameDataBase = {
 	for (let i = 0; i < mainSkills.length; i++) {
 		gameDataBase[mainSkills[i] + 'Bar'] = 0
 		gameDataBase[mainSkills[i] + 'SkillLevel'] = 0
-		gameDataBase[mainSkills[i] + 'BarRunning'] = false
 	}
 
 	for (let i = 0; i < mainVariables.length; i++) {
 		gameDataBase[mainVariables[i] + 'ShowVariable'] = true
 		gameDataBase[mainVariables[i] + 'UnlockedVariable'] = false
-	}
-	
-	for (let i = 0; i < avs.length; i++) {
-		for (let j = 0; j < avs[i].v.length; j++) {
-			gameDataBase[avs[i].area][avs[i].v[j].id + 'ShowVariable'] = true
-			gameDataBase[avs[i].area][avs[i].v[j].id + 'UnlockedVariable'] = false
-		}
 	}
 
 
@@ -501,24 +461,18 @@ ableToSave = true
 function gameStart() {
 		
 	addHTML()
-		
-	surveyingBarDoMove = 0
-	benevolenceBarDoMove = 0
-	watertightBarDoMove = 0
-	findPieCustomersBarDoMove = 0
-
+	
     loadStuff(JSON.parse(localStorage.getItem("mathAdventureSave")))
-
+	
+	scienceOnLoad()
 	
     mainGameLoop()
 	
     mainGameLoopSlow()
 	
-    mainGameLoopFast()
+	updateValues()
 
 	addAestheticBase()
-	
-    updateValues()
 	
 	
 
@@ -756,36 +710,6 @@ function addHTML(){
 		var stat                  = document.createElement("span")
 		stat.innerHTML            = '<div class="stat" id="textFor' + id + 'Div">' + mainVariablesNames[i] + ' </div><div class="stat ar" id="textFor' + id + '"  style="display:none ; ">0</div><p id="textFor' + id + 'P"  style="display:none ; "> </p><br  id="textFor' + id + 'Br"   style="display:none ; "/>';
 		document.getElementById('backgroundForValues').append(stat)
-	}
-	
-	for (let i = 0; i < avs.length; i++) {
-		
-		
-		var e = $("<div />", {
-			id: "backgroundForValues" + avs[i].area,
-			style: "padding:10px;background-color:#000000;width:100px;display:inline-block;",
-		})
-
-		$(document.getElementById('soulArea' + avs[i].name)).prepend(e);
-		
-		e = $("<button />", {
-			class: "basicButtonSize",
-			style: "width:99%;display:block;",
-			onclick: "soulArea(" + i + ")",
-			id: 'soulArea' + avs[i].name + 'WellButton'
-		})
-
-		$(document.getElementById('wellField')).append(e)
-		update('soulArea' + avs[i].name + 'WellButton', avs[i].name)
-
-
-
-		for (let j = 0; j < avs[i].v.length; j++) {
-			var avsStat = document.createElement("span")
-			var fullName = avs[i].name + avs[i].v[j].name
-			avsStat.innerHTML = '<div class="stat" id="textFor' + fullName + 'Div">' + avs[i].v[j].name + ' </div><div class="stat ar" id="textFor' + fullName + '"  style="display:none ; ">0</div><p id="textFor' + fullName + 'P"  style="display:none ; "> </p><br  id="textFor' + fullName + 'Br"   style="display:none ; "/>';
-			document.getElementById('backgroundForValues' + avs[i].area).append(avsStat)
-		}
 	}
 	
 	document.getElementById('textForBetaCoinsDiv').style.textDecoration = 'underline'

@@ -64,20 +64,16 @@
 </head>
 
 <body id="mainBody" style="-webkit-user-select: none;-ms-user-select: none;user-select: none;background-color:#3C3C3C;touch - action: manipulation;" onload="gameStart()">
-	
 <span id="sublimeMain">
-
 	<div style="float:left;padding:10px;width:100px;background-color:#000000;" id="backgroundForValues">
 		<br>
 	</div>	
-	
     <div class="row" id="newInfoBox" style="background-color:#bfbfbf;padding-left: 130px;display:block;height:60px;">
         <p id="newInfo" style="display:inline-block;margin-bottom:none;">You are in a lime forest.</p>
         <div style="width: 150px;height:50px;float:right;">
             <button id="optionsButton" style="background:lightgray;width: 150px;height:30px;background-color:#d1d9d9;" , onclick="tab('options')">Options</button>
             <button id="achievementsButton" , style="background-color:#d1d9d9;display:none;width: 150px;height:30px;float:right;" , onclick="tab('achievements')">Achievements</button>
         </div>
-
     </div>
     <div style="display:block;float: left;margin-left:5px;margin-top:5px;">
         <button class="basicButtonSize" id="pickUpLimes" style="background-color:#4DFE89" onkeydown="return event.key != 'Enter';" onclick="getLimesButton()">Collect Limes</button>
@@ -86,20 +82,9 @@
         <button class="basicButtonSize tooltip" id="toggleActionsButton" style="display:none;" onclick="toggle('toggleActions')">Toggle Actions
 			<span class="tooltiptext">If this is lime, clicking an ability will toggle it. If it is gray, clicking an ability will run it once.</span>
 		</button>
-	
-
-
     </div>
-    <br>
-    <br>
-    <br>
-    <div id="navigateButtons" class="navigateButtons" , style="visibility: hidden;     float: left;
-     padding: 10px;
-	 width: 120px;
-     .row:after {
-     content: "";
-     display: table;
-     clear: both;">
+    <br><br><br>
+    <div id="navigateButtons" class="navigateButtons" , style="visibility: hidden;float: left;padding: 10px;width: 120px">
         <button id="marketButton"           style="width: 120px;" ,              onclick="tab('market')"          >Market</button>
         <button id="skillsButton"           style="width: 120px;" ,              onclick="tab('skills')"          >Skills</button>
         <button id="inventoryButton"        style="width: 120px;display:none;" , onclick="tab('inventory')"       >Inventory</button>
@@ -110,61 +95,34 @@
         <button id="tasksButton"            style="display:none;width: 120px;" , onclick="tab('tasks')"           >Tasks</button>
         <button id="scienceButton"          style="display:none;width: 120px;" , onclick="tab('science')"         >Science</button>
         <button id="fieldButton"            style="display:none;width: 120px;" , onclick="tab('field')"           >Field</button>
-
-
-
-
     </div>
-
-
     <div id="options">
-	
         <div class="basicDiv">
             <button class="specialButton" onclick="tabOptions('gameOptions')">Game</button>
             <button class="specialButton" onclick="tabOptions('uiOptions')">UI</button>
             <button class="specialButton" onclick="tabOptions('statsOptions')">Stats</button>
             <button class="specialButton" onclick="tabOptions('contactOptions')"><a href="https://discord.gg/scB7TbaqNS">Discord</a></button>
             <button class="specialButton"><a href="https://www.paypal.com/donate?hosted_button_id=ZTS6946KH9HES">Donate</a></button>
-
-
         </div>
-		
 		<div class="basicDiv">
 			<p class="basicText">Sublime by Becky</p>
 			<p class="basicText">Alpha Version</p>
-
 			<div id="gameOptions">
-			
 				<button class="specialButton" onclick="exportGame()">Export Game</button>
 				<button class="specialButton" onclick="importGame()">Import Game</button><br>
-
 				<button class="basicButtonSize" onclick="resetGame()" style="background-color:#FF999A">Reset Game</button><br>
-				
 				<p class="basicText" id="exportCode" , style="background-color:#bfbfbf;width:300px;word-wrap: 	break-word;-webkit-user-select: all;-ms-user-select: all;user-select: all;">Export Code</p>
-			
 			</div>
 			<div id="statsOptions">
-			
 				<p class="basicText" id="textForTimePlayed"></p>
-
 			</div>
 			<div id="uiOptions">
-			
 				<button class="specialButton" onclick="changeZoomSize()">Change Zoom Size</button>
-
-
 				<button class="specialButton" id="barPercentButton" onclick="toggle('showBarPercent')">Bar Percent Shown</button><br>
-				<button class="specialButton" onclick="changeVariablesColor()">Switch Variable Colors</button>
 				<button class="specialButton" id="hideCompletedSkillsButton" onclick="toggle('hideCompletedSkills')">Completed Skills Shown</button><br>
 				<button class="specialButton" id="hideMaxedPurchasesButton" onclick="toggle('hideMaxedPurchases')">Maxed Purchases Shown</button>
-				<button class="specialButton" id="desktopModeButton" onclick="toggle('desktopMode')">In Desktop Mode</button><br>
 				<button class="specialButton" id="shiftClickOption" onclick="toggle('shiftClickOption')">Don't Toggle: Shift Click</button>
-				<button class="specialButton" id="diseaseTileSymbolsButton" onclick="toggle('diseaseTileSymbols')">Disease Tiles No Symbols</button>
-				<button class="specialButton" id="confirmStorageButton" onclick="toggle('confirmStorage')">Don't Confirm x5 Storage</button><br>
-
-
 			</div>
-
 		</div>
     </div>
 
@@ -487,7 +445,7 @@
 							<p class="basicText">Think about those less fortuanate than you - unlocks Benevolence</p>
 							<p class="basicText">Price: 500,000 Coins</p>
 						</div>
-						<div class="basicDiv" id="offlineScience" style="display:none">
+						<div class="basicDiv" id="offlineScience">
 							<button class="specialButtonTravel" onclick="basicBuy('surveillanceCamera2', 2e5)">Buy A High Tech Surveillance Camera</button>
 							<p class="basicText">Make sure researchers are working while you're away (offline)</p>
 							<p class="basicText">Price: 200,000 Coins</p>
@@ -708,8 +666,8 @@
 				<div class="basicDiv">
 					<p class="basicTextYellow">Applicant Speed</p>
 					
-					<button class="specialButton" onclick="brokerApplicant('Speed', 'min')" style="width:168px">Decrease Minimum</button>
-					<button class="specialButton" onclick="brokerApplicant('Speed', 'max')" style="width:168px">Decrease Maximum</button>
+					<button class="specialButton" onclick="brokerApplicantNew('Speed', -1, 'min', 'gameData.minBrokerApplicantSpeed > 1')" style="width:168px">Decrease Minimum</button>
+					<button class="specialButton" onclick="brokerApplicantNew('Speed', -1, 'max')" style="width:168px">Decrease Maximum</button>
 
 					<p class="basicText" id="textForBrokerApplicantSpeed">Currently 20 - 100 Seconds</p>
 					<p class="basicText" id="brokerApplicantSpeedPrice">Price: 1 Alpha Coins</p>
@@ -717,8 +675,8 @@
 				
 				<div class="basicDiv">
 					<p class="basicTextYellow">Applicant Fee</p>
-					<button class="specialButton" onclick="brokerApplicant('Fee', 'min100')" style="width:168px">Decrease Minimum</button>
-					<button class="specialButton" onclick="brokerApplicant('Fee', 'max100')" style="width:168px">Decrease Maximum</button>
+					<button class="specialButton" onclick="brokerApplicantNew('Fee', -100, 'min', 'gameData.minBrokerApplicantFee > 0')" style="width:168px">Decrease Minimum</button>
+					<button class="specialButton" onclick="brokerApplicantNew('Fee', -100, 'max')" style="width:168px">Decrease Maximum</button>
 
 					<p class="basicText" id="textForBrokerApplicantFee">Currently 10,000 - 200,000 Coins</p>
 					<p class="basicText" id="brokerApplicantFeePrice">Price: 1 Alpha Coins</p>
@@ -726,8 +684,8 @@
 				
 				<div class="basicDiv">
 					<p class="basicTextYellow">Applicant Alpha Coin Transfer Amount</p>
-					<button class="specialButton" onclick="brokerApplicant('Amount', 'minup')" style="width:168px">Increase Minimum</button>
-					<button class="specialButton" onclick="brokerApplicant('Amount', 'maxup')" style="width:168px">Increase Maximum</button>
+					<button class="specialButton" onclick="brokerApplicantNew('Amount', 1, 'min')" style="width:168px">Increase Minimum</button>
+					<button class="specialButton" onclick="brokerApplicantNew('Amount', 1, 'max')" style="width:168px">Increase Maximum</button>
 
 					<p class="basicText" id="textForBrokerApplicantAmount">Currently 1 - 5 Alpha Coins</p>
 					<p class="basicText" id="brokerApplicantAmountPrice">Price: 1 Alpha Coins</p>
@@ -1117,7 +1075,7 @@
 			<div class="basicDiv" id="plotManagementDiv" style="display:none;">
 				<p class="basicText" id="plotDetails"></p>
 				<button class="specialButton" id="managePlot" onclick="managePlot()"></button>
-				<button class="specialButton" onclick="closePlotManagementDiv()">Close</button>
+				<button class="specialButton" onclick="hide('plotManagementDiv')">Close</button>
 			</div>
 			
 			<div class="basicDiv" id="fieldPlacementOptions">
@@ -1388,91 +1346,7 @@
 				<p class="basicTextSize" id="textForResearchers" style="color:#00AAFF;background-color:#000000">0 Researchers</p>
 			</div>
 		
-			<div id="research">
-			
-				<div class="basicDiv" id="watertightDiv">
-
-					<button class="specialButton" onclick="watertight()">Watertight Seal</button>
-					
-					<p class="basicTextSize" id="textForWatertightResearchers" style="color:#00AAFF;background-color:#000000">0 Researchers</p>
-					
-					<button class="basicButtonSize"                       style="background-color:#00AAFF;width:30px;" onclick="addResearchers('watertight', -1)">-</button>
-					<button class="basicButtonSize changeResearchersBy10" style="background-color:#00AAFF;width:50px;" onclick="addResearchers('watertight', -10)">-10</button>
-
-					<button class="basicButtonSize"                       style="background-color:#00AAFF;width:30px;" onclick="addResearchers('watertight', 1)">+</button>
-					<button class="basicButtonSize changeResearchersBy10" style="background-color:#00AAFF;width:50px;" onclick="addResearchers('watertight', 10)">+10</button>
-
-					
-					
-					<div class="scienceInfo">
-						<p class="basicText">Decreases peeled limes needed to make juice by 1</p>
-					</div>
-					<div class="skillProgress" id="watertightProgress">
-						<div class="skillBar" , id="watertightBar">0%</div>
-					</div>
-					
-					<p class="basicText" , id="watertightText">Currently: 5 Peeled Limes -> 1 Juice</p>
-					<p class="basicText" , id="watertightTime">Estimated Time: 20,000 seconds</p>
-
-
-				</div>
-				
-				<div class="basicDiv" id="surveyingDiv">
-
-					<button class="specialButton" onclick="surveying()">Surveying</button>
-					
-					<p class="basicTextSize" id="textForSurveyingResearchers" style="color:#00AAFF;background-color:#000000">0 Researchers</p>
-					
-					<button class="basicButtonSize"                       style="background-color:#00AAFF;width:30px;" onclick="addResearchers('surveying', -1)">-</button>
-					<button class="basicButtonSize changeResearchersBy10" style="background-color:#00AAFF;width:50px;" onclick="addResearchers('surveying', -10)">-10</button>
-
-					<button class="basicButtonSize"                       style="background-color:#00AAFF;width:30px;" onclick="addResearchers('surveying', 1)">+</button>
-					<button class="basicButtonSize changeResearchersBy10" style="background-color:#00AAFF;width:50px;" onclick="addResearchers('surveying', 10)">+10</button>
-
-					
-					
-					<div class="scienceInfo">
-						<p class="basicText">Increase disease tiles by 1</p>
-					</div>
-					<div class="skillProgress" id="surveyingProgress">
-						<div class="skillBar" , id="surveyingBar">0%</div>
-					</div>
-					
-					<p class="basicText" , id="surveyingText">Currently: 16 Tiles</p>
-					<p class="basicText" , id="surveyingTime">Estimated Time: 20,000 seconds</p>
-
-
-				</div>
-				
-				<div class="basicDiv" id="benevolenceDiv">
-
-					<button class="specialButton" onclick="barStart('benevolence')">Benevolence</button>
-					
-					<p class="basicTextSize" id="textForBenevolenceResearchers" style="color:#00AAFF;background-color:#000000">0 Researchers</p>
-					
-					<button class="basicButtonSize"                       style="background-color:#00AAFF;width:30px;" onclick="addResearchers('benevolence', -1)">-</button>
-					<button class="basicButtonSize changeResearchersBy10" style="background-color:#00AAFF;width:50px;" onclick="addResearchers('benevolence', -10)">-10</button>
-
-					<button class="basicButtonSize"                       style="background-color:#00AAFF;width:30px;" onclick="addResearchers('benevolence', 1)">+</button>
-					<button class="basicButtonSize changeResearchersBy10" style="background-color:#00AAFF;width:50px;" onclick="addResearchers('benevolence', 10)">+10</button>
-
-					
-					
-					<div class="scienceInfo">
-						<p class="basicText">Increase respect change from helping civilians with more lakes</p>
-					</div>
-					<div class="skillProgress" id="benevolenceProgress">
-						<div class="skillBar" , id="benevolenceBar">0%</div>
-					</div>
-					
-					<p class="basicText" , id="benevolenceText">Currently: Level 1</p>
-					<p class="basicText" , id="benevolenceTime">Estimated Time: 20,000 seconds</p>
-
-
-				</div>
-
-
-			</div>
+			<div id="research"></div>
 			
 			<div id="researchers">
 	
@@ -1592,38 +1466,6 @@
 		<p id="endStats"><p>
         <button class="basicButtonSize" style="width:99%;display:block;" onclick="toggle('endScreen')">Continue</button>
 	</div>
-    <div id="wellField" style="background-color:#000000;width:100%;height:100%;position: absolute;top:0px;left:0px;color:#FFFFFF;display:none;">
-		<p>Your soul hangs in a void with a field of wells.
-		Enter one.<p>
-		<p id="trueLimes" style="color:#4DFE89;text-align:center;font-size:40px;"></p>
-        <button class="basicButtonSize" style="width:99%;display:block;" onclick="soulArea('start')">Sublime</button>
-	</div>
-    <div id="soulAreaSerf">
-		<div class="basicDiv" style="display:inline-block;top:0;position:fixed;margin:8px;">
-			<div class="skillProgress" style="display:inline-block" id="serfHealthProgress"><div class="skillBar" id="serfHealthBar" style="background-color:#B40001"></div></div>
-            <p class="basicText" id='serfHealthText'>You are healthy.</p>
-		</div>
-		<div id="soulAreaSerfWidth" style="width:380px;margin:20px;">
-			<div class="basicDiv" style="display:block;">
-				<button class="basicButtonSize" style="background-color:#BBBBBB" onclick="harvestRice()">Harvest Rice</button>
-				<div class="skillProgress" id="harvestRiceProgress"><div class="skillBar" id="harvestRiceBar" style="background-color:#DEAD85"></div></div>
-				<button class="specialButton" style="background-color:#BBBBBB" onclick="eatRice()">Eat Rice</button>
-			</div>
-			<div class="basicDiv" style="display:block;">
-				<button class="specialButton" onclick="giveLordRice()">Give your lord rice</button>	
-                <p class="basicText" id='lordEmotion'>The lord is pleased.</p>
-                <p class="basicText" id='lordsRice'></p>
-                <p class="basicText" id='lordsCoins'></p>
-                <p class="basicText" id='riceOwed'></p>
-				<button class="specialButton" id='acceptLordsFood' onclick="acceptLordsFood()">Accept your Lord's generosity</button>	
-			</div>
-			<div class="basicDiv" style="display:block;">
-				<button class="specialButton" onclick="sellRice()">Sell Rice</button>	
-                <p class="basicText">Reward: 1 Coin</p>
-			</div>
-			<button class="basicButtonSize" style="width:370px;display:block;background-color:#000000;color:#FFFFFF;" onclick="soulArea('wellField')">Enter The Well</button>
-		</div>	
-	</div>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	
@@ -1639,7 +1481,6 @@
     <script src="game/hiringarea.js?v=         180" charset="utf-8" type="text/javascript"></script>
     <script src="game/science.js?v=            180" charset="utf-8" type="text/javascript"></script>
     <script src="game/brokers.js?v=            180" charset="utf-8" type="text/javascript"></script>
-    <script src="game/serf.js?v=               180" charset="utf-8" type="text/javascript"></script>
 
 </body>
 
