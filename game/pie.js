@@ -2,25 +2,6 @@ var pieOvenColor = 0
 var juiceInPieBucketLeak = 0
 var flourInPieBucketLeak = 0
 
-function lookForCustomer(){
-
-	gameData.couldFindCustomer = 1
-	gameData.isThereACustomer = 1
-	gameData.customerWaitTime = 0
-	gameData.isFindingPieCustomers = 0
-	update("couldFindCustomer", "Found a customer!")
-	update("customerButton", ":)")
-	
-	if(gameData.pieEmployeeSalesLeft > 0)
-	{
-		gameData.pieEmployeeSalesLeft -= 1
-		sellPieToCustomer()
-		
-	}
-
-
-}
-
 function decreasePiePrice() {
 	decreaseValue('piePrice')
 	changePiePrice()
@@ -31,67 +12,56 @@ function increasePiePrice() {
 	changePiePrice()
 }
 
-function changePiePrice(){
+function changePiePrice() {
 	if(gameData.currentTask == 'findPieCustomers')
 		gameData.currentTask = 'none'
 	if(gameData.currentTask2 == 'findPieCustomers')
 		gameData.currentTask2 = 'none'
-	gameData.isFindingPieCustomers = 0
 	gameData.findPieCustomersBar = 0
 	gameData.isThereACustomer = 0
-
-	moveBar("findPieCustomers")
+	updateBar("findPieCustomers")
 }
 
-function sellPieToCustomer(){
-	if(gameData.isThereACustomer && gameData.pies > 0)
-	{
+function sellPieToCustomer() {
+	if(gameData.isThereACustomer && gameData.pies > 0) {
 		gameData.isThereACustomer = 0
 		gameData.pies -= 1
 		gameData.pieCoins += gameData.piePrice
 		gameData.hasSoldPie = 1
 		update("customerButton", "")
 		update("couldFindCustomer", "Sold!")
-
 	}
 }
 
-function winnowWheat(){
-	if(gameData.wheat)
-	{
+function winnowWheat() {
+	if (gameData.wheat) {
 		gameData.wheat -= 1
 		gameData.wheatSeeds += 2
 	}
 }
 
-function grindFlour(){
-	if(gameData.wheatSeeds)
-	{
+function grindFlour() {
+	if(gameData.wheatSeeds) {
 		gameData.wheatSeeds -= 1
 		gameData.flour += 1
 	}
 }
 
-function addPieIngredient(ingredient){
-	
-	if(gameData[ingredient] > 0)
-	{
+function addPieIngredient(ingredient) {
+	if(gameData[ingredient] > 0) {
 		gameData[ingredient + 'AsPieIngredient'] += 1
 		gameData[ingredient] -= 1
 	}
 }
 
-function addToPieBucket(ingredient){
-	
-	if(gameData[ingredient] > 0 && gameData[ingredient + 'InPieBucket'] < (gameData.bucketThinSteelPlating * 5 + 20))
-	{
+function addToPieBucket(ingredient) {
+	if(gameData[ingredient] > 0 && gameData[ingredient + 'InPieBucket'] < (gameData.bucketThinSteelPlating * 5 + 20)) {
 		gameData[ingredient + 'InPieBucket'] += 1
 		gameData[ingredient] -= 1
 	}
 }
 
-function bucketHoleSize(amount, id){
-	
+function bucketHoleSize(amount, id) {
 	if (amount == '1' && gameData[id + 'BucketHoleSize'] < 20)
 		gameData[id + 'BucketHoleSize'] += 2 - gameData.upgradeNozzles
 	else if (amount == '-1' && gameData[id + 'BucketHoleSize'] > 0)
@@ -102,190 +72,159 @@ function bucketHoleSize(amount, id){
 		gameData[id + 'BucketHoleSize'] = 0
 }
 
-function payPieEmployee(){
-	if(gameData.pieCoins >= gameData.pieMerchantPieCoinPrice && gameData.betaCoins >= gameData.pieMerchantBetaCoinPrice && gameData.pieEmployeeSalesLeft < gameData.pieMerchantMaxPay)
-	{
+function payPieEmployee() {
+	if(gameData.pieCoins >= gameData.pieMerchantPieCoinPrice && gameData.betaCoins >= gameData.pieMerchantBetaCoinPrice && gameData.pieEmployeeSalesLeft < gameData.pieMerchantMaxPay) {
 		gameData.pieCoins -= gameData.pieMerchantPieCoinPrice
 		gameData.betaCoins -= gameData.pieMerchantBetaCoinPrice
 		gameData.pieEmployeeSalesLeft += 1
 	}
 }
 
-function closePlotManagementDiv(){
-	hide('plotManagementDiv')
-}
-
-function managePlot(){
-		if(gameData.wheatFieldArray[gameData.selectedPlotX][gameData.selectedPlotY] == 59)
-		{
-			if(gameData.pieCoins >= gameData.nextPlotPrice)
-			{
-				gameData.pieCoins -= gameData.nextPlotPrice
-				gameData.nextPlotPrice *= 2
-				gameData.wheatFieldArray[gameData.selectedPlotX][gameData.selectedPlotY] = 0
-				updateFieldTileAesthetic()
-				hide('plotManagementDiv')
-			}
-		}
-		else
-		{
-			gameData.wheatFieldArray[gameData.selectedPlotX][gameData.selectedPlotY] = 59
-			gameData.nextPlotPrice /= 2
-			gameData.pieCoins += gameData.nextPlotPrice
-			updateFieldTileAesthetic()
+function managePlot() {
+	if (gameData.wheatFieldArray[gameData.selectedPlotX][gameData.selectedPlotY] == 59) {
+		if (gameData.pieCoins >= gameData.nextPlotPrice) {
+			gameData.pieCoins -= gameData.nextPlotPrice
+			gameData.nextPlotPrice *= 2
+			gameData.wheatFieldArray[gameData.selectedPlotX][gameData.selectedPlotY] = 0
 			hide('plotManagementDiv')
 		}
+	}
+	else {
+		gameData.wheatFieldArray[gameData.selectedPlotX][gameData.selectedPlotY] = 59
+		gameData.nextPlotPrice /= 2
+		gameData.pieCoins += gameData.nextPlotPrice
+		hide('plotManagementDiv')
+	}
+	updateFieldTileAesthetic()
 }
+
 
 function fieldTile(x, y) {
 	
 	var tileType = gameData.wheatFieldArray[x][y]
 	var tile = "fieldTile" + x + "-" + y
 
-	if (gameData.selectedWheatItem == 'plot')
-	{
+	if (gameData.selectedWheatItem == 'plot') {
 		gameData.selectedPlotX = x
 		gameData.selectedPlotY = y
 
 		
 		show('plotManagementDiv')
-		if(gameData.wheatFieldArray[x][y] == 59)
-		{
+		if(gameData.wheatFieldArray[x][y] == 59) {
 			update("plotDetails", "Price: " + gameData.nextPlotPrice.toLocaleString() + " Pie Coins")
 			update("managePlot", "Purchase")
 		}
-		else
-		{
+		else {
 			update("plotDetails", "Sell Price: " + (gameData.nextPlotPrice / 2).toLocaleString() + " Pie Coins")
 			update("managePlot", "Sell")
 		}
 	}
 	
-	
-	else if(gameData.wheatFieldArray[x][y] == 50)
-	{
+	else if(gameData.wheatFieldArray[x][y] == 50) {
 		gameData.wheat += 1
 		emptyWheatTile(x, y)
 	}
 	
-	else if(tileType >= 51 && tileType <= 54)
-	{		
-		if(gameData.selectedWheatItem == 'rotate')
-		{
+	else if(tileType >= 51 && tileType <= 54) {		
+		if(gameData.selectedWheatItem == 'rotate') {
 			if(tileType == 54)
 				gameData.wheatFieldArray[x][y] = 51
 			else
 				gameData.wheatFieldArray[x][y] += 1
-			
 		}
-		else
-		{
+		else {
 			gameData.seedDrills += 1
 			emptyWheatTile(x, y)	
 		}
 	}
 	
-	else if(tileType >= 55 && tileType <= 58)
-	{
-		if(gameData.selectedWheatItem == 'rotate')
-		{
+	else if (tileType >= 55 && tileType <= 58) {
+		if (gameData.selectedWheatItem == 'rotate') {
 			if(tileType == 58)
 				gameData.wheatFieldArray[x][y] = 55
 			else
 				gameData.wheatFieldArray[x][y] += 1
 			
 		}
-		else
-		{
+		else {
 			gameData.wheatHarvesters += 1
 			emptyWheatTile(x, y)
 		}
 	}
 	
 	else if(gameData.selectedWheatItem == 'seed')
-	{
 		setTileType(1, 'wheatSeeds')
-	}
 	else if (gameData.selectedWheatItem == 'seedDrill')
-	{
 		setTileType(51, 'seedDrills')
-	}
 	else if (gameData.selectedWheatItem == 'harvester')
-	{
 		setTileType(55, 'wheatHarvesters')
-	}
 	
-	function emptyWheatTile(x, y){
+	function emptyWheatTile(x, y) {
 		gameData.wheatFieldArray[x][y] = 0
 		document.getElementById(tile + 'img').src = "images/emptyField.png"
 	}
 
-	function setTileType(number, cost){
-		if(gameData.wheatFieldArray[x][y] == 0 && gameData[cost] > 0)
-		{
+	function setTileType(number, cost) {
+		if (gameData.wheatFieldArray[x][y] == 0 && gameData[cost] > 0) {
 			gameData.wheatFieldArray[x][y] = number
 			gameData[cost] -= 1
 		}
 	}
-	
 	updateFieldTileAesthetic()
 }
 
-function updateFieldTileAesthetic(){
-	
-			
+function updateFieldTileAesthetic() {
 	for (var x = 0; x < 5; x++) {
 		for (var y = 0; y < 5; y++) {
 			var tile = "fieldTile" + x + "-" + y
-			var image = tile + 'img'
+			var image = document.getElementById(tile + 'img')
 			var tileType = gameData.wheatFieldArray[x][y]
 			
-			if(gameData.wheatFieldArray[x][y] == 0)
-			{
-				document.getElementById(image).src = "images/emptyField.png"
-			}
-
-			if(gameData.wheatFieldArray[x][y] >= 1 && gameData.wheatFieldArray[x][y] < 50)
-			{
-				document.getElementById(image).src = "images/wheatSeed1.png"
-			}
-			
-			else if(gameData.wheatFieldArray[x][y] == 50)
-				document.getElementById(image).src = "images/wheatSeed6.png"
-			
-			else if(tileType > 50 && tileType <= 54)
-				document.getElementById(image).src = "images/seedDrill.png"
-
-			else if(tileType > 54 && tileType <= 58)
-				document.getElementById(image).src = "images/wheatHarvester.png"
+			if (gameData.wheatFieldArray[x][y] == 0)
+				setImage ('emptyField')
+			else if (gameData.wheatFieldArray[x][y] >= 1 && gameData.wheatFieldArray[x][y] < 50)
+				setImage ('wheatSeed1')
+			else if (gameData.wheatFieldArray[x][y] == 50)
+				setImage ('wheatSeed6')
+			else if (tileType > 50 && tileType <= 54)
+				setImage ('seedDrill')
+			else if (tileType > 54 && tileType <= 58)
+				setImage ('wheatHarvester')
+			else if (tileType == 59)
+				setImage ('unpurchasedField')				
 				
 			if(tileType == 51 || tileType == 55)
-				setRotation(image, 90)
+				setRotation(90)
 			else if(tileType == 52 || tileType == 56)
-				setRotation(image, 180)
+				setRotation(180)
 			else if(tileType == 53 || tileType == 57)
-				setRotation(image, 270)
+				setRotation(270)
 			else
-				setRotation(image, 0)
+				setRotation(0)
 			
-			if(tileType == 59)
-			{
-				document.getElementById(image).src = "images/unpurchasedField.png"
-				document.getElementById(tile).style.backgroundColor = "#66361F";
+			if (tileType == 59)
+				document.getElementById(tile).style.backgroundColor = "#66361F"
+			else
+				document.getElementById(tile).style.backgroundColor = "#DEAD85"
+			
+			
+			function setImage (id) {
+				image.src = 'images/' + id + '.png'
 			}
-			else
-				document.getElementById(tile).style.backgroundColor = "#DEAD85";
 			
+			function setRotation(number) {
+				image.style.transform = 'rotate(' + number + 'deg)'
+			}
 		}
 	}
 }
 
-function selectedWheatItem(id){
+function selectedWheatItem(id) {
 	gameData.selectedWheatItem = id
 	selectedWheatItemAesthetic(id)
 }
 
-function selectedWheatItemAesthetic(id){
+function selectedWheatItemAesthetic(id) {
 	document.getElementById('plotSelectedWheatItem').style.backgroundColor = 'gray'
 	document.getElementById('seedSelectedWheatItem').style.backgroundColor = 'gray'
 	document.getElementById('seedDrillSelectedWheatItem').style.backgroundColor = 'gray'
@@ -295,7 +234,7 @@ function selectedWheatItemAesthetic(id){
 }
 
 
-function updatePieStuffSlow(){
+function updatePieStuffSlow() {
 	
 	updateFieldTileAesthetic()
 	for (var x = 0; x < 5; x++) {
@@ -304,37 +243,29 @@ function updatePieStuffSlow(){
 			var tileType = gameData.wheatFieldArray[x][y]
 
 			if(tileType >= 1 && tileType < 50)
-			{
 				gameData.wheatFieldArray[x][y] += 1
-			}	
+
 			
-			if(gameData.wheatSeeds > 0)
-			{
-				if(tileType == 51 && gameData.wheatFieldArray[x][y + 1] == 0)
-				{
+			if (gameData.wheatSeeds > 0) {
+				if(tileType == 51 && gameData.wheatFieldArray[x][y + 1] == 0) {
 					gameData.wheatFieldArray[x][y + 1] = 1
 					gameData.wheatSeeds -= 1
 				}	
-				else if(tileType == 52 && x > 0)
-				{
+				else if(tileType == 52 && x > 0) {
 					//Don't move this or it'll check an undefined number :(
-					if(gameData.wheatFieldArray[x - 1][y] == 0)
-					{
+					if(gameData.wheatFieldArray[x - 1][y] == 0) {
 						gameData.wheatFieldArray[x - 1][y] = 1
 						gameData.wheatSeeds -= 1
 					}
 				}
-				else if(tileType == 53 && y > 0)
-				{
+				else if(tileType == 53 && y > 0) {
 					//Don't move this or it'll check an undefined number :(
-					if(gameData.wheatFieldArray[x][y - 1] == 0)
-					{
+					if(gameData.wheatFieldArray[x][y - 1] == 0) {
 						gameData.wheatFieldArray[x][y - 1] = 1
 						gameData.wheatSeeds -= 1
 					}
 				}	
-				else if(tileType == 54 && gameData.wheatFieldArray[x + 1][y] == 0)
-				{
+				else if(tileType == 54 && gameData.wheatFieldArray[x + 1][y] == 0) {
 					gameData.wheatFieldArray[x + 1][y] = 1
 					gameData.wheatSeeds -= 1
 				}	
@@ -342,36 +273,28 @@ function updatePieStuffSlow(){
 
 
 
-			if(tileType == 55 && y > 0)
-			{
+			if (tileType == 55 && y > 0) {
 				//Don't move this or it'll check an undefined number :(
-				if(gameData.wheatFieldArray[x][y - 1] == 50)
-				{
+				if(gameData.wheatFieldArray[x][y - 1] == 50) {
 					gameData.wheatFieldArray[x][y - 1] = 0
 					gameData.wheat += 1
 				}
 			}	
-			else if(tileType == 56 && gameData.wheatFieldArray[x + 1][y] == 50)
-			{
+			else if(tileType == 56 && gameData.wheatFieldArray[x + 1][y] == 50) {
 				gameData.wheatFieldArray[x + 1][y] = 0
 				gameData.wheat += 1
 			}	
-			else if(tileType == 57 && gameData.wheatFieldArray[x][y + 1] == 50)
-			{
+			else if(tileType == 57 && gameData.wheatFieldArray[x][y + 1] == 50) {
 				gameData.wheatFieldArray[x][y + 1] = 0
 				gameData.wheat += 1
 			}	
-			else if(tileType == 58 && x > 0)
-			{
+			else if(tileType == 58 && x > 0) {
 				//Don't move this or it'll check an undefined number :(
-				if(gameData.wheatFieldArray[x - 1][y] == 50)
-				{
+				if(gameData.wheatFieldArray[x - 1][y] == 50) {
 					gameData.wheatFieldArray[x - 1][y] = 0
 					gameData.wheat += 1
 				}
 			}
-
-			
 		}
 	}
 	
@@ -386,7 +309,7 @@ function updatePieStuffSlow(){
 		gameData.flour -= 1
 }
 
-function updatePieStuff(){
+function updatePieStuff() {
 	
 	height = gameData.bucketThinSteelPlating * 5 + 20
 	
@@ -406,32 +329,22 @@ function updatePieStuff(){
     elem.style.width = gameData.flourBucketHoleSize * 5 + "%"
 	elem.style.right = 50 - (gameData.flourBucketHoleSize * 2.5) + "%"	
 
-
-
-
 	if(gameData.pies > 0)
 		gameData.hasGottenPies = 1
 	
 	checkShowOrHide(gameData.hasGottenPies, "bakeryButton")
 
-	
-	
-	if (juiceInPieBucketLeak > 100 / gameData.juiceBucketHoleSize)
-	{
-		if(gameData.juiceInPieBucket > 0)
-			{
+	if (juiceInPieBucketLeak > 100 / gameData.juiceBucketHoleSize) {
+		if (gameData.juiceInPieBucket > 0) {
 			gameData.juiceInPieBucket -= 1
 			gameData.juiceAsPieIngredient += 1
 		}
-		
 		juiceInPieBucketLeak = 0
 	}
 	juiceInPieBucketLeak += 1
 
-	if (flourInPieBucketLeak > 400 / gameData.flourBucketHoleSize)
-	{
-		if(gameData.flourInPieBucket > 0)
-			{
+	if (flourInPieBucketLeak > 400 / gameData.flourBucketHoleSize) {
+		if (gameData.flourInPieBucket > 0) {
 			gameData.flourInPieBucket -= 1
 			gameData.flourAsPieIngredient += 1
 		}
@@ -440,48 +353,31 @@ function updatePieStuff(){
 	}
 	flourInPieBucketLeak += 1
 	
-	
-	
-	
-	
-	
 	checkShow(gameData.pieBucket, "pieBuckets")
 	
-	if(gameData.pieFlourBucket)
-	{
+	if (gameData.pieFlourBucket) {
 		divVisibility('flourBucketProgress', 'visible')
 		divVisibility('addToPieFlourBucket', 'visible')
 		hide("buyAPieFlourBucket")
 		
-		if(gameData.pieFlourBucketNozzle)
-		{
+		if (gameData.pieFlourBucketNozzle) {
 			hide("buyAPieFlourBucketNozzle")
 			divVisibility("flourMinusNozzle", "visible")
 			divVisibility("flourPlusNozzle", "visible")
-
 		}
 		else
 			show("buyAPieFlourBucketNozzle")
 	}
-	else
-	{
-		
+	else {
 		if(gameData.pieBucket)
 			show("buyAPieFlourBucket")
 		else
 			hide("buyAPieFlourBucket")
-		
-		
-
 	}
-
-
-	
 	
 	if(!gameData.pieBucketNozzle)
 		checkShow(gameData.pieBucket, "buyAPieBucketNozzle")
-	else
-	{
+	else {
 		hide("buyAPieBucketNozzle")
 		show("bucketHoleChanger")
 		
@@ -489,14 +385,10 @@ function updatePieStuff(){
 			show("upgradeNozzles")
 		else
 			hide("upgradeNozzles")
-
-
 	}
 
-	if(gameData.pieOven)
-	{
+	if (gameData.pieOven) {
 		hide("buyPieOven")
-		
 		show("pieOvenDiv", "inline")
 		
 		if(!gameData.pieBucket)
@@ -506,31 +398,27 @@ function updatePieStuff(){
 		
 		if(!gameData.bellows)
 			show("buyBellows")
-		else
-		{
+		else {
 			hide("buyBellows")
 			show("bellowsDiv")
 		}
 	}
 	
-	if(gameData.bakePieBar !== 100)
-	{
+	if(gameData.bakePieBar !== 100) {
 		if(beckyRandom(2) == 1)
 			pieOvenColor += 10
 		else
 			pieOvenColor -= 10
 		
-		if(pieOvenColor > 200)
+		if(pieOvenColor > 255)
 			pieOvenColor = 200
 	
 		if(pieOvenColor < 0)
 			pieOvenColor = 0
-		
 	}
 	
-	document.getElementById('bakePieBar').style.backgroundColor = 'rgba(345, ' + pieOvenColor + ', 66)'
+	document.getElementById('bakePieBar').style.backgroundColor = 'rgba(345, ' + pieOvenColor + ', 0)'
 	document.getElementById('bellowsBar').style.backgroundColor = '#99DEFF'
-
 	
 	if(!gameData.pieConveyorBelt)
 		checkShow(gameData.pieOven, "buyAPieConveyorBelt")
@@ -538,11 +426,8 @@ function updatePieStuff(){
 		hide("buyAPieConveyorBelt")
 		show("pieConveyorBeltOnButton", "inline")
 	}
-	
-	
-	
-	if(gameData.wheatField)
-	{
+
+	if (gameData.wheatField) {
 		hide("buyWheatField")
 		show("fieldTile0-0", "inline")
 		show("fieldButton")
@@ -562,39 +447,29 @@ function updatePieStuff(){
 		
 		if(gameData.seedDrills || gameData.wheatHarvesters)
 			show("wheatMachines")
-
-
 	}
 	else
 		checkShow(gameData.hasSoldPie, "buyWheatField")
-	
-	
 	
 	if(gameData.mortarAndPestle)
 		show("grindFlour")
 	else
 		hide("grindFlour")
 	
-	if(gameData.pieEmployee)
-	{
+	if(gameData.pieEmployee) {
 		hide("buyPieEmployee")
 		show("payPieEmployeeDiv")
 		if(gameData.advancedPieHiring == 0)
 			show("advancedPieHiring")
-		else
-		{
+		else {
 			hide("advancedPieHiring")
 			show("hirePieMerchantToggleButton")
 		}
-
-
 	}
-	else
-	{
+	else {
 		checkShow(gameData.hasSoldPie, "buyPieEmployee")
 		hide("payPieEmployeeDiv")
 		hide("advancedPieHiring")
-
 	}
 	
 	if(gameData.wheatHarvesters || gameData.seedDrills)
@@ -603,8 +478,6 @@ function updatePieStuff(){
 	if(gameData.hasGottenFieldTools)
 		show('fieldPlacementOptions')
 
-	
-	
 	update("wheatNumber", "Wheat: " + gameData.wheat.toLocaleString() + " / 30")
 	update("wheatSeedsNumber", "Seeds: " + gameData.wheatSeeds.toLocaleString() + " / 30")
 	update("flourNumber", "Flour: " + gameData.flour.toLocaleString() + " / 30")
@@ -626,56 +499,46 @@ function updatePieStuff(){
 		show('pieMerchant')
 	else
 		hide('pieMerchant')
-
 }
 
 function useBellows() {
-	if(gameData.bellowsBar < 0.5)
-	{	
+	if (gameData.bellowsBar < 0.5) {	
 		gameData.bellowsBar = 100
 		bellowsBar()
 	}
-
 	gameData.bellowsBar = 100
 	gameData.bellowsCurrentlyBlowing = 1
-
 }
 
 function bellowsBar() {
     if (gameData.bellowsBar > 0) {
-        gameData.bellowsBar -= 0.5;
-		moveBar("bellows")
-        setTimeout(bellowsBar, 100)
-    } else {
+        gameData.bellowsBar -= 0.1
+		updateBar("bellows")
+        setTimeout(bellowsBar, 15)
+    } else
 		gameData.bellowsCurrentlyBlowing = 0
-    }
 }
 
 function bakePie() {
-    if ((gameData.bakePieBar == 100 || gameData.bakePieBar == 0) && gameData.juiceAsPieIngredient > 0 && gameData.flourAsPieIngredient > 0 && !gameData.isPieBaking) {
-        gameData.bakePieBar = 0
-		gameData.isPieBaking = 1
+    if (gameData.bakePieBar == 0 && gameData.juiceAsPieIngredient > 0 && gameData.flourAsPieIngredient > 0)
         bakePieBar()
-    }
 }
 
 function bakePieBar() {
     if (gameData.bakePieBar < 100) {
-        gameData.bakePieBar += 0.5;
-		moveBar("bakePie")
-        setTimeout(bakePieBar, 100 / (gameData.bellowsCurrentlyBlowing + 1))
+        gameData.bakePieBar += 0.1 * (gameData.bellowsCurrentlyBlowing + 1)
+        setTimeout(bakePieBar, 15)
     } else {
+		gameData.bakePieBar = 0
 		gameData.pies += 1
 		gameData.juiceAsPieIngredient = 0
 		gameData.flourAsPieIngredient = 0
-		gameData.isPieBaking = 0
     }
+	updateBar("bakePie")
 }
 
 function findPieCustomers() {
-    if ((gameData.findPieCustomersBar == 100 || gameData.findPieCustomersBar == 0) && !gameData.isFindingPieCustomers) {
-        gameData.findPieCustomersBar = 0
-		gameData.isFindingPieCustomers = 1			
+    if (gameData.findPieCustomersBar == 0) {		
 		update("couldFindCustomer", "Waiting for customers...")		
         findPieCustomersBar()
     }
@@ -683,24 +546,21 @@ function findPieCustomers() {
 
 function findPieCustomersBar() {
     if (gameData.findPieCustomersBar < 100) {
-		
-		if(findPieCustomersBarDoMove)
-			gameData.findPieCustomersBar += 0.5;
-		
-		findPieCustomersBarDoMove = 1
-		moveBar("findPieCustomers")
-		time = (Math.pow(2 - gameData.pieMerchantCharm / 20, gameData.piePrice) + 10)
-
-		if(time == 'Infinity' || gameData.piePrice > 30)
-			time = 1e9
-		
-		if (time < 15)
-			time = 15
-		
-		setTimeout(findPieCustomersBar, time / gameData.tickspeed)
+		gameData.findPieCustomersBar += 7.5 / (Math.pow(2 - gameData.pieMerchantCharm / 20, gameData.piePrice) + 10)		
+		setTimeout(findPieCustomersBar, 15 / gameData.tickspeed)
 		
     } else {
-        lookForCustomer()
+		gameData.couldFindCustomer = 1
+		gameData.isThereACustomer = 1
+		gameData.customerWaitTime = 0
+		update("couldFindCustomer", "Found a customer!")
+		update("customerButton", ":)")
+		
+		if (gameData.pieEmployeeSalesLeft > 0) {
+			gameData.pieEmployeeSalesLeft -= 1
+			sellPieToCustomer()
+		}
+		gameData.findPieCustomersBar = 0
     }
-    
+	updateBar("findPieCustomers")
 }

@@ -26,17 +26,20 @@ function updateBrokers() {
 		alphaCoinTotalPrice = (gameData.alphaCoinsExchangeRate + gameData.currencyBrokerFee) * gameData.currencyBrokerTransferAmount
 
 		if (!gameData.alphaCoinConvertBulkToggle) {
-			update("alphaCoinExhangeRate", "Exchange Rate: " + gameData.alphaCoinsExchangeRate.toLocaleString() + " Coins -> 1 Alpha Coin")
-			update("alphaCoinTotalPrice", "Total Price: " + alphaCoinTotalPrice.toLocaleString() + " Coins")
-			update("coinsToAlphaClickButton", "Convert Coins to " + gameData.currencyBrokerTransferAmount.toLocaleString() + " Alpha Coins")
+			exchangeRate = gameData.alphaCoinsExchangeRate.toLocaleString() + " Coins -> 1 Alpha Coin"
+			coinsToAlphaClickButton = gameData.currencyBrokerTransferAmount
 		} else {
-			update("alphaCoinExhangeRate", "Exchange Rate: " + (gameData.alphaCoinsExchangeRate * 10).toLocaleString() + " Coins -> 10 Alpha Coins")
-			update("alphaCoinTotalPrice", "Total Price: " + (alphaCoinTotalPrice * 10).toLocaleString() + " Coins")
-			update("coinsToAlphaClickButton", "Convert Coins to " + (gameData.currencyBrokerTransferAmount * 10).toLocaleString() + " Alpha Coins")
+			exchangeRate = (gameData.alphaCoinsExchangeRate * 10).toLocaleString() + " Coins -> 10 Alpha Coins"
+			coinsToAlphaClickButton = gameData.currencyBrokerTransferAmount * 10
+			alphaCoinTotalPrice *= 10
 		}
+		
+		update("alphaCoinExhangeRate", "Exchange Rate: " + exchangeRate)
+		update("alphaCoinTotalPrice", "Total Price: " + alphaCoinTotalPrice.toLocaleString() + " Coins")
+		update("coinsToAlphaClickButton", "Convert Coins to " + coinsToAlphaClickButton.toLocaleString() + " Alpha Coins")
+
 
 	} else {
-
 		hide('tradeButton')
 		hide('alphaCoinToMegaCoinDiv')
 	}
@@ -53,7 +56,6 @@ function updateBrokers() {
 		else
 			show("autoBrokerAdvertiser")
 	} else {
-
 		show("unlockCurrencyBrokers")
 		hide("hireToggleButtons")
 		hide("brokerApplicantUpgrades")
@@ -87,89 +89,44 @@ function updateBrokers() {
 }
 
 
-function updateBrokerStuffSlow(){
+function updateBrokerStuffSlow() {
 	if (gameData.basicAlphaToBetaBroker && gameData.betaCoinsExchangeRate < gameData.basicA2BBrokerRule)
 		alphaToBetaClick()
 	
-	if (gameData.autoAdvertiseBroker)
-	{
+	if (gameData.autoAdvertiseBroker) {
 		if (gameData.currencyApplicantSpeed > gameData.autoAdvertiseSpeedValue || (gameData.smarterAdvertisingManagerBroker && gameData.currencyApplicantTransferAmount < gameData.autoAdvertiseAmountValue))
-		{
 			advertise()
-		}
 	}
 	
-	if(gameData.bachelorsDegreeFinance)
-	{
+	if(gameData.bachelorsDegreeFinance) {
 		if(beckyRandom(2) == 1 && gameData.alphaCoinsExchangeRate < 200)
 			gameData.alphaCoinsExchangeRate += 1
 		else if (gameData.alphaCoinsExchangeRate > 50)
 			gameData.alphaCoinsExchangeRate -= 1
 	}
-
 }
 
-function brokerApplicant(id, type) {
+function brokerApplicantNew(id, amount, minOrMax, requirement) {
+	price = 'brokerApplicant'+ id + 'Price'
+	theoreticalMax = gameData['maxBrokerApplicant' + id]
+	theoreticalMin = gameData['minBrokerApplicant' + id]
+	
+	if (requirement == undefined)
+		requirement = true
 
-	if(gameData.alphaCoins >= gameData['brokerApplicant'+ id + 'Price'])
-	{
-		if(type == 'max')
-		{
-			if (gameData['maxBrokerApplicant' + id] > gameData['minBrokerApplicant' + id]) {
-				
-				brokerApplicantPrice(id)
+	if (minOrMax == 'min')
+		theoreticalMin += amount
+	else
+		theoreticalMax += amount
 
 
-				gameData['maxBrokerApplicant' + id] -= 1
-			}
-		}
-		else if(type == 'maxup')
-		{
-			brokerApplicantPrice(id)
-			gameData['maxBrokerApplicant' + id] += 1
-		}
-		else if(type == 'minup')
-		{
-			if (gameData['maxBrokerApplicant' + id] > gameData['minBrokerApplicant' + id]) {
-				
-				brokerApplicantPrice(id)
-
-				gameData['minBrokerApplicant' + id] += 1
-			}
-		}
-		else if(type == 'max100')
-		{
-			if (gameData['maxBrokerApplicant' + id] > gameData['minBrokerApplicant' + id] && gameData['maxBrokerApplicant' + id] >  100)
-			{
-				brokerApplicantPrice(id)
-				gameData['maxBrokerApplicant' + id] -= 100
-			}
-		}
-		else if(type == 'min100')
-		{
-			if (gameData['minBrokerApplicant' + id] > 0) {
-				
-				brokerApplicantPrice(id)
-
-				gameData['minBrokerApplicant' + id] -= 100
-			}
-		}
-		else
-		{
-			if (gameData['minBrokerApplicant' + id] > 1) {
-				
-				brokerApplicantPrice(id)
-				
-				gameData['minBrokerApplicant' + id] -= 1
-			}
-		}
+	if (gameData.alphaCoins >= gameData[price] && eval(requirement) && theoreticalMax >= theoreticalMin) {
+		gameData[minOrMax + 'BrokerApplicant' + id] += amount
+		gameData.alphaCoins -= gameData[price]
+		gameData[price] += 5
 	}
 }
 
-function brokerApplicantPrice(id) {
-	gameData.alphaCoins -= gameData['brokerApplicant'+ id + 'Price']
-	gameData['brokerApplicant'+ id + 'Price'] += 5
-}
 
 function decreaseBasicA2BBrokerRule() {
 	if(gameData.basicA2BBrokerRule > 0)
@@ -181,8 +138,7 @@ function increaseBasicA2BBrokerRule() {
 }
 
 function increaseBasicA2BBrokerAmount() {
-	if(gameData.pieCoins >= gameData.increaseBasicA2BBrokerAmountPrice)
-	{
+	if(gameData.pieCoins >= gameData.increaseBasicA2BBrokerAmountPrice) {
 		gameData.pieCoins -= gameData.increaseBasicA2BBrokerAmountPrice
 		gameData.basicA2BBrokerAmount += 1
 		gameData.increaseBasicA2BBrokerAmountPrice *= 2
@@ -206,7 +162,7 @@ function coinsToAlphaStart() {
 
 function coinsToAlphaClick() {
 	price = (gameData.alphaCoinsExchangeRate + gameData.currencyBrokerFee) * gameData.currencyBrokerTransferAmount * (gameData.alphaCoinConvertBulkToggle * 9 + 1)
-	if (gameData.coins >= price && (gameData.coinsToAlphaBar == 100 || gameData.coinsToAlphaBar == 0) && !gameData.coinsToAlphaBarRunning) {
+	if (gameData.coins >= price && gameData.coinsToAlphaBar == 0) {
 		gameData.alphaCoinConvertBulkToggleSet = gameData.alphaCoinConvertBulkToggle
 		gameData.coins -= price
 		gameData.coinsToAlphaBar = 0
@@ -216,9 +172,13 @@ function coinsToAlphaClick() {
 
 function coinsToAlphaBar() {
 	if (gameData.currencyBrokerSpeed == 1)
-		barMoverAdvanced('coinsToAlpha', 1.5, 15)
-	else
-		barMoverAdvanced('coinsToAlpha', 0.5, 5 * gameData.currencyBrokerSpeed * gameData.doesHaveCurrencyBroker + !gameData.doesHaveCurrencyBroker * 100)
+		runBar('coinsToAlpha', 1.5)
+	else {
+		if (gameData.doesHaveCurrencyBroker)
+			runBar('coinsToAlpha', 1.5 / gameData.currencyBrokerSpeed)
+		else
+			runBar('coinsToAlpha', 0.015)
+	}
 }
 
 function coinsToAlphaBarEnd() {
@@ -229,10 +189,10 @@ function coinsToAlphaBarEnd() {
 }
 
 function alphaToBetaClick() {
-	if(gameData.textForA2BBrokerAmountToggle == 0)
-		price = gameData.betaCoinsExchangeRate
-	else
-		price = gameData.betaCoinsExchangeRate * gameData.basicA2BBrokerAmount
+	price = gameData.betaCoinsExchangeRate
+	
+	if (gameData.textForA2BBrokerAmountToggle)
+		price *= gameData.basicA2BBrokerAmount
 
 	if (gameData.alphaCoins >= price && (gameData.alphaToBetaBar == 100 || gameData.alphaToBetaBar == 0)) {
 		gameData.alphaCoins -= price
@@ -243,7 +203,7 @@ function alphaToBetaClick() {
 }
 
 function alphaToBetaBar() {
-	barMoverAdvanced('alphaToBeta', 0.5, 15)
+	runBar('alphaToBeta', 0.5)
 }
 
 function alphaToBetaBarEnd() {
