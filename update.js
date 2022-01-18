@@ -25,6 +25,8 @@ function updateAfterLoad() {
 	restartBar("findPieCustomers")
 	restartBar("bakePie")
 	restartBar("harvestRice")
+	restartBar("delivery")
+
 	
 	function restartBar(x) {
 		if (gameData[x + "Bar"] > 0)
@@ -44,8 +46,6 @@ function updateAfterLoad() {
 	if (gameData.autoCollectingBar !== 0)
 		autoCollectingBar()
 
-	if (gameData.deliveryBar <= 99 && gameData.deliveryBar != 0)
-		deliveryBar()
 
 }
 
