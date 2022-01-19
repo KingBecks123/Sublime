@@ -231,7 +231,7 @@ function show(id, x) {
 }
 
 function colorChanger(id, content) {
-	document.getElementById(id).style.backgroundColor = content;
+	document.getElementById(id).style.backgroundColor = content
 }
 
 function decreaseValue(id) {

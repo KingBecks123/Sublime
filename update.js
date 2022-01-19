@@ -794,21 +794,16 @@ function updateValues() {
 
 	if (gameData.learnANewSkill >= -1) {
 		show('eatFoodDiv')
-		showOrHideSkill('keenEye')
 	}
 
 	for (let i = 0; i < mainSkills.length; i++) {
-		if (gameData.learnANewSkill >= i) {
-			showOrHideSkill(mainSkills[i])
-		}
+		if ((gameData.hideCompletedSkills && gameData[x + 'SkillLevel'] == gameData[x + 'SkillLevelMax']) || gameData.learnANewSkill < i)
+			hide(mainSkills[i] + "Div")
+		else
+			show(mainSkills[i] + "Div")
 	}
 	
-	function showOrHideSkill(x) {
-		if (gameData.hideCompletedSkills && gameData[x + 'SkillLevel'] == gameData[x + 'SkillLevelMax'])
-			hide(x + "Div")
-		else
-			show(x + "Div")
-	}
+
 	
 	if (gameData.endScreen == 0) {
 		if (gameData.soulArea == 'start')
