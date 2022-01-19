@@ -57,24 +57,7 @@ sciences = [
 
 function updateScience() {
 	
-	if (gameData.limeDiseaseLakes < 10)
-		benevolenceRespectIncreaseText = 0
-	else
-		benevolenceRespectIncreaseText = (Math.pow(2, gameData.limeDiseaseLakes - 10)) * gameData.benevolence
-	
-	
-	if (gameData.surveillanceCamera2 || !gameData.respectMilestone1000)
-		hide('offlineScience')
-	else
-		show('offlineScience')
-	
-
-	update("benevolenceRespectIncrease", "Respect increase:  " + benevolenceRespectIncreaseText.toLocaleString())
-	
 	researchersAvailable = gameData.researchers
-
-	checkShowOrHide(gameData.benevolence, "benevolence")
-	checkShowOrHide(gameData.unlockBenevolence, "benevolenceDiv")
 
 	for (let i = 0; i < sciences.length; i++) {
 		id = sciences[i].id
@@ -99,15 +82,14 @@ function updateScience() {
 		update(id + "Text", sciences[i].description())
 	}
 	
+	update("benevolenceRespectIncrease", "Respect increase:  " + (Math.floor((Math.pow(2, gameData.limeDiseaseLakes - 10)) * gameData.benevolence)).toLocaleString())
 	update("textForResearchers", researchersAvailable + " Available Researchers")
 
-	
-	if (!gameData.unlockBenevolence && gameData.respectMilestone1000)
-		show("unlockBenevolence")
-	else
-		hide("unlockBenevolence")
-	
-	checkShow(gameData.surveillanceCamera2, "upgradeHighTechSurveillance")
+	checkShow(gameData.benevolence, 'benevolence')
+	checkShow(gameData.unlockBenevolence, 'benevolenceDiv')
+	checkShow(!gameData.surveillanceCamera2 && gameData.respectMilestone1000, 'offlineScience')
+	checkShow(!gameData.unlockBenevolence && gameData.respectMilestone1000, 'unlockBenevolence')	
+	checkShow(gameData.surveillanceCamera2, 'upgradeHighTechSurveillance')
 }
 
 
@@ -190,10 +172,10 @@ function runScienceBar (i) {
 	if (gameData[id + 'Bar'] < 100) {
 		gameData[id + 'Bar'] += (0.0075 * gameData[id + 'Researchers']) / sciences[i].equation()
 		setTimeout(runScienceBar, 15, i)
-		updateBar(id)
 	}
 	else {
 		gameData[sciences[i].id + 'Bar'] = 0
 		sciences[i].onBarFilled()
 	}
+	updateBar(id)
 }

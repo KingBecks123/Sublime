@@ -43,9 +43,11 @@ function updateBrokers() {
 		hide('tradeButton')
 		hide('alphaCoinToMegaCoinDiv')
 	}
+
 	
-	checkShowOrHide(gameData.doesHaveCurrencyBroker, "currencyBroker")
-	checkShowOrHide(gameData.smarterAdvertisingManagerBroker, 'smarterAdvertisingBrokerRule')
+	checkShow(gameData.smarterAdvertisingManagerBroker, 'smarterAdvertisingBrokerRule')
+	checkShow(gameData.doesHaveCurrencyBroker, 'currencyBroker')
+
 	
 	if (gameData.unlockCurrencyBrokers) {
 		hide("unlockCurrencyBrokers")
@@ -75,11 +77,16 @@ function updateBrokers() {
 	
 	if (gameData.transferAlphaCoinBags)
 		show("alphaCoinConvertBulkButton", "inline")
-	checkHide(gameData.transferAlphaCoinBags, "transferAlphaCoinBagsUnlock")
-	checkShow(gameData.transferAlphaCoinsBulkUnlock, "transferAlphaCoinsBulk")
-	checkHide(gameData.transferAlphaCoinsBulkUnlock, "transferAlphaCoinsBulkUnlock")	
-	checkHide(gameData.saveAlphaCoinsUnlock, "saveAlphaCoinsUnlock")
-	checkShow(gameData.saveAlphaCoinsUnlock, "upgradeSaveAlphaCoinsUnlock")	
+
+	
+	checkShow(!gameData.transferAlphaCoinBags, 'transferAlphaCoinBagsUnlock')
+	checkShow(!gameData.transferAlphaCoinsBulkUnlock, 'transferAlphaCoinsBulkUnlock')
+	checkShow(!gameData.saveAlphaCoinsUnlock, 'saveAlphaCoinsUnlock')
+
+	
+	checkShow(gameData.transferAlphaCoinsBulkUnlock, 'transferAlphaCoinsBulk')
+	checkShow(gameData.saveAlphaCoinsUnlock, 'upgradeSaveAlphaCoinsUnlock')
+
 	
 	if (gameData.advertisePriceType == 'coins')
 		update("advertisePrice", "Price: " + gameData.advertisePrice.toLocaleString() + " Coins")

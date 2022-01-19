@@ -63,10 +63,7 @@ function checkResults() {
 
 function countPoints(diseaseControlFailed) {
 
-	if (gameData.limeDiseaseLakesSet < 10)
-		benevolenceRespectIncrease = 0
-	else
-		benevolenceRespectIncrease = (Math.pow(2, gameData.limeDiseaseLakesSet - 10)) * gameData.benevolence
+	benevolenceRespectIncrease = Math.floor((Math.pow(2, gameData.limeDiseaseLakes - 10)) * gameData.benevolence)
 	
 	
 	

@@ -105,6 +105,8 @@ function advertiseBarEnd() {
 
 function updateHiringArea() {
 	if (gameData.applicationReady == 1) {
+		show('applicationInfo')
+
 		if (gameData.applicationType == 0) {
 			update("application",
 				"<br>" +
