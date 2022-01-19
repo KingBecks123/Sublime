@@ -422,10 +422,6 @@ var gameDataBase = {
 	pieCoinsInWell: 0,
 	
 	trainTransport: 0,
-	
-
-    //Should be 0 for normal game, 1 if you want to go faster :)
-    difficulty: 0,
 
     //default is 1 :D
     tickspeed: 1,
@@ -459,33 +455,34 @@ var gameData = {}
 ableToSave = true
 
 function gameStart() {
-		
+
 	addHTML()
-	
+
     loadStuff(JSON.parse(localStorage.getItem("mathAdventureSave")))
-	
+
 	scienceOnLoad()
-	
+
     mainGameLoop()
-	
+
     mainGameLoopSlow()
-	
+
 	updateValues()
-
-	addAestheticBase()
 	
+	selectedWheatItemAesthetic(gameData.selectedWheatItem)
 	
+	updateFieldTileAesthetic()
+	normalizeButtons()
+	pinButton()
 
-	tab(gameData.mainTab)
+	tab(gameData.mainTab, true)
     tabMarket(gameData.marketTab)
     tabTasks("earn")
     tabScience("research")
 	tabOptions("gameOptions")
-
 }
 
 
-function tab(tabby) {
+function tab(tabby, hasJustLoaded) {
 	gameData.mainTab = tabby
     update("exportCode", "")
 
@@ -501,8 +498,6 @@ function tab(tabby) {
     hide("science")
     hide("bakery")
     hide("field")
-
-
 	
 	colorChanger('scienceButton', '#9ABBFF')
 	colorChanger('optionsButton', '#BBBBBB')
@@ -519,24 +514,17 @@ function tab(tabby) {
 
 
 
-    if (tabby == "options" && tabby !== "null") {
+    if (tabby == "options") {
         if (gameData.isOptionsOpen == 0) {
-            gameData.isOptionsOpen = 1
-            document.getElementById(tabby).style.display = "inline-block"
-			colorChanger(tabby + "Button", "#898989")
-
-
-        } else if (gameData.isOptionsOpen == 1) {
-            gameData.isOptionsOpen = 0
+            document.getElementById('options').style.display = "inline-block"
+			colorChanger('optionsButton', "#898989")
         }
-
-
-    } else if (tabby !== "options" && tabby !== "null") {
-
+		toggle('isOptionsOpen')
+    } 
+	else if (tabby !== "options" && tabby !== "null") {
         gameData.isOptionsOpen = 0
         document.getElementById(tabby).style.display = "inline-block"
 		colorChanger(tabby + "Button", "#898989")
-		
 		if(tabby == 'science')
 			colorChanger(tabby + "Button", "#4D88FE")
 		if(tabby == 'tasks')
@@ -545,42 +533,33 @@ function tab(tabby) {
 			colorChanger(tabby + "Button", "#FF4D4D")
 		if(tabby == 'field')
 			colorChanger(tabby + "Button", "#964D1A")
-
     }
 
 }
 
-function tabManager(id){
+function tabManager(id) {
 	hide(id)
 	colorChanger(id + "Button", "#BBBBBB")
 }
 
 function tabMarket(tabby) {
-	
 	gameData.marketTab = tabby
-
 	tabManager('marketMain')	
 	tabManager('hiringArea')	
 	tabManager('travel')	
-
 	hide('trade')
 	colorChanger("tradeButton", "#FDFF9A")
-	
 	colorChanger(tabby + "Button", "#898989")
 	document.getElementById(tabby).style.display = "block"
-		
-	if(tabby == 'trade')
+	if (tabby == 'trade')
 		colorChanger(tabby + "Button", "#FCFF4E")
-		
 }
 
 function tabTasks(tabby) {
     hide("earn")
     hide("milestones")
-	
 	colorChanger('earnButton', '#BBBBBB')
 	colorChanger('milestonesButton', '#BBBBBB')	
-	
 	colorChanger(tabby + "Button", "#898989")
     document.getElementById(tabby).style.display = "block"
 }
@@ -589,145 +568,91 @@ function tabOptions(tabby) {
     hide("gameOptions")
     hide("uiOptions")
     hide("statsOptions")
-
-	
     document.getElementById(tabby).style.display = "block"
 }
 
-function fixOverMaxedVariables(){
-	if (gameData.knifebidextrousSkillLevel > gameData.knifebidextrousSkillLevelMax) {
+function fixOverMaxedVariables() {
+	if (gameData.knifebidextrousSkillLevel > gameData.knifebidextrousSkillLevelMax)
         gameData.knifebidextrousSkillLevel = gameData.knifebidextrousSkillLevelMax
-    }
 
-    if (gameData.juiceBulkAmountToggle > 100 && gameData.deliveryTypeToggle < 2) {
+    if (gameData.juiceBulkAmountToggle > 100 && gameData.deliveryTypeToggle < 2)
         gameData.juiceBulkAmountToggle = 100
-    }
 
-    if (gameData.juiceBulkAmountToggle > gameData.juiceBulkAmountMax) {
+    if (gameData.juiceBulkAmountToggle > gameData.juiceBulkAmountMax)
         gameData.juiceBulkAmountToggle = gameData.juiceBulkAmountMax
-    }
 
-
-    if (gameData.coins > gameData.coinsMax) {
+    if (gameData.coins > gameData.coinsMax)
         gameData.coins = gameData.coinsMax
-    }
 	
-    if (gameData.alphaCoins > 1e5) {
+    if (gameData.alphaCoins > 1e5)
         gameData.alphaCoins = 1e5
-    }
-	
-    if (gameData.eat > 100) {
+		
+    if (gameData.eat > 100)
         gameData.eat = 100
-    }
 	
-    if (gameData.limes < 0) {
+    if (gameData.limes < 0)
         gameData.limes = 0
-    }
 	
-    if (gameData.basketBar > 100) {
-        gameData.basketBar = 100
-    }
-	
-    if (gameData.eatBar > 100) {
-        gameData.eatBar = 100
-    }
-	
-    if (gameData.respect < 0) {
+    if (gameData.respect < 0)
         gameData.respect = 0
-    }
 	
-    if (gameData.workingBar > 100) {
-        gameData.workingBar = 100
-    }
-	
-    if (gameData.coinsToAlphaBar > 100) {
-        gameData.coinsToAlphaBar = 100
-    }
-	
-    if (gameData.megaCoinsInBank > gameData.megaCoinsInBankMax) {
+    if (gameData.megaCoinsInBank > gameData.megaCoinsInBankMax)
         gameData.megaCoinsInBank = gameData.megaCoinsInBankMax
-    }
 	
-    if (gameData.deliveryBar > 100) {
+    if (gameData.deliveryBar > 100)
         gameData.deliveryBar = 100
-    }
 
-    if (gameData.learnANewSkillBar > 100) {
+    if (gameData.learnANewSkillBar > 100)
         gameData.learnANewSkillBar = 100
-    }
 
-    if (gameData.employeeWorking > gameData.employeeWorkingMax) {
+    if (gameData.employeeWorking > gameData.employeeWorkingMax)
         gameData.employeeWorking = gameData.employeeWorkingMax
-    }
 
     overMaximum("baskets")
     overMaximum("juicers")
     overMaximum("peelers")
     overMaximum("intelligenceSkillLevel")
 	
+	function overMaximum(x) {
+		if (gameData[x] > gameData[x + 'Max'])
+			gameData[x] = gameData[x + 'Max']
+	}
+
 	preventNegative('coins')
 	preventNegative('limes')
 	preventNegative('respect')
+	
+	function preventNegative(id) {
+		if (gameData[id] < 0)
+			gameData[id]
+	}
 }
 
-function addHTML(){
-	
+function addHTML() {
 	for (let i = 0; i < mainSkills.length; i++) {
-	
 		var name = mainSkills[i]
 		var div = document.getElementById(name + "Div")
-		
-		var skillLevel       = document.createElement("p");
-		    skillLevel.id    = name + "SkillLevel";
-		    skillLevel.classList.add("basicText");
-		    div.appendChild(skillLevel);
-			
-		var skillProgressSpan                = document.createElement("span")
-		skillProgressSpan.innerHTML          = '<div class="skillProgress" id="' + name + 'Progress"><div class="skillBar" , id="' + name + 'Bar">0%</div></div>';
-		insert(div, skillProgressSpan)
-		
-		
-		var skillButtonSpan                  = document.createElement("span")
-		skillButtonSpan.innerHTML            = '<button class="skillButton" id="' + name + "Button" + '" onclick="pickCurrentSkill(&apos;' + name + '&apos;)">' + mainSkillsNames[i] + '</button>';
-		insert(div, skillButtonSpan)
-
-
+		div.innerHTML += '<button class="skillButton" id="' + name + "Button" + '" onclick="pickCurrentSkill(&apos;' + name + '&apos;)">' + mainSkillsNames[i] + '</button>'
+		div.innerHTML += '<div class="skillProgress" id="' + name + 'Progress"><div class="skillBar" , id="' + name + 'Bar"></div></div>'
+		div.innerHTML += '<p id="' + name + 'SkillLevel" class="basicText"></p>'
 	}
 
-	for (let i = 1; i < mainVariables.length; i++) {	
-		var e = $("<button />", {
-			class: "specialButton",
-			id: "currencyDisplay(" + i + ")",
-			onclick: "currencyDisplay(" + i + ")",
-			style: "width:167px;"
-		})
-		$(document.getElementById('backpackDiv')).append(e)
-		update("currencyDisplay(" + i + ")", "Show " + mainVariablesNames[i])
-	}
-	
 	for (let i = 0; i < mainVariables.length; i++) {	
-		var id = jsUcfirst(mainVariables[i])
-		var stat                  = document.createElement("span")
-		stat.innerHTML            = '<div class="stat" id="textFor' + id + 'Div">' + mainVariablesNames[i] + ' </div><div class="stat ar" id="textFor' + id + '"  style="display:none ; ">0</div><p id="textFor' + id + 'P"  style="display:none ; "> </p><br  id="textFor' + id + 'Br"   style="display:none ; "/>';
-		document.getElementById('backgroundForValues').append(stat)
-	}
+		if (i > 0) {
+			document.getElementById('backpackDiv').innerHTML += '<button class="specialButton" id="currencyDisplay(' + i + ')" onClick="currencyDisplay(' + i + ')" style="width:167px">Show ' + mainVariablesNames[i] + '</button>'
+		}
 	
+		var id = upperFirstChar(mainVariables[i])
+		
+		document.getElementById('backgroundForValues').innerHTML += '<div class="stat" id="textFor' + id + 'Div" style="color:' + mainVariablesColor2[i] + '">' + mainVariablesNames[i] + ' </div><div class="stat ar" id="textFor' + id + '"  style="display:none;color:' + mainVariablesColor[i] + '">0</div><p id="textFor' + id + 'P"  style="display:none ; "> </p><br  id="textFor' + id + 'Br"   style="display:none ; "/>'
+	}
+
 	document.getElementById('textForBetaCoinsDiv').style.textDecoration = 'underline'
 	document.getElementById('textForPieCoinsDiv').style.textDecoration = 'underline'
-
-	function insert(div, thing)
-	{
-		div.insertBefore(thing, div.firstChild);
-	}
 	
 	for (let y = 0; y < 5; y++) {	
 		for (let x = 0; x < 5; x++) {	
-			var fieldTile                  = document.createElement("span")
-			fieldTile.innerHTML            = '<button ondragstart="return false;" class="fieldTile" id="fieldTile' + x + '-' + y + '" onclick="fieldTile(' + x + ', ' + y + ')">‎‏‏‎<img style="width:70px;height:70px;" id="fieldTile' + x + '-' + y + 'img" src="images/emptyField.png"></button>'
-			document.getElementById('fullField').append(fieldTile)
+			document.getElementById('fullField').innerHTML += '<button ondragstart="return false;" class="fieldTile" id="fieldTile' + x + '-' + y + '" onclick="fieldTile(' + x + ', ' + y + ')">‎‏‏‎<img style="width:70px;height:70px;" id="fieldTile' + x + '-' + y + 'img" src="images/emptyField.png"></button>'
 		}
 	}
-	
-
-	
 }

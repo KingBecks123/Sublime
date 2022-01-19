@@ -285,19 +285,20 @@ function runBar(id, amount) {
 }
 
 function barStartGranularSkillBasic(variable, useSkillTrainer) {
-	bar = variable + "Bar"
-	if (gameData[bar] == 0 && gameData[variable + "SkillLevel"] < gameData[variable + "SkillLevelMax"] && gameData.eat >= gameData[variable + "SkillLevel"]) {
-		gameData.eat -= gameData[variable + "SkillLevel"]
-		if (gameData.skillTrainer && useSkillTrainer == true)
+	level = variable + 'SkillLevel'
+	bar = variable + 'Bar'
+	if (gameData[bar] == 0 && gameData[level] < gameData[level + 'Max'] && gameData.eat >= gameData[level]) {
+		gameData.eat -= gameData[level]
+		if (gameData.skillTrainer && useSkillTrainer)
 			gameData[bar] = 100
 		else
 			gameData[bar] = 0
 		
-		basicBarSkill(variable)
+		runSkill(variable)
 	}
 }
 
-function basicBarSkill(variable) {
+function runSkill(variable) {
 	if (variable == 'ambidextrous')
 		speed = 500
 	else
@@ -305,7 +306,7 @@ function basicBarSkill(variable) {
 	
 	if (gameData[variable + "Bar"] < 100) {
 		gameData[variable + 'Bar'] += ((3 * gameData.intelligenceSkillLevel + 30) / 8) / speed
-		setTimeout(basicBarSkill, 15 / gameData.tickspeed, variable)
+		setTimeout(runSkill, 15 / gameData.tickspeed, variable)
 	}
 	else {
 		gameData[variable + 'Bar'] = 0

@@ -1,24 +1,23 @@
-var loopNumberBasket = 0;
-var loopNumberGoldenLimes = 0;
-var loopNumberTimePlayed = 0;
-var loopNumbercurrentTask = 0;
-var numberOfBasicAchievements = 7;
-var numberOfSpecialAchievements = 2;
+var loopNumberBasket = 0
+var loopNumberGoldenLimes = 0
+var loopNumberTimePlayed = 0
+var loopNumbercurrentTask = 0
+var numberOfBasicAchievements = 7
+var numberOfSpecialAchievements = 2
 
-mainVariables       = ['limes'  , 'rottenLimes' , 'peeledLimes' , 'juice'  , 'coins'  , 'megaCoins' , 'alphaCoins' , 'betaCoins' , 'pies'   , 'pieCoins' , 'goldenLimes' ];
-mainVariablesNames  = ['Limes'  , 'Rotten Limes', 'Peeled Limes', 'Juice'  , 'Coins'  , 'Mega Coins', 'Alpha Coins', 'Beta Coins', 'Pies'   , 'Pie Coins', 'Golden Limes'];
+mainVariables       = ['limes'  , 'rottenLimes' , 'peeledLimes' , 'juice'  , 'coins'  , 'megaCoins' , 'alphaCoins' , 'betaCoins' , 'pies'   , 'pieCoins' , 'goldenLimes' ]
+mainVariablesNames  = ['Limes'  , 'Rotten Limes', 'Peeled Limes', 'Juice'  , 'Coins'  , 'Mega Coins', 'Alpha Coins', 'Beta Coins', 'Pies'   , 'Pie Coins', 'Golden Limes']
 
-mainVariablesColor  = ['#00B300', '#00B300'     , '#72B301'     , '#00B33D', '#AEB301', '#B40001'   , '#B37700'    , '#AEB301'   , '#964D1A', '#964D1A'  , '#AEB301'     ];
-mainVariablesColor2 = ['#00FF01', '#00FF01'     , '#A0FF01'     , '#00FF55', '#F8FF01', '#FE0000'   , '#FFAA01'    , '#F8FF01'   , '#C67848', '#C67848'  , '#F8FF01'     ];
+mainVariablesColor  = ['#00B300', '#00B300'     , '#72B301'     , '#00B33D', '#AEB301', '#B40001'   , '#B37700'    , '#AEB301'   , '#964D1A', '#964D1A'  , '#AEB301'     ]
+mainVariablesColor2 = ['#00FF01', '#00FF01'     , '#A0FF01'     , '#00FF55', '#F8FF01', '#FE0000'   , '#FFAA01'    , '#F8FF01'   , '#C67848', '#C67848'  , '#F8FF01'     ]
 
-mainSkills =      ['keenEye' , 'rottenWisdom' , 'limebidextrous', 'intelligence', 'knifebidextrous', 'motivation', 'ambidextrous', 'bitterSpeed' ];
-mainSkillsNames = ['Keen Eye', 'Rotten Wisdom', 'Limebidextrous', 'Intelligence', 'Knifebidextrous', 'Motivation', 'Ambidextrous', 'Bitter Speed'];
+mainSkills =      ['keenEye' , 'rottenWisdom' , 'limebidextrous', 'intelligence', 'knifebidextrous', 'motivation', 'ambidextrous', 'bitterSpeed' ]
+mainSkillsNames = ['Keen Eye', 'Rotten Wisdom', 'Limebidextrous', 'Intelligence', 'Knifebidextrous', 'Motivation', 'Ambidextrous', 'Bitter Speed']
 
 function mainGameLoopSlow() {
 
 	
-	if(gameData.maps > 4)
-	{
+	if(gameData.maps > 4) {
 		if(beckyRandom(2) == 1 && gameData.betaCoinsExchangeRate < 5000)
 			gameData.betaCoinsExchangeRate += 50
 		else if (gameData.betaCoinsExchangeRate > 500)
@@ -33,22 +32,19 @@ function mainGameLoopSlow() {
 	
 	gameData.lastSaveTime = Date.now()
 	loopNumberTimePlayed += 1
-	if(loopNumberTimePlayed == 2)
-	{
+	if (loopNumberTimePlayed == 2) {
 		gameData.timePlayed += 1 
 		loopNumberTimePlayed = 0
 	}
 	
-	if(gameData.isThereACustomer)
-	{
-		if(gameData.customerWaitTime < 5)
+	if (gameData.isThereACustomer) {
+		if (gameData.customerWaitTime < 5)
 			update("customerButton", ":)")
-		else if(gameData.customerWaitTime >= 5 && gameData.customerWaitTime < 10)
+		else if (gameData.customerWaitTime >= 5 && gameData.customerWaitTime < 10)
 			update("customerButton", ":l")
-		else if(gameData.customerWaitTime >= 10 && gameData.customerWaitTime < 15)
+		else if (gameData.customerWaitTime >= 10 && gameData.customerWaitTime < 15)
 			update("customerButton", ":(")
-		else if (gameData.customerWaitTime == 15)
-		{
+		else if (gameData.customerWaitTime == 15) {
 			gameData.isThereACustomer = 0
 			gameData.customerWaitTime = 0
 			update("customerButton", "  ")
@@ -56,9 +52,7 @@ function mainGameLoopSlow() {
 		}
 	}
 	else
-	{
 		update("customerButton", "  ")
-	}
 		
 	updatePieStuffSlow()
 	updateBrokerStuffSlow()
@@ -68,68 +62,29 @@ function mainGameLoopSlow() {
 	gameData.customerWaitTime += 1
 	updateBar('achievement')
 	updateMapTileAesthetic()
-	
-	
-	
 	saveGame()
 	setTimeout(mainGameLoopSlow, 500)
 }
 
 function mainGameLoop() {
-	
 	loopNumberBasket += 1	
 	loopNumberGoldenLimes += 1	
-
 	
 	if (gameData.basketBar < 100 && loopNumberBasket >= 24) {
         gameData.basketBar += 0.2;
 		loopNumberBasket = 0
 		
-		if(beckyRandom(100) == 1 && gameData.forestTreeType == 2)
+		if (beckyRandom(100) == 1 && gameData.forestTreeType == 2)
 			gameData.goldenLimesInBaskets += 1
     }
 	
 	if (loopNumberGoldenLimes >= 200) {
-        if(gameData.goldenLimes > 0)
-		{
+        if (gameData.goldenLimes > 0)
 			gameData.goldenLimes -= 1
-		}
-		
 		loopNumberGoldenLimes = 0
-
     }
-	   
 	setTimeout(mainGameLoop, 50)
 }
-
-function calculateOfflineProgress(){
-	secondsOffline = Math.floor((Date.now() - gameData.lastSaveTime) / 1000)
-	secondsOfflineThree = Math.floor(secondsOffline / 3)
-
-	if(gameData.basketScarecrow)
-	{
-		if(gameData.basketBar + secondsOfflineThree < 100)
-			gameData.basketBar += secondsOfflineThree
-		else
-			gameData.basketBar = 100
-	}
-	if(gameData.surveillanceCamera && secondsOffline > 60 && gameData.employeeWorking > 0)
-	{
-		for (i = 0; i < Math.floor(secondsOffline / 60) && gameData.employeeWorking > 0; i++) {
-			
-			gameData.employeeWorking -= 1
-			gameData.limes += gameData.employeeCurrentSpeed
-
-		}
-
-		gameData.workingBar = 0
-
-	}
-	
-	saveGame()
-
-}
-
 
 function sellMaxJuice() {
     if (gameData.juice < gameData.juiceBulkAmountMax)
@@ -171,14 +126,6 @@ function motivateEmployee() {
 	    gameData.workingBar += gameData.motivationSkillLevel / 20
 }
 
-function foodToggleLimes() {
-    gameData.foodTypeToggle = 0
-}
-
-function foodToggleRottenLimes() {
-    gameData.foodTypeToggle = 1
-}
-
 function payEmployee() {
     if (gameData.coins >= gameData.employeeWage && gameData.employeeWorking < gameData.employeeWorkingMax) {
         gameData.employeeWorking += 1
@@ -188,7 +135,6 @@ function payEmployee() {
 }
 
 function getLimesButton() {
-
 	if (gameData.lookAround < 1)
 		gameData.collectLimesAtBeginning += 1
 	
@@ -231,16 +177,12 @@ function getLimesButton() {
 		break;
 	  case 130:
         update("newInfo", "I'm leaving.")
-
 	}
-	
     getLimes()
-
 }
 
 function getLimes() {
-	if( beckyRandom(gameData.keenEyeSkillLevelMax) <= gameData.keenEyeSkillLevel)
-	{
+	if (beckyRandom(gameData.keenEyeSkillLevelMax) <= gameData.keenEyeSkillLevel) {
 		if (gameData.keenEyeSkillLevel != gameData.keenEyeSkillLevelMax)
 		{
 			update("newInfo", "You found something!")
@@ -263,11 +205,8 @@ function getLimes() {
 		}
 		
 	}
-	else
-	{
-		if ((gameData.lookAround < 1 && gameData.collectLimesAtBeginning < 10) || gameData.lookAround >= 1)
-			update("newInfo", "Couldn't find any limes...")
-	}
+	else if ((gameData.lookAround < 1 && gameData.collectLimesAtBeginning < 10) || gameData.lookAround >= 1)
+		update("newInfo", "Couldn't find any limes...")
 }
 
 function peelLime() {
@@ -282,15 +221,13 @@ function peelLime() {
 }
 
 function buyTome() {
-	if(gameData.tomes == 0)
-	{
+	if(gameData.tomes == 0) {
 		if (gameData.coins >= 10) {
 			gameData.coins -= 10
 			gameData.tomes = 1
 		}
 	}
-	else if(gameData.tomes == 1)
-	{
+	else if(gameData.tomes == 1) {
 		if (gameData.alphaCoins >= 100) {
 			gameData.alphaCoins -= 100
 			gameData.tomes = 2
@@ -326,7 +263,6 @@ function increaseCreditScore2() {
         gameData.megaCoins -= 5
         gameData.megaCoinsInBankMax += 150
         gameData.creditScore2 = 1
-
     }
 }
 
@@ -335,7 +271,6 @@ function increaseCreditScore3() {
         gameData.megaCoins -= 50
         gameData.megaCoinsInBankMax += 800
         gameData.creditScore3 = 1
-
     }
 }
 
@@ -343,7 +278,6 @@ function buyABiggerWallet() {
     if (gameData.megaCoins >= 50) {
         gameData.megaCoins -= 50
         gameData.coinsMax += 1e6
-
     }
 }
 
@@ -356,15 +290,13 @@ function buyMegaCoins() {
 }
 
 function buyMegaCoinsWithAlphaCoins(amount) {
-	if(amount == 1)
-	{
+	if (amount == 1) {
 		if (gameData.alphaCoins >= 10 && gameData.megaCoinsInBank < gameData.megaCoinsInBankMax) {
 			gameData.alphaCoins -= 10
 			gameData.megaCoinsInBank += 1
 		}
 	}
-	else
-	{
+	else {
 		if (gameData.alphaCoins >= 100 && gameData.megaCoinsInBank + 10 <= gameData.megaCoinsInBankMax) {
 			gameData.alphaCoins -= 100
 			gameData.megaCoinsInBank += 10
@@ -392,25 +324,19 @@ function upgradeMoreStorage() {
 function travelToNextVillage() {
     if (window.prompt("Are you sure? Type 'yes' if you are") == "yes") {
 		
-		if (gameData.increaseJuicePricePermanance == 1) {
-			saveBeforeWipe('juicePricePrice')
+		if (gameData.increaseJuicePricePermanance == 1)
 		    saveBeforeWipe('juicePriceCents')
-		} 
 		
-		if (gameData.manuscripts > 0) {
+		if (gameData.manuscripts > 0)
 			saveBeforeWipe('respectMilestone1000')
-		} 
 		
-		if (gameData.saveAlphaCoinsUnlock) {
+		if (gameData.saveAlphaCoinsUnlock)
 			saveBeforeWipe('alphaCoins')
-		} 
+		
 		
 		saveBeforeWipe('saveAlphaCoinsUnlock')
         saveBeforeWipe('manuscripts')
-		
         saveBeforeWipe('lightRobe')
-
-		
         saveBeforeWipe('increaseJuicePricePermanance')
 
 		
@@ -452,6 +378,9 @@ function travelToNextVillage() {
 			saveBeforeWipe(saveWipeValues[i])		
 		}
 
+		function saveBeforeWipe(id) {
+			eval(id + 'Now = gameData.' + id)
+		}
 
 
 
@@ -464,12 +393,11 @@ function travelToNextVillage() {
 		saveAfterWipe('saveAlphaCoinsUnlock')
 		saveAfterWipe('megaCoins')	
 
-		if (gameData.saveAlphaCoinsUnlock) {
+		if (gameData.saveAlphaCoinsUnlock)
 			saveAfterWipe('alphaCoins')
-		} 
-
+		
+		
 		if (increaseJuicePricePermananceNow) {
-			saveAfterWipe('juicePricePrice')
 			saveAfterWipe('juicePriceCents')
 			saveAfterWipe('increaseJuicePricePermanance')
 		} 
@@ -487,22 +415,19 @@ function travelToNextVillage() {
 			saveAfterWipe('specialAchievement' + i)	
 		}
 		
-		
-
 		for (let i = 0; i < saveWipeValues.length; i++) {
 			saveAfterWipe(saveWipeValues[i])		
 		}
 		
-
-
-
+		function saveAfterWipe(id) {
+			eval('gameData.' + id + '=' + id + 'Now')
+		}
 
 		gameData.juicersMax = 100 + gameData.upgradeMoreStorage * 500
 		gameData.peelersMax = 500 + gameData.upgradeMoreStorage * 2500
 		
-		if (lightRobeNow) {
+		if (lightRobeNow)
 			gameData.respect += 50
-		} 
 		
 		if(rottenActualWisdomNow)
 			gameData.rottenWisdomSkillLevelMax = 25
@@ -510,19 +435,16 @@ function travelToNextVillage() {
 
         gameData.villageNumber = 2
         saveGame()
-		
-
-
-        location.reload();
+        location.reload()
     }
 }
 
-function stopActions(){
+function stopActions() {
 	gameData.currentTask = 'none'
 	gameData.currentTask2 = 'none'
 }
 
-function rottenActualWisdom(){
+function rottenActualWisdom() {
     if (gameData.megaCoins >= 50) {
         gameData.megaCoins -= 50
         gameData.rottenActualWisdom += 1
@@ -531,27 +453,24 @@ function rottenActualWisdom(){
 }
 
 function lookAround() {
-
     gameData.lookAroundNumber += 1
 
-    if (gameData.lookAround < 1) {
+    if (gameData.lookAround < 1)
         update("newInfo", "Maybe I should keep looking around...")
-
-    }
 
     if (gameData.lookAround == 0) {
         if (gameData.lookAroundNumber >= 5) {
             update("newInfo", "You see a nearby market.")
             gameData.lookAround = 1
-
         }
-    } else if (gameData.lookAround == 1) {
+    } 
+	else if (gameData.lookAround == 1) {
         if (gameData.lookAroundNumber >= 10) {
             update("newInfo", "You find a merchant willing to buy limes.")
             gameData.lookAround = 2
-
         }
-    } else if (gameData.lookAround == 2) {
+    } 
+	else if (gameData.lookAround == 2) {
         if (gameData.lookAroundNumber >= 15) {
             update("newInfo", "You find a merchant selling various items.")
             gameData.lookAround = 3
@@ -559,48 +478,14 @@ function lookAround() {
     }
 }
 
-function buyAMap() {
-    if (gameData.coins >= 20 && gameData.maps == 0) {
-        gameData.coins -= 20
-        gameData.maps = 1
-    } else if (gameData.coins >= 200 && gameData.maps == 1) {
-        gameData.coins -= 200
-        gameData.maps = 2
-    } else if (gameData.coins >= 2000 && gameData.maps == 2) {
-        gameData.coins -= 2000
-        gameData.maps = 3
-    } else if (gameData.coins >= 2e5 && gameData.maps == 3) {
-        gameData.coins -= 2e5
-        gameData.maps = 4
-		if(thisTownDeliveries < 2)
-		{
-			gameData.specialAchievement2 = 1
-		}
-    } else if (gameData.coins >= 2e5 && gameData.maps == 4) {
-        gameData.coins -= 2e5
-        gameData.maps = 5
-    }
-}
-
-
 function storageJuicersUnlock() {
-	storageJuicersUnlockDo()
-}
-
-function storageJuicersUnlockDo() {
 	if (gameData.coins >= 100) {
 		gameData.coins -= 100
 		gameData.storageJuicersUnlock = 1
 		gameData.juicersMax *= 5
 		if (gameData.upgradeMoreStorage > 0)
-		{
 			gameData.specialAchievement1 = 1
-		}
 	}
-}
-
-function storagePeelersUnlock() {
-	storagePeelersUnlock()
 }
 
 function storagePeelersUnlock() {
@@ -609,42 +494,28 @@ function storagePeelersUnlock() {
 		gameData.storagePeelersUnlock = 1
 		gameData.peelersMax *= 5
 		if (gameData.upgradeMoreStorage > 0)
-		{
 			gameData.specialAchievement1 = 1
-		}
 	}
 }
 
 function changeZoomSize() {
-
-	if (gameData.changeZoomSize == 150)
-	{
+	if (gameData.changeZoomSize == 150) {
 		gameData.changeZoomSize = 100
 		document.body.style.zoom=1.0;
 	}
-	else
-	{
+	else {
 		gameData.changeZoomSize += 10
 		document.body.style.zoom= gameData.changeZoomSize / 100;
 	}
 }
 
-function juiceLimesToggle() {
-    gameData.limeTypeToJuice = 0
-}
-
-function benevolenceToggle(){
+function benevolenceToggle() {
 	if (gameData.diseaseControlFinished)
 		toggle('benevolenceToggle')
 }
 
-function juicePeeledLimesToggle() {
-    gameData.limeTypeToJuice = 1
-}
-
-
 function increaseJuicePrice() {
-	if(gameData.increaseJuicePricex10){
+	if(gameData.increaseJuicePricex10) {
 		for (i = 0; i < 10; i++) {
 			if (gameData.coins >= gameData.juicePricePrice) {
 				gameData.coins -= gameData.juicePricePrice
@@ -653,8 +524,7 @@ function increaseJuicePrice() {
 			}
 		}
 	}
-	else
-	{
+	else {
 		if (gameData.coins >= gameData.juicePricePrice) {
 			gameData.coins -= gameData.juicePricePrice
 			gameData.juicePriceCents += 1
@@ -665,22 +535,20 @@ function increaseJuicePrice() {
 
 function decreaseJuiceSold() {
     if (gameData.juiceBulkAmountToggle >= 1) {
-        if (gameData.juiceBulkAmountToggle > 100) {
+        if (gameData.juiceBulkAmountToggle > 100)
             gameData.juiceBulkAmountToggle -= 10
-        } else {
+        else
             gameData.juiceBulkAmountToggle -= 1
-        }
     }
 }
 
 function increaseJuiceSold() {
-    if (gameData.juiceBulkAmountToggle < 100) {
+    if (gameData.juiceBulkAmountToggle < 100)
         gameData.juiceBulkAmountToggle += 1
-    } else if (gameData.juiceBulkAmountToggle < 500 && gameData.deliveryTypeToggle == 2 && gameData.fasterTransport > 0) {
+    else if (gameData.juiceBulkAmountToggle < 500 && gameData.deliveryTypeToggle == 2 && gameData.fasterTransport > 0)
         gameData.juiceBulkAmountToggle += 10
-    } else if (gameData.juiceBulkAmountToggle < 2000 && gameData.deliveryTypeToggle == 3) {
+    else if (gameData.juiceBulkAmountToggle < 2000 && gameData.deliveryTypeToggle == 3)
         gameData.juiceBulkAmountToggle += 10
-    }
 }
 
 function moveBasket() {
@@ -690,30 +558,26 @@ function moveBasket() {
 }
 
 function moveAutoCollecting() {
-
     var elem = document.getElementById("autoCollectingBar");
     var x = Math.floor(gameData.autoCollectingBar / (gameData.nourishment + 1))
     var x2 = gameData.autoCollectingBar / (gameData.nourishment + 1)
 
-    elem.style.width = x2 + "%";
-    elem.innerHTML = x + "%";
+    elem.style.width = x2 + "%"
+    elem.innerHTML = x + "%"
 }
 
 
 function buyABasket() {
-
     gameData.basketBar -= gameData.basketBar / (gameData.baskets + 1)
     bulkableBuyMax('baskets', 2)
 }
 
-function throwPieCoinsWell(){
-	if(gameData.pieCoinsInWell + gameData.pieCoins <= 200)
-	{
+function throwPieCoinsWell() {
+	if (gameData.pieCoinsInWell + gameData.pieCoins <= 200) {
 		gameData.pieCoinsInWell += gameData.pieCoins
 		gameData.pieCoins = 0
 	}
-	else
-	{
+	else {
 		gameData.pieCoinsInWell = 200
 		gameData.pieCoins -= (200 - gameData.pieCoinsInWell)
 	}
@@ -722,11 +586,7 @@ function throwPieCoinsWell(){
 }
 
 function moveWell() {
-    var elem = document.getElementById("wellBar");
-    elem.style.height = (gameData.pieCoinsInWell / 2) + "%";
-    elem.innerHTML = Math.floor(gameData.pieCoinsInWell / 2) + "%";
-}
-
-function enterTheWell(){
-	gameData.endScreen = 1
+    var elem = document.getElementById("wellBar")
+    elem.style.height = (gameData.pieCoinsInWell / 2) + "%"
+    elem.innerHTML = Math.floor(gameData.pieCoinsInWell / 2) + "%"
 }
