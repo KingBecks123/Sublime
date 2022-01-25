@@ -1,5 +1,4 @@
 Object.assign ( gameDataBase, {
-	betaCoins: 0,
 	betaCoinsExchangeRate: 2500,
 	betaCoinTransferAmount: 1,
 	alphaToBetaBar: 0,
@@ -34,7 +33,6 @@ Object.assign ( gameDataBase, {
 	transferAlphaCoinBags: 0,
 	alphaCoinConvertBulkToggle: 0,
 	alphaCoinConvertBulkToggleSet: 0,
-	alphaCoins: 0,
 	alphaCoinsExchangeRate: 100,
 	amountCoinsToAlpha: 0,
 	amountCoinsToAlphaMax: 10,

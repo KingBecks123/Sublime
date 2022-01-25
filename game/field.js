@@ -17,7 +17,6 @@ Object.assign ( gameDataBase, {
 	bakePieBar: 0,
 	juiceAsPieIngredient: 0,
 	flourAsPieIngredient: 0,
-	pieCoins: 0,
 	advancedPieHiring: 0,
 
 	wheatHarvesters: 0,

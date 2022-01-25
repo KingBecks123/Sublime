@@ -3,7 +3,6 @@ Object.assign ( gameDataBase, {
     juicerBar: 0,
     howMuchJuice: 0,
     knife: 0,
-    peeledLimes: 0,
     limeTypeToJuice: 0,
     limeTypeToJuiceToggle: 0,
     limesInBaskets: 0,
@@ -12,7 +11,11 @@ Object.assign ( gameDataBase, {
     peelers: 0,
     peelerBar: 0,
     howManyPeeledLimes: 0,
-	hasGottenPeeledLimes: false
+	hasGottenPeeledLimes: false,
+    storageJuicersUnlock: 0,
+    storagePeelersUnlock: 0,
+    peelersBulkToggle: 0,
+    juicersBulkToggle: 0,
 } )
 
 function peelerPeel() {
@@ -124,10 +127,11 @@ function peelLime() {
     }
 }
 
+loopNumberGoldenLimes = 0
+
 function mainGameLoopInventory () {
 	loopNumberGoldenLimes += 1	
 
-	
 	if (loopNumberGoldenLimes >= 200) {
         if (gameData.goldenLimes > 0)
 			gameData.goldenLimes -= 1

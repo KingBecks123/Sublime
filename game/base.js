@@ -69,15 +69,11 @@ baseVariables = [
 
 
 var gameDataBase = {
-    limes: 1,
-    coins: 0,
 	coinsMax: 1e6,
-    juice: 0,
     juiceBulkAmount: 1,
     deliveryBar: 0,
     exploreLevel: 0,
     lookAround: 0,
-    rottenLimes: 0,
     learnANewSkillBar: 0,
     learnANewSkill: -2,
     teachBar: 0,
@@ -104,10 +100,6 @@ var gameDataBase = {
     bulkBuyUnlock: 0,
     bulkBuyUnlock2: 0,
     storageUnlock: 0,
-    storageJuicersUnlock: 0,
-    storagePeelersUnlock: 0,
-    peelersBulkToggle: 0,
-    juicersBulkToggle: 0,
     basketsBulkToggle: 0,
 	nationalJuiceMarketing: 0,
 	multitasking: 0,
@@ -121,17 +113,9 @@ var gameDataBase = {
     bigGloves: 0,
     villageNumber: 1,
     nutritionists: 0,
-    megaCoins: 0,
     megaCoinsInBank: 0,
     megaCoinsInBankMax: 20,
-    diseaseControlFinished: true,
-    respect: 0,
-    simulationTime: false,
-    unlockDiseaseAreaSwamp: 0,
-    limeDiseaseInfoToggle: 1,
-    limeDiseaseControlInfoToggle: 1,
-    limeDiseaseLakes: 0,
-    limeDiseaseLakesSet: 0,
+
     hasAdvertised: 0,
     betterTraining: 0,
 	upgradeMoreStorage: 0,
@@ -191,7 +175,6 @@ var gameDataBase = {
 	doesHaveCurrencyBroker: 0,
 	convertCoinsNowBar: 0,
 	basketScarecrow: 0,
-	invertText: 0,
 	surveillanceCamera: 0,
 	surveillanceCamera2: 0,
 	skillTrainer: 0,
@@ -202,7 +185,6 @@ var gameDataBase = {
 	lightRobe: 0,
 	rottenActualWisdom: 0,
 
-	goldenLimes: 0,
 	goldenLimesInBaskets: 0,
 	eatGoldenLimeBar: 100,
 	bitterSpeeding: 0,
@@ -213,20 +195,18 @@ var gameDataBase = {
 	mainTab: 'null',
 	marketTab: 'marketMain',
 	endScreen: 0,
-	trueLimes: 0,
 }
 
-
+for (let i = 0; i < baseVariables.length; i++) {
+	gameDataBase[baseVariables[i].id] = 0
+}
+gameDataBase.limes = 1
 
 var gameData = {}
 
 ableToSave = true
 
-var loopNumberBasket = 0
-var loopNumberGoldenLimes = 0
 var loopNumberTimePlayed = 0
-var loopNumbercurrentTask = 0
-
 
 function getLimesButton() {
 	if (gameData.lookAround < 1)
@@ -418,55 +398,45 @@ function mainGameLoopSlowBase () {
 		loopNumberTimePlayed = 0
 	}
 }
-
 function onLoadBase () {
-	for (let i = 0; i < baseVariables.length; i++) {
-		gameDataBase[baseVariables[i].id + 'ShowVariable'] = true
-		gameDataBase[baseVariables[i].id + 'UnlockedVariable'] = false
-	}
 	for (let i = 0; i < baseVariables.length; i++) {	
+		id = baseVariables[i].id
+
+	
 		if (i > 0) {
 			document.getElementById('backpackDiv').innerHTML += '<button class="specialButton" id="currencyDisplay(' + i + ')" onClick="currencyDisplay(' + i + ')" style="width:167px">Show ' + baseVariables[i].name + '</button>'
 		}
-	
-		var id = upperFirstChar(baseVariables[i].id)
 		
-		document.getElementById('backgroundForValues').innerHTML += '<div class="stat" id="textFor' + id + 'Div" style="color:#' + baseVariables[i].color2 + '">' + baseVariables[i].name + ' </div><div class="stat ar" id="textFor' + id + '"  style="display:none;color:#' + baseVariables[i].color1 + '">0</div><p id="textFor' + id + 'P"  style="display:none ; "> </p><br  id="textFor' + id + 'Br"   style="display:none ; "/>'
+		gameDataBase[id + 'ShowVariable'] = true
+		gameDataBase[id + 'UnlockedVariable'] = false
+			
+		document.getElementById('backgroundForValues').innerHTML += '<div class="stat" id="textFor' + id + 'Div" style="color:#' + baseVariables[i].color2 + '">' + baseVariables[i].name + ' </div><div class="stat" id="textFor' + id + '"  style="float: right;color:#' + baseVariables[i].color1 + '">0</div><p id="textFor' + id + 'P"> </p><br  id="textFor' + id + 'Br"/>'
 	}
 
-	document.getElementById('textForBetaCoinsDiv').style.textDecoration = 'underline'
-	document.getElementById('textForPieCoinsDiv').style.textDecoration = 'underline'
-	
-
+	document.getElementById('textForbetaCoinsDiv').style.textDecoration = 'underline'
+	document.getElementById('textForpieCoinsDiv').style.textDecoration = 'underline'
 
 	restartBar('juicer')
 	restartBar('peeler')
 	restartBar('advertise')
 	restartBar('eat')
-	
-	gameData.teachBar = 0
-
-
 	restartBar('coinsToAlpha')
 	restartBar('convertCoinsNow')
 	restartBar('alphaToBeta')
 	restartBar('findPieCustomers')
 	restartBar('bakePie')
-	restartBar('harvestRice')
 	restartBar('delivery')
+	restartBar('bellows')
+	restartBar('autoCollecting')
 
-	if (gameData.bellowsBar > 0)
-		bellowsBar()
+	gameData.teachBar = 0
 
-	updateBar('delivery')
-	updateBar('bakePie')
+
 	moveWell()
 
-	if (gameData.workingBar != 0 || gameData.employeeWorking > 0)
+	if (gameData.workingBar > 0 || gameData.employeeWorking > 0)
 		runBar('working', 0.025)
 
-	if (gameData.autoCollectingBar !== 0)
-		autoCollectingBar()
 	
 	normalizeButtons()
 	pinButton()
@@ -579,7 +549,7 @@ function updateValuesBase () {
 
 	for (let i = 0; i < baseVariables.length; i++) {
 		id = baseVariables[i].id
-		elem = "textFor" + upperFirstChar(id)
+		elem = "textFor" + id
 
 		if (gameData[id] > 1e9)
 			val = gameData[id].toExponential(3)

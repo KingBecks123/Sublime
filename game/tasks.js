@@ -12,6 +12,14 @@ Object.assign ( gameDataBase, {
     autoStartTask: 0,
     autoCheckSimulation: 0,
     autoStartSimulation: 0,
+    diseaseControlFinished: true,
+    respect: 0,
+    simulationTime: false,
+    unlockDiseaseAreaSwamp: 0,
+    limeDiseaseInfoToggle: 1,
+    limeDiseaseControlInfoToggle: 1,
+    limeDiseaseLakes: 0,
+    limeDiseaseLakesSet: 0,
 } )
 
 function startSimulation() {

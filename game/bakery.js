@@ -21,7 +21,6 @@ Object.assign ( gameDataBase, {
 	usingBetaCoinWage: 0,
 	pieMerchantInfoToggle: 0,
 	
-	pies: 0,
 	hasGottenPies: 0,
 	piePrice: 1,
 	findPieCustomersBar: 0,

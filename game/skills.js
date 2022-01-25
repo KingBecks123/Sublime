@@ -47,7 +47,8 @@ Object.assign ( gameDataBase, {
     eatBar: 0,
     autoCollectingBar: 0,
     skillInfoToggle: 1,
-	nourishmentPrice: 1
+	nourishmentPrice: 1,
+	foodNutritionValue: 1,
 } )
 
 for (let i = 0; i < skills.length; i++) {

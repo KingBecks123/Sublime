@@ -35,9 +35,10 @@ function basket() {
     gameData.goldenLimesInBaskets = 0
 }
 
+loopNumberBasket = 0
+
 function mainGameLoopForest () {
 	loopNumberBasket += 1	
-	loopNumberGoldenLimes += 1	
 	
 	if (gameData.basketBar < 100 && loopNumberBasket >= 24) {
         gameData.basketBar += 0.2;
