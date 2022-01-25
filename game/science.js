@@ -55,7 +55,15 @@ sciences = [
 	},
 ]
 
-function updateScience() {
+Object.assign ( gameDataBase, {
+	watertightBar: 0,
+	watertightResearchers: 0,
+	surveyingBar: 0,
+	surveyingResearchers: 0,
+	researchers: 0,
+} )
+
+function updateValuesScience() {
 	
 	researchersAvailable = gameData.researchers
 
@@ -90,7 +98,17 @@ function updateScience() {
 	checkShow(!gameData.surveillanceCamera2 && gameData.respectMilestone1000, 'offlineScience')
 	checkShow(!gameData.unlockBenevolence && gameData.respectMilestone1000, 'unlockBenevolence')	
 	checkShow(gameData.surveillanceCamera2, 'upgradeHighTechSurveillance')
+	
+	var x = document.getElementsByClassName("changeResearchersBy10")
+	for (i = 0; i < x.length; i++) {
+		if (gameData.changeResearchersBy10Unlock)
+			x[i].style.display = 'inline-block'
+		else
+			x[i].style.display = 'none'
+	}
 }
+
+
 
 
 function tabScience(tabby) {
@@ -128,7 +146,7 @@ function hireResearcher() {
 	}
 }
 
-function scienceOnLoad () {
+function onLoadScience () {
 	for (let i = 0; i < sciences.length; i++) {
 		id = sciences[i].id
 		
