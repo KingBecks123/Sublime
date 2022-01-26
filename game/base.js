@@ -630,5 +630,5 @@ function updateValuesBase () {
 	}
 
 	if (gameData.forestWell)
-		update('textForLimesDiv', '&#39Limes&#39')
+		update('textForlimesDiv', '&#39Limes&#39')
 }
