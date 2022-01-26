@@ -1,3 +1,18 @@
+baseVariables.push (
+	{
+		id: 'alphaCoins',
+		name: 'Alpha Coins',
+		color1: 'B37700',
+		color2: 'FFAA01',
+	},	
+	{
+		id: 'betaCoins',
+		name: 'Beta Coins',
+		color1: 'AEB301',
+		color2: 'F8FF01',
+	},	
+)
+
 Object.assign ( gameDataBase, {
 	betaCoinsExchangeRate: 2500,
 	betaCoinTransferAmount: 1,

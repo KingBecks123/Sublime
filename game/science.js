@@ -1,3 +1,12 @@
+mainTabs.push (
+	{
+		id: 'science',
+		text: 'Science',
+		color1: '9ABBFF',
+		color2: '4D88FE'
+	},
+)
+
 sciences = [
 	{
 		id: 'watertight',
@@ -97,7 +106,6 @@ function updateValuesScience() {
 	checkShow(gameData.unlockBenevolence, 'benevolenceDiv')
 	checkShow(!gameData.surveillanceCamera2 && gameData.respectMilestone1000, 'offlineScience')
 	checkShow(!gameData.unlockBenevolence && gameData.respectMilestone1000, 'unlockBenevolence')	
-	checkShow(gameData.surveillanceCamera2, 'upgradeHighTechSurveillance')
 	
 	var x = document.getElementsByClassName("changeResearchersBy10")
 	for (i = 0; i < x.length; i++) {
@@ -153,11 +161,11 @@ function onLoadScience () {
 		document.getElementById('research').innerHTML += `
 		<div class="basicDiv" id="` + id + `Div">
 			<button class="specialButton" onclick="barStartScience(` + i + `)">` + sciences[i].buttonText + `</button>
-			<p class="basicTextSize" id="` + id + `Researchers" style="color:#00AAFF;background-color:#000000"></p>
-			<button class="basicButtonSize"                       style="background-color:#00AAFF;width:30px" onclick="addResearchers('` + id + `', -1)">-</button>
-			<button class="basicButtonSize changeResearchersBy10" style="background-color:#00AAFF;width:50px" onclick="addResearchers('` + id + `', -10)">-10</button>
-			<button class="basicButtonSize"                       style="background-color:#00AAFF;width:30px" onclick="addResearchers('` + id + `', 1)">+</button>
-			<button class="basicButtonSize changeResearchersBy10" style="background-color:#00AAFF;width:50px" onclick="addResearchers('` + id + `', 10)">+10</button>
+			<p class="basicText" id="` + id + `Researchers" style="color:#00AAFF;background-color:#000000"></p>
+			<button class="specialButton"                       style="background-color:#00AAFF;width:30px" onclick="addResearchers('` + id + `', -1)">-</button>
+			<button class="specialButton changeResearchersBy10" style="background-color:#00AAFF;width:50px" onclick="addResearchers('` + id + `', -10)">-10</button>
+			<button class="specialButton"                       style="background-color:#00AAFF;width:30px" onclick="addResearchers('` + id + `', 1)">+</button>
+			<button class="specialButton changeResearchersBy10" style="background-color:#00AAFF;width:50px" onclick="addResearchers('` + id + `', 10)">+10</button>
 			<div class="scienceInfo">
 				<p class="basicText">` + sciences[i].info + `</p>
 			</div>

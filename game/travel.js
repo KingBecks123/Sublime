@@ -1,3 +1,111 @@
+travelUpgrades = [
+	{
+		id: 'upgradeNutritionist',
+		text: 'Nutritionist',
+		description: 'Doubles food points from eating',
+		requirement: 'gameData.nutritionists'
+	},
+	{
+		id: 'upgradeJuicePricePermanance',
+		text: 'Juice Price Permanance',
+		description: 'Juice price is saved after travelling',
+		requirement: 'gameData.increaseJuicePricePermanance'
+	},
+	{
+		id: 'upgradeCreditScore',
+		text: 'Credit Score',
+		description: 'Increases max Mega Coins in the bank',
+		requirement: 'gameData.megaCoinsInBankMax > 20'
+	},
+	{
+		id: 'upgradeBigGloves',
+		text: 'Big Gloves',
+		description: 'Helps you pick up double limes!',
+		requirement: 'gameData.bigGloves'
+	},
+	{
+		id: 'upgradeManuscripts',
+		text: 'Manuscripts',
+		description: 'Keep 1,000 respect milestone after travelling',
+		requirement: 'gameData.manuscripts'
+	},
+	{
+		id: 'upgradeBetterTraining',
+		text: 'Better Training',
+		description: 'Increases maximum applicant speed',
+		requirement: 'gameData.betterTraining'
+	},
+	{
+		id: 'upgradeJuiceMarketing',
+		text: 'National Juice Marketing',
+		description: 'Doubles juice sale price',
+		requirement: 'gameData.nationalJuiceMarketing'
+	},
+	{
+		id: 'upgradeWallet',
+		text: 'Wallet',
+		description: 'Increases maximum coin storage',
+		requirement: 'gameData.coinsMax > 1e6'
+	},
+	{
+		id: 'upgradeMoreLand',
+		text: 'More Land',
+		description: 'Increases maximum juicers and peelers',
+		requirement: 'gameData.upgradeMoreStorage'
+	},
+	{
+		id: 'upgradeHighTechSurveillance',
+		text: 'High Tech Surveillance Camera',
+		description: 'Makes sure researchers are working while you&#39re away',
+		requirement: 'gameData.surveillanceCamera2'
+	},
+	{
+		id: 'upgradeChangeResearchersBy10',
+		text: 'Bulk Researcher Transfer',
+		description: 'Cart researchers around rather than giving them any special attention',
+		requirement: 'gameData.changeResearchersBy10Unlock'
+	},
+	{
+		id: 'upgradeSaveAlphaCoinsUnlock',
+		text: 'A Safe On Wheels',
+		description: 'Keep alpha coins after travelling',
+		requirement: 'gameData.saveAlphaCoinsUnlock'
+	},
+	{
+		id: 'upgradeRottenActualWisdomUnlock',
+		text: 'Rotten (Actual) Wisdom',
+		description: 'Lowers the max skill level of Rotten Wisdom from 50 to 25',
+		requirement: 'gameData.rottenActualWisdom'
+	}
+]
+
+function onLoadTravel () {
+	for (let i = 0; i < travelUpgrades.length; i++) {
+		document.getElementById('megaCoinUpgrades').innerHTML += `<div class="basicDiv" id="` + travelUpgrades[i].id + `">
+            <p class="basicText" style="background-color:#FF999A;" >` + travelUpgrades[i].text + `</p>
+            <p class="basicText">` + travelUpgrades[i].description + `</p>
+        </div>`
+	}
+}
+
+baseVariables.push (
+	{
+		id: 'megaCoins',
+		name: 'Mega Coins',
+		color1: 'B40001',
+		color2: 'FE0000',
+	},	
+)
+
+mainTabs.push (
+	{
+		id: 'megaCoinUpgrades',
+		text: 'Upgrades',
+		color1: 'FF999A',
+		color2: 'FF4D4D'
+	},
+)
+
 function convertCoinsNow() {
     if (gameData.coins >= 1e5 && (gameData.convertCoinsNowBar == 0 || gameData.convertCoinsNowBar == 100)) {
         gameData.coins -= 1e5
@@ -200,19 +308,14 @@ function rottenActualWisdom() {
 }
 
 function updateValuesTravel () {
-	checkShow(gameData.megaCoinsInBankMax > 20, 'upgradeCreditScore')
 	checkShow(gameData.megaCoinsInBankMax <= 20, 'increaseCreditScore')
-	checkShow(gameData.nutritionists, 'upgradeNutritionist')
 	checkShow(!gameData.nutritionists, 'hireANutritionist')
 	checkShow(gameData.respectMilestone10000 && !gameData.bachelorsDegreeFinance, 'earnBachelorFinance')
 	checkShow(!gameData.respectMilestone10000, 'buyABiggerWallet')
 	checkShow(gameData.respectMilestone10000, 'upgradeMoreStorage')
 	checkShow(!gameData.bigGloves, 'buyBigGloves')
-	checkShow(gameData.bigGloves, 'upgradeBigGloves')
 	checkShow(gameData.creditScore2 && !gameData.creditScore3, 'increaseCreditScore3')
-	checkShow(gameData.coinsMax > 1e6, 'upgradeWallet')
 	checkShow(!gameData.creditScore2 && gameData.respectMilestone10000, 'increaseCreditScore2', 'inline')
-	checkShow(gameData.rottenActualWisdom, 'upgradeRottenActualWisdomUnlock')
 
 	update('textForMegaCoinsInBank', gameData.megaCoinsInBank.toLocaleString() + ' / ' + gameData.megaCoinsInBankMax.toLocaleString() + ' Mega Coins In Bank')
 	update('buyMegaCoinsTimes', 'Transfer times: ' + gameData.buyMegaCoinsTimes + ' / ' + gameData.buyMegaCoinsTimesMax)
@@ -221,12 +324,12 @@ function updateValuesTravel () {
         gameData.megaCoinsInBank = gameData.megaCoinsInBankMax
 	
 	checkShow(!gameData.nationalJuiceMarketing, 'juiceMarketing')
-	checkShow(gameData.nationalJuiceMarketing, 'upgradeJuiceMarketing')
 	
-	checkShow(gameData.upgradeMoreStorage, 'upgradeMoreLand')
-	checkShow(gameData.betterTraining, 'upgradeBetterTraining')
 	update('betterTrainingPrice', 'Price: ' + gameData.betterTraining.toLocaleString() + ' Mega Coins')
-	update('textForBetterTraining', 'Current maximum: ' + (gameData.betterTraining + 10).toLocaleString() + '00%')
 	update('upgradeMoreStoragePrice', 'Price: ' + (Math.pow(2, gameData.upgradeMoreStorage) * 50).toLocaleString() + ' Mega Coins')
+	
+	for (let i = 0; i < travelUpgrades.length; i++) {
+		checkShow(eval(travelUpgrades[i].requirement), travelUpgrades[i].id)
+	}
 
 }

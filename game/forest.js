@@ -1,3 +1,12 @@
+mainTabs.push (
+	{
+		id: 'forest',
+		text: 'Forest',
+		color1: 'BBBBBB',
+		color2: '898989'
+	},
+)
+
 Object.assign ( gameDataBase, {
 	forestTree2: 0,
 	forestTreeType: 1,
@@ -17,14 +26,6 @@ function throwPieCoinsWell() {
 		gameData.pieCoinsInWell = 200
 		gameData.pieCoins -= (200 - gameData.pieCoinsInWell)
 	}
-
-	moveWell()
-}
-
-function moveWell() {
-    var elem = document.getElementById("wellBar")
-    elem.style.height = (gameData.pieCoinsInWell / 2) + "%"
-    elem.innerHTML = Math.floor(gameData.pieCoinsInWell / 2) + "%"
 }
 
 function basket() {
@@ -101,5 +102,9 @@ function updateValuesForest () {
 	
 	checkShow(gameData.forestTreeType == 2, 'goldenLimesInfo')
 
+
+    var elem = document.getElementById("wellBar")
+    elem.style.height = (gameData.pieCoinsInWell / 2) + "%"
+    elem.innerHTML = Math.floor(gameData.pieCoinsInWell / 2) + "%"
 }
 

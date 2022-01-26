@@ -1,3 +1,28 @@
+baseVariables.push (
+	{
+		id: 'pies',
+		name: 'Pies',
+		color1: '964D1A',
+		color2: 'C67848',
+	},	
+	{
+		id: 'pieCoins',
+		name: 'Pie Coins',
+		color1: '964D1A',
+		color2: 'C67848',
+	},	
+)
+
+mainTabs.push (
+	{
+		id: 'bakery',
+		text: 'Bakery',
+		color1: 'BBBBBB',
+		color2: '898989'
+	}
+)
+
+
 pieOvenColor = 0
 juiceInPieBucketLeak = 0
 flourInPieBucketLeak = 0

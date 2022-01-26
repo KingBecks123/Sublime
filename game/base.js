@@ -1,3 +1,18 @@
+mainTabs = [
+	{
+		id: 'options',
+		text: 'Options',
+		color1: 'BBBBBB',
+		color2: '898989'
+	},
+	{
+		id: 'market',
+		text: 'Market',
+		color1: 'BBBBBB',
+		color2: '898989'
+	},
+]
+
 baseVariables = [
 	{
 		id: 'limes',
@@ -6,65 +21,11 @@ baseVariables = [
 		color2: '00FF01',
 	},
 	{
-		id: 'rottenLimes',
-		name: 'Rotten Limes',
-		color1: '00B300',
-		color2: '00FF01',
-	},	
-	{
-		id: 'peeledLimes',
-		name: 'Peeled Limes',
-		color1: '72B301',
-		color2: 'A0FF01',
-	},	
-	{
-		id: 'juice',
-		name: 'Juice',
-		color1: '00B33D',
-		color2: '00FF55',
-	},	
-	{
 		id: 'coins',
 		name: 'Coins',
 		color1: 'AEB301',
 		color2: 'F8FF01',
 	},	
-	{
-		id: 'megaCoins',
-		name: 'Mega Coins',
-		color1: 'B40001',
-		color2: 'FE0000',
-	},	
-	{
-		id: 'alphaCoins',
-		name: 'Alpha Coins',
-		color1: 'B37700',
-		color2: 'FFAA01',
-	},	
-	{
-		id: 'betaCoins',
-		name: 'Beta Coins',
-		color1: 'AEB301',
-		color2: 'F8FF01',
-	},	
-	{
-		id: 'pies',
-		name: 'Pies',
-		color1: '964D1A',
-		color2: 'C67848',
-	},	
-	{
-		id: 'pieCoins',
-		name: 'Pie Coins',
-		color1: '964D1A',
-		color2: 'C67848',
-	},	
-	{
-		id: 'goldenLimes',
-		name: 'Golden Limes',
-		color1: 'AEB301',
-		color2: 'F8FF01',
-	}
 ]
 
 
@@ -130,13 +91,6 @@ var gameDataBase = {
 	increaseJuicePricePermanance: 0,
 	changeResearchersBy10Unlock: 0,
     silkRobe: 0,
-    diseaseArray: [
-        ['empty', 'empty', 'empty', 'empty'],
-        ['empty', 'empty', 'empty', 'empty'],
-        ['empty', 'empty', 'empty', 'empty'],
-        ['empty', 'empty', 'empty', 'empty'],
-        ['empty', 'empty', 'empty', 'empty']
-    ],
     numberOfTiles: 16,
     juiceBulkAmountMax: 100,
     entrepreneurialCertificates: 0,
@@ -197,11 +151,6 @@ var gameDataBase = {
 	endScreen: 0,
 }
 
-for (let i = 0; i < baseVariables.length; i++) {
-	gameDataBase[baseVariables[i].id] = 0
-}
-gameDataBase.limes = 1
-
 var gameData = {}
 
 ableToSave = true
@@ -213,43 +162,43 @@ function getLimesButton() {
 		gameData.collectLimesAtBeginning += 1
 	
 	switch (gameData.collectLimesAtBeginning) {
-	  case 10:
+	  case 5:
         update("newInfo", "Maybe you should try looking around!")
 		break;
-	  case 20:
+	  case 10:
         update("newInfo", "Seriously you aren't going to find anything.")
 		break;
-	  case 30:
+	  case 15:
         update("newInfo", "Do you see the Look Around button?")
 		break;
-	  case 40:
+	  case 20:
         update("newInfo", "There doesn't seem to be any limes here.")
 		break;
-	  case 50:
+	  case 25:
         update("newInfo", "Is that a lime?")
+		break;
+	  case 30:
+        update("newInfo", "Nope, it's dirt.")
+		break;
+	  case 35:
+        update("newInfo", "I would suggest looking around more.")
+		break;
+	  case 40:
+        update("newInfo", "You aren't getting a secret achievement.")
+		break;
+	  case 45:
+        update("newInfo", "This is literally just a waste of time.")
+		break;
+	  case 50:
+        update("newInfo", "Can you please play the game correctly?")
+		break;
+	  case 55:
+        update("newInfo", "Is that something priceless in the distance?")
 		break;
 	  case 60:
         update("newInfo", "Nope, it's dirt.")
 		break;
-	  case 70:
-        update("newInfo", "I would suggest looking around more.")
-		break;
-	  case 80:
-        update("newInfo", "You aren't getting a secret achievement.")
-		break;
-	  case 90:
-        update("newInfo", "This is literally just a waste of time.")
-		break;
-	  case 100:
-        update("newInfo", "Can you please play the game correctly?")
-		break;
-	  case 110:
-        update("newInfo", "Is that something priceless in the distance?")
-		break;
-	  case 120:
-        update("newInfo", "Nope, it's dirt.")
-		break;
-	  case 130:
+	  case 65:
         update("newInfo", "I'm leaving.")
 	}
     getLimes()
@@ -269,7 +218,7 @@ function getLimes() {
 		else
 			gameData.rottenLimes += gameData.bigGloves + 1
 	}
-	else if ((gameData.lookAround < 1 && gameData.collectLimesAtBeginning < 10) || gameData.lookAround)
+	else if ((gameData.lookAround < 1 && gameData.collectLimesAtBeginning < 5) || gameData.lookAround)
 		update("newInfo", "Couldn't find any limes...")
 	
 	function addLimes () {
@@ -399,8 +348,12 @@ function mainGameLoopSlowBase () {
 	}
 }
 function onLoadBase () {
+
 	for (let i = 0; i < baseVariables.length; i++) {	
 		id = baseVariables[i].id
+		
+		
+		gameDataBase[baseVariables[i].id] = 0
 
 	
 		if (i > 0) {
@@ -411,6 +364,12 @@ function onLoadBase () {
 		gameDataBase[id + 'UnlockedVariable'] = false
 			
 		document.getElementById('backgroundForValues').innerHTML += '<div class="stat" id="textFor' + id + 'Div" style="color:#' + baseVariables[i].color2 + '">' + baseVariables[i].name + ' </div><div class="stat" id="textFor' + id + '"  style="float: right;color:#' + baseVariables[i].color1 + '">0</div><p id="textFor' + id + 'P"> </p><br  id="textFor' + id + 'Br"/>'
+	}
+	
+	gameDataBase.limes = 1
+	
+	for (let i = 1; i < mainTabs.length; i++) {	
+		document.getElementById('navigateButtons').innerHTML += '<button id="' + mainTabs[i].id + 'Button" style="width: 120px" onclick="tab(&#39' + mainTabs[i].id + '&#39)">' + mainTabs[i].text + '</button>'
 	}
 
 	document.getElementById('textForbetaCoinsDiv').style.textDecoration = 'underline'
@@ -432,8 +391,6 @@ function onLoadBase () {
 	gameData.teachBar = 0
 
 
-	moveWell()
-
 	if (gameData.workingBar > 0 || gameData.employeeWorking > 0)
 		runBar('working', 0.025)
 
@@ -441,62 +398,40 @@ function onLoadBase () {
 	normalizeButtons()
 	pinButton()
 
-	tab(gameData.mainTab, true)
+	tab(gameData.mainTab)
     tabMarket(gameData.marketTab)
     tabTasks("earn")
     tabScience("research")
 	tabOptions("gameOptions")
 }
 
-function tab(tabby, hasJustLoaded) {
+function tab(tabby) {
 	gameData.mainTab = tabby
     update("exportCode", "")
 
-    hide("options")
-    hide("market")
-    hide("inventory")
-    hide("skills")
-    hide("megaCoinUpgrades")
-    hide("tasks")
-    hide("company")
-    hide("forest")
-    hide("science")
-    hide("bakery")
-    hide("field")
-	
-	colorChanger('scienceButton', '#9ABBFF')
-	colorChanger('optionsButton', '#BBBBBB')
-	colorChanger('marketButton', '#BBBBBB')
-	colorChanger('inventoryButton', '#BBBBBB')
-	colorChanger('skillsButton', '#BBBBBB')
-	colorChanger('megaCoinUpgradesButton', "#FF999A")
-	colorChanger('tasksButton', '#FF98DD')
-	colorChanger('companyButton', '#BBBBBB')
-	colorChanger('forestButton', '#BBBBBB')
-	colorChanger('bakeryButton', '#BBBBBB')
-	colorChanger('fieldButton', '#C67848')
-
+	for (let i = 0; i < mainTabs.length; i++) {
+		hide(mainTabs[i].id)
+		colorChanger(mainTabs[i].id + 'Button', '#' + mainTabs[i].color1)
+	}
 
 
     if (tabby == "options") {
-        if (gameData.isOptionsOpen == 0) {
-            document.getElementById('options').style.display = "inline-block"
+		checkShow(!gameData.isOptionsOpen, 'options', 'inline')
+        if (!gameData.isOptionsOpen)
 			colorChanger('optionsButton', "#898989")
-        }
+		
 		toggle('isOptionsOpen')
     } 
-	else if (tabby !== "options" && tabby !== "null") {
+
+	else if (tabby !== "null") {
         gameData.isOptionsOpen = 0
         document.getElementById(tabby).style.display = "inline-block"
-		colorChanger(tabby + "Button", "#898989")
-		if(tabby == 'science')
-			colorChanger(tabby + "Button", "#4D88FE")
-		if(tabby == 'tasks')
-			colorChanger(tabby + "Button", "#FF4DFF")
-		if(tabby == 'megaCoinUpgrades')
-			colorChanger(tabby + "Button", "#FF4D4D")
-		if(tabby == 'field')
-			colorChanger(tabby + "Button", "#964D1A")
+		
+		
+		for (let i = 0; i < mainTabs.length; i++) {
+			if(tabby == mainTabs[i].id)
+				colorChanger(tabby + "Button", '#' + mainTabs[i].color2)
+		}
     }
 
 }
@@ -550,7 +485,6 @@ function updateValuesBase () {
 	for (let i = 0; i < baseVariables.length; i++) {
 		id = baseVariables[i].id
 		elem = "textFor" + id
-
 		if (gameData[id] > 1e9)
 			val = gameData[id].toExponential(3)
 		else
@@ -575,20 +509,12 @@ function updateValuesBase () {
 	
 	startCurrentTask(gameData.currentTask)	
 	startCurrentTask(gameData.currentTask2)	
-	
-
 
 	toggleAesthetic("toggleActions")
-	
-
 
     if (gameData.coins > gameData.coinsMax)
         gameData.coins = gameData.coinsMax
 	
-
-	
-
-
     overMaximum("baskets")
     overMaximum("juicers")
     overMaximum("peelers")
@@ -613,7 +539,6 @@ function updateValuesBase () {
 	update('textForTimePlayed', 'Total Time Played: ' + gameData.timePlayed.toLocaleString() + ' Seconds')
 	update('endStats', 'Total Time Played: ' + gameData.timePlayed.toLocaleString() + ' Seconds')
 
-	update('textForCoinsMax', 'Current maximum: ' + gameData.coinsMax.toLocaleString() + ' Coins')
 
 
 
@@ -622,14 +547,21 @@ function updateValuesBase () {
 	else
 		update('workingEmployee', 'Employee is idle.')
 	
+	
+	var x = document.getElementsByClassName('pinButton')
 	if (gameData.pinUnlock == 1) {
-		var x = document.getElementsByClassName('pinButton')
 		for (i = 0; i < x.length; i++) {
 			x[i].style.display = 'inline-block'
 		}
 	}
+	else {
+		for (i = 0; i < x.length; i++) {
+			x[i].style.display = 'none'
+		}
+	}
+	
 
-	for (i = 1; i <= 3; i++) {
+	for (i = 0; i <= 3; i++) {
 		checkShow(gameData.tomes == i, 'tomeDiv' + (i + 1))
 	}
 
@@ -637,7 +569,6 @@ function updateValuesBase () {
 	checkShow(gameData.lookAround > 1, 'sellYourLimesDiv')
 	checkShow(gameData.lookAround >= 3 && !(gameData.hideMaxedPurchases == 1 && gameData.juicers == gameData.juicersMax), 'buyAJuicerDiv')
 	checkShow(gameData.lookAround >= 3 && !(gameData.hideMaxedPurchases == 1 && gameData.baskets == gameData.basketsMax), 'buyABasketDiv')
-	checkShow(!gameData.tomes, 'tomeDiv')
 	checkShow(gameData.tomes > 3, 'goldenBarDiv')
 	checkShow(!gameData.pinUnlock, 'pinUnlockDiv')
 	checkShow(gameData.pieBucket && gameData.pieFlourBucket, 'bucketThinSteelPlating')
@@ -675,7 +606,6 @@ function updateValuesBase () {
 	checkShow(!gameData.storagePeelersUnlock, 'storagePeelersDiv')
 	checkShow(!gameData.storageJuicersUnlock, 'storageJuicersDiv')
 	checkShow(!gameData.changeResearchersBy10Unlock, 'changeResearchersBy10Unlock')
-	checkShow(gameData.changeResearchersBy10Unlock, 'upgradeChangeResearchersBy10')
 
 
 	checkShow(!gameData.endScreen, 'sublimeMain')

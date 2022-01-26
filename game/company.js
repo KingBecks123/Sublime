@@ -1,3 +1,12 @@
+mainTabs.push (
+	{
+		id: 'company',
+		text: 'Lime Inc.',
+		color1: 'BBBBBB',
+		color2: '898989'
+	},
+)
+
 employeeTypes = {
 	basic : {
 		applicationRandomisation: function () {

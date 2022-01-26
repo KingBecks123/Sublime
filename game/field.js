@@ -1,3 +1,35 @@
+mainTabs.push (
+	{
+		id: 'field',
+		text: 'Field',
+		color1: 'C67848',
+		color2: '964D1A'
+	}
+)
+
+fieldPlacementOptions = [
+	{
+		id: 'plot', 
+		text: 'Manage Plot'
+	},
+	{
+		id: 'seed', 
+		text: 'Seed'
+	},	
+	{
+		id: 'seedDrill', 
+		text: 'Seed Drill'
+	},	
+	{
+		id: 'harvester', 
+		text: 'Harvester'
+	},	
+	{
+		id: 'rotate', 
+		text: 'Rotate'
+	},	
+]
+
 showPlotManagementDiv = false
 
 Object.assign ( gameDataBase, {
@@ -33,9 +65,14 @@ Object.assign ( gameDataBase, {
 function onLoadField () {
 	for (let y = 0; y < 5; y++) {	
 		for (let x = 0; x < 5; x++) {	
-			document.getElementById('fullField').innerHTML += '<button ondragstart="return false;" class="fieldTile" id="fieldTile' + x + '-' + y + '" onclick="fieldTile(' + x + ', ' + y + ')">‎‏‏‎<img style="width:70px;height:70px;" id="fieldTile' + x + '-' + y + 'img" src="assets/emptyField.png"></button>'
+			document.getElementById('fullField').innerHTML += '<button ondragstart="return false;" id="fieldTile' + x + '-' + y + '" onclick="fieldTile(' + x + ', ' + y + ')">‎‏‏‎<img style="width:70px;height:70px;" id="fieldTile' + x + '-' + y + 'img" src="assets/emptyField.png"></button>'
 		}
 	}
+
+	for (let i = 0; i < fieldPlacementOptions.length; i++) {
+		document.getElementById('fieldPlacementOptions').innerHTML += '<button class="specialButton" style="background-color:gray;width:168px" id="' + fieldPlacementOptions[i].id + 'SelectedWheatItem" onclick="selectedWheatItem(&#39' + fieldPlacementOptions[i].id + '&#39)">' + fieldPlacementOptions[i].text + '</button>'
+	}
+	
 	
 	selectedWheatItemAesthetic(gameData.selectedWheatItem)
 	updateFieldTileAesthetic()

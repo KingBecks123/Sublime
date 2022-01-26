@@ -1,3 +1,21 @@
+baseVariables.push (
+	{
+		id: 'rottenLimes',
+		name: 'Rotten Limes',
+		color1: '00B300',
+		color2: '00FF01',
+	}
+)
+
+mainTabs.push (
+	{
+		id: 'skills',
+		text: 'Skills',
+		color1: 'BBBBBB',
+		color2: '898989'
+	},
+)
+
 skills = [
 	{
 		id: 'keenEye',

@@ -1,3 +1,12 @@
+mainTabs.push (
+	{
+		id: 'tasks',
+		text: 'Tasks',
+		color1: 'FF98DD',
+		color2: 'FF4DFF'
+	}
+)
+
 Object.assign ( gameDataBase, {
 	respectMilestone10: 0,
 	respectMilestone25: 0,
@@ -20,6 +29,13 @@ Object.assign ( gameDataBase, {
     limeDiseaseControlInfoToggle: 1,
     limeDiseaseLakes: 0,
     limeDiseaseLakesSet: 0,
+    diseaseArray: [
+        ['empty', 'empty', 'empty', 'empty'],
+        ['empty', 'empty', 'empty', 'empty'],
+        ['empty', 'empty', 'empty', 'empty'],
+        ['empty', 'empty', 'empty', 'empty'],
+        ['empty', 'empty', 'empty', 'empty']
+    ],
 } )
 
 function startSimulation() {
@@ -30,7 +46,7 @@ function startSimulation() {
 					for (xSpread = x - 1; xSpread < x + 2; xSpread++) {
 						for (ySpread = y - 1; ySpread < y + 2; ySpread++) {
 							if ((xSpread < 5 && xSpread >= 0 && ySpread < 5 && ySpread >= 0) && !(x == xSpread && y == ySpread)) {
-								if (gameData.diseaseArray[xSpread][ySpread] == 'empty')
+								if (canPlaceTile (xSpread, ySpread))
 									gameData.diseaseArray[xSpread][ySpread] = 'disease'
 								else if (gameData.diseaseArray[xSpread][ySpread] == 'civilian')
 									gameData.diseaseArray[xSpread][ySpread] = 'dead'
@@ -95,7 +111,7 @@ function countPoints(diseaseControlFailed) {
 function mapTile(x, y) {
 
 	if (!gameData.diseaseControlFinished) {
-		if (gameData.diseaseArray[x][y] == 'empty' && gameData.civiliansPlaced < gameData.civiliansTotal) {
+		if (canPlaceTile (x, y) && gameData.civiliansPlaced < gameData.civiliansTotal) {
 			gameData.diseaseArray[x][y] = 'civilian'
 			gameData.civiliansPlaced += 1
 		} else if (gameData.diseaseArray[x][y] == 'civilian') {
@@ -145,11 +161,15 @@ function diseaseControlTask() {
 			startSimulation()
 		
 		updateMapTileAesthetic()
-		
-		function canPlaceTile (x, y) {
-			return ((x < 4 || y < gameData.numberOfTiles - 16) && gameData.diseaseArray[x][y] == 'empty')
-		}
 	}
+}
+
+function canPlaceTile (x, y) {
+	return (doesTileExist (x, y) && gameData.diseaseArray[x][y] == 'empty')
+}
+
+function doesTileExist (x, y) {
+	return ((x < 4 || y < gameData.numberOfTiles - 16))
 }
 
 function changeLakeAmount(x) {
@@ -183,8 +203,14 @@ diseaseTileTypes = {
 function updateMapTileAesthetic() {
 	for (x = 0; x < 5; x++) {
 		for (y = 0; y < 4; y++) {
-			colorChanger('mapTile-' + x + '-' + y, diseaseTileTypes[gameData.diseaseArray[x][y]].color)
-			update('mapTile-' + x + '-' + y, diseaseTileTypes[gameData.diseaseArray[x][y]].text)
+			if (doesTileExist (x, y)) {
+				colorChanger('mapTile-' + x + '-' + y, diseaseTileTypes[gameData.diseaseArray[x][y]].color)
+				update('mapTile-' + x + '-' + y, diseaseTileTypes[gameData.diseaseArray[x][y]].text)
+			}
+			else {
+				colorChanger('mapTile-' + x + '-' + y, '#66361F')
+				update('mapTile-' + x + '-' + y, '‏‏‎ ‎‏‏‎ ‎‎')
+			}
 		}
 	}
 }
@@ -242,10 +268,8 @@ function updateValuesTasks () {
 	checkShow(gameData.respectMilestone100, 'autoCheckSimulationButton', 'inline')
 	checkShow(gameData.respectMilestone500, 'autoPlaceACivilianDiv')
 	checkShow(gameData.respectMilestone1000, 'scienceButton', 'inline')
-	checkShow(gameData.numberOfTiles >= 17, 'mapTile-4-0', 'visible')
-	checkShow(gameData.numberOfTiles >= 18, 'mapTile-4-1', 'visible')
-	checkShow(gameData.numberOfTiles >= 19, 'mapTile-4-2', 'visible')
-	checkShow(gameData.numberOfTiles >= 20, 'mapTile-4-3', 'visible')
+	
+
 
 	function checkRespectMilestone(number, color, text) {		
 		if (gameData.respect >= number)
@@ -266,7 +290,6 @@ function updateValuesTasks () {
 	}
 
 	checkShow(gameData.respectMilestone50, 'patrician')
-	checkShow(gameData.manuscripts, 'upgradeManuscripts')
 	checkShow(!gameData.manuscripts, 'buyManuscriptsDiv')
 	checkShow(gameData.diseaseControlFinished, 'startDiseaseTask')
 	checkShow(!gameData.diseaseControlFinished, 'diseaseControlStart')

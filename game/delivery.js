@@ -141,7 +141,6 @@ function updateValuesDelivery () {
 		update('deliveryToggleStandardButton', 'Hyper Delivery')
 	
 	checkShow(!gameData.increaseJuicePricePermanance, 'increaseJuicePricePermanance')
-	checkShow(gameData.increaseJuicePricePermanance, 'upgradeJuicePricePermanance')
 	checkShow(gameData.deliveryManager, 'sellMaxJuiceButton', 'inline')
 	checkShow(!gameData.deliveryManager, 'decreaseJuiceSoldButton', 'inline')
 	checkShow(!gameData.deliveryManager, 'increaseJuiceSoldButton', 'inline')
