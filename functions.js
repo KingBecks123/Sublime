@@ -1,7 +1,6 @@
 function gameStart() {
     loadStuff(JSON.parse(localStorage.getItem("mathAdventureSave")))
 	secondsOffline = Math.floor((Date.now() - gameData.lastSaveTime) / 1000)
-
 	onLoadSkills ()
 	onLoadBase ()
 	onLoadField ()
@@ -9,6 +8,7 @@ function gameStart() {
 	onLoadCompany ()
 	onLoadTasks ()	
 	onLoadScience ()
+	onLoadTravel ()
 
     mainGameLoop()
     mainGameLoopSlow()
