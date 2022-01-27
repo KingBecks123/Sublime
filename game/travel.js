@@ -311,7 +311,7 @@ function updateValuesTravel () {
 	checkShow(gameData.megaCoinsInBankMax <= 20, 'increaseCreditScore')
 	checkShow(!gameData.nutritionists, 'hireANutritionist')
 	checkShow(gameData.respectMilestone10000 && !gameData.bachelorsDegreeFinance, 'earnBachelorFinance')
-	checkShow(!gameData.respectMilestone10000, 'buyABiggerWallet')
+	checkShow(gameData.respectMilestone10000, 'buyABiggerWallet')
 	checkShow(gameData.respectMilestone10000, 'upgradeMoreStorage')
 	checkShow(!gameData.bigGloves, 'buyBigGloves')
 	checkShow(gameData.creditScore2 && !gameData.creditScore3, 'increaseCreditScore3')
