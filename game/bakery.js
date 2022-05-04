@@ -265,8 +265,8 @@ function bakePieBar() {
     } else {
 		gameData.bakePieBar = 0
 		gameData.pies += 1
-		gameData.juiceAsPieIngredient = 0
-		gameData.flourAsPieIngredient = 0
+		gameData.juiceAsPieIngredient -= 1
+		gameData.flourAsPieIngredient -= 1
     }
 	updateBar("bakePie")
 }
