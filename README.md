@@ -1,3 +1,3 @@
 # Sublime
-A lime clicker incremental game.
+An unfolding incremental game.
 
