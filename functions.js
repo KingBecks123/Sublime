@@ -20,6 +20,7 @@ function gameStart() {
 	
 	updateValues()
 	
+	ableToSave = true
 	
 	function mainGameLoop() {
 		mainGameLoopForest()

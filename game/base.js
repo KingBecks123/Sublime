@@ -153,7 +153,7 @@ var gameDataBase = {
 
 var gameData = {}
 
-ableToSave = true
+ableToSave = false
 
 var loopNumberTimePlayed = 0
 
