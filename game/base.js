@@ -243,8 +243,8 @@ function importGame() {
 }
 
 function loadStuff(savegame) {
+	Object.assign(gameData, gameDataBase)
 	if (savegame !== null) {
-		Object.assign(gameData, gameDataBase)
 		Object.assign(gameData, savegame)
 		backwardsCompatibility()
 		gameData.versionNumber = 190
@@ -259,16 +259,12 @@ function saveGame() {
 
 function resetGame() {
 	if (window.prompt("Are you sure? Type 'yes' if you are") == "yes") {
-		reset()
+		ableToSave = false
+		gameData = {}
+		Object.assign(gameData, gameDataBase)
+		localStorage.setItem('mathAdventureSave', JSON.stringify(gameData))
+		location.reload()
 	}
-}
-
-function reset() {
-	ableToSave = false
-	gameData = {}
-	Object.assign(gameData, gameDataBase)
-	localStorage.setItem('mathAdventureSave', JSON.stringify(gameData))
-	location.reload()
 }
 
 function backwardsCompatibility() {
