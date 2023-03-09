@@ -259,12 +259,16 @@ function saveGame() {
 
 function resetGame() {
 	if (window.prompt("Are you sure? Type 'yes' if you are") == "yes") {
-		ableToSave = false
-		gameData = {}
-		Object.assign(gameData, gameDataBase)
-		localStorage.setItem('mathAdventureSave', JSON.stringify(gameData))
-		location.reload()
+		reset()
 	}
+}
+
+function reset() {
+	ableToSave = false
+	gameData = {}
+	Object.assign(gameData, gameDataBase)
+	localStorage.setItem('mathAdventureSave', JSON.stringify(gameData))
+	location.reload()
 }
 
 function backwardsCompatibility() {
