@@ -12,6 +12,10 @@ function gameStart() {
 
     mainGameLoop()
     mainGameLoopSlow()
+	
+	if (gameData.limes == undefined)
+		reset()
+	
 	updateValues()
 	
 	function mainGameLoop() {
