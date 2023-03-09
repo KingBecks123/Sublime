@@ -153,7 +153,7 @@ var gameDataBase = {
 
 var gameData = {}
 
-ableToSave = false
+ableToSave = true
 
 var loopNumberTimePlayed = 0
 
@@ -243,8 +243,8 @@ function importGame() {
 }
 
 function loadStuff(savegame) {
-	Object.assign(gameData, gameDataBase)
 	if (savegame !== null) {
+		Object.assign(gameData, gameDataBase)
 		Object.assign(gameData, savegame)
 		backwardsCompatibility()
 		gameData.versionNumber = 190
