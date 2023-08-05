@@ -18,11 +18,11 @@ Update Log
 	Change lake button color
 	Removed upgrade broker from upgrades tab (not permanent)
 	Removed excess files
-	Fixed patrician / plebian area disappearing
+	Fixed patrician / plebeian area disappearing
 	Fixed science allocation sometimes going below 0
 	Removed Reset button from the disease task
 	Some actions continued even after resetting game
-	Removed the General Store and the Patrician + Plebian Area
+	Removed the General Store and the Patrician + plebeian Area
 	Changed the shape of the forest
 	Changing lake amount while in game changed point increase
 	

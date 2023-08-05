@@ -1,11 +1,30 @@
-mainTabs.push (
+addMainTabs([
 	{
 		id: 'company',
 		text: 'Lime Inc.',
 		color1: 'BBBBBB',
 		color2: '898989'
 	},
-)
+]);
+
+addGameVariables({
+    applicantSpeed: 20,
+    applicantPrice: 10,
+    applicantWage: 10,
+    applicantHunger: 5,
+    employeeSpeed: 20,
+    employeeHunger: 5,
+    employeePrice: 10,
+    employeeWage: 10,
+    employeeCurrentSpeed: 0,
+    employees: 0,
+    maxEmployees: 1,
+    employeeWorking: 0,
+    employeeWorkingMax: 10,
+    advertisingLevel1: 0,
+    advertisingLevel2: 0,
+    advertisingLevel3: 0,
+});
 
 employeeTypes = {
 	basic : {
@@ -125,25 +144,6 @@ employeeTypes = {
 		}	
 	}	
 }
-
-Object.assign ( gameDataBase, {
-    applicantSpeed: 20,
-    applicantPrice: 10,
-    applicantWage: 10,
-    applicantHunger: 5,
-    employeeSpeed: 20,
-    employeeHunger: 5,
-    employeePrice: 10,
-    employeeWage: 10,
-    employeeCurrentSpeed: 0,
-    employees: 0,
-    maxEmployees: 1,
-    employeeWorking: 0,
-    employeeWorkingMax: 10,
-    advertisingLevel1: 0,
-    advertisingLevel2: 0,
-    advertisingLevel3: 0,
-} )
 
 function payEmployee() {
     if (gameData.coins >= gameData.employeeWage && gameData.employeeWorking < gameData.employeeWorkingMax) {

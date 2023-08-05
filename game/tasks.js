@@ -1,13 +1,13 @@
-mainTabs.push (
+addMainTabs([
 	{
 		id: 'tasks',
 		text: 'Tasks',
 		color1: 'FF98DD',
 		color2: 'FF4DFF'
 	}
-)
+]);
 
-Object.assign ( gameDataBase, {
+addGameVariables({
 	respectMilestone10: 0,
 	respectMilestone25: 0,
 	respectMilestone50: 0,
@@ -36,7 +36,7 @@ Object.assign ( gameDataBase, {
         ['empty', 'empty', 'empty', 'empty'],
         ['empty', 'empty', 'empty', 'empty']
     ],
-} )
+});
 
 function startSimulation() {
 	if (gameData.civiliansPlaced == gameData.civiliansTotal) {

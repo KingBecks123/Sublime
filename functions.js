@@ -1,316 +1,332 @@
 function gameStart() {
-    loadStuff(JSON.parse(localStorage.getItem("mathAdventureSave")))
-	secondsOffline = Math.floor((Date.now() - gameData.lastSaveTime) / 1000)
-	onLoadSkills ()
-	onLoadBase ()
-	onLoadField ()
-	onLoadForest ()
-	onLoadCompany ()
-	onLoadTasks ()	
-	onLoadScience ()
-	onLoadTravel ()
+  loadStuff(JSON.parse(localStorage.getItem("mathAdventureSave")));
+  secondsOffline = Math.floor((Date.now() - gameData.lastSaveTime) / 1000);
+  onLoadSkills();
+  onLoadBase();
+  onLoadField();
+  onLoadForest();
+  onLoadCompany();
+  onLoadTasks();
+  onLoadScience();
+  onLoadTravel();
 
-    mainGameLoop()
-    mainGameLoopSlow()
-	
-	if (gameData.limes == undefined)
-		reset()
-	
-	updateValues()
-	
-	function mainGameLoop() {
-		mainGameLoopForest()
-		mainGameLoopInventory()
-		setTimeout(mainGameLoop, 50)
-	}
+  mainGameLoop();
+  mainGameLoopSlow();
 
-	function mainGameLoopSlow() {
-		mainGameLoopSlowBase()
-		mainGameLoopSlowBrokers()
-		mainGameLoopSlowBakery()
+  if (gameData.limes === undefined) {
+    reset();
+  }
 
-		updateMapTileAesthetic()
-		saveGame()
-		setTimeout(mainGameLoopSlow, 500)
-	}
-	
-	function updateValues() {
-		updateValuesSkills ()
-		updateValuesForest ()
-		updateValuesInventory ()
-		updateValuesBase ()
-		updateValuesTravel ()
-		updateValuesBrokers ()
-		updateValuesTasks ()
-		updateValuesDelivery ()
-		updateValuesField ()
-		updateValuesScience ()
-		updateValuesBakery ()
-		updateValuesCompany ()
+  updateValues();
 
-		setTimeout(updateValues, 15)
-	}
+  function mainGameLoop() {
+    mainGameLoopForest();
+    mainGameLoopInventory();
+    setTimeout(mainGameLoop, 50);
+  }
+
+  function mainGameLoopSlow() {
+    mainGameLoopSlowBase();
+    mainGameLoopSlowBrokers();
+    mainGameLoopSlowBakery();
+
+    updateMapTileAesthetic();
+    saveGame();
+    setTimeout(mainGameLoopSlow, 500);
+  }
+
+  function updateValues() {
+    const updateFunctions = [
+      updateValuesSkills,
+      updateValuesForest,
+      updateValuesInventory,
+      updateValuesBase,
+      updateValuesTravel,
+      updateValuesBrokers,
+      updateValuesTasks,
+      updateValuesDelivery,
+      updateValuesField,
+      updateValuesScience,
+      updateValuesBakery,
+      updateValuesCompany,
+    ];
+
+    updateFunctions.forEach(updateFunction => {
+      updateFunction();
+    });
+
+    setTimeout(updateValues, 15);
+  }
 }
 
 function restartBar(x) {
-	if (gameData[x + 'Bar'] > 0)
-		window[x + 'Bar']()
+  if (gameData[x + 'Bar'] > 0) {
+    window[x + 'Bar']();
+  }
 }
 
 function hide(id) {
-	document.getElementById(id).style.display = 'none'
+  document.getElementById(id).style.display = 'none';
 }
 
 function pin(x) {
-	if (gameData.pin == x && gameData.pin !== "none") {
-		gameData.pin = "none"
-	} else
-		gameData.pin = x
-	normalizeButtons()
-	pinButton()
+  if (gameData.pin === x && gameData.pin !== "none") {
+    gameData.pin = "none";
+  } else {
+    gameData.pin = x;
+  }
+  normalizeButtons();
+  pinButton();
 }
 
 function normalizeButtons() {
-	var x = document.getElementById("deliveryButton")
-	$(".juiceMarket").prepend(x)
-	x.style.width = "120px"
-	x.style.margin = "5px"
+  const deliveryButton = document.getElementById("deliveryButton");
+  $(".juiceMarket").prepend(deliveryButton);
+  deliveryButton.style.width = "120px";
+  deliveryButton.style.margin = "5px";
 
-	x = document.getElementById("autoCollectingButton")
-	$(".autoCollectingDiv").prepend(x)
-	x.style.width = "150px"
-	x.style.margin = "5px"
+  const autoCollectingButton = document.getElementById("autoCollectingButton");
+  $(".autoCollectingDiv").prepend(autoCollectingButton);
+  autoCollectingButton.style.width = "150px";
+  autoCollectingButton.style.margin = "5px";
 }
 
 function pinButton() {
-	if (gameData.pin !== "none") {
-		var x = document.getElementById(gameData.pin)
-		$(".navigateButtons").append(x)
+  if (gameData.pin !== "none") {
+    const pinnedButton = document.getElementById(gameData.pin);
+    $(".navigateButtons").append(pinnedButton);
 
-		x.style.width = "120px"
-		x.style.margin = "0px"
-		x.style.padding = "0px"
-	}
+    pinnedButton.style.width = "120px";
+    pinnedButton.style.margin = "0px";
+    pinnedButton.style.padding = "0px";
+  }
 }
 
 function pickCurrentTask(x) {
-	taskOne = gameData.currentTask
-	taskTwo = gameData.currentTask2
+  const taskOne = gameData.currentTask;
+  const taskTwo = gameData.currentTask2;
 
-	if (!event.shiftKey && gameData.toggleActions) {
-
-		if (gameData.ambidextrousSkillLevel == gameData.ambidextrousSkillLevelMax) {
-			if (taskOne == x && taskOne !== "none" && taskTwo !== x)
-				gameData.currentTask = "none"
-			else if (taskOne == "none" && taskTwo !== x) {
-				if (!((taskTwo == 'makeJuice' && x == 'makeMaxJuice') || (taskTwo == 'makeMaxJuice' && x == 'makeJuice') || (taskTwo == 'usePeelers' && x == 'useMaxPeelers') || (taskTwo == 'useMaxPeelers' && x == 'usePeelers')))
-					gameData.currentTask = x
-			} else if (taskTwo == x && taskTwo !== "none")
-				gameData.currentTask2 = "none"
-			else if (taskTwo == "none") {
-				if (!((taskOne == 'makeJuice' && x == 'makeMaxJuice') || (taskOne == 'makeMaxJuice' && x == 'makeJuice') || (taskOne == 'usePeelers' && x == 'useMaxPeelers') || (taskOne == 'useMaxPeelers' && x == 'usePeelers')))
-					gameData.currentTask2 = x
-			}
-		} 
-		else {
-			if (taskOne == x && taskOne !== "none")
-				gameData.currentTask = "none"
-			else
-				gameData.currentTask = x
-		}
-	} 
-	else
-		startCurrentTask(x)
+  if (!event.shiftKey && gameData.toggleActions) {
+    if (gameData.ambidextrousSkillLevel === gameData.ambidextrousSkillLevelMax) {
+      if (taskOne === x && taskOne !== "none" && taskTwo !== x) {
+        gameData.currentTask = "none";
+      } else if (taskOne === "none" && taskTwo !== x) {
+        if (
+          !(
+            (taskTwo === 'makeJuice' && x === 'makeMaxJuice') ||
+            (taskTwo === 'makeMaxJuice' && x === 'makeJuice') ||
+            (taskTwo === 'usePeelers' && x === 'useMaxPeelers') ||
+            (taskTwo === 'useMaxPeelers' && x === 'usePeelers')
+          )
+        ) {
+          gameData.currentTask = x;
+        }
+      } else if (taskTwo === x && taskTwo !== "none") {
+        gameData.currentTask2 = "none";
+      } else if (taskTwo === "none") {
+        if (
+          !(
+            (taskOne === 'makeJuice' && x === 'makeMaxJuice') ||
+            (taskOne === 'makeMaxJuice' && x === 'makeJuice') ||
+            (taskOne === 'usePeelers' && x === 'useMaxPeelers') ||
+            (taskOne === 'useMaxPeelers' && x === 'usePeelers')
+          )
+        ) {
+          gameData.currentTask2 = x;
+        }
+      }
+    } else {
+      if (taskOne === x && taskOne !== "none") {
+        gameData.currentTask = "none";
+      } else {
+        gameData.currentTask = x;
+      }
+    }
+  } else {
+    startCurrentTask(x);
+  }
 }
 
 function pickCurrentSkill(x) {
-	if (gameData.toggleActions && !event.shiftKey && gameData.multitasking) {
-		if (gameData.currentSkill == x && gameData.currentSkill !== "none")
-			gameData.currentSkill = "none"
-		else
-			gameData.currentSkill = x
-	} else
-		tryToStartSkill(x, true)
+  if (gameData.toggleActions && !event.shiftKey && gameData.multitasking) {
+    if (gameData.currentSkill === x && gameData.currentSkill !== "none") {
+      gameData.currentSkill = "none";
+    } else {
+      gameData.currentSkill = x;
+    }
+  } else {
+    tryToStartSkill(x, true);
+  }
 }
 
 function startCurrentTask(x) {
-	if(x !== 'none')
-		eval(x + '()')
+  if (x !== 'none') {
+    eval(x + '()');
+  }
 }
 
 function updateBar(x) {
-    i = x + "Bar"
-    var elem = document.getElementById(i)
-	
-	if(gameData[i] > 100)
-		gameData[i] = 100
+  const barId = x + "Bar";
+  const elem = document.getElementById(barId);
 
-    elem.style.width = gameData[i] + "%"
-    elem.innerHTML = "" + Math.ceil(gameData[i]) + "%"
+  if (gameData[barId] > 100) {
+    gameData[barId] = 100;
+  }
+
+  elem.style.width = gameData[barId] + "%";
+  elem.innerHTML = "" + Math.ceil(gameData[barId]) + "%";
 }
 
 function toggle(x) {
-	if (gameData[x] == 0)
-		gameData[x] = 1
-	else
-		gameData[x] = 0
+  if (gameData[x] === 0) {
+    gameData[x] = 1;
+  } else {
+    gameData[x] = 0;
+  }
 }
 
 function basicBuy(id, price) {
-	if (gameData.coins >= price) {
-		gameData.coins -= price
-		gameData[id] += 1
-	}
+  if (gameData.coins >= price) {
+    gameData.coins -= price;
+    gameData[id] += 1;
+  }
 }
 
 function universalBuy(id, price, currency) {
-	if (gameData[currency] >= price) {
-		gameData[currency] -= price
-		gameData[id] += 1
-	}
+  if (gameData[currency] >= price) {
+    gameData[currency] -= price;
+    gameData[id] += 1;
+  }
 }
 
 function bulkableBuyMax(x, price) {
-	max = gameData[x + 'Max']
-	if (gameData[x + 'BulkToggle'] == 0)
-		amount = 1
-	else {
-		if (gameData.bulkBuyUnlock2)
-			amount = 100
-		else
-			amount = 10
-	}
-	if (gameData.coins >= price * amount) {
-		if (gameData[x] <= max - amount) {
-			gameData.coins -= price * amount
-			gameData[x] += amount
-		} else {
-			gameData.coins -= price * (max - gameData[x])
-			gameData[x] = max
-		}
-	}
+  const max = gameData[x + 'Max'];
+  let amount = 1;
+
+  if (gameData[x + 'BulkToggle'] === 1) {
+    if (gameData.bulkBuyUnlock2) {
+      amount = 100;
+    } else {
+      amount = 10;
+    }
+  }
+
+  if (gameData.coins >= price * amount) {
+    if (gameData[x] <= max - amount) {
+      gameData.coins -= price * amount;
+      gameData[x] += amount;
+    } else {
+      gameData.coins -= price * (max - gameData[x]);
+      gameData[x] = max;
+    }
+  }
 }
 
-// returns a random integer from 1 to X
 function beckyRandom(max) {
-	return Math.floor(Math.random() * max) + 1;
+  return Math.floor(Math.random() * max) + 1;
 }
 
-// returns a random integer from X to Y
 function beckyRandomMinMax(min, max) {
-	return Math.floor(Math.random() * (max - min)) + min;
+  return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function smartBarStart (id, amount) {
-	if (gameData[id + "Bar"] == 0)
-		runBar(id, amount)
+function smartBarStart(id, amount) {
+  if (gameData[id + "Bar"] === 0) {
+    runBar(id, amount);
+  }
 }
 
-hasUpdatedObj = {}
+const hasUpdatedObj = {};
 
 function update(id, content) {
-	stringy = id.replace(/[()-]/g, 'uwu')
+  const stringy = id.replace(/[()-]/g, 'uwu');
 
-	if (typeof hasUpdatedObj[stringy] == undefined)
-		hasUpdatedObj[stringy] = 'noneOwO'
-	
-	if (hasUpdatedObj[stringy] != content) {
-		document.getElementById(id).innerHTML = content
-		hasUpdatedObj[stringy] = content
-	}
+  if (typeof hasUpdatedObj[stringy] === 'undefined') {
+    hasUpdatedObj[stringy] = 'noneOwO';
+  }
+
+  if (hasUpdatedObj[stringy] !== content) {
+    document.getElementById(id).innerHTML = content;
+    hasUpdatedObj[stringy] = content;
+  }
 }
 
 function currencyDisplay(id) {
-	variable = baseVariables[id].id + 'ShowVariable'
-	if (gameData[variable])
-		gameData[variable] = false
-	else
-		gameData[variable] = true
+  const variable = baseVariables[id].id + 'ShowVariable';
+  gameData[variable] = !gameData[variable];
 }
 
 function upperFirstChar(string) {
-	return string.charAt(0).toUpperCase() + string.slice(1);
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 function colorChanger(id, content) {
-	document.getElementById(id).style.backgroundColor = content
+  document.getElementById(id).style.backgroundColor = content;
 }
 
 function decreaseValue(id) {
-	if (gameData[id] >= 1)
-		gameData[id] -= 1
+  if (gameData[id] >= 1) {
+    gameData[id] -= 1;
+  }
 }
 
-function checkShow (x, id, style) {
-	if (style == 'visible') {
-		if (x) {
-			document.getElementById(id).style.visibility = 'visible'
-		}
-		else
-			document.getElementById(id).style.visibility = 'hidden'
-	}
-	else {
-		if (x) {
-			if (style == 'inline')
-				document.getElementById(id).style.display = 'inline-block'
-			else
-				document.getElementById(id).style.display = 'block'
-		}
-		else
-			hide(id)
-	}
+function checkShow(x, id, style) {
+  const element = document.getElementById(id);
+  if (style === 'visible') {
+    element.style.visibility = x ? 'visible' : 'hidden';
+  } else {
+    element.style.display = x ? (style === 'inline' ? 'inline-block' : 'block') : 'none';
+  }
 }
 
-function runBar(id, amount) {	
-	if (gameData[id + 'Bar'] < 100) {
-		gameData[id + 'Bar'] += amount
-		setTimeout(runBar, 15 / gameData.tickspeed, id, amount)
-	}
-	else {
-		gameData[id + 'Bar'] = 0
-		window[id + 'BarEnd']()
-	}
-	updateBar(id)
+function runBar(id, amount) {
+  if (gameData[id + 'Bar'] < 100) {
+    gameData[id + 'Bar'] += amount;
+    setTimeout(runBar, 15 / gameData.tickspeed, id, amount);
+  } else {
+    gameData[id + 'Bar'] = 0;
+    window[id + 'BarEnd']();
+  }
+  updateBar(id);
 }
 
 function basicToggle(input) {
-	x = document.getElementsByClassName(input)
+  const elements = document.getElementsByClassName(input);
+  const toggleValue = gameData[input + 'Toggle'];
+  const color = toggleValue ? "#4DFE89" : "gray";
+  const display = toggleValue ? 'block' : 'none';
 
-	if (gameData[input + 'Toggle']) {
-		color = "#4DFE89"
-		display = 'block'
-	} else {
-		color = "gray"
-		display = 'none'
-	}
-	
-	colorChanger(input + "Button", color)
-	for (i = 0; i < x.length; i++) {
-		x[i].style.display = display
-	}
+  colorChanger(input + "Button", color);
+  Array.from(elements).forEach(element => {
+    element.style.display = display;
+  });
 }
 
 function currentTaskAesthetic(x) {
-	button = x + "Button"
-	if (gameData.currentTask == x || gameData.currentTask2 == x)
-		colorChanger(button, "#C67848")
-	else
-		colorChanger(button, "#DEAD85")
+  const button = x + "Button";
+  const color = (gameData.currentTask === x || gameData.currentTask2 === x) ? "#C67848" : "#DEAD85";
+  colorChanger(button, color);
 }
 
 function ifMaxDarkGray(x) {
-	button = "buyA" + upperFirstChar(x) + "Button"
-
-	if (gameData[x + 's'] == gameData[x + 'sMax'])
-		colorChanger(button, "#50514F")
-	else
-		colorChanger(button, "#DEAD85")
+  const button = "buyA" + upperFirstChar(x) + "Button";
+  const color = (gameData[x + 's'] === gameData[x + 'sMax']) ? "#50514F" : "#DEAD85";
+  colorChanger(button, color);
 }
 
 function toggleAesthetic(input) {
-	if (gameData[input] == 1)
-		color = "#4DFE89"
-	else
-		color = "gray"
-	colorChanger(input + "Button", color)
+  const color = gameData[input] === 1 ? "#4DFE89" : "gray";
+  colorChanger(input + "Button", color);
+}
+
+function addInventoryVariables(variables) {
+  baseVariables.push(...variables);
+}
+
+function addMainTabs(tabs) {
+  mainTabs.push(...tabs);
+}
+
+function addGameVariables(variables) {
+  Object.assign(gameDataBase, variables);
 }

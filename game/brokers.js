@@ -1,4 +1,4 @@
-baseVariables.push (
+addInventoryVariables([
 	{
 		id: 'alphaCoins',
 		name: 'Alpha Coins',
@@ -11,9 +11,9 @@ baseVariables.push (
 		color1: 'AEB301',
 		color2: 'F8FF01',
 	},	
-)
+]);
 
-Object.assign ( gameDataBase, {
+addGameVariables({
 	betaCoinsExchangeRate: 2500,
 	betaCoinTransferAmount: 1,
 	alphaToBetaBar: 0,
@@ -51,7 +51,7 @@ Object.assign ( gameDataBase, {
 	alphaCoinsExchangeRate: 100,
 	amountCoinsToAlpha: 0,
 	amountCoinsToAlphaMax: 10,
-} )
+});
 
 function brokerApplicantNew(id, amount, minOrMax, requirement) {
 	price = 'brokerApplicant'+ id + 'Price'

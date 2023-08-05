@@ -25,7 +25,7 @@ baseVariables = [
 		name: 'Coins',
 		color1: 'AEB301',
 		color2: 'F8FF01',
-	},	
+	},
 ]
 
 
@@ -160,7 +160,7 @@ var loopNumberTimePlayed = 0
 function getLimesButton() {
 	if (gameData.lookAround < 1)
 		gameData.collectLimesAtBeginning += 1
-	
+
 	switch (gameData.collectLimesAtBeginning) {
 	  case 5:
         update("newInfo", "Maybe you should try looking around!")
@@ -207,20 +207,20 @@ function getLimesButton() {
 function getLimes() {
 	if (beckyRandom(gameData.keenEyeSkillLevelMax) <= gameData.keenEyeSkillLevel) {
 		if (gameData.keenEyeSkillLevel != gameData.keenEyeSkillLevelMax)
-			update("newInfo", "You found something!")		
-		
+			update("newInfo", "You found something!")
+
 		if (Math.random() <= (gameData.rottenWisdomSkillLevel / gameData.rottenWisdomSkillLevelMax)) {
 			if (Math.random() <= (gameData.limebidextrousSkillLevel / 50)) {
 				addLimes ()
 			}
 			addLimes ()
-		} 
+		}
 		else
 			gameData.rottenLimes += gameData.bigGloves + 1
 	}
 	else if ((gameData.lookAround < 1 && gameData.collectLimesAtBeginning < 5) || gameData.lookAround)
 		update("newInfo", "Couldn't find any limes...")
-	
+
 	function addLimes () {
 		gameData.limes += gameData.bigGloves + 1
 		if (gameData.teachBar > 0)
@@ -294,9 +294,9 @@ function backwardsCompatibility() {
 				if (gameData.diseaseArray[x][y] == 0)
 					gameData.diseaseArray[x][y] = 'empty'
 				if (gameData.diseaseArray[x][y] == 1)
-					gameData.diseaseArray[x][y] = 'civilian'				
+					gameData.diseaseArray[x][y] = 'civilian'
 				if (gameData.diseaseArray[x][y] == 2)
-					gameData.diseaseArray[x][y] = 'disease'				
+					gameData.diseaseArray[x][y] = 'disease'
 				if (gameData.diseaseArray[x][y] == 3)
 					gameData.diseaseArray[x][y] = 'dead'
 				if (gameData.diseaseArray[x][y] == 4)
@@ -317,13 +317,13 @@ function lookAround() {
             update("newInfo", "You see a nearby market.")
             gameData.lookAround = 1
         }
-    } 
+    }
 	else if (gameData.lookAround == 1) {
         if (gameData.lookAroundNumber >= 10) {
             update("newInfo", "You find a merchant willing to buy limes.")
             gameData.lookAround = 2
         }
-    } 
+    }
 	else if (gameData.lookAround == 2) {
         if (gameData.lookAroundNumber >= 15) {
             update("newInfo", "You find a merchant selling various items.")
@@ -347,50 +347,56 @@ function mainGameLoopSlowBase () {
 	gameData.lastSaveTime = Date.now()
 	loopNumberTimePlayed += 1
 	if (loopNumberTimePlayed == 2) {
-		gameData.timePlayed += 1 
+		gameData.timePlayed += 1
 		loopNumberTimePlayed = 0
 	}
 }
 function onLoadBase () {
 
-	for (let i = 0; i < baseVariables.length; i++) {	
+	for (let i = 0; i < baseVariables.length; i++) {
 		id = baseVariables[i].id
-		
-		
+
+
 		gameDataBase[baseVariables[i].id] = 0
 
-	
+
 		if (i > 0) {
 			document.getElementById('backpackDiv').innerHTML += '<button class="specialButton" id="currencyDisplay(' + i + ')" onClick="currencyDisplay(' + i + ')" style="width:167px">Show ' + baseVariables[i].name + '</button>'
 		}
-		
+
 		gameDataBase[id + 'ShowVariable'] = true
 		gameDataBase[id + 'UnlockedVariable'] = false
-			
+
 		document.getElementById('backgroundForValues').innerHTML += '<div class="stat" id="textFor' + id + 'Div" style="color:#' + baseVariables[i].color2 + '">' + baseVariables[i].name + ' </div><div class="stat" id="textFor' + id + '"  style="float: right;color:#' + baseVariables[i].color1 + '">0</div><p id="textFor' + id + 'P"> </p><br  id="textFor' + id + 'Br"/>'
 	}
-	
+
 	gameDataBase.limes = 1
-	
-	for (let i = 1; i < mainTabs.length; i++) {	
+
+	for (let i = 1; i < mainTabs.length; i++) {
 		document.getElementById('navigateButtons').innerHTML += '<button id="' + mainTabs[i].id + 'Button" style="width: 120px" onclick="tab(&#39' + mainTabs[i].id + '&#39)">' + mainTabs[i].text + '</button>'
 	}
 
 	document.getElementById('textForbetaCoinsDiv').style.textDecoration = 'underline'
 	document.getElementById('textForpieCoinsDiv').style.textDecoration = 'underline'
 
-	restartBar('juicer')
-	restartBar('peeler')
-	restartBar('advertise')
-	restartBar('eat')
-	restartBar('coinsToAlpha')
-	restartBar('convertCoinsNow')
-	restartBar('alphaToBeta')
-	restartBar('findPieCustomers')
-	restartBar('bakePie')
-	restartBar('delivery')
-	restartBar('bellows')
-	restartBar('autoCollecting')
+    const barsToRestart = [
+      'juicer',
+      'peeler',
+      'advertise',
+      'eat',
+      'coinsToAlpha',
+      'convertCoinsNow',
+      'alphaToBeta',
+      'findPieCustomers',
+      'bakePie',
+      'delivery',
+      'bellows',
+      'autoCollecting',
+    ];
+
+    barsToRestart.forEach(bar => {
+      restartBar(bar);
+    });
 
 	gameData.teachBar = 0
 
@@ -398,7 +404,7 @@ function onLoadBase () {
 	if (gameData.workingBar > 0 || gameData.employeeWorking > 0)
 		runBar('working', 0.025)
 
-	
+
 	normalizeButtons()
 	pinButton()
 
@@ -423,15 +429,15 @@ function tab(tabby) {
 		checkShow(!gameData.isOptionsOpen, 'options', 'inline')
         if (!gameData.isOptionsOpen)
 			colorChanger('optionsButton', "#898989")
-		
+
 		toggle('isOptionsOpen')
-    } 
+    }
 
 	else if (tabby !== "null") {
         gameData.isOptionsOpen = 0
         document.getElementById(tabby).style.display = "inline-block"
-		
-		
+
+
 		for (let i = 0; i < mainTabs.length; i++) {
 			if(tabby == mainTabs[i].id)
 				colorChanger(tabby + "Button", '#' + mainTabs[i].color2)
@@ -449,17 +455,17 @@ function tabOptions(tabby) {
 
 function tabMarket(tabby) {
 	gameData.marketTab = tabby
-	tabManager('marketMain')	
-	tabManager('hiringArea')	
-	tabManager('travel')	
+	tabManager('marketMain')
+	tabManager('hiringArea')
+	tabManager('travel')
 	hide('trade')
 	colorChanger("tradeButton", "#FDFF9A")
 	colorChanger(tabby + "Button", "#898989")
 	document.getElementById(tabby).style.display = "block"
 	if (tabby == 'trade')
 		colorChanger(tabby + "Button", "#FCFF4E")
-	
-	
+
+
 	function tabManager(id) {
 		hide(id)
 		colorChanger(id + "Button", "#BBBBBB")
@@ -476,9 +482,9 @@ function updateValuesBase () {
 		theColor = 'rgba(0, 0, 0, 0)'
 		update('barPercentButton', 'Bar Percent Hidden')
 	}
-	
+
 	barTypes = ['skillBar', 'verticalBar', 'skillBarColored', 'smallContainerBar']
-	
+
 	for (j = 0; j < barTypes.length; j++) {
 		var x = document.getElementsByClassName(barTypes[j])
 		for (i = 0; i < x.length; i++) {
@@ -503,26 +509,26 @@ function updateValuesBase () {
 
 		update(elem, val)
 	}
-	
+
 	for (let i = 1; i < baseVariables.length; i++) {
 		if (gameData[baseVariables[i].id] > 0)
 			gameData[baseVariables[i].id + 'UnlockedVariable'] = true
 
 		checkShow(gameData[baseVariables[i].id + 'UnlockedVariable'], 'currencyDisplay(' + i + ')', 'inline')
 	}
-	
-	startCurrentTask(gameData.currentTask)	
-	startCurrentTask(gameData.currentTask2)	
+
+	startCurrentTask(gameData.currentTask)
+	startCurrentTask(gameData.currentTask2)
 
 	toggleAesthetic("toggleActions")
 
     if (gameData.coins > gameData.coinsMax)
         gameData.coins = gameData.coinsMax
-	
+
     overMaximum("baskets")
     overMaximum("juicers")
     overMaximum("peelers")
-	
+
 	function overMaximum(x) {
 		if (gameData[x] > gameData[x + 'Max'])
 			gameData[x] = gameData[x + 'Max']
@@ -531,7 +537,7 @@ function updateValuesBase () {
 	preventNegative('coins')
 	preventNegative('limes')
 	preventNegative('respect')
-	
+
 	function preventNegative(id) {
 		if (gameData[id] < 0)
 			gameData[id] = 0
@@ -550,8 +556,8 @@ function updateValuesBase () {
 		update('workingEmployee', 'Working time left: ' + gameData.employeeWorking.toLocaleString() + ' / 10 minutes.')
 	else
 		update('workingEmployee', 'Employee is idle.')
-	
-	
+
+
 	var x = document.getElementsByClassName('pinButton')
 	if (gameData.pinUnlock == 1) {
 		for (i = 0; i < x.length; i++) {
@@ -563,59 +569,62 @@ function updateValuesBase () {
 			x[i].style.display = 'none'
 		}
 	}
-	
+
 
 	for (i = 0; i <= 3; i++) {
 		checkShow(gameData.tomes == i, 'tomeDiv' + (i + 1))
 	}
 
-	
-	checkShow(gameData.lookAround > 1, 'sellYourLimesDiv')
-	checkShow(gameData.lookAround >= 3 && !(gameData.hideMaxedPurchases == 1 && gameData.juicers == gameData.juicersMax), 'buyAJuicerDiv')
-	checkShow(gameData.lookAround >= 3 && !(gameData.hideMaxedPurchases == 1 && gameData.baskets == gameData.basketsMax), 'buyABasketDiv')
-	checkShow(gameData.tomes > 3, 'goldenBarDiv')
-	checkShow(!gameData.pinUnlock, 'pinUnlockDiv')
-	checkShow(gameData.pieBucket && gameData.pieFlourBucket, 'bucketThinSteelPlating')
-	checkShow(gameData.maps == 0, 'buyAMapDiv1')
-	checkShow(gameData.maps == 1, 'buyAMapDiv2')
-	checkShow(gameData.maps == 2, 'buyAMapDiv3')
-	checkShow(gameData.maps == 3, 'buyAMapDiv4')
-	checkShow(gameData.maps == 4, 'buyAMapDiv5')
-	checkShow(gameData.hasAdvertised && !gameData.surveillanceCamera, 'offlineEmployee')
-	checkShow(gameData.advertisingLevel1, 'advertisingMethods')
-	checkShow(!gameData.advertisingLevel1 && gameData.hasAdvertised, 'researchBetterAdvertising')
-	checkShow(gameData.bulkBuyUnlock, 'basketsBulkButton', 'inline')
-	checkShow(gameData.maps > 0 || gameData.villageNumber > 1, 'marketMainButtonsDiv', 'inline')
-	checkShow(gameData.maps > 0, 'marketStore', 'inline')
-	checkShow(gameData.maps > 1, 'hiringAreaButton', 'inline')
-	checkShow(gameData.maps > 1 && !gameData.storageUnlock, 'storageUnlockDiv')
-	checkShow(gameData.maps > 1 && gameData.storageUnlock && !(gameData.storageJuicersUnlock && gameData.storagePeelersUnlock), 'storageDiv')
-	checkShow(gameData.maps > 1 && !gameData.bulkBuyUnlock, 'bulkBuyUnlockDiv')
-	checkShow(gameData.maps > 1 && gameData.bulkBuyUnlock && !gameData.bulkBuyUnlock2, 'bulkBuyUnlock2Div')
-	checkShow(gameData.maps > 2, 'travellingArea')
-	checkShow(gameData.maps > 2 && !gameData.fasterTransport, 'fasterTransportDiv')
-	checkShow(gameData.maps > 2, 'increaseJuicePrice')
-	checkShow(gameData.maps > 2 || gameData.villageNumber > 1, 'travelButton', 'inline')
-	checkShow(gameData.maps > 3 && !gameData.respectBillboard, 'respectBillboard', 'inline')
-	checkShow(gameData.maps > 3, 'tasksButton')
-	checkShow(gameData.maps > 3 && !gameData.autoCurrencyConversionBuy, 'autoCurrencyConversion')
-	checkShow(gameData.maps > 4 && gameData.basicAlphaToBetaBroker, 'basicAlphaToBetaBrokerRule')
-	checkShow(gameData.maps > 4 && !gameData.basicAlphaToBetaBroker, 'basicAlphaToBetaBroker')
-	checkShow(gameData.maps > 4, 'buyPie')
-	checkShow(gameData.lookAround != 3, 'lookAroundButton', 'inline')
 
-	checkShow(gameData.villageNumber > 1 || gameData.betterTraining || gameData.increaseJuicePricePermanance, 'megaCoinUpgradesButton')
-	checkShow(!gameData.forestWell, 'buyAWell')
-	checkShow(gameData.respectMilestone10000 && !gameData.rottenActualWisdom, 'rottenActualWisdom')
-	checkShow(!gameData.storagePeelersUnlock, 'storagePeelersDiv')
-	checkShow(!gameData.storageJuicersUnlock, 'storageJuicersDiv')
-	checkShow(!gameData.changeResearchersBy10Unlock, 'changeResearchersBy10Unlock')
+    const conditions = [
+      { condition: gameData.lookAround > 1, elementId: 'sellYourLimesDiv' },
+      { condition: gameData.lookAround >= 3 && !(gameData.hideMaxedPurchases == 1 && gameData.juicers == gameData.juicersMax), elementId: 'buyAJuicerDiv' },
+      { condition: gameData.lookAround >= 3 && !(gameData.hideMaxedPurchases == 1 && gameData.baskets == gameData.basketsMax), elementId: 'buyABasketDiv' },
+      { condition: gameData.tomes > 3, elementId: 'goldenBarDiv' },
+      { condition: !gameData.pinUnlock, elementId: 'pinUnlockDiv' },
+      { condition: gameData.pieBucket && gameData.pieFlourBucket, elementId: 'bucketThinSteelPlating' },
+      { condition: gameData.maps == 0, elementId: 'buyAMapDiv1' },
+      { condition: gameData.maps == 1, elementId: 'buyAMapDiv2' },
+      { condition: gameData.maps == 2, elementId: 'buyAMapDiv3' },
+      { condition: gameData.maps == 3, elementId: 'buyAMapDiv4' },
+      { condition: gameData.maps == 4, elementId: 'buyAMapDiv5' },
+      { condition: gameData.hasAdvertised && !gameData.surveillanceCamera, elementId: 'offlineEmployee' },
+      { condition: gameData.advertisingLevel1, elementId: 'advertisingMethods' },
+      { condition: !gameData.advertisingLevel1 && gameData.hasAdvertised, elementId: 'researchBetterAdvertising' },
+      { condition: gameData.bulkBuyUnlock, elementId: 'basketsBulkButton', display: 'inline' },
+      { condition: gameData.maps > 0 || gameData.villageNumber > 1, elementId: 'marketMainButtonsDiv', display: 'inline' },
+      { condition: gameData.maps > 0, elementId: 'marketStore', display: 'inline' },
+      { condition: gameData.maps > 1, elementId: 'hiringAreaButton', display: 'inline' },
+      { condition: gameData.maps > 1 && !gameData.storageUnlock, elementId: 'storageUnlockDiv' },
+      { condition: gameData.maps > 1 && gameData.storageUnlock && !(gameData.storageJuicersUnlock && gameData.storagePeelersUnlock), elementId: 'storageDiv' },
+      { condition: gameData.maps > 1 && !gameData.bulkBuyUnlock, elementId: 'bulkBuyUnlockDiv' },
+      { condition: gameData.maps > 1 && gameData.bulkBuyUnlock && !gameData.bulkBuyUnlock2, elementId: 'bulkBuyUnlock2Div' },
+      { condition: gameData.maps > 2, elementId: 'travellingArea' },
+      { condition: gameData.maps > 2 && !gameData.fasterTransport, elementId: 'fasterTransportDiv' },
+      { condition: gameData.maps > 2, elementId: 'increaseJuicePrice' },
+      { condition: gameData.maps > 2 || gameData.villageNumber > 1, elementId: 'travelButton', display: 'inline' },
+      { condition: gameData.maps > 3 && !gameData.respectBillboard, elementId: 'respectBillboard', display: 'inline' },
+      { condition: gameData.maps > 3, elementId: 'tasksButton' },
+      { condition: gameData.maps > 3 && !gameData.autoCurrencyConversionBuy, elementId: 'autoCurrencyConversion' },
+      { condition: gameData.maps > 4 && gameData.basicAlphaToBetaBroker, elementId: 'basicAlphaToBetaBrokerRule' },
+      { condition: gameData.maps > 4 && !gameData.basicAlphaToBetaBroker, elementId: 'basicAlphaToBetaBroker' },
+      { condition: gameData.maps > 4, elementId: 'buyPie' },
+      { condition: gameData.lookAround != 3, elementId: 'lookAroundButton', display: 'inline' },
+      { condition: gameData.villageNumber > 1 || gameData.betterTraining || gameData.increaseJuicePricePermanance, elementId: 'megaCoinUpgradesButton' },
+      { condition: !gameData.forestWell, elementId: 'buyAWell' },
+      { condition: gameData.respectMilestone10000 && !gameData.rottenActualWisdom, elementId: 'rottenActualWisdom' },
+      { condition: !gameData.storagePeelersUnlock, elementId: 'storagePeelersDiv' },
+      { condition: !gameData.storageJuicersUnlock, elementId: 'storageJuicersDiv' },
+      { condition: !gameData.changeResearchersBy10Unlock, elementId: 'changeResearchersBy10Unlock' },
+      { condition: !gameData.endScreen, elementId: 'sublimeMain'},
+      { condition: !gameData.endScreen, elementId: 'sublimeMain'},
+      { condition: gameData.endScreen, elementId: 'endScreen'},
+      { condition: gameData.lookAround, elementId: 'navigateButtons', display: 'visible'}
+    ];
 
-
-	checkShow(!gameData.endScreen, 'sublimeMain')
-	checkShow(gameData.endScreen, 'endScreen')
-	checkShow(gameData.lookAround, 'navigateButtons', 'visible')
-
+    conditions.forEach(({ condition, elementId, display }) => {
+      checkShow(condition, elementId, display);
+    });
 
 
 	updateBar('teach')

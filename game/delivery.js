@@ -1,9 +1,9 @@
-Object.assign ( gameDataBase, {
+addGameVariables({
     deliveryType: 0,
     deliveryTypeToggle: 0,
     deliveryPrice: 2,
     juiceBulkAmountToggle: 1,
-} )
+});
 
 function delivery() {
     if (gameData.deliveryBar == 0 && gameData.coins >= gameData.deliveryPrice && gameData.juice >= gameData.juiceBulkAmountToggle) {

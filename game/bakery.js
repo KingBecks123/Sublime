@@ -1,4 +1,4 @@
-baseVariables.push (
+addInventoryVariables([
 	{
 		id: 'pies',
 		name: 'Pies',
@@ -11,23 +11,22 @@ baseVariables.push (
 		color1: '964D1A',
 		color2: 'C67848',
 	},	
-)
+]);
 
-mainTabs.push (
+addMainTabs([
 	{
 		id: 'bakery',
 		text: 'Bakery',
 		color1: 'BBBBBB',
 		color2: '898989'
 	}
-)
-
+]);
 
 pieOvenColor = 0
 juiceInPieBucketLeak = 0
 flourInPieBucketLeak = 0
 
-Object.assign ( gameDataBase, {
+addGameVariables({
 	pieEmployee: 0,
 	pieEmployeeSalesLeft: 0,
 	
@@ -75,7 +74,7 @@ Object.assign ( gameDataBase, {
 	bellowsCurrentlyBlowing: 0,
 	
 	upgradeNozzles: 0,
-} )
+});
 
 
 

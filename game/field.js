@@ -1,11 +1,11 @@
-mainTabs.push (
+addMainTabs([
 	{
 		id: 'field',
 		text: 'Field',
 		color1: 'C67848',
 		color2: '964D1A'
 	}
-)
+]);
 
 fieldPlacementOptions = [
 	{
@@ -32,7 +32,7 @@ fieldPlacementOptions = [
 
 showPlotManagementDiv = false
 
-Object.assign ( gameDataBase, {
+addGameVariables({
 	wheatField: 0,
 	wheat: 0,
 	wheatSeeds: 0,
@@ -60,7 +60,7 @@ Object.assign ( gameDataBase, {
 	sellPlotPrice: 0,
 	selectedPlotX: 0,
 	selectedPlotY: 0,
-} )
+});
 
 function onLoadField () {
 	for (let y = 0; y < 5; y++) {	
@@ -187,49 +187,48 @@ function fieldTile(x, y) {
 }
 
 function updateFieldTileAesthetic() {
-	for (var x = 0; x < 5; x++) {
-		for (var y = 0; y < 5; y++) {
-			var tile = "fieldTile" + x + "-" + y
-			var image = document.getElementById(tile + 'img')
-			var tileType = gameData.wheatFieldArray[x][y]
-			
-			if (tileType == 0)
-				setImage ('emptyField')
-			else if (tileType >= 1 && tileType < 50)
-				setImage ('wheatSeed1')
-			else if (tileType == 50)
-				setImage ('wheatSeed6')
-			else if (tileType > 50 && tileType <= 54)
-				setImage ('seedDrill')
-			else if (tileType > 54 && tileType <= 58)
-				setImage ('wheatHarvester')
-			else if (tileType == 59)
-				setImage ('unpurchasedField')				
-				
-			if(tileType == 51 || tileType == 55)
-				setRotation(90)
-			else if(tileType == 52 || tileType == 56)
-				setRotation(180)
-			else if(tileType == 53 || tileType == 57)
-				setRotation(270)
-			else
-				setRotation(0)
-			
-			if (tileType == 59)
-				document.getElementById(tile).style.backgroundColor = "#66361F"
-			else
-				document.getElementById(tile).style.backgroundColor = "#DEAD85"
-			
-			
-			function setImage (id) {
-				image.src = 'assets/' + id + '.png'
-			}
-			
-			function setRotation(number) {
-				image.style.transform = 'rotate(' + number + 'deg)'
-			}
-		}
-	}
+  for (var x = 0; x < 5; x++) {
+    for (var y = 0; y < 5; y++) {
+      var tile = "fieldTile" + x + "-" + y;
+      var image = document.getElementById(tile + 'img');
+      var tileType = gameData.wheatFieldArray[x][y];
+
+      if (tileType == 0)
+        setImage('emptyField');
+      else if (tileType >= 1 && tileType < 50)
+        setImage('wheatSeed1');
+      else if (tileType == 50)
+        setImage('wheatSeed6');
+      else if (tileType > 50 && tileType <= 54)
+        setImage('seedDrill');
+      else if (tileType > 54 && tileType <= 58)
+        setImage('wheatHarvester');
+      else if (tileType == 59)
+        setImage('unpurchasedField');
+
+      if (tileType == 51 || tileType == 55)
+        setRotation(90);
+      else if (tileType == 52 || tileType == 56)
+        setRotation(180);
+      else if (tileType == 53 || tileType == 57)
+        setRotation(270);
+      else
+        setRotation(0);
+
+      if (tileType == 59)
+        document.getElementById(tile).style.backgroundColor = "#66361F";
+      else
+        document.getElementById(tile).style.backgroundColor = "#DEAD85";
+
+      function setImage(id) {
+        image.src = 'assets/' + id + '.png';
+      }
+
+      function setRotation(number) {
+        image.style.transform = 'rotate(' + number + 'deg)';
+      }
+    }
+  }
 }
 
 function updateValuesField () {

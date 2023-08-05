@@ -1,13 +1,13 @@
-mainTabs.push (
+addMainTabs([
 	{
 		id: 'inventory',
 		text: 'Inventory',
 		color1: 'BBBBBB',
 		color2: '898989'
 	},
-)
+]);
 
-baseVariables.push (
+addInventoryVariables([
 	{
 		id: 'goldenLimes',
 		name: 'Golden Limes',
@@ -26,10 +26,10 @@ baseVariables.push (
 		color1: '00B33D',
 		color2: '00FF55',
 	},	
-)
+]);
 
 
-Object.assign ( gameDataBase, {
+addGameVariables({
     juicers: 0,
     juicerBar: 0,
     howMuchJuice: 0,
@@ -47,7 +47,7 @@ Object.assign ( gameDataBase, {
     storagePeelersUnlock: 0,
     peelersBulkToggle: 0,
     juicersBulkToggle: 0,
-} )
+});
 
 function peelerPeel() {
     if (gameData.peelerBar == 0 && gameData.limes > 0) {

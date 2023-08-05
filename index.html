@@ -43,7 +43,7 @@
 </head>
 
 <body id="mainBody" style="-webkit-user-select: none;-ms-user-select: none;user-select: none;background-color:#3C3C3C" onload="gameStart()">
-<span id="sublimeMain">
+<div id="sublimeMain">
 	<div style="float:left;padding:10px;width:100px;background-color:#000000;" id="backgroundForValues">
 		<br>
 	</div>	
@@ -168,7 +168,7 @@
                     <p class="basicText">Price: 20 Coins</p>
                 </div>
 				<div id="marketStore">
-					<div id="plebian">
+					<div id="plebeian">
 						<div class="basicDiv" id="increaseJuicePrice">
 							<button class="specialButton" id="increaseJuicePriceButton" onclick="increaseJuicePrice()">Increase Juice Price</button>
 							<button class="specialButton" id="increaseJuicePricex10Button" style="width:60px;" onclick="toggle('increaseJuicePricex10')">x10</button>
@@ -193,7 +193,7 @@
 						<div id="buyAPeelerDiv" class="basicDiv">
 							<button class="specialButton" id="buyAPeelerButton" onclick="bulkableBuyMax('peelers', 2)">Buy A Peeler</button>
 							<button class="specialButton" id="peelersBulkButton" style="width:80px;" onclick="toggle('peelersBulkToggle')">x10</button>
-							<p class="basicText">The knife isnt gonna 'cut' it</p>
+							<p class="basicText">The knife isn't gonna 'cut' it</p>
 							<p class="basicText">Price: 2 Coins</p>
 						</div>
 						<div id="sharperPeelerDiv" class="basicDiv">
@@ -373,7 +373,7 @@
 							<p class="basicText">Price: 500,000 Coins</p>
 						</div>
 						<div id="unlockDiseaseAreaSwamp" class="basicDiv">
-							<button class="specialButton" id="unlockDiseaseAreaSwampButton" , onclick="basicBuy('unlockDiseaseAreaSwamp', 1e5)">Unlock Swamp Area</button>
+							<button class="specialButton" id="unlockDiseaseAreaSwampButton" onclick="basicBuy('unlockDiseaseAreaSwamp', 1e5)">Unlock Swamp Area</button>
 							<p class="basicText">The civilians in the swamp have lime disease too!</p>
 							<p class="basicText">Price: 100,000 Coins</p>
 						</div>
@@ -384,7 +384,7 @@
 						</div>
 						<div class="basicDiv" id="unlockBenevolence">
 							<button class="specialButtonTravel" onclick="basicBuy('unlockBenevolence', 5e5)">Buy a conscience</button>
-							<p class="basicText">Think about those less fortuanate than you - unlocks Benevolence</p>
+							<p class="basicText">Think about those less fortunate than you - unlocks Benevolence</p>
 							<p class="basicText">Price: 500,000 Coins</p>
 						</div>
 						<div class="basicDiv" id="offlineScience">
@@ -414,7 +414,7 @@
 						<button class="specialButton" id="hireBrokerToggleButton"      onclick="gameData.typeToHireToggle = 'broker'" >Currency Brokers</button>
 						<button class="specialButton" id="hirePieMerchantToggleButton" onclick="gameData.typeToHireToggle = 'pie'" >Pie Merchant</button>
 					</div>
-                    <button class="specialButton" , id="advertiseButton" onclick="advertise()">Advertise your lime business</button>
+                    <button class="specialButton" id="advertiseButton" onclick="advertise()">Advertise your lime business</button>
 					<div id="autoAdvertiseBrokerDiv">
 					    <button class="specialButton" id="autoAdvertiseBrokerButton" style="display:inline-block" onclick="toggle('autoAdvertiseBroker')">Auto</button>
 						<p class="basicText">Rule:</p>
@@ -431,7 +431,7 @@
                         <div class="skillBar" id="advertiseBar">0%</div>
                     </div>
                     <p class="basicText" id="advertisePrice">Price: 10 Coins</p>
-                    <button id="application" style="display:block;width:300px;margin:auto;background-color:#DEAD85;" , onclick="employeeTypes[gameData.applicationType].onHire()">Pin applications here</button>
+                    <button id="application" style="display:block;width:300px;margin:auto;background-color:#DEAD85;" onclick="employeeTypes[gameData.applicationType].onHire()">Pin applications here</button>
                     <p class="basicText" id="applicationInfo">Click the application to accept</p>
                 </div>
                 <div id="autoBrokerAdvertiser" class="basicDiv">
@@ -597,7 +597,7 @@
 				</div>
                 <div id="autoCurrencyConversion" class="basicDiv">
                     <button class="specialButton" onclick="universalBuy('autoCurrencyConversionBuy', 10, 'alphaCoins')">Auto Converter</button>
-                    <p class="basicText">Make currency conversion a togglable task</p>
+                    <p class="basicText">Make currency conversion a toggleable task</p>
                     <p class="basicText">Price: 10 Alpha Coins</p>
                 </div>
                 <div id="tomeDiv3" class="basicDiv">
@@ -622,7 +622,7 @@
                 </div>		
                 <div id="saveAlphaCoinsUnlock" class="basicDiv">
                     <button class="specialButtonTravel" onclick="universalBuy('saveAlphaCoinsUnlock', 1000, 'alphaCoins')">Buy A Safe On Wheels</button>
-                    <p class="basicText">Bring your alpha coins with you during your travels without pesky plebians stealing them</p>
+                    <p class="basicText">Bring your alpha coins with you during your travels without pesky plebeians stealing them</p>
                     <p class="basicText">Price: 1,000 Alpha Coins</p>
                 </div>				
                 <div id="transferAlphaCoinsBulkUnlock" class="basicDiv">
@@ -641,8 +641,8 @@
 					<p class="basicText" id="textForA2BBrokerRule">Converts Alpha Coins to Beta Coins if the conversion rate is below 1,000</p>
 					<button class="specialButton" onclick="decreaseBasicA2BBrokerRule()" style="width:168px">Decrease</button>
 					<button class="specialButton" onclick="increaseBasicA2BBrokerRule()" style="width:168px">Increase</button>
-                    <button class="specialButton" id="textForA2BBrokerAmountToggleButton" style="width:250px"onclick="toggle('textForA2BBrokerAmountToggle')"></button>
-					<button class="specialButton" id="textForA2BBrokerPrice"    style="width:250px"onclick="increaseBasicA2BBrokerAmount()">Increase for 2 Pie Coins</button>
+                    <button class="specialButton" id="textForA2BBrokerAmountToggleButton" style="width:250px" onclick="toggle('textForA2BBrokerAmountToggle')"></button>
+					<button class="specialButton" id="textForA2BBrokerPrice" style="width:250px" onclick="increaseBasicA2BBrokerAmount()">Increase for 2 Pie Coins</button>
 				</div>
                 <button class="currencyButton" id="alphaToBetaClickButton" style="display:block;background-color:#FDFF9A" onclick="pickCurrentTask('alphaToBetaClick')">Convert Alpha Coins to Beta Coins</button>
 				<div class="skillProgress" id="alphaToBetaProgress">
@@ -715,7 +715,7 @@
             <br>
             <button class="specialButton" id="juiceLimesToggleButton" style="display:none;width:150px;" onclick="gameData.limeTypeToJuice = 0">On Limes</button>
             <button class="specialButton" id="juicePeeledLimesToggleButton" style="display:none;width:150px;" onclick="gameData.limeTypeToJuice = 1">On Peeled Limes</button>
-            <p class="basicText" style="border-style: solid;border-width: 2px;border-color: #222222" id="juicerInfo" style="background-color:#bfbfbf;padding: 5px;"></p>
+            <p class="basicText" style="border-style: solid;border-width: 2px;border-color: #222222;background-color:#bfbfbf;padding: 5px;" id="juicerInfo"></p>
             <div class="skillProgress" id="myProgress">
 				<div class="skillBar" id="juicerBar">0%</div>
             </div>
@@ -750,7 +750,7 @@
 				<p class="basicText basketInfo">Baskets collect 5 Limes per minute each</p>
 				<p class="basicText basketInfo">Baskets collect up to 25 Limes each</p>
 				<p class="basicText basketInfo" id="maxBaskets">20 baskets fit under the current tree</p>
-				<span id="goldenLimesInfo"><p class="basicText basketInfo">Golden limes slowly rot away once you collect them</p></span>
+				<div id="goldenLimesInfo"><p class="basicText basketInfo">Golden limes slowly rot away once you collect them</p></div>
 				<p class="basicText" id="limesInBaskets">0 Limes</p>
 				<div class="verticalProgress" id="basketProgress">
 					<div class="verticalBar" style="background-color:#4DFE89;" id="basketBar">0%</div>
@@ -782,7 +782,7 @@
 				<p class="basicText" id="couldFindCustomer" >Search for customers</p>
 			</div>
 			<div class="basicDiv">
-				<button class="specialButton" id="customerButton" onclick="sellPieToCustomer()"style="width:80px;height:80px;text-align: center; line-height: 80px;font-size:40px;">:)</button>
+				<button class="specialButton" id="customerButton" onclick="sellPieToCustomer()" style="width:80px;height:80px;text-align: center; line-height: 80px;font-size:40px;">:)</button>
 			</div>
 			<div class="basicDiv" id="payPieEmployeeDiv">
 				<button class="specialButton" id="payPieEmployee" onclick="payPieEmployee()">Pay Employee 5 Pie Coins</button>
@@ -819,7 +819,7 @@
 				</div>
 				<div id="bellowsDiv">
 					<div class="skillProgress" id="bellowsProgress">
-						<div class="skillBarColored" style="background-color:#99DEFF"id="bellowsBar">0%</div>
+						<div class="skillBarColored" style="background-color:#99DEFF" id="bellowsBar">0%</div>
 					</div>
 					<button class="specialButton" onclick="useBellows()">Use Bellows</button>	
 				</div>
@@ -880,7 +880,7 @@
             <div class="basicDiv" id="diseaseControlStart">
                 <div class="limeDiseaseInfo">
                     <p class="basicText">Disease type: Lime Disease</p>
-                    <p class="basicText">Goal: Dont let it spread from any civilian to any other</p>
+                    <p class="basicText">Goal: Don't let it spread from any civilian to any other</p>
                 </div>
                 <p class="basicText" id="numberOfCivilians">Number of civilians: 2</p>
 				<div id="autoPlaceACivilianDiv">
@@ -919,7 +919,7 @@
         <div style="width:380px">
 			<div class="basicDiv" id="scienceButtonsDiv">
 				<button class="specialButton" id="researchButton" style="background-color:lightgray;" onclick="tabScience('research')">Research</button>
-				<button class="specialButton" id="researchersButton" style="background-color:lightgray;" onclick="tabScience('researchers')">Aquire Researchers</button>
+				<button class="specialButton" id="researchersButton" style="background-color:lightgray;" onclick="tabScience('researchers')">Acquire Researchers</button>
 			</div>
 			<div class="basicDiv">
 				<p class="basicText" id="textForResearchers" style="color:#00AAFF;background-color:#000000">0 Researchers</p>
@@ -990,8 +990,8 @@
 				<p class="basicText skillInfo" id="intelligence"></p>
 			</div>
 			<div class="basicDiv" id="knifebidextrousDiv">
-				<p class="basicText skillInfo" id="knifebidextrousInfo">Chance to peel 2 limes rather than 1: +5%</p>
-				<p class="basicText skillInfo" id="knifebidextrousInfo">Unlock something special for completing this!</p>
+				<p class="basicText skillInfo">Chance to peel 2 limes rather than 1: +5%</p>
+				<p class="basicText skillInfo">Unlock something special for completing this!</p>
 				<p class="basicText skillInfo" id="knifebidextrous"></p>
 			</div>
 			<div class="basicDiv" id="motivationDiv">
@@ -999,7 +999,7 @@
 				<p class="basicText skillInfo">Increases the amount that motivation affects employees</p>
 			</div>
 			<div class="basicDiv" id="ambidextrousDiv">
-				<p class="basicText skillInfo">Yes, i made a skill without a lime pun</p>
+				<p class="basicText skillInfo">Yes, I made a skill without a lime pun</p>
 				<p class="basicText skillInfo">Reach level 20 to be able to toggle two actions at once</p>
 			</div>
 			<div class="basicDiv" id="bitterSpeedDiv">
@@ -1009,7 +1009,7 @@
 			</div>
 		</div>
     </div>
-	</span>	
+	</div>
     <div id="endScreen" style="background-color:#000000;width:100%;height:100%;position: absolute;top:0px;left:0px;color:#FFFFFF;display:none;">
 		<p>You completed Sublime!! Good job! :)<br>
 		You can keep playing and expanding your lime empire while you wait for new updates.<p>

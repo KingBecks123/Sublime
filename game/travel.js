@@ -1,10 +1,10 @@
 travelUpgrades = [
-	{
-		id: 'upgradeNutritionist',
-		text: 'Nutritionist',
-		description: 'Doubles food points from eating',
-		requirement: 'gameData.nutritionists'
-	},
+    {
+        id: 'upgradeNutritionist',
+        text: 'Nutritionist',
+        description: 'Doubles food points from eating',
+        requirement: 'gameData.nutritionists'
+    },
 	{
 		id: 'upgradeJuicePricePermanance',
 		text: 'Juice Price Permanance',
@@ -79,32 +79,37 @@ travelUpgrades = [
 	}
 ]
 
-function onLoadTravel () {
-	for (let i = 0; i < travelUpgrades.length; i++) {
-		document.getElementById('megaCoinUpgrades').innerHTML += `<div class="basicDiv" id="` + travelUpgrades[i].id + `">
-            <p class="basicText" style="background-color:#FF999A;" >` + travelUpgrades[i].text + `</p>
-            <p class="basicText">` + travelUpgrades[i].description + `</p>
-        </div>`
-	}
+function onLoadTravel() {
+  const megaCoinUpgradesElement = document.getElementById('megaCoinUpgrades');
+  travelUpgrades.forEach((upgrade) => {
+    const upgradeElement = document.createElement('div');
+    upgradeElement.className = 'basicDiv';
+    upgradeElement.id = upgrade.id;
+    upgradeElement.innerHTML = `
+      <p class="basicText" style="background-color:#FF999A;">${upgrade.text}</p>
+      <p class="basicText">${upgrade.description}</p>
+    `;
+    megaCoinUpgradesElement.appendChild(upgradeElement);
+  });
 }
 
-baseVariables.push (
+addInventoryVariables([
 	{
 		id: 'megaCoins',
 		name: 'Mega Coins',
 		color1: 'B40001',
 		color2: 'FE0000',
 	},	
-)
+]);
 
-mainTabs.push (
+addMainTabs([
 	{
 		id: 'megaCoinUpgrades',
 		text: 'Upgrades',
 		color1: 'FF999A',
 		color2: 'FF4D4D'
 	},
-)
+]);
 
 function convertCoinsNow() {
     if (gameData.coins >= 1e5 && (gameData.convertCoinsNowBar == 0 || gameData.convertCoinsNowBar == 100)) {

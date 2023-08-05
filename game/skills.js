@@ -1,20 +1,20 @@
-baseVariables.push (
-	{
-		id: 'rottenLimes',
-		name: 'Rotten Limes',
-		color1: '00B300',
-		color2: '00FF01',
-	}
-)
+addInventoryVariables([
+  {
+    id: 'rottenLimes',
+    name: 'Rotten Limes',
+    color1: '00B300',
+    color2: '00FF01',
+  }
+]);
 
-mainTabs.push (
+addMainTabs([
 	{
 		id: 'skills',
 		text: 'Skills',
 		color1: 'BBBBBB',
 		color2: '898989'
 	},
-)
+]);
 
 skills = [
 	{
@@ -59,7 +59,7 @@ skills = [
 	},
 ]
 
-Object.assign ( gameDataBase, {
+addGameVariables({
     foodTypeToggle: 1,
     eat: 0,
     eatBar: 0,
@@ -67,7 +67,7 @@ Object.assign ( gameDataBase, {
     skillInfoToggle: 1,
 	nourishmentPrice: 1,
 	foodNutritionValue: 1,
-} )
+});
 
 for (let i = 0; i < skills.length; i++) {
 	gameDataBase[skills[i].id + 'SkillLevelMax'] = skills[i].maxSkillLevel
