@@ -178,79 +178,35 @@ function mainGameLoopSlowBrokers () {
 }
 
 function updateValuesBrokers() {
-	if (gameData.bachelorsDegreeFinance) {
-		update("textForBrokerApplicantSpeed", "Currently " + gameData.minBrokerApplicantSpeed.toLocaleString() + " - " + gameData.maxBrokerApplicantSpeed.toLocaleString() + " Seconds")
-		update("textForBrokerApplicantAmount", "Currently " + gameData.minBrokerApplicantAmount.toLocaleString() + " - " + gameData.maxBrokerApplicantAmount.toLocaleString() + " Coins")
-		update("textForAdvertisingBrokerRule", "Auto advertise if speed is over " + gameData.autoAdvertiseSpeedValue.toLocaleString() + " seconds")
-		update("textForSmarterAdvertisingBrokerRule", "And if transfer amount is under " + gameData.autoAdvertiseAmountValue.toLocaleString())
-		update("textForBrokerApplicantFee", "Currently " + gameData.minBrokerApplicantFee.toLocaleString() + " - " + gameData.maxBrokerApplicantFee.toLocaleString() + " Coins")
-		update("brokerApplicantSpeedPrice", "Price: " + gameData.brokerApplicantSpeedPrice.toLocaleString() + " Alpha Coins")
-		update("brokerApplicantFeePrice", "Price: " + gameData.brokerApplicantFeePrice.toLocaleString() + " Alpha Coins")
-		update("brokerApplicantAmountPrice", "Price: " + gameData.brokerApplicantAmountPrice.toLocaleString() + " Alpha Coins")
 
-		update("textForA2BBrokerRule", "Converts Alpha Coins to Beta Coins if the conversion rate is below " + gameData.basicA2BBrokerRule.toLocaleString())
+    alphaCoinTotalPrice = (gameData.alphaCoinsExchangeRate + gameData.currencyBrokerFee) * gameData.currencyBrokerTransferAmount
 
-		update("textForA2BBrokerAmountToggleButton", "Bulk convert amount: " + gameData.basicA2BBrokerAmount.toLocaleString())
-		update("textForA2BBrokerPrice", "Increase for " + gameData.increaseBasicA2BBrokerAmountPrice.toLocaleString() + " Pie Coins")
-		
-		update("currencyBrokerTransferAmount", "Speed: " + gameData.currencyBrokerSpeed.toLocaleString() + " Seconds.")
-		update("currencyBrokerFee", "Transfer Fee: " + gameData.currencyBrokerFee.toLocaleString() + ".")
-		update("currencyBrokerSpeed", "Alpha Coins Per Transfer: " + gameData.currencyBrokerTransferAmount.toLocaleString() + ".")
-		update("alphaCoinTransactionFee", "Transfer Fee: " + gameData.currencyBrokerFee.toLocaleString() + " Coins Per Alpha Coin")
+    if (!gameData.alphaCoinConvertBulkToggle) {
+        exchangeRate = gameData.alphaCoinsExchangeRate.toLocaleString() + " Coins -> 1 Alpha Coin"
+        coinsToAlphaClickButton = gameData.currencyBrokerTransferAmount
+    } else {
+        exchangeRate = (gameData.alphaCoinsExchangeRate * 10).toLocaleString() + " Coins -> 10 Alpha Coins"
+        coinsToAlphaClickButton = gameData.currencyBrokerTransferAmount * 10
+        alphaCoinTotalPrice *= 10
+    }
 
-		alphaCoinTotalPrice = (gameData.alphaCoinsExchangeRate + gameData.currencyBrokerFee) * gameData.currencyBrokerTransferAmount
-
-		if (!gameData.alphaCoinConvertBulkToggle) {
-			exchangeRate = gameData.alphaCoinsExchangeRate.toLocaleString() + " Coins -> 1 Alpha Coin"
-			coinsToAlphaClickButton = gameData.currencyBrokerTransferAmount
-		} else {
-			exchangeRate = (gameData.alphaCoinsExchangeRate * 10).toLocaleString() + " Coins -> 10 Alpha Coins"
-			coinsToAlphaClickButton = gameData.currencyBrokerTransferAmount * 10
-			alphaCoinTotalPrice *= 10
-		}
-		
-		update("alphaCoinExhangeRate", "Exchange Rate: " + exchangeRate)
-		update("alphaCoinTotalPrice", "Total Price: " + alphaCoinTotalPrice.toLocaleString() + " Coins")
-		update("coinsToAlphaClickButton", "Convert Coins to " + coinsToAlphaClickButton.toLocaleString() + " Alpha Coins")
-
-
-	}
-
-	checkShow(gameData.bachelorsDegreeFinance, 'tradeButton', 'inline')
-	checkShow(gameData.bachelorsDegreeFinance, 'alphaCoinToMegaCoinDiv')
-	checkShow(gameData.smarterAdvertisingManagerBroker, 'smarterAdvertisingBrokerRule')
-	checkShow(gameData.doesHaveCurrencyBroker, 'currencyBroker')
-	checkShow(gameData.unlockCurrencyBrokers && !gameData.advertisingManagerBroker, 'autoBrokerAdvertiser')
-	checkShow(gameData.unlockCurrencyBrokers, 'hireToggleButtons')
-	checkShow(gameData.unlockCurrencyBrokers, 'brokerApplicantUpgrades')
-	checkShow(!gameData.unlockCurrencyBrokers, 'unlockCurrencyBrokers')
-	checkShow(gameData.advertisingManagerBroker && gameData.typeToHireToggle == 'broker', 'autoAdvertiseBrokerDiv', 'inline')
-	checkShow(gameData.advertisingManagerBroker && !gameData.smarterAdvertisingManagerBroker, 'smarterAutoBrokerAdvertiser')
-	checkShow(gameData.transferAlphaCoinBags, 'alphaCoinConvertBulkButton', 'inline')
-	checkShow(!gameData.transferAlphaCoinBags, 'transferAlphaCoinBagsUnlock')
-	checkShow(!gameData.transferAlphaCoinsBulkUnlock, 'transferAlphaCoinsBulkUnlock')
-	checkShow(!gameData.saveAlphaCoinsUnlock, 'saveAlphaCoinsUnlock')
-	checkShow(gameData.transferAlphaCoinsBulkUnlock, 'transferAlphaCoinsBulk')
-	
 	if (employeeTypes[gameData.typeToHireToggle].priceType == 'coins')
 		text = 'Coins'
 	else if (employeeTypes[gameData.typeToHireToggle].priceType == 'betaCoins')
 		text = 'Beta Coins'
-	
+
 	update("advertisePrice", "Price: " + employeeTypes[gameData.typeToHireToggle].price.toLocaleString() + " " + text)
-	
+
 	if (gameData.currentTask == 'coinsToAlphaClick' || gameData.currentTask2 == 'coinsToAlphaClick')
-		colorChanger('coinsToAlphaClickButton', '#F8FF01')
+		setColor('coinsToAlphaClickButton', '#F8FF01')
 	else
-		colorChanger('coinsToAlphaClickButton', '#FDFF9A')
+		setColor('coinsToAlphaClickButton', '#FDFF9A')
 
 	if (gameData.currentTask == 'alphaToBetaClick' || gameData.currentTask2 == 'alphaToBetaClick')
-		colorChanger('alphaToBetaClickButton', '#F8FF01')
+		setColor('alphaToBetaClickButton', '#F8FF01')
 	else
-		colorChanger('alphaToBetaClickButton', '#FDFF9A')
-	
-	update('betaCoinExhangeRate', 'Exchange Rate: ' + gameData.betaCoinsExchangeRate.toLocaleString() + ' Alpha Coins -> 1 Beta Coin')
-	update('betaCoinTotalPrice', 'Total Price: ' + (gameData.betaCoinsExchangeRate * (gameData.textForA2BBrokerAmountToggle * (gameData.basicA2BBrokerAmount - 1) + 1)).toLocaleString() + ' Alpha Coins')
+		setColor('alphaToBetaClickButton', '#FDFF9A')
+
 	basicToggle("alphaCoinConvertBulk")
 	toggleAesthetic("textForA2BBrokerAmountToggle")
 
@@ -269,10 +225,58 @@ function updateValuesBrokers() {
 	for (i = 0; i < x.length; i++) {
 		x[i].style['margin'] = "5px"
 	}
-	
+
 	checkShow(gameData.maps > 4, 'earnBetaCoins')
 
     if (gameData.alphaCoins > 1e5)
         gameData.alphaCoins = 1e5
-	
+    
+    const elementsToUpdate = [
+      { element: "textForBrokerApplicantSpeed", value: "Currently " + gameData.minBrokerApplicantSpeed.toLocaleString() + " - " + gameData.maxBrokerApplicantSpeed.toLocaleString() + " Seconds" },
+      { element: "textForBrokerApplicantAmount", value: "Currently " + gameData.minBrokerApplicantAmount.toLocaleString() + " - " + gameData.maxBrokerApplicantAmount.toLocaleString() + " Coins" },
+      { element: "textForAdvertisingBrokerRule", value: "Auto advertise if speed is over " + gameData.autoAdvertiseSpeedValue.toLocaleString() + " seconds" },
+      { element: "textForSmarterAdvertisingBrokerRule", value: "And if transfer amount is under " + gameData.autoAdvertiseAmountValue.toLocaleString() },
+      { element: "textForBrokerApplicantFee", value: "Currently " + gameData.minBrokerApplicantFee.toLocaleString() + " - " + gameData.maxBrokerApplicantFee.toLocaleString() + " Coins" },
+      { element: "brokerApplicantSpeedPrice", value: "Price: " + gameData.brokerApplicantSpeedPrice.toLocaleString() + " Alpha Coins" },
+      { element: "brokerApplicantFeePrice", value: "Price: " + gameData.brokerApplicantFeePrice.toLocaleString() + " Alpha Coins" },
+      { element: "brokerApplicantAmountPrice", value: "Price: " + gameData.brokerApplicantAmountPrice.toLocaleString() + " Alpha Coins" },
+      { element: "textForA2BBrokerRule", value: "Converts Alpha Coins to Beta Coins if the conversion rate is below " + gameData.basicA2BBrokerRule.toLocaleString() },
+      { element: "textForA2BBrokerAmountToggleButton", value: "Bulk convert amount: " + gameData.basicA2BBrokerAmount.toLocaleString() },
+      { element: "textForA2BBrokerPrice", value: "Increase for " + gameData.increaseBasicA2BBrokerAmountPrice.toLocaleString() + " Pie Coins" },
+      { element: "currencyBrokerTransferAmount", value: "Speed: " + gameData.currencyBrokerSpeed.toLocaleString() + " Seconds." },
+      { element: "currencyBrokerFee", value: "Transfer Fee: " + gameData.currencyBrokerFee.toLocaleString() + "." },
+      { element: "currencyBrokerSpeed", value: "Alpha Coins Per Transfer: " + gameData.currencyBrokerTransferAmount.toLocaleString() + "." },
+      { element: "alphaCoinTransactionFee", value: "Transfer Fee: " + gameData.currencyBrokerFee.toLocaleString() + " Coins Per Alpha Coin" },
+      { element: "alphaCoinExhangeRate", value: "Exchange Rate: " + exchangeRate },
+      { element: "alphaCoinTotalPrice", value: "Total Price: " + alphaCoinTotalPrice.toLocaleString() + " Coins" },
+      { element: "coinsToAlphaClickButton", value: "Convert Coins to " + coinsToAlphaClickButton.toLocaleString() + " Alpha Coins" },
+      { element: "betaCoinExhangeRate", value: "Exchange Rate: " + gameData.betaCoinsExchangeRate.toLocaleString() + " Alpha Coins -> 1 Beta Coin" },
+      { element: "betaCoinTotalPrice", value: "Total Price: " + (gameData.betaCoinsExchangeRate * (gameData.textForA2BBrokerAmountToggle * (gameData.basicA2BBrokerAmount - 1) + 1)).toLocaleString() + " Alpha Coins" },
+    ];
+
+    elementsToUpdate.forEach(({ element, value }) => {
+      update(element, value);
+    });
+
+    const elementsToCheck = [
+      { condition: gameData.bachelorsDegreeFinance, element: 'tradeButton', display: 'inline' },
+      { condition: gameData.bachelorsDegreeFinance, element: 'alphaCoinToMegaCoinDiv' },
+      { condition: gameData.smarterAdvertisingManagerBroker, element: 'smarterAdvertisingBrokerRule' },
+      { condition: gameData.doesHaveCurrencyBroker, element: 'currencyBroker' },
+      { condition: gameData.unlockCurrencyBrokers && !gameData.advertisingManagerBroker, element: 'autoBrokerAdvertiser' },
+      { condition: gameData.unlockCurrencyBrokers, element: 'hireToggleButtons' },
+      { condition: gameData.unlockCurrencyBrokers, element: 'brokerApplicantUpgrades' },
+      { condition: !gameData.unlockCurrencyBrokers, element: 'unlockCurrencyBrokers' },
+      { condition: gameData.advertisingManagerBroker && gameData.typeToHireToggle == 'broker', element: 'autoAdvertiseBrokerDiv', display: 'inline' },
+      { condition: gameData.advertisingManagerBroker && !gameData.smarterAdvertisingManagerBroker, element: 'smarterAutoBrokerAdvertiser' },
+      { condition: gameData.transferAlphaCoinBags, element: 'alphaCoinConvertBulkButton', display: 'inline' },
+      { condition: !gameData.transferAlphaCoinBags, element: 'transferAlphaCoinBagsUnlock' },
+      { condition: !gameData.transferAlphaCoinsBulkUnlock, element: 'transferAlphaCoinsBulkUnlock' },
+      { condition: !gameData.saveAlphaCoinsUnlock, element: 'saveAlphaCoinsUnlock' },
+      { condition: gameData.transferAlphaCoinsBulkUnlock, element: 'transferAlphaCoinsBulk' },
+    ];
+
+    elementsToCheck.forEach(({ condition, element, display = 'none' }) => {
+      checkShow(condition, element, display);
+    });
 }

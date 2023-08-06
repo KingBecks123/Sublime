@@ -313,28 +313,39 @@ function rottenActualWisdom() {
 }
 
 function updateValuesTravel () {
-	checkShow(gameData.megaCoinsInBankMax <= 20, 'increaseCreditScore')
-	checkShow(!gameData.nutritionists, 'hireANutritionist')
-	checkShow(gameData.respectMilestone10000 && !gameData.bachelorsDegreeFinance, 'earnBachelorFinance')
-	checkShow(gameData.respectMilestone10000, 'buyABiggerWallet')
-	checkShow(gameData.respectMilestone10000, 'upgradeMoreStorage')
-	checkShow(!gameData.bigGloves, 'buyBigGloves')
-	checkShow(gameData.creditScore2 && !gameData.creditScore3, 'increaseCreditScore3')
-	checkShow(!gameData.creditScore2 && gameData.respectMilestone10000, 'increaseCreditScore2', 'inline')
 
-	update('textForMegaCoinsInBank', gameData.megaCoinsInBank.toLocaleString() + ' / ' + gameData.megaCoinsInBankMax.toLocaleString() + ' Mega Coins In Bank')
-	update('buyMegaCoinsTimes', 'Transfer times: ' + gameData.buyMegaCoinsTimes + ' / ' + gameData.buyMegaCoinsTimesMax)
 
     if (gameData.megaCoinsInBank > gameData.megaCoinsInBankMax)
         gameData.megaCoinsInBank = gameData.megaCoinsInBankMax
-	
-	checkShow(!gameData.nationalJuiceMarketing, 'juiceMarketing')
-	
-	update('betterTrainingPrice', 'Price: ' + gameData.betterTraining.toLocaleString() + ' Mega Coins')
-	update('upgradeMoreStoragePrice', 'Price: ' + (Math.pow(2, gameData.upgradeMoreStorage) * 50).toLocaleString() + ' Mega Coins')
 	
 	for (let i = 0; i < travelUpgrades.length; i++) {
 		checkShow(eval(travelUpgrades[i].requirement), travelUpgrades[i].id)
 	}
 
+    const showHideElements = [
+      { condition: gameData.megaCoinsInBankMax <= 20, element: 'increaseCreditScore' },
+      { condition: !gameData.nutritionists, element: 'hireANutritionist' },
+      { condition: gameData.respectMilestone10000 && !gameData.bachelorsDegreeFinance, element: 'earnBachelorFinance' },
+      { condition: gameData.respectMilestone10000, element: 'buyABiggerWallet' },
+      { condition: gameData.respectMilestone10000, element: 'upgradeMoreStorage' },
+      { condition: !gameData.bigGloves, element: 'buyBigGloves' },
+      { condition: gameData.creditScore2 && !gameData.creditScore3, element: 'increaseCreditScore3' },
+      { condition: !gameData.creditScore2 && gameData.respectMilestone10000, element: 'increaseCreditScore2', display: 'inline' },
+      { condition: !gameData.nationalJuiceMarketing, element: 'juiceMarketing' }
+    ];
+
+    showHideElements.forEach(({ condition, element, display = 'block' }) => {
+      checkShow(condition, element, display);
+    });
+
+    const updateValues = [
+      { elementId: 'textForMegaCoinsInBank', value: gameData.megaCoinsInBank.toLocaleString() + ' / ' + gameData.megaCoinsInBankMax.toLocaleString() + ' Mega Coins In Bank' },
+      { elementId: 'buyMegaCoinsTimes', value: 'Transfer times: ' + gameData.buyMegaCoinsTimes + ' / ' + gameData.buyMegaCoinsTimesMax },
+      { elementId: 'betterTrainingPrice', value: 'Price: ' + gameData.betterTraining.toLocaleString() + ' Mega Coins' },
+      { elementId: 'upgradeMoreStoragePrice', value: 'Price: ' + (Math.pow(2, gameData.upgradeMoreStorage) * 50).toLocaleString() + ' Mega Coins' }
+    ];
+
+    updateValues.forEach(({ elementId, value }) => {
+      update(elementId, value);
+    });
 }

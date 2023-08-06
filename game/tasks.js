@@ -204,11 +204,11 @@ function updateMapTileAesthetic() {
 	for (x = 0; x < 5; x++) {
 		for (y = 0; y < 4; y++) {
 			if (doesTileExist (x, y)) {
-				colorChanger('mapTile-' + x + '-' + y, diseaseTileTypes[gameData.diseaseArray[x][y]].color)
+				setColor('mapTile-' + x + '-' + y, diseaseTileTypes[gameData.diseaseArray[x][y]].color)
 				update('mapTile-' + x + '-' + y, diseaseTileTypes[gameData.diseaseArray[x][y]].text)
 			}
 			else {
-				colorChanger('mapTile-' + x + '-' + y, '#66361F')
+				setColor('mapTile-' + x + '-' + y, '#66361F')
 				update('mapTile-' + x + '-' + y, '‏‏‎ ‎‏‏‎ ‎‎')
 			}
 		}
@@ -233,17 +233,25 @@ function buyARobe() {
 function tabTasks(tabby) {
     hide('earn')
     hide('milestones')
-	colorChanger('earnButton', '#BBBBBB')
-	colorChanger('milestonesButton', '#BBBBBB')	
-	colorChanger(tabby + 'Button', '#898989')
+	setColor('earnButton', '#BBBBBB')
+	setColor('milestonesButton', '#BBBBBB')
+	setColor(tabby + 'Button', '#898989')
     document.getElementById(tabby).style.display = 'block'
+}
+
+function onLoadTasks () {
+	for (y = 3; y >= 0; y--) {
+		for (x = 0; x < 5; x++) {
+			document.getElementById('diseaseControlTiles').innerHTML += '<button style="width:60px;height:60px;padding:5px;margin:2px" class="mapTile" id="mapTile-' + x + '-' + y + '" onclick="mapTile(' + x + ', ' + y + ')"></button>'
+		}
+	}
 }
 
 function updateValuesTasks () {
 	if (gameData.simulationTime)
-		colorChanger('checkResultsButton', '#DEAD85')
+		setColor('checkResultsButton', '#DEAD85')
 	else
-		colorChanger('checkResultsButton', '#50514F')
+		setColor('checkResultsButton', '#50514F')
 	
 	var x = document.getElementsByClassName('unlockDiseaseAreaSwamp')
 	for (i = 0; i < x.length; i++) {
@@ -254,22 +262,41 @@ function updateValuesTasks () {
 	}
 	
 	update('textForRespect', gameData.respect.toLocaleString() + ' Respect')
+	update('textForLakes', gameData.limeDiseaseLakes.toLocaleString() + ' Lakes')
+    update('numberOfCivilians', 'Number Of Civilians: ' + gameData.civiliansTotal.toLocaleString())
 
-	checkRespectMilestone(10, '#4DFE89', 'Automatically start tasks')
-	checkRespectMilestone(25, '#4DFE89', 'Automatically start simulation')
-	checkRespectMilestone(50, '#4DFE89', 'Allow entrance to the Special Shopping District')
-	checkRespectMilestone(100, '#4DFE89', 'Automatically check simulation')
-	checkRespectMilestone(500, '#4DFE89', 'Automatically situate a civilian')
-	checkRespectMilestone(1000, '#4DFE89', 'Unlock scientific research')
-	checkRespectMilestone(10000, '#FF999A', 'Unlock more mega coin upgrades')
+    const milestoneValues = [
+      { value: 10, color: '#4DFE89', text: 'Automatically start tasks' },
+      { value: 25, color: '#4DFE89', text: 'Automatically start simulation' },
+      { value: 50, color: '#4DFE89', text: 'Allow entrance to the Special Shopping District' },
+      { value: 100, color: '#4DFE89', text: 'Automatically check simulation' },
+      { value: 500, color: '#4DFE89', text: 'Automatically situate a civilian' },
+      { value: 1000, color: '#4DFE89', text: 'Unlock scientific research' },
+      { value: 10000, color: '#FF999A', text: 'Unlock more mega coin upgrades' }
+    ];
 
-	checkShow(gameData.respectMilestone10, 'autoStartTaskButton', 'inline')
-	checkShow(gameData.respectMilestone25, 'autoStartSimulationButton', 'inline')
-	checkShow(gameData.respectMilestone100, 'autoCheckSimulationButton', 'inline')
-	checkShow(gameData.respectMilestone500, 'autoPlaceACivilianDiv')
-	checkShow(gameData.respectMilestone1000, 'scienceButton', 'inline')
-	
+    milestoneValues.forEach(({ value, color, text }) => {
+      checkRespectMilestone(value, color, text);
+    });
 
+    const showHideElements = [
+      { condition: gameData.respectMilestone10, element: 'autoStartTaskButton', display: 'inline' },
+      { condition: gameData.respectMilestone25, element: 'autoStartSimulationButton', display: 'inline' },
+      { condition: gameData.respectMilestone100, element: 'autoCheckSimulationButton', display: 'inline' },
+      { condition: gameData.respectMilestone500, element: 'autoPlaceACivilianDiv' },
+      { condition: gameData.respectMilestone1000, element: 'scienceButton', display: 'inline' },
+      { condition: gameData.respectMilestone50, element: 'patrician' },
+      { condition: !gameData.manuscripts, element: 'buyManuscriptsDiv' },
+      { condition: gameData.diseaseControlFinished, element: 'startDiseaseTask' },
+      { condition: !gameData.diseaseControlFinished, element: 'diseaseControlStart' },
+      { condition: !gameData.silkRobe, element: 'buyARobe' },
+      { condition: !gameData.unlockDiseaseAreaSwamp, element: 'unlockDiseaseAreaSwamp' },
+      { condition: !gameData.lightRobe, element: 'lightRobe' }
+    ];
+
+    showHideElements.forEach(({ condition, element, display = 'block' }) => {
+      checkShow(condition, element, display);
+    });
 
 	function checkRespectMilestone(number, color, text) {		
 		if (gameData.respect >= number)
@@ -286,19 +313,8 @@ function updateValuesTasks () {
 		else
 			whatColor = "#BBBBBB"
 		
-		colorChanger(number + 'RespectMilestone', whatColor)
+		setColor(number + 'RespectMilestone', whatColor)
 	}
-
-	checkShow(gameData.respectMilestone50, 'patrician')
-	checkShow(!gameData.manuscripts, 'buyManuscriptsDiv')
-	checkShow(gameData.diseaseControlFinished, 'startDiseaseTask')
-	checkShow(!gameData.diseaseControlFinished, 'diseaseControlStart')
-
-	update('textForLakes', gameData.limeDiseaseLakes.toLocaleString() + ' Lakes')
-	update('numberOfCivilians', 'Number Of Civilians: ' + gameData.civiliansTotal.toLocaleString())
-	checkShow(!gameData.silkRobe, 'buyARobe')
-	checkShow(!gameData.unlockDiseaseAreaSwamp, 'unlockDiseaseAreaSwamp')
-	checkShow(!gameData.lightRobe, 'lightRobe')
 	
 	basicToggle("limeDiseaseInfo")
 	basicToggle("limeDiseaseControlInfo")
@@ -314,12 +330,4 @@ function updateValuesTasks () {
 	
 	if (gameData.autoStartSimulation)
 		startSimulation()
-}
-
-function onLoadTasks () {
-	for (y = 3; y >= 0; y--) {
-		for (x = 0; x < 5; x++) {
-			document.getElementById('diseaseControlTiles').innerHTML += '<button style="width:60px;height:60px;padding:5px;margin:2px" class="mapTile" id="mapTile-' + x + '-' + y + '" onclick="mapTile(' + x + ', ' + y + ')"></button>'
-		}
-	}
 }

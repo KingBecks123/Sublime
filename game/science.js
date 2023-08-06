@@ -72,61 +72,14 @@ addGameVariables({
 	researchers: 0,
 });
 
-function updateValuesScience() {
-	
-	researchersAvailable = gameData.researchers
-
-	for (let i = 0; i < sciences.length; i++) {
-		id = sciences[i].id
-		researchers = gameData[id + "Researchers"]
-		
-		update(id + "Researchers", researchers + " Researchers")
-		
-		
-		var researchTime =	Math.floor((200 * sciences[i].equation()) / researchers)
-		
-		if (researchTime == Infinity)
-			timeToShow = 'Infinite Seconds'
-		else if (researchTime <= 200)
-			timeToShow = researchTime.toLocaleString() + ' Seconds'
-		else
-			timeToShow = Math.floor(researchTime / 60).toLocaleString() + ' Minutes'
-		
-		update(id + 'Time', 'Estimated Time: ' + timeToShow)
-
-		researchersAvailable -= researchers
-
-		update(id + "Text", sciences[i].description())
-	}
-	
-	update("benevolenceRespectIncrease", "Respect increase:  " + (Math.floor((Math.pow(2, gameData.limeDiseaseLakes - 10)) * gameData.benevolence)).toLocaleString())
-	update("textForResearchers", researchersAvailable + " Available Researchers")
-
-	checkShow(gameData.benevolence, 'benevolence')
-	checkShow(gameData.unlockBenevolence, 'benevolenceDiv')
-	checkShow(!gameData.surveillanceCamera2 && gameData.respectMilestone1000, 'offlineScience')
-	checkShow(!gameData.unlockBenevolence && gameData.respectMilestone1000, 'unlockBenevolence')	
-	
-	var x = document.getElementsByClassName("changeResearchersBy10")
-	for (i = 0; i < x.length; i++) {
-		if (gameData.changeResearchersBy10Unlock)
-			x[i].style.display = 'inline-block'
-		else
-			x[i].style.display = 'none'
-	}
-}
-
-
-
-
 function tabScience(tabby) {
     hide("research")
     hide("researchers")
 	
-	colorChanger('researchButton', '#BBBBBB')
-	colorChanger('researchersButton', '#BBBBBB')		
+	setColor('researchButton', '#BBBBBB')
+	setColor('researchersButton', '#BBBBBB')
 	
-	colorChanger(tabby + "Button", "#898989")
+	setColor(tabby + "Button", "#898989")
 	
     document.getElementById(tabby).style.display = "block"
 }
@@ -210,4 +163,48 @@ function runScienceBar (i) {
 		sciences[i].onBarFilled()
 	}
 	updateBar(id)
+}
+
+function updateScienceData() {
+  for (let i = 0; i < sciences.length; i++) {
+    const id = sciences[i].id;
+    const researchers = gameData[id + "Researchers"];
+
+    update(id + "Researchers", researchers + " Researchers");
+
+    const researchTime = Math.floor((200 * sciences[i].equation()) / researchers);
+
+    let timeToShow;
+    if (researchTime === Infinity) {
+      timeToShow = 'Infinite Seconds';
+    } else if (researchTime <= 200) {
+      timeToShow = researchTime.toLocaleString() + ' Seconds';
+    } else {
+      timeToShow = Math.floor(researchTime / 60).toLocaleString() + ' Minutes';
+    }
+
+    update(id + 'Time', 'Estimated Time: ' + timeToShow);
+    researchersAvailable -= researchers;
+    update(id + "Text", sciences[i].description());
+  }
+}
+
+function updateValuesScience() {
+
+	researchersAvailable = gameData.researchers
+
+    updateScienceData();
+
+	update("benevolenceRespectIncrease", "Respect increase:  " + (Math.floor((Math.pow(2, gameData.limeDiseaseLakes - 10)) * gameData.benevolence)).toLocaleString())
+	update("textForResearchers", researchersAvailable + " Available Researchers")
+
+
+
+	var x = document.getElementsByClassName("changeResearchersBy10")
+	for (i = 0; i < x.length; i++) {
+		if (gameData.changeResearchersBy10Unlock)
+			x[i].style.display = 'inline-block'
+		else
+			x[i].style.display = 'none'
+	}
 }

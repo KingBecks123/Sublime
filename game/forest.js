@@ -79,29 +79,31 @@ function updateValuesForest () {
 	checkShow(gameData.baskets && !gameData.basketScarecrow, 'offlineBasket')
 	checkShow(gameData.pieCoinsInWell == 200, 'enterTheWell', 'inline')
 	checkShow(gameData.forestWell, 'forestWellDiv', 'inline')
-
-	
-	if (gameData.forestWell)
-		document.getElementById('forest').style.width = '760px'
-	else
-		document.getElementById('forest').style.width = '380px'
-	
 	checkShow(!gameData.forestTree2, 'buyANewTree')
 	checkShow(gameData.forestTree2, 'treeTypeDiv')
+	checkShow(gameData.baskets, 'forestButton')
+	checkShow(gameData.forestTreeType == 2, 'goldenLimesInfo')
+
+	wellWidth = "";
+
+	if (gameData.forestWell)
+		wellWidth = '760px'
+	else
+		wellWidth = '380px'
+
+	document.getElementById('forest').style.width = wellWidth
+
+	
+
 	basicToggle("basketsBulk")
 	
 	if (gameData.forestTreeType == 1) {
-		colorChanger('forestTree1', "#4DFE89")
-		colorChanger('forestTree2', "gray")
+		setColor('forestTree1', "#4DFE89")
+		setColor('forestTree2', "gray")
 	} else {
-		colorChanger('forestTree2', "#4DFE89")
-		colorChanger('forestTree1', "gray")
+		setColor('forestTree2', "#4DFE89")
+		setColor('forestTree1', "gray")
 	}
-	
-	checkShow(gameData.baskets, 'forestButton')
-	
-	checkShow(gameData.forestTreeType == 2, 'goldenLimesInfo')
-
 
     var elem = document.getElementById("wellBar")
     elem.style.height = (gameData.pieCoinsInWell / 2) + "%"

@@ -412,14 +412,14 @@ function tab(tabby) {
 
 	for (let i = 0; i < mainTabs.length; i++) {
 		hide(mainTabs[i].id)
-		colorChanger(mainTabs[i].id + 'Button', '#' + mainTabs[i].color1)
+		setColor(mainTabs[i].id + 'Button', '#' + mainTabs[i].color1)
 	}
 
 
     if (tabby == "options") {
 		checkShow(!gameData.isOptionsOpen, 'options', 'inline')
         if (!gameData.isOptionsOpen)
-			colorChanger('optionsButton', "#898989")
+			setColor('optionsButton', "#898989")
 
 		toggle('isOptionsOpen')
     }
@@ -431,7 +431,7 @@ function tab(tabby) {
 
 		for (let i = 0; i < mainTabs.length; i++) {
 			if(tabby == mainTabs[i].id)
-				colorChanger(tabby + "Button", '#' + mainTabs[i].color2)
+				setColor(tabby + "Button", '#' + mainTabs[i].color2)
 		}
     }
 
@@ -450,16 +450,16 @@ function tabMarket(tabby) {
 	tabManager('hiringArea')
 	tabManager('travel')
 	hide('trade')
-	colorChanger("tradeButton", "#FDFF9A")
-	colorChanger(tabby + "Button", "#898989")
+	setColor("tradeButton", "#FDFF9A")
+	setColor(tabby + "Button", "#898989")
 	document.getElementById(tabby).style.display = "block"
 	if (tabby == 'trade')
-		colorChanger(tabby + "Button", "#FCFF4E")
+		setColor(tabby + "Button", "#FCFF4E")
 
 
 	function tabManager(id) {
 		hide(id)
-		colorChanger(id + "Button", "#BBBBBB")
+		setColor(id + "Button", "#BBBBBB")
 	}
 }
 

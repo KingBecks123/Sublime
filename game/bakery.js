@@ -168,23 +168,18 @@ function mainGameLoopSlowBakery() {
 
 			if(tileType >= 1 && tileType < 50)
 				gameData.wheatFieldArray[x][y] += 1
-			
-			if (tileType == 53 || tileType == 55) {
-				xWhere = x
-				yWhere = y - 1
-			}
-			else if(tileType == 54 || tileType == 56) {
-				xWhere = x + 1
-				yWhere = y
-			}
-			else if(tileType == 51 || tileType == 57) {
-				xWhere = x
-				yWhere = y + 1
-			}
-			else if(tileType == 52 || tileType == 58) {
-				xWhere = x - 1
-				yWhere = y
-			}
+
+            xWhere = x
+            yWhere = y
+
+			if (tileType == 53 || tileType == 55)
+				yWhere --
+			else if(tileType == 54 || tileType == 56)
+				xWhere ++
+			else if(tileType == 51 || tileType == 57)
+				yWhere ++
+			else if(tileType == 52 || tileType == 58)
+				xWhere --
 
 			
 			if (tileType >= 51 && tileType <= 54) {
@@ -320,8 +315,6 @@ function updateValuesBakery() {
 
 	if(gameData.pies > 0)
 		gameData.hasGottenPies = 1
-	
-	checkShow(gameData.hasGottenPies, 'bakeryButton')
 
 
 	if (juiceInPieBucketLeak > 100 / gameData.juiceBucketHoleSize) {
@@ -342,44 +335,6 @@ function updateValuesBakery() {
 		flourInPieBucketLeak = 0
 	}
 	flourInPieBucketLeak += 1
-		
-	checkShow(gameData.pieBucket, 'pieBuckets')
-	checkShow(!gameData.pieFlourBucket && gameData.pieBucket, 'buyAPieFlourBucket')
-	checkShow(gameData.pieBucket && !gameData.pieBucketNozzle, 'buyAPieBucketNozzle')
-	checkShow(gameData.mortarAndPestle, 'grindFlour', 'inline')
-	checkShow(gameData.hasSoldPie && !gameData.wheatField, 'buyWheatField')
-	checkShow(gameData.hasSoldPie && !gameData.pieEmployee, 'buyPieEmployee')
-	checkShow(gameData.doesHavePieMerchant, 'pieMerchant')
-	checkShow(gameData.pieFlourBucket && !gameData.pieFlourBucketNozzle, 'buyAPieFlourBucketNozzle')
-	checkShow(gameData.pieBucketNozzle, 'bucketHoleChanger')
-	checkShow(gameData.pieBucketNozzle && gameData.pieFlourBucketNozzle && !gameData.upgradeNozzles, 'upgradeNozzles')
-	
-	checkShow(gameData.pieOven && !gameData.pieConveyorBelt, 'buyAPieConveyorBelt')
-	checkShow(gameData.pieOven && !gameData.pieBucket, 'buyAPieBucket')
-	checkShow(gameData.pieOven && !gameData.bellows, 'buyBellows')
-
-	checkShow(gameData.bellows, 'bellowsDiv')
-	
-	checkShow(gameData.wheatField, 'fieldButton')
-	checkShow(gameData.wheatField, 'buyWheatSeeds')
-	checkShow(gameData.wheatField, 'buyAWheatHarvester')
-	checkShow(gameData.wheatField, 'buyASeedDrill')
-	checkShow(gameData.wheatField && !gameData.pieOven, 'buyPieOven')
-	checkShow(gameData.wheatField && !gameData.mortarAndPestle, 'buyMortarAndPestle')
-	
-	checkShow(gameData.seedDrills || gameData.wheatHarvesters, 'wheatMachines')
-
-	checkShow(gameData.pieEmployee, 'payPieEmployeeDiv')
-	checkShow(gameData.pieEmployee && !gameData.advancedPieHiring, 'advancedPieHiring')
-	checkShow(gameData.pieEmployee && gameData.advancedPieHiring, 'hirePieMerchantToggleButton')
-	checkShow(gameData.pieFlourBucket, 'flourBucketProgress', 'visible')
-	checkShow(gameData.pieFlourBucket, 'addToPieFlourBucket', 'visible')
-	checkShow(gameData.pieFlourBucketNozzle, 'flourMinusNozzle', 'visible')
-	checkShow(gameData.pieFlourBucketNozzle, 'flourPlusNozzle', 'visible')
-
-	
-	checkShow(gameData.pieOven, 'pieOvenDiv', 'inline')
-
 	
 	if(gameData.bakePieBar !== 100) {
 		if(beckyRandom(2) == 1)
@@ -394,38 +349,77 @@ function updateValuesBakery() {
 			pieOvenColor = 0
 	}
 	
-	colorChanger('bakePieBar', 'rgba(345, ' + pieOvenColor + ', 0)')
+	setColor('bakePieBar', 'rgba(345, ' + pieOvenColor + ', 0)')
 	
 
 	
 	if(gameData.wheatHarvesters || gameData.seedDrills)
 		gameData.hasGottenFieldTools = 1
-	
 
-
-	checkShow(gameData.hasGottenFieldTools, 'fieldPlacementOptions')
-	checkShow(gameData.pieConveyorBelt, 'pieConveyorBeltOnButton', 'inline')
-
-
-	update("wheatNumber", "Wheat: " + gameData.wheat.toLocaleString() + " / 30")
-	update("wheatSeedsNumber", "Seeds: " + gameData.wheatSeeds.toLocaleString() + " / 30")
-	update("flourNumber", "Flour: " + gameData.flour.toLocaleString() + " / 30")
-	update("wheatHarvesterNumber", "Available Wheat Harvesters: " + gameData.wheatHarvesters.toLocaleString())
-	update("seedDrillNumber", "Available Seed Drills: " + gameData.seedDrills.toLocaleString())
-	update("currentPieIngredients", "Current Ingredients: " + gameData.juiceAsPieIngredient.toLocaleString() + " Juice + " + gameData.flourAsPieIngredient.toLocaleString() + " Flour")
-	update("pieEmployeeSalesLeft", "Employee Sales Left: " + gameData.pieEmployeeSalesLeft.toLocaleString() + " / " + gameData.pieMerchantMaxPay.toLocaleString())
-	update("payPieEmployee", "Pay Employee " + gameData.pieMerchantPieCoinPrice.toLocaleString() + " Pie Coins & " + gameData.pieMerchantBetaCoinPrice.toLocaleString() + " Beta Coins" )
-	update("pieMerchantPieCoinPrice"     , "Pie Coin Wages: "    + gameData.pieMerchantPieCoinPrice.toLocaleString() + ".")
-	update("pieMerchantBetaCoinPrice"    , "Beta Coin Wages: "   + gameData.pieMerchantBetaCoinPrice.toLocaleString() + ".")
-	update("pieMerchantMaxPay"           , "Max Wage Advances: " + gameData.pieMerchantMaxPay.toLocaleString() + ".")
-	update("pieMerchantCharm"            , "Charm: "             + gameData.pieMerchantCharm.toLocaleString() + ".")
-	update('piePrice', 'Current Price: ' + gameData.piePrice.toLocaleString() + ' Pie Coins')
-	update('bucketHeight', 'Current heights: ' + (gameData.bucketThinSteelPlating * 5 + 20).toLocaleString() + ' Units')
-	update('bucketThinSteelPlatingPrice', 'Price: ' + (gameData.bucketThinSteelPlating * 5 + 20).toLocaleString() + ' Pie Coins')
-	
 	basicToggle("sellingPieInfo")
 	basicToggle("pieMerchantInfo")
 	toggleAesthetic("pieConveyorBeltOn")
 	currentTaskAesthetic('findPieCustomers')
 
+
+    const showHideElements = [
+      { condition: gameData.hasGottenPies, element: 'bakeryButton' },
+      { condition: gameData.pieBucket, element: 'pieBuckets' },
+      { condition: !gameData.pieFlourBucket && gameData.pieBucket, element: 'buyAPieFlourBucket' },
+      { condition: gameData.pieBucket && !gameData.pieBucketNozzle, element: 'buyAPieBucketNozzle' },
+      { condition: gameData.mortarAndPestle, element: 'grindFlour', display: 'inline' },
+      { condition: gameData.hasSoldPie && !gameData.wheatField, element: 'buyWheatField' },
+      { condition: gameData.hasSoldPie && !gameData.pieEmployee, element: 'buyPieEmployee' },
+      { condition: gameData.doesHavePieMerchant, element: 'pieMerchant' },
+      { condition: gameData.pieFlourBucket && !gameData.pieFlourBucketNozzle, element: 'buyAPieFlourBucketNozzle' },
+      { condition: gameData.pieBucketNozzle, element: 'bucketHoleChanger' },
+      { condition: gameData.pieBucketNozzle && gameData.pieFlourBucketNozzle && !gameData.upgradeNozzles, element: 'upgradeNozzles' },
+      { condition: gameData.pieOven && !gameData.pieConveyorBelt, element: 'buyAPieConveyorBelt' },
+      { condition: gameData.pieOven && !gameData.pieBucket, element: 'buyAPieBucket' },
+      { condition: gameData.pieOven && !gameData.bellows, element: 'buyBellows' },
+      { condition: gameData.bellows, element: 'bellowsDiv' },
+      { condition: gameData.wheatField, element: 'fieldButton' },
+      { condition: gameData.wheatField, element: 'buyWheatSeeds' },
+      { condition: gameData.wheatField, element: 'buyAWheatHarvester' },
+      { condition: gameData.wheatField, element: 'buyASeedDrill' },
+      { condition: gameData.wheatField && !gameData.pieOven, element: 'buyPieOven' },
+      { condition: gameData.wheatField && !gameData.mortarAndPestle, element: 'buyMortarAndPestle' },
+      { condition: gameData.seedDrills || gameData.wheatHarvesters, element: 'wheatMachines' },
+      { condition: gameData.pieEmployee, element: 'payPieEmployeeDiv' },
+      { condition: gameData.pieEmployee && !gameData.advancedPieHiring, element: 'advancedPieHiring' },
+      { condition: gameData.pieEmployee && gameData.advancedPieHiring, element: 'hirePieMerchantToggleButton' },
+      { condition: gameData.pieFlourBucket, element: 'flourBucketProgress', display: 'visible' },
+      { condition: gameData.pieFlourBucket, element: 'addToPieFlourBucket', display: 'visible' },
+      { condition: gameData.pieFlourBucketNozzle, element: 'flourMinusNozzle', display: 'visible' },
+      { condition: gameData.pieFlourBucketNozzle, element: 'flourPlusNozzle', display: 'visible' },
+      { condition: gameData.pieOven, element: 'pieOvenDiv', display: 'inline' },
+      { condition: gameData.hasGottenFieldTools, element: 'fieldPlacementOptions' },
+      { condition: gameData.pieConveyorBelt, element: 'pieConveyorBeltOnButton', display: 'inline' },
+    ];
+
+    showHideElements.forEach(({ condition, element, display = 'block' }) => {
+      checkShow(condition, element, display);
+    });
+
+    const elementsToUpdate = [
+      { element: "wheatNumber", value: "Wheat: " + gameData.wheat.toLocaleString() + " / 30" },
+      { element: "wheatSeedsNumber", value: "Seeds: " + gameData.wheatSeeds.toLocaleString() + " / 30" },
+      { element: "flourNumber", value: "Flour: " + gameData.flour.toLocaleString() + " / 30" },
+      { element: "wheatHarvesterNumber", value: "Available Wheat Harvesters: " + gameData.wheatHarvesters.toLocaleString() },
+      { element: "seedDrillNumber", value: "Available Seed Drills: " + gameData.seedDrills.toLocaleString() },
+      { element: "currentPieIngredients", value: "Current Ingredients: " + gameData.juiceAsPieIngredient.toLocaleString() + " Juice + " + gameData.flourAsPieIngredient.toLocaleString() + " Flour" },
+      { element: "pieEmployeeSalesLeft", value: "Employee Sales Left: " + gameData.pieEmployeeSalesLeft.toLocaleString() + " / " + gameData.pieMerchantMaxPay.toLocaleString() },
+      { element: "payPieEmployee", value: "Pay Employee " + gameData.pieMerchantPieCoinPrice.toLocaleString() + " Pie Coins & " + gameData.pieMerchantBetaCoinPrice.toLocaleString() + " Beta Coins" },
+      { element: "pieMerchantPieCoinPrice", value: "Pie Coin Wages: " + gameData.pieMerchantPieCoinPrice.toLocaleString() + "." },
+      { element: "pieMerchantBetaCoinPrice", value: "Beta Coin Wages: " + gameData.pieMerchantBetaCoinPrice.toLocaleString() + "." },
+      { element: "pieMerchantMaxPay", value: "Max Wage Advances: " + gameData.pieMerchantMaxPay.toLocaleString() + "." },
+      { element: "pieMerchantCharm", value: "Charm: " + gameData.pieMerchantCharm.toLocaleString() + "." },
+      { element: "piePrice", value: "Current Price: " + gameData.piePrice.toLocaleString() + " Pie Coins" },
+      { element: "bucketHeight", value: "Current heights: " + (gameData.bucketThinSteelPlating * 5 + 20).toLocaleString() + " Units" },
+      { element: "bucketThinSteelPlatingPrice", value: "Price: " + (gameData.bucketThinSteelPlating * 5 + 20).toLocaleString() + " Pie Coins" },
+    ];
+
+    elementsToUpdate.forEach(({ element, value }) => {
+      update(element, value);
+    });
 }

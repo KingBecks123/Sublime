@@ -260,7 +260,7 @@ function upperFirstChar(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-function colorChanger(id, content) {
+function setColor(id, content) {
   document.getElementById(id).style.backgroundColor = content;
 }
 
@@ -296,7 +296,7 @@ function basicToggle(input) {
   const color = toggleValue ? "#4DFE89" : "gray";
   const display = toggleValue ? 'block' : 'none';
 
-  colorChanger(input + "Button", color);
+  setColor(input + "Button", color);
   Array.from(elements).forEach(element => {
     element.style.display = display;
   });
@@ -305,18 +305,18 @@ function basicToggle(input) {
 function currentTaskAesthetic(x) {
   const button = x + "Button";
   const color = (gameData.currentTask === x || gameData.currentTask2 === x) ? "#C67848" : "#DEAD85";
-  colorChanger(button, color);
+  setColor(button, color);
 }
 
 function ifMaxDarkGray(x) {
   const button = "buyA" + upperFirstChar(x) + "Button";
   const color = (gameData[x + 's'] === gameData[x + 'sMax']) ? "#50514F" : "#DEAD85";
-  colorChanger(button, color);
+  setColor(button, color);
 }
 
 function toggleAesthetic(input) {
   const color = gameData[input] === 1 ? "#4DFE89" : "gray";
-  colorChanger(input + "Button", color);
+  setColor(input + "Button", color);
 }
 
 function addInventoryVariables(variables) {

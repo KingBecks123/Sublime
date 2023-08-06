@@ -216,17 +216,17 @@ function advertiseBarEnd() {
 
 function updateValuesCompany () {
 	if (gameData.typeToHireToggle == 'basic') {
-		colorChanger('hireEmployeeToggleButton', '#4DFE89')
-		colorChanger('hireBrokerToggleButton', 'gray')
-		colorChanger('hirePieMerchantToggleButton', 'gray')
+		setColor('hireEmployeeToggleButton', '#4DFE89')
+		setColor('hireBrokerToggleButton', 'gray')
+		setColor('hirePieMerchantToggleButton', 'gray')
 	} else if (gameData.typeToHireToggle == 'broker') {
-		colorChanger('hireEmployeeToggleButton', 'gray')
-		colorChanger('hireBrokerToggleButton', '#4DFE89')
-		colorChanger('hirePieMerchantToggleButton', 'gray')
+		setColor('hireEmployeeToggleButton', 'gray')
+		setColor('hireBrokerToggleButton', '#4DFE89')
+		setColor('hirePieMerchantToggleButton', 'gray')
 	} else if (gameData.typeToHireToggle == 'pie') {
-		colorChanger('hireEmployeeToggleButton', 'gray')
-		colorChanger('hireBrokerToggleButton', 'gray')
-		colorChanger('hirePieMerchantToggleButton', '#4DFE89')
+		setColor('hireEmployeeToggleButton', 'gray')
+		setColor('hireBrokerToggleButton', 'gray')
+		setColor('hirePieMerchantToggleButton', '#4DFE89')
 	}
 	
 	if (gameData.applicationReady)
@@ -237,6 +237,7 @@ function updateValuesCompany () {
 	checkShow(gameData.applicationReady, 'applicationInfo')
 	checkShow(!gameData.advertisingLevel2, 'advertisingLeaflets')
 	checkShow(!gameData.advertisingLevel3, 'advertisingBillboard')
+	checkShow(gameData.employees, 'companyButton')
 	
 	update('currentSpeedEmployee', 'Current speed: ' + gameData.employeeCurrentSpeed.toLocaleString() + ' limes per minute.')
 	update('speedEmployee', 'Speed: ' + gameData.employeeSpeed.toLocaleString() + '% Of What I&#39m Taught.')
@@ -249,7 +250,6 @@ function updateValuesCompany () {
     if (gameData.employeeWorking > gameData.employeeWorkingMax)
         gameData.employeeWorking = gameData.employeeWorkingMax
 	
-	
-	checkShow(gameData.employees, 'companyButton')
+
 
 }

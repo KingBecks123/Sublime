@@ -97,17 +97,17 @@ function sellMaxJuice() {
 
 function updateValuesDelivery () {
 	if (gameData.deliveryTypeToggle == 0 || gameData.deliveryTypeToggle == 2) {
-		colorChanger('deliveryToggleStandardButton', "#4DFE89")
-		colorChanger('deliveryToggleExpressButton', "gray")
-		colorChanger('deliveryToggleTrainButton', "gray")
+		setColor('deliveryToggleStandardButton', "#4DFE89")
+		setColor('deliveryToggleExpressButton', "gray")
+		setColor('deliveryToggleTrainButton', "gray")
 	} else if (gameData.deliveryTypeToggle == 1) {
-		colorChanger('deliveryToggleStandardButton', "gray")
-		colorChanger('deliveryToggleExpressButton', "#4DFE89")
-		colorChanger('deliveryToggleTrainButton', "gray")
+		setColor('deliveryToggleStandardButton', "gray")
+		setColor('deliveryToggleExpressButton', "#4DFE89")
+		setColor('deliveryToggleTrainButton', "gray")
 	} else {
-		colorChanger('deliveryToggleStandardButton', "gray")
-		colorChanger('deliveryToggleExpressButton', "gray")
-		colorChanger('deliveryToggleTrainButton', "#4DFE89")
+		setColor('deliveryToggleStandardButton', "gray")
+		setColor('deliveryToggleExpressButton', "gray")
+		setColor('deliveryToggleTrainButton', "#4DFE89")
 	}
 	
     if (gameData.juiceBulkAmountToggle > 100 && gameData.deliveryTypeToggle < 2)
@@ -119,14 +119,14 @@ function updateValuesDelivery () {
 	currentTaskAesthetic('delivery')
 	
 	if (gameData.juiceBulkAmountToggle == 100 && gameData.deliveryTypeToggle < 2)
-		colorChanger('increaseJuiceSoldButton', "#50514F")
+		setColor('increaseJuiceSoldButton', "#50514F")
 	else
-		colorChanger('increaseJuiceSoldButton', "#BBBBBB")
+		setColor('increaseJuiceSoldButton', "#BBBBBB")
 
 	if (gameData.juiceBulkAmountToggle == 0)
-		colorChanger('decreaseJuiceSoldButton', "#50514F")
+		setColor('decreaseJuiceSoldButton', "#50514F")
 	else
-		colorChanger('decreaseJuiceSoldButton', "#BBBBBB")
+		setColor('decreaseJuiceSoldButton', "#BBBBBB")
 	
 	if (gameData.deliveryTypeToggle == 2 && gameData.fasterTransport > 0)
 		gameData.juiceBulkAmountMax = 500
@@ -147,7 +147,6 @@ function updateValuesDelivery () {
 	checkShow(gameData.deliveryManager == 0 && gameData.maps >= 3, 'buyADeliveryManager')
 	checkShow(gameData.trainTransport, 'deliveryToggleTrainButton', 'inline')
 	checkShow(gameData.hasSoldPie && !gameData.trainTransport, 'trainTransportDiv')
-	
 	checkShow(gameData.hasGottenJuice, 'juiceMarket')
 	
 	update('sellYourJuiceAmount','You Will Deliver ' + gameData.juiceBulkAmountToggle.toLocaleString() + ' / ' + gameData.juiceBulkAmountMax.toLocaleString() + ' Juice' )
@@ -157,7 +156,7 @@ function updateValuesDelivery () {
 	toggleAesthetic("increaseJuicePricex10")
 
 	if (gameData.increaseJuicePricePermanance < 1)
-		colorChanger('increaseJuicePriceButton', "#DEAD85")
+		setColor('increaseJuicePriceButton', "#DEAD85")
 	else
-		colorChanger('increaseJuicePriceButton', '#FF999A')
+		setColor('increaseJuicePriceButton', '#FF999A')
 }

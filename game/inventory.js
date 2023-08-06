@@ -191,11 +191,11 @@ function updateValuesInventory () {
 
 	function twoToggleButtons(button1, button2, value) {
 		if (value == 1) {
-			colorChanger(button1, "#4DFE89")
-			colorChanger(button2, "gray")
+			setColor(button1, "#4DFE89")
+			setColor(button2, "gray")
 		} else {
-			colorChanger(button1, "gray")
-			colorChanger(button2, "#4DFE89")
+			setColor(button1, "gray")
+			setColor(button2, "#4DFE89")
 		}
 	}
 	
@@ -210,14 +210,10 @@ function updateValuesInventory () {
 	ifMaxDarkGray("peeler")
 	
 	checkShow(gameData.deliveryManager, 'sellMaxJuiceButton', 'inline')
-
 	checkShow(!gameData.knife, 'buyKnifeDiv')
 	checkShow(gameData.knife && gameData.knifebidextrousSkillLevel == gameData.knifebidextrousSkillLevelMax && gameData.maps > 1 && !gameData.sharperPeelers, 'sharperPeelerDiv')
 	checkShow(gameData.knife && gameData.knifebidextrousSkillLevel == gameData.knifebidextrousSkillLevelMax && !(gameData.hideMaxedPurchases == 1 && gameData.peelers == gameData.peelersMax), 'buyAPeelerDiv')
 	checkShow(gameData.knife, 'knifeDiv')
-	
-	update('juicersAmount', gameData.juicers.toLocaleString() + ' / ' + gameData.juicersMax.toLocaleString() + ' Juicers')
-	update('peelersAmount', gameData.peelers.toLocaleString() + ' / ' + gameData.peelersMax.toLocaleString() + ' Peelers')
 	checkShow(gameData.bulkBuyUnlock, 'peelersBulkButton', 'inline')
 	checkShow(gameData.bulkBuyUnlock, 'juicersBulkButton', 'inline')
 	checkShow(gameData.hasGottenPeeledLimes, 'juiceLimesToggleButton', 'inline')
@@ -227,6 +223,11 @@ function updateValuesInventory () {
 	checkShow(gameData.peelers, 'peelerDiv')
 	checkShow(gameData.peelers > 1, 'peelerPeelMaxButton', 'inline')
 	checkShow(gameData.juicers > 1, 'makeMaxJuiceButton', 'visible')
+	checkShow(gameData.juicers, 'inventoryButton')
+	
+	update('juicersAmount', gameData.juicers.toLocaleString() + ' / ' + gameData.juicersMax.toLocaleString() + ' Juicers')
+	update('peelersAmount', gameData.peelers.toLocaleString() + ' / ' + gameData.peelersMax.toLocaleString() + ' Peelers')
+
 
 	
 	if (gameData.limeTypeToJuice == 0)
@@ -237,6 +238,6 @@ function updateValuesInventory () {
 	if (gameData.peeledLimes >= 1)
 		gameData.hasGottenPeeledLimes = true
 	
-	checkShow(gameData.juicers, 'inventoryButton')
+
 
 }

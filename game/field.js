@@ -62,20 +62,38 @@ addGameVariables({
 	selectedPlotY: 0,
 });
 
-function onLoadField () {
-	for (let y = 0; y < 5; y++) {	
-		for (let x = 0; x < 5; x++) {	
-			document.getElementById('fullField').innerHTML += '<button ondragstart="return false;" id="fieldTile' + x + '-' + y + '" onclick="fieldTile(' + x + ', ' + y + ')">‎‏‏‎<img style="width:70px;height:70px;" id="fieldTile' + x + '-' + y + 'img" src="assets/emptyField.png"></button>'
-		}
-	}
+function onLoadField() {
+  createFieldButtons();
+  createFieldPlacementOptions();
+  selectedWheatItemAesthetic(gameData.selectedWheatItem);
+  updateFieldTileAesthetic();
+}
 
-	for (let i = 0; i < fieldPlacementOptions.length; i++) {
-		document.getElementById('fieldPlacementOptions').innerHTML += '<button class="specialButton" style="background-color:gray;width:168px" id="' + fieldPlacementOptions[i].id + 'SelectedWheatItem" onclick="selectedWheatItem(&#39' + fieldPlacementOptions[i].id + '&#39)">' + fieldPlacementOptions[i].text + '</button>'
-	}
-	
-	
-	selectedWheatItemAesthetic(gameData.selectedWheatItem)
-	updateFieldTileAesthetic()
+function createFieldButtons() {
+  const fullFieldElement = document.getElementById('fullField');
+  let fieldButtonsHTML = '';
+
+  for (let y = 0; y < 5; y++) {
+    for (let x = 0; x < 5; x++) {
+      const buttonId = 'fieldTile' + x + '-' + y;
+      const imgId = buttonId + 'img';
+      fieldButtonsHTML += `<button ondragstart="return false;" id="${buttonId}" onclick="fieldTile(${x}, ${y})"><img style="width:70px;height:70px;" id="${imgId}" src="assets/emptyField.png"></button>`;
+    }
+  }
+
+  fullFieldElement.innerHTML = fieldButtonsHTML;
+}
+
+function createFieldPlacementOptions() {
+  const fieldPlacementOptionsElement = document.getElementById('fieldPlacementOptions');
+  let fieldPlacementOptionsHTML = '';
+
+  for (let i = 0; i < fieldPlacementOptions.length; i++) {
+    const option = fieldPlacementOptions[i];
+    fieldPlacementOptionsHTML += `<button class="specialButton" style="background-color:gray;width:168px" id="${option.id}SelectedWheatItem" onclick="selectedWheatItem('${option.id}')">${option.text}</button>`;
+  }
+
+  fieldPlacementOptionsElement.innerHTML = fieldPlacementOptionsHTML;
 }
 
 function selectedWheatItem(id) {
@@ -84,12 +102,12 @@ function selectedWheatItem(id) {
 }
 
 function selectedWheatItemAesthetic(id) {
-	colorChanger('plotSelectedWheatItem', 'gray')
-	colorChanger('seedSelectedWheatItem', 'gray')
-	colorChanger('seedDrillSelectedWheatItem', 'gray')
-	colorChanger('harvesterSelectedWheatItem', 'gray')
-	colorChanger('rotateSelectedWheatItem', 'gray')
-	colorChanger(id + 'SelectedWheatItem', '#4DFE89')
+	setColor('plotSelectedWheatItem', 'gray')
+	setColor('seedSelectedWheatItem', 'gray')
+	setColor('seedDrillSelectedWheatItem', 'gray')
+	setColor('harvesterSelectedWheatItem', 'gray')
+	setColor('rotateSelectedWheatItem', 'gray')
+	setColor(id + 'SelectedWheatItem', '#4DFE89')
 }
 
 function managePlot() {
@@ -233,14 +251,14 @@ function updateFieldTileAesthetic() {
 
 function updateValuesField () {
 	if (gameData.wheat)
-		colorChanger('winnowWheat', "#DEAD85")
+		setColor('winnowWheat', "#DEAD85")
 	else
-		colorChanger('winnowWheat', "#BBBBBB")
+		setColor('winnowWheat', "#BBBBBB")
 
 	if (gameData.wheatSeeds)
-		colorChanger('grindFlour', "#DEAD85")
+		setColor('grindFlour', "#DEAD85")
 	else
-		colorChanger('grindFlour', "#BBBBBB")
+		setColor('grindFlour', "#BBBBBB")
 	
 	checkShow(showPlotManagementDiv, 'plotManagementDiv')
 }
