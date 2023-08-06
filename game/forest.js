@@ -30,9 +30,9 @@ function throwPieCoinsWell() {
 
 function basket() {
     gameData.basketBar = 0
-    gameData.limes += gameData.limesInBaskets
+    gameData.limes += limesInBaskets
 	gameData.goldenLimes += gameData.goldenLimesInBaskets
-    gameData.limesInBaskets = 0
+    limesInBaskets = 0
     gameData.goldenLimesInBaskets = 0
 }
 
@@ -58,17 +58,17 @@ function onLoadForest () {
 			gameData.basketBar = 100
 	}
 }
-
+limesInBaskets = 0;
 function updateValuesForest () {
 	basicToggle("basketInfo")
-	gameData.limesInBaskets = Math.floor(gameData.baskets * (gameData.basketBar / 4))
+	limesInBaskets = Math.floor(gameData.baskets * (gameData.basketBar / 4))
 	update('basketsAmount', gameData.baskets.toLocaleString() + ' / ' + gameData.basketsMax.toLocaleString() + ' Baskets')
 	update('maxBaskets', gameData.basketsMax.toLocaleString() + ' baskets fit under the current tree.')
 	
 	if (gameData.forestTreeType == 1)
-		update('limesInBaskets', gameData.limesInBaskets.toLocaleString() + ' Limes')
+		update('limesInBaskets', limesInBaskets.toLocaleString() + ' Limes')
 	else
-		update('limesInBaskets', gameData.limesInBaskets.toLocaleString() + ' Limes + ' + gameData.goldenLimesInBaskets.toLocaleString() + ' Golden Limes')
+		update('limesInBaskets', limesInBaskets.toLocaleString() + ' Limes + ' + gameData.goldenLimesInBaskets.toLocaleString() + ' Golden Limes')
 
     var elem = document.getElementById("basketBar")
     elem.style.height = gameData.basketBar + "%"

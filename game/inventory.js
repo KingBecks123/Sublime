@@ -36,7 +36,6 @@ addGameVariables({
     knife: 0,
     limeTypeToJuice: 0,
     limeTypeToJuiceToggle: 0,
-    limesInBaskets: 0,
     limesPerJuice: 10,
     peeledLimesPerJuice: 5,
     peelers: 0,

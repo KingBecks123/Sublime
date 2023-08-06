@@ -39,7 +39,6 @@ var gameDataBase = {
     learnANewSkill: -2,
     teachBar: 0,
     workingBar: 0,
-    lookAroundNumber: 0,
     advertiseBar: 0,
     advertise: 0,
     maps: 0,
@@ -307,28 +306,20 @@ function backwardsCompatibility() {
 }
 
 function lookAround() {
-    gameData.lookAroundNumber += 1
-
     if (gameData.lookAround < 1)
         update("newInfo", "Maybe I should keep looking around...")
 
     if (gameData.lookAround == 0) {
-        if (gameData.lookAroundNumber >= 5) {
             update("newInfo", "You see a nearby market.")
             gameData.lookAround = 1
-        }
     }
 	else if (gameData.lookAround == 1) {
-        if (gameData.lookAroundNumber >= 10) {
             update("newInfo", "You find a merchant willing to buy limes.")
             gameData.lookAround = 2
-        }
     }
 	else if (gameData.lookAround == 2) {
-        if (gameData.lookAroundNumber >= 15) {
             update("newInfo", "You find a merchant selling various items.")
             gameData.lookAround = 3
-        }
     }
 }
 
