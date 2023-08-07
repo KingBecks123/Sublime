@@ -148,6 +148,7 @@ var gameDataBase = {
 	mainTab: 'null',
 	marketTab: 'marketMain',
 	endScreen: 0,
+	showDonationButton: true,
 }
 
 var gameData = {}
@@ -155,6 +156,14 @@ var gameData = {}
 ableToSave = true
 
 var loopNumberTimePlayed = 0
+
+function hideDonationButton() {
+    if (gameData.showDonationButton)
+        gameData.showDonationButton = false
+
+    else
+        gameData.showDonationButton = true
+}
 
 function getLimesButton() {
 	if (gameData.lookAround < 1)
@@ -406,36 +415,7 @@ function onLoadBase () {
 	tabOptions("gameOptions")
 }
 
-function tab(tabby) {
-	gameData.mainTab = tabby
-    update("exportCode", "")
 
-	for (let i = 0; i < mainTabs.length; i++) {
-		hide(mainTabs[i].id)
-		setColor(mainTabs[i].id + 'Button', '#' + mainTabs[i].color1)
-	}
-
-
-    if (tabby == "options") {
-		checkShow(!gameData.isOptionsOpen, 'options', 'inline')
-        if (!gameData.isOptionsOpen)
-			setColor('optionsButton', "#898989")
-
-		toggle('isOptionsOpen')
-    }
-
-	else if (tabby !== "null") {
-        gameData.isOptionsOpen = 0
-        document.getElementById(tabby).style.display = "inline-block"
-
-
-		for (let i = 0; i < mainTabs.length; i++) {
-			if(tabby == mainTabs[i].id)
-				setColor(tabby + "Button", '#' + mainTabs[i].color2)
-		}
-    }
-
-}
 
 function tabOptions(tabby) {
     hide("gameOptions")
@@ -473,6 +453,15 @@ function updateValuesBase () {
 		theColor = 'rgba(0, 0, 0, 0)'
 		update('barPercentButton', 'Bar Percent Hidden')
 	}
+
+    if (gameData.showDonationButton) {
+        update('showDonationButton', 'Donation Button Shown')
+    }
+    else {
+        update('showDonationButton', 'Donation Button Hidden')
+    }
+
+    checkShow(gameData.showDonationButton, "donationButton")
 
 	barTypes = ['skillBar', 'verticalBar', 'skillBarColored', 'smallContainerBar']
 

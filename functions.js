@@ -330,3 +330,34 @@ function addMainTabs(tabs) {
 function addGameVariables(variables) {
   Object.assign(gameDataBase, variables);
 }
+
+function tab(tabby) {
+	gameData.mainTab = tabby
+    update("exportCode", "")
+
+	for (let i = 0; i < mainTabs.length; i++) {
+		hide(mainTabs[i].id)
+		setColor(mainTabs[i].id + 'Button', '#' + mainTabs[i].color1)
+	}
+
+
+    if (tabby == "options") {
+		checkShow(!gameData.isOptionsOpen, 'options', 'inline')
+        if (!gameData.isOptionsOpen)
+			setColor('optionsButton', "#898989")
+
+		toggle('isOptionsOpen')
+    }
+
+	else if (tabby !== "null") {
+        gameData.isOptionsOpen = 0
+        document.getElementById(tabby).style.display = "inline-block"
+
+
+		for (let i = 0; i < mainTabs.length; i++) {
+			if(tabby == mainTabs[i].id)
+				setColor(tabby + "Button", '#' + mainTabs[i].color2)
+		}
+    }
+
+}
