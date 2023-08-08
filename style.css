@@ -1,0 +1,157 @@
+css
+.tooltip {
+  position: relative;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #222222;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.basicDiv {
+  padding: 5px;
+  margin: 10px 5px;
+  background-color: #222222;
+}
+
+.basicText {
+  padding: 5px;
+  margin: 5px;
+  background-color: #BBBBBB;
+}
+
+.specialButton {
+  margin: 5px;
+  background-color: #DEAD85;
+}
+
+.specialButtonTravel {
+  margin: 5px;
+  background-color: #FF999A;
+}
+
+.roundButton {
+  margin: 5px;
+  padding: 1px 10px;
+  border-radius: 12px;
+}
+
+.pinButton {
+  background-color: #FF999A;
+  height: 25px;
+  margin: 5px;
+}
+
+.stat {
+  font-family: pixelated;
+  font-size: 20px;
+}
+
+.skillButton {
+  margin: 5px;
+}
+
+.skillProgress {
+  width: 350px;
+  height: 30px;
+  margin: 5px;
+  background-color: #000000;
+}
+
+.skillBar {
+  width: 0%;
+  height: 30px;
+  line-height: 30px;
+  font-family: pixelated;
+  font-size: 20px;
+  padding: 0;
+  background-color: #4DFE89;
+}
+
+.skillBarColored {
+  width: 0%;
+  height: 30px;
+  line-height: 30px;
+  font-family: pixelated;
+  font-size: 20px;
+  padding: 0;
+}
+
+.verticalProgress {
+  width: 350px;
+  height: 300px;
+  margin: auto;
+  position: relative;
+  background-color: #000000;
+  margin: 5px;
+}
+
+.verticalBar {
+  height: 0%;
+  width: 350px;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  font-family: pixelated;
+  font-size: 20px;
+  padding: 0;
+}
+
+.bucketProgress {
+  background-color: #BBBBBB;
+  width: 167px;
+  height: 100px;
+  display: inline-block;
+  margin: 5px;
+  position: relative;
+}
+
+.smallContainerBar {
+  height: 0%;
+  width: 167px;
+  bottom: 0;
+  right: 0;
+  font-family: pixelated;
+  font-size: 20px;
+  position: absolute;
+  bottom: 0;
+}
+
+.bucketHoleBar {
+  height: 10px;
+  background-color: #000000;
+  bottom: 0;
+  position: absolute;
+}
+
+@font-face {
+  font-family: pixelated;
+  src: url('assets/redalertinet.ttf');
+}
+
+p {
+  font-family: pixelated;
+  font-size: 20px;
+}
+
+a {
+  font-family: pixelated;
+  font-size: 20px;
+}
+
+button {
+  font-family: pixelated;
+  font-size: 20px;
+  border: 1px solid #000000;
+}

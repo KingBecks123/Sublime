@@ -6,31 +6,7 @@
     <meta charset="utf-8">
     <title>Sublime</title>
 	<meta name="description" content="The game about collecting limes.">
-    <style>
-		.tooltip {position: relative;}
-		.tooltip .tooltiptext {visibility: hidden;width: 120px;background-color: #222222;color: #fff;text-align: center;padding: 5px;border-radius: 6px;position: absolute;z-index: 1;}
-		.tooltip:hover .tooltiptext {visibility: visible;}
-		.basicDiv     {padding: 5px 5px 5px 5px;margin: 10px 5px 10px 5px;background-color:#222222;}
-		.basicText {padding: 5px; margin: 5px; background-color:#BBBBBB}
-		.specialButton {margin: 5px;background-color:#DEAD85;}
-		.specialButtonTravel {margin: 5px;background-color:#FF999A;}
-		.roundButton {margin: 5px;padding: 1px 10px 1px 10px;border-radius: 12px;}
-		.pinButton {background-color:#FF999A;height:25px;margin:5px;}
-		.stat{font-family: pixelated;font-size: 20px}
-		.skillButton{margin:5px;}
-        .skillProgress {width: 350px;height: 30px;margin:5px;background-color:#000000;}
-        .skillBar {width: 0%;height: 30px;line-height: 30px;font-family: pixelated;font-size: 20px;padding: 0px 0px 0px 0px;background-color: #4DFE89;}
-        .skillBarColored {width: 0%;height: 30px;line-height: 30px;font-family: pixelated;font-size: 20px;padding: 0px 0px 0px 0px;}
-        .verticalProgress {width: 350px;height: 300px;margin: auto;position: relative;background-color:#000000;margin:5px;}
-        .verticalBar {height: 0%;width: 350px;bottom: 0px;right: 0px;position: absolute;font-family: pixelated;font-size: 20px;padding: 0px 0px 0px 0px;}
-        .bucketProgress {background-color: #BBBBBB;width: 167px;height: 100px;display: inline-block;margin: 5px;position: relative;}
-        .smallContainerBar {height: 0%;width: 167px;bottom: 0px;right: 0px;font-family: pixelated;font-size: 20px;position: absolute;bottom: 0px;}
-        .bucketHoleBar {height: 10px;background-color:#000000;bottom: 0px;position: absolute;}
-		@font-face {font-family: pixelated;src: url('assets/redalertinet.ttf');}
-        p {font-family: pixelated;font-size: 20px;}
-        a {font-family: pixelated;font-size: 20px;}
-        button {font-family: pixelated;font-size: 20px}
-    </style>
+
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-5S0BD7ZKYH"></script>
 	<script>
@@ -44,7 +20,7 @@
 
 <body id="mainBody" style="-webkit-user-select: none;-ms-user-select: none;user-select: none;background-color:#3C3C3C" onload="gameStart()">
 <div id="sublimeMain">
-	<div style="float:left;padding:10px;width:100px;background-color:#000000;" id="backgroundForValues">
+	<div style="float:left;padding:10px;width:100px;height:4000px;background-color:#000000;" id="backgroundForValues">
 		<br>
 	</div>	
     <div class="row" id="newInfoBox" style="background-color:#bfbfbf;padding-left: 130px;display:block;height:60px;">
@@ -54,7 +30,7 @@
         </div>
     </div>
     <div style="display:block;float: left;margin-left:5px;margin-top:5px;">
-        <button class="specialButton" id="pickUpLimes" style="background-color:#4DFE89" onkeydown="return event.key != 'Enter';" onclick="getLimesButton()">Collect Limes</button>
+        <button class="specialButton" id="pickUpLimes" style="background-color:#4DFE89;width:120px" onkeydown="return event.key != 'Enter';" onclick="getLimesButton()">Collect Limes</button>
         <button class="specialButton" id="lookAroundButton" style="background-color:#BBBBBB" onclick="lookAround()">Look Around</button>
         <button class="specialButton" id="stopActionsButton" onclick="stopActions()">Stop Actions</button>
         <button class="specialButton tooltip" id="toggleActionsButton" onclick="toggle('toggleActions')">Toggle Actions
@@ -974,7 +950,7 @@
 		</div>
 		<div id="skillsSection2" style="width:380px;right:0;position:absolute">	
 			<div class="basicDiv" id="keenEyeDiv">
-				<p class="basicText skillInfo">Increase the chance of finding something rather than nothing when collecting limes</p>
+				<p class="basicText skillInfo">Increase the chance of actually finding something when collecting limes</p>
 				<p class="basicText skillInfo" id="keenEye"></p>
 			</div>
 			<div class="basicDiv" id="rottenWisdomDiv">
@@ -1018,7 +994,9 @@
         <button class="specialButton" style="width:99%;display:block;" onclick="toggle('endScreen')">Continue</button>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	
+
+	<link rel="stylesheet" href="style.css">
+
     <script src="functions.js?v=       190" charset="utf-8" type="text/javascript"></script>
 	<script src="main.js?v=       190" charset="utf-8" type="text/javascript"></script>
 
