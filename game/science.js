@@ -107,43 +107,37 @@ function hireResearcher() {
 	}
 }
 
-function onLoadScience() {
-  const researchDiv = document.getElementById('research');
-  let html = '';
+function onLoadScience () {
+	for (let i = 0; i < sciences.length; i++) {
+		id = sciences[i].id
 
-  for (let i = 0; i < sciences.length; i++) {
-    const id = sciences[i].id;
-    const buttonText = sciences[i].buttonText;
-    const info = sciences[i].info;
+		document.getElementById('research').innerHTML += `
+		<div class="basicDiv" id="` + id + `Div">
+			<button class="specialButton" onclick="barStartScience(` + i + `)">` + sciences[i].buttonText + `</button>
+			<p class="basicText" id="` + id + `Researchers" style="color:#00AAFF;background-color:#000000"></p>
+			<button class="specialButton"                       style="background-color:#00AAFF;width:30px" onclick="addResearchers('` + id + `', -1)">-</button>
+			<button class="specialButton changeResearchersBy10" style="background-color:#00AAFF;width:50px" onclick="addResearchers('` + id + `', -10)">-10</button>
+			<button class="specialButton"                       style="background-color:#00AAFF;width:30px" onclick="addResearchers('` + id + `', 1)">+</button>
+			<button class="specialButton changeResearchersBy10" style="background-color:#00AAFF;width:50px" onclick="addResearchers('` + id + `', 10)">+10</button>
+			<div class="scienceInfo">
+				<p class="basicText">` + sciences[i].info + `</p>
+			</div>
+			<div class="skillProgress" id="` + id + `Progress">
+				<div class="skillBar" id="` + id + `Bar"></div>
+			</div>
+			<p class="basicText" id="` + id + `Text"></p>
+			<p class="basicText" id="` + id + `Time"></p>
+		</div>`
 
-    html += `
-      <div class="basicDiv" id="${id}Div">
-        <button class="specialButton" onclick="barStartScience(${i})">${buttonText}</button>
-        <p class="basicText" id="${id}Researchers" style="color:#00AAFF;background-color:#000000"></p>
-        <button class="specialButton" style="background-color:#00AAFF;width:30px" onclick="addResearchers('${id}', -1)">-</button>
-        <button class="specialButton changeResearchersBy10" style="background-color:#00AAFF;width:50px" onclick="addResearchers('${id}', -10)">-10</button>
-        <button class="specialButton" style="background-color:#00AAFF;width:30px" onclick="addResearchers('${id}', 1)">+</button>
-        <button class="specialButton changeResearchersBy10" style="background-color:#00AAFF;width:50px" onclick="addResearchers('${id}', 10)">+10</button>
-        <div class="scienceInfo">
-          <p class="basicText">${info}</p>
-        </div>
-        <div class="skillProgress" id="${id}Progress">
-          <div class="skillBar" id="${id}Bar"></div>
-        </div>
-        <p class="basicText" id="${id}Text"></p>
-        <p class="basicText" id="${id}Time"></p>
-      </div>
-    `;
 
-    if (gameData[id + "Bar"] > 0) {
-      if (gameData.surveillanceCamera2) {
-        gameData[id + "Bar"] += Math.floor(secondsOffline * 0.5 * gameData[id + "Researchers"] / sciences[i].equation());
-      }
-      runScienceBar(i);
-    }
-  }
+		if (gameData[id + "Bar"] > 0) {
 
-  researchDiv.innerHTML = html;
+			if (gameData.surveillanceCamera2)
+				gameData[id + "Bar"] += Math.floor(secondsOffline * 0.5 * gameData[id + "Researchers"] / sciences[i].equation())
+
+			runScienceBar(i)
+		}
+	}
 }
 
 function barStartScience(i) {
@@ -162,6 +156,7 @@ function runScienceBar (i) {
 		gameData[sciences[i].id + 'Bar'] = 0
 		sciences[i].onBarFilled()
 	}
+
 	updateBar(id)
 }
 
