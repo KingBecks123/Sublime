@@ -170,43 +170,43 @@ function getLimesButton() {
 		gameData.collectLimesAtBeginning += 1
 
 	switch (gameData.collectLimesAtBeginning) {
-	  case 5:
+	  case 1:
         update("newInfo", "Maybe you should try looking around!")
 		break;
-	  case 10:
+	  case 2:
         update("newInfo", "Seriously you aren't going to find anything.")
 		break;
-	  case 15:
+	  case 3:
         update("newInfo", "Do you see the Look Around button?")
 		break;
-	  case 20:
+	  case 4:
         update("newInfo", "There doesn't seem to be any limes here.")
 		break;
-	  case 25:
+	  case 5:
         update("newInfo", "Is that a lime?")
 		break;
-	  case 30:
+	  case 6:
         update("newInfo", "Nope, it's dirt.")
 		break;
-	  case 35:
+	  case 7:
         update("newInfo", "I would suggest looking around more.")
 		break;
-	  case 40:
+	  case 8:
         update("newInfo", "You aren't getting a secret achievement.")
 		break;
-	  case 45:
+	  case 9:
         update("newInfo", "This is literally just a waste of time.")
 		break;
-	  case 50:
+	  case 10:
         update("newInfo", "Can you please play the game correctly?")
 		break;
-	  case 55:
+	  case 11:
         update("newInfo", "Is that something priceless in the distance?")
 		break;
-	  case 60:
+	  case 12:
         update("newInfo", "Nope, it's dirt.")
 		break;
-	  case 65:
+	  case 13:
         update("newInfo", "I'm leaving.")
 	}
     getLimes()
@@ -226,7 +226,7 @@ function getLimes() {
 		else
 			gameData.rottenLimes += gameData.bigGloves + 1
 	}
-	else if ((gameData.lookAround < 1 && gameData.collectLimesAtBeginning < 5) || gameData.lookAround)
+	else if ((gameData.lookAround < 1 && gameData.collectLimesAtBeginning < 2) || gameData.lookAround)
 		update("newInfo", "Couldn't find any limes...")
 
 	function addLimes () {
@@ -255,7 +255,7 @@ function loadStuff(savegame) {
 	if (savegame !== null) {
 		Object.assign(gameData, savegame)
 		backwardsCompatibility()
-		gameData.versionNumber = 191
+		gameData.versionNumber = 192
 	} else
 		update("newInfo", "Save File Empty.")
 }
