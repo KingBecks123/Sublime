@@ -204,11 +204,7 @@ function bulkableBuyMax(x, price) {
   let amount = 1;
 
   if (gameData[x + 'BulkToggle'] === 1) {
-    if (gameData.bulkBuyUnlock2) {
-      amount = 100;
-    } else {
-      amount = 10;
-    }
+    amount = gameData.bulkBuyUnlock2 ? 100 : 10;
   }
 
   if (gameData.coins >= price * amount) {
@@ -216,7 +212,8 @@ function bulkableBuyMax(x, price) {
       gameData.coins -= price * amount;
       gameData[x] += amount;
     } else {
-      gameData.coins -= price * (max - gameData[x]);
+      const remaining = max - gameData[x];
+      gameData.coins -= price * remaining;
       gameData[x] = max;
     }
   }
@@ -346,32 +343,28 @@ function addGameVariables(variables) {
 }
 
 function tab(tabby) {
-	gameData.mainTab = tabby
-    update("exportCode", "")
+	gameData.mainTab = tabby;
+	update("exportCode", "");
 
 	for (let i = 0; i < mainTabs.length; i++) {
-		hide(mainTabs[i].id)
-		setColor(mainTabs[i].id + 'Button', '#' + mainTabs[i].color1)
+		hide(mainTabs[i].id);
+		setColor(mainTabs[i].id + 'Button', '#' + mainTabs[i].color1);
 	}
 
+	if (tabby == "options") {
+		checkShow(!gameData.isOptionsOpen, 'options', 'inline');
+		if (!gameData.isOptionsOpen)
+			setColor('optionsButton', "#898989");
 
-    if (tabby == "options") {
-		checkShow(!gameData.isOptionsOpen, 'options', 'inline')
-        if (!gameData.isOptionsOpen)
-			setColor('optionsButton', "#898989")
-
-		toggle('isOptionsOpen')
-    }
-
+		toggle('isOptionsOpen');
+	}
 	else if (tabby !== "null") {
-        gameData.isOptionsOpen = 0
-        document.getElementById(tabby).style.display = "inline-block"
-
+		gameData.isOptionsOpen = 0;
+		document.getElementById(tabby).style.display = "inline-block";
 
 		for (let i = 0; i < mainTabs.length; i++) {
 			if(tabby == mainTabs[i].id)
-				setColor(tabby + "Button", '#' + mainTabs[i].color2)
+				setColor(tabby + "Button", '#' + mainTabs[i].color2);
 		}
-    }
-
+	}
 }
