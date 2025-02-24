@@ -23,6 +23,7 @@ css
   padding: 5px;
   margin: 10px 5px;
   background-color: #222222;
+  box-shadow: 0 2px 0 #1a1c2c;
 }
 
 .basicText {
@@ -154,4 +155,22 @@ button {
   font-family: pixelated;
   font-size: 20px;
   border: 1px solid #000000;
+  transition: all 0.1s ease;
+  box-shadow: 0 2px 0 #2d2d44;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 0 #2d2d44;
+}
+
+button:active {
+  transform: translateY(1px);
+  box-shadow: 0 0 0 #2d2d44;
+}
+
+/* Background texture */
+body {
+  background-color: #1a1c2c;
+  background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%232d2d44' fill-opacity='0.2' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 5v1H0V0h5z'/%3E%3Cpath d='M0 0h1v1H0V0zm1 1h1v1H1V1z'/%3E%3C/g%3E%3C/svg%3E");
 }
