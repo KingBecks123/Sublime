@@ -166,50 +166,31 @@ function hideDonationButton() {
 }
 
 function getLimesButton() {
-	if (gameData.lookAround < 1)
+	if (gameData.lookAround < 1) {
 		gameData.collectLimesAtBeginning += 1
-
-	switch (gameData.collectLimesAtBeginning) {
-	  case 1:
-        update("newInfo", "Maybe you should try looking around!")
-		break;
-	  case 2:
-        update("newInfo", "Seriously you aren't going to find anything.")
-		break;
-	  case 3:
-        update("newInfo", "Do you see the Look Around button?")
-		break;
-	  case 4:
-        update("newInfo", "There doesn't seem to be any limes here.")
-		break;
-	  case 5:
-        update("newInfo", "Is that a lime?")
-		break;
-	  case 6:
-        update("newInfo", "Nope, it's dirt.")
-		break;
-	  case 7:
-        update("newInfo", "I would suggest looking around more.")
-		break;
-	  case 8:
-        update("newInfo", "You aren't getting a secret achievement.")
-		break;
-	  case 9:
-        update("newInfo", "This is literally just a waste of time.")
-		break;
-	  case 10:
-        update("newInfo", "Can you please play the game correctly?")
-		break;
-	  case 11:
-        update("newInfo", "Is that something priceless in the distance?")
-		break;
-	  case 12:
-        update("newInfo", "Nope, it's dirt.")
-		break;
-	  case 13:
-        update("newInfo", "I'm leaving.")
 	}
-    getLimes()
+
+	const messages = [
+		"Maybe you should try looking around!",
+		"Seriously you aren't going to find anything.",
+		"Do you see the Look Around button?", 
+		"There doesn't seem to be any limes here.",
+		"Is that a lime?",
+		"Nope, it's dirt.",
+		"I would suggest looking around more.",
+		"You aren't getting a secret achievement.",
+		"This is literally just a waste of time.",
+		"Can you please play the game correctly?",
+		"Is that something priceless in the distance?",
+		"Nope, it's dirt.",
+		"I'm leaving."
+	]
+
+	if (gameData.collectLimesAtBeginning <= messages.length) {
+		update("newInfo", messages[gameData.collectLimesAtBeginning - 1])
+	}
+
+	getLimes()
 }
 
 function getLimes() {

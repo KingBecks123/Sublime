@@ -279,16 +279,30 @@ function checkShow(x, id, style) {
   }
 }
 
+
 function runBar(id, amount) {
-  if (gameData[id + 'Bar'] < 100) {
-    gameData[id + 'Bar'] += amount;
-    setTimeout(runBar, 15 / gameData.tickspeed, id, amount);
+  const barName = id + 'Bar';
+
+  if (gameData[barName] < 100) {
+    gameData[barName] += amount;
+    
+    // Schedule next tick using requestAnimationFrame for better performance
+    requestAnimationFrame(() => {
+      // Adjust timing based on tickspeed  
+      setTimeout(() => runBar(id, amount), 15 / gameData.tickspeed);
+    });
   } else {
-    gameData[id + 'Bar'] = 0;
-    window[id + 'BarEnd']();
+    // Bar is full - reset and call completion handler
+    gameData[barName] = 0;
+    const endHandler = window[id + 'BarEnd'];
+    if (typeof endHandler === 'function') {
+      endHandler();
+    }
   }
+
   updateBar(id);
 }
+
 
 function basicToggle(input) {
   const elements = document.getElementsByClassName(input);
