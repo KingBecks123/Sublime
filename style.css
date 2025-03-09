@@ -24,6 +24,15 @@
   visibility: visible;
 }
 
+/* Version display specific tooltip */
+#versionDisplay .tooltiptext {
+  width: 250px;
+  bottom: 30px;
+  left: 0;
+  text-align: left;
+  white-space: pre-wrap;
+}
+
 .basicDiv {
   padding: 5px;
   margin: 10px 5px;

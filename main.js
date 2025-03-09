@@ -1,4 +1,4 @@
-//Colors
+// Colors
 orangeRed = "#be4a2f";
 lightOrangeRed= "#d77643";
 sand = "#ead4aa";
@@ -31,6 +31,21 @@ purple = "#b55088";
 peach = "#f6757a";
 darkSand = "#e8b796";
 veryLightBrown = "#c28569";
+
+// Game version - Change this to update version number
+const GAME_VERSION = "1.0.0";
+const VERSION_NOTES = `
+### Aesthetic
+- Added a nice background texture
+- Prettier buttons. They look 3D! Click em!
+- Made progress bars run smoothly
+- Added button click SFX
+- Switched to a much better font (DepartureMono)
+	- Reduced the letter spacing
+- Fixed the stats box
+### Backend
+- Organized the Assets and folder hierarchy in general
+`;
 
 // Add button click sound to all buttons
 document.addEventListener('DOMContentLoaded', function() {
