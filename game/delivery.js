@@ -28,6 +28,11 @@ function deliveryBar() {
 }
 
 function deliveryBarEnd() {
+	const cashSound = new Audio('assets/sfx/cash.wav');
+	cashSound.volume = 0.2;
+	cashSound.load();
+	cashSound.play();
+	
 	gameData.coins += (gameData.nationalJuiceMarketing + 1) * Math.floor(gameData.juiceBulkAmount * (1 + gameData.juicePriceCents / 100))
 }
 
