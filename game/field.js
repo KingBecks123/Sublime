@@ -77,7 +77,7 @@ function createFieldButtons() {
     for (let x = 0; x < 5; x++) {
       const buttonId = 'fieldTile' + x + '-' + y;
       const imgId = buttonId + 'img';
-      fieldButtonsHTML += `<button ondragstart="return false;" id="${buttonId}" onclick="fieldTile(${x}, ${y})"><img style="width:70px;height:70px;" id="${imgId}" src="assets/emptyField.png"></button>`;
+      fieldButtonsHTML += `<button ondragstart="return false;" id="${buttonId}" onclick="fieldTile(${x}, ${y})"><img style="width:70px;height:70px;" id="${imgId}" src="assets/images/emptyField.png"></button>`;
     }
   }
 
@@ -192,7 +192,7 @@ function fieldTile(x, y) {
 	
 	function emptyWheatTile(x, y) {
 		gameData.wheatFieldArray[x][y] = 0
-		document.getElementById(tile + 'img').src = "assets/emptyField.png"
+		document.getElementById(tile + 'img').src = "assets/images/emptyField.png"
 	}
 
 	function setTileType(number, cost) {
@@ -239,7 +239,7 @@ function updateFieldTileAesthetic() {
         document.getElementById(tile).style.backgroundColor = "#DEAD85";
 
       function setImage(id) {
-        image.src = 'assets/' + id + '.png';
+        image.src = 'assets/images/' + id + '.png';
       }
 
       function setRotation(number) {

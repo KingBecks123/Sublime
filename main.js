@@ -41,10 +41,15 @@ const VERSION_NOTES =
 - Made progress bars run smoothly
 - Added button click SFX
 - Switched to a much better font (DepartureMono)
-	- Reduced the letter spacing
+- R e d u c e d   t h e   l e t t e r   s p a c i n g
 - Fixed the stats box
+- Added more tooltips
+- Added titles, market titles
+- Created a color palette
+- Added a version number and changelog (hopefully you can find it...)
 ### Backend
 - Organized the Assets and folder hierarchy in general
+- The limes... they're everywhere...
 `;
 
 // Add button click sound to all buttons
