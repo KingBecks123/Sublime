@@ -30,15 +30,15 @@ employeeTypes = {
 	basic : {
 		applicationRandomisation: function () {
 			if (gameData.firstApplicant) {
-				gameData.applicantSpeed = 100
+				gameData.applicantSpeed = 50
 				gameData.applicantPrice = 0
-				gameData.applicantWage = 5
+				gameData.applicantWage = 50
 				gameData.applicantHunger = 1
 				gameData.firstApplicant = 0
 			} else {
 				gameData.applicantSpeed = (Math.floor(Math.random() * (10 + gameData.betterTraining) + 1) * 100)
 				gameData.applicantPrice = Math.floor(Math.random() * 200)
-				gameData.applicantWage = Math.floor(Math.random() * 16) + 5
+				gameData.applicantWage = (Math.floor(Math.random() * 21) + 5) * 5
 				gameData.applicantHunger = Math.floor(Math.random() * 20) + 1
 			}
 		},
@@ -61,7 +61,7 @@ employeeTypes = {
 				update('hungerEmployee', 'Hunger: ' + gameData.employeeHunger.toLocaleString() + ' Limes per second.')
 			}
 		},
-		price: 10,
+		price: 20,
 		priceType: 'coins',
 		textFormat: function () {
 			update('application',
@@ -232,7 +232,14 @@ function updateValuesCompany () {
 	if (gameData.applicationReady)
 		employeeTypes[gameData.applicationType].textFormat()
 	else
-		update('application', 'Pin applications here')
+		update('application', `Potential Employees, Pin Applications Here!
+							   ---
+You, yes YOU, will have the chance to work in the town-renowned Lime Inc.!
+							   With BENEFITS! Only to name A FEW:
+							   - Get PAID*
+
+							   APPLY NOW!
+			`)
 	
 	checkShow(gameData.applicationReady, 'applicationInfo')
 	checkShow(!gameData.advertisingLevel2, 'advertisingLeaflets')
