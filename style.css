@@ -1,4 +1,9 @@
-css
+* {
+  font-family: pixelated;
+  font-size: 11px;
+  letter-spacing: -0.05em;
+}
+
 .tooltip {
   position: relative;
 }
@@ -56,7 +61,6 @@ css
 
 .stat {
   font-family: pixelated;
-  font-size: 20px;
 }
 
 .skillButton {
@@ -75,7 +79,6 @@ css
   height: 30px;
   line-height: 30px;
   font-family: pixelated;
-  font-size: 20px;
   padding: 0;
   background-color: #4DFE89;
 }
@@ -85,7 +88,6 @@ css
   height: 30px;
   line-height: 30px;
   font-family: pixelated;
-  font-size: 20px;
   padding: 0;
 }
 
@@ -105,7 +107,6 @@ css
   right: 0;
   position: absolute;
   font-family: pixelated;
-  font-size: 20px;
   padding: 0;
 }
 
@@ -124,7 +125,6 @@ css
   bottom: 0;
   right: 0;
   font-family: pixelated;
-  font-size: 20px;
   position: absolute;
   bottom: 0;
 }
@@ -138,22 +138,10 @@ css
 
 @font-face {
   font-family: pixelated;
-  src: url('assets/fonts/RedAlert.ttf');
-}
-
-p {
-  font-family: pixelated;
-  font-size: 20px;
-}
-
-a {
-  font-family: pixelated;
-  font-size: 20px;
+  src: url('assets/fonts/DepartureMono.otf');
 }
 
 button {
-  font-family: pixelated;
-  font-size: 20px;
   border: 1px solid #000000;
   transition: all 0.1s ease;
   box-shadow: 0 2px 0 #2d2d44;

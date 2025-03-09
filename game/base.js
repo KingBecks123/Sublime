@@ -314,12 +314,12 @@ function lookAround() {
 }
 
 function changeZoomSize() {
-	if (gameData.changeZoomSize == 150) {
+	if (gameData.changeZoomSize >= 180) {
 		gameData.changeZoomSize = 100
 		document.body.style.zoom = 1.0
 	}
 	else {
-		gameData.changeZoomSize += 10
+		gameData.changeZoomSize += 20
 		document.body.style.zoom = gameData.changeZoomSize / 100
 	}
 }
