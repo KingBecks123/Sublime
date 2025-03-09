@@ -13,9 +13,6 @@ function gameStart() {
   // Update version display
   document.getElementById("versionNumber").textContent = "v" + GAME_VERSION;
   document.getElementById("versionTooltip").textContent = VERSION_NOTES;
-  
-  // Load latest update information from updatelog.txt if available
-  loadUpdateInfo();
 
   mainGameLoop();
   mainGameLoopSlow();
@@ -64,38 +61,6 @@ function gameStart() {
 
     setTimeout(updateValues, 15);
   }
-}
-
-// Function to load latest update information from updatelog.txt
-function loadUpdateInfo() {
-  fetch('updatelog.txt')
-    .then(response => {
-      if (response.ok) {
-        return response.text();
-      }
-      throw new Error('Unable to load update log');
-    })
-    .then(text => {
-      // Extract the latest update info (first 2-3 entries)
-      const entries = text.split(/\d{2}\/\d{2}\/\d{2}/);
-      if (entries.length > 1) {
-        // Format the update information
-        let latestUpdates = "v" + GAME_VERSION + " - Latest Updates:\n";
-        
-        // Add the first 2 update entries (skipping the header entry)
-        for (let i = 1; i < Math.min(3, entries.length); i++) {
-          const datePart = text.match(/\d{2}\/\d{2}\/\d{2}/g)[i-1];
-          latestUpdates += "\n" + datePart + entries[i].trim();
-        }
-        
-        // Update the tooltip text
-        document.getElementById("versionTooltip").textContent = latestUpdates;
-      }
-    })
-    .catch(error => {
-      console.log('Error loading update log:', error);
-      // Keep the default VERSION_NOTES if there's an error
-    });
 }
 
 function restartBar(x) {
