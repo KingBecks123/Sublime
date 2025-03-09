@@ -34,8 +34,8 @@ veryLightBrown = "#c28569";
 
 // Game version - Change this to update version number
 const GAME_VERSION = "1.0.0";
-const VERSION_NOTES = `
-### Aesthetic
+const VERSION_NOTES = 
+`### Aesthetic
 - Added a nice background texture
 - Prettier buttons. They look 3D! Click em!
 - Made progress bars run smoothly

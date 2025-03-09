@@ -917,7 +917,9 @@
     <div id="skills" style="position: relative;width:760px">
 		<div id="skillsSection1" style="width:380px;top:0;position:absolute">
 			<div class="basicDiv" id="eatFoodDiv">
-				<button class="roundButton" id="eatButton" onclick="pickCurrentTask('eat')">   Eat Food   </button>
+				<button class="roundButton tooltip" id="eatButton" onclick="pickCurrentTask('eat')">   Eat Food   
+					<span class="tooltiptext">Eating food increases your food points, which are used when performing skills. Limes provide 5 food points each, while rotten limes provide 1 food point each. Nutritionists multiply the food points you get. Your current food points are shown below the progress bar.</span>
+				</button>
 
 				<button class="specialButton" id="foodToggleLimesButton" onclick="gameData.foodTypeToggle = 0">Limes</button>
 				<button class="specialButton" id="foodToggleRottenLimesButton" onclick="gameData.foodTypeToggle = 1">Rotten Limes</button>
