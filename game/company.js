@@ -12,11 +12,13 @@ addGameVariables({
     applicantPrice: 10,
     applicantWage: 10,
     applicantHunger: 5,
+	applicantHobby: 'Breaking The Laws Of Code By Somehow Having This Hobby',
     employeeSpeed: 20,
     employeeHunger: 5,
     employeePrice: 10,
     employeeWage: 10,
     employeeCurrentSpeed: 0,
+    employeeHobby: 'Breaking The Laws Of Code By Somehow Having This Other Hobby',
     employees: 0,
     maxEmployees: 1,
     employeeWorking: 0,
@@ -26,20 +28,49 @@ addGameVariables({
     advertisingLevel3: 0,
 });
 
+const employeeHobbies = [
+	'Water Polo',
+	'Street Racing',
+	'Emerald Mining',
+	'Digging Holes In Backyards',
+	'Cat Collecting',
+	'Engaging In Tomfoolery',
+	'Devloping The Hit Game &#38Sublime&#38',
+	'Studying Quantumn Chromodynamics',
+	'Plotting, Scheming Etc. ',
+	'Reading About Limenomics',
+	'Working At A Lemonade Stand',
+	'Being A Good Employee',
+	'Stealing',
+	'Faffing About',
+	'Fracking',
+	'Why Do You Need To Know My Hobby?',
+	'Citrus Cult... ivation',
+	'Finding A Hobby',
+	'Investing In Citrocurrency',
+	'Taxidermy',
+	'Influencing',
+	'Incremental Games',
+	'Unregulated Gambling',
+	'Filling Holes In Backyards'
+]
+
 employeeTypes = {
 	basic : {
 		applicationRandomisation: function () {
 			if (gameData.firstApplicant) {
 				gameData.applicantSpeed = 50
 				gameData.applicantPrice = 0
-				gameData.applicantWage = 50
+				gameData.applicantWage = 20
 				gameData.applicantHunger = 1
+				gameData.applicantHobby = 'Interning At Lime Inc.'
 				gameData.firstApplicant = 0
 			} else {
 				gameData.applicantSpeed = (Math.floor(Math.random() * (10 + gameData.betterTraining) + 1) * 100)
 				gameData.applicantPrice = Math.floor(Math.random() * 200)
-				gameData.applicantWage = (Math.floor(Math.random() * 21) + 5) * 5
+				gameData.applicantWage = (Math.floor(Math.random() * 20) + 1) * 5
 				gameData.applicantHunger = Math.floor(Math.random() * 20) + 1
+				gameData.applicantHobby = employeeHobbies[Math.floor(Math.random() * employeeHobbies.length)]
 			}
 		},
 		onHire: function () {
@@ -52,13 +83,15 @@ employeeTypes = {
 				gameData.employeeSpeed = gameData.applicantSpeed
 				gameData.employeePrice = gameData.applicantPrice
 				gameData.employeeWage = gameData.applicantWage
+				gameData.employeeHobby = gameData.applicantHobby
 				gameData.employeeCurrentSpeed = -(gameData.employeeHunger * 60)
 				gameData.employees = 1
 				gameData.isEmployeeWorking = false
 				gameData.workingBar = 0
-				update('speedEmployee', 'Speed: ' + gameData.employeeSpeed.toLocaleString() + '% of what I&#39m taught.')
-				update('wageEmployee', 'Wages: ' + gameData.employeeWage.toLocaleString() + ' Coins per minute.')
-				update('hungerEmployee', 'Hunger: ' + gameData.employeeHunger.toLocaleString() + ' Limes per second.')
+				update('speedEmployee', 'Speed: ' + gameData.employeeSpeed.toLocaleString() + '% of what I&#39m taught')
+				update('wageEmployee', 'Wages: ' + gameData.employeeWage.toLocaleString() + ' Coins per minute')
+				update('hungerEmployee', 'Hunger: ' + gameData.employeeHunger.toLocaleString() + ' Limes per second')
+				update('employeeHobby', 'Hobby: ' + gameData.employeeHobby)
 			}
 		},
 		price: 20,
@@ -66,11 +99,14 @@ employeeTypes = {
 		textFormat: function () {
 			update('application',
 				'<br>' +
-				'Skills: Can Collect Limes.' + '<br>' +
-				'Speed: ' + gameData.applicantSpeed.toLocaleString() + '% Of What I&#39m Taught.<br>' +
-				'Price: ' + gameData.applicantPrice.toLocaleString() + ' Coins.<br>' +
-				'Wages: ' + gameData.applicantWage.toLocaleString() + ' Coins Per Minute.<br>' +
-				'Hunger: ' + gameData.applicantHunger.toLocaleString() + ' Limes Per Second.<br>' +
+				'Lime Collector' + '<br>' +
+				'<br>' +
+				'Speed: ' + gameData.applicantSpeed.toLocaleString() + '% Of What I&#39m Taught<br>' +
+				'Onboarding Price: ' + gameData.applicantPrice.toLocaleString() + ' Coins<br>' +
+				'Wages: ' + gameData.applicantWage.toLocaleString() + ' Coins Per Minute<br>' +
+				'Hunger: ' + gameData.applicantHunger.toLocaleString() + ' Limes Per Second<br>' +
+				'<br>' +
+				'Hobby: ' + gameData.applicantHobby + '<br>' +
 				'<br>'
 			)
 		}
@@ -246,8 +282,8 @@ You, yes YOU, will have the chance to work in the town-renowned Lime Inc.!
 	checkShow(!gameData.advertisingLevel3, 'advertisingBillboard')
 	checkShow(gameData.employees, 'companyButton')
 	
-	update('currentSpeedEmployee', 'Current speed: ' + gameData.employeeCurrentSpeed.toLocaleString() + ' limes per minute.')
-	update('speedEmployee', 'Speed: ' + gameData.employeeSpeed.toLocaleString() + '% Of What I&#39m Taught.')
+	update('currentSpeedEmployee', 'Current speed: ' + gameData.employeeCurrentSpeed.toLocaleString() + ' limes per minute')
+	update('speedEmployee', 'Speed: ' + gameData.employeeSpeed.toLocaleString() + '% Of What I&#39m Taught')
 	
 	basicToggle("teachInfo")
 	basicToggle("employeeStatsInfo")
