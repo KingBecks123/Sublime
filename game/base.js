@@ -186,7 +186,7 @@ function getLimesButton() {
 		"I'm leaving."
 	]
 
-	if (gameData.collectLimesAtBeginning <= messages.length) {
+	if (gameData.collectLimesAtBeginning <= messages.length && gameData.lookAround == 0) {
 		update("newInfo", messages[gameData.collectLimesAtBeginning - 1])
 	}
 

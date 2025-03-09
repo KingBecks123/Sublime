@@ -126,7 +126,7 @@ function buyAFork() {
 function autoCollectingBar() {
     if (gameData.autoCollectingBar <= (((gameData.nourishment + 1) * 100) - 0.5)) {
         gameData.autoCollectingBar += 0.5
-        setTimeout(autoCollectingBar, 50)
+        setTimeout(autoCollectingBar, 25)
     }
 	else
 		gameData.autoCollectingBar = 0
@@ -174,7 +174,7 @@ function tryToStartSkill(variable, useSkillTrainer) {
 }
 
 function runSkill(variable) {
-	speed = 150
+	speed = 50
 	
 	if (variable == 'ambidextrous')
 		speed *= 10
@@ -254,7 +254,7 @@ function updateValuesSkills () {
       { element: 'intelligence', value: Math.floor(((gameData.intelligenceSkillLevel * 2) / gameData.intelligenceSkillLevelMax) * 100) + '% Faster' },
       { element: 'knifebidextrous', value: gameData.knifebidextrousSkillLevel * 5 + '% Chance' },
       { element: 'eat', value: gameData.eat + ' / 100' },
-      { element: 'textForAutomaticallyCollectsLimes', value: 'Automatically collects limes at ' + (gameData.shoes + 1) + '/s' },
+      { element: 'textForAutomaticallyCollectsLimes', value: 'Automatically clicks 	&#39Collect Limes&#39 at ' + (gameData.shoes * 2 + 2) + '/s' },
       { element: 'textForNourishmentPrice', value: 'You Need: ' + gameData.nourishmentPrice.toLocaleString() + ' Limes' },
     ];
 

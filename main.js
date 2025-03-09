@@ -56,12 +56,12 @@ const VERSION_NOTES =
 document.addEventListener('DOMContentLoaded', function() {
     // Create and preload audio object
     const buttonClickSound = new Audio('assets/sfx/button-click.wav');
-    buttonClickSound.volume = 0.5; // Set volume to half
+    buttonClickSound.volume = 0.3; // Set volume to half
     buttonClickSound.load(); // Preload the audio file
     
     // Create a second audio object as a backup for rapid clicks
     const buttonClickSound2 = new Audio('assets/sfx/button-click.wav');
-    buttonClickSound2.volume = 0.5; // Set volume to half
+    buttonClickSound2.volume = 0.3; // Set volume to half
     buttonClickSound2.load(); // Preload the audio file
     
     // Track which sound to use
