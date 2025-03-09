@@ -245,7 +245,7 @@ function updateValuesSkills () {
     if (gameData.learnANewSkill - 3 == gameData.tomes)
         setColor('learnANewSkillButton', 'darkgray')
     else
-        setColor('learnANewSkillButton', '#FFBB9A')
+        setColor('learnANewSkillButton', '#0081AF')
 
     const elementsToUpdate = [
       { element: 'rottenWisdom', value: 100 * gameData.rottenWisdomSkillLevel / gameData.rottenWisdomSkillLevelMax + '% Chance' },
