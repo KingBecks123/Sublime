@@ -105,6 +105,12 @@
   padding: 0;
 }
 
+.skillInfo {
+  padding: 5px;
+  margin: 5px;
+  background-color: #BBBBBB;
+}
+
 .verticalProgress {
   width: 350px;
   height: 300px;

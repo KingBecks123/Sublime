@@ -922,77 +922,7 @@
 			</div>
         </div>
     </div>
-    <div id="skills" style="position: relative;width:760px">
-		<div id="skillsSection1" style="width:380px;top:0;position:absolute">
-			<div class="basicDiv" id="eatFoodDiv">
-				<button class="roundButton tooltip" id="eatButton" onclick="pickCurrentTask('eat')">   Eat Food   
-				</button>
-				<button class="specialButton" id="foodToggleLimesButton" onclick="gameData.foodTypeToggle = 0">Limes</button>
-				<button class="specialButton" id="foodToggleRottenLimesButton" onclick="gameData.foodTypeToggle = 1">Rotten Limes</button>
-				<div class="skillInfo">
-					<p class="basicText">You use 1 food point per skill level</p>
-				</div>
-				<div class="skillProgress" id="eatProgress">
-					<div class="skillBar" id="eatBar">0%</div>
-				</div>
-				<p class="basicText" id="eat"></p>
-			</div>
-			<div class="basicDiv autoCollectingDiv" id="autoCollectingDiv">
-				<button id="autoCollectingButton" onclick="autoCollecting()">Auto Collect</button>
-				<button class="pinButton" onclick="pin('autoCollectingButton')">+</button>
-				<div class="skillInfo">
-					<p class="basicText">Collect limes without the pesky clicking</p>
-					<p class="basicText" id="textForAutomaticallyCollectsLimes" ></p>
-				</div>
-				<div class="skillProgress" id="autoCollectingProgress">
-					<div class="skillBar" id="autoCollectingBar">0%</div>
-				</div>
-			</div>
-			<div class="basicDiv">
-				<button class="specialButton" id="learnANewSkillButton" onclick="learnANewSkill()">Learn A New Skill</button>
-				<button class="specialButton" id="skillInfoButton" onclick="toggle('skillInfoToggle')">Info</button>
-				<div class="skillProgress" id="learnANewSkillProgress">
-					<div class="skillBar" id="learnANewSkillBar">0%</div>
-				</div>
-			</div>
-		</div>
-		<div id="skillsSection2" style="width:380px;right:0;position:absolute">	
-			<div class="basicDiv" id="keenEyeDiv">
-				<p class="basicText skillInfo">Increase the chance of actually finding something when collecting limes</p>
-				<p class="basicText skillInfo" id="keenEye"></p>
-			</div>
-			<div class="basicDiv" id="rottenWisdomDiv">
-				<p class="basicText skillInfo">Increase the chance of finding limes rather than rotten limes</p>
-				<p class="basicText skillInfo" id="rottenWisdom"></p>
-			</div>
-			<div class="basicDiv" id="limebidextrousDiv">
-				<p class="basicText skillInfo" id="limebidextrousInfo">Increase the chance of picking up double limes</p>
-				<p class="basicText skillInfo" id="limebidextrous"></p>
-			</div>
-			<div class="basicDiv" id="intelligenceDiv">
-				<p class="basicText skillInfo" id="intelligenceInfo">Increase skilling speed</p>
-				<p class="basicText skillInfo" id="intelligence"></p>
-			</div>
-			<div class="basicDiv" id="knifebidextrousDiv">
-				<p class="basicText skillInfo">Chance to peel 2 limes rather than 1: +5%</p>
-				<p class="basicText skillInfo">Unlock something special for completing this!</p>
-				<p class="basicText skillInfo" id="knifebidextrous"></p>
-			</div>
-			<div class="basicDiv" id="motivationDiv">
-				<p class="basicText skillInfo">Make your employees as passionate about limes as you are</p>
-				<p class="basicText skillInfo">Increases the amount that motivation affects employees</p>
-			</div>
-			<div class="basicDiv" id="ambidextrousDiv">
-				<p class="basicText skillInfo">Yes, I made a skill without a lime pun</p>
-				<p class="basicText skillInfo">Reach level 20 to be able to toggle two actions at once</p>
-			</div>
-			<div class="basicDiv" id="bitterSpeedDiv">
-				<p class="basicText skillInfo">The bitterness of the golden limes increases your abilities!</p>
-				<p class="basicText skillInfo">Specifically lime peeling and juicing.</p>
-				<p class="basicText skillInfo">Every level increases that effect's length.</p>
-			</div>
-		</div>
-    </div>
+    <div id="skills" style="position: relative;width:760px"></div>
 	<button class="specialButton" id="donationButton" style="position: fixed;bottom: 20px;right: 20px;height:80px;width:80px;background-color:#4DFE89"><a style="color:black" href="https://www.paypal.com/donate?hosted_button_id=ZTS6946KH9HES">Donate :)</a></button>
 	
 	<!-- Version number with tooltip -->
