@@ -107,48 +107,38 @@ function pinButton() {
 }
 
 function pickCurrentTask(x) {
-  const taskOne = gameData.currentTask;
-  const taskTwo = gameData.currentTask2;
+  const { currentTask: taskOne, currentTask2: taskTwo } = gameData;
 
   if (!event.shiftKey && gameData.toggleActions) {
     if (gameData.ambidextrousSkillLevel === gameData.ambidextrousSkillLevelMax) {
       if (taskOne === x && taskOne !== "none" && taskTwo !== x) {
         gameData.currentTask = "none";
       } else if (taskOne === "none" && taskTwo !== x) {
-        if (
-          !(
-            (taskTwo === 'makeJuice' && x === 'makeMaxJuice') ||
-            (taskTwo === 'makeMaxJuice' && x === 'makeJuice') ||
-            (taskTwo === 'usePeelers' && x === 'useMaxPeelers') ||
-            (taskTwo === 'useMaxPeelers' && x === 'usePeelers')
-          )
-        ) {
+        if (!isTaskConflict(taskTwo, x)) {
           gameData.currentTask = x;
         }
       } else if (taskTwo === x && taskTwo !== "none") {
         gameData.currentTask2 = "none";
       } else if (taskTwo === "none") {
-        if (
-          !(
-            (taskOne === 'makeJuice' && x === 'makeMaxJuice') ||
-            (taskOne === 'makeMaxJuice' && x === 'makeJuice') ||
-            (taskOne === 'usePeelers' && x === 'useMaxPeelers') ||
-            (taskOne === 'useMaxPeelers' && x === 'usePeelers')
-          )
-        ) {
+        if (!isTaskConflict(taskOne, x)) {
           gameData.currentTask2 = x;
         }
       }
     } else {
-      if (taskOne === x && taskOne !== "none") {
-        gameData.currentTask = "none";
-      } else {
-        gameData.currentTask = x;
-      }
+      gameData.currentTask = (taskOne === x && taskOne !== "none") ? "none" : x;
     }
   } else {
     startCurrentTask(x);
   }
+}
+
+function isTaskConflict(task, x) {
+  return (
+    (task === 'makeJuice' && x === 'makeMaxJuice') ||
+    (task === 'makeMaxJuice' && x === 'makeJuice') ||
+    (task === 'usePeelers' && x === 'useMaxPeelers') ||
+    (task === 'useMaxPeelers' && x === 'usePeelers')
+  );
 }
 
 function pickCurrentSkill(x) {
@@ -178,7 +168,6 @@ function updateBar(x) {
   }
 
   elem.style.width = gameData[barId] + "%";
-  elem.innerHTML = "" + Math.ceil(gameData[barId]) + "%";
 }
 
 function toggle(x) {
@@ -189,36 +178,29 @@ function toggle(x) {
   }
 }
 
-function basicBuy(id, price) {
-  if (gameData.coins >= price) {
-    gameData.coins -= price;
-    gameData[id] += 1;
-  }
-}
-
-function universalBuy(id, price, currency) {
+function buy(id, price, currency = 'coins') {
   if (gameData[currency] >= price) {
     gameData[currency] -= price;
     gameData[id] += 1;
   }
 }
 
-function bulkableBuyMax(x, price) {
-  const max = gameData[x + 'Max'];
-  let amount = 1;
+function bulkableBuyMax(item, price) {
+  const maxAmount = gameData[item + 'Max'];
+  let purchaseAmount = 1;
 
-  if (gameData[x + 'BulkToggle'] === 1) {
-    amount = gameData.bulkBuyUnlock2 ? 100 : 10;
+  if (gameData[item + 'BulkToggle'] === 1) {
+    purchaseAmount = gameData.bulkBuyUnlock2 ? 100 : 10;
   }
 
-  if (gameData.coins >= price * amount) {
-    if (gameData[x] <= max - amount) {
-      gameData.coins -= price * amount;
-      gameData[x] += amount;
+  if (gameData.coins >= price * purchaseAmount) {
+    if (gameData[item] <= maxAmount - purchaseAmount) {
+      gameData.coins -= price * purchaseAmount;
+      gameData[item] += purchaseAmount;
     } else {
-      const remaining = max - gameData[x];
-      gameData.coins -= price * remaining;
-      gameData[x] = max;
+      const availableAmount = maxAmount - gameData[item];
+      gameData.coins -= price * availableAmount;
+      gameData[item] = maxAmount;
     }
   }
 }
@@ -347,28 +329,29 @@ function addGameVariables(variables) {
 }
 
 function tab(tabby) {
-	gameData.mainTab = tabby;
-	update("exportCode", "");
+    gameData.mainTab = tabby;
+    update("exportCode", "");
 
-	for (let i = 0; i < mainTabs.length; i++) {
-		hide(mainTabs[i].id);
-		setColor(mainTabs[i].id + 'Button', '#' + mainTabs[i].color1);
-	}
+    mainTabs.forEach(tab => {
+        hide(tab.id);
+        setColor(tab.id + 'Button', '#' + tab.color1);
+    });
 
-	if (tabby == "options") {
-		checkShow(!gameData.isOptionsOpen, 'options', 'inline');
-		if (!gameData.isOptionsOpen)
-			setColor('optionsButton', "#898989");
+    if (tabby === "options") {
+        checkShow(!gameData.isOptionsOpen, 'options', 'inline');
+        if (!gameData.isOptionsOpen) {
+            setColor('optionsButton', "#898989");
+        }
+        toggle('isOptionsOpen');
+    } else if (tabby !== "null") {
+        gameData.isOptionsOpen = 0;
+        const selectedTab = document.getElementById(tabby);
+        selectedTab.style.display = "inline-block";
 
-		toggle('isOptionsOpen');
-	}
-	else if (tabby !== "null") {
-		gameData.isOptionsOpen = 0;
-		document.getElementById(tabby).style.display = "inline-block";
-
-		for (let i = 0; i < mainTabs.length; i++) {
-			if(tabby == mainTabs[i].id)
-				setColor(tabby + "Button", '#' + mainTabs[i].color2);
-		}
-	}
+        mainTabs.forEach(tab => {
+            if (tabby === tab.id) {
+                setColor(tabby + "Button", '#' + tab.color2);
+            }
+        });
+    }
 }

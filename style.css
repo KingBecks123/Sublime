@@ -4,6 +4,24 @@
   letter-spacing: -0.05em;
 }
 
+/* Common utility classes */
+.hidden {
+  display: none;
+}
+
+.full-width {
+  width: 99%;
+  display: block;
+}
+
+.no-select {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: #3C3C3C;
+}
+
+/* Tooltip styles */
 .tooltip {
   position: relative;
 }
@@ -26,10 +44,124 @@
 }
 
 /* Version display specific tooltip */
+#versionDisplay {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  font-size: 12px;
+  color: #aaaaaa;
+  background-color: #333333;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
 #versionDisplay .tooltiptext {
   bottom: 30px;
 }
 
+/* Layout components */
+.sidebar {
+  float: left;
+  padding: 10px;
+  width: 100px;
+  height: 90vh;
+  background-color: #000000;
+}
+
+.info-box {
+  background-color: #bfbfbf;
+  padding-left: 130px;
+  display: block;
+  height: 60px;
+}
+
+.info-box p {
+  display: inline-block;
+  margin-bottom: none;
+}
+
+.options-container {
+  width: 150px;
+  height: 50px;
+  float: right;
+}
+
+.options-button {
+  background: lightgray;
+  width: 150px;
+  height: 30px;
+  background-color: #d1d9d9;
+}
+
+.action-buttons {
+  display: block;
+  float: left;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.navigateButtons {
+  float: left;
+  padding: 10px;
+  width: 120px;
+}
+
+/* Module containers */
+.module-container {
+  width: 380px;
+}
+
+.module-location {
+  position: relative;
+}
+
+#bakery {
+  height: 800px;
+  width: 760px;
+}
+
+#field {
+  width: 855px;
+}
+
+#skills {
+  width: 760px;
+}
+
+/* Donation button */
+.donation-link {
+  color: black;
+}
+
+#donationButton {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  height: 80px;
+  width: 80px;
+  background-color: #4DFE89;
+}
+
+/* End screen */
+#endScreen {
+  background-color: #000000;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  color: #FFFFFF;
+}
+
+/* Game UI Elements */
+#pickUpLimes {
+  background-color: #4DFE89;
+  width: 120px;
+}
+
+#lookAroundButton {
+  background-color: #BBBBBB;
+}
 
 .basicDiv {
   padding: 5px;
@@ -200,4 +332,10 @@ body {
 .loreTab {
     margin-right: 5px;
     transition: background-color 0.2s;
+}
+
+/* Market */
+.market-container {
+  padding: 0;
+  margin: 0;
 }

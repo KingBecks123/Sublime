@@ -71,3 +71,27 @@ addGameVariables({
 	surveyingResearchers: 0,
 	researchers: 0,
 });
+
+document.getElementById('science').innerHTML = `
+        <div style="width:380px">
+			<div class="basicDiv" id="scienceButtonsDiv">
+				<button class="specialButton" id="researchButton" style="background-color:lightgray;" onclick="tabScience('research')">Research</button>
+				<button class="specialButton" id="researchersButton" style="background-color:lightgray;" onclick="tabScience('researchers')">Acquire Researchers</button>
+			</div>
+			<div class="basicDiv">
+				<p class="basicText" id="textForResearchers" style="color:#00AAFF;background-color:#000000">0 Researchers</p>
+			</div>
+			<div id="research"></div>
+			<div id="researchers">
+                <div class="basicDiv" id="buyManuscriptsDiv" >
+                    <button class="specialButtonTravel" onclick="buy('manuscripts', 5e5)">Buy Manuscripts</button>
+                    <p class="basicText" >Keep 1,000 respect milestone after travelling</p>
+                    <p class="basicText" >Price: 500,000 Coins</p>
+                </div>	
+                <div class="basicDiv">
+                    <button class="specialButtonTravel" onclick="hireResearcher()">Pay with mega coins</button>
+                    <p class="basicText" >Price: 1 Mega Coin</p>
+                </div>	
+			</div>
+        </div>
+`;

@@ -265,8 +265,8 @@ function loadLoreContent(category, id) {
 
 // Hook into map purchases to auto-discover first journal entry
 function hookMapPurchase() {
-    const originalBuy = window.basicBuy;
-    window.basicBuy = function(id, price) {
+    const originalBuy = window.buy;
+    window.buy = function(id, price) {
         originalBuy(id, price);
         if (id === 'maps' && gameData.maps === 1) {
             discoverSpecificLoreEntry('journal', 'mother-tree');

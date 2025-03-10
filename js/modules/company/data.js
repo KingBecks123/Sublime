@@ -203,3 +203,46 @@ employeeTypes = {
 		}	
 	}	
 }
+
+document.getElementById('company').innerHTML = `		<div class="basicDiv">
+			<button class="specialButton" style="width:250px" onclick="tabEmployees('employeeOne')">John McLime</button>
+			<button class="specialButton" id="employeeStatsInfoButton" style="width:80px;" onclick="toggle('employeeStatsInfoToggle')">Stats</button>
+			<div id="employeeOne">
+				<p class="basicText employeeStatsInfo" id="skillsEmployee" style="text-align: center;">Lime Collector</p>
+				<p class="basicText employeeStatsInfo" id="speedEmployee">Speed: 20% Of What I'm Taught</p>
+				<p class="basicText" id="currentSpeedEmployee">Current Speed: 0 limes per minute</p>
+				<p class="basicText employeeStatsInfo" id="wageEmployee">Wage: 10 Coins Per Minute</p>
+				<p class="basicText employeeStatsInfo" id="hungerEmployee">Hunger: 10 Limes Per Second</p>
+				<p class="basicText employeeStatsInfo" id="employeeHobby" style="text-align: right">Enjoys Faffing About</p>
+				<button class="specialButton" style="width:250px" onclick="teach()">Teach Employee</button>
+				<button class="specialButton" id="teachInfoButton" style="width:80px;" onclick="toggle('teachInfoToggle')">Info</button>
+				<p class="basicText teachInfo">Click the 'Teach' button to start a timer</p>
+				<p class="basicText teachInfo">Collect as many limes as possible before time runs out!</p>
+				<p class="basicText teachInfo">Your employee learns from your abilities</p>
+				<div class="skillProgress" id="teachProgress">
+					<div class="skillBar" id="teachBar">0%</div>
+				</div>
+				<p class="basicText" id="workingEmployee" style="background-color:#bfbfbf;">Employee is idle<p>
+				<div class="skillProgress" id="workingProgress">
+					<div class="skillBar" id="workingBar">0%</div>
+				</div>
+				<button class="specialButton" id="payEmployee" style="width:250px" onclick="payEmployee()">Pay Employee Their Wages</button>
+				<button class="specialButton" id="motivateEmployeeButton" onkeydown="return event.key != 'Enter';" style="width:250px" onclick="motivateEmployee()">Motivate Employee</button>
+			</div>
+        </div>
+		<div class="basicDiv" id="currencyBroker">
+			<button class="specialButton" style="width:250px;">Currency Broker</button>
+            <p class="basicText" id="currencyBrokerFee"></p>
+            <p class="basicText" id="currencyBrokerSpeed"></p>
+            <p class="basicText" id="currencyBrokerTransferAmount"></p>
+        </div>
+		<div class="basicDiv" id="pieMerchant">
+			<button class="specialButton" style="width:250px;display:inline-block;">Pie Merchant</button>            
+			<button class="specialButton" id="pieMerchantInfoButton" style="width:80px;" onclick="toggle('pieMerchantInfoToggle')">Info</button>
+            <p class="basicText" id="pieMerchantPieCoinPrice"></p>
+            <p class="basicText" id="pieMerchantBetaCoinPrice"></p>
+            <p class="basicText" id="pieMerchantMaxPay"></p>
+            <p class="basicText" id="pieMerchantCharm"></p>
+            <p class="basicText pieMerchantInfo">Increases customer acquisition speed</p>
+        </div>
+`;
