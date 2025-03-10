@@ -52,7 +52,30 @@ const employeeHobbies = [
 	'Influencing',
 	'Incremental Games',
 	'Unregulated Gambling',
-	'Filling Holes In Backyards'
+	'Filling Holes In Backyards',
+	'Polyamory',
+	'Producing Agit-Prop',
+	'Exploring Abadoned Nuclear Bases',
+	'Treason',
+	'Searching For The Dead Sea Scrolls',
+	'Mummy Tasting',
+	'Burning Fingerprints',
+	'Birdwatching',
+	'Eavesdropping',
+	'Making It Through This Year',
+	'Studying Reverse Rabies',
+	'Lime Diease',
+	'Rational Thought',
+	'Drinking Margaritas',
+	'Solving Border Disputes',
+	'Balkanizing My Garden',
+	'Triskaidekaphobia',
+	'Time Zone Abolition',
+	'Not Panicking',
+	'Air Traffic Control',
+	'Listening To Myself Breathe',
+	'Wandering',
+	'Stargazing'
 ]
 
 employeeTypes = {
