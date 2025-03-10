@@ -291,7 +291,9 @@ function updateValuesTasks () {
       { condition: !gameData.diseaseControlFinished, element: 'diseaseControlStart' },
       { condition: !gameData.silkRobe, element: 'buyARobe' },
       { condition: !gameData.unlockDiseaseAreaSwamp, element: 'unlockDiseaseAreaSwamp' },
-      { condition: !gameData.lightRobe, element: 'lightRobe' }
+      { condition: !gameData.lightRobe, element: 'lightRobe' },
+	  { condition: !gameData.unlockBenevolence, element: 'unlockBenevolence' },
+	  { condition: !gameData.surveillanceCamera2, element: 'surveillanceCamera2' }
     ];
 
     showHideElements.forEach(({ condition, element, display = 'block' }) => {

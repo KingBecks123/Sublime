@@ -54,6 +54,12 @@ travelUpgrades = [
 		requirement: 'gameData.upgradeMoreStorage'
 	},
 	{
+		id: 'upgradeBenevolence',
+		text: 'Benevolence',
+		description: 'Increases the amount of respect you get from helping civilians',
+		requirement: 'gameData.unlockBenevolence'
+	},
+	{
 		id: 'upgradeHighTechSurveillance',
 		text: 'High Tech Surveillance Camera',
 		description: 'Makes sure researchers are working while you&#39re away',

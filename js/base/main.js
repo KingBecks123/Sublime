@@ -72,8 +72,17 @@ function saveGame() {
 }
 
 function resetGame() {
-	if (window.prompt("Are you sure? Type 'yes' if you are") == "yes") {
+	response = window.prompt("Are you sure? Type 'yes' if you are");
+
+	if (response == 'yes') {
 		reset()
+	}
+	else if (response == 'cheats') {
+		document.getElementById('cheats').style.display = 'block'
+	}
+
+	else if (response == 'no cheats') {
+		document.getElementById('cheats').style.display = 'none'
 	}
 }
 

@@ -39,6 +39,13 @@
     </div>
     <br><br><br>
     <div id="navigateButtons" class="navigateButtons" style="float: left;padding: 10px;width: 120px"></div>
+	<div id="cheats" style="display:none;">
+		<button class="specialButton" onclick="gameData.coins += 1000000">Add A Million Coins</button>
+		<button class="specialButton" onclick="gameData.betaCoins += 1000000">Add A Million Beta Coins</button>
+		<button class="specialButton" onclick="gameData.limes += 1000000">Add A Million Limes</button>
+		<button class="specialButton" onclick="gameData.megaCoins += 1000000">Add A Million Mega Coins</button>
+		<button class="specialButton" onclick="gameData.respect += 1000000">Add A Million Respect</button>
+	</div>
     <div id="options">
         <div class="basicDiv">
             <button class="specialButton" onclick="tabOptions('gameOptions')">Game</button>
@@ -363,7 +370,7 @@
 							<p class="basicText">Think about those less fortunate than you - unlocks Benevolence</p>
 							<p class="basicText">Price: 500,000 Coins</p>
 						</div>
-						<div class="basicDiv" id="offlineScience">
+						<div class="basicDiv" id="surveillanceCamera2">
 							<button class="specialButtonTravel" onclick="basicBuy('surveillanceCamera2', 2e5)">Buy A High Tech Surveillance Camera</button>
 							<p class="basicText">Make sure researchers are working while you're away (offline)</p>
 							<p class="basicText">Price: 200,000 Coins</p>
