@@ -1014,68 +1014,84 @@
 
 	<link rel="stylesheet" href="style.css">
 
+	<!-- Cache-busting script to ensure fresh JS files are loaded on each new build -->
+	<script>
+		// Cache-busting script to ensure fresh JS files are loaded on each new build
+		document.addEventListener('DOMContentLoaded', function() {
+			const cacheBuster = new Date().getTime();
+			document.querySelectorAll('script[src]').forEach(script => {
+				if (script.src.includes('js/')) {
+					// Remove any existing v= parameter
+					let srcWithoutParam = script.src.split('?')[0];
+					script.src = srcWithoutParam + '?v=' + cacheBuster;
+				}
+			});
+		});
+	</script>
+
 	<!-- colors -->
-    	<script src="js/colors.js?v=          192" charset="utf-8" type="text/javascript"></script>
+    	<script src="js/colors.js" charset="utf-8" type="text/javascript"></script>
 
 	<!-- functions -->
-		<script src="js/functions.js?v=       192" charset="utf-8" type="text/javascript"></script>
+		<script src="js/functions.js" charset="utf-8" type="text/javascript"></script>
 
 	<!-- main -->
-		<script src="js/main.js?v=            192" charset="utf-8" type="text/javascript"></script>
+		<script src="js/main.js" charset="utf-8" type="text/javascript"></script>
 
 	<!-- base -->
-		<script src="js/base/data.js?v=       192" charset="utf-8" type="text/javascript"></script>
-		<script src="js/base/main.js?v=       192" charset="utf-8" type="text/javascript"></script>
+		<script src="js/base/data.js" charset="utf-8" type="text/javascript"></script>
+		<script src="js/base/main.js" charset="utf-8" type="text/javascript"></script>
 
 	<!-- Modules -->
 		<!-- bakery -->
-			<script src="js/modules/bakery/data.js?v=     192" charset="utf-8" type="text/javascript"></script>
-			<script src="js/modules/bakery/main.js?v=     192" charset="utf-8" type="text/javascript"></script>
+			<script src="js/modules/bakery/data.js" charset="utf-8" type="text/javascript"></script>
+			<script src="js/modules/bakery/main.js" charset="utf-8" type="text/javascript"></script>
 
 		<!-- brokers -->
-			<script src="js/modules/brokers/data.js?v=     192" charset="utf-8" type="text/javascript"></script>
-			<script src="js/modules/brokers/main.js?v=     192" charset="utf-8" type="text/javascript"></script>
+			<script src="js/modules/brokers/data.js" charset="utf-8" type="text/javascript"></script>
+			<script src="js/modules/brokers/main.js" charset="utf-8" type="text/javascript"></script>
 
 		<!-- company -->
-			<script src="js/modules/company/data.js?v=    192" charset="utf-8" type="text/javascript"></script>
-			<script src="js/modules/company/main.js?v=    192" charset="utf-8" type="text/javascript"></script>
+			<script src="js/modules/company/data.js" charset="utf-8" type="text/javascript"></script>
+			<script src="js/modules/company/main.js" charset="utf-8" type="text/javascript"></script>
 
 		<!-- delivery -->
-			<script src="js/modules/delivery/data.js?v=   192" charset="utf-8" type="text/javascript"></script>
-			<script src="js/modules/delivery/main.js?v=   192" charset="utf-8" type="text/javascript"></script>
+			<script src="js/modules/delivery/data.js" charset="utf-8" type="text/javascript"></script>
+			<script src="js/modules/delivery/main.js" charset="utf-8" type="text/javascript"></script>
 
 		<!-- field -->
-			<script src="js/modules/field/data.js?v=     192" charset="utf-8" type="text/javascript"></script>
-			<script src="js/modules/field/main.js?v=     192" charset="utf-8" type="text/javascript"></script>	
+			<script src="js/modules/field/data.js" charset="utf-8" type="text/javascript"></script>
+			<script src="js/modules/field/main.js" charset="utf-8" type="text/javascript"></script>	
 
 		<!-- forest -->
-			<script src="js/modules/forest/data.js?v=     192" charset="utf-8" type="text/javascript"></script>
-			<script src="js/modules/forest/main.js?v=     192" charset="utf-8" type="text/javascript"></script>
+			<script src="js/modules/forest/data.js" charset="utf-8" type="text/javascript"></script>
+			<script src="js/modules/forest/main.js" charset="utf-8" type="text/javascript"></script>
 
 		<!-- inventory -->
-			<script src="js/modules/inventory/data.js?v=  192" charset="utf-8" type="text/javascript"></script>
-			<script src="js/modules/inventory/main.js?v=       192" charset="utf-8" type="text/javascript"></script>
+			<script src="js/modules/inventory/data.js" charset="utf-8" type="text/javascript"></script>
+			<script src="js/modules/inventory/main.js" charset="utf-8" type="text/javascript"></script>
 
 		<!-- lore -->
-			<script src="js/modules/lore/data.js?v= 192" charset="utf-8" type="text/javascript"></script>
-			<script src="js/modules/lore/main.js?v= 192" charset="utf-8" type="text/javascript"></script>	
+			<script src="js/modules/lore/data.js" charset="utf-8" type="text/javascript"></script>
+			<script src="js/modules/lore/main.js" charset="utf-8" type="text/javascript"></script>	
 
 		<!-- science -->
-			<script src="js/modules/science/data.js?v=    192" charset="utf-8" type="text/javascript"></script>
-			<script src="js/modules/science/main.js?v=    192" charset="utf-8" type="text/javascript"></script>
+			<script src="js/modules/science/data.js" charset="utf-8" type="text/javascript"></script>
+			<script src="js/modules/science/main.js" charset="utf-8" type="text/javascript"></script>
 
 		<!-- skills -->
-			<script src="js/modules/skills/data.js?v=     192" charset="utf-8" type="text/javascript"></script>
-			<script src="js/modules/skills/main.js?v=     192" charset="utf-8" type="text/javascript"></script>
+			<script src="js/modules/skills/data.js" charset="utf-8" type="text/javascript"></script>
+			<script src="js/modules/skills/main.js" charset="utf-8" type="text/javascript"></script>
 
 		<!-- tasks -->
-			<script src="js/modules/tasks/data.js?v=      192" charset="utf-8" type="text/javascript"></script>
-			<script src="js/modules/tasks/main.js?v=      192" charset="utf-8" type="text/javascript"></script>
+			<script src="js/modules/tasks/data.js" charset="utf-8" type="text/javascript"></script>
+			<script src="js/modules/tasks/main.js" charset="utf-8" type="text/javascript"></script>
 
 		<!-- travel -->
-			<script src="js/modules/travel/data.js?v=     192" charset="utf-8" type="text/javascript"></script>
-			<script src="js/modules/travel/main.js?v=     192" charset="utf-8" type="text/javascript"></script>
+			<script src="js/modules/travel/data.js" charset="utf-8" type="text/javascript"></script>
+			<script src="js/modules/travel/main.js" charset="utf-8" type="text/javascript"></script>
 
 </body>
 
 </html>
+
