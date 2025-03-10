@@ -80,9 +80,14 @@ function resetGame() {
 	else if (response == 'cheats') {
 		document.getElementById('cheats').style.display = 'block'
 	}
-
 	else if (response == 'no cheats') {
 		document.getElementById('cheats').style.display = 'none'
+	}
+	else if (response == `'yes'`) {
+		update("newInfo", "Invalid response, Epsilon. Fun fact: you can type `cheats` into the Reset Game prompt to enable them. You have achieved exclusive knowledge.")
+	}
+	else {
+		update("newInfo", "Invalid response.")
 	}
 }
 

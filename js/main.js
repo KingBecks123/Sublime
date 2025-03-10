@@ -1,5 +1,5 @@
 // Game version - Change this to update version number
-const GAME_VERSION = "1.1.0";
+const GAME_VERSION = "1.1.1";
 const VERSION_NOTES = 
 `10/Mar/2025
 *Gameplay*
@@ -9,6 +9,7 @@ const VERSION_NOTES =
 - Added cheats
 - Fixed Benevolence and Surveillance Camera FINALLY
 - Restructured Entire Codebase (again)
+- Added incorrect response to Reset Game prompt
 
 - Removed Herolime
 `;
