@@ -10,6 +10,7 @@ const VERSION_NOTES =
 - Fixed Benevolence and Surveillance Camera FINALLY
 - Restructured Entire Codebase (again)
 - Added incorrect response to Reset Game prompt
+- Automatically pull new scripts from builds
 
 - Removed Herolime
 `;
