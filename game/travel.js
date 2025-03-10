@@ -165,7 +165,6 @@ function travelToNextVillage() {
 		'nutritionists', 
 		'megaCoinsInBankMax', 
 		'betterTraining', 
-		'showBarPercent', 
 		'hideCompletedSkills', 
 		'hideMaxedPurchases', 
 		'researchers', 

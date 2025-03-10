@@ -46,7 +46,6 @@ var gameDataBase = {
     applicationReady: 0,
     aesthetic: 0,
     hasGottenJuice: 0,
-    showBarPercent: 0,
     basketBar: 0,
     baskets: 0,
     basketInfoToggle: 1,
@@ -169,22 +168,6 @@ function getLimesButton() {
 	if (gameData.lookAround < 1) {
 		gameData.collectLimesAtBeginning += 1
 	}
-
-	const messages = [
-		"Maybe you should try looking around!",
-		"Seriously you aren't going to find anything.",
-		"Do you see the Look Around button?", 
-		"There doesn't seem to be any limes here.",
-		"Is that a lime?",
-		"Nope, it's dirt.",
-		"I would suggest looking around more.",
-		"You aren't getting a secret achievement.",
-		"This is literally just a waste of time.",
-		"Can you please play the game correctly?",
-		"Is that something priceless in the distance?",
-		"Nope, it's dirt.",
-		"I'm leaving."
-	]
 
 	if (gameData.collectLimesAtBeginning <= messages.length && gameData.lookAround == 0) {
 		update("newInfo", messages[gameData.collectLimesAtBeginning - 1])
@@ -426,14 +409,7 @@ function tabMarket(tabby) {
 
 
 function updateValuesBase () {
-	if (gameData.showBarPercent) {
-		theColor = "#222222"
-		update('barPercentButton', 'Bar Percent Shown')
-	}
-	else {
-		theColor = 'rgba(0, 0, 0, 0)'
-		update('barPercentButton', 'Bar Percent Hidden')
-	}
+	theColor = 'rgba(0, 0, 0, 0)'
 
     if (gameData.showDonationButton) {
         update('showDonationButton', 'Donation Button Shown')
