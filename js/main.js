@@ -1,21 +1,16 @@
 // Game version - Change this to update version number
-const GAME_VERSION = "1.0.0";
+const GAME_VERSION = "1.1.0";
 const VERSION_NOTES = 
-`### Aesthetic
-- Added a nice background texture
-- Prettier buttons. They look 3D! Click em!
-- Made progress bars run smoothly
-- Added button click SFX
-- Switched to a much better font (DepartureMono)
-- R e d u c e d   t h e   l e t t e r   s p a c i n g
-- Fixed the stats box
-- Added more tooltips
-- Added titles, market titles
-- Created a color palette
-- Added a version number and changelog (hopefully you can find it...)
-### Backend
-- Organized the Assets and folder hierarchy in general
-- The limes... they're everywhere...
+`10/Mar/2025
+*Gameplay*
+- Added Lore
+
+*Other Stuff*
+- Added cheats
+- Fixed Benevolence and Surveillance Camera FINALLY
+- Restructured Entire Codebase (again)
+
+- Removed Herolime
 `;
 
 // Add button click sound to all buttons
