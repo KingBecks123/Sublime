@@ -167,7 +167,7 @@ document.getElementById('market').innerHTML = `
             <div style="display:inline-block;width:380px;">
 				<p class="titleText">Your Stall</p>
                 <div class="basicDiv" id="sellYourLimesDiv">
-                    <button class="specialButton" id="sellYourLimesButton" style="background-color:#FCFF4E" onclick="universalBuy('coins', 50, 'limes')">Sell Your Limes</button>
+                    <button class="specialButton" id="sellYourLimesButton" style="background-color:#FCFF4E" onclick="buy('coins', 50, 'limes')">Sell Your Limes</button>
                     <p class="basicText" id="sellYourLimesAmount">You Need 50 Limes</p>
                     <p class="basicText" id="sellYourLimesReward">You Will Be Rewarded 1 Coin</p>
                 </div>
@@ -325,98 +325,98 @@ document.getElementById('market').innerHTML = `
 							<p class="basicText">Price: 100,000 Coins</p>
 						</div>
 						<div class="basicDiv" id="buyPie">
-							<button class="specialButton" onclick="universalBuy('pies', 5, 'betaCoins')">Buy Pie</button>
+							<button class="specialButton" onclick="buy('pies', 5, 'betaCoins')">Buy Pie</button>
 							<p class="basicText">Pie is essential for the patrician diet</p>
 							<p class="basicText">Price: 5 Beta Coins</p>
 						</div>
 						<div class="basicDiv" id="buyWheatField">
-							<button class="specialButton" onclick="universalBuy('wheatField', 10, 'betaCoins')">Buy A Field</button>
+							<button class="specialButton" onclick="buy('wheatField', 10, 'betaCoins')">Buy A Field</button>
 							<p class="basicText">A farmer noticed you reselling pie, and thought you'd like to purchase a field</p>
 							<p class="basicText">Price: 20 Beta Coins</p>
 						</div>
 						<div class="basicDiv" id="buyWheatSeeds">
-							<button class="specialButton" onclick="universalBuy('wheatSeeds', 10, 'betaCoins')">Buy A Wheat Seed</button>
+							<button class="specialButton" onclick="buy('wheatSeeds', 10, 'betaCoins')">Buy A Wheat Seed</button>
 							<p class="basicText">Is wheat the new lime?</p>
 							<p class="basicText">Price: 10 Beta Coins</p>
 						</div>
 						<div class="basicDiv" id="buyMortarAndPestle">
-							<button class="specialButton" onclick="universalBuy('mortarAndPestle', 10, 'pieCoins')">Buy A Mortar And Pestle</button>
+							<button class="specialButton" onclick="buy('mortarAndPestle', 10, 'pieCoins')">Buy A Mortar And Pestle</button>
 							<p class="basicText">Can grinding ever be fun?</p>
 							<p class="basicText">Price: 10 Pie Coins</p>
 						</div>
 						<div class="basicDiv" id="buyPieOven">
-							<button class="specialButton" onclick="universalBuy('pieOven', 10, 'pieCoins')">Buy A Pie Oven</button>
+							<button class="specialButton" onclick="buy('pieOven', 10, 'pieCoins')">Buy A Pie Oven</button>
 							<p class="basicText">One step closer to pie creation</p>
 							<p class="basicText">Price: 10 Pie Coins</p>
 						</div>
 						<div class="basicDiv" id="buyAPieConveyorBelt">
-							<button class="specialButton" onclick="universalBuy('pieConveyorBelt', 20, 'pieCoins')">Buy A Pie Conveyor Belt</button>
+							<button class="specialButton" onclick="buy('pieConveyorBelt', 20, 'pieCoins')">Buy A Pie Conveyor Belt</button>
 							<p class="basicText">Automatically sends pies into the oven</p>
 							<p class="basicText">Price: 20 Pie Coins</p>
 						</div>
 						<div class="basicDiv" id="buyAPieBucket">
-							<button class="specialButton" onclick="universalBuy('pieBucket', 20, 'pieCoins')">Buy A Bucket With A Hole</button>
+							<button class="specialButton" onclick="buy('pieBucket', 20, 'pieCoins')">Buy A Bucket With A Hole</button>
 							<p class="basicText">Automatically drips juice into your pie</p>
 							<p class="basicText">Price: 20 Pie Coins</p>
 						</div>
 						<div class="basicDiv" id="buyAPieBucketNozzle">
-							<button class="specialButton" onclick="universalBuy('pieBucketNozzle', 20, 'pieCoins')">Buy A Nozzle</button>
+							<button class="specialButton" onclick="buy('pieBucketNozzle', 20, 'pieCoins')">Buy A Nozzle</button>
 							<p class="basicText">Adjust the juice dripping rate for optimum performance</p>
 							<p class="basicText">Price: 20 Pie Coins</p>
 						</div>
 						<div class="basicDiv" id="buyAPieFlourBucket">
-							<button class="specialButton" onclick="universalBuy('pieFlourBucket', 20, 'pieCoins')">Buy Another Bucket With A Hole</button>
+							<button class="specialButton" onclick="buy('pieFlourBucket', 20, 'pieCoins')">Buy Another Bucket With A Hole</button>
 							<p class="basicText">Automatically drops flour into your pie</p>
 							<p class="basicText">Price: 20 Pie Coins</p>
 						</div>
 						<div class="basicDiv" id="buyAPieFlourBucketNozzle">
-							<button class="specialButton" onclick="universalBuy('pieFlourBucketNozzle', 20, 'pieCoins')">Buy Another Nozzle</button>
+							<button class="specialButton" onclick="buy('pieFlourBucketNozzle', 20, 'pieCoins')">Buy Another Nozzle</button>
 							<p class="basicText">Adjust the flour dropping rate for optimum performance</p>
 							<p class="basicText">Price: 20 Pie Coins</p>
 						</div>
 						<div class="basicDiv" id="buyBellows">
-							<button class="specialButton" onclick="universalBuy('bellows', 20, 'pieCoins')">Buy Bellows</button>
+							<button class="specialButton" onclick="buy('bellows', 20, 'pieCoins')">Buy Bellows</button>
 							<p class="basicText">Increases oven speed by adding more oxygen</p>
 							<p class="basicText">Price: 20 Pie Coins</p>
 						</div>	
 						<div class="basicDiv" id="buyPieEmployee">
-							<button class="specialButton" onclick="universalBuy('pieEmployee', 50, 'pieCoins')">Hire An Employee</button>
+							<button class="specialButton" onclick="buy('pieEmployee', 50, 'pieCoins')">Hire An Employee</button>
 							<p class="basicText">This person will give the pie to the customer, but must be paid.</p>
 							<p class="basicText">Hiring Price: 50 Pie Coins</p>
 						</div>
 						<div class="basicDiv" id="upgradeNozzles">
-							<button class="specialButton" onclick="universalBuy('upgradeNozzles', 50, 'pieCoins')">Upgrade Nozzles</button>
+							<button class="specialButton" onclick="buy('upgradeNozzles', 50, 'pieCoins')">Upgrade Nozzles</button>
 							<p class="basicText">These new nozzles allow for finer tuning</p>
 							<p class="basicText">Price: 50 Pie Coins</p>
 						</div>
 						<div class="basicDiv" id="bucketThinSteelPlating">
-							<button class="specialButton" onclick="universalBuy('bucketThinSteelPlating', gameData.bucketThinSteelPlating * 5 + 20, 'pieCoins')">Buy Thin Steel Plating</button>
+							<button class="specialButton" onclick="buy('bucketThinSteelPlating', gameData.bucketThinSteelPlating * 5 + 20, 'pieCoins')">Buy Thin Steel Plating</button>
 							<p class="basicText">Perfect for extending the height of your buckets</p>
 							<p class="basicText" id="bucketHeight">Current heights: 20 Units</p>
 							<p class="basicText" id="bucketThinSteelPlatingPrice">Price: 20 Pie Coins</p>
 						</div>
 						<div class="basicDiv" id="buyASeedDrill">
-							<button class="specialButton" onclick="universalBuy('seedDrills', 50, 'pieCoins')">Buy A Seed Drill</button>
+							<button class="specialButton" onclick="buy('seedDrills', 50, 'pieCoins')">Buy A Seed Drill</button>
 							<p class="basicText">This is sow useful!</p>
 							<p class="basicText">Price: 50 Pie Coins</p>
 						</div>
 						<div class="basicDiv" id="buyAWheatHarvester">
-							<button class="specialButton" onclick="universalBuy('wheatHarvesters', 50, 'pieCoins')">Buy A Wheat Harvester</button>
+							<button class="specialButton" onclick="buy('wheatHarvesters', 50, 'pieCoins')">Buy A Wheat Harvester</button>
 							<p class="basicText">Does what it says on the label</p>
 							<p class="basicText">Price: 50 Pie Coins</p>
 						</div>
 						<div class="basicDiv" id="advancedPieHiring">
-							<button class="specialButton" onclick="universalBuy('advancedPieHiring', 50, 'pieCoins')">Unlock Advanced Pie Hiring</button>
+							<button class="specialButton" onclick="buy('advancedPieHiring', 50, 'pieCoins')">Unlock Advanced Pie Hiring</button>
 							<p class="basicText">Go through pie merchant applications in the Hiring Area</p>
 							<p class="basicText">Price: 50 Pie Coins</p>
 						</div>
 						<div class="basicDiv" id="buyAWell">
-							<button class="specialButton" onclick="universalBuy('forestWell', 200, 'betaCoins')">Buy A Well</button>
+							<button class="specialButton" onclick="buy('forestWell', 200, 'betaCoins')">Buy A Well</button>
 							<p class="basicText">Water is the lifeblood of limes</p>
 							<p class="basicText">Price: 200 Beta Coins</p>
 						</div>
 						<div class="basicDiv" id="trainTransportDiv">
-							<button class="specialButton" onclick="universalBuy('trainTransport', 200, 'pieCoins')">Train Transport</button>
+							<button class="specialButton" onclick="buy('trainTransport', 200, 'pieCoins')">Train Transport</button>
 							<p class="basicText">Add a new delivery type</p>
 							<p class="basicText">Price: 200 Pie Coins</p>
 						</div>
@@ -429,7 +429,7 @@ document.getElementById('market').innerHTML = `
 							<p class="basicText">Price: 100,000 Coins</p>
 						</div>
 						<div id="lightRobe" class="basicDiv">
-							<button class="specialButton" onclick="universalBuy('lightRobe', 5e3, 'alphaCoins')">Buy A Lightweight Robe</button>
+							<button class="specialButton" onclick="buy('lightRobe', 5e3, 'alphaCoins')">Buy A Lightweight Robe</button>
 							<p class="basicText">Respect +50 instantly after travelling</p>
 							<p class="basicText">Price: 5,000 Alpha Coins</p>
 						</div>
@@ -506,7 +506,7 @@ document.getElementById('market').innerHTML = `
                     <p class="basicText">Price: 10 Alpha Coins</p>
                 </div>
                 <div id="smarterAutoBrokerAdvertiser" class="basicDiv">
-                    <button class="specialButton" onclick="universalBuy('smarterAdvertisingManagerBroker', 50 , 'alphaCoins')">Smarter Advertising Manager</button>
+                    <button class="specialButton" onclick="buy('smarterAdvertisingManagerBroker', 50 , 'alphaCoins')">Smarter Advertising Manager</button>
                     <p class="basicText">Add a new rule for your advertising manager</p>
                     <p class="basicText">Price: 50 Alpha Coins</p>
                 </div>
@@ -564,12 +564,12 @@ document.getElementById('market').innerHTML = `
                 </div>
             </div>
             <div class="basicDiv" id="buyBigGloves">
-                <button class="specialButtonTravel" onclick="universalBuy('bigGloves', 5, 'megaCoins')">Buy Big Gloves</button>
+                <button class="specialButtonTravel" onclick="buy('bigGloves', 5, 'megaCoins')">Buy Big Gloves</button>
                 <p class="basicText">Helps you pick up double limes!</p>
                 <p class="basicText">Price: 5 Mega Coins</p>
             </div>
             <div class="basicDiv" id="hireANutritionist">
-                <button class="specialButtonTravel" onclick="universalBuy('nutritionists', 5, 'megaCoins')">Hire A Nutritionist</button>
+                <button class="specialButtonTravel" onclick="buy('nutritionists', 5, 'megaCoins')">Hire A Nutritionist</button>
                 <p class="basicText">Get double the nutrition from eating</p>
                 <p class="basicText">Price: 5 Mega Coins</p>
             </div>
@@ -579,7 +579,7 @@ document.getElementById('market').innerHTML = `
                 <p class="basicText">Price: 2 Mega Coins</p>
             </div>
             <div class="basicDiv" id="juiceMarketing">
-                <button class="specialButtonTravel" onclick="universalBuy('nationalJuiceMarketing', 10, 'megaCoins')">National Juice Marketing</button>
+                <button class="specialButtonTravel" onclick="buy('nationalJuiceMarketing', 10, 'megaCoins')">National Juice Marketing</button>
                 <p class="basicText">Convince the country that juice can be added to anything!</p>
                 <p class="basicText">Doubles juice sale price</p>
                 <p class="basicText">Price: 10 Mega Coins</p>
@@ -597,7 +597,7 @@ document.getElementById('market').innerHTML = `
                 <p class="basicText" id="upgradeMoreStoragePrice"></p>
             </div>
             <div class="basicDiv" id="earnBachelorFinance">
-                <button class="specialButton" onclick="universalBuy('bachelorsDegreeFinance', 20, 'megaCoins')">'Earn' A Bachelors Degree In Finance</button>
+                <button class="specialButton" onclick="buy('bachelorsDegreeFinance', 20, 'megaCoins')">'Earn' A Bachelors Degree In Finance</button>
                 <p class="basicText">Access the Currency Exchange market</p>
                 <p class="basicText">Price: 20 Mega Coins</p>
             </div>
@@ -634,7 +634,7 @@ document.getElementById('market').innerHTML = `
                 <p class="basicText" id="alphaCoinTotalPrice" >Total Price: 1,100 Coins</p>
             </div>
 			<div id="unlockCurrencyBrokers" class="basicDiv">
-				<button class="specialButton" onclick="universalBuy('unlockCurrencyBrokers', 5 , 'alphaCoins')">Unlock currency brokers</button>
+				<button class="specialButton" onclick="buy('unlockCurrencyBrokers', 5 , 'alphaCoins')">Unlock currency brokers</button>
 				<p class="basicText">This fee seems a little unfair!</p>
 				<p class="basicText">Unlock the ability to hire currency brokers in the Hiring Area</p>
 				<p class="basicText">Price: 5 Alpha Coins</p>
@@ -662,42 +662,42 @@ document.getElementById('market').innerHTML = `
 					<p class="basicText" id="brokerApplicantAmountPrice">Price: 1 Alpha Coins</p>
 				</div>
                 <div id="autoCurrencyConversion" class="basicDiv">
-                    <button class="specialButton" onclick="universalBuy('autoCurrencyConversionBuy', 10, 'alphaCoins')">Auto Converter</button>
+                    <button class="specialButton" onclick="buy('autoCurrencyConversionBuy', 10, 'alphaCoins')">Auto Converter</button>
                     <p class="basicText">Make currency conversion a toggleable task</p>
                     <p class="basicText">Price: 10 Alpha Coins</p>
                 </div>
                 <div id="tomeDiv3" class="basicDiv">
-                    <button class="specialButton" onclick="universalBuy('tomes', 50, 'alphaCoins')">Buy A Tome</button>
+                    <button class="specialButton" onclick="buy('tomes', 50, 'alphaCoins')">Buy A Tome</button>
                     <p class="basicText">Tomes can teach you new skills!</p>
                     <p class="basicText">Price: 50 Alpha Coins</p>
                 </div>
                 <div id="tomeDiv4" class="basicDiv">
-                    <button class="specialButton" onclick="universalBuy('tomes', 100, 'alphaCoins')">Buy A Golden Tome</button>
+                    <button class="specialButton" onclick="buy('tomes', 100, 'alphaCoins')">Buy A Golden Tome</button>
                     <p class="basicText">The orchardist says those limes are useful for something...</p>
                     <p class="basicText">Price: 100 Alpha Coins</p>
                 </div>
                 <div id="skillTrainer" class="basicDiv">
-                    <button class="specialButton" onclick="universalBuy('skillTrainer', 50, 'alphaCoins')">Hire A Trainer</button>
+                    <button class="specialButton" onclick="buy('skillTrainer', 50, 'alphaCoins')">Hire A Trainer</button>
                     <p class="basicText">This trainer will help you to instantly complete a skill's level</p>
                     <p class="basicText">Price: 50 Alpha Coins</p>
                 </div>
                 <div id="changeResearchersBy10Unlock" class="basicDiv">
-                    <button class="specialButtonTravel" onclick="universalBuy('changeResearchersBy10Unlock', 100, 'alphaCoins')">Unlock Bulk Researcher Transfer</button>
+                    <button class="specialButtonTravel" onclick="buy('changeResearchersBy10Unlock', 100, 'alphaCoins')">Unlock Bulk Researcher Transfer</button>
                     <p class="basicText">Cart researchers around rather than giving them any special attention</p>
                     <p class="basicText">Price: 100 Alpha Coins</p>
                 </div>		
                 <div id="saveAlphaCoinsUnlock" class="basicDiv">
-                    <button class="specialButtonTravel" onclick="universalBuy('saveAlphaCoinsUnlock', 1000, 'alphaCoins')">Buy A Safe On Wheels</button>
+                    <button class="specialButtonTravel" onclick="buy('saveAlphaCoinsUnlock', 1000, 'alphaCoins')">Buy A Safe On Wheels</button>
                     <p class="basicText">Bring your alpha coins with you during your travels without pesky plebeians stealing them</p>
                     <p class="basicText">Price: 1,000 Alpha Coins</p>
                 </div>				
                 <div id="transferAlphaCoinsBulkUnlock" class="basicDiv">
-                    <button class="specialButton" onclick="universalBuy('transferAlphaCoinsBulkUnlock', 1000, 'alphaCoins')">Buy Alpha Coin Rolls</button>
+                    <button class="specialButton" onclick="buy('transferAlphaCoinsBulkUnlock', 1000, 'alphaCoins')">Buy Alpha Coin Rolls</button>
                     <p class="basicText">Unlocks bulk alpha coin -> mega coin transfer</p>
                     <p class="basicText">Price: 1,000 Alpha Coins</p>
                 </div>	
                 <div id="transferAlphaCoinBagsUnlock" class="basicDiv">
-                    <button class="specialButton" onclick="universalBuy('transferAlphaCoinBags', 10000, 'alphaCoins')">Buy Alpha Coin Bags</button>
+                    <button class="specialButton" onclick="buy('transferAlphaCoinBags', 10000, 'alphaCoins')">Buy Alpha Coin Bags</button>
                     <p class="basicText">These bags help you convert more coins at a time</p>
                     <p class="basicText">Price: 10,000 Alpha Coins</p>
                 </div>
@@ -718,7 +718,7 @@ document.getElementById('market').innerHTML = `
                 <p class="basicText" id="betaCoinTotalPrice" >Total Price: 100 Coins</p>
             </div>
 			<div id="basicAlphaToBetaBroker" class="basicDiv">
-				<button class="specialButton" onclick="universalBuy('basicAlphaToBetaBroker', 20, 'betaCoins')">Hire Basic Alpha Coin -> Beta Coin Broker</button>
+				<button class="specialButton" onclick="buy('basicAlphaToBetaBroker', 20, 'betaCoins')">Hire Basic Alpha Coin -> Beta Coin Broker</button>
 				<p class="basicText">Hire someone to convert for you</p>
 				<p class="basicText">Price: 20 Beta Coins</p>
 			</div>
