@@ -88,7 +88,7 @@ document.getElementById('bakery').innerHTML = `
 		<button class="roundButton" id="findPieCustomersButton" onclick="pickCurrentTask('findPieCustomers')">Start Selling Pie</button>
 		<button class="specialButton" id="sellingPieInfoButton" style="width:80px;" onclick="toggle('sellingPieInfoToggle')">Info</button>
 		<div class="skillProgress" id="findPieCustomersProgress">
-			<div class="skillBar" id="findPieCustomersBar">0%</div>
+			<div class="skillBar" id="findPieCustomersBar"></div>
 		</div>
 		<p class="basicText" id="couldFindCustomer" >Search for customers</p>
 	</div>
@@ -104,11 +104,11 @@ document.getElementById('bakery').innerHTML = `
 	<div class="basicDiv" id="pieOvenDiv">
 		<div id="pieBuckets">
 			<div class="bucketProgress" id="juiceBucketProgress">
-				<div class="smallContainerBar"  style="background-color: #4DFE89;" id="juiceBucketBar">0%</div>
+				<div class="smallContainerBar"  style="background-color: #4DFE89;" id="juiceBucketBar"></div>
 				<div class="bucketHoleBar" id="juiceHoleBar"></div>
 			</div>
 			<div class="bucketProgress" id="flourBucketProgress" style="visibility:hidden;">
-				<div class="smallContainerBar"  style="background-color: #FFEDCC;" id="flourBucketBar">0%</div>
+				<div class="smallContainerBar"  style="background-color: #FFEDCC;" id="flourBucketBar"></div>
 				<div class="bucketHoleBar" id="flourHoleBar"></div>
 			</div>
 			<div  id="bucketHoleChanger">
@@ -126,11 +126,11 @@ document.getElementById('bakery').innerHTML = `
 		<button class="specialButton" id="pieConveyorBeltOnButton" onclick="toggle('pieConveyorBeltOn')" style="width:168px">Conveyor Belt</button>
 		<p class="basicText" id="currentPieIngredients" >Current Ingredients: 0 Flour + 0 Juice</p>
 		<div class="skillProgress" id="bakePieProgress">
-			<div class="skillBarColored" id="bakePieBar">0%</div>
+			<div class="skillBarColored" id="bakePieBar"></div>
 		</div>
 		<div id="bellowsDiv">
 			<div class="skillProgress" id="bellowsProgress">
-				<div class="skillBarColored" style="background-color:#99DEFF" id="bellowsBar">0%</div>
+				<div class="skillBarColored" style="background-color:#99DEFF" id="bellowsBar"></div>
 			</div>
 			<button class="specialButton" onclick="useBellows()">Use Bellows</button>	
 		</div>

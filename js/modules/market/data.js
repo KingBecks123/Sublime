@@ -21,7 +21,7 @@ document.getElementById('marketMain').innerHTML = `
         <button class="specialButton" id="deliveryToggleTrainButton" style="width:105px;" onclick="deliveryToggleTrain()">Train Delivery</button>
         <br><br>
         <div class="skillProgress" id="deliveryProgress" style="margin:auto;">
-            <div class="skillBar" id="deliveryBar">0%</div>
+            <div class="skillBar" id="deliveryBar"></div>
         </div>
     </div>
 </div>

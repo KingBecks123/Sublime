@@ -219,11 +219,9 @@ function updateValuesBakery() {
 	
 	var elem = document.getElementById("juiceBucketBar")
     elem.style.height = Math.floor((gameData.juiceInPieBucket * 100) / height)  + "%"
-    elem.innerHTML = Math.floor((gameData.juiceInPieBucket * 100) / height) + "%"
 	
 	var elem = document.getElementById("flourBucketBar")
     elem.style.height = Math.floor((gameData.flourInPieBucket * 100) / height)  + "%"
-    elem.innerHTML = Math.floor((gameData.flourInPieBucket * 100) / height) + "%"
 	
 	var elem = document.getElementById("juiceHoleBar")
     elem.style.width = gameData.juiceBucketHoleSize * 5 + "%"

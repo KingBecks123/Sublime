@@ -58,7 +58,7 @@ document.getElementById('trade').innerHTML = `
                 <button class="currencyButton" id="coinsToAlphaClickButton" style="display:inline-block;background-color:#FDFF9A" onclick="coinsToAlphaStart()">Convert Coins to Alpha Coins</button>
                 <button class="specialButton" id="alphaCoinConvertBulkButton" style="width:40px" onclick="toggle('alphaCoinConvertBulkToggle')">x10</button>
 				<div class="skillProgress" id="coinsToAlphaProgress">
-					<div class="skillBar" id="coinsToAlphaBar">0%</div>
+					<div class="skillBar" id="coinsToAlphaBar"></div>
 				</div>
                 <p class="basicText" id="alphaCoinExhangeRate" >Exchange Rate: 100 Coins -> 1 Alpha Coin</p>
                 <p class="basicText" id="alphaCoinTransactionFee" >Transfer Fee: 1,000 Coins</p>
@@ -143,7 +143,7 @@ document.getElementById('trade').innerHTML = `
 				</div>
                 <button class="currencyButton" id="alphaToBetaClickButton" style="display:block;background-color:#FDFF9A" onclick="pickCurrentTask('alphaToBetaClick')">Convert Alpha Coins to Beta Coins</button>
 				<div class="skillProgress" id="alphaToBetaProgress">
-					<div class="skillBar" id="alphaToBetaBar">0%</div>
+					<div class="skillBar" id="alphaToBetaBar"></div>
 				</div>
                 <p class="basicText" id="betaCoinExhangeRate" >Exchange Rate: 100 Alpha Coins -> 1 Beta Coin</p>
                 <p class="basicText" id="betaCoinTotalPrice" >Total Price: 100 Coins</p>

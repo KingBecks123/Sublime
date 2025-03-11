@@ -98,6 +98,9 @@ You, yes YOU, will have the chance to work in the town-renowned Lime Inc.!
 	checkShow(!gameData.advertisingLevel2, 'advertisingLeaflets')
 	checkShow(!gameData.advertisingLevel3, 'advertisingBillboard')
 	checkShow(gameData.employees, 'companyButton')
+	checkShow(gameData.hasAdvertised && !gameData.surveillanceCamera, 'offlineEmployee')
+	checkShow(gameData.advertisingLevel1, 'advertisingMethods')
+	checkShow(!gameData.advertisingLevel1 && gameData.hasAdvertised, 'researchBetterAdvertising')
 	
 	update('currentSpeedEmployee', 'Current speed: ' + gameData.employeeCurrentSpeed.toLocaleString() + ' limes per minute')
 	update('speedEmployee', 'Speed: ' + gameData.employeeSpeed.toLocaleString() + '% Of What I&#39m Taught')
@@ -110,6 +113,4 @@ You, yes YOU, will have the chance to work in the town-renowned Lime Inc.!
     if (gameData.employeeWorking > gameData.employeeWorkingMax)
         gameData.employeeWorking = gameData.employeeWorkingMax
 	
-
-
 }

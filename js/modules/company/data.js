@@ -220,11 +220,11 @@ document.getElementById('company').innerHTML = `		<div class="basicDiv">
 				<p class="basicText teachInfo">Collect as many limes as possible before time runs out!</p>
 				<p class="basicText teachInfo">Your employee learns from your abilities</p>
 				<div class="skillProgress" id="teachProgress">
-					<div class="skillBar" id="teachBar">0%</div>
+					<div class="skillBar" id="teachBar"></div>
 				</div>
 				<p class="basicText" id="workingEmployee" style="background-color:#bfbfbf;">Employee is idle<p>
 				<div class="skillProgress" id="workingProgress">
-					<div class="skillBar" id="workingBar">0%</div>
+					<div class="skillBar" id="workingBar"></div>
 				</div>
 				<button class="specialButton" id="payEmployee" style="width:250px" onclick="payEmployee()">Pay Employee Their Wages</button>
 				<button class="specialButton" id="motivateEmployeeButton" onkeydown="return event.key != 'Enter';" style="width:250px" onclick="motivateEmployee()">Motivate Employee</button>
@@ -269,7 +269,7 @@ document.getElementById('hiringArea').innerHTML = `
 					</div>
 					</div>
 					<div class="skillProgress" id="advertiseProgress">
-                        <div class="skillBar" id="advertiseBar">0%</div>
+                        <div class="skillBar" id="advertiseBar"></div>
                     </div>
                     <p class="basicText" id="advertisePrice">Price: 10 Coins</p>
                     <button id="application" style="display:block;width:300px;margin:auto;background-color:#DEAD85;white-space: pre-wrap;" onclick="employeeTypes[gameData.applicationType].onHire()">Pin applications here</button>

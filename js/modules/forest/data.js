@@ -28,7 +28,7 @@ document.getElementById('forest').innerHTML = `
 				<div id="goldenLimesInfo"><p class="basicText basketInfo">Golden limes slowly rot away once you collect them</p></div>
 				<p class="basicText" id="limesInBaskets">0 Limes</p>
 				<div class="verticalProgress" id="basketProgress">
-					<div class="verticalBar" style="background-color:#4DFE89;" id="basketBar">0%</div>
+					<div class="verticalBar" style="background-color:#4DFE89;" id="basketBar"></div>
 				</div>
 			</div>
 		</div>
@@ -36,7 +36,7 @@ document.getElementById('forest').innerHTML = `
             <button class="specialButton" id="throwPieCoinsWell" onclick="throwPieCoinsWell()">Throw Pie Coins In The Well</button>
             <button class="specialButton" id="enterTheWell" style="background-color:#000000;color:#FFFFFF" onclick="gameData.endScreen = 1">Enter</button>
             <div class="verticalProgress" id="wellProgress">
-                <div class="verticalBar" id="wellBar" style="background-color:#C67848;">0%</div>
+                <div class="verticalBar" id="wellBar" style="background-color:#C67848;"></div>
             </div>			
         </div>
 `;

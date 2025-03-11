@@ -51,7 +51,7 @@ addGameVariables({
 document.getElementById('inventory').innerHTML = `
         <div class="pin basicDiv" id="goldenBarDiv" style="background-color:#F8FF01;border-style: solid;border-color: #222222">
             <div class="skillProgress" id="eatGoldenLimeProgress">
-				<div class="skillBarColored" style="background-color:#F8FF01" id="eatGoldenLimeBar">0%</div>
+				<div class="skillBarColored" style="background-color:#F8FF01" id="eatGoldenLimeBar"></div>
             </div>
             <button class="specialButton" id="eatGoldenLime" onclick="eatGoldenLime()" style="background-color:#F8FF01">Eat A Golden Lime</button>
         </div>
@@ -65,7 +65,7 @@ document.getElementById('inventory').innerHTML = `
             <button class="specialButton" id="juicePeeledLimesToggleButton" style="display:none;width:150px;" onclick="gameData.limeTypeToJuice = 1">On Peeled Limes</button>
             <p class="basicText" style="border-style: solid;border-width: 2px;border-color: #222222;background-color:#bfbfbf;padding: 5px;" id="juicerInfo"></p>
             <div class="skillProgress" id="myProgress">
-				<div class="skillBar" id="juicerBar">0%</div>
+				<div class="skillBar" id="juicerBar"></div>
             </div>
         </div>
         <div class="basicDiv" id="peelerDiv">
@@ -74,7 +74,7 @@ document.getElementById('inventory').innerHTML = `
             <button class="roundButton" id="peelerPeelMaxButton" onclick="pickCurrentTask('peelerPeelMax')" style="width:150px">Max Peelers</button>
             <br>
             <div class="skillProgress" id="peelerProgress">
-                <div class="skillBar" id="peelerBar">0%</div>
+                <div class="skillBar" id="peelerBar"></div>
             </div>
         </div>
         <div class="basicDiv" id="knifeDiv">

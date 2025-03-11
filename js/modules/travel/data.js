@@ -108,7 +108,7 @@ document.getElementById('travel').innerHTML = `
 		<p class="basicText">100,000 Coins -> 1 Mega Coin now</p>
 		<p class="basicText">Get access to mega coins in this town, but takes twice as long every time</p>
 		<div class="skillProgress" id="convertCoinsNowProgress">
-			<div class="skillBar" id="convertCoinsNowBar">0%</div>
+			<div class="skillBar" id="convertCoinsNowBar"></div>
 		</div>
 	</div>
 	<div class="basicDiv">

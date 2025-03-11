@@ -148,7 +148,6 @@ function updateValuesSkills () {
 	x = gameData.autoCollectingBar / (gameData.nourishment + 1)
 
     elem.style.width = x + "%"
-    elem.innerHTML = Math.floor(x) + "%"
 
 	currentTaskAesthetic('eat')
 	

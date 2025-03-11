@@ -117,7 +117,7 @@ var gameDataBase = {
 	lastSaveTime: Date.now(),
 	buyMegaCoinsTimes: 0,
 	buyMegaCoinsTimesMax: 10,
-	changeZoomSize: 100,
+	zoom: 120,
 
 	currencyApplicationReady: 0,
 	applicationType: 'basic',

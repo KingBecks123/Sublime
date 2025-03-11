@@ -26,26 +26,26 @@ function getLimes() {
 	}
 	else if ((gameData.lookAround < 1 && gameData.collectLimesAtBeginning < 2) || gameData.lookAround)
 		update("newInfo", "Couldn't find any limes...")
+}
 
-	function foundSomething(){
-		if (canFindNothing)
-			update("newInfo", "You found something!")
+function foundSomething(){
+	if (canFindNothing)
+		update("newInfo", "You found something!")
 
-		if (Math.random() <= (gameData.rottenWisdomSkillLevel / gameData.rottenWisdomSkillLevelMax)) {
-			if (Math.random() <= (gameData.limebidextrousSkillLevel / 50)) {
-				addLimes ()
-			}
+	if (Math.random() <= (gameData.rottenWisdomSkillLevel / gameData.rottenWisdomSkillLevelMax)) {
+		if (Math.random() <= (gameData.limebidextrousSkillLevel / 50)) {
 			addLimes ()
 		}
-		else
-			gameData.rottenLimes += gameData.bigGloves + 1
+		addLimes ()
 	}
+	else
+		gameData.rottenLimes += gameData.bigGloves + 1
+}
 
-	function addLimes () {
-		gameData.limes += gameData.bigGloves + 1
-		if (gameData.teachBar > 0)
-			gameData.employeeCurrentSpeed += ((gameData.bigGloves + 1) * gameData.employeeSpeed) / 10
-	}
+function addLimes () {
+	gameData.limes += gameData.bigGloves + 1
+	if (gameData.teachBar > 0)
+		gameData.employeeCurrentSpeed += ((gameData.bigGloves + 1) * gameData.employeeSpeed) / 10
 }
 
 function stopActions() {
@@ -141,31 +141,30 @@ function backwardsCompatibility() {
 }
 
 function lookAround() {
-    if (gameData.lookAround < 1)
-        update("newInfo", "Maybe I should keep looking around...")
-
-    if (gameData.lookAround == 0) {
-            update("newInfo", "You see a nearby market.")
-            gameData.lookAround = 1
-    }
-	else if (gameData.lookAround == 1) {
-            update("newInfo", "You find a merchant willing to buy limes.")
-            gameData.lookAround = 2
-    }
-	else if (gameData.lookAround == 2) {
-            update("newInfo", "You find a merchant selling various items.")
-            gameData.lookAround = 3
-    }
+	switch (gameData.lookAround) {
+		case 0:
+			update("newInfo", "You see a nearby market.")
+			gameData.lookAround = 1
+			break
+		case 1:
+			update("newInfo", "You find a merchant willing to buy limes.")
+			gameData.lookAround = 2
+			break
+		case 2:
+			update("newInfo", "You find a merchant selling various items.")
+			gameData.lookAround = 3
+			break
+	}
 }
 
 function changeZoomSize() {
-	if (gameData.changeZoomSize >= 180) {
-		gameData.changeZoomSize = 100
+	if (gameData.zoom >= 180) {
+		gameData.zoom = 100
 		document.body.style.zoom = 1.0
 	}
 	else {
-		gameData.changeZoomSize += 20
-		document.body.style.zoom = gameData.changeZoomSize / 100
+		gameData.zoom += 20
+		document.body.style.zoom = gameData.zoom / 100
 	}
 }
 
@@ -177,14 +176,12 @@ function mainGameLoopSlowBase () {
 		loopNumberTimePlayed = 0
 	}
 }
+
 function onLoadBase () {
 
 	for (let i = 0; i < baseVariables.length; i++) {
 		id = baseVariables[i].id
-
-
 		gameDataBase[baseVariables[i].id] = 0
-
 
 		if (i > 0) {
 			document.getElementById('backpackDiv').innerHTML += '<button class="specialButton" id="currencyDisplay(' + i + ')" onClick="currencyDisplay(' + i + ')" style="width:167px">Show ' + baseVariables[i].name + '</button>'
@@ -271,9 +268,8 @@ function tabMarket(tabby) {
 
 
 function updateValuesBase () {
-	theColor = 'rgba(0, 0, 0, 0)'
 
-    if (gameData.showDonationButton) {
+	if (gameData.showDonationButton) {
         update('showDonationButton', 'Donation Button Shown')
     }
     else {
@@ -281,15 +277,6 @@ function updateValuesBase () {
     }
 
     checkShow(gameData.showDonationButton, "donationButton")
-
-	barTypes = ['skillBar', 'verticalBar', 'skillBarColored', 'smallContainerBar']
-
-	for (j = 0; j < barTypes.length; j++) {
-		var x = document.getElementsByClassName(barTypes[j])
-		for (i = 0; i < x.length; i++) {
-			x[i].style.color = theColor
-		}
-	}
 
 	for (let i = 0; i < baseVariables.length; i++) {
 		id = baseVariables[i].id
@@ -374,11 +361,10 @@ function updateValuesBase () {
 		checkShow(gameData.tomes == i, 'tomeDiv' + (i + 1))
 	}
 
-
     const conditions = [
       { condition: gameData.lookAround > 1, elementId: 'sellYourLimesDiv' },
-      { condition: gameData.lookAround >= 3 && !(gameData.hideMaxedPurchases == 1 && gameData.juicers == gameData.juicersMax), elementId: 'buyAJuicerDiv' },
-      { condition: gameData.lookAround >= 3 && !(gameData.hideMaxedPurchases == 1 && gameData.baskets == gameData.basketsMax), elementId: 'buyABasketDiv' },
+      { condition: gameData.lookAround > 2 && !(gameData.hideMaxedPurchases && gameData.juicers == gameData.juicersMax), elementId: 'buyAJuicerDiv' },
+      { condition: gameData.lookAround > 2 && !(gameData.hideMaxedPurchases && gameData.baskets == gameData.basketsMax), elementId: 'buyABasketDiv' },
       { condition: gameData.tomes > 3, elementId: 'goldenBarDiv' },
       { condition: !gameData.pinUnlock, elementId: 'pinUnlockDiv' },
       { condition: gameData.pieBucket && gameData.pieFlourBucket, elementId: 'bucketThinSteelPlating' },
@@ -387,27 +373,31 @@ function updateValuesBase () {
       { condition: gameData.maps == 2, elementId: 'buyAMapDiv3' },
       { condition: gameData.maps == 3, elementId: 'buyAMapDiv4' },
       { condition: gameData.maps == 4, elementId: 'buyAMapDiv5' },
-      { condition: gameData.hasAdvertised && !gameData.surveillanceCamera, elementId: 'offlineEmployee' },
-      { condition: gameData.advertisingLevel1, elementId: 'advertisingMethods' },
-      { condition: !gameData.advertisingLevel1 && gameData.hasAdvertised, elementId: 'researchBetterAdvertising' },
       { condition: gameData.bulkBuyUnlock, elementId: 'basketsBulkButton', display: 'inline' },
+
+	//Map Unlocks
       { condition: gameData.maps > 0 || gameData.villageNumber > 1, elementId: 'marketMainButtonsDiv', display: 'inline' },
       { condition: gameData.maps > 0, elementId: 'marketStore', display: 'inline' },
+
       { condition: gameData.maps > 1, elementId: 'hiringAreaButton', display: 'inline' },
       { condition: gameData.maps > 1 && !gameData.storageUnlock, elementId: 'storageUnlockDiv' },
       { condition: gameData.maps > 1 && gameData.storageUnlock && !(gameData.storageJuicersUnlock && gameData.storagePeelersUnlock), elementId: 'storageDiv' },
       { condition: gameData.maps > 1 && !gameData.bulkBuyUnlock, elementId: 'bulkBuyUnlockDiv' },
       { condition: gameData.maps > 1 && gameData.bulkBuyUnlock && !gameData.bulkBuyUnlock2, elementId: 'bulkBuyUnlock2Div' },
+
       { condition: gameData.maps > 2, elementId: 'travellingArea' },
       { condition: gameData.maps > 2 && !gameData.fasterTransport, elementId: 'fasterTransportDiv' },
       { condition: gameData.maps > 2, elementId: 'increaseJuicePrice' },
       { condition: gameData.maps > 2 || gameData.villageNumber > 1, elementId: 'travelButton', display: 'inline' },
+
       { condition: gameData.maps > 3 && !gameData.respectBillboard, elementId: 'respectBillboard', display: 'inline' },
       { condition: gameData.maps > 3, elementId: 'tasksButton' },
       { condition: gameData.maps > 3 && !gameData.autoCurrencyConversionBuy, elementId: 'autoCurrencyConversion' },
+
       { condition: gameData.maps > 4 && gameData.basicAlphaToBetaBroker, elementId: 'basicAlphaToBetaBrokerRule' },
       { condition: gameData.maps > 4 && !gameData.basicAlphaToBetaBroker, elementId: 'basicAlphaToBetaBroker' },
       { condition: gameData.maps > 4, elementId: 'buyPie' },
+
       { condition: gameData.lookAround != 3, elementId: 'lookAroundButton', display: 'inline' },
       { condition: gameData.villageNumber > 1 || gameData.betterTraining || gameData.increaseJuicePricePermanance, elementId: 'megaCoinUpgradesButton' },
       { condition: !gameData.forestWell, elementId: 'buyAWell' },

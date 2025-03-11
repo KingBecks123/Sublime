@@ -112,7 +112,7 @@ document.getElementById('skills').innerHTML = `
 				<button class="specialButton" id="foodToggleRottenLimesButton" onclick="gameData.foodTypeToggle = 1">Rotten Limes</button>
 				<div class="skillInfo">You use 1 food point per skill level</div>
 				<div class="skillProgress" id="eatProgress">
-					<div class="skillBar" id="eatBar">0%</div>
+					<div class="skillBar" id="eatBar"></div>
 				</div>
 				<p class="basicText" id="eat"></p>
 			</div>
@@ -122,14 +122,14 @@ document.getElementById('skills').innerHTML = `
 				<div class="skillInfo">Collect limes without the pesky clicking</div>
 				<div class="skillInfo" id="textForAutomaticallyCollectsLimes" ></div>
 				<div class="skillProgress" id="autoCollectingProgress">
-					<div class="skillBar" id="autoCollectingBar">0%</div>
+					<div class="skillBar" id="autoCollectingBar"></div>
 				</div>
 			</div>
 			<div class="basicDiv">
 				<button class="specialButton" id="learnANewSkillButton" onclick="learnANewSkill()">Learn A New Skill</button>
 				<button class="specialButton" id="skillInfoButton" onclick="toggle('skillInfoToggle')">Info</button>
 				<div class="skillProgress" id="learnANewSkillProgress">
-					<div class="skillBar" id="learnANewSkillBar">0%</div>
+					<div class="skillBar" id="learnANewSkillBar"></div>
 				</div>
 			</div>
 		</div>

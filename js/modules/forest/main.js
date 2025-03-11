@@ -58,7 +58,6 @@ function updateValuesForest () {
 
     var elem = document.getElementById("basketBar")
     elem.style.height = gameData.basketBar + "%"
-    elem.innerHTML = Math.floor(gameData.basketBar) + "%"
 
 	ifMaxDarkGray("basket")
 
@@ -93,6 +92,5 @@ function updateValuesForest () {
 
     var elem = document.getElementById("wellBar")
     elem.style.height = (gameData.pieCoinsInWell / 2) + "%"
-    elem.innerHTML = Math.floor(gameData.pieCoinsInWell / 2) + "%"
 }
 
