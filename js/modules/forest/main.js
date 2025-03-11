@@ -44,7 +44,9 @@ function onLoadForest () {
 			gameData.basketBar = 100
 	}
 }
+
 limesInBaskets = 0;
+
 function updateValuesForest () {
 	basicToggle("basketInfo")
 	limesInBaskets = Math.floor(gameData.baskets * (gameData.basketBar / 4))

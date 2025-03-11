@@ -377,7 +377,7 @@ function updateValuesBase () {
 
 	//Map Unlocks
       { condition: gameData.maps > 0 || gameData.villageNumber > 1, elementId: 'marketMainButtonsDiv', display: 'inline' },
-      { condition: gameData.maps > 0, elementId: 'marketStore', display: 'inline' },
+      { condition: gameData.maps > 0, elementId: 'marketStore', display: 'block' },
 
       { condition: gameData.maps > 1, elementId: 'hiringAreaButton', display: 'inline' },
       { condition: gameData.maps > 1 && !gameData.storageUnlock, elementId: 'storageUnlockDiv' },
@@ -390,7 +390,7 @@ function updateValuesBase () {
       { condition: gameData.maps > 2, elementId: 'increaseJuicePrice' },
       { condition: gameData.maps > 2 || gameData.villageNumber > 1, elementId: 'travelButton', display: 'inline' },
 
-      { condition: gameData.maps > 3 && !gameData.respectBillboard, elementId: 'respectBillboard', display: 'inline' },
+      { condition: gameData.maps > 3 && !gameData.respectBillboard, elementId: 'respectBillboard'},
       { condition: gameData.maps > 3, elementId: 'tasksButton' },
       { condition: gameData.maps > 3 && !gameData.autoCurrencyConversionBuy, elementId: 'autoCurrencyConversion' },
 

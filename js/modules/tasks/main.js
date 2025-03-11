@@ -180,15 +180,13 @@ function benevolenceToggle() {
 		toggle('benevolenceToggle')
 }
 
-
 function buyARobe() {
     if (gameData.coins >= 1e5) {
         gameData.coins -= 1e5
         gameData.silkRobe = 1
-        gameData.respect += 50
+
     }
 }
-
 
 function tabTasks(tabby) {
     hide('earn')
