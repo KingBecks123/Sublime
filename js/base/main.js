@@ -1,12 +1,13 @@
 function hideDonationButton() {
-    if (gameData.showDonationButton)
-        gameData.showDonationButton = false
-
-    else
-        gameData.showDonationButton = true
+	gameData.showDonationButton = !gameData.showDonationButton
 }
 
 function getLimesButton() {
+	startingMessages()
+	getLimes()
+}
+
+function startingMessages(){
 	if (gameData.lookAround < 1) {
 		gameData.collectLimesAtBeginning += 1
 	}
@@ -14,13 +15,20 @@ function getLimesButton() {
 	if (gameData.collectLimesAtBeginning <= messages.length && gameData.lookAround == 0) {
 		update("newInfo", messages[gameData.collectLimesAtBeginning - 1])
 	}
-
-	getLimes()
 }
 
 function getLimes() {
-	if (beckyRandom(gameData.keenEyeSkillLevelMax) <= gameData.keenEyeSkillLevel) {
-		if (gameData.keenEyeSkillLevel != gameData.keenEyeSkillLevelMax)
+	canFindNothing = (gameData.keenEyeSkillLevel != gameData.keenEyeSkillLevelMax);
+	tryToFindSomething = (beckyRandom(gameData.keenEyeSkillLevelMax) <= gameData.keenEyeSkillLevel);
+
+	if (tryToFindSomething) {
+		foundSomething()
+	}
+	else if ((gameData.lookAround < 1 && gameData.collectLimesAtBeginning < 2) || gameData.lookAround)
+		update("newInfo", "Couldn't find any limes...")
+
+	function foundSomething(){
+		if (canFindNothing)
 			update("newInfo", "You found something!")
 
 		if (Math.random() <= (gameData.rottenWisdomSkillLevel / gameData.rottenWisdomSkillLevelMax)) {
@@ -32,8 +40,6 @@ function getLimes() {
 		else
 			gameData.rottenLimes += gameData.bigGloves + 1
 	}
-	else if ((gameData.lookAround < 1 && gameData.collectLimesAtBeginning < 2) || gameData.lookAround)
-		update("newInfo", "Couldn't find any limes...")
 
 	function addLimes () {
 		gameData.limes += gameData.bigGloves + 1

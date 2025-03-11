@@ -246,3 +246,65 @@ document.getElementById('company').innerHTML = `		<div class="basicDiv">
             <p class="basicText pieMerchantInfo">Increases customer acquisition speed</p>
         </div>
 `;
+
+document.getElementById('hiringArea').innerHTML = `
+            <div style="display:inline-block;width:380px;">
+                <div class="basicDiv">
+					<div id="hireToggleButtons">
+						<button class="specialButton" id="hireEmployeeToggleButton"    onclick="gameData.typeToHireToggle = 'basic'" >Basic Employees</button>
+						<button class="specialButton" id="hireBrokerToggleButton"      onclick="gameData.typeToHireToggle = 'broker'" >Currency Brokers</button>
+						<button class="specialButton" id="hirePieMerchantToggleButton" onclick="gameData.typeToHireToggle = 'pie'" >Pie Merchant</button>
+					</div>
+                    <button class="specialButton" id="advertiseButton" onclick="advertise()">Advertise your lime business</button>
+					<div id="autoAdvertiseBrokerDiv">
+					    <button class="specialButton" id="autoAdvertiseBrokerButton" style="display:inline-block" onclick="toggle('autoAdvertiseBroker')">Auto</button>
+						<p class="basicText">Rule:</p>
+						<p class="basicText" id="textForAdvertisingBrokerRule">Auto advertise unless speed is under 30 seconds</p>
+						<button class="specialButton" onclick="decreaseValue('autoAdvertiseSpeedValue')" style="width:168px">Decrease</button>
+						<button class="specialButton" onclick="gameData.autoAdvertiseSpeedValue += 1" style="width:168px">Increase</button>
+					<div id="smarterAdvertisingBrokerRule">
+						<p class="basicText" id="textForSmarterAdvertisingBrokerRule">Auto advertise unless speed is under 30 seconds</p>
+						<button class="specialButton" onclick="decreaseValue('autoAdvertiseAmountValue')" style="width:168px">Decrease</button>
+						<button class="specialButton" onclick="gameData.autoAdvertiseAmountValue += 1" style="width:168px">Increase</button>
+					</div>
+					</div>
+					<div class="skillProgress" id="advertiseProgress">
+                        <div class="skillBar" id="advertiseBar">0%</div>
+                    </div>
+                    <p class="basicText" id="advertisePrice">Price: 10 Coins</p>
+                    <button id="application" style="display:block;width:300px;margin:auto;background-color:#DEAD85;white-space: pre-wrap;" onclick="employeeTypes[gameData.applicationType].onHire()">Pin applications here</button>
+                    <p class="basicText" id="applicationInfo">Click the application to accept</p>
+                </div>
+                <div id="autoBrokerAdvertiser" class="basicDiv">
+                    <button class="specialButton" onclick="buyAdvertisingManager()">Advertising Manager</button>
+                    <p class="basicText">Take on a manager to help you advertise for brokers</p>
+                    <p class="basicText">Price: 10 Alpha Coins</p>
+                </div>
+                <div id="smarterAutoBrokerAdvertiser" class="basicDiv">
+                    <button class="specialButton" onclick="buy('smarterAdvertisingManagerBroker', 50 , 'alphaCoins')">Smarter Advertising Manager</button>
+                    <p class="basicText">Add a new rule for your advertising manager</p>
+                    <p class="basicText">Price: 50 Alpha Coins</p>
+                </div>
+                <div class="basicDiv" id="researchBetterAdvertising">
+                    <button class="specialButton" onclick="buy('advertisingLevel1', 200)">Research Better Advertising Methods</button>
+                    <p class="basicText">Price: 200 Coins</p>
+                </div>
+                <div id="advertisingMethods">
+                    <div class="basicDiv" id="advertisingLeaflets">
+                        <button class="specialButton" onclick="buy('advertisingLevel2', 100)">Hand Out Leaflets</button>
+                        <p class="basicText">Doubles advertising speed</p>
+                        <p class="basicText">Price: 100 Coins</p>
+                    </div>
+                    <div class="basicDiv" id="advertisingBillboard">
+                        <button class="specialButton" onclick="buy('advertisingLevel3', 500)">Buy A Billboard</button>
+                        <p class="basicText">Triples advertising speed</p>
+                        <p class="basicText">Price: 500 Coins</p>
+                    </div>
+                </div>
+				<div class="basicDiv" id="offlineEmployee">
+					<button class="specialButton" onclick="buy('surveillanceCamera', 1000)">Buy A Surveillance Camera</button>
+					<p class="basicText">Make sure employees are working while you're away (offline)</p>
+					<p class="basicText">Price: 1,000 Coins</p>
+				</div>
+            </div>
+`;
