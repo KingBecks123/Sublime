@@ -1,18 +1,8 @@
 // Game version - Change this to update version number
-const GAME_VERSION = "1.1.1";
+const GAME_VERSION = "1.1.2";
 const VERSION_NOTES = 
-`10/Mar/2025
-*Gameplay*
-- Added Lore
-
-*Other Stuff*
-- Added cheats
-- Fixed Benevolence and Surveillance Camera FINALLY
-- Restructured Entire Codebase (again)
-- Added incorrect response to Reset Game prompt
-- Automatically pull new scripts from builds
-
-- Removed Herolime
+`12/Mar/2025
+Fixed issue with lore hooks
 `;
 
 // Add button click sound to all buttons

@@ -5,6 +5,9 @@ function hideDonationButton() {
 function getLimesButton() {
 	startingMessages()
 	getLimes()
+	
+	// Direct lore integration for lime collection
+	checkForLoreDiscovery()
 }
 
 function startingMessages(){

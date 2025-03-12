@@ -261,82 +261,12 @@ function loadLoreContent(category, id) {
     contentArea.appendChild(textContainer);
 }
 
-// ==================== HOOKS AND INTEGRATION ====================
-
-// Hook into map purchases to auto-discover first journal entry
-function hookMapPurchase() {
-    const originalBuy = window.buy;
-    window.buy = function(id, price) {
-        originalBuy(id, price);
-        if (id === 'maps' && gameData.maps === 1) {
-            discoverSpecificLoreEntry('journal', 'mother-tree');
-        }
-    };
-}
-
-// Hook into lime collection to check for lore discovery
-function hookLimeCollection() {
-    // Manual collection
-    const originalCollect = window.getLimesButton;
-    window.getLimesButton = function() {
-        originalCollect();
-        checkForLoreDiscovery();
-    };
-    
-    // Auto collection
-    if (window.autoCollectingBar) {
-        const originalAuto = window.autoCollectingBar;
-        window.autoCollectingBar = function() {
-            originalAuto();
-            if (gameData.autoCollectingBar % 20 === 0) {
-                checkForLoreDiscovery();
-            }
-        };
-    }
-}
-
-// Make lore persist through travels
-function hookTravel() {
-    const originalTravel = window.travelToNextVillage;
-    if (originalTravel) {
-        window.travelToNextVillage = function() {
-            // Save lore data before travel
-            const loreData = {
-                loreDiscovered: gameData.loreDiscovered,
-                totalLoreFound: gameData.totalLoreFound
-            };
-            
-            originalTravel();
-            
-            // Restore lore data after travel
-            gameData.loreDiscovered = loreData.loreDiscovered;
-            gameData.totalLoreFound = loreData.totalLoreFound;
-            
-            if (hasDiscoveredAnyPages()) showPagesButton();
-        };
-    }
-}
-
-// Add CSS for lore system
-function addLoreStyles() {
-    const style = document.createElement("style");
-    style.textContent = `
-        .loreEntry:hover {
-            background-color: #686868 !important;
-        }
-    `;
-    document.head.appendChild(style);
-}
-
 // ==================== INITIALIZATION ====================
 
 // Initialize the lore system
 function initLoreSystem() {
     initLoreData();
     createLoreUI();
-    hookLimeCollection();
-    hookMapPurchase();
-    hookTravel();
     addLoreStyles();
     
     // Auto-discover first journal if map already purchased
@@ -348,4 +278,15 @@ function initLoreSystem() {
 // Start the lore system when the game loads
 document.addEventListener('DOMContentLoaded', function() {
     setTimeout(initLoreSystem, 100);
-}); 
+});
+
+// Add CSS for lore system
+function addLoreStyles() {
+    const style = document.createElement("style");
+    style.textContent = `
+        .loreEntry:hover {
+            background-color: #686868 !important;
+        }
+    `;
+    document.head.appendChild(style);
+} 
