@@ -148,6 +148,8 @@ var gameDataBase = {
 	marketTab: 'marketMain',
 	endScreen: 0,
 	showDonationButton: true,
+
+	sfxOn: 1,
 }
 
 var gameData = {}

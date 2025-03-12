@@ -24,15 +24,17 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('click', function(event) {
         // Check if the clicked element is a button
         if (event.target.tagName === 'BUTTON') {
-            // Play the sound using alternating audio objects to handle rapid clicks
-            if (useFirstSound) {
-                buttonClickSound.currentTime = 0;
-                buttonClickSound.play();
-            } else {
-                buttonClickSound2.currentTime = 0;
-                buttonClickSound2.play();
+            if (gameData.sfxOn) {
+                // Play the sound using alternating audio objects to handle rapid clicks
+                if (useFirstSound) {
+                    buttonClickSound.currentTime = 0;
+                    buttonClickSound.play();
+                } else {
+                    buttonClickSound2.currentTime = 0;
+                    buttonClickSound2.play();
+                }
+                useFirstSound = !useFirstSound; // Switch for next click
             }
-            useFirstSound = !useFirstSound; // Switch for next click
         }
     });
 });
