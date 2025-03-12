@@ -160,12 +160,6 @@ function updateValuesSkills () {
 		update('hideCompletedSkillsButton', 'Completed Skills Shown')
 	else
 		update('hideCompletedSkillsButton', 'Completed Skills Hidden')
-
-	if (gameData.sfxOn) {
-		update('sfxToggleButton', '♪ On')
-	} else {
-		update('sfxToggleButton', '♪ Off')
-	}
 	
 	if(gameData.currentSkill !== 'none')
 		tryToStartSkill(gameData.currentSkill, false)

@@ -271,6 +271,13 @@ function tabMarket(tabby) {
 
 
 function updateValuesBase () {
+	if (gameData.sfxOn) {
+		update('sfxToggleButton', '♪ On')
+		sfxToggleButton.style.backgroundColor = '#4DFE89'
+	} else {
+		update('sfxToggleButton', '♪ Off')
+		sfxToggleButton.style.backgroundColor = '#898989'
+	}
 
 	if (gameData.showDonationButton) {
         update('showDonationButton', 'Donation Button Shown')

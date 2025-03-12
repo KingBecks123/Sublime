@@ -1,8 +1,9 @@
 // Game version - Change this to update version number
-const GAME_VERSION = "1.1.2";
+const GAME_VERSION = "1.1.3";
 const VERSION_NOTES = 
 `12/Mar/2025
 Fixed issue with lore hooks
+Added sfx toggle button with a cool color change
 `;
 
 // Add button click sound to all buttons
