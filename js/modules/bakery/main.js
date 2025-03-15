@@ -103,9 +103,12 @@ function mainGameLoopSlowBakery() {
 
 			
 			if (tileType >= 51 && tileType <= 54) {
-				if (gameData.wheatFieldArray[xWhere][yWhere] == 0 && gameData.wheatSeeds > 0) {
-					gameData.wheatFieldArray[xWhere][yWhere] = 1
-					gameData.wheatSeeds -= 1
+				if (xWhere >= 0 && xWhere < gameData.wheatFieldArray.length && 
+					yWhere >= 0 && yWhere < gameData.wheatFieldArray[xWhere].length) {
+					if (gameData.wheatFieldArray[xWhere][yWhere] == 0 && gameData.wheatSeeds > 0) {
+						gameData.wheatFieldArray[xWhere][yWhere] = 1
+						gameData.wheatSeeds -= 1
+					}
 				}
 			}
 			
