@@ -84,38 +84,49 @@ function mainGameLoopSlowBakery() {
 	for (var x = 0; x < 5; x++) {
 		for (var y = 0; y < 5; y++) {
 			
-			var tileType = gameData.wheatFieldArray[x][y]
+			var tileTypeIndex = gameData.wheatFieldArray[x][y]
+			var tileType;
 
-			if(tileType >= 1 && tileType < 50)
+			if (tileTypeIndex >= 51 && tileTypeIndex <= 54) {
+				tileType = 'Seed Drill'
+			}
+			else if (tileTypeIndex >= 55 && tileTypeIndex <= 58) {
+				tileType = 'Wheat Harvester'
+			}
+
+			if(tileTypeIndex >= 1 && tileTypeIndex < 50)
 				gameData.wheatFieldArray[x][y] += 1
 
             xWhere = x
             yWhere = y
 
-			if (tileType == 53 || tileType == 55)
+			if (tileTypeIndex == 53 || tileTypeIndex == 55)
 				yWhere --
-			else if(tileType == 54 || tileType == 56)
+			else if(tileTypeIndex == 54 || tileTypeIndex == 56)
 				xWhere ++
-			else if(tileType == 51 || tileType == 57)
+			else if(tileTypeIndex == 51 || tileTypeIndex == 57)
 				yWhere ++
-			else if(tileType == 52 || tileType == 58)
+			else if(tileTypeIndex == 52 || tileTypeIndex == 58)
 				xWhere --
-
 			
-			if (tileType >= 51 && tileType <= 54) {
-				if (xWhere >= 0 && xWhere < gameData.wheatFieldArray.length && 
-					yWhere >= 0 && yWhere < gameData.wheatFieldArray[xWhere].length) {
-					if (gameData.wheatFieldArray[xWhere][yWhere] == 0 && gameData.wheatSeeds > 0) {
+			if (xWhere >= 0 && xWhere < gameData.wheatFieldArray.length && 
+				yWhere >= 0 && yWhere < gameData.wheatFieldArray[xWhere].length) {
+
+				var affectedTile = gameData.wheatFieldArray[xWhere][yWhere];
+				
+				if (tileType == 'Seed Drill') {
+					if (affectedTile == 0 && gameData.wheatSeeds > 0) {
 						gameData.wheatFieldArray[xWhere][yWhere] = 1
 						gameData.wheatSeeds -= 1
 					}
 				}
-			}
-			
-			if (tileType >= 55 && tileType <= 58) {
-				if (gameData.wheatFieldArray[xWhere][yWhere] == 50) {
-					gameData.wheatFieldArray[xWhere][yWhere] = 0
-					gameData.wheat += 1
+
+				else if (tileType == 'Wheat Harvester') {
+
+					if (affectedTile == 50) {
+						gameData.wheatFieldArray[xWhere][yWhere] = 0
+						gameData.wheat += 1
+					}
 				}
 			}
 		}

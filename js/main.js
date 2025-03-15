@@ -1,9 +1,10 @@
 // Game version - Change this to update version number
-const GAME_VERSION = "1.1.3";
+const GAME_VERSION = "1.1.4";
 const VERSION_NOTES = 
-`12/Mar/2025
-Fixed issue with lore hooks
-Added sfx toggle button with a cool color change
+`15/Mar/2025
+    Fixed issue with lore hooks
+    Added sfx toggle button with a cool color change
+    Fixed issue with wheat harvester and seed drill
 `;
 
 // Add button click sound to all buttons
