@@ -178,12 +178,12 @@ function toggle(x) {
   }
 }
 
-function buy(id, price, currencyToSpend = 'coins') {
-  if (gameData[currencyToSpend] >= price) {
-    gameData[currencyToSpend] -= price;
-    gameData[id] += 1;
+function buy(item, price, currency = 'coins', amount = 1) {
+  if (gameData[currency] >= price) {
+    gameData[currency] -= price;
+    gameData[item] += amount;
     
-    if (id === 'maps' && gameData.maps === 1) {
+    if (item === 'maps' && gameData.maps === 1) {
       discoverSpecificLoreEntry('letters', 'letter-001');
     }
   }
