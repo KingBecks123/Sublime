@@ -1,0 +1,94 @@
+// Sound pools to handle multiple concurrent sounds
+const soundPools = {};
+
+function initAudio() {
+    for (const soundType in AUDIO_DATA) {
+        createSoundPool(soundType);
+    }
+    
+    // Add click sound to all buttons
+    document.addEventListener('click', function(event) {
+        if (event.target.tagName === 'BUTTON') {
+            if (gameData.sfxOn) {
+                playSound('BUTTON_CLICK');
+            }
+        }
+    });
+}
+
+function createSoundPool(soundType) {
+    const soundData = AUDIO_DATA[soundType];
+    if (!soundData) return;
+    
+    soundPools[soundType] = [];
+    
+    for (let i = 0; i < soundData.poolSize; i++) {
+        const sound = new Audio(soundData.path);
+        sound.volume = soundData.volume;
+        sound.load();
+        soundPools[soundType].push({
+            audio: sound,
+            inUse: false
+        });
+    }
+}
+
+function playSound(soundType) {
+    const pool = soundPools[soundType];
+    if (!pool) return false;
+    
+    // First try to find a free sound
+    for (let i = 0; i < pool.length; i++) {
+        const soundObj = pool[i];
+        if (!soundObj.inUse) {
+            return playSoundFromPool(soundObj, i);
+        }
+    }
+    
+    // If all are in use, find one that's ended or furthest along
+    let bestIndex = 0;
+    let bestTime = 0;
+    
+    for (let i = 0; i < pool.length; i++) {
+        const audio = pool[i].audio;
+        // If any have ended, use them immediately
+        if (audio.ended) {
+            return playSoundFromPool(pool[i], i);
+        }
+        
+        // Otherwise track the one furthest along
+        if (audio.currentTime > bestTime) {
+            bestTime = audio.currentTime;
+            bestIndex = i;
+        }
+    }
+    
+    // Use the best candidate
+    return playSoundFromPool(pool[bestIndex]);
+}
+
+function playSoundFromPool(soundObj) {
+    soundObj.inUse = true;
+    soundObj.audio.currentTime = 0;
+    
+    try {
+        soundObj.audio.play()
+            .then(() => {
+                // Success - mark as free when done
+                setTimeout(() => {
+                    soundObj.inUse = false;
+                }, 50); // Small buffer to prevent immediate reuse
+            })
+            .catch(error => {
+                // Error occurred - mark as free immediately
+                soundObj.inUse = false;
+                console.warn('Audio playback failed:', error);
+            });
+        return true;
+    } catch (error) {
+        // For browsers that don't support promises on audio.play()
+        soundObj.inUse = false;
+        console.warn('Audio playback failed:', error);
+        return false;
+    }
+}

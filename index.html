@@ -20,7 +20,7 @@
 	<!-- Cache-busting with fixed version number - Change this with each deployment -->
 	<script>
 		// Update this version number when you deploy changes
-		const CACHE_VERSION = '1.1.4';
+		const CACHE_VERSION = '1.1.5';
 		
 		// Add version to all script tags with js/ in the src
 		document.addEventListener('DOMContentLoaded', function() {
@@ -94,13 +94,17 @@
 	<!-- Core -->
 	<script src="js/colors.js" charset="utf-8" defer></script>
 	<script src="js/functions.js" charset="utf-8" defer></script>
-	<script src="js/main.js" charset="utf-8" defer></script>
+	<script src="js/version.js" charset="utf-8" defer></script>
 	
 	<!-- Base -->
 	<script src="js/base/data.js" charset="utf-8" defer></script>
 	<script src="js/base/main.js" charset="utf-8" defer></script>
 
 	<!-- Modules -->
+		<!-- audio -->
+			<script src="js/modules/audio/data.js" charset="utf-8" defer></script>
+			<script src="js/modules/audio/functions.js" charset="utf-8" defer></script>
+
 		<!-- bakery -->
 			<script src="js/modules/bakery/data.js" charset="utf-8" defer></script>
 			<script src="js/modules/bakery/main.js" charset="utf-8" defer></script>

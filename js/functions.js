@@ -10,6 +10,8 @@ function gameStart() {
   onLoadScience();
   onLoadTravel();
 
+  initAudio();
+
   // Update version display
   document.getElementById("versionNumber").textContent = "v" + GAME_VERSION;
   document.getElementById("versionTooltip").textContent = VERSION_NOTES;
