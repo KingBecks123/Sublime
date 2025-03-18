@@ -3,7 +3,7 @@ document.getElementById('options').innerHTML = `
             <button class="specialButton" onclick="tabOptions('gameOptions')">Game</button>
             <button class="specialButton" onclick="tabOptions('uiOptions')">UI</button>
             <button class="specialButton" onclick="tabOptions('statsOptions')">Stats</button>
-            <button class="specialButton" onclick="tabOptions('contactOptions')"><a href="https://discord.gg/scB7TbaqNS">Discord</a></button>
+            <a href="https://discord.gg/scB7TbaqNS" target="_blank" style="float:right;"><button class="specialButton"><img src="assets/images/icons8-discord-32.png" alt="Discord" style="width:16px;height:16px;"></button></a>
 		</div>
 		<div class="basicDiv">
 			<p class="basicText">Sublime by Becky</p>
