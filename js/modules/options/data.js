@@ -21,7 +21,7 @@ document.getElementById('options').innerHTML = `
 				<button class="specialButton" style="width:342px" onclick="changeZoomSize()">Change Zoom Size</button><br>
 				<button class="specialButton" style="width:342px" id="hideCompletedSkillsButton" onclick="toggle('hideCompletedSkills')">Completed Skills Shown</button><br>
 				<button class="specialButton" style="width:342px" id="hideMaxedPurchasesButton" onclick="toggle('hideMaxedPurchases')">Maxed Purchases Shown</button><br>
-				<button class="specialButton" style="width:342px" onclick="hideDonationButton()" id="showDonationButton"></button>
+				<button class="specialButton" style="width:342px" onclick="invert('showDonationButton')" id="showDonationButton"></button>
 			</div>
 		</div>
 `;

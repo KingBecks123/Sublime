@@ -1,5 +1,5 @@
-function hideDonationButton() {
-	gameData.showDonationButton = !gameData.showDonationButton
+function invert(bool) {
+	gameData[bool] = !gameData[bool];
 }
 
 function getLimesButton() {
