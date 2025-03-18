@@ -154,117 +154,6 @@ document.getElementById('plebeian').innerHTML = `
         <p>Price: 2,000 Coins</p>
     </div>
 </span>
-<div class="basicDiv" id="buyADeliveryManager">
-    <button onclick="buy('deliveryManager', 500)">Buy A Delivery Manager</button>
-    <p>Option to deliver maximum juice</p>
-    <p>Price: 500 Coins</p>
-</div>
-<div class="basicDiv" id="buyAMapDiv4">
-    <button onclick="buy('maps', 200000)">Buy A Giant Map</button>
-    <p>Find places only the rich can go</p>
-    <p>Price: 200,000 Coins</p>
-</div>
-<div class="basicDiv" id="respectBillboard">
-    <button onclick="buy('respectBillboard', 1e5)">Buy A Respect Billboard</button>
-    <p>Put your face on a billboard so people know who helped them</p>
-    <p>Price: 100,000 Coins</p>
-</div>
-<div class="basicDiv" id="buyPie">
-    <button onclick="buy('pies', 5, 'betaCoins')">Buy Pie</button>
-    <p>Pie is essential for the patrician diet</p>
-    <p>Price: 5 Beta Coins</p>
-</div>
-<div class="basicDiv" id="buyWheatField">
-    <button onclick="buy('wheatField', 10, 'betaCoins')">Buy A Field</button>
-    <p>A farmer noticed you reselling pie, and thought you'd like to purchase a field</p>
-    <p>Price: 20 Beta Coins</p>
-</div>
-<div class="basicDiv" id="buyWheatSeeds">
-    <button onclick="buy('wheatSeeds', 10, 'betaCoins')">Buy A Wheat Seed</button>
-    <p>Is wheat the new lime?</p>
-    <p>Price: 10 Beta Coins</p>
-</div>
-<div class="basicDiv" id="buyMortarAndPestle">
-    <button onclick="buy('mortarAndPestle', 10, 'pieCoins')">Buy A Mortar And Pestle</button>
-    <p>Can grinding ever be fun?</p>
-    <p>Price: 10 Pie Coins</p>
-</div>
-<div class="basicDiv" id="buyPieOven">
-    <button onclick="buy('pieOven', 10, 'pieCoins')">Buy A Pie Oven</button>
-    <p>One step closer to pie creation</p>
-    <p>Price: 10 Pie Coins</p>
-</div>
-<div class="basicDiv" id="buyAPieConveyorBelt">
-    <button onclick="buy('pieConveyorBelt', 20, 'pieCoins')">Buy A Pie Conveyor Belt</button>
-    <p>Automatically sends pies into the oven</p>
-    <p>Price: 20 Pie Coins</p>
-</div>
-<div class="basicDiv" id="buyAPieBucket">
-    <button onclick="buy('pieBucket', 20, 'pieCoins')">Buy A Bucket With A Hole</button>
-    <p>Automatically drips juice into your pie</p>
-    <p>Price: 20 Pie Coins</p>
-</div>
-<div class="basicDiv" id="buyAPieBucketNozzle">
-    <button onclick="buy('pieBucketNozzle', 20, 'pieCoins')">Buy A Nozzle</button>
-    <p>Adjust the juice dripping rate for optimum performance</p>
-    <p>Price: 20 Pie Coins</p>
-</div>
-<div class="basicDiv" id="buyAPieFlourBucket">
-    <button onclick="buy('pieFlourBucket', 20, 'pieCoins')">Buy Another Bucket With A Hole</button>
-    <p>Automatically drops flour into your pie</p>
-    <p>Price: 20 Pie Coins</p>
-</div>
-<div class="basicDiv" id="buyAPieFlourBucketNozzle">
-    <button onclick="buy('pieFlourBucketNozzle', 20, 'pieCoins')">Buy Another Nozzle</button>
-    <p>Adjust the flour dropping rate for optimum performance</p>
-    <p>Price: 20 Pie Coins</p>
-</div>
-<div class="basicDiv" id="buyBellows">
-    <button onclick="buy('bellows', 20, 'pieCoins')">Buy Bellows</button>
-    <p>Increases oven speed by adding more oxygen</p>
-    <p>Price: 20 Pie Coins</p>
-</div>	
-<div class="basicDiv" id="buyPieEmployee">
-    <button onclick="buy('pieEmployee', 50, 'pieCoins')">Hire An Employee</button>
-    <p>This person will give the pie to the customer, but must be paid.</p>
-    <p>Hiring Price: 50 Pie Coins</p>
-</div>
-<div class="basicDiv" id="upgradeNozzles">
-    <button onclick="buy('upgradeNozzles', 50, 'pieCoins')">Upgrade Nozzles</button>
-    <p>These new nozzles allow for finer tuning</p>
-    <p>Price: 50 Pie Coins</p>
-</div>
-<div class="basicDiv" id="bucketThinSteelPlating">
-    <button onclick="buy('bucketThinSteelPlating', game.bucketThinSteelPlating * 5 + 20, 'pieCoins')">Buy Thin Steel Plating</button>
-    <p>Perfect for extending the height of your buckets</p>
-    <p id="bucketHeight">Current heights: 20 Units</p>
-    <p id="bucketThinSteelPlatingPrice">Price: 20 Pie Coins</p>
-</div>
-<div class="basicDiv" id="buyASeedDrill">
-    <button onclick="buy('seedDrills', 50, 'pieCoins')">Buy A Seed Drill</button>
-    <p>This is sow useful!</p>
-    <p>Price: 50 Pie Coins</p>
-</div>
-<div class="basicDiv" id="buyAWheatHarvester">
-    <button onclick="buy('wheatHarvesters', 50, 'pieCoins')">Buy A Wheat Harvester</button>
-    <p>Does what it says on the label</p>
-    <p>Price: 50 Pie Coins</p>
-</div>
-<div class="basicDiv" id="advancedPieHiring">
-    <button onclick="buy('advancedPieHiring', 50, 'pieCoins')">Unlock Advanced Pie Hiring</button>
-    <p>Go through pie merchant applications in the Hiring Area</p>
-    <p>Price: 50 Pie Coins</p>
-</div>
-<div class="basicDiv" id="buyAWell">
-    <button onclick="buy('forestWell', 200, 'betaCoins')">Buy A Well</button>
-    <p>Water is the lifeblood of limes</p>
-    <p>Price: 200 Beta Coins</p>
-</div>
-<div class="basicDiv" id="trainTransportDiv">
-    <button onclick="buy('trainTransport', 200, 'pieCoins')">Train Transport</button>
-    <p>Add a new delivery type</p>
-    <p>Price: 200 Pie Coins</p>
-</div>
 `
 
 stuffToBuy = [
@@ -330,5 +219,162 @@ stuffToBuy = [
         function: `buy('maps', 1e7)`,  
         description: 'These map prices are getting absurd...',
         priceText: 'Price: 10,000,000 Coins',
+    }
+]
+
+plebianStuffToBuy = [ 
+    {
+        id: 'trainTransportDiv',
+        name: 'Train Transport',
+        function: `buy('trainTransport', 200, 'pieCoins')`,
+        description: 'Add a new delivery type',
+        priceText: 'Price: 200 Pie Coins'
+    },
+    {
+        id: 'buyADeliveryManager',
+        name: 'Buy A Delivery Manager',
+        function: `buy('deliveryManager', 500)`,
+        description: 'Option to deliver maximum juice',
+        priceText: 'Price: 500 Coins'
+    },
+    {
+        id: 'buyAMapDiv4',
+        name: 'Buy A Giant Map',
+        function: `buy('maps', 200000)`,
+        description: 'Find places only the rich can go',
+        priceText: 'Price: 200,000 Coins'
+    },
+    {
+        id: 'respectBillboard',
+        name: 'Buy A Respect Billboard',
+        function: `buy('respectBillboard', 1e5)`,
+        description: 'Put your face on a billboard so people know who helped them',
+        priceText: 'Price: 100,000 Coins'
+    },
+    {
+        id: 'buyPie',
+        name: 'Buy Pie',
+        function: `buy('pies', 5, 'betaCoins')`,
+        description: 'Pie is essential for the patrician diet',
+        priceText: 'Price: 5 Beta Coins'
+    },
+    {
+        id: 'buyWheatField',
+        name: 'Buy A Field',
+        function: `buy('wheatField', 20, 'betaCoins')`,
+        description: 'A farmer noticed you reselling pie, and thought you\'d like to purchase a field',
+        priceText: 'Price: 20 Beta Coins'
+    },
+    {
+        id: 'buyWheatSeeds',
+        name: 'Buy A Wheat Seed',
+        function: `buy('wheatSeeds', 10, 'betaCoins')`,
+        description: 'Is wheat the new lime? No.',
+        priceText: 'Price: 10 Beta Coins'
+    },
+    {
+        id: 'buyMortarAndPestle',
+        name: 'Buy A Mortar And Pestle',
+        function: `buy('mortarAndPestle', 10, 'pieCoins')`,
+        description: 'Can grinding ever be fun?',
+        priceText: 'Price: 10 Pie Coins'
+    },
+    {
+        id: 'buyPieOven',
+        name: 'Buy A Pie Oven',
+        function: `buy('pieOven', 10, 'pieCoins')`,
+        description: 'One step closer to pie creation',
+        priceText: 'Price: 10 Pie Coins'
+    },
+    {
+        id: 'buyPieConveyorBelt',
+        name: 'Buy A Pie Conveyor Belt',
+        function: `buy('pieConveyorBelt', 20, 'pieCoins')`,
+        description: 'Automatically sends pies into the oven',
+        priceText: 'Price: 20 Pie Coins'
+    },
+    {
+        id: 'buyAPieBucket',
+        name: 'Buy A Bucket With A Hole',
+        function: `buy('pieBucket', 20, 'pieCoins')`,
+        description: 'Automatically drips juice into your pie',
+        priceText: 'Price: 20 Pie Coins'
+    },
+    {
+        id: 'buyAPieBucketNozzle',
+        name: 'Buy A Nozzle',
+        function: `buy('pieBucketNozzle', 20, 'pieCoins')`,
+        description: 'Adjust the juice dripping rate for optimum performance',
+        priceText: 'Price: 20 Pie Coins'
+    },
+    {
+        id: 'buyAPieFlourBucket',
+        name: 'Buy Another Bucket With A Hole',
+        function: `buy('pieFlourBucket', 20, 'pieCoins')`,
+        description: 'Automatically drops flour into your pie',
+        priceText: 'Price: 20 Pie Coins'
+    },
+    {
+        id: 'buyAPieFlourBucketNozzle',
+        name: 'Buy Another Nozzle',
+        function: `buy('pieFlourBucketNozzle', 20, 'pieCoins')`,
+        description: 'Adjust the flour dropping rate for optimum performance',
+        priceText: 'Price: 20 Pie Coins'
+    },
+    {
+        id: 'buyBellows',
+        name: 'Buy Bellows',
+        function: `buy('bellows', 20, 'pieCoins')`,
+        description: 'Increases oven speed by adding more oxygen',
+        priceText: 'Price: 20 Pie Coins'
+    },
+    {
+        id: 'buyPieEmployee',
+        name: 'Hire An Employee',
+        function: `buy('pieEmployee', 50, 'pieCoins')`,
+        description: 'This person will give the pie to the customer, but must be paid.',
+        priceText: 'Hiring Price: 50 Pie Coins'
+    },
+    {
+        id: 'upgradeNozzles',
+        name: 'Upgrade Nozzles',
+        function: `buy('upgradeNozzles', 50, 'pieCoins')`,
+        description: 'These new nozzles allow for finer tuning',
+        priceText: 'Price: 50 Pie Coins'
+    },
+    {
+        id: 'bucketThinSteelPlating',
+        name: 'Buy Thin Steel Plating',
+        function: `buy('bucketThinSteelPlating', gameData.bucketThinSteelPlating * 5 + 20, 'pieCoins')`,
+        description: 'Perfect for extending the height of your buckets',
+        priceText: 'Price: 20 Pie Coins'
+    },
+    {
+        id: 'buyASeedDrill',
+        name: 'Buy A Seed Drill',
+        function: `buy('seedDrills', 50, 'pieCoins')`,
+        description: 'This is sow useful!',
+        priceText: 'Price: 50 Pie Coins'
+    },
+    {
+        id: 'buyAWheatHarvester',
+        name: 'Buy A Wheat Harvester',
+        function: `buy('wheatHarvesters', 50, 'pieCoins')`,
+        description: 'Does what it says on the label',
+        priceText: 'Price: 50 Pie Coins'
+    },
+    {
+        id: 'advancedPieHiring',
+        name: 'Unlock Advanced Pie Hiring',
+        function: `buy('advancedPieHiring', 50, 'pieCoins')`,
+        description: 'Go through pie merchant applications in the Hiring Area',
+        priceText: 'Price: 50 Pie Coins'
+    },
+    {
+        id: 'buyAWell',
+        name: 'Buy A Well',
+        function: `buy('forestWell', 200, 'betaCoins')`,
+        description: 'Water is the lifeblood of limes',
+        priceText: 'Price: 200 Beta Coins'
     }
 ]
