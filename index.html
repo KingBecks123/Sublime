@@ -16,23 +16,6 @@
 
 	  gtag('config', 'G-5S0BD7ZKYH');
 	</script>
-
-	<!-- Cache-busting with fixed version number - Change this with each deployment -->
-	<script>
-		// Update this version number when you deploy changes
-		const CACHE_VERSION = '1.1.7';
-		
-		// Add version to all script tags with js/ in the src
-		document.addEventListener('DOMContentLoaded', function() {
-			document.querySelectorAll('script[src]').forEach(script => {
-				if (script.src.includes('js/')) {
-					// Remove any existing v= parameter
-					let srcWithoutParam = script.src.split('?')[0];
-					script.src = srcWithoutParam + '?v=' + CACHE_VERSION;
-				}
-			});
-		});
-	</script>
 </head>
 
 <body id="mainBody" class="no-select" onload="gameStart()">
