@@ -18,13 +18,14 @@ function importGame() {
 }
 
 function loadGame(savegame) {
-	Object.assign(game, gameBase)
 	if (savegame !== null) {
+        Object.assign(game, gameBase)
 		Object.assign(game, savegame)
 		backwardsCompatibility()
 		game.versionNumber = 192
-	} else
-		update("newInfo", "Save File Empty.")
+	} 
+    else
+        reset()
 }
 
 function saveGame() {

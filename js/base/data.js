@@ -1,4 +1,4 @@
-const GAME_VERSION = "1.1.7";
+const GAME_VERSION = "1.1.8";
 const VERSION_NOTES = 
 `18/Mar/2025
     An uncountable number of backend changes
