@@ -186,6 +186,9 @@ function onLoadBase () {
 		id = baseVariables[i].id
 		gameDataBase[baseVariables[i].id] = 0
 
+		variableName = (baseVariables[i].id).replace(/([A-Z])/g, ' $1').trim()
+		variableName = variableName.charAt(0).toUpperCase() + variableName.slice(1)
+
 		if (i > 0) {
 			document.getElementById('backpackDiv').innerHTML += `<button id="currencyDisplay(${i})" onClick="currencyDisplay(${i})" style="width:167px">Show ${baseVariables[i].name}</button>`
 		}
@@ -193,7 +196,7 @@ function onLoadBase () {
 		gameDataBase[id + 'ShowVariable'] = true
 		gameDataBase[id + 'UnlockedVariable'] = false
 
-		document.getElementById('backgroundForValues').innerHTML += `<div class="stat" id="textFor${id}Div" style="color:#${baseVariables[i].color1};">${baseVariables[i].name} </div><div class="stat" id="textFor${id}"  style="float: right;color:#${baseVariables[i].color1};opacity:0.65;">0</div><p style="background-color:black" id="textFor${id}P"> </p><br  id="textFor${id}Br"/>`
+		document.getElementById('backgroundForValues').innerHTML += `<div class="stat" id="textFor${id}Div" style="color:#${baseVariables[i].color1};">${variableName} </div><div class="stat" id="textFor${id}"  style="float: right;color:#${baseVariables[i].color1};opacity:0.65;">0</div><p style="background-color:black" id="textFor${id}P"> </p><br  id="textFor${id}Br"/>`
 	}
 
 	gameDataBase.limes = 1

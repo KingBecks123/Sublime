@@ -15,7 +15,6 @@ function onLoadTravel() {
 addInventoryVariables([
 	{
 		id: 'megaCoins',
-		name: 'Mega Coins',
 		color1: 'FE0000'
 	},	
 ]);

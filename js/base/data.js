@@ -16,12 +16,10 @@ mainTabs = [
 baseVariables = [
 	{
 		id: 'limes',
-		name: 'Limes',
 		color1: '00FF01',
 	},
 	{
 		id: 'coins',
-		name: 'Coins',
 		color1: 'F8FF01',
 	},
 ]

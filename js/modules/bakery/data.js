@@ -1,12 +1,10 @@
 addInventoryVariables([
 	{
 		id: 'pies',
-		name: 'Pies',
 		color1: 'C67848'
 	},	
 	{
 		id: 'pieCoins',
-		name: 'Pie Coins',
 		color1: 'C67848'
 	},	
 ]);

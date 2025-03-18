@@ -10,17 +10,14 @@ addMainTabs([
 addInventoryVariables([
 	{
 		id: 'goldenLimes',
-		name: 'Golden Limes',
 		color1: 'F8FF01'
 	},
 	{
 		id: 'peeledLimes',
-		name: 'Peeled Limes',
 		color1: 'A0FF01'
 	},	
 	{
 		id: 'juice',
-		name: 'Juice',
 		color1: '00FF55'
 	},	
 ]);
