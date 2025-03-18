@@ -40,19 +40,19 @@ function onLoadScience () {
 		document.getElementById('research').innerHTML += `
 		<div class="basicDiv" id="` + id + `Div">
 			<button onclick="barStartScience(` + i + `)">` + sciences[i].buttonText + `</button>
-			<p class="basicText" id="` + id + `Researchers" style="color:#00AAFF;background-color:#000000"></p>
+			<p id="` + id + `Researchers" style="color:#00AAFF;background-color:#000000"></p>
 			<button                               style="background-color:#00AAFF;width:30px" onclick="addResearchers('` + id + `', -1)">-</button>
 			<button class="changeResearchersBy10" style="background-color:#00AAFF;width:50px" onclick="addResearchers('` + id + `', -10)">-10</button>
 			<button                		          style="background-color:#00AAFF;width:30px" onclick="addResearchers('` + id + `', 1)">+</button>
 			<button class="changeResearchersBy10" style="background-color:#00AAFF;width:50px" onclick="addResearchers('` + id + `', 10)">+10</button>
 			<div class="scienceInfo">
-				<p class="basicText">` + sciences[i].info + `</p>
+				<p>` + sciences[i].info + `</p>
 			</div>
 			<div class="skillProgress" id="` + id + `Progress">
 				<div class="skillBar" id="` + id + `Bar"></div>
 			</div>
-			<p class="basicText" id="` + id + `Text"></p>
-			<p class="basicText" id="` + id + `Time"></p>
+			<p id="` + id + `Text"></p>
+			<p id="` + id + `Time"></p>
 		</div>`
 
 

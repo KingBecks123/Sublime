@@ -79,25 +79,25 @@ addGameVariables({
 document.getElementById('bakery').innerHTML = `
 <div id="bakeryLeft" style="width:380px; top: 0px; position: absolute;">
 	<div class="basicDiv">
-		<p class="basicText" style="background-color:#DEAD85;" >Sell Pies</p>
-		<p class="basicText" style="background-color:#FF999A;" id="piePrice" >Current Price: 1 Pie Coin</p>
+		<p style="background-color:#DEAD85;" >Sell Pies</p>
+		<p style="background-color:#FF999A;" id="piePrice" >Current Price: 1 Pie Coin</p>
 		<button  onclick="decreasePiePrice()" style="width:166px">Decrease Price</button>
 		<button  onclick="increasePiePrice()" style="width:166px">Increase Price</button>
-		<p class="basicText sellingPieInfo" >The lower the price the faster you find customers</p>
-		<p class="basicText sellingPieInfo" >Click on the customer to sell to them before they become unhappy and leave!</p>
+		<p class="sellingPieInfo" >The lower the price the faster you find customers</p>
+		<p class="sellingPieInfo" >Click on the customer to sell to them before they become unhappy and leave!</p>
 		<button class="roundButton" id="findPieCustomersButton" onclick="pickCurrentTask('findPieCustomers')">Start Selling Pie</button>
 		<button id="sellingPieInfoButton" style="width:80px;" onclick="toggle('sellingPieInfoToggle')">Info</button>
 		<div class="skillProgress" id="findPieCustomersProgress">
 			<div class="skillBar" id="findPieCustomersBar"></div>
 		</div>
-		<p class="basicText" id="couldFindCustomer" >Search for customers</p>
+		<p id="couldFindCustomer" >Search for customers</p>
 	</div>
 	<div class="basicDiv">
 		<button id="customerButton" onclick="sellPieToCustomer()" style="width:80px;height:80px;text-align: center; line-height: 80px;font-size:40px;">:)</button>
 	</div>
 	<div class="basicDiv" id="payPieEmployeeDiv">
 		<button id="payPieEmployee" onclick="payPieEmployee()">Pay Employee 5 Pie Coins</button>
-		<p class="basicText" id="pieEmployeeSalesLeft" >Employee Sales Left: 0 / 10</p>
+		<p id="pieEmployeeSalesLeft" >Employee Sales Left: 0 / 10</p>
 	</div>
 </div>
 <div id="bakeryRight" style="width:380px; top: 0px; right: 0px; position: absolute;">
@@ -124,7 +124,7 @@ document.getElementById('bakery').innerHTML = `
 		<button onclick="addPieIngredient('flour')" style="width:166px">Add Flour</button>
 		<button onclick="bakePie()" style="width:166px">Bake Pie</button>
 		<button id="pieConveyorBeltOnButton" onclick="toggle('pieConveyorBeltOn')" style="width:166px">Conveyor Belt</button>
-		<p class="basicText" id="currentPieIngredients" >Current Ingredients: 0 Flour + 0 Juice</p>
+		<p id="currentPieIngredients" >Current Ingredients: 0 Flour + 0 Juice</p>
 		<div class="skillProgress" id="bakePieProgress">
 			<div class="skillBarColored" id="bakePieBar"></div>
 		</div>

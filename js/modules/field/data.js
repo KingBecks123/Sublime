@@ -65,18 +65,18 @@ addGameVariables({
 document.getElementById('field').innerHTML = `
 	<div style="width:380px;display:inline-block;position:absolute;">
 		<div class="basicDiv">
-			<p class="basicText" id="wheatSeedsNumber"></p>
-			<p class="basicText" id="wheatNumber"></p>
-			<p class="basicText" id="flourNumber"></p>
+			<p id="wheatSeedsNumber"></p>
+			<p id="wheatNumber"></p>
+			<p id="flourNumber"></p>
 			<div id="wheatMachines">
-				<p class="basicText" id="wheatHarvesterNumber"></p>
-				<p class="basicText" id="seedDrillNumber"></p>
+				<p id="wheatHarvesterNumber"></p>
+				<p id="seedDrillNumber"></p>
 			</div>
 			<button id="winnowWheat" onclick="buy('wheatSeeds', 1, 'wheat', 2)">Winnow Wheat</button>
 			<button id="grindFlour" onclick="buy('flour', 1, 'wheatSeeds', 2)">Grind Seeds Into Flour</button>
 		</div>
 		<div class="basicDiv" id="plotManagementDiv">
-			<p class="basicText" id="plotDetails"></p>
+			<p id="plotDetails"></p>
 			<button id="managePlot" onclick="managePlot()"></button>
 			<button onclick="showPlotManagementDiv = false">Close</button>
 		</div>

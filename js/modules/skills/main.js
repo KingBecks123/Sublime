@@ -82,7 +82,7 @@ function onLoadSkills () {
 		gameDataBase[name + 'Bar'] = 0
 		gameDataBase[name + 'SkillLevel'] = 0
 		
-		document.getElementById(name + "Div").innerHTML += '<button class="skillButton" id="' + name + "Button" + '" onclick="pickCurrentSkill(&apos;' + name + '&apos;)">' + skills[i].name  + '</button><div class="skillProgress" id="' + name + 'Progress"><div class="skillBar" id="' + name + 'Bar"></div></div><p id="' + name + 'SkillLevel" class="basicText"></p>'
+		document.getElementById(name + "Div").innerHTML += '<button class="skillButton" id="' + name + "Button" + '" onclick="pickCurrentSkill(&apos;' + name + '&apos;)">' + skills[i].name  + '</button><div class="skillProgress" id="' + name + 'Progress"><div class="skillBar" id="' + name + 'Bar"></div></div><p id="' + name + 'SkillLevel"></p>'
 		
 		if (gameData[name + 'Bar'] != 0)
 			runSkill(name)

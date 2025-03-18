@@ -5,8 +5,8 @@ function onLoadTravel() {
     upgradeElement.className = 'basicDiv';
     upgradeElement.id = upgrade.id;
     upgradeElement.innerHTML = `
-      <p class="basicText" style="background-color:#FF999A;">${upgrade.text}</p>
-      <p class="basicText">${upgrade.description}</p>
+      <p style="background-color:#FF999A;">${upgrade.text}</p>
+      <p>${upgrade.description}</p>
     `;
     megaCoinUpgradesElement.appendChild(upgradeElement);
   });

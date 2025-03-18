@@ -208,21 +208,21 @@ document.getElementById('company').innerHTML = `		<div class="basicDiv">
 			<button style="width:250px" onclick="tabEmployees('employeeOne')">John McLime</button>
 			<button id="employeeStatsInfoButton" style="width:80px;" onclick="toggle('employeeStatsInfoToggle')">Stats</button>
 			<div id="employeeOne">
-				<p class="basicText employeeStatsInfo" id="skillsEmployee" style="text-align: center;">Lime Collector</p>
-				<p class="basicText employeeStatsInfo" id="speedEmployee">Speed: 20% Of What I'm Taught</p>
-				<p class="basicText" id="currentSpeedEmployee">Current Speed: 0 limes per minute</p>
-				<p class="basicText employeeStatsInfo" id="wageEmployee">Wage: 10 Coins Per Minute</p>
-				<p class="basicText employeeStatsInfo" id="hungerEmployee">Hunger: 10 Limes Per Second</p>
-				<p class="basicText employeeStatsInfo" id="employeeHobby" style="text-align: right">Enjoys Faffing About</p>
+				<p class="employeeStatsInfo" id="skillsEmployee" style="text-align: center;">Lime Collector</p>
+				<p class="employeeStatsInfo" id="speedEmployee">Speed: 20% Of What I'm Taught</p>
+				<p id="currentSpeedEmployee">Current Speed: 0 limes per minute</p>
+				<p class="employeeStatsInfo" id="wageEmployee">Wage: 10 Coins Per Minute</p>
+				<p class="employeeStatsInfo" id="hungerEmployee">Hunger: 10 Limes Per Second</p>
+				<p class="employeeStatsInfo" id="employeeHobby" style="text-align: right">Enjoys Faffing About</p>
 				<button style="width:250px" onclick="teach()">Teach Employee</button>
 				<button id="teachInfoButton" style="width:80px;" onclick="toggle('teachInfoToggle')">Info</button>
-				<p class="basicText teachInfo">Click the 'Teach' button to start a timer</p>
-				<p class="basicText teachInfo">Collect as many limes as possible before time runs out!</p>
-				<p class="basicText teachInfo">Your employee learns from your abilities</p>
+				<p class="teachInfo">Click the 'Teach' button to start a timer</p>
+				<p class="teachInfo">Collect as many limes as possible before time runs out!</p>
+				<p class="teachInfo">Your employee learns from your abilities</p>
 				<div class="skillProgress" id="teachProgress">
 					<div class="skillBar" id="teachBar"></div>
 				</div>
-				<p class="basicText" id="workingEmployee" style="background-color:#bfbfbf;">Employee is idle<p>
+				<p id="workingEmployee">Employee is idle<p>
 				<div class="skillProgress" id="workingProgress">
 					<div class="skillBar" id="workingBar"></div>
 				</div>
@@ -232,18 +232,18 @@ document.getElementById('company').innerHTML = `		<div class="basicDiv">
         </div>
 		<div class="basicDiv" id="currencyBroker">
 			<button style="width:250px;">Currency Broker</button>
-            <p class="basicText" id="currencyBrokerFee"></p>
-            <p class="basicText" id="currencyBrokerSpeed"></p>
-            <p class="basicText" id="currencyBrokerTransferAmount"></p>
+            <p id="currencyBrokerFee"></p>
+            <p id="currencyBrokerSpeed"></p>
+            <p id="currencyBrokerTransferAmount"></p>
         </div>
 		<div class="basicDiv" id="pieMerchant">
 			<button style="width:250px;display:inline-block;">Pie Merchant</button>            
 			<button id="pieMerchantInfoButton" style="width:80px;" onclick="toggle('pieMerchantInfoToggle')">Info</button>
-            <p class="basicText" id="pieMerchantPieCoinPrice"></p>
-            <p class="basicText" id="pieMerchantBetaCoinPrice"></p>
-            <p class="basicText" id="pieMerchantMaxPay"></p>
-            <p class="basicText" id="pieMerchantCharm"></p>
-            <p class="basicText pieMerchantInfo">Increases customer acquisition speed</p>
+            <p id="pieMerchantPieCoinPrice"></p>
+            <p id="pieMerchantBetaCoinPrice"></p>
+            <p id="pieMerchantMaxPay"></p>
+            <p id="pieMerchantCharm"></p>
+            <p class="pieMerchantInfo">Increases customer acquisition speed</p>
         </div>
 `;
 
@@ -258,12 +258,12 @@ document.getElementById('hiringArea').innerHTML = `
                     <button id="advertiseButton" onclick="advertise()">Advertise your lime business</button>
 					<div id="autoAdvertiseBrokerDiv">
 					    <button id="autoAdvertiseBrokerButton" style="display:inline-block" onclick="toggle('autoAdvertiseBroker')">Auto</button>
-						<p class="basicText">Rule:</p>
-						<p class="basicText" id="textForAdvertisingBrokerRule">Auto advertise unless speed is under 30 seconds</p>
+						<p>Rule:</p>
+						<p id="textForAdvertisingBrokerRule">Auto advertise unless speed is under 30 seconds</p>
 						<button onclick="decreaseValue('autoAdvertiseSpeedValue')" style="width:166px">Decrease</button>
 						<button onclick="gameData.autoAdvertiseSpeedValue += 1" style="width:166px">Increase</button>
 					<div id="smarterAdvertisingBrokerRule">
-						<p class="basicText" id="textForSmarterAdvertisingBrokerRule">Auto advertise unless speed is under 30 seconds</p>
+						<p id="textForSmarterAdvertisingBrokerRule">Auto advertise unless speed is under 30 seconds</p>
 						<button onclick="decreaseValue('autoAdvertiseAmountValue')" style="width:166px">Decrease</button>
 						<button onclick="gameData.autoAdvertiseAmountValue += 1" style="width:166px">Increase</button>
 					</div>
@@ -271,40 +271,40 @@ document.getElementById('hiringArea').innerHTML = `
 					<div class="skillProgress" id="advertiseProgress">
                         <div class="skillBar" id="advertiseBar"></div>
                     </div>
-                    <p class="basicText" id="advertisePrice">Price: 10 Coins</p>
+                    <p id="advertisePrice">Price: 10 Coins</p>
                     <button id="application" style="display:block;width:300px;margin:auto;white-space: pre-wrap;" onclick="employeeTypes[gameData.applicationType].onHire()">Pin applications here</button>
-                    <p class="basicText" id="applicationInfo">Click the application to accept</p>
+                    <p id="applicationInfo">Click the application to accept</p>
                 </div>
                 <div id="autoBrokerAdvertiser" class="basicDiv">
                     <button onclick="buyAdvertisingManager()">Advertising Manager</button>
-                    <p class="basicText">Take on a manager to help you advertise for brokers</p>
-                    <p class="basicText">Price: 10 Alpha Coins</p>
+                    <p>Take on a manager to help you advertise for brokers</p>
+                    <p>Price: 10 Alpha Coins</p>
                 </div>
                 <div id="smarterAutoBrokerAdvertiser" class="basicDiv">
                     <button onclick="buy('smarterAdvertisingManagerBroker', 50 , 'alphaCoins')">Smarter Advertising Manager</button>
-                    <p class="basicText">Add a new rule for your advertising manager</p>
-                    <p class="basicText">Price: 50 Alpha Coins</p>
+                    <p>Add a new rule for your advertising manager</p>
+                    <p>Price: 50 Alpha Coins</p>
                 </div>
                 <div class="basicDiv" id="researchBetterAdvertising">
                     <button onclick="buy('advertisingLevel1', 200)">Research Better Advertising Methods</button>
-                    <p class="basicText">Price: 200 Coins</p>
+                    <p>Price: 200 Coins</p>
                 </div>
                 <div id="advertisingMethods">
                     <div class="basicDiv" id="advertisingLeaflets">
                         <button onclick="buy('advertisingLevel2', 100)">Hand Out Leaflets</button>
-                        <p class="basicText">Doubles advertising speed</p>
-                        <p class="basicText">Price: 100 Coins</p>
+                        <p>Doubles advertising speed</p>
+                        <p>Price: 100 Coins</p>
                     </div>
                     <div class="basicDiv" id="advertisingBillboard">
                         <button onclick="buy('advertisingLevel3', 500)">Buy A Billboard</button>
-                        <p class="basicText">Triples advertising speed</p>
-                        <p class="basicText">Price: 500 Coins</p>
+                        <p>Triples advertising speed</p>
+                        <p>Price: 500 Coins</p>
                     </div>
                 </div>
 				<div class="basicDiv" id="offlineEmployee">
 					<button onclick="buy('surveillanceCamera', 1000)">Buy A Surveillance Camera</button>
-					<p class="basicText">Make sure employees are working while you're away (offline)</p>
-					<p class="basicText">Price: 1,000 Coins</p>
+					<p>Make sure employees are working while you're away (offline)</p>
+					<p>Price: 1,000 Coins</p>
 				</div>
             </div>
 `;

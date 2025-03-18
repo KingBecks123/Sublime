@@ -19,14 +19,14 @@ document.getElementById('forest').innerHTML = `
 				<button id="forestTree2" style="background-color:lightgray;" onclick="gameData.forestTreeType = 2">Golden Lime Tree</button>
 			</div>
 			<div class="basicDiv">
-				<p class="basicText" id="basketsAmount" style="background-color:#bfbfbf;padding: 5px;">1 Basket</p>
+				<p id="basketsAmount" style="background-color:#bfbfbf;padding: 5px;">1 Basket</p>
 				<button onclick="basket()">Empty Baskets</button>
 				<button id="basketInfoButton" onclick="toggle('basketInfoToggle')">Info</button>
-				<p class="basicText basketInfo">Baskets collect 5 Limes per minute each</p>
-				<p class="basicText basketInfo">Baskets collect up to 25 Limes each</p>
-				<p class="basicText basketInfo" id="maxBaskets">20 baskets fit under the current tree</p>
-				<div id="goldenLimesInfo"><p class="basicText basketInfo">Golden limes slowly rot away once you collect them</p></div>
-				<p class="basicText" id="limesInBaskets">0 Limes</p>
+				<p class="basketInfo">Baskets collect 5 Limes per minute each</p>
+				<p class="basketInfo">Baskets collect up to 25 Limes each</p>
+				<p class="basketInfo" id="maxBaskets">20 baskets fit under the current tree</p>
+				<div id="goldenLimesInfo"><p class="basketInfo">Golden limes slowly rot away once you collect them</p></div>
+				<p id="limesInBaskets">0 Limes</p>
 				<div class="verticalProgress" id="basketProgress">
 					<div class="verticalBar" style="background-color:#4DFE89;" id="basketBar"></div>
 				</div>

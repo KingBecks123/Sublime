@@ -44,18 +44,18 @@ document.getElementById('tasks').innerHTML = `
     <button id="milestonesButton" style="background-color:lightgray;" onclick="tabTasks('milestones')">Respect Milestones</button>
 </div>
 <div class="basicDiv">
-    <p class="basicText" id="textForRespect" style="color:#FF00AA;background-color:#000000">0 Respect</p>
+    <p id="textForRespect" style="color:#FF00AA;background-color:#000000">0 Respect</p>
 </div>
 <div id="earn">
     <div class="basicDiv" id="diseaseControl">
-        <p class="basicText">Disease Control</p>
+        <p>Disease Control</p>
         <div class="unlockDiseaseAreaSwamp">
-            <p class="basicText" id="textForLakes">0 Lakes</p>
+            <p id="textForLakes">0 Lakes</p>
         </div>
         <div class="limeDiseaseControlInfo">
-            <p class="basicText">Help the citizens quarantine from Lime Disease</p>
+            <p>Help the citizens quarantine from Lime Disease</p>
             <div class="unlockDiseaseAreaSwamp">
-                <p class="basicText">For every lake used, gain / lose +1 respect</p>
+                <p>For every lake used, gain / lose +1 respect</p>
             </div>
         </div>
         <div class="unlockDiseaseAreaSwamp">
@@ -68,13 +68,13 @@ document.getElementById('tasks').innerHTML = `
     </div>
     <div class="basicDiv" id="diseaseControlStart">
         <div class="limeDiseaseInfo">
-            <p class="basicText">Disease type: Lime Disease</p>
-            <p class="basicText">Goal: Don't let it spread from any civilian to any other</p>
+            <p>Disease type: Lime Disease</p>
+            <p>Goal: Don't let it spread from any civilian to any other</p>
         </div>
-        <p class="basicText" id="numberOfCivilians">Number of civilians: 2</p>
+        <p id="numberOfCivilians">Number of civilians: 2</p>
         <div id="autoPlaceACivilianDiv">
             <button id="autoPlaceACivilianButton" onclick="toggle('autoPlaceACivilian')">Auto Place A Civilian</button><br>
-            <p class="basicText">Rule: Random empty spot</p>
+            <p>Rule: Random empty spot</p>
         </div>
         <button onclick="startSimulation()" style="width:150px">Start Simulation</button>
         <button id="autoStartSimulationButton" onclick="toggle('autoStartSimulation')">Auto</button>
@@ -89,18 +89,18 @@ document.getElementById('tasks').innerHTML = `
     </div>
     <div class="basicDiv" id="benevolence">
         <button id="benevolenceToggleButton" onclick="benevolenceToggle()">Benevolence</button>
-        <p class="basicText" id="benevolenceRespectIncrease">Respect increase: </p>
+        <p id="benevolenceRespectIncrease">Respect increase: </p>
     </div>
 </div>
 <div id="milestones">
     <div class="basicDiv">
-        <p class="basicText" id="10RespectMilestone"    >10 Respect: ???</p>
-        <p class="basicText" id="25RespectMilestone"    >25 Respect: ???</p>
-        <p class="basicText" id="50RespectMilestone"    >50 Respect: ???</p>
-        <p class="basicText" id="100RespectMilestone"   >100 Respect: ???</p>
-        <p class="basicText" id="500RespectMilestone"   >500 Respect: ???</p>
-        <p class="basicText" id="1000RespectMilestone"  >1,000 Respect: ???</p>
-        <p class="basicText tooltip" id="10000RespectMilestone" >10,000 Respect: ???</p>
+        <p id="10RespectMilestone"    >10 Respect: ???</p>
+        <p id="25RespectMilestone"    >25 Respect: ???</p>
+        <p id="50RespectMilestone"    >50 Respect: ???</p>
+        <p id="100RespectMilestone"   >100 Respect: ???</p>
+        <p id="500RespectMilestone"   >500 Respect: ???</p>
+        <p id="1000RespectMilestone"  >1,000 Respect: ???</p>
+        <p class="tooltip" id="10000RespectMilestone" >10,000 Respect: ???</p>
     </div>
 </div>
 `;

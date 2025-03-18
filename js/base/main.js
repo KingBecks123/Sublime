@@ -193,7 +193,7 @@ function onLoadBase () {
 		gameDataBase[id + 'ShowVariable'] = true
 		gameDataBase[id + 'UnlockedVariable'] = false
 
-		document.getElementById('backgroundForValues').innerHTML += '<div class="stat" id="textFor' + id + 'Div" style="color:#' + baseVariables[i].color2 + '">' + baseVariables[i].name + ' </div><div class="stat" id="textFor' + id + '"  style="float: right;color:#' + baseVariables[i].color1 + '">0</div><p id="textFor' + id + 'P"> </p><br  id="textFor' + id + 'Br"/>'
+		document.getElementById('backgroundForValues').innerHTML += '<div class="stat" id="textFor' + id + 'Div" style="color:#' + baseVariables[i].color2 + '">' + baseVariables[i].name + ' </div><div class="stat" id="textFor' + id + '"  style="float: right;color:#' + baseVariables[i].color1 + '">0</div><p style="background-color:black" id="textFor' + id + 'P"> </p><br  id="textFor' + id + 'Br"/>'
 	}
 
 	gameDataBase.limes = 1

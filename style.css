@@ -4,6 +4,12 @@
   letter-spacing: -0.05em;
 }
 
+p {
+  padding: 5px;
+  margin: 5px;
+  background-color: #BBBBBB;
+}
+
 /* Common utility classes */
 .hidden {
   display: none;
@@ -69,7 +75,7 @@
 }
 
 .info-box {
-  background-color: #bfbfbf;
+  background-color: #BBBBBB;
   padding-left: 130px;
   display: block;
   height: 60px;
@@ -169,12 +175,6 @@
   margin: 10px 5px;
   background-color: #222222;
   box-shadow: 0 2px 0 #1a1c2c;
-}
-
-.basicText {
-  padding: 5px;
-  margin: 5px;
-  background-color: #BBBBBB;
 }
 
 .titleText {

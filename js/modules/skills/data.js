@@ -114,7 +114,7 @@ document.getElementById('skills').innerHTML = `
 				<div class="skillProgress" id="eatProgress">
 					<div class="skillBar" id="eatBar"></div>
 				</div>
-				<p class="basicText" id="eat"></p>
+				<p id="eat"></p>
 			</div>
 			<div class="basicDiv autoCollectingDiv" id="autoCollectingDiv">
 				<button id="autoCollectingButton" onclick="autoCollecting()">Auto Collect</button>
