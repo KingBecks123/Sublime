@@ -1,3 +1,4 @@
+/*
 const AUDIO_DATA = {
     // Sound definitions with all properties grouped by sound type
     BUTTON_CLICK: {
@@ -11,4 +12,5 @@ const AUDIO_DATA = {
         volume: 0.2,
         poolSize: 2
     }
-}; 
+};
+*/

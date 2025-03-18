@@ -1,3 +1,12 @@
+const GAME_VERSION = "1.1.5";
+const VERSION_NOTES = 
+`16/Mar/2025
+    Fixed issue with lore hooks
+    Added sfx toggle button with a cool color change
+    Fixed issue with wheat harvester and seed drill
+    Updated audio system to handle multiple sounds better
+`;
+
 mainTabs = [
 	{
 		id: 'options',
@@ -170,3 +179,18 @@ document.getElementById('market').innerHTML = `
 myBeige = "#DEAD85";
 myGray = "#BBBBBB";
 myLime = "#4DFE89";
+
+const AUDIO_DATA = {
+    // Sound definitions with all properties grouped by sound type
+    BUTTON_CLICK: {
+        path: 'assets/sfx/button-click.wav',
+        volume: 0.3,
+        poolSize: 5  // Increased from 2 to 5 for better handling of rapid clicks
+    },
+    
+    CASH: {
+        path: 'assets/sfx/cash.wav',
+        volume: 0.2,
+        poolSize: 2
+    }
+};

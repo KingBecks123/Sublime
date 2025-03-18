@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+	<!-- <link rel="icon" href="assets/images/YOUR_ICON.ico"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <meta charset="utf-8">
+    <title>YOUR_TITLE</title>
+	<meta name="description" content="YOUR_DESCRIPTION">
+
+	<!-- Google Analytics
+	<script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_ID"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'YOUR_ID');
+	</script>
+    -->
+
+	<!-- Cache-busting with fixed version number - Change this with each deployment
+	<script>
+		// Update this version number when you deploy changes
+		const CACHE_VERSION = '1.0.0';
+		
+		// Add version to all script tags with js/ in the src
+		document.addEventListener('DOMContentLoaded', function() {
+			document.querySelectorAll('script[src]').forEach(script => {
+				if (script.src.includes('js/')) {
+					// Remove any existing v= parameter
+					let srcWithoutParam = script.src.split('?')[0];
+					script.src = srcWithoutParam + '?v=' + CACHE_VERSION;
+				}
+			});
+		});
+	</script>
+     -->
+</head>
+
+<!-- Your Game Content -->
+<body id="mainBody" class="no-select" onload="gameStart()">
+<!-- Saving and Loading
+<button onclick="importGame()" style="width:164px">Import Game</button>
+<button onclick="update('exportCode', btoa(JSON.stringify(game)))" style="width:164px">Export Game</button><br>
+<button onclick="resetGame()" style="background-color:#FF999A;width:342px">Reset Game</button><br>
+<p id="exportCode" style="background-color:#bfbfbf;word-wrap:break-word;-webkit-user-select: all;-ms-user-select: all;user-select: all;width:331px">Export Code</p>
+-->
+
+<!-- All Imports -->
+
+    <!-- JQuery
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+
+    <!-- Sublime Games Plugin-->
+    <script src="assets/sublime-games/functions.js" charset="utf-8" defer></script>
+	<link rel="stylesheet" href="assets/sublime-games/styles.css">
+
+    <!-- Your Imports!-->
+
+</body>
+
+</html>

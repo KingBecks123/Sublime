@@ -57,7 +57,33 @@
     <br><br><br>
     <nav id="navigateButtons" class="navigateButtons"></nav>
 	<div id="cheats" class="hidden"></div>
-    <div id="options"></div>
+    <div id="options">
+        <div class="basicDiv">
+            <button onclick="tabOptions('gameOptions')">Game</button>
+            <button onclick="tabOptions('uiOptions')">UI</button>
+            <button onclick="tabOptions('statsOptions')">Stats</button>
+            <a href="https://discord.gg/scB7TbaqNS" target="_blank" style="float:right;"><button><img src="assets/images/icons8-discord-32.png" alt="Discord" style="width:16px;height:16px;"></button></a>
+		</div>
+		<div class="basicDiv">
+			<p>Sublime by Becky</p>
+			<p>Alpha Version</p>
+			<div id="gameOptions">
+				<button onclick="importGame()" style="width:164px">Import Game</button>
+				<button onclick="update('exportCode', btoa(JSON.stringify(game)))" style="width:164px">Export Game</button><br>
+				<button onclick="resetGame()" style="background-color:#FF999A;width:342px">Reset Game</button><br>
+				<p id="exportCode" style="background-color:#bfbfbf;word-wrap:break-word;-webkit-user-select: all;-ms-user-select: all;user-select: all;width:331px">Export Code</p>
+			</div>
+			<div id="statsOptions">
+				<p id="textForTimePlayed"></p>
+			</div>
+			<div id="uiOptions">
+				<button class="ui-option" onclick="changeZoomSize()">Change Zoom Size</button><br>
+				<button class="ui-option" id="hideCompletedSkillsButton" onclick="toggle('hideCompletedSkills')">Completed Skills Shown</button><br>
+				<button class="ui-option" id="hideMaxedPurchasesButton" onclick="toggle('hideMaxedPurchases')">Maxed Purchases Shown</button><br>
+				<button class="ui-option" onclick="invert('showDonationButton')" id="showDonationButton"></button>
+			</div>
+		</div>
+    </div>
     <div id="market" class="market-container"></div>
     <div id="company" class="module-container"></div>
     <div id="inventory" class="module-container"></div>
@@ -87,24 +113,20 @@
 
 <!-- All Imports -->
 
+    <!-- API -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-	<link rel="stylesheet" href="style.css">
-
-	<script src="assets/sublime-games/functions.js" charset="utf-8" defer></script>
-	<link rel="stylesheet" href="assets/sublime-games/styles.css">
+    <!-- Sublime Games Plugin-->
+	<link rel="stylesheet" href="assets/sublime-games-plugin/css/styles.css">
+    <script src="assets/sublime-games-plugin/js/data.js" charset="utf-8" defer></script>
+    <script src="assets/sublime-games-plugin/js/functions.js" charset="utf-8" defer></script>
 
 	<!-- Core -->
-	<script src="js/colors.js" charset="utf-8" defer></script>
-	<script src="js/functions.js" charset="utf-8" defer></script>
-	<script src="js/version.js" charset="utf-8" defer></script>
-	
-	<!-- Base -->
+    <link rel="stylesheet" href="style.css">
 	<script src="js/base/data.js" charset="utf-8" defer></script>
 	<script src="js/base/main.js" charset="utf-8" defer></script>
 
     <!-- Data -->
-        <script src="js/modules/audio/data.js" charset="utf-8" defer></script>
         <script src="js/modules/bakery/data.js" charset="utf-8" defer></script>
         <script src="js/modules/brokers/data.js" charset="utf-8" defer></script>
         <script src="js/modules/cheats/data.js" charset="utf-8" defer></script>
@@ -115,7 +137,6 @@
         <script src="js/modules/inventory/data.js" charset="utf-8" defer></script>
         <script src="js/modules/lore/data.js" charset="utf-8" defer></script>
         <script src="js/modules/market/data.js" charset="utf-8" defer></script>
-        <script src="js/modules/options/data.js" charset="utf-8" defer></script>
         <script src="js/modules/science/data.js" charset="utf-8" defer></script>
         <script src="js/modules/skills/data.js" charset="utf-8" defer></script>
         <script src="js/modules/tasks/data.js" charset="utf-8" defer></script>
@@ -123,7 +144,6 @@
 
 
     <!-- Main -->
-        <script src="js/modules/audio/main.js" charset="utf-8" defer></script>
         <script src="js/modules/bakery/main.js" charset="utf-8" defer></script>
         <script src="js/modules/brokers/main.js" charset="utf-8" defer></script>
         <script src="js/modules/cheats/main.js" charset="utf-8" defer></script>
@@ -134,7 +154,6 @@
         <script src="js/modules/inventory/main.js" charset="utf-8" defer></script>
         <script src="js/modules/lore/main.js" charset="utf-8" defer></script>
         <script src="js/modules/market/main.js" charset="utf-8" defer></script>
-        <script src="js/modules/options/main.js" charset="utf-8" defer></script>
         <script src="js/modules/science/main.js" charset="utf-8" defer></script>
         <script src="js/modules/skills/main.js" charset="utf-8" defer></script>
         <script src="js/modules/tasks/main.js" charset="utf-8" defer></script>
