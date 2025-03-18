@@ -1,5 +1,5 @@
 function gameStart() {
-  loadStuff(JSON.parse(localStorage.getItem("mathAdventureSave")));
+  loadGame(JSON.parse(localStorage.getItem("mathAdventureSave")));
   secondsOffline = Math.floor((Date.now() - game.lastSaveTime) / 1000);
   onLoadSkills();
   onLoadBase();
@@ -71,10 +71,6 @@ function restartBar(x) {
   }
 }
 
-function hide(id) {
-  document.getElementById(id).style.display = 'none';
-}
-
 function pin(x) {
   if (game.pin === x && game.pin !== "none") {
     game.pin = "none";
@@ -98,38 +94,45 @@ function normalizeButtons() {
 }
 
 function pinButton() {
-  if (game.pin !== "none") {
-    const pinnedButton = document.getElementById(game.pin);
-    $(".navigateButtons").append(pinnedButton);
+    if (game.pin !== "none") {
+        const pinnedButton = document.getElementById(game.pin);
+        $(".navigateButtons").append(pinnedButton);
 
-    pinnedButton.style.width = "120px";
-    pinnedButton.style.margin = "0px";
-    pinnedButton.style.padding = "0px";
-  }
+        pinnedButton.style.width = "120px";
+        pinnedButton.style.margin = "0px";
+        pinnedButton.style.padding = "0px";
+    }
 }
 
-function pickCurrentTask(x) {
+function pickCurrentTask(task) {
+  const canSelectTwoTasks = game.ambidextrousSkillLevel === game.ambidextrousSkillLevelMax;
+
   const { currentTask: taskOne, currentTask2: taskTwo } = game;
 
   if (!event.shiftKey && game.toggleActions) {
-    if (game.ambidextrousSkillLevel === game.ambidextrousSkillLevelMax) {
-      if (taskOne === x && taskOne !== "none" && taskTwo !== x) {
+    if (canSelectTwoTasks) {
+      if (taskOne === task && taskOne !== "none" && taskTwo !== task) {
         game.currentTask = "none";
-      } else if (taskOne === "none" && taskTwo !== x) {
-        if (!isTaskConflict(taskTwo, x)) {
-          game.currentTask = x;
+      } 
+      else if (taskOne === "none" && taskTwo !== task) {
+        if (!isTaskConflict(taskTwo, task)) {
+          game.currentTask = task;
         }
-      } else if (taskTwo === x && taskTwo !== "none") {
+      } 
+      else if (taskTwo === task && taskTwo !== "none") {
         game.currentTask2 = "none";
-      } else if (taskTwo === "none") {
-        if (!isTaskConflict(taskOne, x)) {
-          game.currentTask2 = x;
+      } 
+      else if (taskTwo === "none") {
+        if (!isTaskConflict(taskOne, task)) {
+          game.currentTask2 = task;
         }
       }
-    } else {
+    } 
+    else {
       game.currentTask = (taskOne === x && taskOne !== "none") ? "none" : x;
     }
-  } else {
+  } 
+  else {
     startCurrentTask(x);
   }
 }
@@ -161,8 +164,8 @@ function startCurrentTask(x) {
   }
 }
 
-function updateBar(x) {
-  const barId = x + "Bar";
+function updateBar(title) {
+  const barId = title + "Bar";
   const elem = document.getElementById(barId);
 
   if (game[barId] > 100) {
@@ -170,14 +173,6 @@ function updateBar(x) {
   }
 
   elem.style.width = game[barId] + "%";
-}
-
-function toggle(x) {
-  if (game[x] === 0) {
-    game[x] = 1;
-  } else {
-    game[x] = 0;
-  }
 }
 
 function buy(item, price, currency = 'coins', amount = 1) {
@@ -209,14 +204,6 @@ function bulkableBuyMax(item, price) {
       game[item] = maxAmount;
     }
   }
-}
-
-function beckyRandom(max) {
-  return Math.floor(Math.random() * max) + 1;
-}
-
-function beckyRandomMinMax(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
 }
 
 function smartBarStart(id, amount) {
@@ -259,16 +246,6 @@ function decreaseValue(id) {
     game[id] -= 1;
   }
 }
-
-function checkShow(x, id, style) {
-  const element = document.getElementById(id);
-  if (style === 'visible') {
-    element.style.visibility = x ? 'visible' : 'hidden';
-  } else {
-    element.style.display = x ? (style === 'inline' ? 'inline-block' : 'block') : 'none';
-  }
-}
-
 
 function runBar(id, amount) {
   const barName = id + 'Bar';

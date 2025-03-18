@@ -1,7 +1,3 @@
-function invert(bool) {
-	game[bool] = !game[bool];
-}
-
 function getLimesButton() {
 	startingMessages()
 	getLimes()
@@ -31,7 +27,7 @@ function getLimes() {
 		update("newInfo", "Couldn't find any limes...")
 }
 
-function foundSomething(){
+function foundSomething() {
 	if (canFindNothing)
 		update("newInfo", "You found something!")
 
@@ -56,30 +52,6 @@ function stopActions() {
 	game.currentTask2 = 'none'
 }
 
-function importGame() {
-	var savegame = JSON.parse(atob(prompt("Import Code: ")))
-	if (savegame !== null) {
-		loadStuff(savegame)
-		saveGame()
-		location.reload()
-	}
-}
-
-function loadStuff(savegame) {
-	Object.assign(game, gameBase)
-	if (savegame !== null) {
-		Object.assign(game, savegame)
-		backwardsCompatibility()
-		game.versionNumber = 192
-	} else
-		update("newInfo", "Save File Empty.")
-}
-
-function saveGame() {
-	if (ableToSave)
-		localStorage.setItem('mathAdventureSave', JSON.stringify(game))
-}
-
 function resetGame() {
 	response = window.prompt("Are you sure? Type 'yes' if you are");
 
@@ -98,14 +70,6 @@ function resetGame() {
 	else {
 		update("newInfo", "Invalid response.")
 	}
-}
-
-function reset() {
-	ableToSave = false
-	game = {}
-	Object.assign(game, gameBase)
-	localStorage.setItem('mathAdventureSave', JSON.stringify(game))
-	location.reload()
 }
 
 function backwardsCompatibility() {
