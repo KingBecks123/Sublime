@@ -248,7 +248,7 @@ document.getElementById('company').innerHTML = `		<div class="basicDiv">
 `;
 
 document.getElementById('hiringArea').innerHTML = `
-            <div style="display:inline-block;width:380px;">
+            <div class="module-container" style="display:inline-block;">
                 <div class="basicDiv">
 					<div id="hireToggleButtons">
 						<button id="hireEmployeeToggleButton"    onclick="gameData.typeToHireToggle = 'basic'" >Basic Employees</button>

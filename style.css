@@ -339,3 +339,7 @@ body {
   margin: 5px;
   background-color: #DEAD85;
 }
+
+.wide-button {
+  width: 166px;
+}

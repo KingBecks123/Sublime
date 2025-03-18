@@ -73,7 +73,7 @@ addGameVariables({
 });
 
 document.getElementById('bakery').innerHTML = `
-<div id="bakeryLeft" style="width:380px; top: 0px; position: absolute;">
+<div id="bakeryLeft" class="module-container" style="top: 0px; position: absolute;">
 	<div class="basicDiv">
 		<p style="background-color:#DEAD85;" >Sell Pies</p>
 		<p style="background-color:#FF999A;" id="piePrice" >Current Price: 1 Pie Coin</p>
@@ -96,7 +96,7 @@ document.getElementById('bakery').innerHTML = `
 		<p id="pieEmployeeSalesLeft" >Employee Sales Left: 0 / 10</p>
 	</div>
 </div>
-<div id="bakeryRight" style="width:380px; top: 0px; right: 0px; position: absolute;">
+<div id="bakeryRight" class="module-container" style="top: 0px; right: 0px; position: absolute;">
 	<div class="basicDiv" id="pieOvenDiv">
 		<div id="pieBuckets">
 			<div class="bucketProgress" id="juiceBucketProgress">

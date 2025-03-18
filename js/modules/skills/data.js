@@ -103,7 +103,7 @@ addInventoryVariables([
   });
 
 document.getElementById('skills').innerHTML = `
-		<div id="skillsSection1" style="width:380px;top:0;position:absolute">
+		<div class="module-container" id="skillsSection1" style="top:0;position:absolute">
 			<div class="basicDiv" id="eatFoodDiv">
 				<button class="roundButton tooltip" id="eatButton" onclick="pickCurrentTask('eat')">   Eat Food   
 				</button>
@@ -132,7 +132,7 @@ document.getElementById('skills').innerHTML = `
 				</div>
 			</div>
 		</div>
-		<div id="skillsSection2" style="width:380px;right:0;position:absolute"></div>
+		<div id="skillsSection2" class="module-container" style="right:0;position:absolute"></div>
 `;
 
 skills.forEach(skill => {

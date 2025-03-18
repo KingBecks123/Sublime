@@ -13,7 +13,7 @@ addGameVariables({
 });
 
 document.getElementById('forest').innerHTML = `
-		<div style="width:380px;display:inline-block;position:absolute;">
+		<div class="module-container" style="display:inline-block;position:absolute;">
 			<div class="basicDiv" id="treeTypeDiv">
 				<button id="forestTree1" style="background-color:lightgray;" onclick="gameData.forestTreeType = 1">Basic Tree</button>
 				<button id="forestTree2" style="background-color:lightgray;" onclick="gameData.forestTreeType = 2">Golden Lime Tree</button>

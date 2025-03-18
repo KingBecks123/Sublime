@@ -63,7 +63,7 @@ addGameVariables({
 });
 
 document.getElementById('field').innerHTML = `
-	<div style="width:380px;display:inline-block;position:absolute;">
+	<div class="module-container" style="display:inline-block;position:absolute;">
 		<div class="basicDiv">
 			<p id="wheatSeedsNumber"></p>
 			<p id="wheatNumber"></p>

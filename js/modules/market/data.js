@@ -1,5 +1,5 @@
 document.getElementById('marketMain').innerHTML = `
-<div style="display:inline-block;width:380px;">
+<div class="module-container" style="display:inline-block;">
     <p class="titleText">Your Stall</p>
     <div class="basicDiv" id="sellYourLimesDiv">
         <button id="sellYourLimesButton" style="background-color:#FCFF4E" onclick="buy('coins', 50, 'limes')">Sell Your Limes</button>
@@ -25,7 +25,7 @@ document.getElementById('marketMain').innerHTML = `
         </div>
     </div>
 </div>
-<div style="display:inline-block;width:380px;position:absolute;">
+<div class="module-container" style="display:inline-block;position:absolute;">
     <p class="titleText">Other's Stalls</p>
     <div id="nourishment">
         <div class="basicDiv" id="collectingUpgrade">
