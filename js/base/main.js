@@ -416,11 +416,6 @@ function updateValuesBase () {
 
 function gameStart() {
     loadGame(JSON.parse(localStorage.getItem("mathAdventureSave")));
-
-    if (game.lastSaveVersion !== GAME_VERSION){
-        window.location.reload(true);
-    }
-
     secondsOffline = Math.floor((Date.now() - game.lastSaveTime) / 1000);
     onLoadSkills();
     onLoadBase();

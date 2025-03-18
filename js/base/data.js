@@ -1,5 +1,6 @@
 const GAME_VERSION = "1.1.7";
-const VERSION_NOTES = `18/Mar/2025
+const VERSION_NOTES = 
+`18/Mar/2025
     An uncountable number of backend changes
 `
 
@@ -151,7 +152,6 @@ var gameBase = {
 	showDonationButton: true,
 
 	sfxOn: 1,
-    lastSaveVersion: GAME_VERSION
 }
 
 var game = {}
