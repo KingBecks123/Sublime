@@ -69,14 +69,14 @@ document.getElementById('trade').innerHTML = `
 			<div id="brokerApplicantUpgrades">
 				<div class="basicDiv">
 					<p style="background-color:#FDFF9A">Applicant Speed</p>
-					<button onclick="brokerApplicantNew('Speed', -1, 'min', 'gameData.minBrokerApplicantSpeed > 1')" style="width:166px">Decrease Minimum</button>
+					<button onclick="brokerApplicantNew('Speed', -1, 'min', 'game.minBrokerApplicantSpeed > 1')" style="width:166px">Decrease Minimum</button>
 					<button onclick="brokerApplicantNew('Speed', -1, 'max')" style="width:166px">Decrease Maximum</button>
 					<p id="textForBrokerApplicantSpeed">Currently 20 - 100 Seconds</p>
 					<p id="brokerApplicantSpeedPrice">Price: 1 Alpha Coins</p>
 				</div>
 				<div class="basicDiv">
 					<p style="background-color:#FDFF9A">Applicant Fee</p>
-					<button onclick="brokerApplicantNew('Fee', -100, 'min', 'gameData.minBrokerApplicantFee > 0')" style="width:166px">Decrease Minimum</button>
+					<button onclick="brokerApplicantNew('Fee', -100, 'min', 'game.minBrokerApplicantFee > 0')" style="width:166px">Decrease Minimum</button>
 					<button onclick="brokerApplicantNew('Fee', -100, 'max')" style="width:166px">Decrease Maximum</button>
 					<p id="textForBrokerApplicantFee">Currently 10,000 - 200,000 Coins</p>
 					<p id="brokerApplicantFeePrice">Price: 1 Alpha Coins</p>

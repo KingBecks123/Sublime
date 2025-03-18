@@ -1,24 +1,24 @@
 function startSimulation() {
-	if (gameData.civiliansPlaced == gameData.civiliansTotal) {
+	if (game.civiliansPlaced == game.civiliansTotal) {
 		for (x = 0; x < 5; x++) {
 			for (y = 0; y < 5; y++) {
-				if (gameData.diseaseArray[x][y] == 'civilian' || gameData.diseaseArray[x][y] == 'dead') {
+				if (game.diseaseArray[x][y] == 'civilian' || game.diseaseArray[x][y] == 'dead') {
 					for (xSpread = x - 1; xSpread < x + 2; xSpread++) {
 						for (ySpread = y - 1; ySpread < y + 2; ySpread++) {
 							if ((xSpread < 5 && xSpread >= 0 && ySpread < 5 && ySpread >= 0) && !(x == xSpread && y == ySpread)) {
 								if (canPlaceTile (xSpread, ySpread))
-									gameData.diseaseArray[xSpread][ySpread] = 'disease'
-								else if (gameData.diseaseArray[xSpread][ySpread] == 'civilian')
-									gameData.diseaseArray[xSpread][ySpread] = 'dead'
+									game.diseaseArray[xSpread][ySpread] = 'disease'
+								else if (game.diseaseArray[xSpread][ySpread] == 'civilian')
+									game.diseaseArray[xSpread][ySpread] = 'dead'
 							}
 						}
 					}
 				}
 			}
 		}
-		gameData.simulationTime = true
+		game.simulationTime = true
 
-		if (gameData.autoCheckSimulation)
+		if (game.autoCheckSimulation)
 			checkResults()
 		else
 			updateMapTileAesthetic()
@@ -31,11 +31,11 @@ function diseaseControlQuit() {
 }
 
 function checkResults() {
-	if (gameData.civiliansPlaced == gameData.civiliansTotal && gameData.simulationTime) {
+	if (game.civiliansPlaced == game.civiliansTotal && game.simulationTime) {
 		diseaseControlFailed = false
 		for (x = 0; x < 5; x++) {
 			for (y = 0; y < 5; y++) {
-				if (gameData.diseaseArray[x][y] == 'dead')
+				if (game.diseaseArray[x][y] == 'dead')
 					diseaseControlFailed = true
 			}
 		}
@@ -44,25 +44,25 @@ function checkResults() {
 }
 
 function countPoints(diseaseControlFailed) {
-	points = gameData.limeDiseaseLakesSet + 1 + gameData.respectBillboard
+	points = game.limeDiseaseLakesSet + 1 + game.respectBillboard
 
-	if (gameData.benevolenceToggle)
-		points += Math.floor((Math.pow(2, gameData.limeDiseaseLakes - 10)) * gameData.benevolence)
+	if (game.benevolenceToggle)
+		points += Math.floor((Math.pow(2, game.limeDiseaseLakes - 10)) * game.benevolence)
 
 	if (diseaseControlFailed) 
 		points *= -1
 
-	gameData.respect += points
-	gameData.diseaseControlFinished = true
+	game.respect += points
+	game.diseaseControlFinished = true
 
 	for (x = 0; x < 5; x++)
 		for (y = 0; y < 5; y++)
-			gameData.diseaseArray[x][y] = 'empty'
+			game.diseaseArray[x][y] = 'empty'
 		
-	gameData.civiliansPlaced = 0
-	gameData.simulationTime = false
+	game.civiliansPlaced = 0
+	game.simulationTime = false
 	
-	if (gameData.autoStartTask)
+	if (game.autoStartTask)
 		diseaseControlTask()
 	
 	updateMapTileAesthetic()
@@ -70,54 +70,54 @@ function countPoints(diseaseControlFailed) {
 
 function mapTile(x, y) {
 
-	if (!gameData.diseaseControlFinished) {
-		if (canPlaceTile (x, y) && gameData.civiliansPlaced < gameData.civiliansTotal) {
-			gameData.diseaseArray[x][y] = 'civilian'
-			gameData.civiliansPlaced += 1
-		} else if (gameData.diseaseArray[x][y] == 'civilian') {
-			gameData.diseaseArray[x][y] = 'empty'
-			gameData.civiliansPlaced -= 1
+	if (!game.diseaseControlFinished) {
+		if (canPlaceTile (x, y) && game.civiliansPlaced < game.civiliansTotal) {
+			game.diseaseArray[x][y] = 'civilian'
+			game.civiliansPlaced += 1
+		} else if (game.diseaseArray[x][y] == 'civilian') {
+			game.diseaseArray[x][y] = 'empty'
+			game.civiliansPlaced -= 1
 		}
 	}
 
-	if (gameData.autoStartSimulation)
+	if (game.autoStartSimulation)
 		startSimulation()
 
 	updateMapTileAesthetic()
 }
 
 function diseaseControlTask() {
-	if (gameData.diseaseControlFinished) {
-		gameData.diseaseControlFinished = false
-		gameData.civiliansTotal = beckyRandom(4)
+	if (game.diseaseControlFinished) {
+		game.diseaseControlFinished = false
+		game.civiliansTotal = beckyRandom(4)
 
-		gameData.limeDiseaseLakesSet = gameData.limeDiseaseLakes
+		game.limeDiseaseLakesSet = game.limeDiseaseLakes
 
 
-		for (limeDiseaseLakesCurrent = 0; limeDiseaseLakesCurrent < gameData.limeDiseaseLakes; 0) {
+		for (limeDiseaseLakesCurrent = 0; limeDiseaseLakesCurrent < game.limeDiseaseLakes; 0) {
 
 			x = beckyRandom(5) - 1
 			y = beckyRandom(4) - 1
 
 			if (canPlaceTile(x, y)) {
-				gameData.diseaseArray[x][y] = 'lake'
+				game.diseaseArray[x][y] = 'lake'
 				limeDiseaseLakesCurrent += 1
 			}
 		}
 
-		if (gameData.autoPlaceACivilian && gameData.numberOfTiles !== gameData.limeDiseaseLakes) {
-			for (i = 0; gameData.civiliansPlaced < 1; i) {
+		if (game.autoPlaceACivilian && game.numberOfTiles !== game.limeDiseaseLakes) {
+			for (i = 0; game.civiliansPlaced < 1; i) {
 				x = beckyRandom(5) - 1
 				y = beckyRandom(4) - 1
 
 				if (canPlaceTile(x, y)) {
-					gameData.diseaseArray[x][y] = 'civilian'
-					gameData.civiliansPlaced += 1
+					game.diseaseArray[x][y] = 'civilian'
+					game.civiliansPlaced += 1
 				}
 			}
 		}
 		
-		if (gameData.autoStartSimulation)
+		if (game.autoStartSimulation)
 			startSimulation()
 		
 		updateMapTileAesthetic()
@@ -125,25 +125,25 @@ function diseaseControlTask() {
 }
 
 function canPlaceTile (x, y) {
-	return (doesTileExist (x, y) && gameData.diseaseArray[x][y] == 'empty')
+	return (doesTileExist (x, y) && game.diseaseArray[x][y] == 'empty')
 }
 
 function doesTileExist (x, y) {
-	return ((x < 4 || y < gameData.numberOfTiles - 16))
+	return ((x < 4 || y < game.numberOfTiles - 16))
 }
 
 function changeLakeAmount(x) {
-	if ((gameData.limeDiseaseLakes < gameData.numberOfTiles && x == 1) || (gameData.limeDiseaseLakes > 0 && x == -1))
-		gameData.limeDiseaseLakes += x
+	if ((game.limeDiseaseLakes < game.numberOfTiles && x == 1) || (game.limeDiseaseLakes > 0 && x == -1))
+		game.limeDiseaseLakes += x
 }
 
 diseaseTileTypes = {
 	empty: {
-		color: '#DEAD85',
+		color: myBeige,
 		text: '‏‏‎ ‎‏‏‎ ‎‎'
 	},
 	civilian: {
-		color: '#4DFE89',
+		color: myLime,
 		text: '‏‏‎:)'
 	},
 	disease: {
@@ -164,8 +164,8 @@ function updateMapTileAesthetic() {
 	for (x = 0; x < 5; x++) {
 		for (y = 0; y < 4; y++) {
 			if (doesTileExist (x, y)) {
-				setColor('mapTile-' + x + '-' + y, diseaseTileTypes[gameData.diseaseArray[x][y]].color)
-				update('mapTile-' + x + '-' + y, diseaseTileTypes[gameData.diseaseArray[x][y]].text)
+				setColor('mapTile-' + x + '-' + y, diseaseTileTypes[game.diseaseArray[x][y]].color)
+				update('mapTile-' + x + '-' + y, diseaseTileTypes[game.diseaseArray[x][y]].text)
 			}
 			else {
 				setColor('mapTile-' + x + '-' + y, '#66361F')
@@ -176,14 +176,14 @@ function updateMapTileAesthetic() {
 }
 
 function benevolenceToggle() {
-	if (gameData.diseaseControlFinished)
+	if (game.diseaseControlFinished)
 		toggle('benevolenceToggle')
 }
 
 function buyARobe() {
-    if (gameData.coins >= 1e5) {
-        gameData.coins -= 1e5
-        gameData.silkRobe = 1
+    if (game.coins >= 1e5) {
+        game.coins -= 1e5
+        game.silkRobe = 1
 
     }
 }
@@ -206,30 +206,30 @@ function onLoadTasks () {
 }
 
 function updateValuesTasks () {
-	if (gameData.simulationTime)
-		setColor('checkResultsButton', '#DEAD85')
+	if (game.simulationTime)
+		setColor('checkResultsButton', myBeige)
 	else
 		setColor('checkResultsButton', '#50514F')
 	
 	var x = document.getElementsByClassName('unlockDiseaseAreaSwamp')
 	for (i = 0; i < x.length; i++) {
-		if (gameData.unlockDiseaseAreaSwamp)
+		if (game.unlockDiseaseAreaSwamp)
 			x[i].style.display = 'block'
 		else
 			x[i].style.display = 'none'
 	}
 	
-	update('textForRespect', gameData.respect.toLocaleString() + ' Respect')
-	update('textForLakes', gameData.limeDiseaseLakes.toLocaleString() + ' Lakes')
-    update('numberOfCivilians', 'Number Of Civilians: ' + gameData.civiliansTotal.toLocaleString())
+	update('textForRespect', game.respect.toLocaleString() + ' Respect')
+	update('textForLakes', game.limeDiseaseLakes.toLocaleString() + ' Lakes')
+    update('numberOfCivilians', 'Number Of Civilians: ' + game.civiliansTotal.toLocaleString())
 
     const milestoneValues = [
-      { value: 10, color: '#4DFE89', text: 'Automatically start tasks' },
-      { value: 25, color: '#4DFE89', text: 'Automatically start simulation' },
-      { value: 50, color: '#4DFE89', text: 'Allow entrance to the Special Shopping District' },
-      { value: 100, color: '#4DFE89', text: 'Automatically check simulation' },
-      { value: 500, color: '#4DFE89', text: 'Automatically situate a civilian' },
-      { value: 1000, color: '#4DFE89', text: 'Unlock scientific research' },
+      { value: 10, color: myLime, text: 'Automatically start tasks' },
+      { value: 25, color: myLime, text: 'Automatically start simulation' },
+      { value: 50, color: myLime, text: 'Allow entrance to the Special Shopping District' },
+      { value: 100, color: myLime, text: 'Automatically check simulation' },
+      { value: 500, color: myLime, text: 'Automatically situate a civilian' },
+      { value: 1000, color: myLime, text: 'Unlock scientific research' },
       { value: 10000, color: '#FF999A', text: 'Unlock more mega coin upgrades' }
     ];
 
@@ -238,20 +238,20 @@ function updateValuesTasks () {
     });
 
     const showHideElements = [
-      { condition: gameData.respectMilestone10, element: 'autoStartTaskButton', display: 'inline' },
-      { condition: gameData.respectMilestone25, element: 'autoStartSimulationButton', display: 'inline' },
-      { condition: gameData.respectMilestone100, element: 'autoCheckSimulationButton', display: 'inline' },
-      { condition: gameData.respectMilestone500, element: 'autoPlaceACivilianDiv' },
-      { condition: gameData.respectMilestone1000, element: 'scienceButton', display: 'inline' },
-      { condition: gameData.respectMilestone50, element: 'patrician' },
-      { condition: !gameData.manuscripts, element: 'buyManuscriptsDiv' },
-      { condition: gameData.diseaseControlFinished, element: 'startDiseaseTask' },
-      { condition: !gameData.diseaseControlFinished, element: 'diseaseControlStart' },
-      { condition: !gameData.silkRobe, element: 'buyARobe' },
-      { condition: !gameData.unlockDiseaseAreaSwamp, element: 'unlockDiseaseAreaSwamp' },
-      { condition: !gameData.lightRobe, element: 'lightRobe' },
-	  { condition: !gameData.unlockBenevolence, element: 'unlockBenevolence' },
-	  { condition: !gameData.surveillanceCamera2, element: 'surveillanceCamera2' }
+      { condition: game.respectMilestone10, element: 'autoStartTaskButton', display: 'inline' },
+      { condition: game.respectMilestone25, element: 'autoStartSimulationButton', display: 'inline' },
+      { condition: game.respectMilestone100, element: 'autoCheckSimulationButton', display: 'inline' },
+      { condition: game.respectMilestone500, element: 'autoPlaceACivilianDiv' },
+      { condition: game.respectMilestone1000, element: 'scienceButton', display: 'inline' },
+      { condition: game.respectMilestone50, element: 'patrician' },
+      { condition: !game.manuscripts, element: 'buyManuscriptsDiv' },
+      { condition: game.diseaseControlFinished, element: 'startDiseaseTask' },
+      { condition: !game.diseaseControlFinished, element: 'diseaseControlStart' },
+      { condition: !game.silkRobe, element: 'buyARobe' },
+      { condition: !game.unlockDiseaseAreaSwamp, element: 'unlockDiseaseAreaSwamp' },
+      { condition: !game.lightRobe, element: 'lightRobe' },
+	  { condition: !game.unlockBenevolence, element: 'unlockBenevolence' },
+	  { condition: !game.surveillanceCamera2, element: 'surveillanceCamera2' }
     ];
 
     showHideElements.forEach(({ condition, element, display = 'block' }) => {
@@ -259,9 +259,9 @@ function updateValuesTasks () {
     });
 
 	function checkRespectMilestone(number, color, text) {		
-		if (gameData.respect >= number)
-			gameData['respectMilestone' + number] = 1
-		if (gameData['respectMilestone' + number]) {
+		if (game.respect >= number)
+			game['respectMilestone' + number] = 1
+		if (game['respectMilestone' + number]) {
 			
 			elem = ''
 			if(number == 10000)
@@ -285,9 +285,9 @@ function updateValuesTasks () {
 	toggleAesthetic("autoPlaceACivilian")
 	toggleAesthetic("benevolenceToggle")
 	
-	if (gameData.autoStartTask) 
+	if (game.autoStartTask) 
 		diseaseControlTask()
 	
-	if (gameData.autoStartSimulation)
+	if (game.autoStartSimulation)
 		startSimulation()
 }

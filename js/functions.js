@@ -1,6 +1,6 @@
 function gameStart() {
   loadStuff(JSON.parse(localStorage.getItem("mathAdventureSave")));
-  secondsOffline = Math.floor((Date.now() - gameData.lastSaveTime) / 1000);
+  secondsOffline = Math.floor((Date.now() - game.lastSaveTime) / 1000);
   onLoadSkills();
   onLoadBase();
   onLoadField();
@@ -19,7 +19,7 @@ function gameStart() {
   mainGameLoop();
   mainGameLoopSlow();
 
-  if (gameData.limes === undefined) {
+  if (game.limes === undefined) {
     reset();
   }
 
@@ -66,7 +66,7 @@ function gameStart() {
 }
 
 function restartBar(x) {
-  if (gameData[x + 'Bar'] > 0) {
+  if (game[x + 'Bar'] > 0) {
     window[x + 'Bar']();
   }
 }
@@ -76,10 +76,10 @@ function hide(id) {
 }
 
 function pin(x) {
-  if (gameData.pin === x && gameData.pin !== "none") {
-    gameData.pin = "none";
+  if (game.pin === x && game.pin !== "none") {
+    game.pin = "none";
   } else {
-    gameData.pin = x;
+    game.pin = x;
   }
   normalizeButtons();
   pinButton();
@@ -98,8 +98,8 @@ function normalizeButtons() {
 }
 
 function pinButton() {
-  if (gameData.pin !== "none") {
-    const pinnedButton = document.getElementById(gameData.pin);
+  if (game.pin !== "none") {
+    const pinnedButton = document.getElementById(game.pin);
     $(".navigateButtons").append(pinnedButton);
 
     pinnedButton.style.width = "120px";
@@ -109,25 +109,25 @@ function pinButton() {
 }
 
 function pickCurrentTask(x) {
-  const { currentTask: taskOne, currentTask2: taskTwo } = gameData;
+  const { currentTask: taskOne, currentTask2: taskTwo } = game;
 
-  if (!event.shiftKey && gameData.toggleActions) {
-    if (gameData.ambidextrousSkillLevel === gameData.ambidextrousSkillLevelMax) {
+  if (!event.shiftKey && game.toggleActions) {
+    if (game.ambidextrousSkillLevel === game.ambidextrousSkillLevelMax) {
       if (taskOne === x && taskOne !== "none" && taskTwo !== x) {
-        gameData.currentTask = "none";
+        game.currentTask = "none";
       } else if (taskOne === "none" && taskTwo !== x) {
         if (!isTaskConflict(taskTwo, x)) {
-          gameData.currentTask = x;
+          game.currentTask = x;
         }
       } else if (taskTwo === x && taskTwo !== "none") {
-        gameData.currentTask2 = "none";
+        game.currentTask2 = "none";
       } else if (taskTwo === "none") {
         if (!isTaskConflict(taskOne, x)) {
-          gameData.currentTask2 = x;
+          game.currentTask2 = x;
         }
       }
     } else {
-      gameData.currentTask = (taskOne === x && taskOne !== "none") ? "none" : x;
+      game.currentTask = (taskOne === x && taskOne !== "none") ? "none" : x;
     }
   } else {
     startCurrentTask(x);
@@ -144,11 +144,11 @@ function isTaskConflict(task, x) {
 }
 
 function pickCurrentSkill(x) {
-  if (gameData.toggleActions && !event.shiftKey && gameData.multitasking) {
-    if (gameData.currentSkill === x && gameData.currentSkill !== "none") {
-      gameData.currentSkill = "none";
+  if (game.toggleActions && !event.shiftKey && game.multitasking) {
+    if (game.currentSkill === x && game.currentSkill !== "none") {
+      game.currentSkill = "none";
     } else {
-      gameData.currentSkill = x;
+      game.currentSkill = x;
     }
   } else {
     tryToStartSkill(x, true);
@@ -165,48 +165,48 @@ function updateBar(x) {
   const barId = x + "Bar";
   const elem = document.getElementById(barId);
 
-  if (gameData[barId] > 100) {
-    gameData[barId] = 100;
+  if (game[barId] > 100) {
+    game[barId] = 100;
   }
 
-  elem.style.width = gameData[barId] + "%";
+  elem.style.width = game[barId] + "%";
 }
 
 function toggle(x) {
-  if (gameData[x] === 0) {
-    gameData[x] = 1;
+  if (game[x] === 0) {
+    game[x] = 1;
   } else {
-    gameData[x] = 0;
+    game[x] = 0;
   }
 }
 
 function buy(item, price, currency = 'coins', amount = 1) {
-  if (gameData[currency] >= price) {
-    gameData[currency] -= price;
-    gameData[item] += amount;
+  if (game[currency] >= price) {
+    game[currency] -= price;
+    game[item] += amount;
     
-    if (item === 'maps' && gameData.maps === 1) {
+    if (item === 'maps' && game.maps === 1) {
       discoverSpecificLoreEntry('letters', 'letter-001');
     }
   }
 }
 
 function bulkableBuyMax(item, price) {
-  const maxAmount = gameData[item + 'Max'];
+  const maxAmount = game[item + 'Max'];
   let purchaseAmount = 1;
 
-  if (gameData[item + 'BulkToggle'] === 1) {
-    purchaseAmount = gameData.bulkBuyUnlock2 ? 100 : 10;
+  if (game[item + 'BulkToggle'] === 1) {
+    purchaseAmount = game.bulkBuyUnlock2 ? 100 : 10;
   }
 
-  if (gameData.coins >= price * purchaseAmount) {
-    if (gameData[item] <= maxAmount - purchaseAmount) {
-      gameData.coins -= price * purchaseAmount;
-      gameData[item] += purchaseAmount;
+  if (game.coins >= price * purchaseAmount) {
+    if (game[item] <= maxAmount - purchaseAmount) {
+      game.coins -= price * purchaseAmount;
+      game[item] += purchaseAmount;
     } else {
-      const availableAmount = maxAmount - gameData[item];
-      gameData.coins -= price * availableAmount;
-      gameData[item] = maxAmount;
+      const availableAmount = maxAmount - game[item];
+      game.coins -= price * availableAmount;
+      game[item] = maxAmount;
     }
   }
 }
@@ -220,7 +220,7 @@ function beckyRandomMinMax(min, max) {
 }
 
 function smartBarStart(id, amount) {
-  if (gameData[id + "Bar"] === 0) {
+  if (game[id + "Bar"] === 0) {
     runBar(id, amount);
   }
 }
@@ -242,7 +242,7 @@ function update(id, content) {
 
 function currencyDisplay(id) {
   const variable = baseVariables[id].id + 'ShowVariable';
-  gameData[variable] = !gameData[variable];
+  game[variable] = !game[variable];
 }
 
 function upperFirstChar(string) {
@@ -255,8 +255,8 @@ function setColor(id, content, transparency = 100) {
 }
 
 function decreaseValue(id) {
-  if (gameData[id] >= 1) {
-    gameData[id] -= 1;
+  if (game[id] >= 1) {
+    game[id] -= 1;
   }
 }
 
@@ -273,17 +273,17 @@ function checkShow(x, id, style) {
 function runBar(id, amount) {
   const barName = id + 'Bar';
 
-  if (gameData[barName] < 100) {
-    gameData[barName] += amount;
+  if (game[barName] < 100) {
+    game[barName] += amount;
     
     // Schedule next tick using requestAnimationFrame for better performance
     requestAnimationFrame(() => {
       // Adjust timing based on tickspeed  
-      setTimeout(() => runBar(id, amount), 15 / gameData.tickspeed);
+      setTimeout(() => runBar(id, amount), 15 / game.tickspeed);
     });
   } else {
     // Bar is full - reset and call completion handler
-    gameData[barName] = 0;
+    game[barName] = 0;
     const endHandler = window[id + 'BarEnd'];
     if (typeof endHandler === 'function') {
       endHandler();
@@ -296,8 +296,8 @@ function runBar(id, amount) {
 
 function basicToggle(input) {
   const elements = document.getElementsByClassName(input);
-  const toggleValue = gameData[input + 'Toggle'];
-  const color = toggleValue ? "#4DFE89" : "gray";
+  const toggleValue = game[input + 'Toggle'];
+  const color = toggleValue ? myLime : "gray";
   const display = toggleValue ? 'block' : 'none';
 
   setColor(input + "Button", color);
@@ -308,18 +308,18 @@ function basicToggle(input) {
 
 function currentTaskAesthetic(x) {
   const button = x + "Button";
-  const color = (gameData.currentTask === x || gameData.currentTask2 === x) ? "#C67848" : "#DEAD85";
+  const color = (game.currentTask === x || game.currentTask2 === x) ? "#C67848" : myBeige;
   setColor(button, color);
 }
 
 function ifMaxDarkGray(x) {
   const button = "buyA" + upperFirstChar(x) + "Button";
-  const color = (gameData[x + 's'] === gameData[x + 'sMax']) ? "#50514F" : "#DEAD85";
+  const color = (game[x + 's'] === game[x + 'sMax']) ? "#50514F" : myBeige;
   setColor(button, color);
 }
 
 function toggleAesthetic(input) {
-  const color = gameData[input] === 1 ? "#4DFE89" : "gray";
+  const color = game[input] === 1 ? myLime : "gray";
   setColor(input + "Button", color);
 }
 
@@ -332,11 +332,11 @@ function addMainTabs(tabs) {
 }
 
 function addGameVariables(variables) {
-  Object.assign(gameDataBase, variables);
+  Object.assign(gameBase, variables);
 }
 
 function tab(tabby) {
-    gameData.mainTab = tabby;
+    game.mainTab = tabby;
     update("exportCode", "");
 
     mainTabs.forEach(tab => {
@@ -345,13 +345,13 @@ function tab(tabby) {
     });
 
     if (tabby === "options") {
-        checkShow(!gameData.isOptionsOpen, 'options', 'inline');
-        if (!gameData.isOptionsOpen) {
+        checkShow(!game.isOptionsOpen, 'options', 'inline');
+        if (!game.isOptionsOpen) {
             setColor('optionsButton', "#898989");
         }
         toggle('isOptionsOpen');
     } else if (tabby !== "null") {
-        gameData.isOptionsOpen = 0;
+        game.isOptionsOpen = 0;
         const selectedTab = document.getElementById(tabby);
         selectedTab.style.display = "inline-block";
 

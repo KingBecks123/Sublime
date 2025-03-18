@@ -1,7 +1,7 @@
 function onLoadField() {
   createFieldButtons();
   createFieldPlacementOptions();
-  selectedWheatItemAesthetic(gameData.selectedWheatItem);
+  selectedWheatItemAesthetic(game.selectedWheatItem);
   updateFieldTileAesthetic();
 }
 
@@ -33,7 +33,7 @@ function createFieldPlacementOptions() {
 }
 
 function selectedWheatItem(id) {
-	gameData.selectedWheatItem = id
+	game.selectedWheatItem = id
 	selectedWheatItemAesthetic(id)
 }
 
@@ -43,22 +43,22 @@ function selectedWheatItemAesthetic(id) {
 	setColor('seedDrillSelectedWheatItem', 'gray')
 	setColor('harvesterSelectedWheatItem', 'gray')
 	setColor('rotateSelectedWheatItem', 'gray')
-	setColor(id + 'SelectedWheatItem', '#4DFE89')
+	setColor(id + 'SelectedWheatItem', myLime)
 }
 
 function managePlot() {
-	if (gameData.wheatFieldArray[gameData.selectedPlotX][gameData.selectedPlotY] == 59) {
-		if (gameData.pieCoins >= gameData.nextPlotPrice) {
-			gameData.pieCoins -= gameData.nextPlotPrice
-			gameData.nextPlotPrice *= 2
-			gameData.wheatFieldArray[gameData.selectedPlotX][gameData.selectedPlotY] = 0
+	if (game.wheatFieldArray[game.selectedPlotX][game.selectedPlotY] == 59) {
+		if (game.pieCoins >= game.nextPlotPrice) {
+			game.pieCoins -= game.nextPlotPrice
+			game.nextPlotPrice *= 2
+			game.wheatFieldArray[game.selectedPlotX][game.selectedPlotY] = 0
 			showPlotManagementDiv = false
 		}
 	}
 	else {
-		gameData.wheatFieldArray[gameData.selectedPlotX][gameData.selectedPlotY] = 59
-		gameData.nextPlotPrice /= 2
-		gameData.pieCoins += gameData.nextPlotPrice
+		game.wheatFieldArray[game.selectedPlotX][game.selectedPlotY] = 59
+		game.nextPlotPrice /= 2
+		game.pieCoins += game.nextPlotPrice
 		showPlotManagementDiv = false
 	}
 	updateFieldTileAesthetic()
@@ -67,74 +67,74 @@ function managePlot() {
 
 function fieldTile(x, y) {
 	
-	var tileType = gameData.wheatFieldArray[x][y]
+	var tileType = game.wheatFieldArray[x][y]
 	var tile = "fieldTile" + x + "-" + y
 
 
-	if (gameData.selectedWheatItem == 'plot') {
+	if (game.selectedWheatItem == 'plot') {
 		showPlotManagementDiv = true
 
-		gameData.selectedPlotX = x
-		gameData.selectedPlotY = y
+		game.selectedPlotX = x
+		game.selectedPlotY = y
 
-		if(gameData.wheatFieldArray[x][y] == 59) {
-			update("plotDetails", "Price: " + gameData.nextPlotPrice.toLocaleString() + " Pie Coins")
+		if(game.wheatFieldArray[x][y] == 59) {
+			update("plotDetails", "Price: " + game.nextPlotPrice.toLocaleString() + " Pie Coins")
 			update("managePlot", "Purchase")
 		}
 		else {
-			update("plotDetails", "Sell Price: " + (gameData.nextPlotPrice / 2).toLocaleString() + " Pie Coins")
+			update("plotDetails", "Sell Price: " + (game.nextPlotPrice / 2).toLocaleString() + " Pie Coins")
 			update("managePlot", "Sell")
 		}
 	}
 	
-	else if(gameData.wheatFieldArray[x][y] == 50) {
-		gameData.wheat += 1
+	else if(game.wheatFieldArray[x][y] == 50) {
+		game.wheat += 1
 		emptyWheatTile(x, y)
 	}
 	
 	else if(tileType >= 51 && tileType <= 54) {		
-		if(gameData.selectedWheatItem == 'rotate') {
+		if(game.selectedWheatItem == 'rotate') {
 			if(tileType == 54)
-				gameData.wheatFieldArray[x][y] = 51
+				game.wheatFieldArray[x][y] = 51
 			else
-				gameData.wheatFieldArray[x][y] += 1
+				game.wheatFieldArray[x][y] += 1
 		}
 		else {
-			gameData.seedDrills += 1
+			game.seedDrills += 1
 			emptyWheatTile(x, y)	
 		}
 	}
 	
 	else if (tileType >= 55 && tileType <= 58) {
-		if (gameData.selectedWheatItem == 'rotate') {
+		if (game.selectedWheatItem == 'rotate') {
 			if(tileType == 58)
-				gameData.wheatFieldArray[x][y] = 55
+				game.wheatFieldArray[x][y] = 55
 			else
-				gameData.wheatFieldArray[x][y] += 1
+				game.wheatFieldArray[x][y] += 1
 			
 		}
 		else {
-			gameData.wheatHarvesters += 1
+			game.wheatHarvesters += 1
 			emptyWheatTile(x, y)
 		}
 	}
 	
-	else if(gameData.selectedWheatItem == 'seed')
+	else if(game.selectedWheatItem == 'seed')
 		setTileType(1, 'wheatSeeds')
-	else if (gameData.selectedWheatItem == 'seedDrill')
+	else if (game.selectedWheatItem == 'seedDrill')
 		setTileType(51, 'seedDrills')
-	else if (gameData.selectedWheatItem == 'harvester')
+	else if (game.selectedWheatItem == 'harvester')
 		setTileType(55, 'wheatHarvesters')
 	
 	function emptyWheatTile(x, y) {
-		gameData.wheatFieldArray[x][y] = 0
+		game.wheatFieldArray[x][y] = 0
 		document.getElementById(tile + 'img').src = "assets/images/emptyField.png"
 	}
 
 	function setTileType(number, cost) {
-		if (gameData.wheatFieldArray[x][y] == 0 && gameData[cost] > 0) {
-			gameData.wheatFieldArray[x][y] = number
-			gameData[cost] -= 1
+		if (game.wheatFieldArray[x][y] == 0 && game[cost] > 0) {
+			game.wheatFieldArray[x][y] = number
+			game[cost] -= 1
 		}
 	}
 	updateFieldTileAesthetic()
@@ -145,7 +145,7 @@ function updateFieldTileAesthetic() {
     for (var y = 0; y < 5; y++) {
       var tile = "fieldTile" + x + "-" + y;
       var image = document.getElementById(tile + 'img');
-      var tileType = gameData.wheatFieldArray[x][y];
+      var tileType = game.wheatFieldArray[x][y];
 
       if (tileType == 0)
         setImage('emptyField');
@@ -172,7 +172,7 @@ function updateFieldTileAesthetic() {
       if (tileType == 59)
         document.getElementById(tile).style.backgroundColor = "#66361F";
       else
-        document.getElementById(tile).style.backgroundColor = "#DEAD85";
+        document.getElementById(tile).style.backgroundColor = myBeige;
 
       function setImage(id) {
         image.src = 'assets/images/' + id + '.png';
@@ -186,15 +186,15 @@ function updateFieldTileAesthetic() {
 }
 
 function updateValuesField () {
-	if (gameData.wheat)
-		setColor('winnowWheat', "#DEAD85")
+	if (game.wheat)
+		setColor('winnowWheat', myBeige)
 	else
-		setColor('winnowWheat', "#BBBBBB")
+		setColor('winnowWheat', myGray)
 
-	if (gameData.wheatSeeds)
-		setColor('grindFlour', "#DEAD85")
+	if (game.wheatSeeds)
+		setColor('grindFlour', myBeige)
 	else
-		setColor('grindFlour', "#BBBBBB")
+		setColor('grindFlour', myGray)
 	
 	checkShow(showPlotManagementDiv, 'plotManagementDiv')
 }

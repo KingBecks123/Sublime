@@ -10,7 +10,7 @@ document.getElementById('options').innerHTML = `
 			<p>Alpha Version</p>
 			<div id="gameOptions">
 				<button onclick="importGame()" style="width:164px">Import Game</button>
-				<button onclick="update('exportCode', btoa(JSON.stringify(gameData)))" style="width:164px">Export Game</button><br>
+				<button onclick="update('exportCode', btoa(JSON.stringify(game)))" style="width:164px">Export Game</button><br>
 				<button onclick="resetGame()" style="background-color:#FF999A;width:342px">Reset Game</button><br>
 				<p id="exportCode" style="background-color:#bfbfbf;word-wrap:break-word;-webkit-user-select: all;-ms-user-select: all;user-select: all;width:331px">Export Code</p>
 			</div>

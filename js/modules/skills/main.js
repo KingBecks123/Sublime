@@ -1,90 +1,90 @@
 for (let i = 0; i < skills.length; i++) {
-	gameDataBase[skills[i].id + 'SkillLevelMax'] = skills[i].maxSkillLevel
-	gameDataBase[skills[i].id + 'SkillLevel'] = 0
+	gameBase[skills[i].id + 'SkillLevelMax'] = skills[i].maxSkillLevel
+	gameBase[skills[i].id + 'SkillLevel'] = 0
 }
 
 
 function eat() {
-    if (gameData.eatBar == 0 && gameData.eat < 100) {
-        if (gameData.foodTypeToggle == 0)
+    if (game.eatBar == 0 && game.eat < 100) {
+        if (game.foodTypeToggle == 0)
 			startEating ('limes', 5)
-        else if (gameData.foodTypeToggle == 1)
+        else if (game.foodTypeToggle == 1)
 			startEating ('rottenLimes', 1)
     }
 	function startEating (type, amount) {
-		if (gameData[type] > 0) {
-			gameData[type] -= 1
-			gameData.foodNutritionValue = amount
-			gameData.eatBar = 0
+		if (game[type] > 0) {
+			game[type] -= 1
+			game.foodNutritionValue = amount
+			game.eatBar = 0
 			eatBar()
 		}
 	}
 }
 
 function eatBar() {
-	runBar('eat', 0.75 * (gameData.fork + 1))
+	runBar('eat', 0.75 * (game.fork + 1))
 }
 
 function eatBarEnd() {
-    gameData.eat += gameData.foodNutritionValue * (gameData.nutritionists + 1)
-    if (gameData.eat > 100)
-        gameData.eat = 100
+    game.eat += game.foodNutritionValue * (game.nutritionists + 1)
+    if (game.eat > 100)
+        game.eat = 100
 }
 
 function autoCollecting() {
-    if (gameData.autoCollectingBar == 0)
+    if (game.autoCollectingBar == 0)
         autoCollectingBar()
 }
 
 function collectingUpgrade() {
-    if (gameData.limes >= gameData.nourishmentPrice) {
-        gameData.limes -= gameData.nourishmentPrice
-        gameData.nourishment += 1
-        gameData.autoCollectingBar = 0
+    if (game.limes >= game.nourishmentPrice) {
+        game.limes -= game.nourishmentPrice
+        game.nourishment += 1
+        game.autoCollectingBar = 0
     }
 }
 
 function buyAFork() {
-    if (gameData.coins >= 1) {
-        gameData.coins -= 1
-        gameData.fork = 1
-        gameData.eatBar = 0
+    if (game.coins >= 1) {
+        game.coins -= 1
+        game.fork = 1
+        game.eatBar = 0
     }
 }
 
 function autoCollectingBar() {
-    if (gameData.autoCollectingBar <= (((gameData.nourishment + 1) * 100) - 0.5)) {
-        gameData.autoCollectingBar += 0.5
+    if (game.autoCollectingBar <= (((game.nourishment + 1) * 100) - 0.5)) {
+        game.autoCollectingBar += 0.5
         setTimeout(autoCollectingBar, 25)
     }
 	else
-		gameData.autoCollectingBar = 0
+		game.autoCollectingBar = 0
 	
-    if (gameData.autoCollectingBar % (10 / (gameData.shoes + 1)) == 0)
+    if (game.autoCollectingBar % (10 / (game.shoes + 1)) == 0)
         getLimes()
 }
 
 function learnANewSkill() {
-    if (gameData.learnANewSkill - gameData.tomes <= 2)
+    if (game.learnANewSkill - game.tomes <= 2)
 		smartBarStart('learnANewSkill', 0.5)
 }
 
 function learnANewSkillBarEnd() {
-	gameData.learnANewSkill += 1
+	game.learnANewSkill += 1
 }
 
 function onLoadSkills () {
-	if (gameData.learnANewSkillBar > 0)
+	if (game.learnANewSkillBar > 0)
 		runBar('learnANewSkill', 0.5)
 
 	for (let i = 0; i < skills.length; i++) {
 		name = skills[i].id 
-		gameDataBase[name + 'Bar'] = 0
-		gameDataBase[name + 'SkillLevel'] = 0
+		gameBase[name + 'Bar'] = 0
+		gameBase[name + 'SkillLevel'] = 0
 		
 		document.getElementById(name + "Div").innerHTML += '<button class="skillButton" id="' + name + "Button" + '" onclick="pickCurrentSkill(&apos;' + name + '&apos;)">' + skills[i].name  + '</button><div class="skillProgress" id="' + name + 'Progress"><div class="skillBar" id="' + name + 'Bar"></div></div><p id="' + name + 'SkillLevel"></p>'
 		
-		if (gameData[name + 'Bar'] != 0)
+		if (game[name + 'Bar'] != 0)
 			runSkill(name)
 	}
 }
@@ -92,11 +92,11 @@ function onLoadSkills () {
 function tryToStartSkill(variable, useSkillTrainer) {
 	level = variable + 'SkillLevel'
 	bar = variable + 'Bar'
-	if (gameData[bar] == 0 && gameData[level] < gameData[level + 'Max'] && gameData.eat >= gameData[level]) {
-		gameData.eat -= gameData[level]
+	if (game[bar] == 0 && game[level] < game[level + 'Max'] && game.eat >= game[level]) {
+		game.eat -= game[level]
 		
-		if (gameData.skillTrainer && useSkillTrainer)
-			gameData[bar] = 100
+		if (game.skillTrainer && useSkillTrainer)
+			game[bar] = 100
 		
 		runSkill(variable)
 	}
@@ -109,14 +109,14 @@ function runSkill(variable) {
 		speed *= 10
 
 	
-	if (gameData[variable + "Bar"] < 100) {
-		gameData[variable + 'Bar'] += (gameData.intelligenceSkillLevel + 10) / speed
-		setTimeout(runSkill, 15 / gameData.tickspeed, variable)
+	if (game[variable + "Bar"] < 100) {
+		game[variable + 'Bar'] += (game.intelligenceSkillLevel + 10) / speed
+		setTimeout(runSkill, 15 / game.tickspeed, variable)
 	}
 	else {
-		gameData[variable + 'Bar'] = 0
-		gameData[variable + "SkillLevel"] += 1
-		gameData[variable] += 2
+		game[variable + 'Bar'] = 0
+		game[variable + "SkillLevel"] += 1
+		game[variable] += 2
 	}
 	updateBar(variable)
 }
@@ -125,65 +125,65 @@ function updateValuesSkills () {
 	basicToggle("skillInfo")
 
 	var x = document.getElementsByClassName("skillButton")
-	if (gameData.multitasking) {
+	if (game.multitasking) {
 		for (i = 0; i < x.length; i++) {
 			x[i].style['padding'] = "1px 10px 1px 10px"
 			x[i].style['border-radius'] = "12px"
 		}
 		for (let i = 0; i < skills.length; i++) {
 			button = skills[i].id  + "Button"
-			if (gameData.currentSkill == skills[i].id )
+			if (game.currentSkill == skills[i].id )
 				setColor(button, "#C67848")
 			else
-				setColor(button, "#DEAD85")
+				setColor(button, myBeige)
 		}
 	} else {
 		for (i = 0; i < x.length; i++) {
-			x[i].style.backgroundColor = "#DEAD85"
+			x[i].style.backgroundColor = myBeige
 		}
 	}
 
 	
     var elem = document.getElementById("autoCollectingBar")
-	x = gameData.autoCollectingBar / (gameData.nourishment + 1)
+	x = game.autoCollectingBar / (game.nourishment + 1)
 
     elem.style.width = x + "%"
 
 	currentTaskAesthetic('eat')
 	
-	if (gameData.autoCollectingBar)
+	if (game.autoCollectingBar)
 		setColor('autoCollectingButton', "#50514F")
 	else
-		setColor('autoCollectingButton', "#DEAD85")
+		setColor('autoCollectingButton', myBeige)
 	
-	if (gameData.hideCompletedSkills == 0)
+	if (game.hideCompletedSkills == 0)
 		update('hideCompletedSkillsButton', 'Completed Skills Shown')
 	else
 		update('hideCompletedSkillsButton', 'Completed Skills Hidden')
 	
-	if(gameData.currentSkill !== 'none')
-		tryToStartSkill(gameData.currentSkill, false)
+	if(game.currentSkill !== 'none')
+		tryToStartSkill(game.currentSkill, false)
 
     for (let i = 0; i < skills.length; i++) {
         level = skills[i].id  + 'SkillLevel'
-        update(level, gameData[level] + ' / ' + gameData[level + 'Max'])
-        checkShow(gameData.learnANewSkill >= i && !(gameData.hideCompletedSkills && gameData[level] == gameData[level + 'Max']), skills[i].id + "Div")
+        update(level, game[level] + ' / ' + game[level + 'Max'])
+        checkShow(game.learnANewSkill >= i && !(game.hideCompletedSkills && game[level] == game[level + 'Max']), skills[i].id + "Div")
     }
 
-    if (gameData.learnANewSkill - 3 == gameData.tomes)
+    if (game.learnANewSkill - 3 == game.tomes)
         setColor('learnANewSkillButton', 'darkgray')
     else
         setColor('learnANewSkillButton', '#0081AF')
 
     const elementsToUpdate = [
-      { element: 'rottenWisdom', value: 100 * gameData.rottenWisdomSkillLevel / gameData.rottenWisdomSkillLevelMax + '% Chance' },
-      { element: 'keenEye', value: gameData.keenEyeSkillLevel * 5 + '% Chance' },
-      { element: 'limebidextrous', value: gameData.limebidextrousSkillLevel * 2 + '% Chance' },
-      { element: 'intelligence', value: Math.floor(((gameData.intelligenceSkillLevel * 2) / gameData.intelligenceSkillLevelMax) * 100) + '% Faster' },
-      { element: 'knifebidextrous', value: gameData.knifebidextrousSkillLevel * 5 + '% Chance' },
-      { element: 'eat', value: gameData.eat + ' / 100' },
-      { element: 'textForAutomaticallyCollectsLimes', value: 'Automatically clicks 	&#39Collect Limes&#39 at ' + (gameData.shoes * 2 + 2) + '/s' },
-      { element: 'textForNourishmentPrice', value: 'You Need: ' + gameData.nourishmentPrice.toLocaleString() + ' Limes' },
+      { element: 'rottenWisdom', value: 100 * game.rottenWisdomSkillLevel / game.rottenWisdomSkillLevelMax + '% Chance' },
+      { element: 'keenEye', value: game.keenEyeSkillLevel * 5 + '% Chance' },
+      { element: 'limebidextrous', value: game.limebidextrousSkillLevel * 2 + '% Chance' },
+      { element: 'intelligence', value: Math.floor(((game.intelligenceSkillLevel * 2) / game.intelligenceSkillLevelMax) * 100) + '% Faster' },
+      { element: 'knifebidextrous', value: game.knifebidextrousSkillLevel * 5 + '% Chance' },
+      { element: 'eat', value: game.eat + ' / 100' },
+      { element: 'textForAutomaticallyCollectsLimes', value: 'Automatically clicks 	&#39Collect Limes&#39 at ' + (game.shoes * 2 + 2) + '/s' },
+      { element: 'textForNourishmentPrice', value: 'You Need: ' + game.nourishmentPrice.toLocaleString() + ' Limes' },
     ];
 
     elementsToUpdate.forEach(({ element, value }) => {
@@ -191,17 +191,17 @@ function updateValuesSkills () {
     });
 
     const showHideElements = [
-      { condition: gameData.ambidextrousSkillLevel == gameData.ambidextrousSkillLevelMax, element: 'stopActionsButton', display: 'inline' },
-      { condition: gameData.learnANewSkill > -2 && !gameData.fork, element: 'buyAForkDiv' },
-      { condition: gameData.learnANewSkill > -2, element: 'eatFoodDiv' },
-      { condition: gameData.learnANewSkill > -2, element: 'toggleActionsButton', display: 'inline' },
-      { condition: gameData.learnANewSkill > -1 && !gameData.shoes, element: 'buyShoesDiv' },
-      { condition: gameData.learnANewSkill > -1, element: 'autoCollectingDiv' },
-      { condition: gameData.learnANewSkill > -1, element: 'nourishment' },
-      { condition: gameData.learnANewSkill > -1, element: 'skillInfoButton', display: 'inline' },
-      { condition: gameData.learnANewSkill > 0 && !gameData.multitasking, element: 'buySkillToggler' },
-      { condition: gameData.learnANewSkill > 4, element: 'motivateEmployeeButton' },
-      { condition: !gameData.skillTrainer, element: 'skillTrainer' },
+      { condition: game.ambidextrousSkillLevel == game.ambidextrousSkillLevelMax, element: 'stopActionsButton', display: 'inline' },
+      { condition: game.learnANewSkill > -2 && !game.fork, element: 'buyAForkDiv' },
+      { condition: game.learnANewSkill > -2, element: 'eatFoodDiv' },
+      { condition: game.learnANewSkill > -2, element: 'toggleActionsButton', display: 'inline' },
+      { condition: game.learnANewSkill > -1 && !game.shoes, element: 'buyShoesDiv' },
+      { condition: game.learnANewSkill > -1, element: 'autoCollectingDiv' },
+      { condition: game.learnANewSkill > -1, element: 'nourishment' },
+      { condition: game.learnANewSkill > -1, element: 'skillInfoButton', display: 'inline' },
+      { condition: game.learnANewSkill > 0 && !game.multitasking, element: 'buySkillToggler' },
+      { condition: game.learnANewSkill > 4, element: 'motivateEmployeeButton' },
+      { condition: !game.skillTrainer, element: 'skillTrainer' },
     ];
 
     showHideElements.forEach(({ condition, element, display = 'block' }) => {

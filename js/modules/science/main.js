@@ -15,21 +15,21 @@ function addResearchers(id, amount) {
 	
 	if (amount > 0) {
 		if (researchersAvailable - amount >= 0)
-			gameData[x] += amount
+			game[x] += amount
 		else
-			gameData[x] += researchersAvailable
+			game[x] += researchersAvailable
 	} 
-	else if (gameData[x] + amount >= 0)
-		gameData[x] += amount
+	else if (game[x] + amount >= 0)
+		game[x] += amount
 	else
-		gameData[x] = 0
+		game[x] = 0
 
 }
 
 function hireResearcher() {
-	if (gameData.megaCoins >= 1) {
-		gameData.megaCoins -= 1
-		gameData.researchers += 1
+	if (game.megaCoins >= 1) {
+		game.megaCoins -= 1
+		game.researchers += 1
 	}
 }
 
@@ -56,10 +56,10 @@ function onLoadScience () {
 		</div>`
 
 
-		if (gameData[id + "Bar"] > 0) {
+		if (game[id + "Bar"] > 0) {
 
-			if (gameData.surveillanceCamera2)
-				gameData[id + "Bar"] += Math.floor(secondsOffline * 0.5 * gameData[id + "Researchers"] / sciences[i].equation())
+			if (game.surveillanceCamera2)
+				game[id + "Bar"] += Math.floor(secondsOffline * 0.5 * game[id + "Researchers"] / sciences[i].equation())
 
 			runScienceBar(i)
 		}
@@ -67,19 +67,19 @@ function onLoadScience () {
 }
 
 function barStartScience(i) {
-	if (sciences[i].startRequirement && gameData[sciences[i].id + 'Bar'] == 0)
+	if (sciences[i].startRequirement && game[sciences[i].id + 'Bar'] == 0)
 		runScienceBar(i)
 }
 
 function runScienceBar (i) {
 	id = sciences[i].id
 
-	if (gameData[id + 'Bar'] < 100) {
-		gameData[id + 'Bar'] += (0.0075 * gameData[id + 'Researchers']) / sciences[i].equation()
+	if (game[id + 'Bar'] < 100) {
+		game[id + 'Bar'] += (0.0075 * game[id + 'Researchers']) / sciences[i].equation()
 		setTimeout(runScienceBar, 15, i)
 	}
 	else {
-		gameData[sciences[i].id + 'Bar'] = 0
+		game[sciences[i].id + 'Bar'] = 0
 		sciences[i].onBarFilled()
 	}
 
@@ -89,7 +89,7 @@ function runScienceBar (i) {
 function updateScienceData() {
   for (let i = 0; i < sciences.length; i++) {
     const id = sciences[i].id;
-    const researchers = gameData[id + "Researchers"];
+    const researchers = game[id + "Researchers"];
 
     update(id + "Researchers", researchers + " Researchers");
 
@@ -112,18 +112,18 @@ function updateScienceData() {
 
 function updateValuesScience() {
 
-	researchersAvailable = gameData.researchers
+	researchersAvailable = game.researchers
 
     updateScienceData();
 
-	update("benevolenceRespectIncrease", "Respect increase:  " + (Math.floor((Math.pow(2, gameData.limeDiseaseLakes - 10)) * gameData.benevolence)).toLocaleString())
+	update("benevolenceRespectIncrease", "Respect increase:  " + (Math.floor((Math.pow(2, game.limeDiseaseLakes - 10)) * game.benevolence)).toLocaleString())
 	update("textForResearchers", researchersAvailable + " Available Researchers")
 
 
 
 	var x = document.getElementsByClassName("changeResearchersBy10")
 	for (i = 0; i < x.length; i++) {
-		if (gameData.changeResearchersBy10Unlock)
+		if (game.changeResearchersBy10Unlock)
 			x[i].style.display = 'inline-block'
 		else
 			x[i].style.display = 'none'

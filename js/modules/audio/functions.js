@@ -9,7 +9,7 @@ function initAudio() {
     // Add click sound to all buttons
     document.addEventListener('click', function(event) {
         if (event.target.tagName === 'BUTTON') {
-            if (gameData.sfxOn) {
+            if (game.sfxOn) {
                 playSound('BUTTON_CLICK');
             }
         }

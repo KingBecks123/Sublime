@@ -1,3 +1,4 @@
+//Add stuffToBuy to the market
 stuffToBuy.forEach(item => {
     document.getElementById('patrician').innerHTML += `
         <div id="${item.id}" class="basicDiv">

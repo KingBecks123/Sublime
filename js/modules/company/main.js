@@ -1,89 +1,89 @@
 function payEmployee() {
-    if (gameData.coins >= gameData.employeeWage && gameData.employeeWorking < gameData.employeeWorkingMax) {
-        gameData.employeeWorking += 1
-        gameData.coins -= gameData.employeeWage
+    if (game.coins >= game.employeeWage && game.employeeWorking < game.employeeWorkingMax) {
+        game.employeeWorking += 1
+        game.coins -= game.employeeWage
 		smartBarStart('working', 0.025)
     }
 }
 
 function workingBarEnd() {
-	gameData.limes += gameData.employeeCurrentSpeed
-	gameData.employeeWorking -= 1
+	game.limes += game.employeeCurrentSpeed
+	game.employeeWorking -= 1
 	
-	if (gameData.employeeWorking > 0)
+	if (game.employeeWorking > 0)
 		runBar('working', 0.025)
 }
 
 function teach() {
-    gameData.employeeCurrentSpeed = -(gameData.employeeHunger * 60)
+    game.employeeCurrentSpeed = -(game.employeeHunger * 60)
 	setTimeout(smartBarStart, 1000, 'teach', 0.75)
 }
 
 function teachBarEnd() {}
 
 function motivateEmployee() {
-	if (gameData.employeeWorking > 0)
-	    gameData.workingBar += gameData.motivationSkillLevel / 20
+	if (game.employeeWorking > 0)
+	    game.workingBar += game.motivationSkillLevel / 20
 }
 
 function onLoadCompany () {
-	if (gameData.surveillanceCamera && secondsOffline > 60 && gameData.employeeWorking > 0) {
-		for (i = 0; i < Math.floor(secondsOffline / 60) && gameData.employeeWorking > 0; i++) {
-			gameData.employeeWorking -= 1
-			gameData.limes += gameData.employeeCurrentSpeed
+	if (game.surveillanceCamera && secondsOffline > 60 && game.employeeWorking > 0) {
+		for (i = 0; i < Math.floor(secondsOffline / 60) && game.employeeWorking > 0; i++) {
+			game.employeeWorking -= 1
+			game.limes += game.employeeCurrentSpeed
 		}
-		gameData.workingBar = 0
+		game.workingBar = 0
 	}
 }
 
 function randomizeApplication() {
-	employeeTypes[gameData.typeToHire].applicationRandomisation()
-	gameData.applicationType = gameData.typeToHire
+	employeeTypes[game.typeToHire].applicationRandomisation()
+	game.applicationType = game.typeToHire
 }
 
 function buyAdvertisingManager() {
-	if (gameData.alphaCoins >= 10) {
-		gameData.alphaCoins -= 10
-		gameData.advertisingManagerBroker = 1
+	if (game.alphaCoins >= 10) {
+		game.alphaCoins -= 10
+		game.advertisingManagerBroker = 1
 	}
 }
 
 function advertise() {
-	if (gameData.advertiseBar == 0 && gameData[employeeTypes[gameData.typeToHireToggle].priceType] >= employeeTypes[gameData.typeToHireToggle].price) {
-		gameData[employeeTypes[gameData.typeToHireToggle].priceType] -= employeeTypes[gameData.typeToHireToggle].price
-		gameData.typeToHire = gameData.typeToHireToggle
-		gameData.advertiseBar = 0
+	if (game.advertiseBar == 0 && game[employeeTypes[game.typeToHireToggle].priceType] >= employeeTypes[game.typeToHireToggle].price) {
+		game[employeeTypes[game.typeToHireToggle].priceType] -= employeeTypes[game.typeToHireToggle].price
+		game.typeToHire = game.typeToHireToggle
+		game.advertiseBar = 0
 		advertiseBar()
 	}
 }
 
 function advertiseBar() {
-	runBar('advertise', (7.5 * (gameData.advertisingLevel2 * 2 * gameData.advertisingLevel3 + gameData.advertisingLevel2 + 2 * gameData.advertisingLevel3 + 1)) / 100)
+	runBar('advertise', (7.5 * (game.advertisingLevel2 * 2 * game.advertisingLevel3 + game.advertisingLevel2 + 2 * game.advertisingLevel3 + 1)) / 100)
 }
 
 function advertiseBarEnd() {
-	gameData.applicationReady = 1
-	gameData.hasAdvertised = 1
+	game.applicationReady = 1
+	game.hasAdvertised = 1
 	randomizeApplication()
 }
 
 function updateValuesCompany () {
-	if (gameData.typeToHireToggle == 'basic') {
-		setColor('hireEmployeeToggleButton', '#4DFE89')
+	if (game.typeToHireToggle == 'basic') {
+		setColor('hireEmployeeToggleButton', myLime)
 		setColor('hireBrokerToggleButton', 'gray')
 		setColor('hirePieMerchantToggleButton', 'gray')
-	} else if (gameData.typeToHireToggle == 'broker') {
+	} else if (game.typeToHireToggle == 'broker') {
 		setColor('hireEmployeeToggleButton', 'gray')
-		setColor('hireBrokerToggleButton', '#4DFE89')
+		setColor('hireBrokerToggleButton', myLime)
 		setColor('hirePieMerchantToggleButton', 'gray')
-	} else if (gameData.typeToHireToggle == 'pie') {
+	} else if (game.typeToHireToggle == 'pie') {
 		setColor('hireEmployeeToggleButton', 'gray')
 		setColor('hireBrokerToggleButton', 'gray')
-		setColor('hirePieMerchantToggleButton', '#4DFE89')
+		setColor('hirePieMerchantToggleButton', myLime)
 	}
 	
-	if (gameData.applicationReady)
-		employeeTypes[gameData.applicationType].textFormat()
+	if (game.applicationReady)
+		employeeTypes[game.applicationType].textFormat()
 	else
 		update('application', `Potential Employees, Pin Applications Here!
 							   ---
@@ -94,23 +94,23 @@ You, yes YOU, will have the chance to work in the town-renowned Lime Inc.!
 							   APPLY NOW!
 			`)
 	
-	checkShow(gameData.applicationReady, 'applicationInfo')
-	checkShow(!gameData.advertisingLevel2, 'advertisingLeaflets')
-	checkShow(!gameData.advertisingLevel3, 'advertisingBillboard')
-	checkShow(gameData.employees, 'companyButton')
-	checkShow(gameData.hasAdvertised && !gameData.surveillanceCamera, 'offlineEmployee')
-	checkShow(gameData.advertisingLevel1, 'advertisingMethods')
-	checkShow(!gameData.advertisingLevel1 && gameData.hasAdvertised, 'researchBetterAdvertising')
+	checkShow(game.applicationReady, 'applicationInfo')
+	checkShow(!game.advertisingLevel2, 'advertisingLeaflets')
+	checkShow(!game.advertisingLevel3, 'advertisingBillboard')
+	checkShow(game.employees, 'companyButton')
+	checkShow(game.hasAdvertised && !game.surveillanceCamera, 'offlineEmployee')
+	checkShow(game.advertisingLevel1, 'advertisingMethods')
+	checkShow(!game.advertisingLevel1 && game.hasAdvertised, 'researchBetterAdvertising')
 	
-	update('currentSpeedEmployee', 'Current speed: ' + gameData.employeeCurrentSpeed.toLocaleString() + ' limes per minute')
-	update('speedEmployee', 'Speed: ' + gameData.employeeSpeed.toLocaleString() + '% Of What I&#39m Taught')
+	update('currentSpeedEmployee', 'Current speed: ' + game.employeeCurrentSpeed.toLocaleString() + ' limes per minute')
+	update('speedEmployee', 'Speed: ' + game.employeeSpeed.toLocaleString() + '% Of What I&#39m Taught')
 	
 	basicToggle("teachInfo")
 	basicToggle("employeeStatsInfo")
 	toggleAesthetic("autoAdvertiseBroker")
 
 
-    if (gameData.employeeWorking > gameData.employeeWorkingMax)
-        gameData.employeeWorking = gameData.employeeWorkingMax
+    if (game.employeeWorking > game.employeeWorkingMax)
+        game.employeeWorking = game.employeeWorkingMax
 	
 }

@@ -13,16 +13,16 @@ sciences = [
 		buttonText: 'Watertight Seal',
 		info: 'Decreases peeled limes needed to make juice by 1',
 		description: function () {
-			return "Currently: " + gameData.peeledLimesPerJuice + " Peeled Limes -> 1 Juice"
+			return "Currently: " + game.peeledLimesPerJuice + " Peeled Limes -> 1 Juice"
 		},
 		equation: function () {
-			return Math.pow(10, 6 - gameData.peeledLimesPerJuice)
+			return Math.pow(10, 6 - game.peeledLimesPerJuice)
 		},
 		onBarFilled: function () {
-			gameData.peeledLimesPerJuice -= 1
+			game.peeledLimesPerJuice -= 1
 		},
 		startRequirement: function () {
-			if (gameData.peeledLimesPerJuice > 1)
+			if (game.peeledLimesPerJuice > 1)
 				return true
 		},
 	},
@@ -31,17 +31,17 @@ sciences = [
 		buttonText: 'Surveying',
 		info: 'Increase disease tiles by 1',
 		description: function () {
-			return "Currently: " + gameData.numberOfTiles + " / 20 Tiles"
+			return "Currently: " + game.numberOfTiles + " / 20 Tiles"
 		},
 		equation: function () {
-			return Math.pow(2, gameData.numberOfTiles - 15)
+			return Math.pow(2, game.numberOfTiles - 15)
 		},
 		onBarFilled: function () {
-			gameData.numberOfTiles += 1
+			game.numberOfTiles += 1
 			diseaseControlQuit()
 		},
 		startRequirement: function () {
-			if (gameData.numberOfTiles < 20)
+			if (game.numberOfTiles < 20)
 				return true
 		},
 	},
@@ -50,13 +50,13 @@ sciences = [
 		buttonText: 'Benevolence',
 		info: 'Increase respect change from helping civilians with more lakes',
 		description: function () {
-			return "Currently: Level " + gameData.benevolence
+			return "Currently: Level " + game.benevolence
 		},
 		equation: function () {
-			return Math.pow(2, gameData.benevolence * 2)
+			return Math.pow(2, game.benevolence * 2)
 		},
 		onBarFilled: function () {
-			gameData.benevolence += 1
+			game.benevolence += 1
 		},
 		startRequirement: function () {
 			return true

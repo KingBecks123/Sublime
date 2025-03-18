@@ -34,4 +34,3 @@ veryLightBrown = "#c28569";
 
 //Colors That Are Already Used But Are Now Named
 eerieBlack = "#222222";
-classicLime = "#4DFE89";

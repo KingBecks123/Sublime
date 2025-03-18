@@ -55,8 +55,8 @@ document.getElementById('inventory').innerHTML = `
             <button class="roundButton" id="makeJuiceButton" style="width:150px;" onclick="pickCurrentTask('makeJuice')">Use Juicer</button>
             <button class="roundButton" id="makeMaxJuiceButton" onclick="pickCurrentTask('makeMaxJuice')" style="visibility: hidden;width:150px;">Max Juicers</button>
             <br>
-            <button id="juiceLimesToggleButton" style="display:none;width:150px;" onclick="gameData.limeTypeToJuice = 0">On Limes</button>
-            <button id="juicePeeledLimesToggleButton" style="display:none;width:150px;" onclick="gameData.limeTypeToJuice = 1">On Peeled Limes</button>
+            <button id="juiceLimesToggleButton" style="display:none;width:150px;" onclick="game.limeTypeToJuice = 0">On Limes</button>
+            <button id="juicePeeledLimesToggleButton" style="display:none;width:150px;" onclick="game.limeTypeToJuice = 1">On Peeled Limes</button>
             <p style="border-style: solid;border-width: 2px;border-color: #222222;background-color:#bfbfbf;padding: 5px;" id="juicerInfo"></p>
             <div class="skillProgress" id="myProgress">
 				<div class="skillBar" id="juicerBar"></div>

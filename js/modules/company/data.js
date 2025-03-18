@@ -81,40 +81,40 @@ const employeeHobbies = [
 employeeTypes = {
 	basic : {
 		applicationRandomisation: function () {
-			if (gameData.firstApplicant) {
-				gameData.applicantSpeed = 50
-				gameData.applicantPrice = 0
-				gameData.applicantWage = 20
-				gameData.applicantHunger = 1
-				gameData.applicantHobby = 'Interning At Lime Inc.'
-				gameData.firstApplicant = 0
+			if (game.firstApplicant) {
+				game.applicantSpeed = 50
+				game.applicantPrice = 0
+				game.applicantWage = 20
+				game.applicantHunger = 1
+				game.applicantHobby = 'Interning At Lime Inc.'
+				game.firstApplicant = 0
 			} else {
-				gameData.applicantSpeed = (Math.floor(Math.random() * (10 + gameData.betterTraining) + 1) * 100)
-				gameData.applicantPrice = Math.floor(Math.random() * 200)
-				gameData.applicantWage = (Math.floor(Math.random() * 20) + 1) * 5
-				gameData.applicantHunger = Math.floor(Math.random() * 20) + 1
-				gameData.applicantHobby = employeeHobbies[Math.floor(Math.random() * employeeHobbies.length)]
+				game.applicantSpeed = (Math.floor(Math.random() * (10 + game.betterTraining) + 1) * 100)
+				game.applicantPrice = Math.floor(Math.random() * 200)
+				game.applicantWage = (Math.floor(Math.random() * 20) + 1) * 5
+				game.applicantHunger = Math.floor(Math.random() * 20) + 1
+				game.applicantHobby = employeeHobbies[Math.floor(Math.random() * employeeHobbies.length)]
 			}
 		},
 		onHire: function () {
-			if (gameData.coins >= gameData.applicantPrice && gameData.applicationReady == 1) {
-				gameData.applicationReady = 0
-				gameData.employeeWorking = 0
-				gameData.workingBar = 0
-				gameData.coins -= gameData.applicantPrice
-				gameData.employeeHunger = gameData.applicantHunger
-				gameData.employeeSpeed = gameData.applicantSpeed
-				gameData.employeePrice = gameData.applicantPrice
-				gameData.employeeWage = gameData.applicantWage
-				gameData.employeeHobby = gameData.applicantHobby
-				gameData.employeeCurrentSpeed = -(gameData.employeeHunger * 60)
-				gameData.employees = 1
-				gameData.isEmployeeWorking = false
-				gameData.workingBar = 0
-				update('speedEmployee', 'Speed: ' + gameData.employeeSpeed.toLocaleString() + '% of what I&#39m taught')
-				update('wageEmployee', 'Wages: ' + gameData.employeeWage.toLocaleString() + ' Coins per minute')
-				update('hungerEmployee', 'Hunger: ' + gameData.employeeHunger.toLocaleString() + ' Limes per second')
-				update('employeeHobby', 'Hobby: ' + gameData.employeeHobby)
+			if (game.coins >= game.applicantPrice && game.applicationReady == 1) {
+				game.applicationReady = 0
+				game.employeeWorking = 0
+				game.workingBar = 0
+				game.coins -= game.applicantPrice
+				game.employeeHunger = game.applicantHunger
+				game.employeeSpeed = game.applicantSpeed
+				game.employeePrice = game.applicantPrice
+				game.employeeWage = game.applicantWage
+				game.employeeHobby = game.applicantHobby
+				game.employeeCurrentSpeed = -(game.employeeHunger * 60)
+				game.employees = 1
+				game.isEmployeeWorking = false
+				game.workingBar = 0
+				update('speedEmployee', 'Speed: ' + game.employeeSpeed.toLocaleString() + '% of what I&#39m taught')
+				update('wageEmployee', 'Wages: ' + game.employeeWage.toLocaleString() + ' Coins per minute')
+				update('hungerEmployee', 'Hunger: ' + game.employeeHunger.toLocaleString() + ' Limes per second')
+				update('employeeHobby', 'Hobby: ' + game.employeeHobby)
 			}
 		},
 		price: 20,
@@ -124,33 +124,33 @@ employeeTypes = {
 				'<br>' +
 				'Lime Collector' + '<br>' +
 				'<br>' +
-				'Speed: ' + gameData.applicantSpeed.toLocaleString() + '% Of What I&#39m Taught<br>' +
-				'Onboarding Price: ' + gameData.applicantPrice.toLocaleString() + ' Coins<br>' +
-				'Wages: ' + gameData.applicantWage.toLocaleString() + ' Coins Per Minute<br>' +
-				'Hunger: ' + gameData.applicantHunger.toLocaleString() + ' Limes Per Second<br>' +
+				'Speed: ' + game.applicantSpeed.toLocaleString() + '% Of What I&#39m Taught<br>' +
+				'Onboarding Price: ' + game.applicantPrice.toLocaleString() + ' Coins<br>' +
+				'Wages: ' + game.applicantWage.toLocaleString() + ' Coins Per Minute<br>' +
+				'Hunger: ' + game.applicantHunger.toLocaleString() + ' Limes Per Second<br>' +
 				'<br>' +
-				'Hobby: ' + gameData.applicantHobby + '<br>' +
+				'Hobby: ' + game.applicantHobby + '<br>' +
 				'<br>'
 			)
 		}
 	},
 	broker : {
 		applicationRandomisation: function () {
-			gameData.currencyApplicantFee = beckyRandomMinMax(gameData.minBrokerApplicantFee, gameData.maxBrokerApplicantFee)
-			gameData.currencyApplicantSpeed = beckyRandomMinMax(gameData.minBrokerApplicantSpeed, gameData.maxBrokerApplicantSpeed)
-			gameData.currencyApplicantPrice = (Math.floor(Math.random() * 20) + 1) * 10000
-			gameData.currencyApplicantTransferAmount = beckyRandomMinMax(gameData.minBrokerApplicantAmount, gameData.maxBrokerApplicantAmount)
+			game.currencyApplicantFee = beckyRandomMinMax(game.minBrokerApplicantFee, game.maxBrokerApplicantFee)
+			game.currencyApplicantSpeed = beckyRandomMinMax(game.minBrokerApplicantSpeed, game.maxBrokerApplicantSpeed)
+			game.currencyApplicantPrice = (Math.floor(Math.random() * 20) + 1) * 10000
+			game.currencyApplicantTransferAmount = beckyRandomMinMax(game.minBrokerApplicantAmount, game.maxBrokerApplicantAmount)
 		},
 		onHire: function () {
-			if (gameData.coins >= gameData.currencyApplicantPrice && gameData.applicationReady == 1) {
-				gameData.applicationReady = 0
-				gameData.doesHaveCurrencyBroker = 1
-				gameData.coins -= gameData.currencyApplicantPrice
-				gameData.currencyBrokerFee = gameData.currencyApplicantFee
-				gameData.currencyBrokerSpeed = gameData.currencyApplicantSpeed
-				gameData.currencyBrokerPrice = gameData.currencyApplicantPrice
-				gameData.currencyBrokerTransferAmount = gameData.currencyApplicantTransferAmount
-				gameData.coinsToAlphaBar = 0
+			if (game.coins >= game.currencyApplicantPrice && game.applicationReady == 1) {
+				game.applicationReady = 0
+				game.doesHaveCurrencyBroker = 1
+				game.coins -= game.currencyApplicantPrice
+				game.currencyBrokerFee = game.currencyApplicantFee
+				game.currencyBrokerSpeed = game.currencyApplicantSpeed
+				game.currencyBrokerPrice = game.currencyApplicantPrice
+				game.currencyBrokerTransferAmount = game.currencyApplicantTransferAmount
+				game.coinsToAlphaBar = 0
 			}
 		},
 		price: 10000,
@@ -158,34 +158,34 @@ employeeTypes = {
 		textFormat: function () {
 			update('application',
 				'<br>' +
-				'Speed: ' + gameData.currencyApplicantSpeed.toLocaleString() + ' Seconds.' + '<br>' +
-				'Transfer Fee: ' + gameData.currencyApplicantFee.toLocaleString() + ' Coins.' + '<br>' +
-				'Alpha Coins Per Transfer: ' + gameData.currencyApplicantTransferAmount.toLocaleString() + '.' + '<br>' +
-				'Hire Price: ' + gameData.currencyApplicantPrice.toLocaleString() + ' Coins.' + '<br>' +
+				'Speed: ' + game.currencyApplicantSpeed.toLocaleString() + ' Seconds.' + '<br>' +
+				'Transfer Fee: ' + game.currencyApplicantFee.toLocaleString() + ' Coins.' + '<br>' +
+				'Alpha Coins Per Transfer: ' + game.currencyApplicantTransferAmount.toLocaleString() + '.' + '<br>' +
+				'Hire Price: ' + game.currencyApplicantPrice.toLocaleString() + ' Coins.' + '<br>' +
 				'<br>'
 			)
 		}		
 	},
 	pie : {
 		applicationRandomisation: function () {
-			gameData.pieApplicantPieCoinPrice = beckyRandomMinMax(5, 20)
-			if(gameData.usingBetaCoinWage == 1)
-				gameData.pieApplicantBetaCoinPrice = beckyRandomMinMax(200, 1000)
+			game.pieApplicantPieCoinPrice = beckyRandomMinMax(5, 20)
+			if(game.usingBetaCoinWage == 1)
+				game.pieApplicantBetaCoinPrice = beckyRandomMinMax(200, 1000)
 			else
-				gameData.pieApplicantBetaCoinPrice = 0
-			gameData.pieApplicantMaxPay = beckyRandomMinMax(1, 20)
-			gameData.pieApplicantCharm = beckyRandomMinMax(0, 10)
-			gameData.pieApplicantPrice = beckyRandomMinMax(1, 20) * 10
+				game.pieApplicantBetaCoinPrice = 0
+			game.pieApplicantMaxPay = beckyRandomMinMax(1, 20)
+			game.pieApplicantCharm = beckyRandomMinMax(0, 10)
+			game.pieApplicantPrice = beckyRandomMinMax(1, 20) * 10
 		},
 		onHire: function () {
-			if (gameData.betaCoins >= gameData.pieApplicantPrice && gameData.applicationReady == 1) {
-				gameData.applicationReady = 0
-				gameData.doesHavePieMerchant = 1
-				gameData.betaCoins -= gameData.pieApplicantPrice
-				gameData.pieMerchantPieCoinPrice = gameData.pieApplicantPieCoinPrice
-				gameData.pieMerchantBetaCoinPrice = gameData.pieApplicantBetaCoinPrice
-				gameData.pieMerchantMaxPay = gameData.pieApplicantMaxPay
-				gameData.pieMerchantCharm = gameData.pieApplicantCharm
+			if (game.betaCoins >= game.pieApplicantPrice && game.applicationReady == 1) {
+				game.applicationReady = 0
+				game.doesHavePieMerchant = 1
+				game.betaCoins -= game.pieApplicantPrice
+				game.pieMerchantPieCoinPrice = game.pieApplicantPieCoinPrice
+				game.pieMerchantBetaCoinPrice = game.pieApplicantBetaCoinPrice
+				game.pieMerchantMaxPay = game.pieApplicantMaxPay
+				game.pieMerchantCharm = game.pieApplicantCharm
 			}
 		},
 		price: 10,
@@ -193,11 +193,11 @@ employeeTypes = {
 		textFormat: function () {
 			update('application',
 				'<br>' +
-				'Pie Coin Wage: '    + gameData.pieApplicantPieCoinPrice.toLocaleString()   + '<br>' +
-				'Beta Coin Wage: '   + gameData.pieApplicantBetaCoinPrice.toLocaleString()  + '<br>' +
-				'Charm: '            + gameData.pieApplicantCharm.toLocaleString()          + '<br>' +
-				'Max Wage Advances: ' + gameData.pieApplicantMaxPay.toLocaleString()         + '<br>' +
-				'Hire Price: '       + gameData.pieApplicantPrice.toLocaleString()          + ' Beta Coins.' + '<br>' +
+				'Pie Coin Wage: '    + game.pieApplicantPieCoinPrice.toLocaleString()   + '<br>' +
+				'Beta Coin Wage: '   + game.pieApplicantBetaCoinPrice.toLocaleString()  + '<br>' +
+				'Charm: '            + game.pieApplicantCharm.toLocaleString()          + '<br>' +
+				'Max Wage Advances: ' + game.pieApplicantMaxPay.toLocaleString()         + '<br>' +
+				'Hire Price: '       + game.pieApplicantPrice.toLocaleString()          + ' Beta Coins.' + '<br>' +
 				'<br>'
 			)
 		}	
@@ -251,9 +251,9 @@ document.getElementById('hiringArea').innerHTML = `
             <div class="module-container" style="display:inline-block;">
                 <div class="basicDiv">
 					<div id="hireToggleButtons">
-						<button id="hireEmployeeToggleButton"    onclick="gameData.typeToHireToggle = 'basic'" >Basic Employees</button>
-						<button id="hireBrokerToggleButton"      onclick="gameData.typeToHireToggle = 'broker'" >Currency Brokers</button>
-						<button id="hirePieMerchantToggleButton" onclick="gameData.typeToHireToggle = 'pie'" >Pie Merchant</button>
+						<button id="hireEmployeeToggleButton"    onclick="game.typeToHireToggle = 'basic'" >Basic Employees</button>
+						<button id="hireBrokerToggleButton"      onclick="game.typeToHireToggle = 'broker'" >Currency Brokers</button>
+						<button id="hirePieMerchantToggleButton" onclick="game.typeToHireToggle = 'pie'" >Pie Merchant</button>
 					</div>
                     <button id="advertiseButton" onclick="advertise()">Advertise your lime business</button>
 					<div id="autoAdvertiseBrokerDiv">
@@ -261,18 +261,18 @@ document.getElementById('hiringArea').innerHTML = `
 						<p>Rule:</p>
 						<p id="textForAdvertisingBrokerRule">Auto advertise unless speed is under 30 seconds</p>
 						<button onclick="decreaseValue('autoAdvertiseSpeedValue')" style="width:166px">Decrease</button>
-						<button onclick="gameData.autoAdvertiseSpeedValue += 1" style="width:166px">Increase</button>
+						<button onclick="game.autoAdvertiseSpeedValue += 1" style="width:166px">Increase</button>
 					<div id="smarterAdvertisingBrokerRule">
 						<p id="textForSmarterAdvertisingBrokerRule">Auto advertise unless speed is under 30 seconds</p>
 						<button onclick="decreaseValue('autoAdvertiseAmountValue')" style="width:166px">Decrease</button>
-						<button onclick="gameData.autoAdvertiseAmountValue += 1" style="width:166px">Increase</button>
+						<button onclick="game.autoAdvertiseAmountValue += 1" style="width:166px">Increase</button>
 					</div>
 					</div>
 					<div class="skillProgress" id="advertiseProgress">
                         <div class="skillBar" id="advertiseBar"></div>
                     </div>
                     <p id="advertisePrice">Price: 10 Coins</p>
-                    <button id="application" style="display:block;width:300px;margin:auto;white-space: pre-wrap;" onclick="employeeTypes[gameData.applicationType].onHire()">Pin applications here</button>
+                    <button id="application" style="display:block;width:300px;margin:auto;white-space: pre-wrap;" onclick="employeeTypes[game.applicationType].onHire()">Pin applications here</button>
                     <p id="applicationInfo">Click the application to accept</p>
                 </div>
                 <div id="autoBrokerAdvertiser" class="basicDiv">

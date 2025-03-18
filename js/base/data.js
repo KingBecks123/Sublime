@@ -25,7 +25,7 @@ baseVariables = [
 ]
 
 
-var gameDataBase = {
+var gameBase = {
 	coinsMax: 1e6,
     juiceBulkAmount: 1,
     deliveryBar: 0,
@@ -148,7 +148,7 @@ var gameDataBase = {
 	sfxOn: 1,
 }
 
-var gameData = {}
+var game = {}
 
 ableToSave = true
 
@@ -166,3 +166,7 @@ document.getElementById('market').innerHTML = `
         <div id="travel" class="module-container" style="display:none;"></div>
         <div id="trade" class="module-container"></div>
 `;
+
+myBeige = "#DEAD85";
+myGray = "#BBBBBB";
+myLime = "#4DFE89";

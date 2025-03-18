@@ -1,109 +1,109 @@
 function peelerPeel() {
-    if (gameData.peelerBar == 0 && gameData.limes > 0) {
-		gameData.howManyPeeledLimes = 1
-		gameData.limes -= 1
-		gameData.peelerBar = 0
+    if (game.peelerBar == 0 && game.limes > 0) {
+		game.howManyPeeledLimes = 1
+		game.limes -= 1
+		game.peelerBar = 0
 		peelerBar()
     }
 }
 
 
 function peelerPeelMax() {
-    if (gameData.peelerBar == 0) {
-        gameData.howManyPeeledLimes = gameData.limes
-        if (gameData.howManyPeeledLimes > gameData.peelers) 
-            gameData.howManyPeeledLimes = gameData.peelers
-        gameData.limes -= gameData.howManyPeeledLimes
-        if (gameData.howManyPeeledLimes > 0) {
-            gameData.peelerBar = 0
+    if (game.peelerBar == 0) {
+        game.howManyPeeledLimes = game.limes
+        if (game.howManyPeeledLimes > game.peelers) 
+            game.howManyPeeledLimes = game.peelers
+        game.limes -= game.howManyPeeledLimes
+        if (game.howManyPeeledLimes > 0) {
+            game.peelerBar = 0
             peelerBar()
         }
     }
 }
 
 function peelerBar() {
-	runBar('peeler', (0.3 + gameData.bitterSpeeding * 6) * (gameData.sharperPeelers + 1))
+	runBar('peeler', (0.3 + game.bitterSpeeding * 6) * (game.sharperPeelers + 1))
 }
 
 function peelerBarEnd() {
-	gameData.peeledLimes += gameData.howManyPeeledLimes
+	game.peeledLimes += game.howManyPeeledLimes
 }
 
 function makeJuice() {
-	if (gameData.limeTypeToJuice == 0)
+	if (game.limeTypeToJuice == 0)
 	   setJuice ('limes')
 	
-	else if (gameData.limeTypeToJuice == 1)
+	else if (game.limeTypeToJuice == 1)
 	   setJuice ('peeledLimes')
 	
 	function setJuice (id) {
-		if (gameData[id] >= gameData[id + 'PerJuice'] && gameData.juicerBar == 0) {
-			gameData[id] -= gameData[id + 'PerJuice']
-			gameData.howMuchJuice = 1
-			gameData.limeTypeToJuiceToggle = gameData.limeTypeToJuice
+		if (game[id] >= game[id + 'PerJuice'] && game.juicerBar == 0) {
+			game[id] -= game[id + 'PerJuice']
+			game.howMuchJuice = 1
+			game.limeTypeToJuiceToggle = game.limeTypeToJuice
 			juicerBar()
 		}
 	}
 }
 
 function makeMaxJuice() {
-    if (gameData.juicerBar == 0) {
-        if (gameData.limeTypeToJuice == 0)
+    if (game.juicerBar == 0) {
+        if (game.limeTypeToJuice == 0)
             setJuice('limes')
 		else
             setJuice('peeledLimes')
 		
-        if (gameData.howMuchJuice > 0)
+        if (game.howMuchJuice > 0)
             juicerBar()
     }
 	
 	function setJuice (id) {
-        gameData.howMuchJuice = Math.floor(gameData[id] / gameData[id + 'PerJuice'])
+        game.howMuchJuice = Math.floor(game[id] / game[id + 'PerJuice'])
 			
-		if (gameData.howMuchJuice > gameData.juicers)
-			gameData.howMuchJuice = gameData.juicers
-		gameData.limeTypeToJuiceToggle = gameData.limeTypeToJuice
+		if (game.howMuchJuice > game.juicers)
+			game.howMuchJuice = game.juicers
+		game.limeTypeToJuiceToggle = game.limeTypeToJuice
 		
-        gameData[id] -= gameData.howMuchJuice * gameData[id + 'PerJuice']
+        game[id] -= game.howMuchJuice * game[id + 'PerJuice']
 	}
 }
 
 function juicerBar() {
-	runBar('juicer', (0.15 + gameData.bitterSpeeding * 3) * (gameData.limeTypeToJuiceToggle * 3 + 1))
+	runBar('juicer', (0.15 + game.bitterSpeeding * 3) * (game.limeTypeToJuiceToggle * 3 + 1))
 }
 
 function juicerBarEnd() {
-	gameData.juice += gameData.howMuchJuice
-	gameData.hasGottenJuice = 1
+	game.juice += game.howMuchJuice
+	game.hasGottenJuice = 1
 }
 
 function eatGoldenLime() {
-	if (gameData.goldenLimes > 0) {
-		gameData.goldenLimes -= 1
-		gameData.eatGoldenLimeBar = 100
-		gameData.bitterSpeeding = 1
+	if (game.goldenLimes > 0) {
+		game.goldenLimes -= 1
+		game.eatGoldenLimeBar = 100
+		game.bitterSpeeding = 1
 		eatGoldenLimeBar()
 	}
 }
 
 function eatGoldenLimeBar() {
-    if (gameData.eatGoldenLimeBar > 0) {
-        gameData.eatGoldenLimeBar -= 0.5
+    if (game.eatGoldenLimeBar > 0) {
+        game.eatGoldenLimeBar -= 0.5
 		updateBar("eatGoldenLime")
-        setTimeout(eatGoldenLimeBar, (gameData.bitterSpeedSkillLevel / gameData.tickspeed))
+        setTimeout(eatGoldenLimeBar, (game.bitterSpeedSkillLevel / game.tickspeed))
     } 
 	else 
-		gameData.bitterSpeeding = 0
+		game.bitterSpeeding = 0
 }
 
 function peelLime() {
-    if (gameData.limes >= 1) {
-        gameData.limes -= 1
-        if (Math.floor((Math.random() * 20) / gameData.knifebidextrousSkillLevel) == 0) {
-            gameData.peeledLimes += 1
-            gameData.limes -= 1
+    if (game.limes >= 1) {
+        game.limes -= 1
+        if (Math.floor((Math.random() * 20) / game.knifebidextrousSkillLevel) == 0) {
+            game.peeledLimes += 1
+            game.limes -= 1
         }
-        gameData.peeledLimes += 1
+        game.peeledLimes += 1
     }
 }
 
@@ -113,39 +113,39 @@ function mainGameLoopInventory () {
 	loopNumberGoldenLimes += 1	
 
 	if (loopNumberGoldenLimes >= 200) {
-        if (gameData.goldenLimes > 0)
-			gameData.goldenLimes -= 1
+        if (game.goldenLimes > 0)
+			game.goldenLimes -= 1
 		loopNumberGoldenLimes = 0
     }
 }
 
 function storageJuicersUnlock() {
-	if (gameData.coins >= 100) {
-		gameData.coins -= 100
-		gameData.storageJuicersUnlock = 1
-		gameData.juicersMax *= 5
+	if (game.coins >= 100) {
+		game.coins -= 100
+		game.storageJuicersUnlock = 1
+		game.juicersMax *= 5
 	}
 }
 
 function storagePeelersUnlock() {
-	if (gameData.coins >= 100) {
-		gameData.coins -= 100
-		gameData.storagePeelersUnlock = 1
-		gameData.peelersMax *= 5
+	if (game.coins >= 100) {
+		game.coins -= 100
+		game.storagePeelersUnlock = 1
+		game.peelersMax *= 5
 	}
 }
 
 function updateValuesInventory () {
-	twoToggleButtons('foodToggleRottenLimesButton', 'foodToggleLimesButton', gameData.foodTypeToggle)
-	twoToggleButtons('juicePeeledLimesToggleButton', 'juiceLimesToggleButton', gameData.limeTypeToJuice)
+	twoToggleButtons('foodToggleRottenLimesButton', 'foodToggleLimesButton', game.foodTypeToggle)
+	twoToggleButtons('juicePeeledLimesToggleButton', 'juiceLimesToggleButton', game.limeTypeToJuice)
 
 	function twoToggleButtons(button1, button2, value) {
 		if (value == 1) {
-			setColor(button1, "#4DFE89")
+			setColor(button1, myLime)
 			setColor(button2, "gray")
 		} else {
 			setColor(button1, "gray")
-			setColor(button2, "#4DFE89")
+			setColor(button2, myLime)
 		}
 	}
 	
@@ -159,34 +159,34 @@ function updateValuesInventory () {
 	ifMaxDarkGray("juicer")
 	ifMaxDarkGray("peeler")
 	
-	checkShow(gameData.deliveryManager, 'sellMaxJuiceButton', 'inline')
-	checkShow(!gameData.knife, 'buyKnifeDiv')
-	checkShow(gameData.knife && gameData.knifebidextrousSkillLevel == gameData.knifebidextrousSkillLevelMax && gameData.maps > 1 && !gameData.sharperPeelers, 'sharperPeelerDiv')
-	checkShow(gameData.knife && gameData.knifebidextrousSkillLevel == gameData.knifebidextrousSkillLevelMax && !(gameData.hideMaxedPurchases == 1 && gameData.peelers == gameData.peelersMax), 'buyAPeelerDiv')
-	checkShow(gameData.knife, 'knifeDiv')
-	checkShow(gameData.bulkBuyUnlock, 'peelersBulkButton', 'inline')
-	checkShow(gameData.bulkBuyUnlock, 'juicersBulkButton', 'inline')
-	checkShow(gameData.hasGottenPeeledLimes, 'juiceLimesToggleButton', 'inline')
-	checkShow(gameData.hasGottenPeeledLimes, 'juicePeeledLimesToggleButton', 'inline')
-	checkShow(gameData.bitterSpeedSkillLevel, 'eatGoldenLimeProgress')
-	checkShow(gameData.bitterSpeedSkillLevel, 'eatGoldenLime')
-	checkShow(gameData.peelers, 'peelerDiv')
-	checkShow(gameData.peelers > 1, 'peelerPeelMaxButton', 'inline')
-	checkShow(gameData.juicers > 1, 'makeMaxJuiceButton', 'visible')
-	checkShow(gameData.juicers, 'inventoryButton')
+	checkShow(game.deliveryManager, 'sellMaxJuiceButton', 'inline')
+	checkShow(!game.knife, 'buyKnifeDiv')
+	checkShow(game.knife && game.knifebidextrousSkillLevel == game.knifebidextrousSkillLevelMax && game.maps > 1 && !game.sharperPeelers, 'sharperPeelerDiv')
+	checkShow(game.knife && game.knifebidextrousSkillLevel == game.knifebidextrousSkillLevelMax && !(game.hideMaxedPurchases == 1 && game.peelers == game.peelersMax), 'buyAPeelerDiv')
+	checkShow(game.knife, 'knifeDiv')
+	checkShow(game.bulkBuyUnlock, 'peelersBulkButton', 'inline')
+	checkShow(game.bulkBuyUnlock, 'juicersBulkButton', 'inline')
+	checkShow(game.hasGottenPeeledLimes, 'juiceLimesToggleButton', 'inline')
+	checkShow(game.hasGottenPeeledLimes, 'juicePeeledLimesToggleButton', 'inline')
+	checkShow(game.bitterSpeedSkillLevel, 'eatGoldenLimeProgress')
+	checkShow(game.bitterSpeedSkillLevel, 'eatGoldenLime')
+	checkShow(game.peelers, 'peelerDiv')
+	checkShow(game.peelers > 1, 'peelerPeelMaxButton', 'inline')
+	checkShow(game.juicers > 1, 'makeMaxJuiceButton', 'visible')
+	checkShow(game.juicers, 'inventoryButton')
 	
-	update('juicersAmount', gameData.juicers.toLocaleString() + ' / ' + gameData.juicersMax.toLocaleString() + ' Juicers')
-	update('peelersAmount', gameData.peelers.toLocaleString() + ' / ' + gameData.peelersMax.toLocaleString() + ' Peelers')
+	update('juicersAmount', game.juicers.toLocaleString() + ' / ' + game.juicersMax.toLocaleString() + ' Juicers')
+	update('peelersAmount', game.peelers.toLocaleString() + ' / ' + game.peelersMax.toLocaleString() + ' Peelers')
 
 
 	
-	if (gameData.limeTypeToJuice == 0)
-		update('juicerInfo', gameData.limesPerJuice + ' Limes -> 1 Juice')
+	if (game.limeTypeToJuice == 0)
+		update('juicerInfo', game.limesPerJuice + ' Limes -> 1 Juice')
 	else
-		update('juicerInfo', gameData.peeledLimesPerJuice + ' Peeled Limes -> 1 Juice')
+		update('juicerInfo', game.peeledLimesPerJuice + ' Peeled Limes -> 1 Juice')
 
-	if (gameData.peeledLimes >= 1)
-		gameData.hasGottenPeeledLimes = true
+	if (game.peeledLimes >= 1)
+		game.hasGottenPeeledLimes = true
 	
 
 

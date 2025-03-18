@@ -40,7 +40,7 @@ document.getElementById('marketMain').innerHTML = `
         <p>Price: 1 Coin</p>
     </div>
     <div class="basicDiv" id="buyShoesDiv">
-        <button style="background-color:#DEAD85;" onclick="buy('shoes', 1)">Buy Shoes</button>
+        <button onclick="buy('shoes', 1)">Buy Shoes</button>
         <p>Double auto collect rate</p>
         <p>Price: 1 Coin</p>
     </div>
@@ -65,7 +65,7 @@ document.getElementById('marketMain').innerHTML = `
         <p>Price: 10 Coins</p>
     </div>
     <div class="basicDiv" id="buyAMapDiv1">
-        <button style="background-color:#DEAD85" onclick="buy('maps', 20)">Buy A Map Of The Town</button>
+        <button onclick="buy('maps', 20)">Buy A Map Of The Town</button>
         <p>Price: 20 Coins</p>
     </div>
     <div id="marketStore">
@@ -235,7 +235,7 @@ document.getElementById('plebeian').innerHTML = `
     <p>Price: 50 Pie Coins</p>
 </div>
 <div class="basicDiv" id="bucketThinSteelPlating">
-    <button onclick="buy('bucketThinSteelPlating', gameData.bucketThinSteelPlating * 5 + 20, 'pieCoins')">Buy Thin Steel Plating</button>
+    <button onclick="buy('bucketThinSteelPlating', game.bucketThinSteelPlating * 5 + 20, 'pieCoins')">Buy Thin Steel Plating</button>
     <p>Perfect for extending the height of your buckets</p>
     <p id="bucketHeight">Current heights: 20 Units</p>
     <p id="bucketThinSteelPlatingPrice">Price: 20 Pie Coins</p>

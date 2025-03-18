@@ -13,20 +13,20 @@ const letterEntries = Object.keys(LORE_CONTENT.letters).map(id => ({
 
 // Initialize lore data in game state
 function initLoreData() {
-    if (!gameData.loreDiscovered) {
-        gameData.loreDiscovered = { journal: {}, letters: {} };
-        gameData.totalLoreFound = 0;
+    if (!game.loreDiscovered) {
+        game.loreDiscovered = { journal: {}, letters: {} };
+        game.totalLoreFound = 0;
     }
 }
 
 // Check if any pages have been discovered
 function hasDiscoveredAnyPages() {
     initLoreData();
-    for (let id in gameData.loreDiscovered.journal) {
-        if (gameData.loreDiscovered.journal[id]) return true;
+    for (let id in game.loreDiscovered.journal) {
+        if (game.loreDiscovered.journal[id]) return true;
     }
-    for (let id in gameData.loreDiscovered.letters) {
-        if (gameData.loreDiscovered.letters[id]) return true;
+    for (let id in game.loreDiscovered.letters) {
+        if (game.loreDiscovered.letters[id]) return true;
     }
     return false;
 }
@@ -45,8 +45,8 @@ function discoverRandomLoreEntry() {
     initLoreData();
     
     // Get all undiscovered entries
-    const undiscoveredJournals = journalEntries.filter(entry => !gameData.loreDiscovered.journal[entry.id]);
-    const undiscoveredLetters = letterEntries.filter(entry => !gameData.loreDiscovered.letters[entry.id]);
+    const undiscoveredJournals = journalEntries.filter(entry => !game.loreDiscovered.journal[entry.id]);
+    const undiscoveredLetters = letterEntries.filter(entry => !game.loreDiscovered.letters[entry.id]);
     const undiscoveredLore = [...undiscoveredJournals, ...undiscoveredLetters];
     
     if (undiscoveredLore.length === 0) return false;
@@ -56,12 +56,12 @@ function discoverRandomLoreEntry() {
     const isJournal = undiscoveredJournals.includes(entry);
     
     if (isJournal) {
-        gameData.loreDiscovered.journal[entry.id] = true;
+        game.loreDiscovered.journal[entry.id] = true;
     } else {
-        gameData.loreDiscovered.letters[entry.id] = true;
+        game.loreDiscovered.letters[entry.id] = true;
     }
     
-    gameData.totalLoreFound++;
+    game.totalLoreFound++;
     update("newInfo", `You discovered a new page: "${entry.title}"`);
     
     showPagesButton();
@@ -78,11 +78,11 @@ function discoverSpecificLoreEntry(category, id) {
     }
     
     // Check if already discovered
-    if (gameData.loreDiscovered[category][id]) return false;
+    if (game.loreDiscovered[category][id]) return false;
     
     // Mark as discovered
-    gameData.loreDiscovered[category][id] = true;
-    gameData.totalLoreFound++;
+    game.loreDiscovered[category][id] = true;
+    game.totalLoreFound++;
     
     update("newInfo", `You discovered a new page: "${LORE_CONTENT[category][id].title}"`);
     showPagesButton()
@@ -146,7 +146,7 @@ function createLorePanel() {
     const journalTab = document.createElement("button");
     journalTab.textContent = "Journal Entries";
     journalTab.className = "loreTab";
-    journalTab.style.backgroundColor = "#4DFE89";
+    journalTab.style.backgroundColor = myLime;
     journalTab.onclick = () => showLoreCategory("journal");
     
     const lettersTab = document.createElement("button");
@@ -189,7 +189,7 @@ function showLoreCategory(category) {
     // Highlight the active tab
     const tabs = document.getElementsByClassName("loreTab");
     for (let i = 0; i < tabs.length; i++) {
-        tabs[i].style.backgroundColor = "#DEAD85";
+        tabs[i].style.backgroundColor = myBeige;
     }
     tabs[category === "journal" ? 0 : 1].style.backgroundColor = "#C67848";
     
@@ -199,7 +199,7 @@ function showLoreCategory(category) {
     
     // Show discovered entries
     const entries = category === "journal" ? journalEntries : letterEntries;
-    const discovered = gameData.loreDiscovered[category];
+    const discovered = game.loreDiscovered[category];
     let foundAny = false;
     
     entries.forEach(entry => {
@@ -270,7 +270,7 @@ function initLoreSystem() {
     addLoreStyles();
     
     // Auto-discover first journal if map already purchased
-    if (gameData.maps >= 1 && !gameData.loreDiscovered.journal["mother-tree"]) {
+    if (game.maps >= 1 && !game.loreDiscovered.journal["mother-tree"]) {
         discoverSpecificLoreEntry('journal', 'mother-tree');
     }
 }
