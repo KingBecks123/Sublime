@@ -12,8 +12,8 @@ document.getElementById('marketMain').innerHTML = `
         <p id="sellYourJuicePrice">You Need 2 Coins For Delivery</p>
         <p id="sellYourJuiceAmount">You Need 1 Juice</p>
         <p id="sellYourJuiceReward">You Will Be Rewarded 1 Coin</p>
-        <button id="decreaseJuiceSoldButton" onclick="decreaseJuiceSold()" style="width:120px;">Decrease Juice Sold</button>
-        <button id="increaseJuiceSoldButton" onclick="increaseJuiceSold()" style="width:120px;">Increase Juice Sold</button>
+        <button class="wide-button" id="decreaseJuiceSoldButton" onclick="decreaseJuiceSold()">Decrease Juice Sold</button>
+        <button class="wide-button" id="increaseJuiceSoldButton" onclick="increaseJuiceSold()">Increase Juice Sold</button>
         <button id="sellMaxJuiceButton" onclick="sellMaxJuice()" style="width:105px;background-color:#BBBBBB">Sell Max Juice</button>
         <br>
         <button id="deliveryToggleStandardButton" style="width:105px;height:40px;" onclick="deliveryToggleStandard()">Standard Delivery</button>
@@ -287,7 +287,7 @@ plebianStuffToBuy = [
         priceText: 'Price: 10 Pie Coins'
     },
     {
-        id: 'buyPieConveyorBelt',
+        id: 'buyAPieConveyorBelt',
         name: 'Buy A Pie Conveyor Belt',
         function: `buy('pieConveyorBelt', 20, 'pieCoins')`,
         description: 'Automatically sends pies into the oven',
@@ -378,3 +378,25 @@ plebianStuffToBuy = [
         priceText: 'Price: 200 Beta Coins'
     }
 ]
+
+//Add stuffToBuy to the market
+stuffToBuy.forEach(item => {
+    document.getElementById('patrician').innerHTML += `
+        <div id="${item.id}" class="basicDiv">
+            <button onclick="${item.function}">${item.name}</button>
+            <p>${item.description}</p>
+            <p>${item.priceText}</p>
+        </div>
+    `;
+});
+
+//Add plebianStuffToBuy to the market
+plebianStuffToBuy.forEach(item => {
+    document.getElementById('plebeian').innerHTML += `
+        <div id="${item.id}" class="basicDiv">
+            <button onclick="${item.function}">${item.name}</button>
+            <p>${item.description}</p>
+            <p id="${item.id}Price">${item.priceText}</p>
+        </div>
+    `;
+});

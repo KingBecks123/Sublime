@@ -59,9 +59,14 @@ function beckyRandomMinMax(min, max) {
 
 function checkShow(x, id, style) {
 	const element = document.getElementById(id);
-	if (style === 'visible') {
+    if (element !== null){
+        if (style === 'visible') {
 			element.style.visibility = x ? 'visible' : 'hidden';
-	} else {
-			element.style.display = x ? (style === 'inline' ? 'inline-block' : 'block') : 'none';
-	}
+        } else {
+                element.style.display = x ? (style === 'inline' ? 'inline-block' : 'block') : 'none';
+        }
+    }
+    else {
+        console.log(id + ' is null')
+    }
 }

@@ -222,8 +222,10 @@ function update(id, content) {
   }
 
   if (hasUpdatedObj[stringy] !== content) {
-    document.getElementById(id).innerHTML = content;
-    hasUpdatedObj[stringy] = content;
+    if (document.getElementById(id) !== null) {
+        document.getElementById(id).innerHTML = content;
+        hasUpdatedObj[stringy] = content;
+    }
   }
 }
 

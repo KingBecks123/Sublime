@@ -115,62 +115,128 @@ document.getElementById('travel').innerHTML = `
 		<button onclick="travelToNextVillage()">Travel To Next Village</button>
 	</div>
 </div>
-<div class="basicDiv" id="buyBigGloves">
-	<button class="travelButton" onclick="buy('bigGloves', 5, 'megaCoins')">Buy Big Gloves</button>
-	<p>Helps you pick up double limes!</p>
-	<p>Price: 5 Mega Coins</p>
-</div>
-<div class="basicDiv" id="hireANutritionist">
-	<button class="travelButton" onclick="buy('nutritionists', 5, 'megaCoins')">Hire A Nutritionist</button>
-	<p>Get double the nutrition from eating</p>
-	<p>Price: 5 Mega Coins</p>
-</div>
-<div class="basicDiv" id="increaseCreditScore">
-	<button class="travelButton" onclick="increaseCreditScore()">Increase Credit Score</button>
-	<p>Store up to 50 Mega Coins in your bank account</p>
-	<p>Price: 2 Mega Coins</p>
-</div>
-<div class="basicDiv" id="juiceMarketing">
-	<button class="travelButton" onclick="buy('nationalJuiceMarketing', 10, 'megaCoins')">National Juice Marketing</button>
-	<p>Convince the country that juice can be added to anything!</p>
-	<p>Doubles juice sale price</p>
-	<p>Price: 10 Mega Coins</p>
-</div>
-<div class="basicDiv" id="betterTraining">
-	<button class="travelButton" onclick="buyBetterTraining()">Search For Specialised Workers</button>
-	<p>Increases maximum applicant speed by 100%</p>
-	<p>The search gets more difficult the more you find</p>
-	<p id="betterTrainingPrice">Price: 1 Mega Coins</p>
-</div>
-<div class="basicDiv" id="upgradeMoreStorage">
-	<button class="travelButton" onclick="upgradeMoreStorage()">Buy More Land</button>
-	<p>Increases maximum juicers by 500</p>
-	<p>Increases maximum peelers by 2,500</p>
-	<p id="upgradeMoreStoragePrice"></p>
-</div>
-<div class="basicDiv" id="earnBachelorFinance">
-	<button onclick="buy('bachelorsDegreeFinance', 20, 'megaCoins')">'Earn' A Bachelors Degree In Finance</button>
-	<p>Access the Currency Exchange market</p>
-	<p>Price: 20 Mega Coins</p>
-</div>
-<div class="basicDiv" id="increaseCreditScore2">
-	<button class="travelButton" onclick="increaseCreditScore2()">Increase Credit Score</button>
-	<p>Store up to 200 Mega Coins in your bank account</p>
-	<p>Price: 5 Mega Coins</p>
-</div>
-<div class="basicDiv" id="increaseCreditScore3">
-	<button class="travelButton" onclick="increaseCreditScore3()">Increase Credit Score</button>
-	<p>Store up to 1,000 Mega Coins in your bank account</p>
-	<p>Price: 50 Mega Coins</p>
-</div>
-<div class="basicDiv" id="buyABiggerWallet">
-	<button class="travelButton" onclick="buyABiggerWallet()">Buy A Bigger Wallet</button>
-	<p>Store up to +1,000,000 coins</p>
-	<p>Price: 50 Mega Coins</p>
-</div>
-<div class="basicDiv" id="rottenActualWisdom">
-	<button class="travelButton" onclick="rottenActualWisdom()">Rotten (Actual) Wisdom</button>
-	<p>Lowers the max skill level of Rotten Wisdom from 50 to 25</p>
-	<p>Price: 50 Mega Coins</p>
-</div>
 `
+
+const travelUpgradesToBuy = [
+    {
+        id: "buyBigGloves",
+        text: "Big Gloves",
+        description: "Helps you pick up double limes!",
+        price: {
+            currency: "megaCoins",
+            amount: 5,
+            text: "5 Mega Coins"
+        },
+        function: "buy('bigGloves', 5, 'megaCoins')"
+    },
+    {
+        id: "hireANutritionist",
+        text: "Hire A Nutritionist",
+        description: "Get double the nutrition from eating",
+        price: {
+            currency: "megaCoins",
+            amount: 5,
+            text: "5 Mega Coins"
+        },
+        function: "buy('nutritionists', 5, 'megaCoins')"
+    },
+    {
+        id: "increaseCreditScore",
+        text: "Increase Credit Score",
+        description: "Store up to 50 Mega Coins in your bank account",
+        price: {
+            currency: "megaCoins",
+            amount: 2,
+            text: "2 Mega Coins"
+        },
+        function: "increaseCreditScore()"
+    },
+    {
+        id: "juiceMarketing",
+        text: "National Juice Marketing",
+        description: "Convince the country that juice can be added to anything!",
+        price: {
+            currency: "megaCoins",
+            amount: 10,
+            text: "10 Mega Coins"
+        },
+        function: "buy('nationalJuiceMarketing', 10, 'megaCoins')"
+    },
+    {
+        id: "betterTraining",
+        text: "Search For Specialised Workers",
+        description: "Increases maximum applicant speed by 100%",
+        price: {
+            currency: "megaCoins",
+            amount: 1,
+            text: "1 Mega Coin"
+        },
+        function: "buyBetterTraining()"
+    },
+    {
+        id: "upgradeMoreStorage",
+        text: "Buy More Land",
+        description: "Increases maximum juicers by 500",
+        price: {
+            currency: "megaCoins",
+            amount: 10,
+            text: "10 Mega Coins"
+        },
+        function: "upgradeMoreStorage()"
+    },
+    {
+        id: "earnBachelorFinance",
+        text: "'Earn' A Bachelors Degree In Finance",
+        description: "Access the Currency Exchange market",
+        price: {
+            currency: "megaCoins",
+            amount: 20,
+            text: "20 Mega Coins"
+        },
+        function: "buy('bachelorsDegreeFinance', 20, 'megaCoins')"
+    },
+    {
+        id: "increaseCreditScore2",
+        text: "Increase Credit Score",
+        description: "Store up to 200 Mega Coins in your bank account",
+        price: {
+            currency: "megaCoins",
+            amount: 5,
+            text: "5 Mega Coins"
+        },
+        function: "increaseCreditScore2()"
+    },
+    {
+        id: "increaseCreditScore3",
+        text: "Increase Credit Score",
+        description: "Store up to 1,000 Mega Coins in your bank account",
+        price: {
+            currency: "megaCoins",
+            amount: 50,
+            text: "50 Mega Coins"
+        },
+        function: "increaseCreditScore3()"
+    },
+    {
+        id: "buyABiggerWallet",
+        text: "Buy A Bigger Wallet",
+        description: "Store up to +1,000,000 coins",
+        price: {
+            currency: "megaCoins",
+            amount: 50,
+            text: "50 Mega Coins"
+        },
+        function: "buyABiggerWallet()"
+    },
+    {
+        id: "rottenActualWisdom",
+        text: "Rotten (Actual) Wisdom",
+        description: "Lowers the max skill level of Rotten Wisdom from 50 to 25",
+        price: {
+            currency: "megaCoins",
+            amount: 50,
+            text: "50 Mega Coins"
+        },
+        function: "rottenActualWisdom()"
+    }
+]
