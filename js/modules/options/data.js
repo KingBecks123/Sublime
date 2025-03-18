@@ -18,10 +18,10 @@ document.getElementById('options').innerHTML = `
 				<p class="basicText" id="textForTimePlayed"></p>
 			</div>
 			<div id="uiOptions">
-				<button class="specialButton" style="width:342px" onclick="changeZoomSize()">Change Zoom Size</button><br>
-				<button class="specialButton" style="width:342px" id="hideCompletedSkillsButton" onclick="toggle('hideCompletedSkills')">Completed Skills Shown</button><br>
-				<button class="specialButton" style="width:342px" id="hideMaxedPurchasesButton" onclick="toggle('hideMaxedPurchases')">Maxed Purchases Shown</button><br>
-				<button class="specialButton" style="width:342px" onclick="invert('showDonationButton')" id="showDonationButton"></button>
+				<button class="ui-option" style="width:342px" onclick="changeZoomSize()">Change Zoom Size</button><br>
+				<button class="ui-option" style="width:342px" id="hideCompletedSkillsButton" onclick="toggle('hideCompletedSkills')">Completed Skills Shown</button><br>
+				<button class="ui-option" style="width:342px" id="hideMaxedPurchasesButton" onclick="toggle('hideMaxedPurchases')">Maxed Purchases Shown</button><br>
+				<button class="ui-option" style="width:342px" onclick="invert('showDonationButton')" id="showDonationButton"></button>
 			</div>
 		</div>
 `;
