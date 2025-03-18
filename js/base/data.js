@@ -2,7 +2,7 @@ mainTabs = [
 	{
 		id: 'options',
 		text: 'Options',
-		color1: 'BBBBBB',
+		color1: '898989',
 		color2: '898989'
 	},
 	{
@@ -17,14 +17,12 @@ baseVariables = [
 	{
 		id: 'limes',
 		name: 'Limes',
-		color1: '00B300',
-		color2: '00FF01',
+		color1: '00FF01',
 	},
 	{
 		id: 'coins',
 		name: 'Coins',
-		color1: 'AEB301',
-		color2: 'F8FF01',
+		color1: 'F8FF01',
 	},
 ]
 

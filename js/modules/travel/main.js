@@ -16,8 +16,7 @@ addInventoryVariables([
 	{
 		id: 'megaCoins',
 		name: 'Mega Coins',
-		color1: 'B40001',
-		color2: 'FE0000',
+		color1: 'FE0000'
 	},	
 ]);
 

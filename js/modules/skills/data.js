@@ -79,8 +79,7 @@ addInventoryVariables([
     {
       id: 'rottenLimes',
       name: 'Rotten Limes',
-      color1: '00B300',
-      color2: '00FF01',
+      color1: '00FF01'
     }
   ]);
   

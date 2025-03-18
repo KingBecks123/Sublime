@@ -249,8 +249,9 @@ function upperFirstChar(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-function setColor(id, content) {
+function setColor(id, content, transparency = 100) {
   document.getElementById(id).style.backgroundColor = content;
+  document.getElementById(id).style.opacity = transparency;
 }
 
 function decreaseValue(id) {

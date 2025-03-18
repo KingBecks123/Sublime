@@ -187,19 +187,21 @@ function onLoadBase () {
 		gameDataBase[baseVariables[i].id] = 0
 
 		if (i > 0) {
-			document.getElementById('backpackDiv').innerHTML += '<button id="currencyDisplay(' + i + ')" onClick="currencyDisplay(' + i + ')" style="width:167px">Show ' + baseVariables[i].name + '</button>'
+			document.getElementById('backpackDiv').innerHTML += `<button id="currencyDisplay(${i})" onClick="currencyDisplay(${i})" style="width:167px">Show ${baseVariables[i].name}</button>`
 		}
 
 		gameDataBase[id + 'ShowVariable'] = true
 		gameDataBase[id + 'UnlockedVariable'] = false
 
-		document.getElementById('backgroundForValues').innerHTML += '<div class="stat" id="textFor' + id + 'Div" style="color:#' + baseVariables[i].color2 + '">' + baseVariables[i].name + ' </div><div class="stat" id="textFor' + id + '"  style="float: right;color:#' + baseVariables[i].color1 + '">0</div><p style="background-color:black" id="textFor' + id + 'P"> </p><br  id="textFor' + id + 'Br"/>'
+		document.getElementById('backgroundForValues').innerHTML += `<div class="stat" id="textFor${id}Div" style="color:#${baseVariables[i].color1};">${baseVariables[i].name} </div><div class="stat" id="textFor${id}"  style="float: right;color:#${baseVariables[i].color1};opacity:0.65;">0</div><p style="background-color:black" id="textFor${id}P"> </p><br  id="textFor${id}Br"/>`
 	}
 
 	gameDataBase.limes = 1
 
 	for (let i = 1; i < mainTabs.length; i++) {
-		document.getElementById('navigateButtons').innerHTML += '<button id="' + mainTabs[i].id + 'Button" style="width: 120px;margin:0px;" onclick="tab(&#39' + mainTabs[i].id + '&#39)">' + mainTabs[i].text + '</button>'
+		document.getElementById('navigateButtons').innerHTML += `
+		<button id="${mainTabs[i].id}Button" style="width: 120px;margin:0px;" onclick="tab('${mainTabs[i].id}')">${mainTabs[i].text}</button>
+		`
 	}
 
 	document.getElementById('textForbetaCoinsDiv').style.textDecoration = 'underline'

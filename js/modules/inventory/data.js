@@ -11,20 +11,17 @@ addInventoryVariables([
 	{
 		id: 'goldenLimes',
 		name: 'Golden Limes',
-		color1: 'AEB301',
-		color2: 'F8FF01',
+		color1: 'F8FF01'
 	},
 	{
 		id: 'peeledLimes',
 		name: 'Peeled Limes',
-		color1: '72B301',
-		color2: 'A0FF01',
+		color1: 'A0FF01'
 	},	
 	{
 		id: 'juice',
 		name: 'Juice',
-		color1: '00B33D',
-		color2: '00FF55',
+		color1: '00FF55'
 	},	
 ]);
 
