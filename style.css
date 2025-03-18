@@ -91,6 +91,7 @@
   width: 150px;
   height: 30px;
   background-color: #d1d9d9;
+  margin: 0px;
 }
 
 .action-buttons {
@@ -183,30 +184,21 @@
   text-align: center;
 }
 
-.specialButton {
-  margin: 5px;
-  background-color: #DEAD85;
-}
-
 .travelButton {
-  margin: 5px;
   background-color: #FF999A;
 }
 
 .roundButton {
-  margin: 5px;
   padding: 1px 10px;
   border-radius: 12px;
 }
 
 .pinButton {
   background-color: #FF999A;
-  height: 25px;
-  margin: 5px;
-}
-
-.stat {
-  font-family: pixelated;
+  height: 20px;
+  width: 20px;
+  font-size: 11px;
+  padding: 0px;
 }
 
 .skillButton {
@@ -264,7 +256,7 @@
 
 .bucketProgress {
   background-color: #BBBBBB;
-  width: 167px;
+  width: 166px;
   height: 100px;
   display: inline-block;
   margin: 5px;
@@ -297,6 +289,8 @@ button {
   border: 1px solid #000000;
   transition: all 0.1s ease;
   box-shadow: 0 2px 0 #2d2d44;
+  margin: 5px;
+  background-color: #DEAD85;
 }
 
 button:hover {

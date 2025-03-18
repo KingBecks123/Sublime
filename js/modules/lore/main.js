@@ -112,6 +112,7 @@ function showPagesButton() {
     button.style.width = "150px";
     button.style.height = "30px";
     button.style.backgroundColor = "#b55088";
+    button.style.margin = "0px";
     button.onclick = toggleLorePanel;
     
     container.appendChild(document.createElement("br"));
@@ -144,13 +145,13 @@ function createLorePanel() {
     
     const journalTab = document.createElement("button");
     journalTab.textContent = "Journal Entries";
-    journalTab.className = "specialButton loreTab";
+    journalTab.className = "loreTab";
     journalTab.style.backgroundColor = "#4DFE89";
     journalTab.onclick = () => showLoreCategory("journal");
     
     const lettersTab = document.createElement("button");
     lettersTab.textContent = "Letters";
-    lettersTab.className = "specialButton loreTab";
+    lettersTab.className = "loreTab";
     lettersTab.style.backgroundColor = "#733e39";
     lettersTab.onclick = () => showLoreCategory("letters");;
     
@@ -240,7 +241,6 @@ function loadLoreContent(category, id) {
     // Back button
     const backBtn = document.createElement("button");
     backBtn.textContent = "← Back";
-    backBtn.className = "specialButton";
     backBtn.style.marginBottom = "10px";
     backBtn.style.backgroundColor = "#733e39";
     backBtn.onclick = () => showLoreCategory(category);

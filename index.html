@@ -46,10 +46,10 @@
         </div>
     </header>
     <div class="action-buttons">
-        <button class="specialButton" id="pickUpLimes" data-action="collect" onkeydown="return event.key != 'Enter';" onclick="getLimesButton()">Collect Limes</button>
-        <button class="specialButton" id="lookAroundButton" onclick="lookAround()">Look Around</button>
-        <button class="specialButton" id="stopActionsButton" onclick="stopActions()">Stop Actions</button>
-        <button class="specialButton tooltip" id="toggleActionsButton" onclick="toggle('toggleActions')">
+        <button id="pickUpLimes" data-action="collect" onkeydown="return event.key != 'Enter';" onclick="getLimesButton()">Collect Limes</button>
+        <button id="lookAroundButton" onclick="lookAround()">Look Around</button>
+        <button id="stopActionsButton" onclick="stopActions()">Stop Actions</button>
+        <button class="tooltip" id="toggleActionsButton" onclick="toggle('toggleActions')">
 			Toggle Actions
 			<span class="tooltiptext">If this is lime, clicking an ability will toggle it. If it is gray, clicking an ability will run it once.</span>
 		</button>
@@ -69,7 +69,7 @@
     <div id="science"></div>
     <div id="skills" class="module-location"></div>
 	<a href="https://www.paypal.com/donate?hosted_button_id=ZTS6946KH9HES" class="donation-link" target="_blank">
-		<button class="specialButton" id="donationButton">Donate :)</button>
+		<button id="donationButton">Donate :)</button>
 	</a>
 	
 	<!-- Version Display -->
@@ -82,7 +82,7 @@
 		<p>You completed Sublime!! Good job! :)<br>
 		You can keep playing and expanding your lime empire while you wait for new updates.</p>
 		<p id="endStats"></p>
-        <button class="specialButton full-width" onclick="toggle('endScreen')">Continue</button>
+        <button class="full-width" onclick="toggle('endScreen')">Continue</button>
 	</div>
 
 <!-- All Imports -->

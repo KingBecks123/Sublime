@@ -40,8 +40,8 @@ addGameVariables({
 
 document.getElementById('tasks').innerHTML = `
 <div class="basicDiv" id="tasksButtonsDiv">
-    <button class="specialButton" id="earnButton" style="background-color:lightgray;" onclick="tabTasks('earn')">Earn Respect</button>
-    <button class="specialButton" id="milestonesButton" style="background-color:lightgray;" onclick="tabTasks('milestones')">Respect Milestones</button>
+    <button id="earnButton" style="background-color:lightgray;" onclick="tabTasks('earn')">Earn Respect</button>
+    <button id="milestonesButton" style="background-color:lightgray;" onclick="tabTasks('milestones')">Respect Milestones</button>
 </div>
 <div class="basicDiv">
     <p class="basicText" id="textForRespect" style="color:#FF00AA;background-color:#000000">0 Respect</p>
@@ -59,12 +59,12 @@ document.getElementById('tasks').innerHTML = `
             </div>
         </div>
         <div class="unlockDiseaseAreaSwamp">
-            <button class="specialButton" id="decreaseLakesButton" onclick="changeLakeAmount(-1)" style="width:120px;background:#99FFFF;">Decrease Lakes</button>
-            <button class="specialButton" id="increaseLakesButton" onclick="changeLakeAmount(1)" style="width:120px;background:#99FFFF;">Increase Lakes</button>
+            <button id="decreaseLakesButton" onclick="changeLakeAmount(-1)" style="width:120px;background:#99FFFF;">Decrease Lakes</button>
+            <button id="increaseLakesButton" onclick="changeLakeAmount(1)" style="width:120px;background:#99FFFF;">Increase Lakes</button>
         </div>
-        <button class="specialButton" id="startDiseaseTask" onclick="diseaseControlTask()">Start Task</button>
-        <button class="specialButton" id="autoStartTaskButton" onclick="toggle('autoStartTask')">Auto</button>
-        <button class="specialButton" id="limeDiseaseControlInfoButton" onclick="toggle('limeDiseaseControlInfoToggle')">Info</button>
+        <button id="startDiseaseTask" onclick="diseaseControlTask()">Start Task</button>
+        <button id="autoStartTaskButton" onclick="toggle('autoStartTask')">Auto</button>
+        <button id="limeDiseaseControlInfoButton" onclick="toggle('limeDiseaseControlInfoToggle')">Info</button>
     </div>
     <div class="basicDiv" id="diseaseControlStart">
         <div class="limeDiseaseInfo">
@@ -73,22 +73,22 @@ document.getElementById('tasks').innerHTML = `
         </div>
         <p class="basicText" id="numberOfCivilians">Number of civilians: 2</p>
         <div id="autoPlaceACivilianDiv">
-            <button class="specialButton" id="autoPlaceACivilianButton" onclick="toggle('autoPlaceACivilian')">Auto Place A Civilian</button><br>
+            <button id="autoPlaceACivilianButton" onclick="toggle('autoPlaceACivilian')">Auto Place A Civilian</button><br>
             <p class="basicText">Rule: Random empty spot</p>
         </div>
-        <button class="specialButton" onclick="startSimulation()" style="width:150px">Start Simulation</button>
-        <button class="specialButton" id="autoStartSimulationButton" onclick="toggle('autoStartSimulation')">Auto</button>
-        <button class="specialButton" onclick="diseaseControlQuit()">Quit</button>
+        <button onclick="startSimulation()" style="width:150px">Start Simulation</button>
+        <button id="autoStartSimulationButton" onclick="toggle('autoStartSimulation')">Auto</button>
+        <button onclick="diseaseControlQuit()">Quit</button>
         <br>
-        <button class="specialButton" id="checkResultsButton" style="width:150px" onclick="checkResults()">Check Results</button>
-        <button class="specialButton" id="autoCheckSimulationButton" onclick="toggle('autoCheckSimulation')">Auto</button>
-        <button class="specialButton" id="limeDiseaseInfoButton" onclick="toggle('limeDiseaseInfoToggle')">Info</button>
+        <button id="checkResultsButton" style="width:150px" onclick="checkResults()">Check Results</button>
+        <button id="autoCheckSimulationButton" onclick="toggle('autoCheckSimulation')">Auto</button>
+        <button id="limeDiseaseInfoButton" onclick="toggle('limeDiseaseInfoToggle')">Info</button>
     </div>
     <div class="basicDiv" id="diseaseControlMap">
         <div id="diseaseControlTiles" style="position: relative; left: 50%;transform: translate(-50%, 0%);width:320px"></div>
     </div>
     <div class="basicDiv" id="benevolence">
-        <button class="specialButton" id="benevolenceToggleButton" onclick="benevolenceToggle()">Benevolence</button>
+        <button id="benevolenceToggleButton" onclick="benevolenceToggle()">Benevolence</button>
         <p class="basicText" id="benevolenceRespectIncrease">Respect increase: </p>
     </div>
 </div>

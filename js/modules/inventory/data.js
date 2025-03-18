@@ -53,7 +53,7 @@ document.getElementById('inventory').innerHTML = `
             <div class="skillProgress" id="eatGoldenLimeProgress">
 				<div class="skillBarColored" style="background-color:#F8FF01" id="eatGoldenLimeBar"></div>
             </div>
-            <button class="specialButton" id="eatGoldenLime" onclick="eatGoldenLime()" style="background-color:#F8FF01">Eat A Golden Lime</button>
+            <button id="eatGoldenLime" onclick="eatGoldenLime()" style="background-color:#F8FF01">Eat A Golden Lime</button>
         </div>
         <div class="pin basicDiv" id="useJuicersDiv" style="background-color:#4DFE89;border-style: solid;border-color: #222222">
             <p class="basicText" style="border-style: solid;border-width: 2px;border-color: #222222" id="juicersAmount">1 Juicers</p>
@@ -61,8 +61,8 @@ document.getElementById('inventory').innerHTML = `
             <button class="roundButton" id="makeJuiceButton" style="width:150px;" onclick="pickCurrentTask('makeJuice')">Use Juicer</button>
             <button class="roundButton" id="makeMaxJuiceButton" onclick="pickCurrentTask('makeMaxJuice')" style="visibility: hidden;width:150px;">Max Juicers</button>
             <br>
-            <button class="specialButton" id="juiceLimesToggleButton" style="display:none;width:150px;" onclick="gameData.limeTypeToJuice = 0">On Limes</button>
-            <button class="specialButton" id="juicePeeledLimesToggleButton" style="display:none;width:150px;" onclick="gameData.limeTypeToJuice = 1">On Peeled Limes</button>
+            <button id="juiceLimesToggleButton" style="display:none;width:150px;" onclick="gameData.limeTypeToJuice = 0">On Limes</button>
+            <button id="juicePeeledLimesToggleButton" style="display:none;width:150px;" onclick="gameData.limeTypeToJuice = 1">On Peeled Limes</button>
             <p class="basicText" style="border-style: solid;border-width: 2px;border-color: #222222;background-color:#bfbfbf;padding: 5px;" id="juicerInfo"></p>
             <div class="skillProgress" id="myProgress">
 				<div class="skillBar" id="juicerBar"></div>
@@ -79,7 +79,7 @@ document.getElementById('inventory').innerHTML = `
         </div>
         <div class="basicDiv" id="knifeDiv">
             <p class="basicText" id="inventoryKnife">Use Knife:</p>
-            <button class="specialButton" id="inventoryKnifeLime" onclick="peelLime()">On Limes</button>
+            <button id="inventoryKnifeLime" onclick="peelLime()">On Limes</button>
         </div>
         <div class="basicDiv" id="backpackDiv">
             <p class="basicText">Backpack:</p>

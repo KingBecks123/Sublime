@@ -26,7 +26,7 @@ function createFieldPlacementOptions() {
 
   for (let i = 0; i < fieldPlacementOptions.length; i++) {
     const option = fieldPlacementOptions[i];
-    fieldPlacementOptionsHTML += `<button class="specialButton" style="background-color:gray;width:168px" id="${option.id}SelectedWheatItem" onclick="selectedWheatItem('${option.id}')">${option.text}</button>`;
+    fieldPlacementOptionsHTML += `<button style="background-color:gray;width:166px" id="${option.id}SelectedWheatItem" onclick="selectedWheatItem('${option.id}')">${option.text}</button>`;
   }
 
   fieldPlacementOptionsElement.innerHTML = fieldPlacementOptionsHTML;

@@ -72,13 +72,13 @@ document.getElementById('field').innerHTML = `
 				<p class="basicText" id="wheatHarvesterNumber"></p>
 				<p class="basicText" id="seedDrillNumber"></p>
 			</div>
-			<button class="specialButton" id="winnowWheat" onclick="buy('wheatSeeds', 1, 'wheat', 2)">Winnow Wheat</button>
-			<button class="specialButton" id="grindFlour" onclick="buy('flour', 1, 'wheatSeeds', 2)">Grind Seeds Into Flour</button>
+			<button id="winnowWheat" onclick="buy('wheatSeeds', 1, 'wheat', 2)">Winnow Wheat</button>
+			<button id="grindFlour" onclick="buy('flour', 1, 'wheatSeeds', 2)">Grind Seeds Into Flour</button>
 		</div>
 		<div class="basicDiv" id="plotManagementDiv">
 			<p class="basicText" id="plotDetails"></p>
-			<button class="specialButton" id="managePlot" onclick="managePlot()"></button>
-			<button class="specialButton" onclick="showPlotManagementDiv = false">Close</button>
+			<button id="managePlot" onclick="managePlot()"></button>
+			<button onclick="showPlotManagementDiv = false">Close</button>
 		</div>
 		<div class="basicDiv" id="fieldPlacementOptions"></div>
 	</div>

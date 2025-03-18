@@ -108,8 +108,8 @@ document.getElementById('skills').innerHTML = `
 			<div class="basicDiv" id="eatFoodDiv">
 				<button class="roundButton tooltip" id="eatButton" onclick="pickCurrentTask('eat')">   Eat Food   
 				</button>
-				<button class="specialButton" id="foodToggleLimesButton" onclick="gameData.foodTypeToggle = 0">Limes</button>
-				<button class="specialButton" id="foodToggleRottenLimesButton" onclick="gameData.foodTypeToggle = 1">Rotten Limes</button>
+				<button id="foodToggleLimesButton" onclick="gameData.foodTypeToggle = 0">Limes</button>
+				<button id="foodToggleRottenLimesButton" onclick="gameData.foodTypeToggle = 1">Rotten Limes</button>
 				<div class="skillInfo">You use 1 food point per skill level</div>
 				<div class="skillProgress" id="eatProgress">
 					<div class="skillBar" id="eatBar"></div>
@@ -126,8 +126,8 @@ document.getElementById('skills').innerHTML = `
 				</div>
 			</div>
 			<div class="basicDiv">
-				<button class="specialButton" id="learnANewSkillButton" onclick="learnANewSkill()">Learn A New Skill</button>
-				<button class="specialButton" id="skillInfoButton" onclick="toggle('skillInfoToggle')">Info</button>
+				<button id="learnANewSkillButton" onclick="learnANewSkill()">Learn A New Skill</button>
+				<button id="skillInfoButton" onclick="toggle('skillInfoToggle')">Info</button>
 				<div class="skillProgress" id="learnANewSkillProgress">
 					<div class="skillBar" id="learnANewSkillBar"></div>
 				</div>

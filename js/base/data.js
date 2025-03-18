@@ -159,11 +159,11 @@ ableToSave = true
 var loopNumberTimePlayed = 0
 
 document.getElementById('market').innerHTML = `
-        <div class="basicDiv" id="marketMainButtonsDiv" style="width:380px">
-            <button class="specialButton" style="width:168px" id="marketMainButton" onclick="tabMarket('marketMain')">Main Square</button>
-            <button class="specialButton" style="width:168px" id="hiringAreaButton" onclick="tabMarket('hiringArea')">Hiring Area</button>
-            <button class="specialButton" style="width:168px" id="travelButton" onclick="tabMarket('travel')">Travel</button>
-            <button class="specialButton" style="width:168px" id="tradeButton" onclick="tabMarket('trade')">Trade</button>
+        <div class="basicDiv" id="marketMainButtonsDiv" style="width:360px">
+            <button style="width:166px" id="marketMainButton" onclick="tabMarket('marketMain')">Main Square</button>
+            <button style="width:166px" id="hiringAreaButton" onclick="tabMarket('hiringArea')">Hiring Area</button>
+            <button style="width:166px" id="travelButton" onclick="tabMarket('travel')">Travel</button>
+            <button style="width:166px" id="tradeButton" onclick="tabMarket('trade')">Trade</button>
         </div>
         <div id="marketMain" style="position:absolute;"></div>
         <div id="hiringArea"></div>

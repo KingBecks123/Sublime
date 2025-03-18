@@ -75,8 +75,8 @@ addGameVariables({
 document.getElementById('science').innerHTML = `
         <div style="width:380px">
 			<div class="basicDiv" id="scienceButtonsDiv">
-				<button class="specialButton" id="researchButton" style="background-color:lightgray;" onclick="tabScience('research')">Research</button>
-				<button class="specialButton" id="researchersButton" style="background-color:lightgray;" onclick="tabScience('researchers')">Acquire Researchers</button>
+				<button id="researchButton" style="background-color:lightgray;" onclick="tabScience('research')">Research</button>
+				<button id="researchersButton" style="background-color:lightgray;" onclick="tabScience('researchers')">Acquire Researchers</button>
 			</div>
 			<div class="basicDiv">
 				<p class="basicText" id="textForResearchers" style="color:#00AAFF;background-color:#000000">0 Researchers</p>
