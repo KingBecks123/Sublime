@@ -29,7 +29,7 @@
   float: left;
   padding: 10px;
   width: 100px;
-  height: 90vh;
+  height: 88vh;
   background-color: #000000;
 }
 
@@ -84,10 +84,6 @@
 #bakery {
   height: 800px;
   width: 760px;
-}
-
-#field {
-  width: 855px;
 }
 
 /* Donation button */
