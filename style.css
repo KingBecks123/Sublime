@@ -14,8 +14,8 @@
   bottom: 10px;
   left: 10px;
   font-size: 12px;
-  color: #aaaaaa;
-  background-color: #333333;
+  color: var(--text-light);
+  background-color: var(--bg-night);
   padding: 3px 8px;
   border-radius: 4px;
 }
@@ -30,11 +30,11 @@
   padding: 10px;
   width: 100px;
   height: 88vh;
-  background-color: #000000;
+  background-color: black;
 }
 
 .info-box {
-  background-color: #BBBBBB;
+  background-color: var(--text-medium);
   padding-left: 130px;
   display: block;
   height: 60px;
@@ -52,10 +52,8 @@
 }
 
 .options-button {
-  background: lightgray;
   width: 150px;
   height: 30px;
-  background-color: #d1d9d9;
   margin: 0px;
 }
 
@@ -102,7 +100,7 @@
 
 /* End screen */
 #endScreen {
-  background-color: #000000;
+  background-color: black;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -113,18 +111,18 @@
 
 /* Game UI Elements */
 #pickUpLimes {
-  background-color: #4DFE89;
+  background-color: var(--accent-tertiary);
   width: 120px;
 }
 
 #lookAroundButton {
-  background-color: #BBBBBB;
+  background-color: var(--text-medium);
 }
 
 .titleText {
   padding: 5px;
   margin: 5px;
-  background-color: #BBBBBB;
+  background-color: var(--text-medium);
   text-align: center;
 }
 
@@ -146,7 +144,7 @@
   height: 300px;
   margin: auto;
   position: relative;
-  background-color: #000000;
+  background-color: black;
   margin: 5px;
 }
 
@@ -161,7 +159,7 @@
 }
 
 .bucketProgress {
-  background-color: #BBBBBB;
+  background-color: var(--text-medium);
   width: 166px;
   height: 100px;
   display: inline-block;
@@ -181,7 +179,7 @@
 
 .bucketHoleBar {
   height: 10px;
-  background-color: #000000;
+  background-color: black;
   bottom: 0;
   position: absolute;
 }
