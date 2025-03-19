@@ -125,14 +125,12 @@ function lookAround() {
 }
 
 function changeZoomSize() {
-	if (game.zoom >= 180) {
+	if (game.zoom >= 180)
 		game.zoom = 100
-		document.body.style.zoom = 1.0
-	}
-	else {
+	else
 		game.zoom += 20
-		document.body.style.zoom = game.zoom / 100
-	}
+
+    document.body.style.zoom = game.zoom / 100
 }
 
 function mainGameLoopSlowBase () {
@@ -153,7 +151,7 @@ function onLoadBase () {
         variableName = idToName(baseVariables[i].id);
 
 		if (i > 0) {
-			document.getElementById('backpackDiv').innerHTML += `<button id="currencyDisplay(${i})" onClick="currencyDisplay(${i})" style="width:167px">Show ${baseVariables[i].name}</button>`
+			document.getElementById('backpackDiv').innerHTML += `<button id="currencyDisplay(${i})" onClick="currencyDisplay(${i})" style="width:167px">Show ${variableName}</button>`
 		}
 
 		gameBase[id + 'ShowVariable'] = true
