@@ -13,7 +13,7 @@ function createFieldButtons() {
     for (let x = 0; x < 5; x++) {
       const buttonId = 'fieldTile' + x + '-' + y;
       const imgId = buttonId + 'img';
-      fieldButtonsHTML += `<button ondragstart="return false;" id="${buttonId}" onclick="fieldTile(${x}, ${y})"><img class="field-plot" id="${imgId}" src="assets/images/field/emptyField.png"></button>`;
+      fieldButtonsHTML += `<button class="field-plot" ondragstart="return false;" id="${buttonId}" onclick="fieldTile(${x}, ${y})"><img class="field-plot-image" id="${imgId}" src="assets/images/field/emptyField.png"></button>`;
     }
   }
 

@@ -164,7 +164,7 @@ function onLoadBase () {
 
 	for (let i = 1; i < mainTabs.length; i++) {
 		document.getElementById('navigateButtons').innerHTML += `
-		<button id="${mainTabs[i].id}Button" style="width: 120px;margin:0px;" onclick="tab('${mainTabs[i].id}')">${mainTabs[i].text}</button>
+		<button id="${mainTabs[i].id}Button" class="navigate-button" onclick="tab('${mainTabs[i].id}')">${mainTabs[i].text}</button>
 		`
 	}
 
