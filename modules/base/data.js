@@ -1,7 +1,7 @@
-const GAME_VERSION = "1.1.8";
+const GAME_VERSION = "1.1.9";
 const VERSION_NOTES = 
-`18/Mar/2025
-    An uncountable number of backend changes
+`19/Mar/2025
+    An uncountable number of backend changes (again)
 `
 
 mainTabs = [

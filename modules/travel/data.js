@@ -268,3 +268,43 @@ saveWipeValues = [
     'lightRobe',
     'increaseJuicePricePermanance'
 ];
+
+const showHideElementsTravel = [
+    { 
+      condition: game.megaCoinsInBankMax <= 20, 
+      element: 'increaseCreditScore'
+    },
+    { 
+      condition: !game.nutritionists, 
+      element: 'hireANutritionist' 
+    },
+    { 
+      condition: game.respectMilestone10000 && !game.bachelorsDegreeFinance, 
+      element: 'earnBachelorFinance' 
+    },
+    { 
+      condition: game.respectMilestone10000, 
+      element: 'buyABiggerWallet' 
+    },
+    { 
+      condition: game.respectMilestone10000, 
+      element: 'upgradeMoreStorage' 
+    },
+    { 
+      condition: !game.bigGloves, 
+      element: 'buyBigGloves' 
+    },
+    { 
+      condition: game.creditScore2 && !game.creditScore3, 
+      element: 'increaseCreditScore3' 
+    },
+    { 
+      condition: !game.creditScore2 && game.respectMilestone10000, 
+      element: 'increaseCreditScore2', 
+      display: 'inline' 
+    },
+    { 
+      condition: !game.nationalJuiceMarketing, 
+      element: 'juiceMarketing' 
+    }
+  ];

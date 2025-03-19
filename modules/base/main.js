@@ -520,42 +520,42 @@ function gameStart() {
       }
   }
   
-  function pickCurrentTask(task) {
+  function pickCurrentTask(taskToPick) {
     const canSelectTwoTasks = game.ambidextrousSkillLevel === game.ambidextrousSkillLevelMax;
   
     const { currentTask: taskOne, currentTask2: taskTwo } = game;
   
     if (!event.shiftKey && game.toggleActions) {
       if (canSelectTwoTasks) {
-        if (taskOne === task && taskOne !== "none" && taskTwo !== task) {
+        if (taskOne === taskToPick && taskOne !== "none" && taskTwo !== taskToPick) {
           game.currentTask = "none";
         } 
-        else if (taskOne === "none" && taskTwo !== task) {
-          if (!isTaskConflict(taskTwo, task)) {
-            game.currentTask = task;
+        else if (taskOne === "none" && taskTwo !== taskToPick) {
+          if (!isTaskConflict(taskTwo, taskToPick)) {
+            game.currentTask = taskToPick;
           }
         } 
-        else if (taskTwo === task && taskTwo !== "none") {
+        else if (taskTwo === taskToPick && taskTwo !== "none") {
           game.currentTask2 = "none";
         } 
         else if (taskTwo === "none") {
-          if (!isTaskConflict(taskOne, task)) {
-            game.currentTask2 = task;
+          if (!isTaskConflict(taskOne, taskToPick)) {
+            game.currentTask2 = taskToPick;
           }
         }
       } 
       else {
-        game.currentTask = (taskOne === x && taskOne !== "none") ? "none" : x;
+        game.currentTask = (taskOne === taskToPick && taskOne !== "none") ? "none" : taskToPick;
       }
     } 
     else {
-      startCurrentTask(x);
+      startCurrentTask(taskToPick);
     }
   }
   
-  function isTaskConflict(task, x) {
+  function isTaskConflict(x, y) {
     return (
-      (task === 'makeJuice' && x === 'makeMaxJuice') ||
+      (x === 'makeJuice' && x === 'makeMaxJuice') ||
       (task === 'makeMaxJuice' && x === 'makeJuice') ||
       (task === 'usePeelers' && x === 'useMaxPeelers') ||
       (task === 'useMaxPeelers' && x === 'usePeelers')
@@ -576,7 +576,9 @@ function gameStart() {
   
   function startCurrentTask(x) {
     if (x !== 'none') {
-      eval(x + '()');
+        if (typeof window[x] === 'function'){
+            window[x]();
+        }
     }
   }
   
