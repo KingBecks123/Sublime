@@ -223,38 +223,74 @@ function updateValuesTasks () {
 	update('textForLakes', game.limeDiseaseLakes.toLocaleString() + ' Lakes')
     update('numberOfCivilians', 'Number Of Civilians: ' + game.civiliansTotal.toLocaleString())
 
-    const milestoneValues = [
-      { value: 10, color: myLime, text: 'Automatically start tasks' },
-      { value: 25, color: myLime, text: 'Automatically start simulation' },
-      { value: 50, color: myLime, text: 'Allow entrance to the Special Shopping District' },
-      { value: 100, color: myLime, text: 'Automatically check simulation' },
-      { value: 500, color: myLime, text: 'Automatically situate a civilian' },
-      { value: 1000, color: myLime, text: 'Unlock scientific research' },
-      { value: 10000, color: '#FF999A', text: 'Unlock more mega coin upgrades' }
-    ];
-
     milestoneValues.forEach(({ value, color, text }) => {
       checkRespectMilestone(value, color, text);
     });
 
-    const showHideElements = [
-      { condition: game.respectMilestone10, element: 'autoStartTaskButton', display: 'inline' },
-      { condition: game.respectMilestone25, element: 'autoStartSimulationButton', display: 'inline' },
-      { condition: game.respectMilestone100, element: 'autoCheckSimulationButton', display: 'inline' },
-      { condition: game.respectMilestone500, element: 'autoPlaceACivilianDiv' },
-      { condition: game.respectMilestone1000, element: 'scienceButton', display: 'inline' },
-      { condition: game.respectMilestone50, element: 'patrician' },
-      { condition: !game.manuscripts, element: 'buyManuscriptsDiv' },
-      { condition: game.diseaseControlFinished, element: 'startDiseaseTask' },
-      { condition: !game.diseaseControlFinished, element: 'diseaseControlStart' },
-      { condition: !game.silkRobe, element: 'buyARobe' },
-      { condition: !game.unlockDiseaseAreaSwamp, element: 'unlockDiseaseAreaSwamp' },
-      { condition: !game.lightRobe, element: 'lightRobe' },
-	  { condition: !game.unlockBenevolence, element: 'unlockBenevolence' },
-	  { condition: !game.surveillanceCamera2, element: 'surveillanceCamera2' }
+    const showHideElementsTasks = [
+        { 
+            condition: game.respectMilestone10, 
+            element: 'autoStartTaskButton', 
+            display: 'inline' 
+        },
+        { 
+            condition: game.respectMilestone25, 
+            element: 'autoStartSimulationButton', 
+            display: 'inline' 
+        },
+        { 
+            condition: game.respectMilestone100, 
+            element: 'autoCheckSimulationButton', 
+            display: 'inline' 
+        },
+        { 
+            condition: game.respectMilestone500, 
+            element: 'autoPlaceACivilianDiv' 
+        },
+        { 
+            condition: game.respectMilestone1000, 
+            element: 'scienceButton', 
+            display: 'inline' 
+        },
+        { 
+            condition: game.respectMilestone50, 
+            element: 'patrician' 
+        },
+        { 
+            condition: !game.manuscripts, 
+            element: 'buyManuscriptsDiv' 
+        },
+        { 
+            condition: game.diseaseControlFinished, 
+            element: 'startDiseaseTask' 
+        },
+        { 
+            condition: !game.diseaseControlFinished, 
+            element: 'diseaseControlStart' 
+        },
+        { 
+            condition: !game.silkRobe, 
+            element: 'buyARobe' 
+        },
+        { 
+            condition: !game.unlockDiseaseAreaSwamp, 
+            element: 'unlockDiseaseAreaSwamp' 
+        },
+        { 
+            condition: !game.lightRobe, 
+            element: 'lightRobe' 
+        },
+        { 
+            condition: !game.unlockBenevolence, 
+            element: 'unlockBenevolence' 
+        },
+        { 
+            condition: !game.surveillanceCamera2, 
+            element: 'surveillanceCamera2' 
+        }
     ];
 
-    showHideElements.forEach(({ condition, element, display = 'block' }) => {
+    showHideElementsTasks.forEach(({ condition, element, display = 'block' }) => {
       checkShow(condition, element, display);
     });
 

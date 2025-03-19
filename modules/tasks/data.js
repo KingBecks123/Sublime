@@ -59,8 +59,8 @@ document.getElementById('tasks').innerHTML = `
             </div>
         </div>
         <div class="unlockDiseaseAreaSwamp">
-            <button id="decreaseLakesButton" onclick="changeLakeAmount(-1)" style="width:120px;background:#99FFFF;">Decrease Lakes</button>
-            <button id="increaseLakesButton" onclick="changeLakeAmount(1)" style="width:120px;background:#99FFFF;">Increase Lakes</button>
+            <button class="wide-button light-blue" id="decreaseLakesButton" onclick="changeLakeAmount(-1)">Decrease Lakes</button>
+            <button class="wide-button light-blue" id="increaseLakesButton" onclick="changeLakeAmount(1)">Increase Lakes</button>
         </div>
         <button id="startDiseaseTask" onclick="diseaseControlTask()">Start Task</button>
         <button id="autoStartTaskButton" onclick="toggle('autoStartTask')">Auto</button>
@@ -104,3 +104,13 @@ document.getElementById('tasks').innerHTML = `
     </div>
 </div>
 `;
+
+const milestoneValues = [
+    { value: 10, color: myLime, text: 'Automatically start tasks' },
+    { value: 25, color: myLime, text: 'Automatically start simulation' },
+    { value: 50, color: myLime, text: 'Allow entrance to the Special Shopping District' },
+    { value: 100, color: myLime, text: 'Automatically check simulation' },
+    { value: 500, color: myLime, text: 'Automatically situate a civilian' },
+    { value: 1000, color: myLime, text: 'Unlock scientific research' },
+    { value: 10000, color: '#FF999A', text: 'Unlock more mega coin upgrades' }
+];

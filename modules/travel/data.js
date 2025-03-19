@@ -94,8 +94,8 @@ document.getElementById('travel').innerHTML = `
 	</div>
 	<div class="basicDiv">
 		<div id="alphaCoinToMegaCoinDiv">
-			<button style="width:300px;"                             onclick="buyMegaCoinsWithAlphaCoins(1)">Transfer Alpha Coins</button>
-			<button style="width:300px;" id="transferAlphaCoinsBulk" onclick="buyMegaCoinsWithAlphaCoins(10)">Transfer Alpha Coins x10</button>
+			<button class="wide-button"                             onclick="buyMegaCoinsWithAlphaCoins(1)">Transfer Alpha Coins</button>
+			<button class="wide-button" id="transferAlphaCoinsBulk" onclick="buyMegaCoinsWithAlphaCoins(10)">Transfer Alpha Coins x10</button>
 			<p>10 Alpha Coins -> 1 Mega Coin In Bank</p>
 		</div>
 		<button onclick="buyMegaCoins()">Transfer Coins</button>
@@ -268,43 +268,3 @@ saveWipeValues = [
     'lightRobe',
     'increaseJuicePricePermanance'
 ];
-
-const showHideElementsTravel = [
-    { 
-      condition: game.megaCoinsInBankMax <= 20, 
-      element: 'increaseCreditScore'
-    },
-    { 
-      condition: !game.nutritionists, 
-      element: 'hireANutritionist' 
-    },
-    { 
-      condition: game.respectMilestone10000 && !game.bachelorsDegreeFinance, 
-      element: 'earnBachelorFinance' 
-    },
-    { 
-      condition: game.respectMilestone10000, 
-      element: 'buyABiggerWallet' 
-    },
-    { 
-      condition: game.respectMilestone10000, 
-      element: 'upgradeMoreStorage' 
-    },
-    { 
-      condition: !game.bigGloves, 
-      element: 'buyBigGloves' 
-    },
-    { 
-      condition: game.creditScore2 && !game.creditScore3, 
-      element: 'increaseCreditScore3' 
-    },
-    { 
-      condition: !game.creditScore2 && game.respectMilestone10000, 
-      element: 'increaseCreditScore2', 
-      display: 'inline' 
-    },
-    { 
-      condition: !game.nationalJuiceMarketing, 
-      element: 'juiceMarketing' 
-    }
-  ];
