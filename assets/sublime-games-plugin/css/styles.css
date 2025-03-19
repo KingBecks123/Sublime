@@ -1,3 +1,16 @@
+:root {
+    --bg-dark: #1a1c2c;
+    --bg-medium: #2d2d44;
+    --bg-light: #3C3C3C;
+    --text-dark: #DEAD85;
+    --text-medium: #BBBBBB;
+    --text-light: #FFFFFF;
+    --accent-primary: #DEAD85;
+    --accent-secondary: #2d2d44;
+    --accent-tertiary: #4DFE89;
+    --bg-night: #222222;
+}
+
 * {
     font-family: pixelated;
     font-size: 11px;
@@ -7,11 +20,11 @@
 p {
     padding: 5px;
     margin: 5px;
-    background-color: #BBBBBB;
+    background-color: var(--text-medium);
 }
 
 body {
-    background-color: #1a1c2c;
+    background-color: var(--bg-dark);
     background-image: url("data:image/svg+xml,%3Csvg width='4' height='4' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%232d2d44' fill-opacity='0.2' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 5v1H0V0h5z'/%3E%3Cpath d='M0 0h1v1H0V0zm1 1h1v1H1V1z'/%3E%3C/g%3E%3C/svg%3E");
 }
 
@@ -20,24 +33,75 @@ body {
     font-family: pixelated;
     src: url('DepartureMono.otf');
 }
+
+/*
+
+    Possible button styling
+
+    button {
+        border: 2px solid var(--bg-dark);
+        border-radius: 4px;
+        transition: all 0.15s ease;
+        box-shadow: 0 3px 0 var(--bg-medium);
+        margin: 5px;
+        background-color: var(--accent-primary);
+        padding: 6px 12px;
+        cursor: pointer;
+        color: var(--text-dark);
+        text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+        position: relative;
+        overflow: hidden;
+    }
+
+    button:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.5s;
+    }
+
+    button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 0 var(--bg-medium);
+    }
+
+    button:hover:before {
+        left: 100%;
+    }
+
+    button:active {
+        transform: translateY(1px);
+        box-shadow: 0 1px 0 var(--bg-medium);
+    }
+
+    button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+*/
     
 /* Buttons */
 button {
-    border: 1px solid #000000;
+    border: 1px solid var(--bg-night);
     transition: all 0.1s ease;
-    box-shadow: 0 2px 0 #2d2d44;
+    box-shadow: 0 2px 0 var(--bg-medium);
     margin: 5px;
-    background-color: #DEAD85;
+    background-color: var(--accent-primary);
 }
 
 button:hover {
     transform: translateY(-1px);
-    box-shadow: 0 3px 0 #2d2d44;
+    box-shadow: 0 3px 0 var(--bg-medium);
 }
 
 button:active {
     transform: translateY(1px);
-    box-shadow: 0 0 0 #2d2d44;
+    box-shadow: 0 0 0 var(--bg-medium);
 }
 
 /* Tooltips */
@@ -48,8 +112,8 @@ button:active {
 .tooltip .tooltiptext {
     visibility: hidden;
     width: 250px;
-    background-color: #222222;
-    color: #fff;
+    background-color: var(--bg-night);
+    color: var(--text-light);
     text-align: center;
     padding: 5px;
     border-radius: 6px;
@@ -64,15 +128,13 @@ button:active {
 
 /* Other */
 .no-select {
-    -webkit-user-select: none;
-    -ms-user-select: none;
     user-select: none;
-    background-color: #3C3C3C;
+    background-color: var(--bg-light);
 }
 
 .basicDiv {
     padding: 5px;
     margin: 10px 5px;
-    background-color: #222222;
-    box-shadow: 0 2px 0 #1a1c2c;
+    background-color: var(--bg-night);
+    box-shadow: 0 2px 0 var(--bg-dark);
 }
