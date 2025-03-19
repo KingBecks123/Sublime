@@ -90,10 +90,6 @@
   width: 855px;
 }
 
-#skills {
-  width: 760px;
-}
-
 /* Donation button */
 .donation-link {
   color: black;
@@ -147,40 +143,6 @@
   width: 20px;
   font-size: 11px;
   padding: 0px;
-}
-
-.skillButton {
-  margin: 5px;
-}
-
-.skillProgress {
-  width: 350px;
-  height: 30px;
-  margin: 5px;
-  background-color: #000000;
-}
-
-.skillBar {
-  width: 0%;
-  height: 30px;
-  line-height: 30px;
-  font-family: pixelated;
-  padding: 0;
-  background-color: #4DFE89;
-}
-
-.skillBarColored {
-  width: 0%;
-  height: 30px;
-  line-height: 30px;
-  font-family: pixelated;
-  padding: 0;
-}
-
-.skillInfo {
-  padding: 5px;
-  margin: 5px;
-  background-color: #BBBBBB;
 }
 
 .verticalProgress {
