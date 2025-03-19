@@ -240,3 +240,31 @@ const travelUpgradesToBuy = [
         function: "rottenActualWisdom()"
     }
 ]
+
+saveWipeValues = [
+    'surveillanceCamera2', 
+    'versionNumber', 
+    'nationalJuiceMarketing', 
+    'creditScore2', 
+    'creditScore3', 
+    'coinsMax', 
+    'respectMilestone10000', 
+    'unlockBenevolence', 
+    'nationalTradeCert', 
+    'bigGloves', 
+    'nutritionists', 
+    'megaCoinsInBankMax', 
+    'betterTraining', 
+    'hideCompletedSkills', 
+    'hideMaxedPurchases', 
+    'researchers', 
+    'upgradeMoreStorage', 
+    'changeResearchersBy10Unlock', 
+    'rottenActualWisdom', 
+    'tickspeed',
+    'timePlayed',
+    'saveAlphaCoinsUnlock',
+    'manuscripts',
+    'lightRobe',
+    'increaseJuicePricePermanance'
+];
