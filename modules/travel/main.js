@@ -1,7 +1,7 @@
 travelUpgradesToBuy.forEach((upgrade) => {
     document.getElementById('travellingArea').innerHTML += `
       <div id="${upgrade.id}" class="basicDiv">
-        <button class="travelButton" onclick="buy('${upgrade.id}', ${upgrade.price.amount}, '${upgrade.price.currency}')">${upgrade.text}</button>
+        <button class="travelButton" onclick="${upgrade.function}">${upgrade.text}</button>
         <p>${upgrade.description}</p>
         <p id="${upgrade.id}Price">${upgrade.price.text}</p>
       </div>
