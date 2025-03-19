@@ -181,6 +181,7 @@ function updateValuesSkills () {
       { element: 'limebidextrous', value: game.limebidextrousSkillLevel * 2 + '% Chance' },
       { element: 'intelligence', value: Math.floor(((game.intelligenceSkillLevel * 2) / game.intelligenceSkillLevelMax) * 100) + '% Faster' },
       { element: 'knifebidextrous', value: game.knifebidextrousSkillLevel * 5 + '% Chance' },
+      { element: 'ambidextrous', value: game.ambidextrousSkillLevel * 5 + '% To Completion' },
       { element: 'eat', value: game.eat + ' / 100' },
       { element: 'textForAutomaticallyCollectsLimes', value: 'Automatically clicks 	&#39Collect Limes&#39 at ' + (game.shoes * 2 + 2) + '/s' },
       { element: 'textForNourishmentPrice', value: 'You Need: ' + game.nourishmentPrice.toLocaleString() + ' Limes' },
@@ -202,6 +203,8 @@ function updateValuesSkills () {
       { condition: game.learnANewSkill > 0 && !game.multitasking, element: 'buySkillToggler' },
       { condition: game.learnANewSkill > 4, element: 'motivateEmployeeButton' },
       { condition: !game.skillTrainer, element: 'skillTrainer' },
+      { condition: false, element: 'bitterSpeed'},
+      { condition: false, element: 'motivation'},
     ];
 
     showHideElements.forEach(({ condition, element, display = 'block' }) => {

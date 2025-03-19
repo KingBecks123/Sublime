@@ -3,75 +3,70 @@ skills = [
 		id: 'keenEye',
 		name: 'Keen Eye',
 		maxSkillLevel: 20,
-		description: `
-			<p class="skillInfo">Increase the chance of actually finding something when collecting limes</p>
-			<p class="skillInfo" id="keenEye"></p>
-		`,
+		description: [
+            'Increase the chance of actually finding something when collecting limes'
+        ]
 	},
 	{
 		id: 'rottenWisdom',
 		name: 'Rotten Wisdom',
 		maxSkillLevel: 50,
-		description: `
-			<p class="skillInfo">Increase the chance of finding limes rather than rotten limes</p>
-			<p class="skillInfo" id="rottenWisdom"></p>
-		`,
+		description: [
+            'Increase the chance of finding limes rather than rotten limes'
+        ]
 	},	
 	{
 		id: 'limebidextrous',
 		name: 'Limebidextrous',
 		maxSkillLevel: 50,
-		description: `
-			<p class="skillInfo">Increase the chance of picking up double limes</p>
-			<p class="skillInfo" id="limebidextrous"></p>
-		`,
+		description: [
+            'Increase the chance of picking up double limes'
+        ]
 	},	
 	{
 		id: 'intelligence',
 		name: 'Intelligence',
 		maxSkillLevel: 20,
-		description: `
-			<p class="skillInfo">Increase skilling speed</p>
-			<p class="skillInfo" id="intelligence"></p>
-		`,
+		description: [
+            'Increase skilling speed'
+        ]
 	},	
 	{
 		id: 'knifebidextrous',
 		name: 'Knifebidextrous',
 		maxSkillLevel: 20,
-		description: `
-			<p class="skillInfo">Chance to peel 2 limes rather than 1: +5%</p>
-			<p class="skillInfo">Unlock something special for completing this!</p>
-			<p class="skillInfo" id="knifebidextrous"></p>
-		`,
+		description: [
+            'Chance to peel 2 limes rather than 1: +5%',
+            'Unlock something special for completing this!'
+        ]
 	},	
 	{
 		id: 'motivation',
 		name: 'Motivation',
 		maxSkillLevel: 100,
-		description: `
-			<p class="skillInfo">Make your employees as passionate about limes as you are</p>
-			<p class="skillInfo">Increases the amount that motivation affects employees</p>
-		`,
+		description: [
+            'Make your employees as passionate about limes as you are',
+            'Increases the amount that motivation affects employees'
+        ]
 	},	
 	{
 		id: 'ambidextrous',
 		name: 'Ambidextrous',
 		maxSkillLevel: 20,
-		description: `
-			<p class="skillInfo">Yes, I made a skill without a lime pun</p>
-			<p class="skillInfo">Reach level 20 to be able to toggle two actions at once</p>
-		`,
+		description: [
+			'Yes, I made a skill without a lime pun',
+			'Reach level 20 to be able to toggle two actions at once'
+		]
 	},	
 	{
 		id: 'bitterSpeed',
 		name: 'Bitter Speed',
 		maxSkillLevel: 200,
-		description: `
-			<p class="skillInfo">The bitterness of the golden limes increases your abilities!</p>
-			<p class="skillInfo">Specifically lime peeling and juicing.</p>
-			<p class="skillInfo">Every level increases that effect's length.</p>
-		`,
+		description: [
+			'The bitterness of the golden limes increases your abilities!',
+			'Specifically lime peeling and juicing.',
+			'Every level increases that effect\'s length.'
+		],
 	},
 ]
 
@@ -136,5 +131,16 @@ document.getElementById('skills').innerHTML = `
 `;
 
 skills.forEach(skill => {
-	document.getElementById('skillsSection2').innerHTML += '<div class="basicDiv" id="' + skill.id + 'Div">' + skill.description + '</div>';
+	document.getElementById('skillsSection2').innerHTML += `
+        <div class="basicDiv" id="${skill.id}Div"></div>
+    `;
+
+    skill.description.forEach(desc => {
+        document.getElementById(skill.id + 'Div').innerHTML += `
+            <p class=skillInfo>${desc}</p>
+        `;
+    });
+    document.getElementById(skill.id + 'Div').innerHTML += `
+        <p class=skillInfo id="${skill.id}"></p>
+    `;
 });

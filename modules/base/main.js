@@ -555,10 +555,10 @@ function gameStart() {
   
   function isTaskConflict(x, y) {
     return (
-      (x === 'makeJuice' && x === 'makeMaxJuice') ||
-      (task === 'makeMaxJuice' && x === 'makeJuice') ||
-      (task === 'usePeelers' && x === 'useMaxPeelers') ||
-      (task === 'useMaxPeelers' && x === 'usePeelers')
+      (x === 'makeJuice' && y === 'makeMaxJuice') ||
+      (x === 'makeMaxJuice' && y === 'makeJuice') ||
+      (x === 'usePeelers' && y === 'useMaxPeelers') ||
+      (x === 'useMaxPeelers' && y === 'usePeelers')
     );
   }
   
