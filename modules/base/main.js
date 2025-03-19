@@ -150,8 +150,7 @@ function onLoadBase () {
 		id = baseVariables[i].id
 		gameBase[baseVariables[i].id] = 0
 
-		variableName = (baseVariables[i].id).replace(/([A-Z])/g, ' $1').trim()
-		variableName = variableName.charAt(0).toUpperCase() + variableName.slice(1)
+        variableName = idToName(baseVariables[i].id);
 
 		if (i > 0) {
 			document.getElementById('backpackDiv').innerHTML += `<button id="currencyDisplay(${i})" onClick="currencyDisplay(${i})" style="width:167px">Show ${baseVariables[i].name}</button>`
@@ -593,7 +592,7 @@ function gameStart() {
     elem.style.width = game[barId] + "%";
   }
   
-  function buy(item, price, currency = 'coins', amount = 1) {
+  function buy(item, price = 1, currency = 'coins', amount = 1) {
     if (game[currency] >= price) {
       game[currency] -= price;
       game[item] += amount;

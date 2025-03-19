@@ -35,7 +35,7 @@ document.getElementById('marketMain').innerHTML = `
         </div>
     </div>
     <div class="basicDiv" id="buyAForkDiv">
-        <button style="background-color:#BBBBBB;" onclick="buyAFork()">Buy A Fork</button>
+        <button style="background-color:#BBBBBB;" onclick="buy('fork')">Buy A Fork</button>
         <p>Increase eating speed</p>
         <p>Price: 1 Coin</p>
     </div>

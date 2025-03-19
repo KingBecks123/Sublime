@@ -1,7 +1,6 @@
 skills = [
 	{
 		id: 'keenEye',
-		name: 'Keen Eye',
 		maxSkillLevel: 20,
 		description: [
             'Increase the chance of actually finding something when collecting limes'
@@ -9,7 +8,6 @@ skills = [
 	},
 	{
 		id: 'rottenWisdom',
-		name: 'Rotten Wisdom',
 		maxSkillLevel: 50,
 		description: [
             'Increase the chance of finding limes rather than rotten limes'
@@ -17,7 +15,6 @@ skills = [
 	},	
 	{
 		id: 'limebidextrous',
-		name: 'Limebidextrous',
 		maxSkillLevel: 50,
 		description: [
             'Increase the chance of picking up double limes'
@@ -25,7 +22,6 @@ skills = [
 	},	
 	{
 		id: 'intelligence',
-		name: 'Intelligence',
 		maxSkillLevel: 20,
 		description: [
             'Increase skilling speed'
@@ -33,7 +29,6 @@ skills = [
 	},	
 	{
 		id: 'knifebidextrous',
-		name: 'Knifebidextrous',
 		maxSkillLevel: 20,
 		description: [
             'Chance to peel 2 limes rather than 1: +5%',
@@ -42,7 +37,6 @@ skills = [
 	},	
 	{
 		id: 'motivation',
-		name: 'Motivation',
 		maxSkillLevel: 100,
 		description: [
             'Make your employees as passionate about limes as you are',
@@ -51,7 +45,6 @@ skills = [
 	},	
 	{
 		id: 'ambidextrous',
-		name: 'Ambidextrous',
 		maxSkillLevel: 20,
 		description: [
 			'Yes, I made a skill without a lime pun',
@@ -60,7 +53,6 @@ skills = [
 	},	
 	{
 		id: 'bitterSpeed',
-		name: 'Bitter Speed',
 		maxSkillLevel: 200,
 		description: [
 			'The bitterness of the golden limes increases your abilities!',
@@ -144,3 +136,14 @@ skills.forEach(skill => {
         <p class=skillInfo id="${skill.id}"></p>
     `;
 });
+
+const foodTypes = [
+    {
+        id: 'limes',
+        nutritionValue: 5
+    },
+    {
+        id: 'rottenLimes',
+        nutritionValue: 1
+    }
+]

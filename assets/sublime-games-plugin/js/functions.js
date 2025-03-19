@@ -72,6 +72,11 @@ function checkShow(x, id, style) {
     }
 }
 
+function idToName (id) {
+    id = id.replace(/([A-Z])/g, ' $1').trim();
+    return id.charAt(0).toUpperCase() + id.slice(1);
+}
+
 /* ----- Audio Functions :) ----- */
 
 // Sound pools to handle multiple concurrent sounds

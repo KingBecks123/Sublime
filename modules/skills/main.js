@@ -6,19 +6,15 @@ for (let i = 0; i < skills.length; i++) {
 
 function eat() {
     if (game.eatBar == 0 && game.eat < 100) {
-        if (game.foodTypeToggle == 0)
-			startEating ('limes', 5)
-        else if (game.foodTypeToggle == 1)
-			startEating ('rottenLimes', 1)
+        type = foodTypes[game.foodTypeToggle].id
+
+        if (game[type] > 0) {
+            game[type] -= 1
+            game.foodNutritionValue = foodTypes[game.foodTypeToggle].nutritionValue
+            game.eatBar = 0
+            eatBar()
+        }
     }
-	function startEating (type, amount) {
-		if (game[type] > 0) {
-			game[type] -= 1
-			game.foodNutritionValue = amount
-			game.eatBar = 0
-			eatBar()
-		}
-	}
 }
 
 function eatBar() {
@@ -41,14 +37,6 @@ function collectingUpgrade() {
         game.limes -= game.nourishmentPrice
         game.nourishment += 1
         game.autoCollectingBar = 0
-    }
-}
-
-function buyAFork() {
-    if (game.coins >= 1) {
-        game.coins -= 1
-        game.fork = 1
-        game.eatBar = 0
     }
 }
 
@@ -82,7 +70,9 @@ function onLoadSkills () {
 		gameBase[name + 'Bar'] = 0
 		gameBase[name + 'SkillLevel'] = 0
 		
-		document.getElementById(name + "Div").innerHTML += '<button class="skillButton" id="' + name + "Button" + '" onclick="pickCurrentSkill(&apos;' + name + '&apos;)">' + skills[i].name  + '</button><div class="skillProgress" id="' + name + 'Progress"><div class="skillBar" id="' + name + 'Bar"></div></div><p id="' + name + 'SkillLevel"></p>'
+        skillName  = idToName(skills[i].id);
+
+		document.getElementById(name + "Div").innerHTML += '<button class="skillButton" id="' + name + "Button" + '" onclick="pickCurrentSkill(&apos;' + name + '&apos;)">' + skillName  + '</button><div class="skillProgress" id="' + name + 'Progress"><div class="skillBar" id="' + name + 'Bar"></div></div><p id="' + name + 'SkillLevel"></p>'
 		
 		if (game[name + 'Bar'] != 0)
 			runSkill(name)
