@@ -41,10 +41,10 @@ function onLoadScience () {
 		<div class="basicDiv" id="` + id + `Div">
 			<button onclick="barStartScience(` + i + `)">` + sciences[i].buttonText + `</button>
 			<p id="` + id + `Researchers" style="color:#00AAFF;background-color:#000000"></p>
-			<button                               style="background-color:#00AAFF;width:30px" onclick="addResearchers('` + id + `', -1)">-</button>
-			<button class="changeResearchersBy10" style="background-color:#00AAFF;width:50px" onclick="addResearchers('` + id + `', -10)">-10</button>
-			<button                		          style="background-color:#00AAFF;width:30px" onclick="addResearchers('` + id + `', 1)">+</button>
-			<button class="changeResearchersBy10" style="background-color:#00AAFF;width:50px" onclick="addResearchers('` + id + `', 10)">+10</button>
+			<button class="science-button"                       onclick="addResearchers('` + id + `', -1)">-</button>
+			<button class="changeResearchersBy10 science-button" onclick="addResearchers('` + id + `', -10)">-10</button>
+			<button class="science-button"                		 onclick="addResearchers('` + id + `', 1)">+</button>
+			<button class="changeResearchersBy10 science-button" onclick="addResearchers('` + id + `', 10)">+10</button>
 			<div class="scienceInfo">
 				<p>` + sciences[i].info + `</p>
 			</div>
