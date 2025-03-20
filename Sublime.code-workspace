@@ -4,5 +4,8 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+    "settings": {
+        "editor.fontSize": 11,
+        "editor.fontFamily": "Departure Mono, 'Departure Mono', monospace"
+    }
 }

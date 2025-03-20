@@ -627,23 +627,6 @@ function gameStart() {
     }
   }
   
-  const hasUpdatedObj = {};
-  
-  function update(id, content) {
-    const stringy = id.replace(/[()-]/g, 'uwu');
-  
-    if (typeof hasUpdatedObj[stringy] === 'undefined') {
-      hasUpdatedObj[stringy] = 'noneOwO';
-    }
-  
-    if (hasUpdatedObj[stringy] !== content) {
-      if (document.getElementById(id) !== null) {
-          document.getElementById(id).innerHTML = content;
-          hasUpdatedObj[stringy] = content;
-      }
-    }
-  }
-  
   function currencyDisplay(id) {
     const variable = baseVariables[id].id + 'ShowVariable';
     game[variable] = !game[variable];

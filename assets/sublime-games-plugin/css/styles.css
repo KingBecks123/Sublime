@@ -45,10 +45,13 @@ button {
     background-color: var(--accent-primary);
     padding: 1px 12px;
     cursor: pointer;
-    text-shadow: 0 1px 0 rgba(255,255,255,0.2);
     position: relative;
     overflow: hidden;
 }
+
+/*     
+    Button could use text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+*/
 
 button:before {
     content: '';

@@ -7,26 +7,26 @@ addMainTabs([
 	}
 ]);
 
-fieldPlacementOptions = [
+fieldActions = [
 	{
 		id: 'plot', 
 		text: 'Manage Plot'
 	},
 	{
 		id: 'seed', 
-		text: 'Seed'
+		text: 'Plant Seed'
 	},	
 	{
 		id: 'seedDrill', 
-		text: 'Seed Drill'
+		text: 'Install Seed Drill'
 	},	
 	{
 		id: 'harvester', 
-		text: 'Harvester'
+		text: 'Install Harvester'
 	},	
 	{
 		id: 'rotate', 
-		text: 'Rotate'
+		text: 'Rotate Machine'
 	},	
 ]
 
@@ -55,7 +55,7 @@ addGameVariables({
 	seedDrills: 0,
 	hasGottenFieldTools: 0,
 
-	selectedWheatItem: 'seed',
+	fieldAction: 'seed',
 	nextPlotPrice: 4,
 	sellPlotPrice: 0,
 	selectedPlotX: 0,
@@ -63,7 +63,7 @@ addGameVariables({
 });
 
 document.getElementById('field').innerHTML = `
-	<div class="module-container" style="display:inline-block;position:absolute;">
+	<div class="module-container">
 		<div class="basicDiv">
 			<p id="wheatSeedsNumber"></p>
 			<p id="wheatNumber"></p>
@@ -72,8 +72,8 @@ document.getElementById('field').innerHTML = `
 				<p id="wheatHarvesterNumber"></p>
 				<p id="seedDrillNumber"></p>
 			</div>
-			<button id="winnowWheat" onclick="buy('wheatSeeds', 1, 'wheat', 2)">Winnow Wheat</button>
-			<button id="grindFlour" onclick="buy('flour', 1, 'wheatSeeds', 2)">Grind Seeds Into Flour</button>
+			<button class="wide-button" id="winnowWheat" onclick="buy('wheatSeeds', 1, 'wheat', 2)">Winnow Wheat -> Seeds</button>
+			<button class="wide-button" id="grindFlour" onclick="buy('flour', 1, 'wheatSeeds', 2)">Grind Seeds -> Flour</button>
 		</div>
 		<div class="basicDiv" id="plotManagementDiv">
 			<p id="plotDetails"></p>
