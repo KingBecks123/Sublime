@@ -108,10 +108,10 @@ document.getElementById('bakery').innerHTML = `
 				<div class="bucketHoleBar" id="flourHoleBar"></div>
 			</div>
 			<div  id="bucketHoleChanger">
-				<button onclick="bucketHoleSize('-1', 'juice')" style="width:75px;">-</button>
-				<button onclick="bucketHoleSize('1', 'juice')"  style="width:75px;">+</button>				
-				<button onclick="bucketHoleSize('-1', 'flour')" style="width:75px;visibility:hidden;" id="flourMinusNozzle">-</button>
-				<button onclick="bucketHoleSize('1', 'flour')"  style="width:75px;visibility:hidden;" id="flourPlusNozzle" >+</button>
+				<button class="half-button" onclick="bucketHoleSize('-1', 'juice')">-</button>
+				<button class="half-button" onclick="bucketHoleSize('1', 'juice')" >+</button>				
+				<button class="half-button" onclick="bucketHoleSize('-1', 'flour')"visibility:hidden;" id="flourMinusNozzle">-</button>
+				<button class="half-button" onclick="bucketHoleSize('1', 'flour') "visibility:hidden;" id="flourPlusNozzle" >+</button>
 			</div>
 			<button class="wide-button" onclick="addToPieBucket('juice')">Add Juice To Bucket</button>
 			<button class="wide-button" id="addToPieFlourBucket" onclick="addToPieBucket('flour')" style="visibility:hidden;">Add Flour To Bucket</button>

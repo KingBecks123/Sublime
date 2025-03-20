@@ -112,3 +112,7 @@ button:active {
     background-color: var(--bg-night);
     box-shadow: 0 2px 0 var(--bg-dark);
 }
+
+.half-button {
+    width: 75px;
+}
