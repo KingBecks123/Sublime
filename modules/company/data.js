@@ -251,9 +251,9 @@ document.getElementById('hiringArea').innerHTML = `
             <div class="module-container" style="display:inline-block;">
                 <div class="basicDiv">
 					<div id="hireToggleButtons">
-						<button id="hireEmployeeToggleButton"    onclick="game.typeToHireToggle = 'basic'" >Basic Employees</button>
-						<button id="hireBrokerToggleButton"      onclick="game.typeToHireToggle = 'broker'" >Currency Brokers</button>
-						<button id="hirePieMerchantToggleButton" onclick="game.typeToHireToggle = 'pie'" >Pie Merchant</button>
+						<button class="wide-button" id="hireEmployeeToggleButton"    onclick="game.typeToHireToggle = 'basic'" >Basic Employee</button>
+						<button class="wide-button" id="hireBrokerToggleButton"      onclick="game.typeToHireToggle = 'broker'" >Currency Broker</button>
+						<button class="wide-button" id="hirePieMerchantToggleButton" onclick="game.typeToHireToggle = 'pie'" >Pie Merchant</button>
 					</div>
                     <button id="advertiseButton" onclick="advertise()">Advertise your lime business</button>
 					<div id="autoAdvertiseBrokerDiv">
@@ -308,3 +308,22 @@ document.getElementById('hiringArea').innerHTML = `
 				</div>
             </div>
 `;
+
+const blankApplicationText = `
+Potential Employees, Pin Applications Here!
+ ---
+You, yes YOU, will have the chance to work in the town-renowned Lime Inc.!
+
+With BENEFITS! Only to name A FEW:
+
+- Get PAID*
+
+APPLY NOW!
+
+`;
+
+const employeeTypesNames = [
+    'Employee',
+    'Broker',
+    'PieMerchant'
+]
