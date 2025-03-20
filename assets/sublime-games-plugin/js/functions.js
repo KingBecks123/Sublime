@@ -18,12 +18,12 @@ function importGame() {
         else {
             sampleSaves.forEach(element => {
                 if (element.id == savegame){
-                    savegame = element.data;
+                    savegame = btoa(element.data);
                 }
             });
 
             try {
-                JSON.parse(atob(savegame))
+                loadGame(JSON.parse(atob(savegame)))
                 saveGame()
                 location.reload()
             }

@@ -75,7 +75,7 @@ function clickPlot(x, y) {
     var tileType = game.wheatFieldArray[x][y]
     var tile = "plot" + x + "-" + y
 
-    if (game.fieldAction == 'plot') {
+    if (game.fieldAction == 'managePlot') {
         showPlotManagementDiv = true
 
         game.selectedPlotX = x
@@ -97,7 +97,7 @@ function clickPlot(x, y) {
     }
 
     else if (tileType >= 51 && tileType <= 54) {
-        if (game.fieldAction == 'rotate') {
+        if (game.fieldAction == 'rotateMachine') {
             if (tileType == 54)
                 game.wheatFieldArray[x][y] = 51
             else
@@ -110,7 +110,7 @@ function clickPlot(x, y) {
     }
 
     else if (tileType >= 55 && tileType <= 58) {
-        if (game.fieldAction == 'rotate') {
+        if (game.fieldAction == 'rotateMachine') {
             if (tileType == 58)
                 game.wheatFieldArray[x][y] = 55
             else
@@ -123,11 +123,11 @@ function clickPlot(x, y) {
         }
     }
 
-    else if (game.fieldAction == 'seed')
+    else if (game.fieldAction == 'plantSeed')
         setTileType(1, 'wheatSeeds')
-    else if (game.fieldAction == 'seedDrill')
+    else if (game.fieldAction == 'installSeedDrill')
         setTileType(51, 'seedDrills')
-    else if (game.fieldAction == 'harvester')
+    else if (game.fieldAction == 'installHarvester')
         setTileType(55, 'wheatHarvesters')
 
     function emptyWheatTile(x, y) {
@@ -150,8 +150,9 @@ function updatePlotAesthetic() {
             var tile = "plot" + x + "-" + y;
             var image = document.getElementById(tile + 'img');
             var tileType = game.wheatFieldArray[x][y];
-            var rotation;
-            var imageID;
+            var rotation = 0;
+            var imageID = 'unpurchasedField';
+            var color = myBeige;
 
             if (tileType == 0)
                 imageID = 'emptyField';
@@ -163,8 +164,6 @@ function updatePlotAesthetic() {
                 imageID = 'seedDrill';
             else if (tileType > 54 && tileType <= 58)
                 imageID = 'wheatHarvester';
-            else if (tileType == 59)
-                imageID = 'unpurchasedField';
 
             image.src = 'assets/images/field/' + imageID + '.png';
 
@@ -174,29 +173,26 @@ function updatePlotAesthetic() {
                 rotation = 180;
             else if (tileType == 53 || tileType == 57)
                 rotation = 270;
-            else
-                rotation = 0;
 
             image.style.transform = 'rotate(' + rotation + 'deg)';
 
             if (tileType == 59)
-                document.getElementById(tile).style.backgroundColor = "#66361F";
-            else
-                document.getElementById(tile).style.backgroundColor = myBeige;
+                color = "#66361F";
+
+            setColor(tile, color);
         }
     }
 }
 
 function updateValuesField() {
+    winnowColor = myGray;
+    grindColor = myGray;
+
     if (game.wheat)
-        setColor('winnowWheat', myBeige)
-    else
-        setColor('winnowWheat', myGray)
+        winnowColor = myBeige;
 
     if (game.wheatSeeds)
-        setColor('grindFlour', myBeige)
-    else
-        setColor('grindFlour', myGray)
+        grindColor = myBeige;
 
     checkShow(showPlotManagementDiv, 'plotManagementDiv')
 }
