@@ -27,9 +27,11 @@ function createFieldActionButtons() {
     let fieldActionButtons = '';
 
     for (let i = 0; i < fieldActions.length; i++) {
-        const option = fieldActions[i];
+        option = fieldActions[i];
+        optionText = idToName(option.id);
+
         fieldActionButtons += `
-            <button class="wide-button" id="${option.id}FieldAction" onclick="selectFieldAction('${option.id}')">${option.text}</button>
+            <button class="wide-button" id="${option.id}FieldAction" onclick="selectFieldAction('${option.id}')">${optionText}</button>
         `;
     }
 
@@ -72,7 +74,6 @@ function clickPlot(x, y) {
 
     var tileType = game.wheatFieldArray[x][y]
     var tile = "plot" + x + "-" + y
-
 
     if (game.fieldAction == 'plot') {
         showPlotManagementDiv = true

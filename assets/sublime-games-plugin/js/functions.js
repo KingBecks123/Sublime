@@ -9,11 +9,28 @@ function reset() {
 }
 
 function importGame() {
-	var savegame = JSON.parse(atob(prompt("Import Code: ")))
+	var savegame = prompt("Import Code: ");
+
 	if (savegame !== null) {
-		loadGame(savegame)
-		saveGame()
-		location.reload()
+        if (savegame == '') {
+            update('newInfo', 'No save code entered.');
+        }
+        else {
+            sampleSaves.forEach(element => {
+                if (element.id == savegame){
+                    savegame = element.data;
+                }
+            });
+
+            try {
+                JSON.parse(atob(savegame))
+                saveGame()
+                location.reload()
+            }
+            catch (e) {
+                update('newInfo', 'Invalid save code.');
+            }
+        }
 	}
 }
 

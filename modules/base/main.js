@@ -637,8 +637,15 @@ function gameStart() {
   }
   
   function setColor(id, content, transparency = 100) {
-    document.getElementById(id).style.backgroundColor = content;
-    document.getElementById(id).style.opacity = transparency;
+    element = document.getElementById(id);
+
+    if (element !== null) {
+      element.style.backgroundColor = content;
+      element.style.opacity = transparency;
+    }
+    else {
+        console.log('A color couldn\'t be updated because the element "' + id + '" does not exist :(');
+    }
   }
   
   function decreaseValue(id) {

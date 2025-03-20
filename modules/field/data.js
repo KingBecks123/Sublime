@@ -9,26 +9,23 @@ addMainTabs([
 
 fieldActions = [
 	{
-		id: 'plot', 
-		text: 'Manage Plot'
+		id: 'managePlot'
 	},
 	{
-		id: 'seed', 
-		text: 'Plant Seed'
+		id: 'plantSeed'
 	},	
 	{
-		id: 'seedDrill', 
-		text: 'Install Seed Drill'
+		id: 'installSeedDrill'
 	},	
 	{
-		id: 'harvester', 
-		text: 'Install Harvester'
+		id: 'installHarvester'
 	},	
 	{
-		id: 'rotate', 
-		text: 'Rotate Machine'
+		id: 'rotateMachine'
 	},	
 ]
+
+//I should add fertilization and watering
 
 showPlotManagementDiv = false
 
@@ -55,7 +52,7 @@ addGameVariables({
 	seedDrills: 0,
 	hasGottenFieldTools: 0,
 
-	fieldAction: 'seed',
+	fieldAction: 'plantSeed',
 	nextPlotPrice: 4,
 	sellPlotPrice: 0,
 	selectedPlotX: 0,
