@@ -82,7 +82,7 @@ document.getElementById('bakery').innerHTML = `
 		<p class="sellingPieInfo" >The lower the price the faster you find customers</p>
 		<p class="sellingPieInfo" >Click on the customer to sell to them before they become unhappy and leave!</p>
 		<button class="roundButton" id="findPieCustomersButton" onclick="pickCurrentTask('findPieCustomers')">Start Selling Pie</button>
-		<button id="sellingPieInfoButton" style="width:80px;" onclick="toggle('sellingPieInfoToggle')">Info</button>
+		<button id="sellingPieInfoButton" onclick="toggle('sellingPieInfoToggle')">Info</button>
 		<div class="skillProgress" id="findPieCustomersProgress">
 			<div class="skillBar" id="findPieCustomersBar"></div>
 		</div>

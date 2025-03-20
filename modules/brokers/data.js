@@ -134,8 +134,8 @@ document.getElementById('trade').innerHTML = `
 					<p id="textForA2BBrokerRule">Converts Alpha Coins to Beta Coins if the conversion rate is below 1,000</p>
 					<button class="wide-button" onclick="decreaseBasicA2BBrokerRule()">Decrease</button>
 					<button class="wide-button" onclick="increaseBasicA2BBrokerRule()">Increase</button>
-                    <button id="textForA2BBrokerAmountToggleButton" style="width:250px" onclick="toggle('textForA2BBrokerAmountToggle')"></button>
-					<button id="textForA2BBrokerPrice" style="width:250px" onclick="increaseBasicA2BBrokerAmount()">Increase for 2 Pie Coins</button>
+                    <button class="wide-button" id="textForA2BBrokerAmountToggleButton" onclick="toggle('textForA2BBrokerAmountToggle')"></button>
+					<button class="wide-button" id="textForA2BBrokerPrice" onclick="increaseBasicA2BBrokerAmount()">Increase for 2 Pie Coins</button>
 				</div>
                 <button class="currencyButton" id="alphaToBetaClickButton" style="display:block;background-color:#FDFF9A" onclick="pickCurrentTask('alphaToBetaClick')">Convert Alpha Coins to Beta Coins</button>
 				<div class="skillProgress" id="alphaToBetaProgress">

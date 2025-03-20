@@ -191,7 +191,7 @@ function updateValuesSkills () {
       { condition: game.learnANewSkill > -1, element: 'nourishment' },
       { condition: game.learnANewSkill > -1, element: 'skillInfoButton', display: 'inline' },
       { condition: game.learnANewSkill > 0 && !game.multitasking, element: 'buySkillToggler' },
-      { condition: game.learnANewSkill > 4, element: 'motivateEmployeeButton' },
+      { condition: game.learnANewSkill > 4, element: 'motivateEmployeeButton', display: 'inline'},
       { condition: !game.skillTrainer, element: 'skillTrainer' },
       { condition: false, element: 'bitterSpeed'},
       { condition: false, element: 'motivation'},

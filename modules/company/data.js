@@ -205,8 +205,8 @@ employeeTypes = {
 }
 
 document.getElementById('company').innerHTML = `		<div class="basicDiv">
-			<button style="width:250px" onclick="tabEmployees('employeeOne')">John McLime</button>
-			<button id="employeeStatsInfoButton" style="width:80px;" onclick="toggle('employeeStatsInfoToggle')">Stats</button>
+			<button class="wide-button" onclick="tabEmployees('employeeOne')">John McLime</button>
+			<button class="wide-button" id="employeeStatsInfoButton" onclick="toggle('employeeStatsInfoToggle')">Stats</button>
 			<div id="employeeOne">
 				<p class="employeeStatsInfo" id="skillsEmployee" style="text-align: center;">Lime Collector</p>
 				<p class="employeeStatsInfo" id="speedEmployee">Speed: 20% Of What I'm Taught</p>
@@ -214,8 +214,8 @@ document.getElementById('company').innerHTML = `		<div class="basicDiv">
 				<p class="employeeStatsInfo" id="wageEmployee">Wage: 10 Coins Per Minute</p>
 				<p class="employeeStatsInfo" id="hungerEmployee">Hunger: 10 Limes Per Second</p>
 				<p class="employeeStatsInfo" id="employeeHobby" style="text-align: right">Enjoys Faffing About</p>
-				<button style="width:250px" onclick="teach()">Teach Employee</button>
-				<button id="teachInfoButton" style="width:80px;" onclick="toggle('teachInfoToggle')">Info</button>
+				<button class="wide-button" onclick="teach()">Teach Employee</button>
+				<button class="wide-button" id="teachInfoButton" onclick="toggle('teachInfoToggle')">Info</button>
 				<p class="teachInfo">Click the 'Teach' button to start a timer</p>
 				<p class="teachInfo">Collect as many limes as possible before time runs out!</p>
 				<p class="teachInfo">Your employee learns from your abilities</p>
@@ -226,18 +226,18 @@ document.getElementById('company').innerHTML = `		<div class="basicDiv">
 				<div class="skillProgress" id="workingProgress">
 					<div class="skillBar" id="workingBar"></div>
 				</div>
-				<button id="payEmployee" style="width:250px" onclick="payEmployee()">Pay Employee Their Wages</button>
-				<button id="motivateEmployeeButton" onkeydown="return event.key != 'Enter';" style="width:250px" onclick="motivateEmployee()">Motivate Employee</button>
+				<button class="wide-button" id="payEmployee" onclick="payEmployee()">Pay Wages</button>
+				<button class="wide-button" id="motivateEmployeeButton" onkeydown="return event.key != 'Enter';" onclick="motivateEmployee()">Motivate Employee</button>
 			</div>
         </div>
 		<div class="basicDiv" id="currencyBroker">
-			<button style="width:250px;">Currency Broker</button>
+			<button class="wide-button">Currency Broker</button>
             <p id="currencyBrokerFee"></p>
             <p id="currencyBrokerSpeed"></p>
             <p id="currencyBrokerTransferAmount"></p>
         </div>
 		<div class="basicDiv" id="pieMerchant">
-			<button style="width:250px;display:inline-block;">Pie Merchant</button>            
+			<button class="wide-button" style="display:inline-block;">Pie Merchant</button>            
 			<button id="pieMerchantInfoButton" style="width:80px;" onclick="toggle('pieMerchantInfoToggle')">Info</button>
             <p id="pieMerchantPieCoinPrice"></p>
             <p id="pieMerchantBetaCoinPrice"></p>
