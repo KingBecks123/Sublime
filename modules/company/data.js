@@ -260,12 +260,12 @@ document.getElementById('hiringArea').innerHTML = `
 					    <button id="autoAdvertiseBrokerButton" style="display:inline-block" onclick="toggle('autoAdvertiseBroker')">Auto</button>
 						<p>Rule:</p>
 						<p id="textForAdvertisingBrokerRule">Auto advertise unless speed is under 30 seconds</p>
-						<button onclick="decreaseValue('autoAdvertiseSpeedValue')" style="width:166px">Decrease</button>
-						<button onclick="game.autoAdvertiseSpeedValue += 1" style="width:166px">Increase</button>
+						<button class="wide-button" onclick="decreaseValue('autoAdvertiseSpeedValue')">Decrease</button>
+						<button class="wide-button" onclick="game.autoAdvertiseSpeedValue += 1">Increase</button>
 					<div id="smarterAdvertisingBrokerRule">
 						<p id="textForSmarterAdvertisingBrokerRule">Auto advertise unless speed is under 30 seconds</p>
-						<button onclick="decreaseValue('autoAdvertiseAmountValue')" style="width:166px">Decrease</button>
-						<button onclick="game.autoAdvertiseAmountValue += 1" style="width:166px">Increase</button>
+						<button class="wide-button" onclick="decreaseValue('autoAdvertiseAmountValue')">Decrease</button>
+						<button class="wide-button" onclick="game.autoAdvertiseAmountValue += 1">Increase</button>
 					</div>
 					</div>
 					<div class="skillProgress" id="advertiseProgress">

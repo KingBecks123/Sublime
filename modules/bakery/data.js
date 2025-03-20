@@ -77,8 +77,8 @@ document.getElementById('bakery').innerHTML = `
 	<div class="basicDiv">
 		<p style="background-color:#DEAD85;" >Sell Pies</p>
 		<p style="background-color:#FF999A;" id="piePrice" >Current Price: 1 Pie Coin</p>
-		<button  onclick="decreasePiePrice()" style="width:166px">Decrease Price</button>
-		<button  onclick="increasePiePrice()" style="width:166px">Increase Price</button>
+		<button class="wide-button" onclick="decreasePiePrice()">Decrease Price</button>
+		<button class="wide-button" onclick="increasePiePrice()">Increase Price</button>
 		<p class="sellingPieInfo" >The lower the price the faster you find customers</p>
 		<p class="sellingPieInfo" >Click on the customer to sell to them before they become unhappy and leave!</p>
 		<button class="roundButton" id="findPieCustomersButton" onclick="pickCurrentTask('findPieCustomers')">Start Selling Pie</button>
@@ -113,13 +113,13 @@ document.getElementById('bakery').innerHTML = `
 				<button onclick="bucketHoleSize('-1', 'flour')" style="width:75px;visibility:hidden;" id="flourMinusNozzle">-</button>
 				<button onclick="bucketHoleSize('1', 'flour')"  style="width:75px;visibility:hidden;" id="flourPlusNozzle" >+</button>
 			</div>
-			<button onclick="addToPieBucket('juice')" style="width:166px;">Add Juice To Bucket</button>
-			<button id="addToPieFlourBucket" onclick="addToPieBucket('flour')" style="width:166px;visibility:hidden;">Add Flour To Bucket</button>
+			<button class="wide-button" onclick="addToPieBucket('juice')">Add Juice To Bucket</button>
+			<button class="wide-button" id="addToPieFlourBucket" onclick="addToPieBucket('flour')" style="visibility:hidden;">Add Flour To Bucket</button>
 		</div>
-		<button onclick="addPieIngredient('juice')" style="width:166px">Add Juice</button>		
-		<button onclick="addPieIngredient('flour')" style="width:166px">Add Flour</button>
-		<button onclick="bakePie()" style="width:166px">Bake Pie</button>
-		<button id="pieConveyorBeltOnButton" onclick="toggle('pieConveyorBeltOn')" style="width:166px">Conveyor Belt</button>
+		<button class="wide-button" onclick="addPieIngredient('juice')">Add Juice</button>		
+		<button class="wide-button" onclick="addPieIngredient('flour')">Add Flour</button>
+		<button class="wide-button" onclick="bakePie()">Bake Pie</button>
+		<button class="wide-button" id="pieConveyorBeltOnButton" onclick="toggle('pieConveyorBeltOn')">Conveyor Belt</button>
 		<p id="currentPieIngredients" >Current Ingredients: 0 Flour + 0 Juice</p>
 		<div class="skillProgress" id="bakePieProgress">
 			<div class="skillBarColored" id="bakePieBar"></div>

@@ -76,7 +76,7 @@ function updateValuesCompany() {
         setColor('hireEmployeeToggleButton', myLime)
     } else if (game.typeToHireToggle == 'broker') {
         setColor('hireBrokerToggleButton', myLime)
-    } else if (game.typeToHireToggle == 'pie') {
+    } else {
         setColor('hirePieMerchantToggleButton', myLime)
     }
 

@@ -69,22 +69,22 @@ document.getElementById('trade').innerHTML = `
 			<div id="brokerApplicantUpgrades">
 				<div class="basicDiv">
 					<p style="background-color:#FDFF9A">Applicant Speed</p>
-					<button onclick="brokerApplicantNew('Speed', -1, 'min', 'game.minBrokerApplicantSpeed > 1')" style="width:166px">Decrease Minimum</button>
-					<button onclick="brokerApplicantNew('Speed', -1, 'max')" style="width:166px">Decrease Maximum</button>
+					<button class="wide-button" onclick="brokerApplicantNew('Speed', -1, 'min', 'game.minBrokerApplicantSpeed > 1')">Decrease Minimum</button>
+					<button class="wide-button" onclick="brokerApplicantNew('Speed', -1, 'max')">Decrease Maximum</button>
 					<p id="textForBrokerApplicantSpeed">Currently 20 - 100 Seconds</p>
 					<p id="brokerApplicantSpeedPrice">Price: 1 Alpha Coins</p>
 				</div>
 				<div class="basicDiv">
 					<p style="background-color:#FDFF9A">Applicant Fee</p>
-					<button onclick="brokerApplicantNew('Fee', -100, 'min', 'game.minBrokerApplicantFee > 0')" style="width:166px">Decrease Minimum</button>
-					<button onclick="brokerApplicantNew('Fee', -100, 'max')" style="width:166px">Decrease Maximum</button>
+					<button class="wide-button" onclick="brokerApplicantNew('Fee', -100, 'min', 'game.minBrokerApplicantFee > 0')">Decrease Minimum</button>
+					<button class="wide-button" onclick="brokerApplicantNew('Fee', -100, 'max')">Decrease Maximum</button>
 					<p id="textForBrokerApplicantFee">Currently 10,000 - 200,000 Coins</p>
 					<p id="brokerApplicantFeePrice">Price: 1 Alpha Coins</p>
 				</div>
 				<div class="basicDiv">
 					<p style="background-color:#FDFF9A">Applicant Alpha Coin Transfer Amount</p>
-					<button onclick="brokerApplicantNew('Amount', 1, 'min')" style="width:166px">Increase Minimum</button>
-					<button onclick="brokerApplicantNew('Amount', 1, 'max')" style="width:166px">Increase Maximum</button>
+					<button class="wide-button" onclick="brokerApplicantNew('Amount', 1, 'min')">Increase Minimum</button>
+					<button class="wide-button" onclick="brokerApplicantNew('Amount', 1, 'max')">Increase Maximum</button>
 					<p id="textForBrokerApplicantAmount">Currently 1 - 5 Alpha Coins</p>
 					<p id="brokerApplicantAmountPrice">Price: 1 Alpha Coins</p>
 				</div>
@@ -132,8 +132,8 @@ document.getElementById('trade').innerHTML = `
             <div class="basicDiv" id="earnBetaCoins">
 				<div id="basicAlphaToBetaBrokerRule" style="display:none">
 					<p id="textForA2BBrokerRule">Converts Alpha Coins to Beta Coins if the conversion rate is below 1,000</p>
-					<button onclick="decreaseBasicA2BBrokerRule()" style="width:166px">Decrease</button>
-					<button onclick="increaseBasicA2BBrokerRule()" style="width:166px">Increase</button>
+					<button class="wide-button" onclick="decreaseBasicA2BBrokerRule()">Decrease</button>
+					<button class="wide-button" onclick="increaseBasicA2BBrokerRule()">Increase</button>
                     <button id="textForA2BBrokerAmountToggleButton" style="width:250px" onclick="toggle('textForA2BBrokerAmountToggle')"></button>
 					<button id="textForA2BBrokerPrice" style="width:250px" onclick="increaseBasicA2BBrokerAmount()">Increase for 2 Pie Coins</button>
 				</div>
