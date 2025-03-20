@@ -1,7 +1,7 @@
 function delivery() {
-    if (game.deliveryBar == 0 && game.coins >= game.deliveryPrice && game.juice >= game.juiceBulkAmountToggle) {
+    if (game.deliveryBar == 0 && game.coins >= game.deliveryPrice && game.juice >= game.juiceToSell) {
         game.deliveryType = game.deliveryTypeToggle
-        game.juiceBulkAmount = game.juiceBulkAmountToggle
+        game.juiceBulkAmount = game.juiceToSell
         game.coins -= game.deliveryPrice
         game.juice -= game.juiceBulkAmount
         game.deliveryBar = 0
@@ -9,58 +9,61 @@ function delivery() {
     }
 }
 
-function deliveryBar() {	
-	if (game.deliveryType == 0)
-		amount = 0.02
-	else if (game.deliveryType == 1)
-		amount = 0.5
-	else
-		amount = 1
-	
-	runBar('delivery', amount)
+function deliveryBar() {
+    if (game.deliveryType == 0)
+        amount = 0.02
+    else if (game.deliveryType == 1)
+        amount = 0.5
+    else
+        amount = 1
+
+    runBar('delivery', amount)
 }
 
 function deliveryBarEnd() {
-	playSound('CASH');
-	
-	game.coins += (game.nationalJuiceMarketing + 1) * Math.floor(game.juiceBulkAmount * (1 + game.juicePriceCents / 100))
+    playSound('CASH');
+
+    var pricePerJuice = Math.floor(game.juiceBulkAmount * (1 + game.juicePriceCents / 100));
+
+    game.coins += (game.nationalJuiceMarketing + 1) * pricePerJuice;
 }
 
 function increaseJuicePrice() {
-	if (game.increaseJuicePricex10) {
-		for (i = 0; i < 10; i++) {
-			if (game.coins >= game.juicePricePrice) {
-				game.coins -= game.juicePricePrice
-				game.juicePriceCents += 1
-				game.juicePricePrice = game.juicePriceCents + 1
-			}
-		}
-	}
-	else {
-		if (game.coins >= game.juicePricePrice) {
-			game.coins -= game.juicePricePrice
-			game.juicePriceCents += 1
-		}
-	}
+    if (game.increaseJuicePricex10) {
+        for (i = 0; i < 10; i++) {
+            if (game.coins >= game.juicePricePrice) {
+                increasejuicePriceCents();
+                game.juicePricePrice = game.juicePriceCents + 1
+            }
+        }
+    }
+    else {
+        if (game.coins >= game.juicePricePrice) {
+            increasejuicePriceCents();
+        }
+    }
+
+    function increasejuicePriceCents () {
+        game.coins -= game.juicePricePrice
+        game.juicePriceCents += 1
+    }
 }
 
 
 function decreaseJuiceSold() {
-    if (game.juiceBulkAmountToggle >= 1) {
-        if (game.juiceBulkAmountToggle > 100)
-            game.juiceBulkAmountToggle -= 10
+    if (game.juiceToSell >= 1) {
+        if (game.juiceToSell > 100)
+            game.juiceToSell -= 10
         else
-            game.juiceBulkAmountToggle -= 1
+            game.juiceToSell -= 1
     }
 }
 
 function increaseJuiceSold() {
-    if (game.juiceBulkAmountToggle < 100)
-        game.juiceBulkAmountToggle += 1
-    else if (game.juiceBulkAmountToggle < 500 && game.deliveryTypeToggle == 2 && game.fasterTransport > 0)
-        game.juiceBulkAmountToggle += 10
-    else if (game.juiceBulkAmountToggle < 2000 && game.deliveryTypeToggle == 3)
-        game.juiceBulkAmountToggle += 10
+    if (game.juiceToSell < 100)
+        game.juiceToSell += 1
+    else if ((game.juiceToSell < 500 && game.deliveryTypeToggle == 2 && game.fasterTransport > 0) || (game.juiceToSell < 2000 && game.deliveryTypeToggle == 3))
+        game.juiceToSell += 10
 }
 
 function deliveryToggleStandard() {
@@ -85,73 +88,112 @@ function deliveryToggleTrain() {
 
 function sellMaxJuice() {
     if (game.juice < game.juiceBulkAmountMax)
-        game.juiceBulkAmountToggle = game.juice
+        game.juiceToSell = game.juice
     else
-        game.juiceBulkAmountToggle = game.juiceBulkAmountMax
+        game.juiceToSell = game.juiceBulkAmountMax
 }
 
-function updateValuesDelivery () {
-	if (game.deliveryTypeToggle == 0 || game.deliveryTypeToggle == 2) {
-		setColor('deliveryToggleStandardButton', myLime)
-		setColor('deliveryToggleExpressButton', "gray")
-		setColor('deliveryToggleTrainButton', "gray")
-	} else if (game.deliveryTypeToggle == 1) {
-		setColor('deliveryToggleStandardButton', "gray")
-		setColor('deliveryToggleExpressButton', myLime)
-		setColor('deliveryToggleTrainButton', "gray")
-	} else {
-		setColor('deliveryToggleStandardButton', "gray")
-		setColor('deliveryToggleExpressButton', "gray")
-		setColor('deliveryToggleTrainButton', myLime)
-	}
-	
-    if (game.juiceBulkAmountToggle > 100 && game.deliveryTypeToggle < 2)
-        game.juiceBulkAmountToggle = 100
+function updateValuesDelivery() {
+    deliveryButtons.forEach(element => {
+        setColor('deliveryToggle' + element + 'Button', "gray")
+    });
 
-    if (game.juiceBulkAmountToggle > game.juiceBulkAmountMax)
-        game.juiceBulkAmountToggle = game.juiceBulkAmountMax
-	
-	currentTaskAesthetic('delivery')
-	
-	if (game.juiceBulkAmountToggle == 100 && game.deliveryTypeToggle < 2)
-		setColor('increaseJuiceSoldButton', "#50514F")
-	else
-		setColor('increaseJuiceSoldButton', "#BBBBBB")
+    var selectedDeliverButton = 0;
 
-	if (game.juiceBulkAmountToggle == 0)
-		setColor('decreaseJuiceSoldButton', "#50514F")
-	else
-		setColor('decreaseJuiceSoldButton', "#BBBBBB")
-	
-	if (game.deliveryTypeToggle == 2 && game.fasterTransport > 0)
-		game.juiceBulkAmountMax = 500
-	else if (game.deliveryTypeToggle == 3)
-		game.juiceBulkAmountMax = 2000
-	else
-		game.juiceBulkAmountMax = 100
-	
-	if (game.fasterTransport == 0)
-		update('deliveryToggleStandardButton', 'Standard Delivery')
-	else
-		update('deliveryToggleStandardButton', 'Hyper Delivery')
-	
-	checkShow(!game.increaseJuicePricePermanance, 'increaseJuicePricePermanance')
-	checkShow(game.deliveryManager, 'sellMaxJuiceButton', 'inline')
-	checkShow(!game.deliveryManager, 'decreaseJuiceSoldButton', 'inline')
-	checkShow(!game.deliveryManager, 'increaseJuiceSoldButton', 'inline')
-	checkShow(game.deliveryManager == 0 && game.maps >= 3, 'buyADeliveryManager')
-	checkShow(game.trainTransport, 'deliveryToggleTrainButton', 'inline')
-	checkShow(game.hasSoldPie && !game.trainTransport, 'trainTransportDiv')
-	checkShow(game.hasGottenJuice, 'juiceMarket')
-	
-	update('sellYourJuiceAmount','You Will Deliver ' + game.juiceBulkAmountToggle.toLocaleString() + ' / ' + game.juiceBulkAmountMax.toLocaleString() + ' Juice' )
-	update('sellYourJuiceReward', 'You Will Get ' + ((game.nationalJuiceMarketing + 1) * Math.floor(game.juiceBulkAmountToggle * (1 + (game.juicePriceCents / 100)))).toLocaleString() + ' Coins')
-	update('sellYourJuicePrice', 'You Need ' + game.deliveryPrice.toLocaleString() + ' Coins For Delivery')
-	update('textForJuicePricePrice', 'Price: ' + (game.juicePricePrice + game.increaseJuicePricex10 * (game.juicePricePrice * 9 + 45)).toLocaleString() + ' Coins')
-	toggleAesthetic("increaseJuicePricex10")
+    if (game.deliveryTypeToggle == 1)
+        selectedDeliverButton = 1;
+    else if (game.deliveryTypeToggle == 3)
+        selectedDeliverButton = 2;
 
-	if (game.increaseJuicePricePermanance < 1)
-		setColor('increaseJuicePriceButton', myBeige)
-	else
-		setColor('increaseJuicePriceButton', '#FF999A')
+    setColor('deliveryToggle' + deliveryButtons[selectedDeliverButton] + 'Button', myLime)
+
+    if (game.juiceToSell > 100 && game.deliveryTypeToggle < 2)
+        game.juiceToSell = 100
+
+    if (game.juiceToSell > game.juiceBulkAmountMax)
+        game.juiceToSell = game.juiceBulkAmountMax
+
+    currentTaskAesthetic('delivery')
+
+    if (game.juiceToSell == 100 && game.deliveryTypeToggle < 2)
+        setColor('increaseJuiceSoldButton', "#50514F")
+    else
+        setColor('increaseJuiceSoldButton', myGray)
+
+    if (game.juiceToSell == 0)
+        setColor('decreaseJuiceSoldButton', "#50514F")
+    else
+        setColor('decreaseJuiceSoldButton', myGray)
+
+    if (game.deliveryTypeToggle == 2 && game.fasterTransport > 0)
+        game.juiceBulkAmountMax = 500
+    else if (game.deliveryTypeToggle == 3)
+        game.juiceBulkAmountMax = 2000
+    else
+        game.juiceBulkAmountMax = 100
+
+    var standardDeliveryButtonText = 'Standard Delivery'
+
+    if (game.fasterTransport)
+        standardDeliveryButtonText = 'Hyper Delivery'
+
+    update('deliveryToggleStandardButton', standardDeliveryButtonText)
+
+    checkShows = [
+        {
+            check: game.deliveryManager == 0 && game.maps >= 3,
+            id: 'buyADeliveryManager',
+            display: 'block'
+        },
+        {
+            check: game.trainTransport,
+            id: 'deliveryToggleTrainButton',
+            display: 'inline'
+        },
+        {
+            check: game.hasSoldPie && !game.trainTransport,
+            id: 'trainTransportDiv',
+            display: 'block'
+        },
+        {
+            check: game.hasGottenJuice,
+            id: 'juiceMarket',
+            display: 'block'
+        },
+        {
+            check: game.deliveryManager,
+            id: 'sellMaxJuiceButton',
+            display: 'inline'
+        },
+        {
+            check: !game.deliveryManager,
+            id: 'decreaseJuiceSoldButton',
+            display: 'inline'
+        },
+        {
+            check: !game.deliveryManager,
+            id: 'increaseJuiceSoldButton',
+            display: 'inline'
+        },
+        {
+            check: !game.increaseJuicePricePermanance,
+            id: 'increaseJuicePriceButton',
+            display: 'block'
+        }
+    ]
+
+    checkShows.forEach(element => {
+        checkShow(element.check, element.id, element.display)
+    });
+
+    update('sellYourJuiceAmount', 'You Will Deliver ' + game.juiceToSell.toLocaleString() + ' / ' + game.juiceBulkAmountMax.toLocaleString() + ' Juice')
+    update('sellYourJuiceReward', 'You Will Get ' + ((game.nationalJuiceMarketing + 1) * Math.floor(game.juiceToSell * (1 + (game.juicePriceCents / 100)))).toLocaleString() + ' Coins')
+    update('sellYourJuicePrice', 'You Need ' + game.deliveryPrice.toLocaleString() + ' Coins For Delivery')
+    update('textForJuicePricePrice', 'Price: ' + (game.juicePricePrice + game.increaseJuicePricex10 * (game.juicePricePrice * 9 + 45)).toLocaleString() + ' Coins')
+    toggleAesthetic("increaseJuicePricex10")
+
+    if (game.increaseJuicePricePermanance < 1)
+        setColor('increaseJuicePriceButton', myBeige)
+    else
+        setColor('increaseJuicePriceButton', '#FF999A')
 }

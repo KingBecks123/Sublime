@@ -33,6 +33,7 @@ function importGame() {
         }
 	}
 }
+//I should add multiple save files in the future
 
 function loadGame(savegame) {
 	if (savegame !== null) {
