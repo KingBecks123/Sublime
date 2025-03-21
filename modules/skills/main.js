@@ -61,6 +61,10 @@ function learnANewSkillBarEnd() {
 	game.learnANewSkill += 1
 }
 
+function isSkillMaxxed(skillName) {
+    return game[skillName + 'SkillLevel'] === game[skillName + 'SkillLevelMax'];
+}
+
 function onLoadSkills () {
 	if (game.learnANewSkillBar > 0)
 		runBar('learnANewSkill', 0.5)
@@ -182,7 +186,7 @@ function updateValuesSkills () {
     });
 
     const showHideElements = [
-      { condition: game.ambidextrousSkillLevel == game.ambidextrousSkillLevelMax, element: 'stopActionsButton', display: 'inline' },
+      { condition: isSkillMaxxed('ambidextrous'), element: 'stopActionsButton', display: 'inline' },
       { condition: game.learnANewSkill > -2 && !game.fork, element: 'buyAForkDiv' },
       { condition: game.learnANewSkill > -2, element: 'eatFoodDiv' },
       { condition: game.learnANewSkill > -2, element: 'toggleActionsButton', display: 'inline' },

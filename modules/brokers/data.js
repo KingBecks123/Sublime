@@ -52,7 +52,7 @@ addGameVariables({
 document.getElementById('trade').innerHTML = `
             <div class="basicDiv" id="earnAlphaCoins">
                 <button class="currencyButton" id="coinsToAlphaClickButton" style="display:inline-block;background-color:#FDFF9A" onclick="coinsToAlphaStart()">Convert Coins to Alpha Coins</button>
-                <button id="alphaCoinConvertBulkButton" style="width:40px" onclick="toggle('alphaCoinConvertBulkToggle')">x10</button>
+                <button id="alphaCoinConvertBulkButton" onclick="toggle('alphaCoinConvertBulkToggle')">x10</button>
 				<div class="skillProgress" id="coinsToAlphaProgress">
 					<div class="skillBar" id="coinsToAlphaBar"></div>
 				</div>

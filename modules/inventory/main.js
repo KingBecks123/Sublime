@@ -161,8 +161,8 @@ function updateValuesInventory () {
 	
 	checkShow(game.deliveryManager, 'sellMaxJuiceButton', 'inline')
 	checkShow(!game.knife, 'buyKnifeDiv')
-	checkShow(game.knife && game.knifebidextrousSkillLevel == game.knifebidextrousSkillLevelMax && game.maps > 1 && !game.sharperPeelers, 'sharperPeelerDiv')
-	checkShow(game.knife && game.knifebidextrousSkillLevel == game.knifebidextrousSkillLevelMax && !(game.hideMaxedPurchases == 1 && game.peelers == game.peelersMax), 'buyAPeelerDiv')
+	checkShow(game.knife && isSkillMaxxed('knifebidextrous') && game.maps > 1 && !game.sharperPeelers, 'sharperPeelerDiv')
+	checkShow(game.knife && isSkillMaxxed('knifebidextrous') && !(game.hideMaxedPurchases == 1 && game.peelers == game.peelersMax), 'buyAPeelerDiv')
 	checkShow(game.knife, 'knifeDiv')
 	checkShow(game.bulkBuyUnlock, 'peelersBulkButton', 'inline')
 	checkShow(game.bulkBuyUnlock, 'juicersBulkButton', 'inline')

@@ -77,8 +77,8 @@ document.getElementById('bakery').innerHTML = `
 	<div class="basicDiv">
 		<p style="background-color:#DEAD85;" >Sell Pies</p>
 		<p style="background-color:#FF999A;" id="piePrice" >Current Price: 1 Pie Coin</p>
-		<button class="wide-button" onclick="decreasePiePrice()">Decrease Price</button>
-		<button class="wide-button" onclick="increasePiePrice()">Increase Price</button>
+		<button class="wide-button" onclick="decreasePiePrice()">Price -</button>
+		<button class="wide-button" onclick="increasePiePrice()">Price +</button>
 		<p class="sellingPieInfo" >The lower the price the faster you find customers</p>
 		<p class="sellingPieInfo" >Click on the customer to sell to them before they become unhappy and leave!</p>
 		<button class="roundButton" id="findPieCustomersButton" onclick="pickCurrentTask('findPieCustomers')">Start Selling Pie</button>

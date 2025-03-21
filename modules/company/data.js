@@ -238,7 +238,7 @@ document.getElementById('company').innerHTML = `		<div class="basicDiv">
         </div>
 		<div class="basicDiv" id="pieMerchant">
 			<button class="wide-button" style="display:inline-block;">Pie Merchant</button>            
-			<button id="pieMerchantInfoButton" style="width:80px;" onclick="toggle('pieMerchantInfoToggle')">Info</button>
+			<button id="pieMerchantInfoButton" onclick="toggle('pieMerchantInfoToggle')">Info</button>
             <p id="pieMerchantPieCoinPrice"></p>
             <p id="pieMerchantBetaCoinPrice"></p>
             <p id="pieMerchantMaxPay"></p>
