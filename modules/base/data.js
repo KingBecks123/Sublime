@@ -1,4 +1,4 @@
-const GAME_VERSION = "1.1.12";
+const GAME_VERSION = "1.1.13";
 const VERSION_NOTES = 
 `30/Mar/2025
     Improved the Field
