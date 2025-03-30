@@ -10,4 +10,6 @@
 
 .field-plot-symbol {
     font-size: 20px;
+    display: block;
+    /*-webkit-text-stroke: 1px black; posible outlining*/
 }

@@ -5,7 +5,7 @@
 		}
 	],
     "settings": {
-        "editor.fontSize": 11,
-        "editor.fontFamily": "Departure Mono, 'Departure Mono', monospace"
+        "editor.fontSize": 12,
+        "editor.fontFamily": "Fira Code Regular"
     }
 }

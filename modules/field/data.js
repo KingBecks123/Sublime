@@ -86,24 +86,25 @@ const fieldSymbols = {
     empty: {
         icon: '',
         color: ''
-    }
+    },
     seedDrill: {
-        icon: ']->',
-        color: ''
-    }
+        icon: 'O->',
+        color: '#000000'
+    },
     unpurchasedPlot: {
-        icon: '',
-        color: ''
-    }
+        icon: 'X',
+        color: '#FE0000'
+    },
     wheatHarvester: {
-        icon: '->]',
-        color: ''
-    }
+        icon: '>O',
+        color: '#000000'
+    },
     wheatSeed: {
         icon: '.',
-        color: ''
+        color: 'rgb(102,52,31)'
+    },
+    wheat: {
+        icon: 't',
+        color: '#F8FF01'
     }
-    wheatHarvester: '->]',
-    wheatSeed: '.',
-    wheatPlant: 't'
 }

@@ -11,7 +11,6 @@ function createFieldButtons() {
     game.wheatFieldArray.forEach((row, y) => {
         row.forEach((cell, x) => {
             const buttonId = 'plot' + x + '-' + y;
-            const imgId = buttonId + 'img';
             field += `
                 <button class="field-plot" ondragstart="return false;" id="${buttonId}" onclick="clickPlot(${x}, ${y})">
                     <span class="field-plot-symbol" id ="${buttonId}-symbol"></span>
@@ -132,7 +131,6 @@ function clickPlot(x, y) {
 
     function emptyWheatTile(x, y) {
         game.wheatFieldArray[x][y] = 0
-        document.getElementById(tile + 'img').src = "assets/images/field/emptyField.png"
     }
 
     function setTileType(number, cost) {
@@ -151,21 +149,22 @@ function updatePlotAesthetic() {
             var symbolID = document.getElementById(tile + '-symbol');
             var tileType = game.wheatFieldArray[x][y];
             var rotation = 0;
-            var symbol = 'unpurchasedField';
-            var color = myBeige;
+            var symbol = 'unpurchasedPlot';
+            var color = 'var(--accent-primary)'
 
             if (tileType == 0)
-                symbol = 'emptyField';
+                symbol = 'empty';
             else if (tileType >= 1 && tileType < 50)
                 symbol = 'wheatSeed';
             else if (tileType == 50)
-                symbol = 'wheatPlant';
+                symbol = 'wheat';
             else if (tileType > 50 && tileType <= 54)
                 symbol = 'seedDrill';
             else if (tileType > 54 && tileType <= 58)
                 symbol = 'wheatHarvester';
 
-            symbolID.innerHTML = fieldSymbols[symbol];
+            symbolID.innerHTML = fieldSymbols[symbol].icon;
+            symbolID.style.color = fieldSymbols[symbol].color;
 
             if (tileType == 51 || tileType == 55)
                 rotation = 90;
@@ -179,7 +178,7 @@ function updatePlotAesthetic() {
             if (tileType == 59)
                 color = "#66361F";
 
-            setColor(tile, color);
+            setColor(tile, color)
         }
     }
 }

@@ -1,0 +1,93 @@
+:root {
+    /* Colors (Resurrect 64x + Their Background Color) */
+        /* Charcoal (1-5) */
+        --charcoal-night: #2e222f;
+        --charcoal-dark: #3e3546;
+        --charcoal: #625565;
+        --charcoal-light: #966c6c;
+        --charcoal-bright: #ab947a;
+
+        /* Steel (6-10) */
+        --steel-night: #694f62;
+        --steel-dark: #7f708a;
+        --steel: #9babb2;
+        --steel-light: #c7dcd0;
+        --steel-bright: #ffffff;
+
+        /* Red (11-14) */
+        --red-night: #6e2727;
+        --red-dark: #b33831;
+        --red: #ea4f36;
+        --red-bright: #f57d4a;
+        /* --red-light: N/A in this structure */
+
+        /* Orange (15-19) */
+        --orange-night: #ae2334;
+        --orange-dark: #e83b3b;
+        --orange: #fb6b1d;
+        --orange-light: #f79617;
+        --orange-bright: #f9c22b;
+
+        /* Brown (20-24) */
+        --brown-night: #7a3045;
+        --brown-dark: #9e4539;
+        --brown: #cd683d;
+        --brown-light: #e6904e;
+        --brown-bright: #fbb954;
+
+        /* Green (25-29) */
+        --green-night: #4c3e24;
+        --green-dark: #676633;
+        --green: #a2a947;
+        --green-light: #d5e04b;
+        --green-bright: #fbff86;
+
+        /* Lime (30-34) */
+        --lime-night: #165a4c;
+        --lime-dark: #239063;
+        --lime: #1ebc73;
+        --lime-light: #91db69;
+        --lime-bright: #cddf6c;
+
+        /* Seaweed (35-39) */
+        --seaweed-night: #313638;
+        --seaweed-dark: #374e4a;
+        --seaweed: #547e64;
+        --seaweed-light: #92a984;
+        --seaweed-bright: #b2ba90;
+
+        /* Aqua (40-44) */
+        --aqua-night: #0b5e65;
+        --aqua-dark: #0b8a8f;
+        --aqua: #0eaf9b;
+        --aqua-light: #30e1b9;
+        --aqua-bright: #8ff8e2;
+
+        /* Blue (45-49) */
+        --blue-night: #323353;
+        --blue-dark: #484a77;
+        --blue: #4d65b4;
+        --blue-light: #4d9be6;
+        --blue-bright: #8fd3ff;
+
+        /* Purple (50-54) */
+        --purple-night: #45293f;
+        --purple-dark: #6b3e75;
+        --purple: #905ea9;
+        --purple-light: #a884f3;
+        --purple-bright: #eaaded;
+
+        /* Lavender (55-58) */
+        --lavender-night: #753c54;
+        --lavender-dark: #a24b6f;
+        --lavender: #cf657f;
+        --lavender-light: #ed8099;
+
+        /* Pink (59-65) */
+        --pink-pitch: #831c5d;
+        --pink-night: #c32454;
+        --pink-dark: #f04f78;
+        --pink: #f68181;
+        --pink-light: #fca790;
+        --pink-bright: #fdcbb0;
+}
