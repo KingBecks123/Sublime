@@ -81,3 +81,29 @@ document.getElementById('field').innerHTML = `
 	</div>
 	<div id="fullField" style="height:460px;width:460px;margin:0px 0px 0px 0px;padding: 0px 0px 0px 0px;display:inline-block;position:absolute;right:0px;top:-5px;"></div>
 `;
+
+const fieldSymbols = {
+    empty: {
+        icon: '',
+        color: ''
+    }
+    seedDrill: {
+        icon: ']->',
+        color: ''
+    }
+    unpurchasedPlot: {
+        icon: '',
+        color: ''
+    }
+    wheatHarvester: {
+        icon: '->]',
+        color: ''
+    }
+    wheatSeed: {
+        icon: '.',
+        color: ''
+    }
+    wheatHarvester: '->]',
+    wheatSeed: '.',
+    wheatPlant: 't'
+}

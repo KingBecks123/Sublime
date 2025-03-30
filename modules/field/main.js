@@ -14,7 +14,7 @@ function createFieldButtons() {
             const imgId = buttonId + 'img';
             field += `
                 <button class="field-plot" ondragstart="return false;" id="${buttonId}" onclick="clickPlot(${x}, ${y})">
-                    <img class="field-plot-image" id="${imgId}" src="assets/images/field/emptyField.png">
+                    <span class="field-plot-symbol" id ="${buttonId}-symbol"></span>
                 </button>
             `;
         });
@@ -148,24 +148,24 @@ function updatePlotAesthetic() {
     for (var x = 0; x < 5; x++) {
         for (var y = 0; y < 5; y++) {
             var tile = "plot" + x + "-" + y;
-            var image = document.getElementById(tile + 'img');
+            var symbolID = document.getElementById(tile + '-symbol');
             var tileType = game.wheatFieldArray[x][y];
             var rotation = 0;
-            var imageID = 'unpurchasedField';
+            var symbol = 'unpurchasedField';
             var color = myBeige;
 
             if (tileType == 0)
-                imageID = 'emptyField';
+                symbol = 'emptyField';
             else if (tileType >= 1 && tileType < 50)
-                imageID = 'wheatSeed1';
+                symbol = 'wheatSeed';
             else if (tileType == 50)
-                imageID = 'wheatSeed6';
+                symbol = 'wheatPlant';
             else if (tileType > 50 && tileType <= 54)
-                imageID = 'seedDrill';
+                symbol = 'seedDrill';
             else if (tileType > 54 && tileType <= 58)
-                imageID = 'wheatHarvester';
+                symbol = 'wheatHarvester';
 
-            image.src = 'assets/images/field/' + imageID + '.png';
+            symbolID.innerHTML = fieldSymbols[symbol];
 
             if (tileType == 51 || tileType == 55)
                 rotation = 90;
@@ -174,7 +174,7 @@ function updatePlotAesthetic() {
             else if (tileType == 53 || tileType == 57)
                 rotation = 270;
 
-            image.style.transform = 'rotate(' + rotation + 'deg)';
+            symbolID.style.transform = 'rotate(' + rotation + 'deg)';
 
             if (tileType == 59)
                 color = "#66361F";
