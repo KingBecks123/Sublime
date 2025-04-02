@@ -1,7 +1,8 @@
-const GAME_VERSION = "1.1.13";
+const GAME_VERSION = "1.1.14";
 const VERSION_NOTES = 
-`30/Mar/2025
-    Improved the Field
+`2/Apr/2025
+    Fixed bug with travelling not keeping upgrades
+    Fixed bug which showed and hid the wrong button in delivery
 `
 
 mainTabs = [

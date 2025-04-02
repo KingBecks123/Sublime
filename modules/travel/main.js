@@ -55,6 +55,7 @@ function convertCoinsNowBarEnd() {
     game.megaCoins += 1
 }
 
+/*
 function travelToNextVillage() {
     if (window.prompt("Are you sure? Type 'yes' if you are") == "yes") {
 		
@@ -157,6 +158,95 @@ function travelToNextVillage() {
         saveGame()
         location.reload()
     }
+}
+*/
+
+function travelToNextVillage() {
+    if (window.prompt("Are you sure? Type 'yes' if you are") !== "yes") {
+        return;
+    }
+
+    const propertiesToPreserve = [
+        'surveillanceCamera2',
+        'versionNumber',
+        'nationalJuiceMarketing',
+        'creditScore2',
+        'creditScore3',
+        'coinsMax',
+        'respectMilestone10000',
+        'unlockBenevolence',
+        'nationalTradeCert',
+        'bigGloves',
+        'nutritionists',
+        'megaCoinsInBankMax',
+        'betterTraining',
+        'hideCompletedSkills',
+        'hideMaxedPurchases',
+        'researchers',
+        'upgradeMoreStorage',
+        'changeResearchersBy10Unlock',
+        'rottenActualWisdom',
+        'tickspeed',
+        'timePlayed',
+        'saveAlphaCoinsUnlock',
+        'manuscripts',
+        'lightRobe',
+        'increaseJuicePricePermanance'
+    ];
+
+    if (game.increaseJuicePricePermanance) {
+        propertiesToPreserve.push('juicePriceCents');
+    }
+    if (game.manuscripts > 0) {
+        propertiesToPreserve.push('respectMilestone1000');
+    }
+    if (game.saveAlphaCoinsUnlock) {
+        propertiesToPreserve.push('alphaCoins');
+    }
+
+    const preservedValues = {};
+
+    preservedValues['_megaCoinsFromBank'] = game.megaCoinsInBank;
+
+    for (const propName of propertiesToPreserve) {
+        if (game.hasOwnProperty(propName)) {
+            preservedValues[propName] = game[propName];
+        } else {
+            console.warn(`Property "${propName}" not found on game object during saveBeforeWipe.`);
+        }
+    }
+
+    if (typeof gameBase === 'undefined') {
+       console.error("Error: gameBase is not defined. Cannot reset game state.");
+       return;
+    }
+    Object.assign(game, gameBase);
+
+    for (const propName in preservedValues) {
+        if (preservedValues.hasOwnProperty(propName)) {
+            if (propName === '_megaCoinsFromBank') {
+                game.megaCoins = preservedValues[propName];
+            } else {
+                game[propName] = preservedValues[propName];
+            }
+        }
+    }
+
+    game.juicersMax = 100 + (game.upgradeMoreStorage || 0) * 500;
+    game.peelersMax = 500 + (game.upgradeMoreStorage || 0) * 2500;
+
+    if (game.lightRobe) {
+        game.respect += 50;
+    }
+
+    if (game.rottenActualWisdom) {
+        game.rottenWisdomSkillLevelMax = 25;
+    }
+
+    game.villageNumber = 2;
+
+    saveGame();
+    location.reload();
 }
 
 function increaseCreditScore() {
