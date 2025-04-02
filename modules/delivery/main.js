@@ -177,7 +177,7 @@ function updateValuesDelivery() {
         },
         {
             check: !game.increaseJuicePricePermanance,
-            id: 'increaseJuicePriceButton',
+            id: 'increaseJuicePricePermanance',
             display: 'block'
         }
     ]

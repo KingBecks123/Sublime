@@ -27,10 +27,9 @@ function createFieldActionButtons() {
 
     for (let i = 0; i < fieldActions.length; i++) {
         option = fieldActions[i];
-        optionText = idToName(option.id);
 
         fieldActionButtons += `
-            <button class="wide-button" id="${option.id}FieldAction" onclick="selectFieldAction('${option.id}')">${optionText}</button>
+            <button class="wide-button" id="${option.id}FieldAction" onclick="selectFieldAction('${option.id}')">${idToName(option.id)}</button>
         `;
     }
 
